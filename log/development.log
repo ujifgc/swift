@@ -1,0 +1,635 @@
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:21[0m[33m LOADING[0m ([33m[1m0.0131ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:21[0m[33m LOADING[0m ([33m[1m0.0105ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:21[0m[33m LOADING[0m ([33m[1m0.0106ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:21[0m[33m LOADING[0m ([33m[1m0.0107ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0107ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0111ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0124ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:45:22[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0137ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:45:22[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0135ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0137ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0138ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:45:22[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0133ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0110ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0111ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0112ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0111ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0127ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0130ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:54:55[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0133ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:54:55[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0138ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0139ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0139ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0145ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:54:55[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0130ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0135ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:55:51[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:55:51[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:51[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:52[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:52[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:52[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:52[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:52[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:52[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:55:52[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0138ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0114ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0115ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0115ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0120ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0131ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:19[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:57:19[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0138ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:57:20[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0140ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0144ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0145ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0145ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:57:20[0m[33m LOADING[0m ([33m[1m0.0151ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0159ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0124ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0152ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0151ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:58:30[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0154ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 13:58:30[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0160ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0162ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0175ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0166ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0168ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0168ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0169ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 13:58:30[0m[33m LOADING[0m ([33m[1m0.0169ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0163ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0127ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0130ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0158ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0158ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:04:14[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0159ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:04:14[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0162ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:14[0m[33m LOADING[0m ([33m[1m0.0166ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:15[0m[33m LOADING[0m ([33m[1m0.0175ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:15[0m[33m LOADING[0m ([33m[1m0.0167ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:15[0m[33m LOADING[0m ([33m[1m0.0172ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:15[0m[33m LOADING[0m ([33m[1m0.0173ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:15[0m[33m LOADING[0m ([33m[1m0.0174ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:15[0m[33m LOADING[0m ([33m[1m0.0174ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:04:15[0m[33m LOADING[0m ([33m[1m0.0187ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0162ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0127ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0133ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0147ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:05:40[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:05:40[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0159ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0164ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0163ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:40[0m[33m LOADING[0m ([33m[1m0.0164ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:41[0m[33m LOADING[0m ([33m[1m0.0168ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:41[0m[33m LOADING[0m ([33m[1m0.0169ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:41[0m[33m LOADING[0m ([33m[1m0.0170ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:41[0m[33m LOADING[0m ([33m[1m0.0171ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:05:41[0m[33m LOADING[0m ([33m[1m0.0172ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0120ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0121ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0134ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0140ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0138ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:06:41[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:06:41[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:41[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:42[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:42[0m[33m LOADING[0m ([33m[1m0.0162ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:42[0m[33m LOADING[0m ([33m[1m0.0174ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:42[0m[33m LOADING[0m ([33m[1m0.0164ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:42[0m[33m LOADING[0m ([33m[1m0.0164ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:06:42[0m[33m LOADING[0m ([33m[1m0.0165ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:00[0m[33m LOADING[0m ([33m[1m0.0154ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:00[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:00[0m[33m LOADING[0m ([33m[1m0.0119ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0119ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0119ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0130ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0135ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0134ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0144ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:07:01[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:07:01[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0161ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0158ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0158ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0160ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:07:01[0m[33m LOADING[0m ([33m[1m0.0160ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0163ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0124ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0138ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0147ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:09:19[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:19[0m[33m LOADING[0m ([33m[1m0.0152ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:09:19[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0164ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0161ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0162ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0163ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0163ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:09:20[0m[33m LOADING[0m ([33m[1m0.0164ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:11[0m[33m LOADING[0m ([33m[1m0.0152ms[0m[0m) /home/ujif/swift/config/database.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:11[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:44[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:57[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:57[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:57[0m[33m LOADING[0m ([33m[1m0.0124ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:57[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:57[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/models/block.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:57[0mFailed to load /home/ujif/swift/models/block.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:57[0mRemoved constant: Block
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:57[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/models/folder.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:57[0mFailed to load /home/ujif/swift/models/folder.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:57[0mRemoved constant: Folder
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:57[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/models/image.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:57[0mFailed to load /home/ujif/swift/models/image.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:57[0mRemoved constant: Image
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:57[0m[33m LOADING[0m ([33m[1m0.0139ms[0m[0m) /home/ujif/swift/models/page.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:57[0mFailed to load /home/ujif/swift/models/page.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mRemoved constant: Page
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:58[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/models/block.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mFailed to load /home/ujif/swift/models/block.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mRemoved constant: Block
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:58[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/models/folder.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mFailed to load /home/ujif/swift/models/folder.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mRemoved constant: Folder
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:58[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/models/image.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mFailed to load /home/ujif/swift/models/image.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mRemoved constant: Image
+[36m  DEBUG[0m -[33m22/Jan/2012 14:12:58[0m[33m LOADING[0m ([33m[1m0.0158ms[0m[0m) /home/ujif/swift/models/page.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mFailed to load /home/ujif/swift/models/page.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:12:58[0mRemoved constant: Page
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:11[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:11[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:11[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:11[0m[33m LOADING[0m ([33m[1m0.0127ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:11[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:11[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:11[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:11[0mSetup Admin
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:11[0mFailed to load /home/ujif/swift/admin/app.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:11[0mRemoved constant: Admin
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:11[0mFailed to load /home/ujif/swift/config/apps.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:13:46[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:13:46[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0124ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/models/block.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/models/block.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mRemoved constant: Block
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0133ms[0m[0m) /home/ujif/swift/models/folder.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/models/folder.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mRemoved constant: Folder
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/models/image.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/models/image.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mRemoved constant: Image
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/models/page.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/models/page.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mRemoved constant: Page
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/models/block.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/models/block.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mRemoved constant: Block
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/models/folder.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/models/folder.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mRemoved constant: Folder
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/models/image.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/models/image.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mRemoved constant: Image
+[36m  DEBUG[0m -[33m22/Jan/2012 14:13:46[0m[33m LOADING[0m ([33m[1m0.0152ms[0m[0m) /home/ujif/swift/models/page.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mFailed to load /home/ujif/swift/models/page.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:13:46[0mRemoved constant: Page
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0154ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:14:06[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:14:06[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:14:06[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:14:06[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0131ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0131ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0135ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0144ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0165ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0168ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:14:06[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0170ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:14:06[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0158ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:06[0m[33m LOADING[0m ([33m[1m0.0162ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:07[0m[33m LOADING[0m ([33m[1m0.0163ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:07[0m[33m LOADING[0m ([33m[1m0.0164ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:07[0m[33m LOADING[0m ([33m[1m0.0167ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:07[0m[33m LOADING[0m ([33m[1m0.0171ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:07[0m[33m LOADING[0m ([33m[1m0.0212ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:07[0m[33m LOADING[0m ([33m[1m0.0172ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:14:07[0m[33m LOADING[0m ([33m[1m0.0172ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:19:50[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:19:50[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:19:50[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:19:50[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0114ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0114ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0137ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0147ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0147ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:19:50[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0140ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:19:50[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:50[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:51[0m[33m LOADING[0m ([33m[1m0.0147ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:51[0m[33m LOADING[0m ([33m[1m0.0147ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:51[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:51[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:51[0m[33m LOADING[0m ([33m[1m0.0154ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:51[0m[33m LOADING[0m ([33m[1m0.0154ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:19:51[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:22:27[0m[33m LOADING[0m ([33m[1m0.0150ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:22:27[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:22:27[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:15[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:23:15[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:15[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:23:43[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:23:43[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/models/block.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/models/block.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mRemoved constant: Block
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/models/folder.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/models/folder.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mRemoved constant: Folder
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/models/image.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/models/image.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mRemoved constant: Image
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/models/page.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/models/page.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mRemoved constant: Page
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0139ms[0m[0m) /home/ujif/swift/models/block.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/models/block.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mRemoved constant: Block
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/models/folder.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/models/folder.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mRemoved constant: Folder
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0333ms[0m[0m) /home/ujif/swift/models/image.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/models/image.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mRemoved constant: Image
+[36m  DEBUG[0m -[33m22/Jan/2012 14:23:43[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/models/page.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mFailed to load /home/ujif/swift/models/page.rb; removing partially defined constants
+[35m  DEVEL[0m -[33m22/Jan/2012 14:23:43[0mRemoved constant: Page
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0159ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:25:40[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:25:40[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0114ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0115ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:25:40[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:25:40[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0115ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0120ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0133ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0139ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:25:40[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:25:40[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:40[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:41[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:41[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:41[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:41[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:41[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:25:41[0m[33m LOADING[0m ([33m[1m0.0167ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0151ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:27:14[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:27:14[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0114ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:27:14[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:27:14[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0114ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0115ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0119ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0139ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:27:14[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:27:14[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0145ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0152ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0155ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:14[0m[33m LOADING[0m ([33m[1m0.0157ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0147ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:27:32[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:27:32[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0111ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:27:32[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:27:32[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0114ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0130ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:32[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0145ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:27:33[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0138ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:27:33[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0175ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0152ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0152ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0165ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:27:33[0m[33m LOADING[0m ([33m[1m0.0153ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0130ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:28:26[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:28:26[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0105ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0106ms[0m[0m) /home/ujif/swift/config/database.rb
+[31m  ERROR[0m -[33m22/Jan/2012 14:28:26[0mCannot require /home/ujif/swift/config/database.rb due to a syntax error: /home/ujif/swift/config/database.rb:10: syntax error, unexpected keyword_end, expecting keyword_when
+[35m  DEVEL[0m -[33m22/Jan/2012 14:28:26[0mFailed to load /home/ujif/swift/config/database.rb; removing partially defined constants
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0106ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0107ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0108ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0111ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0119ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0135ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:28:26[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:26[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:28:26[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0131ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0134ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0139ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0156ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0140ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:27[0m[35m     GET[0m ([35m[1m0.0050ms[0m[0m) application.css - [1m404[0m Not Found
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:33[0m
+[36m  DEBUG[0m -[33m22/Jan/2012 14:28:33[0m[35m     GET[0m ([35m[1m0.0058ms[0m[0m) app.css - [1m200[0m OK
+[36m  DEBUG[0m -[33m22/Jan/2012 14:29:06[0m
+[36m  DEBUG[0m -[33m22/Jan/2012 14:29:06[0m[35m     GET[0m ([35m[1m0.0384ms[0m[0m) admin.css - [1m200[0m OK
+[36m  DEBUG[0m -[33m22/Jan/2012 14:29:10[0m
+[36m  DEBUG[0m -[33m22/Jan/2012 14:29:10[0m[35m     GET[0m ([35m[1m0.0396ms[0m[0m) admin.js - [1m200[0m OK
+[36m  DEBUG[0m -[33m22/Jan/2012 14:29:41[0m
+
+
+---
+
+
+---
+[36m  DEBUG[0m -[33m22/Jan/2012 14:29:41[0m
+
+
+---
+
+
+---
+[36m  DEBUG[0m -[33m22/Jan/2012 14:29:58[0m
+
+
+---
+
+
+---
+[36m  DEBUG[0m -[33m22/Jan/2012 14:29:58[0m
+
+
+---
+
+
+---
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0137ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0108ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0110ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0110ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0110ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0114ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0133ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:13[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:30:13[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0146ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 14:30:14[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0138ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0141ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0143ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0147ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0148ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0154ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33m LOADING[0m ([33m[1m0.0149ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m
+
+
+---
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0002ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m22/Jan/2012 14:30:14[0m[35m     GET[0m ([35m[1m0.1309ms[0m[0m) / - [1m200[0m OK
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0099ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0100ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0101ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0106ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0111ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0120ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0127ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 15:11:37[0mSetup Swift
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0128ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m22/Jan/2012 15:11:37[0mSetup Admin
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0127ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0129ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:37[0m[33m LOADING[0m ([33m[1m0.0131ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:38[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:38[0m[33m LOADING[0m ([33m[1m0.0132ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:38[0m[33m LOADING[0m ([33m[1m0.0133ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:38[0m
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:38[0m[35m     GET[0m ([35m[1m0.0688ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:40[0m
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:40[0m[35m     GET[0m ([35m[1m0.0031ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:59[0m
+[36m  DEBUG[0m -[33m22/Jan/2012 15:11:59[0m[35m     GET[0m ([35m[1m0.0029ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m22/Jan/2012 15:12:07[0m
+[36m  DEBUG[0m -[33m22/Jan/2012 15:12:07[0m[35m     GET[0m ([35m[1m0.0030ms[0m[0m) admin.js - [1m200[0m OK

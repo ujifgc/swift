@@ -1,0 +1,17 @@
+!!! 5
+%html{:lang => I18n.locale, :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{ :charset => "utf-8" }
+    %title= @page.title
+  %body
+    #body
+      #header
+        %h1= link_to 'Root', url(:core_index)
+        = partial 'fragments/header'
+      #wrapper
+        .flash= [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
+        = yield
+      #footer
+        = partial 'fragments/footer'
+
+%pre= @swift.to_yaml

@@ -1,0 +1,18 @@
+= f.inputs :title, :slug
+
+.group
+  =f.label :text
+  =f.error_message_on :text
+  ~f.text_area :text, :class => :text_area
+  %span.description Ex: a simple text
+
+- if @page.path != '/'
+  .group
+    = f.label :parent_id
+    = f.error_message_on :parent_id
+    - sel = @page.parent
+    = f.select :parent_id, :class => :select, :collection => Page.all, :fields => [ :title_tree, :id ], :include_blank => false, :selected => (sel ? sel.id : 0)
+
+.group.navform.wat-cf
+  =f.submit pat(:save), :class => :button
+  =f.submit pat(:cancel), :onclick => "window.location='#{url(:pages, :index)}';return false", :class => :button

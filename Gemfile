@@ -1,0 +1,36 @@
+#source :rubygems
+
+# Server requirements (defaults to WEBrick)
+# gem "sinatra-synchrony"
+# gem 'thin'
+# gem 'mongrel'
+
+# Project requirements
+gem 'rake'
+gem 'sinatra-flash', :require => 'sinatra/flash'
+
+# Component requirements
+gem 'bcrypt-ruby', :require => "bcrypt"
+gem 'haml'
+
+# Database requirements
+gem 'dm-types'
+gem 'dm-validations'
+gem 'dm-timestamps'
+gem 'dm-migrations'
+gem 'dm-constraints'
+gem 'dm-aggregates'
+gem 'dm-core', '1.2.0'
+gem 'redis'
+gem 'hiredis'
+gem 'dm-redis-adapter', :git => 'git://github.com/ujifgc/dm-redis-adapter.git'
+
+
+gem 'padrino', :git => 'git://github.com/ujifgc/padrino-framework.git'
+
+# markdown
+gem 'redcarpet', :git => 'git://github.com/ujifgc/redcarpet.git'
+
+# asset compressing
+gem 'sprockets'
+gem 'padrino-sprockets', :require => "padrino/sprockets"
