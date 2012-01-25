@@ -633,3 +633,603 @@
 [36m  DEBUG[0m -[33m22/Jan/2012 15:11:59[0m[35m     GET[0m ([35m[1m0.0029ms[0m[0m) admin.js - [1m304[0m Not Modified
 [36m  DEBUG[0m -[33m22/Jan/2012 15:12:07[0m
 [36m  DEBUG[0m -[33m22/Jan/2012 15:12:07[0m[35m     GET[0m ([35m[1m0.0030ms[0m[0m) admin.js - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m
+
+
+---
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 01:26:24[0m[35m     GET[0m ([35m[1m0.1287ms[0m[0m) / - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0120ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0094ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0095ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0096ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0096ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0099ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0112ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0111ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0115ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m24/Jan/2012 13:01:39[0mSetup Swift
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m24/Jan/2012 13:01:39[0mSetup Admin
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0119ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0120ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0121ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0121ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0125ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0136ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33m LOADING[0m ([33m[1m0.0127ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m
+
+
+---
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33mTEMPLATE[0m ([33m[1m0.0002ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:39[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:40[0m[35m     GET[0m ([35m[1m0.2143ms[0m[0m) / - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m
+
+
+---
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:42[0m[35m     GET[0m ([35m[1m0.0737ms[0m[0m) /about - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:43[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:43[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:43[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:43[0m[35m     GET[0m ([35m[1m0.1406ms[0m[0m) /admin/ - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:43[0m
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:43[0m[35m     GET[0m ([35m[1m0.0246ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:44[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:44[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:44[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:44[0m[35m     GET[0m ([35m[1m0.0574ms[0m[0m) /admin/pages - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:45[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /accounts/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:45[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:45[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:45[0m[35m     GET[0m ([35m[1m0.0636ms[0m[0m) /admin/accounts - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:48[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /blocks/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:48[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:48[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:48[0m[35m     GET[0m ([35m[1m0.0371ms[0m[0m) /admin/blocks - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m
+
+
+---
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:54[0m[35m     GET[0m ([35m[1m0.0693ms[0m[0m) /about4 - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m
+
+
+---
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0027ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:55[0m[35m     GET[0m ([35m[1m0.0951ms[0m[0m) /about3 - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m
+
+
+---
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:56[0m[35m     GET[0m ([35m[1m0.0782ms[0m[0m) /about/phones/map1 - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m
+
+
+---
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0027ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:01:58[0m[35m     GET[0m ([35m[1m0.1048ms[0m[0m) /about/address/map2 - [1m200[0m OK
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0092ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0093ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0094ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0094ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0097ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0103ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0108ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0112ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0119ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m24/Jan/2012 13:02:21[0mSetup Swift
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m24/Jan/2012 13:02:21[0mSetup Admin
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0115ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0118ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0121ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0121ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:21[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m
+
+
+---
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m24/Jan/2012 13:02:22[0m[35m     GET[0m ([35m[1m0.1413ms[0m[0m) /about/address/map2 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m
+
+
+---
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:40[0m[35m     GET[0m ([35m[1m0.1298ms[0m[0m) /about/address/map2 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m
+
+
+---
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_header
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /fragments/_footer
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_core
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_recursive
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /elements/MapTree/_view
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:42[0m[35m     GET[0m ([35m[1m0.0798ms[0m[0m) /about/address - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:51[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/index
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:51[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:51[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:51[0m[35m     GET[0m ([35m[1m0.1468ms[0m[0m) /admin/ - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:52[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:52[0m[35m     GET[0m ([35m[1m0.0439ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:55[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:55[0m[35m     GET[0m ([35m[1m0.0565ms[0m[0m) /admin/pages - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:40:58[0m[35m     GET[0m ([35m[1m0.0457ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:00[0m[33m  RELOAD[0m ([33m[1m0.0142ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:00[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:00[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:00[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:00[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:00[0m[35m     GET[0m ([35m[1m0.0501ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:00[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:00[0m[35m     GET[0m ([35m[1m0.0030ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/config/database.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0090ms[0m[0m) /home/ujif/swift/lib/dm-swift.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0091ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0092ms[0m[0m) /home/ujif/swift/lib/swift_form_builder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0092ms[0m[0m) /home/ujif/swift/models/account.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0095ms[0m[0m) /home/ujif/swift/models/block.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0101ms[0m[0m) /home/ujif/swift/models/folder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0105ms[0m[0m) /home/ujif/swift/models/image.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0110ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/config/apps.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/app/app.rb
+[35m  DEVEL[0m -[33m25/Jan/2012 11:44:33[0mSetup Swift
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0291ms[0m[0m) /home/ujif/swift/admin/app.rb
+[35m  DEVEL[0m -[33m25/Jan/2012 11:44:33[0mSetup Admin
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0113ms[0m[0m) /home/ujif/swift/app/controllers/core.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/app/controllers/images.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0116ms[0m[0m) /home/ujif/swift/app/controllers/pages.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0117ms[0m[0m) /home/ujif/swift/app/helpers/core_helper.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/admin/controllers/accounts.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0121ms[0m[0m) /home/ujif/swift/admin/controllers/base.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0121ms[0m[0m) /home/ujif/swift/admin/controllers/blocks.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0122ms[0m[0m) /home/ujif/swift/admin/controllers/pages.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33m LOADING[0m ([33m[1m0.0123ms[0m[0m) /home/ujif/swift/admin/controllers/sessions.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33mTEMPLATE[0m ([33m[1m0.0002ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:33[0m[35m     GET[0m ([35m[1m0.1639ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:34[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:34[0m[35m     GET[0m ([35m[1m0.0121ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:58[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:58[0m[35m     GET[0m ([35m[1m0.0412ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:58[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:44:58[0m[35m     GET[0m ([35m[1m0.0030ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:45:46[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:45:46[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:45:46[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:45:46[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:45:46[0m[35m     GET[0m ([35m[1m0.0197ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:45:46[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:45:46[0m[35m     GET[0m ([35m[1m0.0029ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:46:12[0m[33mTEMPLATE[0m ([33m[1m0.0002ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:46:12[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:46:12[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:46:12[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:46:12[0m[35m     GET[0m ([35m[1m0.0201ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:46:13[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:46:13[0m[35m     GET[0m ([35m[1m0.0028ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:20[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:20[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:20[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:20[0m[35m     GET[0m ([35m[1m0.0236ms[0m[0m) /admin/__sinatra__/500.png - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:28[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:28[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:28[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:28[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:28[0m[35m     GET[0m ([35m[1m0.0201ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:28[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:28[0m[35m     GET[0m ([35m[1m0.0028ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:40[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:40[0m[35m     GET[0m ([35m[1m0.0198ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:40[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:47:40[0m[35m     GET[0m ([35m[1m0.0264ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:48:18[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:48:18[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:48:18[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:48:18[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:48:18[0m[35m     GET[0m ([35m[1m0.0205ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:48:18[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:48:18[0m[35m     GET[0m ([35m[1m0.0029ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:28[0m[33m  RELOAD[0m ([33m[1m0.0135ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:28[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:28[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:28[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:28[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:28[0m[35m     GET[0m ([35m[1m0.0490ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:28[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:28[0m[35m     GET[0m ([35m[1m0.0028ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:41[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:41[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:41[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:41[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:41[0m[35m     GET[0m ([35m[1m0.0539ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:41[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 11:55:41[0m[35m     GET[0m ([35m[1m0.0055ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:21[0m[33m  RELOAD[0m ([33m[1m0.0126ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:21[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:21[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:21[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:21[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:21[0m[35m     GET[0m ([35m[1m0.0826ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:21[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:21[0m[35m     GET[0m ([35m[1m0.0028ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:24[0m[35m     GET[0m ([35m[1m0.0785ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:31[0m[33m  RELOAD[0m ([33m[1m0.0124ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:31[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:31[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:31[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:31[0m[35m     GET[0m ([35m[1m0.0015ms[0m[0m) /admin/__sinatra__/500.png - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:38[0m[33m  RELOAD[0m ([33m[1m0.0135ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:38[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:38[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:38[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:38[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:38[0m[35m     GET[0m ([35m[1m0.0727ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:38[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:38[0m[35m     GET[0m ([35m[1m0.0029ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:45[0m[33m  RELOAD[0m ([33m[1m0.0127ms[0m[0m) /home/ujif/swift/lib/admin_form_builder.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:45[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:45[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:45[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:45[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:45[0m[35m     GET[0m ([35m[1m0.0785ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:45[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 12:01:45[0m[35m     GET[0m ([35m[1m0.0029ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/new
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:24[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:24[0m[35m     GET[0m ([35m[1m0.1269ms[0m[0m) /admin/pages/new - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:26[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:26[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:26[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:26[0m[35m     GET[0m ([35m[1m0.0586ms[0m[0m) /admin/pages - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:49[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/new
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:49[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:49[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:49[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:02:49[0m[35m     GET[0m ([35m[1m0.1043ms[0m[0m) /admin/pages/new - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:10[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:10[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:10[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:10[0m[35m     GET[0m ([35m[1m0.0325ms[0m[0m) /admin/pages - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:12[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:12[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:12[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:12[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:12[0m[35m     GET[0m ([35m[1m0.1094ms[0m[0m) /admin/pages/edit/55 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:19[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:19[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:19[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:19[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:03:19[0m[35m     GET[0m ([35m[1m0.1072ms[0m[0m) /admin/pages/edit/61 - [1m200[0m OK
+[35m  DEVEL[0m -[33m25/Jan/2012 12:05:27[0mRemoved constant: Page
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:27[0m[33m  RELOAD[0m ([33m[1m0.0139ms[0m[0m) /home/ujif/swift/models/page.rb
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:27[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:27[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:27[0m[33mTEMPLATE[0m ([33m[1m0.0002ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:27[0m[35m     GET[0m ([35m[1m0.0716ms[0m[0m) /admin/pages - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:27[0m
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:27[0m[35m     GET[0m ([35m[1m0.0029ms[0m[0m) admin.js - [1m304[0m Not Modified
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:29[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/index
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:29[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:29[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:29[0m[35m     GET[0m ([35m[1m0.0592ms[0m[0m) /admin/pages - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:31[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:31[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:31[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:31[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:31[0m[35m     GET[0m ([35m[1m0.0190ms[0m[0m) /admin/pages/edit/53 - [1m200[0m OK
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:34[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/edit
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:34[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /layouts/application
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:34[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /pages/_form
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:34[0m[33mTEMPLATE[0m ([33m[1m0.0001ms[0m[0m) /base/_sidebar
+[36m  DEBUG[0m -[33m25/Jan/2012 12:05:34[0m[35m     GET[0m ([35m[1m0.0536ms[0m[0m) /admin/pages/edit/54 - [1m200[0m OK

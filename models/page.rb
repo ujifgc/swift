@@ -36,4 +36,8 @@ class Page
     "#{prepend} #{title} (#{slug})"
   end
 
+  def root?
+    self.path == '/'
+  end
+
 end

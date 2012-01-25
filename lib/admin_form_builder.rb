@@ -8,11 +8,11 @@ module Padrino
           html += ' ' + error_message_on( field ) + ' '
           html += case options[:as]
             when :text
-              text_area field, :class => :text_area
+              text_area field, :class => 'text_area' + (options[:markdown] ? ' markdown' : '')
             when :password
               password_field field, :class => :password_field
             when :select
-              select field, :class => :select, :selected => options[:selected], :options => options[:options] || {}
+              select field, { :class => :select }.merge( options )
             else
               text_field field, :class => :text_field
           end
