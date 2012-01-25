@@ -1,13 +1,13 @@
 GIT
-  remote: git://github.com/ujifgc/dm-redis-adapter.git
+  remote: http://github.com/ujifgc/dm-redis-adapter.git
   revision: b4ada87a5804778d33b8d3332e20153142c8779e
   specs:
     dm-redis-adapter (1.3.0)
       dm-core (~> 1.2.0)
 
 GIT
-  remote: git://github.com/ujifgc/padrino-framework.git
-  revision: cf756abcafe75e9b0e8196b48e48b9ee28997649
+  remote: http://github.com/ujifgc/padrino-framework.git
+  revision: 92d2b0787b42282482a67d78ed4eea2ce93fdece
   specs:
     padrino (0.10.6.b)
       padrino-admin (= 0.10.6.b)
@@ -38,7 +38,7 @@ GIT
       padrino-core (= 0.10.6.b)
 
 GIT
-  remote: git://github.com/ujifgc/redcarpet.git
+  remote: http://github.com/ujifgc/redcarpet.git
   revision: 951bd6d43b37ae8b3303497f8f2a47ba994bba27
   specs:
     redcarpet (2.0.0b5)

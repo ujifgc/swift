@@ -23,13 +23,13 @@ gem 'dm-aggregates'
 gem 'dm-core', '1.2.0'
 gem 'redis'
 gem 'hiredis'
-gem 'dm-redis-adapter', :git => 'git://github.com/ujifgc/dm-redis-adapter.git'
+gem 'dm-redis-adapter', :git => 'http://github.com/ujifgc/dm-redis-adapter.git'
 
 
-gem 'padrino', :git => 'git://github.com/ujifgc/padrino-framework.git'
+gem 'padrino', :git => 'http://github.com/ujifgc/padrino-framework.git'
 
 # markdown
-gem 'redcarpet', :git => 'git://github.com/ujifgc/redcarpet.git'
+gem 'redcarpet', :git => 'http://github.com/ujifgc/redcarpet.git'
 
 # asset compressing
 gem 'sprockets'
