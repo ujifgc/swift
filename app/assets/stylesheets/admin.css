@@ -2,4 +2,6 @@
  *= require jquery-ui
  *= require paginator3000
  *= require colorbox
+ *= require 91-markdown
+ *= require 92-easyselect
  */

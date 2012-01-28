@@ -1,0 +1,72 @@
+﻿/* Easy Select Box */
+.easy-select-box{
+  display: inline-block;
+  position: relative;
+  width: 390px;
+  font-size: 14px;
+  color:#0c2245;
+  border: 0;
+  border-top: 1px solid #d8d7d5;
+  border-left: 1px solid #d8d7d5;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 1px 0;
+  background: #fff;
+}
+#user_birth_3i + .easy-select-box { width: 35px; margin-right: 5px; }
+#user_birth_2i + .easy-select-box { width: 85px; margin-right: 5px; }
+#user_birth_1i + .easy-select-box { width: 55px; }
+#user_birth_3i + .easy-select-box ul { width: 150px; }
+#user_birth_3i + .easy-select-box ul li:nth-child(7n+2) { clear: left; }
+#user_birth_3i + .easy-select-box ul li { width: 20px !important; text-align: right !important; }
+#user_birth_2i + .easy-select-box ul { width: 90px; }
+#user_birth_2i + .easy-select-box ul li { float: none !important; }
+#user_birth_1i + .easy-select-box ul { width: 60px; }
+#user_birth_1i + .easy-select-box ul li { float: none !important; }
+#user_gender_input .easy-select-box { width: 85px; }
+#user_gender_input .easy-select-box ul { width: 80px; }
+
+.easy-select-box .easy-select-box-disp,
+.easy-select-box .easy-select-box-disp:visited{
+  background: url(/images/rdown.png) no-repeat right 6px;
+  display:block;
+  color:#0c2245;
+  padding:0 3px;
+  height:18px;
+  line-height:18px;
+  text-decoration:none;
+}
+.easy-select-box .easy-select-box-disp:hover{
+  position:relative;
+  Wbackground-position: 0 -18px;
+  text-decoration:none;
+}
+.easy-select-box ul{
+  position:absolute;
+  top:100%;
+  left:0;
+  border:1px solid #cccccc;
+  display:none;
+  width:395px;
+  max-height:200px;
+  overflow:auto;
+  background:#FFFFFF;
+  list-style: none; padding: 0; margin: 0;
+}
+.easy-select-box li {
+  list-style: none; padding: 0; margin: 0;
+}
+.easy-select-box ul li a,
+.easy-select-box ul li a:visited{
+  padding:3px;
+  background:#FFFFFF;
+  display:block;
+  color:#0c2245;
+  cursor:default;
+  text-decoration:none;
+}
+.easy-select-box ul li a:hover{
+  background:#69abba;
+  color:#FFFFFF !important;
+  text-decoration:none;
+}

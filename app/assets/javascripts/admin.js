@@ -4,6 +4,7 @@
 //= require jquery.colorbox-min
 //= require paginator3000
 //= require postmessage
+//= require editor
 
 $(function() {
   var boxOptions = { opacity: 0.7, loop: false, current: "{current} / {total}", previous: "<", next: ">", close: "x", maxWidth: "100%", maxHeight: "100%" };
