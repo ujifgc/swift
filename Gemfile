@@ -1,4 +1,4 @@
-#source :rubygems
+source :rubygems
 
 # Server requirements (defaults to WEBrick)
 # gem "sinatra-synchrony"
@@ -34,3 +34,4 @@ gem 'redcarpet', :git => 'http://github.com/ujifgc/redcarpet.git'
 # asset compressing
 gem 'sprockets'
 gem 'padrino-sprockets', :require => "padrino/sprockets"
+gem 'russian'

@@ -10,10 +10,9 @@ module SwiftDatamapper
         if self.slug.blank?
           slug = (self.title || self.id).to_s.gsub(/[^0-9a-zA-Zа-яёА-ЯЁ]+/, ' ')
           slug.strip!
-          slug.downcase!
           slug.gsub!(/\ +/, '-')
           slug.gsub!(/^-+|-+$/, '')
-          self.slug = slug
+          self.slug = Russian.translit(slug).downcase!
         end
       end
 

@@ -5,3 +5,13 @@
  *= require 91-markdown
  *= require 92-easyselect
  */
+
+ul.wat-cf li.last {
+  float: right;
+}
+.table th.last {
+  width: 1em;
+}
+.table td.last {
+  text-align: left;
+}

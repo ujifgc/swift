@@ -1,31 +1,30 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first.active=link_to pat(:list), url(:pages, :index)
-      %li=link_to pat(:new), url(:pages, :new)
+      %li.first.active= link_to pat(:list), url(:pages, :index)
+      %li= link_to pat(:new), url(:pages, :new)
+      %li.last= link_to pat(:delete), :method => :delete, :class => :multiple
   .content
     %h2.title
-      =pat(:all)
-      =mt(:pages)
-    .inner
+      = pat(:all)
+      = mt(:pages)
+    %form.inner.multiple#multiple-pages{ :action => url(:pages, :index)/:multiple, :method => :post }
       %table.table
-        %tr
-          %th.first=mat(:page, :id)
-          %th=mat(:page, :title)
-          %th=mat(:page, :slug)
-          %th=mat(:page, :path)
-          %th.last="&nbsp;"
-        -@pages.each do |page|
+        %thead
           %tr
-            %td.first=page.id
-            %td=page.title
-            %td=page.slug
-            %td=page.path
-            %td.last
-              =button_to pat(:edit), url(:pages, :edit, :id => page.id), :method => :get, :class => :button_to
-              ="|"
-              =button_to pat(:delete), url(:pages, :destroy, :id => page.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')"
+            %th.first= mat(:page, :id)
+            %th= mat(:page, :title)
+            %th= mat(:page, :slug)
+            %th= mat(:page, :path)
+            %th.last= check_box_tag :check_all, :checked => false
+        - @pages.each do |page|
+          %tr
+            %td.first= page.id
+            %td= link_to page.title, url(:pages, :edit, :id => page.id)
+            %td= page.slug
+            %td= page.path
+            %td.last= check_box_tag :"check_page[#{page.id}]", :checked => false
       .actions-bar.wat-cf
-        .actions="&nbsp;"
+        .actions= "&nbsp;"
 
--content_for :sidebar, partial("base/sidebar")
+- content_for :sidebar, partial("base/sidebar")
