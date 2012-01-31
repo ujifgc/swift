@@ -8,7 +8,6 @@ class Block
   property :text,     Text
 
   sluggable!
-  publishable!
   timestamps!
   userstamps!
 

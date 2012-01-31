@@ -31,34 +31,44 @@ class Admin < Padrino::Application
         params[k]['updated_by_id'] = current_account.id
       end
     end
+
+    @the_model = begin
+      @models = request.controller || params[:controller]
+      @model = @models.singularize
+      @model_name = @model.camelize
+      Object.const_defined?(@model_name)  or throw :undefined
+      @model_name.constantize
+    rescue
+      nil
+    end
   end
 
+  # common routes
   post '/:controller/multiple' do
-    models = params[:controller].split('/').last
-    model = models.singularize
-    model_name = model.camelize
-    return redirect url('/')   unless Object.const_defined?(model_name)
-    the_model = model_name.constantize
-    if params["check_#{model}"].kind_of? Hash
-      ids = params["check_#{model}"].keys
+    return redirect url(:base_index)  unless @the_model
+    if params["check_#{@model}"].kind_of? Hash
+      ids = params["check_#{@model}"].keys
       case params['_method']
       when 'delete'
-        if the_model.all( :id => ids ).destroy
-          flash[:notice] = "Some #{models} destroyed"
+        if @the_model.all( :id => ids ).destroy
+          flash[:notice] = "Some #{@models} destroyed"
         else
-          flash[:error] = "Some #{models} are busy, none destroyed"
+          flash[:error] = "Some #{@models} are busy, none destroyed"
         end
+      when 'publish'
+        break  unless @the_model.respond_to? :published
+        @the_model.all( :id => ids ).to_a.each{ |o| o.publish! } #FIXME to_a for redis
+      when 'unpublish'
+        break  unless @the_model.respond_to? :published
+        @the_model.all( :id => ids ).to_a.each{ |o| o.unpublish! } #FIXME to_a for redis
       end
     end
-    redirect url(models.to_sym, :index)
+    redirect url(@models.to_sym, :index)
   end
   
   get '/:controller/multiple' do
-    models = params[:controller].split('/').last
-    model = models.singularize
-    model_name = model.camelize
-    return redirect url('/')   unless Object.const_defined?(model_name)
-    redirect url(models.to_sym, :index)
+    return redirect url(:base_index)  unless @models
+    redirect url(@models.to_sym, :index)
   end
   
 

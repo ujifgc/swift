@@ -2,7 +2,22 @@
 module SwiftDatamapper
   module ClassMethods
 
+    def timestamps!
+      property :created_at, DateTime
+      property :updated_at, DateTime
+    end
+
+    def userstamps!
+      belongs_to :created_by, 'Account', :required => false
+      belongs_to :updated_by, 'Account', :required => false
+
+      before :create do |i|
+        i.created_by_id = i.updated_by_id
+      end
+    end
+
     def sluggable!
+      send :include, PublishableMethods
 
       property :slug, String
 
@@ -22,21 +37,9 @@ module SwiftDatamapper
 
     end
 
-    def timestamps!
-      property :created_at, DateTime
-      property :updated_at, DateTime
-    end
-
-    def userstamps!
-      belongs_to :created_by, 'Account', :required => false
-      belongs_to :updated_by, 'Account', :required => false
-
-      before :create do |i|
-        i.created_by_id = i.updated_by_id
-      end
-    end
-
     def publishable!
+      send :include, PublishableMethods
+
       property :is_published, DataMapper::Property::Boolean, :default => true
       property :publish_at, DateTime
 
@@ -52,11 +55,14 @@ module SwiftDatamapper
 
   end
 
-  module InstanceMethods
 
+  module SluggableMethods
     def to_param
       self.respond_to?( :slug ) ? self.slug : self.id
     end
+  end
+
+  module PublishableMethods
 
     def publish!( time = nil )
       if !self.publish_at
@@ -78,5 +84,8 @@ module SwiftDatamapper
     end
 
   end  
+
+  module InstanceMethods
+  end
 
 end

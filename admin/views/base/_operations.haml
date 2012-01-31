@@ -1,0 +1,8 @@
+﻿.secondary-navigation
+  %ul.wat-cf
+    %li.first.active= link_to pat(:list), url(@models.to_sym, :index)
+    %li= link_to pat(:new), url(@models.to_sym, :new)
+    %li.last= link_to pat(:delete), :method => :delete, :class => :multiple
+    - if @the_model.respond_to? :published
+      %li.last= link_to pat(:unpublish), :method => :unpublish, :class => :multiple
+      %li.last= link_to pat(:publish), :method => :publish, :class => :multiple
