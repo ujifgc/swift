@@ -27,7 +27,7 @@ module SwiftDatamapper
           slug.strip!
           slug.gsub!(/\ +/, '-')
           slug.gsub!(/^-+|-+$/, '')
-          self.slug = Russian.translit(slug).downcase!
+          self.slug = Russian.translit(slug).downcase
         end
       end
 

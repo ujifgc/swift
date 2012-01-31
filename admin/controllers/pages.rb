@@ -1,7 +1,7 @@
 Admin.controllers :pages do
 
   get :index do
-    @pages = Page.all
+    @pages = Page.all :order => :path
     render 'pages/index'
   end
 
@@ -13,7 +13,7 @@ Admin.controllers :pages do
   post :create do
     @page = Page.new(params[:page])
     if @page.save
-      flash[:notice] = 'Page was successfully created.'
+      flash[:notice] = pat("#{@model}.created")
       redirect url(:pages, :edit, :id => @page.id)
     else
       render 'pages/new'

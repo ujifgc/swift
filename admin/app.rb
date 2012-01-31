@@ -16,13 +16,14 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module :blocks, '/blocks'
     role.project_module :pages, "/pages"
     role.project_module :accounts, "/accounts"
   end
 
   # hookers
   before do
+    I18n.reload!  if Padrino.env == :development
+
     params.each do |k,v|
       next  unless v.kind_of? Hash
       params[k].delete 'created_by_id'

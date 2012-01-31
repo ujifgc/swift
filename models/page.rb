@@ -19,9 +19,15 @@ class Page
   has n, :children, 'Page', :child_key => :parent_id
   belongs_to :parent, 'Page', :required => false
 
+  # validations
+  validates_presence_of :title
+
   # hookers
   before :valid? do
     self.parent_id = nil  if self.id == self.parent_id
+  end
+
+  before :save do
     self.path = self.parent ? self.parent.parent ? self.parent.path + '/' + self.slug : '/' + self.slug : '/'
   end
 
