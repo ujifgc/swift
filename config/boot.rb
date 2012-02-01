@@ -30,7 +30,7 @@ end
 #
 Padrino.after_load do
   DataMapper.finalize
-  I18n.reload!  if Padrino.env == :development
+  #I18n.reload!  if Padrino.env == :development
 end
 
 Padrino.load!

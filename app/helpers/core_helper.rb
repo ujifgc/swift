@@ -71,18 +71,6 @@ Swift.helpers do
 
 end
 
-Admin.helpers do
-
-  def image_url( img, options = {} )
-    Padrino::Helpers.image_url img, options
-  end
-
-  def mk_light( target )
-    image_tag target.is_published ? '/images/icons/circle_green_12d.png' : '/images/icons/circle_red_12d.png'
-  end
-
-end
-
 module Padrino
 
   module Helpers

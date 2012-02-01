@@ -1,0 +1,8 @@
+﻿.secondary-navigation#operations
+  %ul.wat-cf
+    %li.first.active= mk_sop :list, url(@models.to_sym, :index)
+    %li= mk_sop :new, url(@models.to_sym, :new)
+    %li.last= mk_mop :delete
+    - if @the_model.respond_to? :published
+      %li.last= mk_mop :unpublish
+      %li.last= mk_mop :publish

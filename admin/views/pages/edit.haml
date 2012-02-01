@@ -1,15 +1,11 @@
 .block
-  .secondary-navigation
-    %ul.wat-cf
-      %li.first=link_to pat(:list), url(:pages, :index)
-      %li=link_to pat(:new), url(:pages, :new)
-      %li.active=link_to pat(:edit), url(:pages, :edit, :id => @page.id)
+  = partial 'base/edit_operations'
   .content
     %h2.title
-      =pat(:edit)
-      =mt(:page)
+      = pat(:edit)
+      = mt(:page)
     .inner
-      -form_for :page, url(:pages, :update, :id => @page.id), :method => :put, :class => :form do |f|
-        =partial "pages/form", :locals => { :f => f }
+      - form_for :object, url(:pages, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => 'edit-pages' do |f|
+        = partial "pages/form", :locals => { :f => f }
 
--content_for :sidebar, partial("base/sidebar")
+- content_for :sidebar, partial("base/sidebar")

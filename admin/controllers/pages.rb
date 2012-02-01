@@ -1,42 +1,42 @@
 Admin.controllers :pages do
 
   get :index do
-    @pages = Page.all :order => :path
+    @objects = Page.all :order => :path
     render 'pages/index'
   end
 
   get :new do
-    @page = Page.new
+    @object = Page.new
     render 'pages/new'
   end
 
   post :create do
-    @page = Page.new(params[:page])
-    if @page.save
+    @object = Page.new(params[:page])
+    if @object.save
       flash[:notice] = pat("#{@model}.created")
-      redirect url(:pages, :edit, :id => @page.id)
+      redirect url(:pages, :edit, :id => @object.id)
     else
       render 'pages/new'
     end
   end
 
   get :edit, :with => :id do
-    @page = Page.get(params[:id])
+    @object = Page.get(params[:id])
     render 'pages/edit'
   end
 
   put :update, :with => :id do
-    @page = Page.get(params[:id])
-    if @page.update(params[:page])
+    @object = Page.get(params[:id])
+    if @object.update(params[:page])
       flash[:notice] = 'Page was successfully updated.'
-      redirect url(:pages, :edit, :id => @page.id)
+      redirect url(:pages, :edit, :id => @object.id)
     else
       render 'pages/edit'
     end
   end
 
   delete :destroy, :with => :id do
-    page = Page.get(params[:id])
+    @object = Page.get(params[:id])
     if page.destroy
       flash[:notice] = 'Page was successfully destroyed.'
     else

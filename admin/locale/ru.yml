@@ -3,3 +3,15 @@ ru:
     admin:
       publish: Опубликовать
       unpublish: Снять
+  admin:
+    pages: Страницы
+  models:
+    pages:
+      name: страницы
+    page:
+      attributes:
+        id: '№'
+        title: Заголовок
+        slug: Ссылка
+        path: Путь
+        published: " "

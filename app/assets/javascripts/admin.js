@@ -17,6 +17,11 @@ $(function() {
   $('a.multiple').click(function(){
     multipleOp(this);
   });
+  $('a.single.button_to').click(function(){
+    singleOp(this);
+  });
+  multipleCheck();
+  $('form.multiple input[name^=check]').click(multipleCheck);
 });
 
 multipleOp = function(el) {
@@ -37,6 +42,6 @@ toggleCheck = function(el, check) {
 multipleCheck = function(el) {
   $('#operations a.multiple').parent().addClass('blurry');
   $('form.multiple input[name^=check]').each(function() {
-    if (this.checked) return $('#operations a.multiple').parent().removeClass('blurry');//.css('opacity', '1').prop('disabled', false);
+    if (this.checked) return $('#operations a.multiple').parent().removeClass('blurry');
   });
 };

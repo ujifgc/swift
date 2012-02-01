@@ -1,7 +1,7 @@
 = f.inputs :title, :slug
 = f.input :text, :as => :text, :markdown => true
 
-- unless @page.root?
-  = f.input :parent_id, :as => :select, :selected => @page.parent_id, :collection => Page.all, :fields => [ :title_tree, :id ], :include_blank => false
+- unless @object.root?
+  = f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => Page.all, :fields => [ :title_tree, :id ], :include_blank => false
 
 = f.submits

@@ -15,3 +15,18 @@ ul.wat-cf li.last {
 .table td.last {
   text-align: left;
 }
+a.multiple, a.single {
+  padding-left: 3.5em !important;
+}
+a.multiple img.op, a.single img.op {
+  vertical-align: middle;
+  width: 2em;
+  position: absolute;
+  margin: -0.33em 0 0 -2.5em;
+}
+.secondary-navigation {
+  border-bottom-width: 0;
+}
+.blurry {
+  opacity: 0.3;
+}

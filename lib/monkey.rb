@@ -21,3 +21,13 @@
     end
   end
 end
+
+module I18n
+  class MissingTranslation
+    module Base
+      def message
+        "#{keys.join('.')}?"
+      end
+    end
+  end
+end
