@@ -17,7 +17,7 @@
         - @objects.each do |object|
           %tr
             %td.first= object.id
-            %td= link_to object.title, url(@models.to_sym, :edit, :id => object.id)
+            %td= link_to object.title, url(@models, :edit, :id => object.id)
             %td= object.slug
             %td= object.path
             %td= mk_light object

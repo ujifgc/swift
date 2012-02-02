@@ -4,16 +4,11 @@
  *= require colorbox
  *= require 91-markdown
  *= require 92-easyselect
+ *= require 81-listable
  */
 
 ul.wat-cf li.last {
   float: right;
-}
-.table th.last {
-  width: 1em;
-}
-.table td.last {
-  text-align: left;
 }
 a.multiple, a.single {
   padding-left: 3.5em !important;
@@ -29,4 +24,8 @@ a.multiple img.op, a.single img.op {
 }
 .blurry {
   opacity: 0.3;
+}
+div.flash {
+  position: absolute;
+  left: 50%;
 }

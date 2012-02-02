@@ -35,7 +35,9 @@ class Admin < Padrino::Application
     @the_model = begin
       @models = request.controller || params[:controller]
       @model = @models.singularize
+      @models = @models.to_sym
       @model_name = @model.camelize
+      @model = @model.to_sym
       Object.const_defined?(@model_name)  or throw :undefined
       @model_name.constantize
     rescue
@@ -51,24 +53,26 @@ class Admin < Padrino::Application
       case params['_method']
       when 'delete'
         if @the_model.all( :id => ids ).destroy
-          flash[:notice] = "Some #{@models} destroyed"
+          flash[:notice] = I18n.t('admin.multiple.destroyed', :objects => I18n.t('admin.pages'))
         else
-          flash[:error] = "Some #{@models} are busy, none destroyed"
+          flash[:error] = I18n.t('admin.multiple.not_destroyed', :objects => I18n.t('admin.pages'))
         end
       when 'publish'
         break  unless @the_model.respond_to? :published
         @the_model.all( :id => ids ).to_a.each{ |o| o.publish! } #FIXME to_a for redis
+        flash[:notice] = I18n.t('admin.multiple.published', :objects => I18n.t('admin.pages'))
       when 'unpublish'
         break  unless @the_model.respond_to? :published
         @the_model.all( :id => ids ).to_a.each{ |o| o.unpublish! } #FIXME to_a for redis
+        flash[:notice] = I18n.t('admin.multiple.unpublished', :objects => I18n.t('admin.pages'))
       end
     end
-    redirect url(@models.to_sym, :index)
+    redirect url(@models, :index)
   end
   
   get '/:controller/multiple' do
     return redirect url(:base_index)  unless @models
-    redirect url(@models.to_sym, :index)
+    redirect url(@models, :index)
   end
   
 

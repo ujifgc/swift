@@ -5,7 +5,7 @@
       = pat(:edit)
       = mt(:page)
     .inner
-      - form_for :object, url(:pages, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => 'edit-pages' do |f|
-        = partial "pages/form", :locals => { :f => f }
+      - form_for :object, url(@models, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => "edit-#{@models}" do |f|
+        = partial "#{@models}/form", :locals => { :f => f }
 
 - content_for :sidebar, partial("base/sidebar")

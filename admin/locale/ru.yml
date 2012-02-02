@@ -4,11 +4,20 @@ ru:
       publish: Опубликовать
       unpublish: Снять
   admin:
+    multiple:
+      destroyed: "%{objects} удалены"
+      not_destroyed: "Некоторые %{objects} заняты, ничего не удалено"
+      published: "%{objects} опубликованы"
+      unpublished: "%{objects} сняты с публикации"
     pages: Страницы
+    form:
+      save: Сохранить
+      back: Назад
   models:
     pages:
       name: страницы
     page:
+      name: страницу
       attributes:
         id: '№'
         title: Заголовок

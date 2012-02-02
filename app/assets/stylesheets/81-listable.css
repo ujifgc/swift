@@ -1,0 +1,13 @@
+﻿.table th.last {
+  width: 1em;
+}
+.table td.last {
+  text-align: left;
+}
+form.multiple input[type=checkbox], form.multiple .last label {
+  cursor: pointer;
+}
+form.multiple .last label {
+  margin: -1em;
+  padding: 1em;
+}
