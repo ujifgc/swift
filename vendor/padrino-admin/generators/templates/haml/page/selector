@@ -1,0 +1,4 @@
+<%- if column[:name].match(/_id$/) -%>
+= f.input :<%= column[:name] %>, :as => :select, :selected => @object.<%= column[:name] %>, :collection => @the_model.all, :include_blank => true
+<% else %>
+<% end %>

@@ -13,7 +13,7 @@ Admin.controllers :pages do
   post :create do
     @object = Page.new(params[:page])
     if @object.save
-      flash[:notice] = pat("#{@model}.created")
+      flash[:notice] = pat('page.created')
       redirect url(:pages, :edit, :id => @object.id)
     else
       render 'pages/new'
@@ -28,7 +28,7 @@ Admin.controllers :pages do
   put :update, :with => :id do
     @object = Page.get(params[:id])
     if @object.update(params[:page])
-      flash[:notice] = 'Page was successfully updated.'
+      flash[:notice] = pat('page.updated')
       redirect url(:pages, :edit, :id => @object.id)
     else
       render 'pages/edit'
@@ -37,10 +37,10 @@ Admin.controllers :pages do
 
   delete :destroy, :with => :id do
     @object = Page.get(params[:id])
-    if page.destroy
-      flash[:notice] = 'Page was successfully destroyed.'
+    if @object.destroy
+      flash[:notice] = pat('page.destroyed')
     else
-      flash[:error] = 'Unable to destroy Page!'
+      flash[:error] = pat('page.not_destroyed')
     end
     redirect url(:pages, :index)
   end

@@ -16,6 +16,7 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
+    role.project_module :blocks, '/blocks'
     role.project_module I18n.t('admin.pages'), "/pages"
   end
 
@@ -53,18 +54,18 @@ class Admin < Padrino::Application
       case params['_method']
       when 'delete'
         if @the_model.all( :id => ids ).destroy
-          flash[:notice] = I18n.t('admin.multiple.destroyed', :objects => I18n.t('admin.pages'))
+          flash[:notice] = I18n.t('admin.multiple.destroyed', :objects => I18n.t("admin.#{@models}"))
         else
-          flash[:error] = I18n.t('admin.multiple.not_destroyed', :objects => I18n.t('admin.pages'))
+          flash[:error] = I18n.t('admin.multiple.not_destroyed', :objects => I18n.t("admin.#{@models}"))
         end
       when 'publish'
         break  unless @the_model.respond_to? :published
         @the_model.all( :id => ids ).to_a.each{ |o| o.publish! } #FIXME to_a for redis
-        flash[:notice] = I18n.t('admin.multiple.published', :objects => I18n.t('admin.pages'))
+        flash[:notice] = I18n.t('admin.multiple.published', :objects => I18n.t("admin.#{@models}"))
       when 'unpublish'
         break  unless @the_model.respond_to? :published
         @the_model.all( :id => ids ).to_a.each{ |o| o.unpublish! } #FIXME to_a for redis
-        flash[:notice] = I18n.t('admin.multiple.unpublished', :objects => I18n.t('admin.pages'))
+        flash[:notice] = I18n.t('admin.multiple.unpublished', :objects => I18n.t("admin.#{@models}"))
       end
     end
     redirect url(@models, :index)
