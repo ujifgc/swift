@@ -13,11 +13,6 @@
         #user-navigation
           %ul.wat-cf
             %li=button_to pat(:logout), url(:sessions, :destroy), :method => :delete, :class => :button_to
-        #main-navigation
-          %ul.wat-cf
-            -project_modules.each do |project_module|
-              %li{:class => ("active" if request.path_info =~ /^#{project_module.path}/)}
-                =link_to project_module.human_name, project_module.path("/admin")
       #wrapper.wat-cf
         .flash=[:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
         #main

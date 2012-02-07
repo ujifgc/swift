@@ -12,5 +12,6 @@ class Folder
   #relations
   belongs_to :account, :required => false
   has n, :images
+  has n, :blocks
 
 end

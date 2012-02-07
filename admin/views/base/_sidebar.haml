@@ -1,9 +1,17 @@
 .block
+  %h3= pat(:modules)
+  %ul.navigation
+    - project_modules.each do |project_module|
+      %li{:class => ("active" if request.path_info =~ /^#{project_module.path}/)}
+        = link_to project_module.human_name, project_module.path("/admin")
+
+.block
   %h3 Simple Block
   .content
     %p
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
 .block
   %h3 Links
   %ul.navigation

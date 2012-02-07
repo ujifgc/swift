@@ -11,6 +11,9 @@ class Block
   timestamps!
   userstamps!
 
+  #relations
+  belongs_to :folder, :required => false
+
   # hookers
 
   # instance helpers
