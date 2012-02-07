@@ -19,7 +19,7 @@ Padrino::Logger::Config[:development] = { :log_level => :devel, :stream => :to_f
 Padrino.before_load do
   I18n.locale = :ru
   Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
-  Padrino.require_dependencies("#{Padrino.root}/lib/monkey.rb")
+  Padrino.require_dependencies("#{Padrino.root}/lib/sr-*.rb")
   DataMapper::Model.append_extensions(SwiftDatamapper::ClassMethods)
   DataMapper::Model.append_inclusions(SwiftDatamapper::InstanceMethods)
   $markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true, :tables => true, :strikethrough => true

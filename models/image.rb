@@ -5,7 +5,8 @@ class Image
   property :id, Serial
 
   property :title, String, :required => true
-  property :file,  String, :length => 511, :required => true
+  #property :file,  String, :length => 511, :required => true
+  mount_uploader :file, ImageUploader
 
   timestamps!
   userstamps!

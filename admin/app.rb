@@ -16,8 +16,10 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module :blocks, '/blocks'
+    role.project_module :images, '/images'
     role.project_module I18n.t('admin.pages'), "/pages"
+    role.project_module I18n.t('admin.folders'), '/folders'
+    role.project_module I18n.t('admin.blocks'), '/blocks'
   end
 
   # hookers
@@ -28,8 +30,11 @@ class Admin < Padrino::Application
       next  unless v.kind_of? Hash
       params[k].delete 'created_by_id'
       params[k].delete 'updated_by_id'
-      if Object.const_defined?(k.camelize) && k.camelize.constantize.new.respond_to?(:updated_by_id)
-        params[k]['updated_by_id'] = current_account.id
+      params[k].delete 'account_id'  if params[k]['account_id'].blank?
+      if Object.const_defined?(k.camelize)
+        child_model = k.camelize.constantize
+        params[k]['updated_by_id'] = current_account.id  if child_model.new.respond_to?(:updated_by_id)
+        params[k]['account_id'] ||= current_account.id   if child_model.new.respond_to?(:account_id)
       end
     end
 

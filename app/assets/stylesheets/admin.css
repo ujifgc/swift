@@ -35,3 +35,7 @@ div#sidebar {
 #main .block {
   padding-top: 0;
 }
+#sidebar .block li.active a {
+  color: #fff;
+  background: #666;
+}

@@ -35,3 +35,8 @@ gem 'redcarpet', :git => 'http://github.com/ujifgc/redcarpet.git'
 gem 'sprockets'
 gem 'padrino-sprockets', :require => "padrino/sprockets"
 gem 'russian'
+
+# file assets
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper'

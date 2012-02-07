@@ -6,7 +6,6 @@ class Swift < Padrino::Application
 
   enable :sessions
 
-  # Sprockets support
   register Padrino::Sprockets
   sprockets
 
@@ -20,8 +19,8 @@ class Swift < Padrino::Application
     @page = Page.new :title => 'Default title'
   end
 
-  #if no controller got the request, try finding some content in the sitemap
-  #if the sitemap does not have the requested page then show the real 404
+  # if no controller got the request, try finding some content in the sitemap
+  # if the sitemap does not have the requested page then show the real 404
   not_found do
     if @page = Page.first( :path => request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' ) )
       @page.text = parse_uub @page.text
@@ -35,7 +34,7 @@ class Swift < Padrino::Application
     end
   end
 
-  #requested wrong service or wrong parameters
+  # requested wrong service or wrong parameters
   error 501 do
     @page = Page.first :path => '/error/501'
     @page.text = parse_uub @page.text
