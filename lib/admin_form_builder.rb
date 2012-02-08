@@ -13,6 +13,8 @@ module Padrino
               password_field field, :class => :password_field
             when :select
               select field, { :class => :select }.merge( options )
+            when :file
+              file_field field
             else
               text_field field, :class => :text_field
           end

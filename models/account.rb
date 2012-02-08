@@ -23,12 +23,23 @@ class Account
   validates_format_of        :email,    :with => :email_address
   validates_format_of        :role,     :with => /[A-Za-z]/
 
+  # relations
+  has n, :folders
+
   # Callbacks
   before :save, :encrypt_password
 
-  ##
+  # instance helpers
+  def get_folders
+    self.folders
+  end
+
+  def has_password?(password)
+    ::BCrypt::Password.new(crypted_password) == password
+  end
+
+  # class helpers
   # This method is for authentication purpose
-  #
   def self.authenticate(email, password)
     account = first(:conditions => { :email => email }) if email.present?
     account && account.has_password?(password) ? account : nil
@@ -41,8 +52,13 @@ class Account
     get(id) rescue nil
   end
 
-  def has_password?(password)
-    ::BCrypt::Password.new(crypted_password) == password
+  def allowed check
+    case self.role
+    when 'admin'
+      true
+    else
+      self.role.match /#{check}/i 
+    end
   end
 
 private

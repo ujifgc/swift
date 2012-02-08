@@ -15,6 +15,10 @@ class Image
   belongs_to :folder, :required => false
 
   #hookers
+  before :valid? do
+    self.title = 'image'  if self.title.blank?
+  end
+
   before :save do |o|
     o.folder_id = 1  unless o.folder_id
   end

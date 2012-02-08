@@ -1,6 +1,4 @@
 = f.input :title
-= f.input :file
-= f.input :created_by_id
-= f.input :updated_by_id
-= f.input :folder_id
+= f.input :file, :as => :file
+= f.input :folder_id, :as => :select, :selected => @object.folder_id, :collection => current_account.get_folders, :fields => [ :title, :id ], :include_blank => true
 = f.submits

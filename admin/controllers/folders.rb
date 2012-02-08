@@ -27,7 +27,7 @@ Admin.controllers :folders do
 
   put :update, :with => :id do
     @object = Folder.get(params[:id])
-    if @folder.update(params[:folder])
+    if @object.update(params[:folder])
       flash[:notice] = pat('folder.updated')
       redirect url(:folders, :edit, :id => @object.id)
     else

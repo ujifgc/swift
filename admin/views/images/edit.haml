@@ -5,7 +5,7 @@
       = pat(:edit)
       = mt(:image)
     .inner
-      - form_for :object, url(:images, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => "edit-images" do |f|
+      - form_for :object, url(:images, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => "edit-images", :multipart => true do |f|
         = partial "images/form", :locals => { :f => f }
 
 - content_for :sidebar, partial("base/sidebar")

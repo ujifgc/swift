@@ -35,4 +35,8 @@ Admin.helpers do
     link_to mk_icon(op) + pat(op), link, :method => op, :class => 'single button_to', 
   end
 
+  def allow role
+    yield  if current_account.allowed role
+  end
+
 end

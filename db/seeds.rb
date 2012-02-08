@@ -1,15 +1,16 @@
-#accounts
+# accounts
 
 email     = 'ujifgc@gmail.com'
-password  = '128500'
+password  = SecureRandom.hex(4)
 
-Account.all.destroy!
+Folder.all.destroy!
 Page.all.destroy!
+Account.all.destroy!
 
-account = Account.create :id => 1, :email => email, :name => "Foo", :surname => "Bar", :password => password, :password_confirmation => password, :role => "admin"
+account = Account.create :id => 1, :email => email, :name => "God", :surname => "Object", :password => password, :password_confirmation => password, :role => "admin"
 robot = Account.create :id => 2, :email => email, :name => "Robot", :surname => "Bender", :password => password, :password_confirmation => password, :role => "robot"
 
-#pages
+# pages
 
 root  = Page.create :parent => nil,   :slug => '',        :title => 'Index', :text => 'index'
 error = Page.create :parent => root,  :slug => 'error',   :title => 'Error', :text => 'Default error page', :is_published => false
@@ -31,3 +32,8 @@ Page.create         :parent => p1, :slug => 'map1',     :title => 'map1',     :t
 Page.create         :parent => p2, :slug => 'map2',     :title => 'map2',     :text => 'THERE 2'
 Page.create         :parent => p3, :slug => 'map3',     :title => 'map3',     :text => 'THERE 3'
 Page.create         :parent => p1, :slug => 'map4',     :title => 'map4',     :text => 'THERE 4'
+
+# folders
+
+Folder.create :id => 1, :account => account, :title => 'Design images', :slug => 'images'
+Folder.create :id => 2, :account => account, :title => 'Common files', :slug => 'files'
