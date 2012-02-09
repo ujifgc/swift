@@ -2,15 +2,52 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   def store_dir
-    path = ['public/images']
-    if model && model.folder
-      path << model.folder.slug  unless model.folder_id == 1
+    case
+    when !model.folder
+      'pics/other'
+    when model.folder.slug == 'images'
+      'images'
+    when model.folder.slug.blank?
+      'pics/' + model.folder.id.to_s
+    else
+      'pics/' + model.folder.slug
     end
-    File.join path
   end
 
   def filename
-    [Time.now.strftime('%y%m%d%H%M%S'), original_filename].compact.join('_') + file.extension  if original_filename.present?
+    [Time.now.strftime('%y%m%d%H%M%S'), original_filename].compact.join('_')  if original_filename.present?
+  end
+
+  def default_url
+    '/images/image_missing.png'
+  end
+
+  def root
+    Padrino.public
+  end
+
+end
+
+
+class AssetUploader < CarrierWave::Uploader::Base
+
+  def store_dir
+    case
+    when !model.folder
+      'other'
+    when model.folder.slug.blank?
+      model.folder.id.to_s
+    else
+      model.folder.slug
+    end
+  end
+
+  def filename
+    [Time.now.strftime('%y%m%d%H%M%S'), original_filename].compact.join('_')  if original_filename.present?
+  end
+
+  def root
+    File.join Padrino.public, 'docs'
   end
 
 end

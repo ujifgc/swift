@@ -6,3 +6,6 @@ vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
 uploads/*
+public/uploads/*
+public/pics/*
+public/docs/*
