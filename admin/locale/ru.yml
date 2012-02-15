@@ -10,17 +10,23 @@ ru:
       published: "%{objects} опубликованы"
       unpublished: "%{objects} сняты с публикации"
     pages: Страницы
+    assets: Файлы
+    images: Картинки
+    folders: Папки
+    blocks: Блоки
     form:
       save: Сохранить
       back: Назад
   models:
-    pages:
-      name: страницы
-    page:
-      name: страницу
+    object:
       attributes:
-        id: '№'
+        id: "#"
         title: Заголовок
         slug: Ссылка
         path: Путь
         published: " "
+        file: Файл
+    pages:
+      name: страницы
+    page:
+      name: страницу

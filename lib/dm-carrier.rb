@@ -6,7 +6,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     when !model.folder
       'pics/other'
     when model.folder.slug == 'images'
-      'images'
+      'pics'
     when model.folder.slug.blank?
       'pics/' + model.folder.id.to_s
     else
@@ -15,7 +15,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    [Time.now.strftime('%y%m%d%H%M%S'), original_filename].compact.join('_')  if original_filename.present?
+    if model.folder && model.folder.slug == 'images'
+      original_filename
+    else
+      [Time.now.strftime('%y%m%d%H%M%S'), original_filename].compact.join('_')  if original_filename.present?
+    end
   end
 
   def default_url
@@ -34,11 +38,11 @@ class AssetUploader < CarrierWave::Uploader::Base
   def store_dir
     case
     when !model.folder
-      'other'
+      'docs'
     when model.folder.slug.blank?
-      model.folder.id.to_s
+      'docs/' + model.folder.id.to_s
     else
-      model.folder.slug
+      'docs/' + model.folder.slug
     end
   end
 
@@ -47,7 +51,7 @@ class AssetUploader < CarrierWave::Uploader::Base
   end
 
   def root
-    File.join Padrino.public, 'docs'
+    Padrino.public
   end
 
 end

@@ -1,11 +1,11 @@
 #coding:utf-8
-class Image
+class Asset
   include DataMapper::Resource
 
   property :id, Serial
 
   property :title, String
-  mount_uploader :file, ImageUploader
+  mount_uploader :file, AssetUploader
 
   timestamps!
   userstamps!
@@ -15,7 +15,7 @@ class Image
 
   #hookers
   before :save do |o|
-    o.folder_id = 1  unless o.folder_id
+    o.folder_id = 2  unless o.folder_id
   end
 
 end

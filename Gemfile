@@ -21,9 +21,10 @@ gem 'dm-migrations'
 gem 'dm-constraints'
 gem 'dm-aggregates'
 gem 'dm-core', '1.2.0'
-gem 'redis'
-gem 'hiredis'
-gem 'dm-redis-adapter', :git => 'http://github.com/ujifgc/dm-redis-adapter.git'
+gem 'dm-mysql-adapter'
+#gem 'redis'
+#gem 'hiredis'
+#gem 'dm-redis-adapter', :git => 'http://github.com/ujifgc/dm-redis-adapter.git'
 
 
 gem 'padrino', :git => 'http://github.com/ujifgc/padrino-framework.git'

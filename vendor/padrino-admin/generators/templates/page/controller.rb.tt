@@ -27,7 +27,7 @@ Admin.controllers :<%= @orm.name_plural %> do
 
   put :update, :with => :id do
     @object = <%= @orm.find("params[:id]") %>
-    if <%= @orm.update_attributes("params[:#{@orm.name_singular}]") %>
+    if @object.update(params[:<%= @orm.name_singular %>])
       flash[:notice] = pat('<%= @orm.name_singular %>.updated')
       redirect url(:<%= @orm.name_plural %>, :edit, :id => @object.id)
     else
