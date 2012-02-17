@@ -27,7 +27,7 @@ Admin.controllers :images do
 
   put :update, :with => :id do
     @object = Image.get(params[:id])
-    if @image.update(params[:image])
+    if @object.update(params[:image])
       flash[:notice] = pat('image.updated')
       redirect url(:images, :edit, :id => @object.id)
     else

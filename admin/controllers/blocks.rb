@@ -27,7 +27,7 @@ Admin.controllers :blocks do
 
   put :update, :with => :id do
     @object = Block.get(params[:id])
-    if @block.update(params[:block])
+    if @object.update(params[:block])
       flash[:notice] = pat('block.updated')
       redirect url(:blocks, :edit, :id => @object.id)
     else

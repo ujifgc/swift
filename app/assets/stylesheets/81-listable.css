@@ -1,8 +1,10 @@
 ﻿.table th.first, .table th.last, .table th.publish {
   width: 1%;
+  text-align: right;
 }
 .table td.first, .table td.last {
   background: #eee;
+  text-align: right;
 }
 .table th.first, .table th.last {
   background: #222;

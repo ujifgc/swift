@@ -1,10 +1,11 @@
+#coding:utf-8
 module Padrino
   module Helpers
     module FormBuilder
       class AdminFormBuilder < AbstractFormBuilder
 
         def input( field, options={} )
-          html = label field, options[:label] || {}
+          html = label I18n.t("models.object.attributes.#{field}"), options[:label] || {}
           html += ' ' + error_message_on( field ) + ' '
           html += case options[:as]
             when :text

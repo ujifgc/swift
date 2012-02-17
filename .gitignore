@@ -7,5 +7,5 @@ vendor/gems/*
 .sass-cache/*
 uploads/*
 public/uploads/*
-public/pics/*
-public/docs/*
+public/img/*
+public/doc/*

@@ -2,11 +2,15 @@
  *= require jquery-ui
  *= require paginator3000
  *= require colorbox
+ *= require 11-form
  *= require 91-markdown
  *= require 92-easyselect
  *= require 81-listable
  */
 
+body, td, input, textarea {
+  font: normal 12px Tahoma, sans-serif;
+}
 ul.wat-cf li.last {
   float: right;
 }

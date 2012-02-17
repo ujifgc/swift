@@ -4,13 +4,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     case
     when !model.folder
-      'pics/other'
+      'img/other'
     when model.folder.slug == 'images'
-      'pics'
+      'img'
     when model.folder.slug.blank?
-      'pics/' + model.folder.id.to_s
+      'img/' + model.folder.id.to_s
     else
-      'pics/' + model.folder.slug
+      'img/' + model.folder.slug
     end
   end
 
@@ -38,11 +38,11 @@ class AssetUploader < CarrierWave::Uploader::Base
   def store_dir
     case
     when !model.folder
-      'docs'
+      'doc'
     when model.folder.slug.blank?
-      'docs/' + model.folder.id.to_s
+      'doc/' + model.folder.id.to_s
     else
-      'docs/' + model.folder.slug
+      'doc/' + model.folder.slug
     end
   end
 

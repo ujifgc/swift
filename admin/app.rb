@@ -16,11 +16,11 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module :assets, '/assets'
-    role.project_module :images, '/images'
     role.project_module I18n.t('admin.pages'), "/pages"
-    role.project_module I18n.t('admin.folders'), '/folders'
     role.project_module I18n.t('admin.blocks'), '/blocks'
+    role.project_module I18n.t('admin.assets'), '/assets'
+    role.project_module I18n.t('admin.images'), '/images'
+    role.project_module I18n.t('admin.folders'), '/folders'
   end
 
   # hookers
