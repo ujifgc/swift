@@ -1,6 +1,6 @@
 ﻿.secondary-navigation#operations
   %ul.wat-cf
-    %li.first=  mk_sop :list, url(@models, :index)
-    %li{ :class => @object.new? && :active }=        mk_sop :new,  url(@models, :new)
+    %li.first=  mk_single_op :list, url(@models, :index)
+    %li{ :class => @object.new? && :active }= mk_single_op :new,  url(@models, :new)
     - unless @object.new?
-      %li.active= mk_sop :edit, url(@models, :edit, :id => @object.id)
+      %li.active= mk_single_op :edit, url(@models, :edit, :id => @object.id)

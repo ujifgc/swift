@@ -28,6 +28,7 @@ ru:
         published: " "
         file: Файл
         folder_id: Папка
+        parent_id: Подчинение
     blocks:
       name: блоки
     block:
@@ -48,3 +49,4 @@ ru:
       name: картинки
     image:
       name: картинку
+  asset_uploaded: загружен

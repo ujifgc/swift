@@ -30,6 +30,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     Padrino.public
   end
 
+  def content_type
+    `file -bp --mime-type #{root+url}`.strip
+  end
+
 end
 
 
@@ -52,6 +56,10 @@ class AssetUploader < CarrierWave::Uploader::Base
 
   def root
     Padrino.public
+  end
+
+  def content_type
+    `file -bp --mime-type #{root+url}`.strip
   end
 
 end

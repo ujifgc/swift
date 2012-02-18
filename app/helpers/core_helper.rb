@@ -69,6 +69,17 @@ Swift.helpers do
     str
   end
 
+  def as_size( s )
+    prefix = %W(TiB GiB MiB KiB B)
+    s = s.to_f
+    i = prefix.length
+    while s > 512 && i > 0
+      s /= 1024
+      i -= 1
+    end
+    ("%#{s > 9 ? 'd' : '.1f'} #{prefix[i]}" % s).gsub /\.0/, ''
+  end
+
 end
 
 module Padrino

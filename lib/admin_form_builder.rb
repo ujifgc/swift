@@ -3,9 +3,12 @@ module Padrino
   module Helpers
     module FormBuilder
       class AdminFormBuilder < AbstractFormBuilder
+        include TagHelpers
+        include AssetTagHelpers
+        include OutputHelpers
 
         def input( field, options={} )
-          html = label I18n.t("models.object.attributes.#{field}"), options[:label] || {}
+          html = label field, options[:label] || { :caption => I18n.t("models.object.attributes.#{field}") }
           html += ' ' + error_message_on( field ) + ' '
           html += case options[:as]
             when :text
@@ -15,7 +18,19 @@ module Padrino
             when :select
               select field, { :class => :select }.merge( options )
             when :file
-              file_field field
+              file = @object.send(field)  rescue nil
+              tag = if file
+                I18n::t('asset_uploaded') + content_tag( :div ) do
+                  if file.content_type.index('image')
+                    image_tag(file.url)
+                  else
+                    link_to file.url, file.url
+                  end
+                end
+              else
+                ''
+              end
+              tag + file_field( field )
             else
               text_field field, :class => :text_field
           end

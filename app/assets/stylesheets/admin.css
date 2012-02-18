@@ -43,3 +43,9 @@ div#sidebar {
   color: #fff;
   background: #666;
 }
+.form a {
+  font-size: 1em;
+}
+.form label, .form input.text_field, .form input.password_field, .form textarea.text_area {
+  padding: 4px 0;
+}

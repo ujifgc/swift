@@ -1,1 +1,5 @@
-﻿
+﻿.form span.error {
+  display: inline-block;
+  color: yellow;
+  background: red;
+}

@@ -22,15 +22,15 @@ Admin.helpers do
     image_tag file, :class => :op
   end
 
-  def mk_mop( op )
+  def mk_multiple_op( op )
     link_to mk_icon(op) + pat(op), :method => op, :class => :multiple
   end
 
-  def mk_sop( op, link )
+  def mk_single_op( op, link )
     link_to mk_icon(op) + pat(op), link, :class => :single
   end
 
-  def mk_bop( op, link )
+  def mk_button_op( op, link )
     op = :delete  if op == :destroy
     link_to mk_icon(op) + pat(op), link, :method => op, :class => 'single button_to', 
   end

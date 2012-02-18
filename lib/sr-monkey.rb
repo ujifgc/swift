@@ -26,7 +26,7 @@ module I18n
   class MissingTranslation
     module Base
       def message
-        "#{keys.join('.')}?"
+        "#{keys.join('.')}"
       end
     end
   end
