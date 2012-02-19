@@ -38,7 +38,7 @@ Swift.helpers do
     return t(:parse_level_too_deep)  if @parse_level > 3
 
     str.gsub!(/\[(.*)\]/) do |s|
-      md = $1.match /(block|image|element)\s+(.*)/
+      md = $1.match /(block|image|asset|element)\s+(.*)/
       args = []
       hash = {}
       type = md[1]
@@ -61,6 +61,8 @@ Swift.helpers do
         block ? parse_uub(block.text) : s
       when 'image'
         image_tag image_url(args[rand args.size], hash)
+      when 'asset'
+        link_to args[0], args[0]
       when 'element'
         element *args, hash
       end

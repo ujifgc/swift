@@ -1,15 +1,15 @@
 #coding:utf-8
-# accounts
-
-email     = 'ujifgc@gmail.com'
-password  = SecureRandom.hex(4)
 
 Folder.all.destroy!
 Page.all.destroy!
 Account.all.destroy!
 
-account = Account.create :id => 1, :email => email, :name => "God", :surname => "Object", :password => password, :password_confirmation => password, :role => "admin"
-robot = Account.create :id => 2, :email => email, :name => "Robot", :surname => "Bender", :password => password, :password_confirmation => password, :role => "robot"
+k = 1
+ACCOUNT_ROLES.each do |role|
+  pwd = SecureRandom.hex(4)
+  a = Account.create :id => k, :email => "#{role}@localhost", :name => role, :surname => 'group', :password => pwd, :password_confirmation => pwd, :role => nil
+  k += 1
+end
 
 # pages
 
@@ -36,5 +36,5 @@ Page.create         :parent => p1, :slug => 'map4',     :title => 'map4',     :t
 
 # folders
 
-Folder.create :id => 1, :account => account, :title => 'Layout graphics', :slug => 'images'
-Folder.create :id => 2, :account => account, :title => 'Common files', :slug => 'files'
+Folder.create :id => 1, :account => nil, :title => 'Layout graphics', :slug => 'images'
+Folder.create :id => 2, :account => nil, :title => 'Common files', :slug => 'files'

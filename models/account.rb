@@ -1,4 +1,6 @@
 #coding:utf-8
+ACCOUNT_ROLES = %W(admin designer auditor editor robot user)
+
 class Account
   include DataMapper::Resource
   include DataMapper::Validate
@@ -10,28 +12,45 @@ class Account
   property :surname,          String
   property :email,            String
   property :crypted_password, String, :length => 70
-  property :role,             String
+
+  # for omniauth
+  property :provider,         String
+  property :uid,              String
 
   # Validations
-  validates_presence_of      :email, :role
+  validates_presence_of      :email
+  validates_length_of        :email,    :min => 3, :max => 100
+  validates_uniqueness_of    :email,    :case_sensitive => false
+  validates_format_of        :email,    :with => /\w+@\w+/
   validates_presence_of      :password,                          :if => :password_required
   validates_presence_of      :password_confirmation,             :if => :password_required
   validates_length_of        :password, :min => 4, :max => 40,   :if => :password_required
   validates_confirmation_of  :password,                          :if => :password_required
-  validates_length_of        :email,    :min => 3, :max => 100
-  validates_uniqueness_of    :email,    :case_sensitive => false
-  validates_format_of        :email,    :with => :email_address
-  validates_format_of        :role,     :with => /[A-Za-z]/
 
   # relations
   has n, :folders
+  property :role_id, Integer, :default => 6
+  belongs_to :role, 'Account', :required => false
 
-  # Callbacks
+  # hookers
   before :save, :encrypt_password
+
+  before :destroy do |a|
+    throw halt  unless a.role
+  end
 
   # instance helpers
   def get_folders
+    #!!! do more logic
     self.folders
+  end
+
+  def allowed check
+    return self.role.allowed(check)  if self.role
+    raise Forbidden  if self.id > ACCOUNT_ROLES.length
+    check_index = ACCOUNT_ROLES.index(check.to_s)
+    self_index  = ACCOUNT_ROLES.index(self.name.to_s)
+    return true  if self_index <= check_index
   end
 
   def has_password?(password)
@@ -39,26 +58,13 @@ class Account
   end
 
   # class helpers
-  # This method is for authentication purpose
   def self.authenticate(email, password)
     account = first(:conditions => { :email => email }) if email.present?
     account && account.has_password?(password) ? account : nil
   end
 
-  ##
-  # This method is used by AuthenticationHelper
-  #
   def self.find_by_id(id)
     get(id) rescue nil
-  end
-
-  def allowed check
-    case self.role
-    when 'admin'
-      true
-    else
-      self.role.match /#{check}/i 
-    end
   end
 
 private
