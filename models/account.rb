@@ -1,5 +1,5 @@
 #coding:utf-8
-ACCOUNT_ROLES = %W(admin designer auditor editor robot user)
+ACCOUNT_GROUPS = %W(admin designer auditor editor robot user)
 
 class Account
   include DataMapper::Resource
@@ -29,14 +29,14 @@ class Account
 
   # relations
   has n, :folders
-  property :role_id, Integer, :default => 6
-  belongs_to :role, 'Account', :required => false
+  property :group_id, Integer, :default => 6
+  belongs_to :group, 'Account', :required => false
 
   # hookers
   before :save, :encrypt_password
 
   before :destroy do |a|
-    throw halt  unless a.role
+    throw halt  unless a.group
   end
 
   # instance helpers
@@ -46,11 +46,15 @@ class Account
   end
 
   def allowed check
-    return self.role.allowed(check)  if self.role
-    raise Forbidden  if self.id > ACCOUNT_ROLES.length
-    check_index = ACCOUNT_ROLES.index(check.to_s)
-    self_index  = ACCOUNT_ROLES.index(self.name.to_s)
+    return self.group.allowed(check)  if self.group
+    raise Forbidden  if self.id > ACCOUNT_GROUPS.length
+    check_index = ACCOUNT_GROUPS.index(check.to_s)
+    self_index  = ACCOUNT_GROUPS.index(self.name.to_s)
     return true  if self_index <= check_index
+  end
+
+  def role
+    self.group ? self.group.role : self.name
   end
 
   def has_password?(password)

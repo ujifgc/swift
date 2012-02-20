@@ -5,9 +5,9 @@ Page.all.destroy!
 Account.all.destroy!
 
 k = 1
-ACCOUNT_ROLES.each do |role|
+ACCOUNT_GROUPS.each do |g|
   pwd = SecureRandom.hex(4)
-  a = Account.create :id => k, :email => "#{role}@localhost", :name => role, :surname => 'group', :password => pwd, :password_confirmation => pwd, :role => nil
+  a = Account.create :id => k, :email => "#{g}@localhost", :name => g, :surname => 'group', :password => pwd, :password_confirmation => pwd, :group => nil
   k += 1
 end
 
