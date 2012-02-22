@@ -31,7 +31,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def content_type
-    `file -bp --mime-type #{root+url}`.strip
+    `file -bp --mime-type #{root}#{url}`.to_s.strip
   end
 
 end
@@ -59,7 +59,7 @@ class AssetUploader < CarrierWave::Uploader::Base
   end
 
   def content_type
-    `file -bp --mime-type #{root+url}`.strip
+    `file -bp --mime-type #{root}#{url}`.to_s.strip
   end
 
 end

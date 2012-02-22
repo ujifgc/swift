@@ -37,8 +37,10 @@ Swift.helpers do
     @parse_level = @parse_level.to_i + 1
     return t(:parse_level_too_deep)  if @parse_level > 3
 
-    str.gsub!(/\[(.*)\]/) do |s|
-      md = $1.match /(block|image|asset|element)\s+(.*)/
+    str.gsub!(/\[(.*?)\]/) do |s|
+      tag = $1
+      md = tag.match /(block|image|asset|element)\s+(.*)/
+      next "[#{tag}]"  unless md
       args = []
       hash = {}
       type = md[1]
@@ -68,7 +70,7 @@ Swift.helpers do
       end
     end
     @parse_level -= 1
-    str
+    str.html
   end
 
   def as_size( s )

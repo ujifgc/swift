@@ -27,8 +27,8 @@
   background: url(/images/rdown.png) no-repeat right 5px;
   display:block;
   color:#0c2245;
-  padding:0 3px;
   text-decoration:none;
+  height: 1.167em;
 }
 .easy-select-box .easy-select-box-disp:hover{
   position:relative;
@@ -51,6 +51,7 @@
 }
 .easy-select-box ul li a,
 .easy-select-box ul li a:visited{
+  height: 1.167em;
   padding:3px;
   background:#FFFFFF;
   display:block;
