@@ -11,6 +11,9 @@ Admin.controllers :assets do
   end
 
   post :create do
+    filename = params[:asset]['file'][:filename]
+    filename = File.basename filename, File.extname(filename)
+    params[:asset]['title'] = filename  if params[:asset]['title'].blank?
     @object = Asset.new(params[:asset])
     if @object.save
       flash[:notice] = pat('asset.created')

@@ -40,4 +40,4 @@ gem 'russian'
 # file assets
 gem 'mini_magick'
 gem 'carrierwave'
-gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper'
+gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper', :git => 'http://github.com/ujifgc/carrierwave-datamapper.git'

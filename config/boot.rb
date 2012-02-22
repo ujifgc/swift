@@ -22,6 +22,7 @@ Padrino.before_load do
   Padrino.require_dependencies("#{Padrino.root}/lib/sr-*.rb")
   DataMapper::Model.append_extensions(SwiftDatamapper::ClassMethods)
   DataMapper::Model.append_inclusions(SwiftDatamapper::InstanceMethods)
+  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
   $markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true, :tables => true, :strikethrough => true
 end
 
