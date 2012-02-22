@@ -42,7 +42,7 @@ class Account
   # instance helpers
   def get_folders
     #!!! do more logic
-    self.folders
+    Folder.all
   end
 
   def allowed check
