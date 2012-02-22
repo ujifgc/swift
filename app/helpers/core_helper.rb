@@ -74,12 +74,12 @@ Swift.helpers do
   def as_size( s )
     prefix = %W(TiB GiB MiB KiB B)
     s = s.to_f
-    i = prefix.length
+    i = prefix.length - 1
     while s > 512 && i > 0
       s /= 1024
       i -= 1
     end
-    ("%#{s > 9 ? 'd' : '.1f'} #{prefix[i]}" % s).gsub /\.0/, ''
+    ((s > 9 || s.modulo(1) < 0.1 ? '%d' : '%.1f') % s) + ' ' + prefix[i]
   end
 
 end
