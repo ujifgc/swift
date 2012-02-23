@@ -14,13 +14,13 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'haml'
 
 # Database requirements
-gem 'dm-types'
+gem 'dm-types', '~> 1.2.0'
 gem 'dm-validations'
 gem 'dm-timestamps'
 gem 'dm-migrations'
 gem 'dm-constraints'
 gem 'dm-aggregates'
-gem 'dm-core', '1.2.0'
+gem 'dm-core', '~> 1.2.0'
 gem 'dm-mysql-adapter'
 #gem 'redis'
 #gem 'hiredis'

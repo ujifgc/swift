@@ -1,15 +1,14 @@
 !!! 5
-%html{:lang => I18n.locale, :xmlns => "http://www.w3.org/1999/xhtml"}
+%html
   %head
     %meta{ :charset => "utf-8" }
-    %title= @page.title
+    = element 'PageTitle'
   %body
     #body
       #header
-        %h1= link_to 'Root', url(:core_index)
         = partial 'fragments/header'
       #wrapper
-        .flash= [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
+        = element 'Notice'
         = yield
       #footer
         = partial 'fragments/footer'

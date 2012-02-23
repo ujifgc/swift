@@ -18,7 +18,7 @@
             %td.first= link_to object.id, url(:assets, :edit, :id => object.id)
             %td= object.title
             %td= object.folder && object.folder.title
-            %td= link_to object.file.url, object.file.url, :rel => 'box-image'
+            %td= link_to object.file.url, object.file.url
             %td.last= check_box_tag :"check_asset[#{object.id}]", :checked => false
 
 - content_for :sidebar, partial("base/sidebar")

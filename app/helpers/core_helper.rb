@@ -6,8 +6,11 @@ Swift.helpers do
   def element( name, *args )
     options = args.last.is_a?(Hash) ? args.pop : {}
     @opts = options
-    core = partial 'elements/' + name + '/core'
-    view = partial 'elements/' + name + '/view' + (options[:instance] ? "-#{options[:instance]}" : '')
+    core = view = ''
+    core_file = 'elements/' + name + '/core'
+    view_file = 'elements/' + name + '/view' + (options[:instance] ? "-#{options[:instance]}" : '')
+    core = partial core_file  if File.exists? "#{Swift.root}/views/elements/#{name}/_core.haml"
+    view = partial view_file  if File.exists? "#{Swift.root}/views/elements/#{name}/_view.haml"
     core + view
   end
 

@@ -29,6 +29,8 @@ ru:
         file: Файл
         folder_id: Папка
         parent_id: Подчинение
+        fragment: Визуализатор
+        is_fragment: Является фрагментом
     blocks:
       name: блоки
     block:

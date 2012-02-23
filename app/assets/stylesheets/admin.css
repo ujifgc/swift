@@ -49,3 +49,6 @@ div#sidebar {
 .form label, .form input.text_field, .form input.password_field, .form textarea.text_area {
   padding: 4px 0;
 }
+.tar {
+  text-align: right;
+}

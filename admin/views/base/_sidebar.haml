@@ -1,10 +1,13 @@
-.block
-  %h3= pat(:modules)
-  %ul.navigation
-    - project_modules.each do |project_module|
-      %li{ :class => ("active" if request.path_info =~ /^#{project_module.path}/) }
-        = link_to project_module.path("/admin") do
-          = project_module.human_name
+- MODULE_GROUPS.each do |name, mods|
+  - next  unless mods.length > 0
+  .block
+    %h3= pat("modules.#{name}")
+    %ul.navigation
+      - project_modules.each do |project_module|
+        - next  unless mods.include? project_module.path[1..-1]
+        %li{ :class => ("active" if request.path_info =~ /^#{project_module.path}/) }
+          = link_to project_module.path("/admin") do
+            = project_module.human_name
 
 .block
   %h3 Simple Block

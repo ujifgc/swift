@@ -11,6 +11,7 @@ class Image
   userstamps!
 
   #relations
+  property :folder_id, Integer, :default => 1
   belongs_to :folder, :required => false
 
   #hookers

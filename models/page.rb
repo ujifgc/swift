@@ -7,7 +7,6 @@ class Page
   property :title,    String
   property :text,     Text
   property :path,     String, :length => 2000
-  property :layout,   String, :length => 63, :default => 'application'
   property :priority, Integer
 
   sluggable!
@@ -18,6 +17,12 @@ class Page
   # relations
   has n, :children, 'Page', :child_key => :parent_id
   belongs_to :parent, 'Page', :required => false
+
+  property :layout_slug, String, :default => 'application'
+  belongs_to :layout, :required => false
+
+  property :fragment_slug, String, :default => 'page'
+  belongs_to :fragment, :required => false
 
   # validations
   validates_presence_of :title

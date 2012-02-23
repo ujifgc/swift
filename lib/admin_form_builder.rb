@@ -17,9 +17,12 @@ module Padrino
               password_field field, :class => :password_field
             when :select
               select field, { :class => :select }.merge( options )
+            when :boolean, :checkbox
+              check_box field
             when :file
-              file = @object.send(field)  rescue nil
-              tag = if file
+              loaded = @object.send(:"#{field}?")  rescue false
+              tag = if loaded
+                file = @object.send(field)
                 I18n::t('asset_uploaded') + content_tag( :div ) do
                   if file.content_type.index('image')
                     image_tag(file.url)

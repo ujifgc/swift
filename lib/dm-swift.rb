@@ -16,10 +16,10 @@ module SwiftDatamapper
       end
     end
 
-    def sluggable!
+    def sluggable! options = {}
       send :include, PublishableMethods
 
-      property :slug, String
+      property :slug, String, options
 
       before :valid? do |i|
         if self.slug.blank?

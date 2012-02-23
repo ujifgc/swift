@@ -10,6 +10,7 @@ ACCOUNT_GROUPS.each do |g|
   a = Account.create :id => k, :email => "#{g}@localhost", :name => g, :surname => 'group', :password => pwd, :password_confirmation => pwd, :group => nil
   k += 1
 end
+account = Account.first
 
 # pages
 
@@ -35,6 +36,14 @@ Page.create         :parent => p3, :slug => 'map3',     :title => 'map3',     :t
 Page.create         :parent => p1, :slug => 'map4',     :title => 'map4',     :text => 'THERE 4'
 
 # folders
-
 Folder.create :id => 1, :account => nil, :title => 'Layout graphics', :slug => 'images'
 Folder.create :id => 2, :account => nil, :title => 'Common files', :slug => 'files'
+
+# layouts
+Layout.create :slug => 'application', :title => 'Default app'
+Layout.create :slug => 'raw',         :title => 'Raw data'
+
+# fragments
+Fragment.create :title => 'Footer',       :slug => 'footer', :is_basic => false
+Fragment.create :title => 'Header',       :slug => 'header', :is_basic => false
+Fragment.create :title => 'Default page', :slug => 'page',   :is_basic => true

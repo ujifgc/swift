@@ -24,12 +24,12 @@ class Swift < Padrino::Application
   not_found do
     if @page = Page.first( :path => request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' ) )
       @page.text = parse_uub @page.text
-      response.body = render 'pages/index', :layout => @page.layout
+      response.body = render 'fragments/_page', :layout => @page.layout_slug
       halt 200
     else
       @page = Page.first :path => '/error/404'
       @page.text = parse_uub @page.text
-      response.body = render 'pages/index', :layout => @page.layout
+      response.body = render 'fragments/_page', :layout => @page.layout_slug
       halt 404
     end
   end
@@ -38,7 +38,7 @@ class Swift < Padrino::Application
   error 501 do
     @page = Page.first :path => '/error/501'
     @page.text = parse_uub @page.text
-    render 'pages/index', :layout => @page.layout
+    render 'fragments/_page', :layout => @page.layout_slug
   end
 
 end

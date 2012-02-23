@@ -11,6 +11,7 @@ class Asset
   userstamps!
 
   #relations
+  property :folder_id, Integer, :default => 2
   belongs_to :folder, :required => false
 
   #hookers

@@ -1,3 +1,8 @@
+MODULE_GROUPS = {
+  :content => %W(pages blocks assets images folders),
+  :admin => %W(layouts fragments),
+}
+
 class Admin < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
@@ -16,6 +21,8 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
+    role.project_module :fragments, '/fragments'
+    role.project_module I18n.t('admin.layouts'), '/layouts'
     role.project_module I18n.t('admin.pages'), "/pages"
     role.project_module I18n.t('admin.blocks'), '/blocks'
     role.project_module I18n.t('admin.assets'), '/assets'
@@ -25,7 +32,7 @@ class Admin < Padrino::Application
 
   # hookers
   before do
-    I18n.reload!  if Padrino.env == :development
+    #I18n.reload!  if Padrino.env == :development
 
     params.each do |k,v|
       next  unless v.kind_of? Hash
@@ -78,9 +85,7 @@ class Admin < Padrino::Application
   end
   
   get '/:controller/multiple' do
-    return redirect url(:base_index)  unless @models
-    redirect url(@models, :index)
+    redirect url(@the_model ? @models : :base, :index)
   end
   
-
 end

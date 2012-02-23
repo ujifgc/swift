@@ -2,5 +2,5 @@
   %ul.wat-cf
     %li.first=  mk_single_op :list, url(@models, :index)
     %li{ :class => @object.new? && :active }= mk_single_op :new,  url(@models, :new)
-    - unless @object.new?
+    - if !@object.new? && @object.respond_to?(:id)
       %li.active= mk_single_op :edit, url(@models, :edit, :id => @object.id)
