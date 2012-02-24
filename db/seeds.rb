@@ -3,6 +3,8 @@
 Folder.all.destroy!
 Page.all.destroy!
 Account.all.destroy!
+Layout.all.destroy!
+Fragment.all.destroy!
 
 k = 1
 ACCOUNT_GROUPS.each do |g|
@@ -44,6 +46,6 @@ Layout.create :slug => 'application', :title => 'Default app'
 Layout.create :slug => 'raw',         :title => 'Raw data'
 
 # fragments
-Fragment.create :title => 'Footer',       :slug => 'footer', :is_basic => false
-Fragment.create :title => 'Header',       :slug => 'header', :is_basic => false
-Fragment.create :title => 'Default page', :slug => 'page',   :is_basic => true
+Fragment.create :title => 'Footer',       :slug => 'footer', :is_fragment => true
+Fragment.create :title => 'Header',       :slug => 'header', :is_fragment => true
+Fragment.create :title => 'Default page', :slug => 'page',   :is_fragment => false

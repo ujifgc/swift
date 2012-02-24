@@ -14,4 +14,8 @@ class Fragment
     all :is_fragment => true
   end
 
+  def self.basic
+    all :is_fragment => false
+  end
+
 end

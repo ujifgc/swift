@@ -6,12 +6,15 @@ Swift.helpers do
   def element( name, *args )
     options = args.last.is_a?(Hash) ? args.pop : {}
     @opts = options
+    @args = args
     core = view = ''
     core_file = 'elements/' + name + '/core'
     view_file = 'elements/' + name + '/view' + (options[:instance] ? "-#{options[:instance]}" : '')
     core = partial core_file  if File.exists? "#{Swift.root}/views/elements/#{name}/_core.haml"
-    view = partial view_file  if File.exists? "#{Swift.root}/views/elements/#{name}/_view.haml"
+    view = partial view_file  #if File.exists? "#{Swift.root}/views/elements/#{name}/_view.haml"
     core + view
+  rescue Padrino::Rendering::TemplateNotFound
+    "[Element '#{name}' missing]"
   end
 
   def init_instance
@@ -42,7 +45,7 @@ Swift.helpers do
 
     str.gsub!(/\[(.*?)\]/) do |s|
       tag = $1
-      md = tag.match /(block|image|asset|element)\s+(.*)/
+      md = tag.match /(block|image|file|element)\s+(.*)/
       next "[#{tag}]"  unless md
       args = []
       hash = {}
@@ -65,9 +68,9 @@ Swift.helpers do
         block = Block.by_slug args[0]
         block ? parse_uub(block.text) : s
       when 'image'
-        image_tag image_url(args[rand args.size], hash)
-      when 'asset'
-        link_to args[0], args[0]
+        element 'Image', args[0], hash
+      when 'file'
+        element 'File', args[0], hash.merge(:name => (hash[:name].blank? ? args[1..-1].join(' ') : hash[:name]))
       when 'element'
         element *args, hash
       end
