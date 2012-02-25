@@ -32,6 +32,14 @@ end
 Padrino.after_load do
   DataMapper.finalize
   I18n.reload!  if Padrino.env == :development
+#  stat = $memstat.select{ |k,v| v>0 }.to_a.sort{ |a,b| a[1]<=>b[1] }
+#  summ = 0
+#  stat.each do |row|
+#    summ += row[1]
+#    puts "#{row[1].to_s.rjust(7)} KB: #{row[0]}"
+#  end
+#  puts summ.to_s.rjust(7) + ' KB'
+  #puts GC::Profiler.report
 end
 
 Padrino.load!

@@ -18,10 +18,10 @@ class Page
   has n, :children, 'Page', :child_key => :parent_id
   belongs_to :parent, 'Page', :required => false
 
-  property :layout_slug, String, :default => 'application'
+  property :layout_id, String, :length => 20, :default => 'application'
   belongs_to :layout, :required => false
 
-  property :fragment_slug, String, :default => 'page'
+  property :fragment_id, String, :length => 20, :default => 'page'
   belongs_to :fragment, :required => false
 
   # validations

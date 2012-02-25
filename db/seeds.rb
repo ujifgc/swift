@@ -42,10 +42,10 @@ Folder.create :id => 1, :account => nil, :title => 'Layout graphics', :slug => '
 Folder.create :id => 2, :account => nil, :title => 'Common files', :slug => 'files'
 
 # layouts
-Layout.create :slug => 'application', :title => 'Default app'
-Layout.create :slug => 'raw',         :title => 'Raw data'
+Layout.create :id => 'application', :title => 'Default app'
+Layout.create :id => 'raw',         :title => 'Raw data'
 
 # fragments
-Fragment.create :title => 'Footer',       :slug => 'footer', :is_fragment => true
-Fragment.create :title => 'Header',       :slug => 'header', :is_fragment => true
-Fragment.create :title => 'Default page', :slug => 'page',   :is_fragment => false
+Fragment.create :title => 'Footer',       :id => 'footer', :is_fragment => true
+Fragment.create :title => 'Header',       :id => 'header', :is_fragment => true
+Fragment.create :title => 'Default page', :id => 'page',   :is_fragment => false

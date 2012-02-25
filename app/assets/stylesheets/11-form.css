@@ -3,3 +3,10 @@
   color: yellow;
   background: red;
 }
+.form textarea {
+  min-height: 150px;
+}
+.form textarea.code {
+  min-height: 300px;
+  font-family: Courier New, monospace;
+}

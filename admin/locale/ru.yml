@@ -31,6 +31,7 @@ ru:
         parent_id: Подчинение
         fragment: Визуализатор
         is_fragment: Является фрагментом
+        code: Код
     blocks:
       name: блоки
     block:
