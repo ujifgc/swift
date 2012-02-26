@@ -1,9 +1,0 @@
-﻿.secondary-navigation#operations
-  %ul.wat-cf
-    %li.first.active= mk_single_op :list, url(@models, :index)
-    %li= mk_single_op :new, url(@models, :new)
-    %li.last= mk_multiple_op :delete
-    - if @the_model.respond_to? :published
-      - allow :auditor do
-        %li.last= mk_multiple_op :unpublish
-        %li.last= mk_multiple_op :publish

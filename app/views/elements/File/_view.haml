@@ -1,5 +1,0 @@
-﻿:ruby
-  file = Asset.first :id => @args[0]
-  return "[Asset ##{@args[0]} missing]"  unless file
-.download
-  = link_to @opts[:name].blank? ? file.title : @opts[:name], file.file.url
