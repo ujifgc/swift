@@ -1,0 +1,54 @@
+/*
+ *= require jquery-ui
+ *= require paginator3000
+ *= require colorbox
+ *= require 11-form
+ *= require 91-markdown
+ *= require 92-easyselect
+ *= require 81-listable
+ */
+
+body, td, input, textarea {
+  font: normal 12px Tahoma, sans-serif;
+}
+ul.wat-cf li.last {
+  float: right;
+}
+a.multiple, a.single {
+  padding-left: 3.5em !important;
+}
+a.multiple img.op, a.single img.op {
+  vertical-align: middle;
+  width: 2em;
+  position: absolute;
+  margin: -0.33em 0 0 -2.5em;
+}
+.blurry {
+  opacity: 0.3;
+}
+div.flash {
+  position: absolute;
+  left: 50%;
+}
+div#main {
+  float: right;
+}
+div#sidebar {
+  float: left;
+}
+#main .block {
+  padding-top: 0;
+}
+#sidebar .block li.active a {
+  color: #fff;
+  background: #666;
+}
+.form a {
+  font-size: 1em;
+}
+.form label, .form input.text_field, .form input.password_field, .form textarea.text_area {
+  padding: 4px 0;
+}
+.tar {
+  text-align: right;
+}

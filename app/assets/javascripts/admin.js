@@ -1,0 +1,49 @@
+//= require jquery
+//= require jquery-ujs
+//= require jquery-ui
+//= require jquery.colorbox-min
+//= require paginator3000
+//= require postmessage
+//= require editor
+
+$(function() {
+  var boxOptions = { opacity: 0.7, loop: false, current: "{current} / {total}", previous: "<", next: ">", close: "x", maxWidth: "100%", maxHeight: "100%" };
+  if ($.browser.msie && $.browser.version < '8.0.0')
+    boxOptions.transition = "none";
+  $('[rel^="box-"]').colorbox(boxOptions);
+  $(':checkbox[name=check_all]').click(function(){
+    $(':checkbox[name^=check_]').prop('checked', $(this).prop('checked'));
+  });
+  $('a.multiple').click(function(){
+    multipleOp(this);
+  });
+  $('a.single.button_to').click(function(){
+    singleOp(this);
+  });
+  multipleCheck();
+  $('form.multiple input[name^=check]').click(multipleCheck);
+  $('form.multiple td.last input, form.multiple th.last input').wrap('<label></label>');
+  $('select').each(function() { $(this).easySelectBox() });
+});
+
+multipleOp = function(el) {
+  if (el.disabled) return false;
+  el.disabled = true;
+  var models = $('form.multiple')[0].id.split('-')[1]
+  var action = '/admin/'+models+'/multiple?_method='+$(el).attr('data-method');
+  $('form.multiple').attr( { action: action } ).submit();
+  toggleCheck(el, -1);
+  return false;
+};
+
+toggleCheck = function(el, check) {
+  $('form.multiple input[name^=check_]').prop('checked', check ? (check > 0 ? true : false) : el.checked);
+  multipleCheck(el);
+};
+
+multipleCheck = function(el) {
+  $('#operations a.multiple').parent().addClass('blurry');
+  $('form.multiple input[name^=check]').each(function() {
+    if (this.checked) return $('#operations a.multiple').parent().removeClass('blurry');
+  });
+};

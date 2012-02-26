@@ -1,0 +1,11 @@
+.block
+  = partial 'base/edit_operations'
+  .content
+    %h2.title
+      = pat(:new)
+      = mt(:<%= @orm.name_singular %>)
+    .inner
+      - form_for :object, url(:<%= @orm.name_plural %>, :create), :method => :post, :class => 'form edit', :id => "edit-<%= @orm.name_plural %>" do |f|
+        = partial "<%= @orm.name_plural %>/form", :locals => { :f => f }
+
+- content_for :sidebar, partial("base/sidebar")

@@ -1,0 +1,9 @@
+= fragment 'header'
+
+#wrapper
+  = element 'Notice'
+  %h2= @page.title
+  .content
+    = @page.text
+
+= fragment 'footer'

@@ -1,0 +1,4 @@
+<%- @orm.column_fields.each do |column| -%>
+= f.input :<%= column[:name] %><% if column[:field_type] == :text_area %>, :as => :text, :markdown => true<% end %>
+<%- end -%>
+= f.submits
