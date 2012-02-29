@@ -1417,7 +1417,8 @@
             buttons.quote = makeButton("wmd-quote-button", "Blockquote <blockquote> Ctrl+Q", "-60px", bindCommand("doBlockquote"));
             buttons.code = makeButton("wmd-code-button", "Code Sample <pre><code> Ctrl+K", "-80px", bindCommand("doCode"));
             buttons.image = makeButton("wmd-image-button", "Image <img> Ctrl+G", "-100px", bindCommand(function (chunk, postProcessing) {
-                return this.doLinkOrImage(chunk, postProcessing, true);
+                //return this.doLinkOrImage(chunk, postProcessing, true);
+                return this.doPickObject(chunk, postProcessing, 'image');
             }));
             makeSpacer(2);
             buttons.olist = makeButton("wmd-olist-button", "Numbered List <ol> Ctrl+O", "-120px", bindCommand(function (chunk, postProcessing) {
@@ -1641,7 +1642,7 @@
             });
             if (title) {
                 title = title.trim ? title.trim() : title.replace(/^\s*/, "").replace(/\s*$/, "");
-                title = $.trim(title).replace(/"/g, "quot;").replace(/\(/g, "&#40;").replace(/\)/g, "&#41;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                title = $.trim(title).replace(/"/g, "quot;").replace(/\(/g, "&#40;").replace(/\)/g, "&#41;").replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
             }
             return title ? link + ' "' + title + '"' : link;
         });
@@ -1696,18 +1697,17 @@
                 postProcessing();
             };
 
-            var pickIdCallback = function(type, id) {
+            var pickIdCallback = function(type, id, title) {
                 if (id !== null) {
                     chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
                     
-                    var linkDef = " [999]: " + properlyEncoded(link);
-
-                    var num = that.addLinkDef(chunk, linkDef);
-                    chunk.startTag = isImage ? "![" : "[";
-                    chunk.endTag = "][" + num + "]";
+                    chunk.startTag = "[" + type + " " + id;
+                    chunk.endTag = "]";
 
                     if (!chunk.selection)
-                        chunk.selection = "enter title here";
+                        chunk.selection = " " + (title.trim() || "enter title here");
+                    else
+                        chunk.selection = " " + chunk.selection.trim();
                 }
                 postProcessing();
             }
@@ -1734,7 +1734,7 @@
                     // remove the loading class
                     dialog.removeClass('loading');
                     dialog.find('a.pick').click(function(){
-                      pickIdCallback(objectType, $(this).data('id'));
+                      pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
                       dialog.dialog('close');
                       return false;
                     });

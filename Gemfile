@@ -25,7 +25,7 @@ gem 'dm-mysql-adapter'
 #gem 'redis'
 #gem 'hiredis'
 #gem 'dm-redis-adapter', :git => 'http://github.com/ujifgc/dm-redis-adapter.git'
-
+#gem 'rack-datamapper-session'
 
 gem 'padrino', :git => 'http://github.com/ujifgc/padrino-framework.git'
 

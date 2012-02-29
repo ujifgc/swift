@@ -2,7 +2,7 @@
 ~ f.input :text, :as => :text, :markdown => true
 
 - unless @object.root?
-  = f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => Page.all, :fields => [ :title_tree, :id ], :include_blank => false
+  = f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => Page.all( :order => :path ), :fields => [ :title_tree, :id ], :include_blank => false
 
 = f.input :fragment_id, :as => :select, :selected => @object.fragment_id, :collection => Fragment.basic, :fields => [ :title, :id ], :include_blank => false
 
