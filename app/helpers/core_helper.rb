@@ -66,9 +66,9 @@ Swift.helpers do
         block = Block.by_slug args[0]
         block ? parse_uub(block.text) : "[Block #{args[0]} missing]"
       when 'image'
-        element 'Image', args[0], hash
+        element 'Image', args[0], hash.merge(:name => (hash[:name].blank? ? args[1..-1].join(' ').strip : hash[:name]))
       when 'file', 'asset'
-        element 'File', args[0], hash.merge(:name => (hash[:name].blank? ? args[1..-1].join(' ') : hash[:name]))
+        element 'File', args[0], hash.merge(:name => (hash[:name].blank? ? args[1..-1].join(' ').strip : hash[:name]))
       when 'element'
         element *args, hash
       end
