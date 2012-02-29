@@ -3,6 +3,9 @@ ru:
     admin:
       publish: Опубликовать
       unpublish: Снять
+      modules:
+        content: Содержимое сайта
+        admin: Вёрстка и дизайн
   admin:
     multiple:
       destroyed: "%{objects} удалены"
@@ -14,6 +17,8 @@ ru:
     images: Картинки
     folders: Папки
     blocks: Блоки
+    layouts: Раскладки
+    fragments: Визуализаторы
     form:
       save: Сохранить
       back: Назад
@@ -52,4 +57,10 @@ ru:
       name: картинки
     image:
       name: картинку
+    basics:
+      name: визуализаторы
+    fragments:
+      name: фрагменты
+    fragment:
+      name: визуализатор
   asset_uploaded: загружен

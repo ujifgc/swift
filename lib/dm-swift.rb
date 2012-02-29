@@ -19,7 +19,8 @@ module SwiftDatamapper
     def sluggable! options = {}
       send :include, PublishableMethods
 
-      property :slug, String, options
+      property :slug, String, { :unique_index => true }.merge(options)
+      validates_uniqueness_of :slug  if options[:unique_index]
 
       before :valid? do |i|
         if self.slug.blank?

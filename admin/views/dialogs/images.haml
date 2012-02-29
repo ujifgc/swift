@@ -1,0 +1,9 @@
+﻿.dialog-images
+  - @objects.each do |o|
+    .item
+      = link_to o.file.url, :class => 'pick' do
+        .image
+          = image_tag o.file.url, :class => :preview
+        - unless o.title.blank?
+          .title= o.title
+ 

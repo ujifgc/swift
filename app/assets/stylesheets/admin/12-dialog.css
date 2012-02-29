@@ -1,0 +1,29 @@
+﻿.dialog-images {
+}
+.dialog-images .item {
+  display: inline-block;
+  width: 200px;
+  height: 150px
+  padding: 5px;
+  overflow: hidden;
+  margin: 5px;
+  vertical-align: top;
+  background: #333;
+  border-radius: 4px;
+  text-align: center;
+}
+.dialog-images .item img.preview {
+  max-width: 200px;
+  max-height: 150px;
+  vertical-align: middle;
+}
+.dialog-images .item .image {
+  width: 200px;
+  height: 150px;
+}
+.dialog-images .item .link {
+  display: none;
+}
+.dialog-images .item .title {
+  margin: 3px 0;
+}

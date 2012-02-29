@@ -11,6 +11,9 @@ Admin.controllers :images do
   end
 
   post :create do
+    filename = params[:image]['file'][:filename]
+    filename = File.basename filename, File.extname(filename)
+    params[:image]['title'] = filename  if params[:image]['title'].blank?
     @object = Image.new(params[:image])
     if @object.save
       flash[:notice] = pat('image.created')

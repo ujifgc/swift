@@ -4,15 +4,13 @@ require 'digest/md5'
 Swift.helpers do
 
   def element( name, *args )
-    options = args.last.is_a?(Hash) ? args.pop : {}
-    @opts = options
+    @opts = args.last.is_a?(Hash) ? args.pop : {}
     @args = args
-    core = view = ''
     core_file = 'elements/' + name + '/core'
-    view_file = 'elements/' + name + '/view' + (options[:instance] ? "-#{options[:instance]}" : '')
-    core = partial core_file  if File.exists? "#{Swift.root}/views/elements/#{name}/_core.haml"
-    view = partial view_file  #if File.exists? "#{Swift.root}/views/elements/#{name}/_view.haml"
-    core + view
+    view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
+    core = File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" ) ? partial( core_file ) : ''
+    result = core + partial( view_file )
+    @opts[:raw] ? result : parse_uub( result )
   rescue Padrino::Rendering::TemplateNotFound
     "[Element '#{name}' missing]"
   end
@@ -37,10 +35,6 @@ Swift.helpers do
     end
 
     swift
-  end
-
-  def image_url( img, options = {} )
-    Padrino::Helpers.image_url img, options
   end
 
   def parse_uub str
@@ -98,24 +92,6 @@ end
 
 module Padrino
 
-  module Helpers
-
-    def self.image_url( img, options = {} )
-      opt = { :size => $config[:thumb_size], :format => $config[:thumb_format] }
-      img = Image.get(img)  unless img.kind_of?(Image)
-      return nil            unless img.kind_of?(Image)
-      return img.file       if options[:original] || options[:size] == 'original'
-      format = img.file.rpartition('.')[2]
-      id = img.id
-      opt.merge! :format => format
-      opt.merge! options
-      salt = "#{id}.#{opt[:size]}.#{opt[:format]}".salt
-      filename = "#{id}/#{salt}.#{opt[:size]}.#{opt[:format]}"
-      "/images/cache/#{filename}"
-    end
-
-  end
-
   def self.public
     root + '/public'
   end
@@ -150,14 +126,6 @@ class String
     else
       self
     end
-  end
-
-  def salt
-    Digest::MD5.hexdigest("avw6=ln73#{self}4lw;nv")[0..5]
-  end
-
-  def salt?(s)
-    self == s.salt
   end
 
   def / (s)

@@ -1041,7 +1041,7 @@
                 text = text.replace('http://https://', 'https://');
                 text = text.replace('http://ftp://', 'ftp://');
 
-                if (text.indexOf('http://') === -1 && text.indexOf('ftp://') === -1 && text.indexOf('https://') === -1) {
+                if (text.indexOf('http://') === -1 && text.indexOf('ftp://') === -1 && text.indexOf('https://') === -1 && text.indexOf('/') != 0) {
                     text = 'http://' + text;
                 }
             }
@@ -1647,7 +1647,9 @@
         });
     }
 
-    commandProto.doLinkOrImage = function (chunk, postProcessing, isImage) {
+    commandProto.doLinkOrImage = function() { alert('error doLinkOrImage'); };
+
+    commandProto.doPickObject = function (chunk, postProcessing, objectType) {
 
         chunk.trimWhitespace();
         chunk.findTags(/\s*!?\[/, /\][ ]?(?:\n[ ]*)?(\[.*?\])?/);
@@ -1677,27 +1679,9 @@
             // Marks up the link and adds the ref.
             var linkEnteredCallback = function (link) {
 
-                background.parentNode.removeChild(background);
+                //background.parentNode.removeChild(background);
 
                 if (link !== null) {
-                    // (                          $1
-                    //     [^\\]                  anything that's not a backslash
-                    //     (?:\\\\)*              an even number (this includes zero) of backslashes
-                    // )
-                    // (?=                        followed by
-                    //     [[\]]                  an opening or closing bracket
-                    // )
-                    //
-                    // In other words, a non-escaped bracket. These have to be escaped now to make sure they
-                    // don't count as the end of the link or similar.
-                    // Note that the actual bracket has to be a lookahead, because (in case of to subsequent brackets),
-                    // the bracket in one match may be the "not a backslash" character in the next match, so it
-                    // should not be consumed by the first match.
-                    // The "prepend a space and finally remove it" steps makes sure there is a "not a backslash" at the
-                    // start of the string, so this also works if the selection begins with a bracket. We cannot solve
-                    // this by anchoring with ^, because in the case that the selection starts with two brackets, this
-                    // would mean a zero-width match at the start. Since zero-width matches advance the string position,
-                    // the first bracket could then not act as the "not a backslash" for the second.
                     chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
                     
                     var linkDef = " [999]: " + properlyEncoded(link);
@@ -1706,19 +1690,58 @@
                     chunk.startTag = isImage ? "![" : "[";
                     chunk.endTag = "][" + num + "]";
 
-                    if (!chunk.selection) {
-                        if (isImage) {
-                            chunk.selection = "enter image description here";
-                        }
-                        else {
-                            chunk.selection = "enter link description here";
-                        }
-                    }
+                    if (!chunk.selection) 
+                        chunk.selection = "enter title here";
                 }
                 postProcessing();
             };
 
-            background = ui.createBackground();
+            var pickIdCallback = function(type, id) {
+                if (id !== null) {
+                    chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
+                    
+                    var linkDef = " [999]: " + properlyEncoded(link);
+
+                    var num = that.addLinkDef(chunk, linkDef);
+                    chunk.startTag = isImage ? "![" : "[";
+                    chunk.endTag = "][" + num + "]";
+
+                    if (!chunk.selection)
+                        chunk.selection = "enter title here";
+                }
+                postProcessing();
+            }
+
+            var url = '/admin/dialogs/' + objectType + 's';
+            // show a spinner or something via css
+            var dialog = $('<div style="display:none" class="loading"></div>').appendTo('body');
+            // open the dialog
+            dialog.dialog({
+                // add a close listener to prevent adding multiple divs to the document
+                close: function(event, ui) {
+                    // remove div with all data and events
+                    dialog.remove();
+                },
+                width: 800,
+                minHeight: 600,
+                modal: true
+            });
+            // load remote content
+            dialog.load(
+                url, 
+                {}, // omit this param object to issue a GET request instead a POST request, otherwise you may provide post parameters within the object
+                function (responseText, textStatus, XMLHttpRequest) {
+                    // remove the loading class
+                    dialog.removeClass('loading');
+                    dialog.find('a.pick').click(function(){
+                      pickIdCallback(objectType, $(this).data('id'));
+                      dialog.dialog('close');
+                      return false;
+                    });
+                }
+            );
+
+            /*background = ui.createBackground();
 
             if (isImage) {
                 if (!this.hooks.insertImageDialog(linkEnteredCallback))
@@ -1726,7 +1749,7 @@
             }
             else {
                 ui.prompt(linkDialogText, linkDefaultText, linkEnteredCallback);
-            }
+            }*/
             return true;
         }
     };

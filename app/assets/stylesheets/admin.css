@@ -2,10 +2,7 @@
  *= require jquery-ui
  *= require paginator3000
  *= require colorbox
- *= require 11-form
- *= require 91-markdown
- *= require 92-easyselect
- *= require 81-listable
+ *= require_tree ./admin
  */
 
 body, td, input, textarea {

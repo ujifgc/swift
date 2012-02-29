@@ -6,10 +6,10 @@ class Page
 
   property :title,    String
   property :text,     Text
-  property :path,     String, :length => 2000
+  property :path,     String, :length => 2000, :index => true
   property :priority, Integer
 
-  sluggable!
+  sluggable! :unique_index => false
   publishable!
   timestamps!
   userstamps!
@@ -26,6 +26,7 @@ class Page
 
   # validations
   validates_presence_of :title
+  validates_uniqueness_of :path
 
   # hookers
   before :valid? do
