@@ -2052,6 +2052,9 @@
                 chunk.after = chunk.after.replace(nextItemsRegex, getPrefixedItem);
             }
             if (isNumberedList == hasDigits) {
+                var prefix = getItemPrefix();
+                if (isNumberedList) prefix = prefix.replace(/\d+/, "\\d+").replace('.', "\\.");
+                chunk.selection = chunk.selection.replace(new RegExp(prefix, 'g'), "");
                 return;
             }
         }
@@ -2076,17 +2079,19 @@
         var nLinesDown = 1;
 
         chunk.after = chunk.after.replace(nextItemsRegex,
-            function (itemText) {
+           function (itemText) {
                 nLinesDown = /[^\n]\n\n[^\n]/.test(itemText) ? 1 : 0;
                 return getPrefixedItem(itemText);
             });
 
         chunk.trimWhitespace(true);
         chunk.skipLines(nLinesUp, nLinesDown, true);
-        chunk.startTag = prefix;
+        //chunk.startTag = ''; //prefix;
         var spaces = prefix.replace(/./g, " ");
-        this.wrap(chunk, SETTINGS.lineLength - spaces.length);
-        chunk.selection = chunk.selection.replace(/\n/g, "\n" + spaces);
+        //this.wrap(chunk, SETTINGS.lineLength - spaces.length);
+        chunk.selection = prefix + chunk.selection.replace(/\n/g, function(item) {
+          return "\n" + getItemPrefix();
+        });
 
     };
 
