@@ -31,3 +31,13 @@ module I18n
     end
   end
 end
+
+module FileUtils
+
+  def self.mv_try( src, dst )
+    return nil  unless File.exists? src
+    FileUtils.mkpath File.dirname(dst)
+    FileUtils.mv src, dst
+  end
+
+end

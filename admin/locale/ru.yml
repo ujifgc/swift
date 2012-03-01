@@ -3,6 +3,7 @@ ru:
     admin:
       publish: Опубликовать
       unpublish: Снять
+      not_required: "не обяз."
       modules:
         content: Содержимое сайта
         admin: Вёрстка и дизайн

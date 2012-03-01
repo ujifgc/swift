@@ -9,6 +9,7 @@ module Padrino
 
         def input( field, options={} )
           html = label field, options[:label] || { :caption => I18n.t("models.object.attributes.#{field}") }
+          html += ' (' + options[:brackets] + ')'  if options[:brackets]
           html += ' ' + error_message_on( field ) + ' '
           html += case options[:as]
           when :text, :textarea, :text_area

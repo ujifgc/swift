@@ -37,7 +37,13 @@ Swift.helpers do
     swift
   end
 
-  def parse_uub str
+  def eval_or_string( str )
+    eval(str) #!!! WTF? get rid of it!
+  rescue Exception => ex
+    str
+  end
+
+  def parse_uub( str )
     @parse_level = @parse_level.to_i + 1
     return t(:parse_level_too_deep)  if @parse_level > 3
 
@@ -56,19 +62,20 @@ Swift.helpers do
         when v[1] && v[4]
           hash.merge! v[2].to_sym => v[4]
         when v[1] && v[5]
-          hash.merge! v[2].to_sym => (eval(v[5]) rescue v[5])
+          hash.merge! v[2].to_sym => eval_or_string(v[5])
         when v[6]
-          args << (eval(v[6]) rescue v[6])
+          args << eval_or_string(v[6])
         end
       end
+      hash.merge!( :title => args[1..-1].join(' ').strip )  if hash[:title].blank?
       case type
       when 'block'
         block = Block.by_slug args[0]
         block ? parse_uub(block.text) : "[Block #{args[0]} missing]"
       when 'image'
-        element 'Image', args[0], hash.merge(:name => (hash[:name].blank? ? args[1..-1].join(' ').strip : hash[:name]))
+        element 'Image', args[0], hash
       when 'file', 'asset'
-        element 'File', args[0], hash.merge(:name => (hash[:name].blank? ? args[1..-1].join(' ').strip : hash[:name]))
+        element 'File', args[0], hash
       when 'element'
         element *args, hash
       end

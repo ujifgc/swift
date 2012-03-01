@@ -30,7 +30,10 @@ Admin.controllers :assets do
 
   put :update, :with => :id do
     @object = Asset.get(params[:id])
+    oldname = Padrino.public + @object.file.url
     if @object.update(params[:asset])
+      @obj = Asset.get(params[:id])
+      FileUtils.mv_try oldname, Padrino.public + @obj.file.url
       flash[:notice] = pat('asset.updated')
       redirect url(:assets, :edit, :id => @object.id)
     else

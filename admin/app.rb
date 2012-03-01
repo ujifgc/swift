@@ -8,6 +8,7 @@ class Admin < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
   register Padrino::Admin::AccessControl
+  #use Rack::Session::DataMapper
 
   set :login_page, "/admin/sessions/new"
   set :default_builder, 'AdminFormBuilder'

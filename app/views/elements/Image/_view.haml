@@ -1,4 +1,4 @@
 ﻿:ruby
   file = Image.first :id => @args[0]
   return "[Image ##{@args[0]} missing]"  unless file
-= image_tag file.file.url
+= image_tag file.file.url, :alt => @opts[:title].blank? ? file.title : @opts[:title]
