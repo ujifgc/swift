@@ -37,51 +37,46 @@ Swift.helpers do
     swift
   end
 
-  def eval_or_string( str )
-    eval(str) #!!! WTF? get rid of it!
-  rescue Exception => ex
-    str
-  end
-
   def parse_uub( str )
     @parse_level = @parse_level.to_i + 1
     return t(:parse_level_too_deep)  if @parse_level > 3
 
     str.gsub!(/\[(.*?)\]/) do |s|
       tag = $1
-      md = tag.match /(block|image|file|asset|element)\s+(.*)/
+      md = tag.match /(block|text|image|img|file|asset|element|elem|lmn)\s+(.*)/
       next "[#{tag}]"  unless md
       args = []
       hash = {}
-      type = md[1]
-      vars = md[2].scan(/["']([^"']*)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/)
+      type = md[1] #         0              12             3    4            5             6
+      vars = md[2].scan /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/
+      # 0 for element name
+      # 
       vars.each do |v|
         case
         when v[0]
-          args << v[0]
+          args << v[0].to_s
         when v[1] && v[4]
           hash.merge! v[2].to_sym => v[4]
         when v[1] && v[5]
-          hash.merge! v[2].to_sym => eval_or_string(v[5])
+          hash.merge! v[2].to_sym => v[5]
         when v[6]
-          args << eval_or_string(v[6])
+          args << v[6]
         end
       end
       hash.merge!( :title => args[1..-1].join(' ').strip )  if hash[:title].blank?
       case type
-      when 'block'
-        block = Block.by_slug args[0]
-        block ? parse_uub(block.text) : "[Block #{args[0]} missing]"
-      when 'image'
+      when 'block', 'text'
+        element 'Block', args[0], hash
+      when 'image', 'img'
         element 'Image', args[0], hash
       when 'file', 'asset'
         element 'File', args[0], hash
-      when 'element'
+      when 'element', 'elem', 'lmn'
         element *args, hash
       end
     end
     @parse_level -= 1
-    str.html
+    str
   end
 
   def as_size( s )

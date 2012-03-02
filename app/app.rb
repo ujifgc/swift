@@ -23,12 +23,12 @@ class Swift < Padrino::Application
   # if the sitemap does not have the requested page then show the real 404
   not_found do
     if @page = Page.first( :path => request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' ) )
-      @page.text = parse_uub @page.text
+      @page.text = parse_uub( @page.text ).html
       response.body = render 'fragments/_page', :layout => @page.layout_id
       halt 200
     else
       @page = Page.first :path => '/error/404'
-      @page.text = parse_uub @page.text
+      @page.text = parse_uub( @page.text ).html
       response.body = render 'fragments/_page', :layout => @page.layout_id
       halt 404
     end
@@ -37,7 +37,7 @@ class Swift < Padrino::Application
   # requested wrong service or wrong parameters
   error 501 do
     @page = Page.first :path => '/error/501'
-    @page.text = parse_uub @page.text
+    @page.text = parse_uub( @page.text ).html
     render 'fragments/_page', :layout => @page.layout_id
   end
 
