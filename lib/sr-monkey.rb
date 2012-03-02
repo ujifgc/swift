@@ -35,9 +35,12 @@ end
 module FileUtils
 
   def self.mv_try( src, dst )
+    return nil  if src == dst
     return nil  unless File.exists? src
     FileUtils.mkpath File.dirname(dst)
     FileUtils.mv src, dst
+  rescue ArgumentError
+    nil
   end
 
 end

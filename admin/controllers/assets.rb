@@ -11,16 +11,23 @@ Admin.controllers :assets do
   end
 
   post :create do
-    filename = params[:asset]['file'][:filename]
-    filename = File.basename filename, File.extname(filename)
-    params[:asset]['title'] = filename  if params[:asset]['title'].blank?
-    @object = Asset.new(params[:asset])
-    if @object.save
-      flash[:notice] = pat('asset.created')
-      redirect url(:assets, :edit, :id => @object.id)
-    else
-      render 'assets/new'
+    files = params[:asset].delete 'file'
+    num = files.count > 1 ? 1 : nil
+    files.each do |file|
+      filename = file[:filename]
+      filename = File.basename filename, File.extname(filename)
+      object = {
+        'title' => (params[:asset]['title'].blank? ? filename : "#{params[:asset]['title']} #{num}".strip),
+        'file' => file,
+      }
+      folder = Folder.get(params[:asset]['folder_id'])
+      object.merge! :folder => folder  if folder
+      if Asset.create object
+        num += 1  if num
+      end
     end
+    flash[:notice] = pat('asset.created')
+    redirect url(:assets, :index)
   end
 
   get :edit, :with => :id do

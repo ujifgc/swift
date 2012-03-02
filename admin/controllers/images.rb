@@ -11,17 +11,23 @@ Admin.controllers :images do
   end
 
   post :create do
-    throw files
-    filename = params[:image]['file'][:filename]
-    filename = File.basename filename, File.extname(filename)
-    params[:image]['title'] = filename  if params[:image]['title'].blank?
-    @object = Image.new(params[:image])
-    if @object.save
-      flash[:notice] = pat('image.created')
-      redirect url(:images, :edit, :id => @object.id)
-    else
-      render 'images/new'
+    files = params[:image].delete 'file'
+    num = files.count > 1 ? 1 : nil
+    files.each do |file|
+      filename = file[:filename]
+      filename = File.basename filename, File.extname(filename)
+      object = {
+        :title => (params[:image]['title'].blank? ? filename : "#{params[:image]['title']} #{num}".strip),
+        :file => file
+      }
+      folder = Folder.get(params[:image]['folder_id'])
+      object.merge! :folder => folder  if folder
+      if Image.create object
+        num += 1  if num
+      end
     end
+    flash[:notice] = pat('image.created')
+    redirect url(:images, :index)
   end
 
   get :edit, :with => :id do

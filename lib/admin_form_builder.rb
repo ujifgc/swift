@@ -4,13 +4,15 @@ module Padrino
     module FormBuilder
       class AdminFormBuilder < AbstractFormBuilder
         include TagHelpers
+        include FormHelpers
         include AssetTagHelpers
         include OutputHelpers
 
         def input( field, options={} )
+          object = @object.class.to_s.downcase
           html = label field, options[:label] || { :caption => I18n.t("models.object.attributes.#{field}") }
           html += ' (' + options.delete(:brackets) + ')'  if options[:brackets]
-          html += ' ' + error_message_on( field ) + ' '
+          html += ' ' + error_message_on( object, field ) + ' '
           html += case options.delete(:as)
           when :text, :textarea, :text_area
             opts = { :class => 'text_area' }
@@ -41,7 +43,12 @@ module Padrino
             else
               ''
             end
-            tag + file_field( options[:multiple] ? field.to_s+'[]' : field, options )
+            input = if options[:multiple]
+              file_field_tag "#{object}[#{field}][]", options
+            else
+              file_field( field, options )
+            end
+            tag + input
           else
             text_field field, :class => :text_field
           end
