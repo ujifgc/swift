@@ -9,9 +9,9 @@ module Padrino
 
         def input( field, options={} )
           html = label field, options[:label] || { :caption => I18n.t("models.object.attributes.#{field}") }
-          html += ' (' + options[:brackets] + ')'  if options[:brackets]
+          html += ' (' + options.delete(:brackets) + ')'  if options[:brackets]
           html += ' ' + error_message_on( field ) + ' '
-          html += case options[:as]
+          html += case options.delete(:as)
           when :text, :textarea, :text_area
             opts = { :class => 'text_area' }
             opts[:class] += ' markdown'  if options[:markdown]
@@ -41,7 +41,7 @@ module Padrino
             else
               ''
             end
-            tag + file_field( field )
+            tag + file_field( options[:multiple] ? field.to_s+'[]' : field, options )
           else
             text_field field, :class => :text_field
           end

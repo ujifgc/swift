@@ -11,6 +11,7 @@ Admin.controllers :images do
   end
 
   post :create do
+    throw files
     filename = params[:image]['file'][:filename]
     filename = File.basename filename, File.extname(filename)
     params[:image]['title'] = filename  if params[:image]['title'].blank?

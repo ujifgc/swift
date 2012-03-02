@@ -4,6 +4,7 @@ ru:
       publish: Опубликовать
       unpublish: Снять
       not_required: "не обяз."
+      multiple: "или несколько"
       modules:
         content: Содержимое сайта
         admin: Вёрстка и дизайн
