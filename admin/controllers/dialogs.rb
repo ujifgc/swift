@@ -1,6 +1,7 @@
 Admin.controllers :dialogs do
 
   post :pages do
+    @tree = page_tree( nil, 0, '' )
     render "dialogs/pages", :layout => :ajax
   end
 

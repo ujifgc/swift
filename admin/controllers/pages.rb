@@ -1,7 +1,8 @@
 Admin.controllers :pages do
 
   get :index do
-    @objects = Page.all :order => :path
+    #@objects = Page.all :order => :path
+    @tree = page_tree( nil, 0, '' )
     render 'pages/index'
   end
 

@@ -1,0 +1,17 @@
+- tree ||= @tree
+- k = 0
+- tree.each do |leaf|
+  - k += 1
+  - if object = leaf[:page]
+    %tr{ :class => (leaf[:child] ? "openable" : "final") + " level-#{level}", :id => "page-#{object.id}" }
+      - name = object.slug.blank? ? 'index' : object.slug
+      %td.first= link_to object.id, url(:pages, :edit, :id => object.id)
+      %td= object.title
+      %td.slug= object.slug
+      %td= object.path
+      %td.tar= object.fragment.title
+      %td.tar= object.priority
+      %td.tar= mk_light object
+      %td.last= check_box_tag :"check_page[#{object.id}]", :checked => false
+      - if leaf[:child]
+        = partial 'pages/tree', :locals => { :tree => leaf[:child], :level => level + 1 }

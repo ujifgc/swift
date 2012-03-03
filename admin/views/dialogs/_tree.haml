@@ -1,0 +1,10 @@
+- tree ||= @tree
+- k = 0
+- tree.each do |leaf|
+  - k += 1
+  - if object = leaf[:page]
+    %div{ :class => (leaf[:child] ? "openable" : "final") + " level-#{level}", :id => "page-#{object.id}" }
+      - name = object.slug.blank? ? 'index' : object.slug
+      = link_to "#{object.title}", object.path, :"data-id" => object.id, :"data-title" => object.title, :class => :pick
+      - if leaf[:child]
+        = partial 'dialogs/tree', :locals => { :tree => leaf[:child], :level => level + 1 }

@@ -35,4 +35,25 @@ Admin.helpers do
     yield  if current_account.allowed role
   end
 
+  def page_tree( from, level, prefix )
+    pages = Page.all :parent_id => from, :order => [:priority.desc, :path]
+    return false  unless pages.length > 0
+
+    tree = []
+    pages.each do |page|
+      tree << { :page => page,
+                :child => page_tree(page.id, level + 1, prefix + '/' + page.slug) }
+    end
+    return tree
+  end
+
+  def tree_flat( tree )
+    ret = []
+    (tree||[]).each do |leaf|
+      ret << leaf[:page]
+      ret += tree_flat(leaf[:child])
+    end
+    ret.compact
+  end
+
 end

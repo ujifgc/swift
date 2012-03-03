@@ -27,3 +27,8 @@
 .dialog-images .item .title {
   margin: 3px 0;
 }
+.dialog-pages {
+}
+.dialog-pages div {
+  padding-left: 1em;
+}

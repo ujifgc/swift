@@ -1,0 +1,4 @@
+﻿:ruby
+  page = Page.get(@args[0])
+  return "[Page ##{@args[0]} missing]"  unless page
+= link_to @opts[:title].blank? ? page.title : @opts[:title], page.path

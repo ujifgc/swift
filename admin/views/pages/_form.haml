@@ -9,4 +9,7 @@
 - allow :admin do
   = f.input :layout_id, :as => :select, :selected => @object.layout_id, :collection => Layout.all, :fields => [ :title, :id ], :include_blank => false
 
+- allow :auditor do
+  = f.input :priority
+
 = f.submits

@@ -1412,7 +1412,8 @@
             buttons.italic = makeButton("wmd-italic-button", "Emphasis <em> Ctrl+I", "-20px", bindCommand("doItalic"));
             makeSpacer(1);
             buttons.link = makeButton("wmd-link-button", "Hyperlink <a> Ctrl+L", "-40px", bindCommand(function (chunk, postProcessing) {
-                return this.doLinkOrImage(chunk, postProcessing, false);
+                //return this.doLinkOrImage(chunk, postProcessing, false);
+                return this.doPickObject(chunk, postProcessing, 'page');
             }));
             buttons.quote = makeButton("wmd-quote-button", "Blockquote <blockquote> Ctrl+Q", "-60px", bindCommand("doBlockquote"));
             buttons.code = makeButton("wmd-code-button", "Code Sample <pre><code> Ctrl+K", "-80px", bindCommand("doCode"));

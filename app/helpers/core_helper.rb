@@ -10,7 +10,7 @@ Swift.helpers do
     view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
     core = File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" ) ? partial( core_file ) : ''
     result = core + partial( view_file )
-    @opts[:raw] ? result : parse_uub( result )
+    result
   rescue Padrino::Rendering::TemplateNotFound
     "[Element '#{name}' missing]"
   end
@@ -43,7 +43,7 @@ Swift.helpers do
 
     str.gsub!(/\[(.*?)\]/) do |s|
       tag = $1
-      md = tag.match /(block|text|image|img|file|asset|element|elem|lmn)\s+(.*)/
+      md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)\s+(.*)/
       next "[#{tag}]"  unless md
       args = []
       hash = {}
@@ -63,8 +63,17 @@ Swift.helpers do
           args << v[6]
         end
       end
-      hash.merge!( :title => args[1..-1].join(' ').strip )  if hash[:title].blank?
+      if hash[:title].blank?
+        newtitle = if ['element', 'elem', 'lmn'].include?( type )
+          args[2..-1]
+        else
+          args[1..-1]
+        end.join(' ').strip
+        hash[:title] = newtitle.blank? ? nil : newtitle
+      end
       case type
+      when 'page', 'link'
+        element 'PageLink', args[0], hash
       when 'block', 'text'
         element 'Block', args[0], hash
       when 'image', 'img'
@@ -73,7 +82,7 @@ Swift.helpers do
         element 'File', args[0], hash
       when 'element', 'elem', 'lmn'
         element *args, hash
-      end
+      end.strip
     end
     @parse_level -= 1
     str
