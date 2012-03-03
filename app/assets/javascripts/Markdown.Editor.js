@@ -1730,7 +1730,7 @@
             // load remote content
             dialog.load(
                 url, 
-                {}, // omit this param object to issue a GET request instead a POST request, otherwise you may provide post parameters within the object
+                //{}, // omit this param object to issue a GET request instead a POST request, otherwise you may provide post parameters within the object
                 function (responseText, textStatus, XMLHttpRequest) {
                     // remove the loading class
                     dialog.removeClass('loading');

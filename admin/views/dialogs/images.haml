@@ -1,9 +1,10 @@
 ﻿.dialog-images
-  - @objects.each do |o|
-    .item
-      = link_to o.file.url, :class => :pick, :"data-id" => o.id, :"data-title" => o.title do
-        .image
-          = image_tag o.file.url, :class => :preview
-        - unless o.title.blank?
-          .title= o.title
- 
+  #tabs
+    %ul
+      - current_account.get_folders.each do |folder|
+        %li= link_to folder.title, url(:dialogs, :folder, :folder_id => folder.id, :object_type => :images)
+      %li= link_to pat(:all), url(:dialogs, :folder, :folder_id => :all, :object_type => :images)
+:javascript
+  $(function() {
+    $('#tabs').tabs();
+  });

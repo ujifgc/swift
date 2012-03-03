@@ -1,0 +1,7 @@
+﻿- @objects.each do |o|
+  .item
+    = link_to o.file.url, :class => :pick, :"data-id" => o.id, :"data-title" => o.title do
+      .image
+        = image_tag o.file.url, :class => :preview
+      - unless o.title.blank?
+        .title= o.title
