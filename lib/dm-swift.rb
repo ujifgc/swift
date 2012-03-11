@@ -52,7 +52,25 @@ module SwiftDatamapper
       def self.published
         all( :is_published => true )
       end
-   end
+    end
+
+    def uploadable! uploader, options={}
+      send :include, UploadableMethods
+
+      mount_uploader :file, uploader
+      property :file_content_type, String, :length => 63
+      property :file_size, Integer
+
+      before :save do
+        path = Padrino.public + self.file.url
+        if File.exists?(path)
+          self.file_content_type = `file -bp --mime-type #{path}`.to_s.strip
+          self.file_size = File.size path
+        else
+          self.file_content_type = self.file_size = nil
+        end
+      end
+    end
 
   end
 
@@ -85,6 +103,9 @@ module SwiftDatamapper
     end
 
   end  
+
+  module UploadableMethods
+  end
 
   module InstanceMethods
   end

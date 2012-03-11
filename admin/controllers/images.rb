@@ -42,7 +42,7 @@ Admin.controllers :images do
       @obj = Image.get(params[:id])
       FileUtils.mv_try oldname, Padrino.public + @obj.file.url
       flash[:notice] = pat('image.updated')
-      redirect url(:images, :edit, :id => @object.id)
+      redirect url(:images, :index)
     else
       render 'images/edit'
     end

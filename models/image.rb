@@ -5,8 +5,8 @@ class Image
   property :id, Serial
 
   property :title, String
-  mount_uploader :file, ImageUploader
 
+  uploadable! ImageUploader
   timestamps!
   userstamps!
 

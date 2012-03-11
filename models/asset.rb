@@ -5,8 +5,8 @@ class Asset
   property :id, Serial
 
   property :title, String
-  mount_uploader :file, AssetUploader
 
+  uploadable! AssetUploader
   timestamps!
   userstamps!
 

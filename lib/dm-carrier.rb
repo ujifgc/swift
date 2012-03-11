@@ -31,7 +31,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def content_type
-    `file -bp --mime-type #{root}#{url}`.to_s.strip
+    #`file -bp --mime-type #{root}#{url}`.to_s.strip
+    model.file_content_type || ''
+  end
+
+  def size
+    model.file_size || -1
   end
 
 end
@@ -59,7 +64,12 @@ class AssetUploader < CarrierWave::Uploader::Base
   end
 
   def content_type
-    `file -bp --mime-type #{root}#{url}`.to_s.strip
+    #`file -bp --mime-type #{root}#{url}`.to_s.strip
+    model.file_content_type || ''
+  end
+
+  def size
+    model.file_size || -1
   end
 
 end

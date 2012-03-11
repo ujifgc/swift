@@ -1,4 +1,4 @@
-#source :rubygems
+source :rubygems
 
 # Server requirements (defaults to WEBrick)
 # gem "sinatra-synchrony"

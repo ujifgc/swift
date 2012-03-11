@@ -37,14 +37,28 @@ Admin.controllers :assets do
 
   put :update, :with => :id do
     @object = Asset.get(params[:id])
-    oldname = Padrino.public + @object.file.url
-    if @object.update(params[:asset])
-      @obj = Asset.get(params[:id])
-      FileUtils.mv_try oldname, Padrino.public + @obj.file.url
-      flash[:notice] = pat('asset.updated')
-      redirect url(:assets, :edit, :id => @object.id)
+    file = params[:asset].delete 'file'
+    if file.kind_of? Hash
+      @object.remove_file
+      if @object.update(params[:asset])
+        @object.file = file
+        @object.file.recreate_versions!
+        @object.save
+        flash[:notice] = pat('asset.updated')
+        redirect url(:assets, :index)
+      else
+        render 'assets/edit'
+      end
     else
-      render 'assets/edit'
+      oldname = Padrino.public + @object.file.url
+      if @object.update(params[:asset])
+        @obj = Asset.get(params[:id])
+        FileUtils.mv_try oldname, Padrino.public + @obj.file.url
+        flash[:notice] = pat('asset.updated')
+        redirect url(:assets, :index)
+      else
+        render 'assets/edit'
+      end
     end
   end
 
