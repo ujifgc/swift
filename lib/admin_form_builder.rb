@@ -63,8 +63,8 @@ module Padrino
         end
 
         def submits( options={} )
-          html = @template.submit_tag options[:save_label] || I18n.t('admin.form.save'), :class => :button
-          html += ' ' + @template.submit_tag( options[:back_label] || I18n.t('admin.form.back'), :onclick => "history.back();return false", :class => :button )
+          html = @template.submit_tag options[:save_label] || I18n.t('padrino.admin.form.save'), :class => :button
+          html += ' ' + @template.submit_tag( options[:back_label] || I18n.t('padrino.admin.form.back'), :onclick => "history.back();return false", :class => :button )
           @template.content_tag( :div, html, :class => 'group navform wat-cf' )
         end
 

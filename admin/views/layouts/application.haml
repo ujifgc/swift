@@ -17,9 +17,10 @@
       #wrapper.wat-cf
         .flash= [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
         - if @object && @object.dirty?
-          .flash
-            .message.error
-              = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')
+          - err = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')
+          - unless err.blank?
+            .flash
+              .message.error= err
         #main
           = yield
           #footer

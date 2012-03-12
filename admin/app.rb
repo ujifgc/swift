@@ -22,18 +22,18 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module I18n.t('admin.fragments'), '/fragments'
-    role.project_module I18n.t('admin.layouts'), '/layouts'
-    role.project_module I18n.t('admin.pages'), "/pages"
-    role.project_module I18n.t('admin.blocks'), '/blocks'
-    role.project_module I18n.t('admin.assets'), '/assets'
-    role.project_module I18n.t('admin.images'), '/images'
-    role.project_module I18n.t('admin.folders'), '/folders'
+    role.project_module :fragments, '/fragments'
+    role.project_module :layouts, '/layouts'
+    role.project_module :pages, "/pages"
+    role.project_module :images, '/images'
+    role.project_module :assets, '/assets'
+    role.project_module :folders, '/folders'
+    role.project_module :blocks, '/blocks'
   end
 
   # hookers
   before do
-    I18n.reload!  if Padrino.env == :development
+     I18n.reload!  if Padrino.env == :development
 
     params.each do |k,v|
       next  unless v.kind_of? Hash
@@ -68,18 +68,18 @@ class Admin < Padrino::Application
       case params['_method']
       when 'delete'
         if @the_model.all( :id => ids ).destroy
-          flash[:notice] = I18n.t('admin.multiple.destroyed', :objects => I18n.t("admin.#{@models}"))
+          flash[:notice] = I18n.t('padrino.admin.multiple.destroyed', :objects => I18n.t("admin.#{@models}"))
         else
-          flash[:error] = I18n.t('admin.multiple.not_destroyed', :objects => I18n.t("admin.#{@models}"))
+          flash[:error] = I18n.t('padrino.admin.multiple.not_destroyed', :objects => I18n.t("admin.#{@models}"))
         end
       when 'publish'
         break  unless @the_model.respond_to? :published
         @the_model.all( :id => ids ).to_a.each{ |o| o.publish! } #FIXME to_a for redis
-        flash[:notice] = I18n.t('admin.multiple.published', :objects => I18n.t("admin.#{@models}"))
+        flash[:notice] = I18n.t('padrino.admin.multiple.published', :objects => I18n.t("admin.#{@models}"))
       when 'unpublish'
         break  unless @the_model.respond_to? :published
         @the_model.all( :id => ids ).to_a.each{ |o| o.unpublish! } #FIXME to_a for redis
-        flash[:notice] = I18n.t('admin.multiple.unpublished', :objects => I18n.t("admin.#{@models}"))
+        flash[:notice] = I18n.t('padrino.admin.multiple.unpublished', :objects => I18n.t("admin.#{@models}"))
       end
     end
     redirect url(@models, :index)

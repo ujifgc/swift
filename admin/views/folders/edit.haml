@@ -9,6 +9,7 @@
         = partial "folders/form", :locals => { :f => f }
 
 - content_for :help do
+  %h3= pat('menu.help')
   %ul.navigation
-    %li= link_to pat('images.add'), url(:images, :new, :folder_id => @object.id)
-    %li= link_to pat('assets.add'), url(:assets, :new, :folder_id => @object.id)
+    %li= link_to pat('menu.add.images'), url(:images, :new, :folder_id => @object.id)
+    %li= link_to pat('menu.add.assets'), url(:assets, :new, :folder_id => @object.id)

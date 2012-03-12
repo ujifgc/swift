@@ -15,4 +15,11 @@ class Folder
   has n, :images
   has n, :assets
 
+  # class helpert
+  def self.with( type )
+    type = type.to_s.pluralize
+    return []  unless ['images', 'assets'].include? type
+    Folder.all(:conditions => [ "0 < (SELECT count(id) FROM `#{type}` WHERE folder_id=`folders`.id)" ])
+  end
+
 end

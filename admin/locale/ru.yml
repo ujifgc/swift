@@ -8,22 +8,28 @@ ru:
       modules:
         content: Содержимое сайта
         admin: Вёрстка и дизайн
-  admin:
-    multiple:
-      destroyed: "%{objects} удалены"
-      not_destroyed: "Некоторые %{objects} заняты, ничего не удалено"
-      published: "%{objects} опубликованы"
-      unpublished: "%{objects} сняты с публикации"
-    pages: Страницы
-    assets: Файлы
-    images: Картинки
-    folders: Папки
-    blocks: Блоки
-    layouts: Раскладки
-    fragments: Визуализаторы
-    form:
-      save: Сохранить
-      back: Назад
+      menu:
+        help: Быстрые действия
+        pages: Страницы
+        assets: Файлы
+        images: Картинки
+        folders: Папки
+        blocks: Блоки
+        layouts: Раскладки
+        fragments: Визуализаторы
+        add:
+          images: Добавить картинки
+          assets: Добавить файлы
+      error:
+        select_file: Пожалуйста, выберите файл для загрузки
+      multiple:
+        destroyed: "%{objects} удалены"
+        not_destroyed: "Некоторые %{objects} заняты, ничего не удалено"
+        published: "%{objects} опубликованы"
+        unpublished: "%{objects} сняты с публикации"
+      form:
+        save: Сохранить
+        back: Назад
   models:
     object:
       attributes:
@@ -39,6 +45,7 @@ ru:
         fragment: Визуализатор
         position: Положение
         is_fragment: Является фрагментом
+        account_id: Владелец
         code: Код
     blocks:
       name: блоки
