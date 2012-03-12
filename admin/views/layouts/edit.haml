@@ -7,5 +7,3 @@
     .inner
       - form_for :object, url(:layouts, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => "edit-layouts" do |f|
         = partial "layouts/form", :locals => { :f => f }
-
-- content_for :sidebar, partial("base/sidebar")

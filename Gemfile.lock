@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: http://github.com/ujifgc/padrino-framework.git
-  revision: 3bd6a0e06283370806ee0abdc29fe3d7292f9c74
+  revision: 1b0d9be9ba3b765964a079d96129d4291bb0cbce
   specs:
     padrino (0.10.6.e)
       padrino-admin (= 0.10.6.e)

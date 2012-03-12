@@ -7,7 +7,7 @@ class Page
   property :title,    String
   property :text,     Text
   property :path,     String, :length => 2000, :index => true
-  property :priority, Integer
+  property :position, Integer
 
   sluggable! :unique_index => false
   publishable!
@@ -31,6 +31,10 @@ class Page
   # hookers
   before :valid? do
     self.parent_id = nil  if self.id == self.parent_id
+    if self.position == nil || self.position == ''
+      max = Page.all( :parent => self.parent ).max :position
+      self.position = max.to_i + 1
+    end
   end
 
   before :save do

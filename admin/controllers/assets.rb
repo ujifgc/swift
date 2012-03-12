@@ -6,7 +6,7 @@ Admin.controllers :assets do
   end
 
   get :new do
-    @object = Asset.new
+    @object = Asset.new params
     render 'assets/new'
   end
 

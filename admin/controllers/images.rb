@@ -6,7 +6,7 @@ Admin.controllers :images do
   end
 
   get :new do
-    @object = Image.new
+    @object = Image.new params
     render 'images/new'
   end
 
@@ -37,14 +37,28 @@ Admin.controllers :images do
 
   put :update, :with => :id do
     @object = Image.get(params[:id])
-    oldname = Padrino.public + @object.file.url
-    if @object.update(params[:image])
-      @obj = Image.get(params[:id])
-      FileUtils.mv_try oldname, Padrino.public + @obj.file.url
-      flash[:notice] = pat('image.updated')
-      redirect url(:images, :index)
+    file = params[:image].delete 'file'
+    if file.kind_of? Hash
+      @object.remove_file
+      if @object.update(params[:image])
+        @object.file = file
+        @object.file.recreate_versions!
+        @object.save
+        flash[:notice] = pat('image.updated')
+        redirect url(:images, :index)
+      else
+        render 'images/edit'
+      end
     else
-      render 'images/edit'
+      oldname = Padrino.public + @object.file.url
+      if @object.update(params[:image])
+        @obj = Image.get(params[:id])
+        FileUtils.mv_try oldname, Padrino.public + @obj.file.url
+        flash[:notice] = pat('image.updated')
+        redirect url(:images, :index)
+      else
+        render 'images/edit'
+      end
     end
   end
 

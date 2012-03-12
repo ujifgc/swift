@@ -20,5 +20,3 @@
             %td= object.folder && object.folder.title
             %td= link_to object.file.url, object.file.url, :rel => 'box-image'
             %td.last= check_box_tag :"check_image[#{object.id}]", :checked => false
-
-- content_for :sidebar, partial("base/sidebar")

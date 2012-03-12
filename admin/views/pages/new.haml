@@ -7,5 +7,3 @@
     .inner
       - form_for :object, url(:pages, :create), :class => :form do |f|
         = partial "pages/form", :locals => { :f => f }
-
-- content_for :sidebar, partial("base/sidebar")

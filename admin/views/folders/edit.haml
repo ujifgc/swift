@@ -8,4 +8,7 @@
       - form_for :object, url(:folders, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => "edit-folders" do |f|
         = partial "folders/form", :locals => { :f => f }
 
-- content_for :sidebar, partial("base/sidebar")
+- content_for :help do
+  %ul.navigation
+    %li= link_to pat('images.add'), url(:images, :new, :folder_id => @object.id)
+    %li= link_to pat('assets.add'), url(:assets, :new, :folder_id => @object.id)

@@ -1,1 +1,10 @@
-﻿assets
+﻿.dialog-assets
+  #tabs
+    %ul
+      - current_account.get_folders.each do |folder|
+        %li= link_to folder.title, url(:dialogs, :folder, :folder_id => folder.id, :object_type => :assets)
+      %li= link_to pat(:all), url(:dialogs, :folder, :folder_id => :all, :object_type => :assets)
+:javascript
+  $(function() {
+    $('#tabs').tabs();
+  });

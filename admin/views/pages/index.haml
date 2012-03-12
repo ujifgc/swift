@@ -13,10 +13,8 @@
             %th= mat(:object, :slug)
             %th= mat(:object, :path)
             %th.publish= mat(:object, :fragment)
-            %th.publish= mat(:object, :priority)
+            %th.publish= mat(:object, :position)
             %th.publish= mat(:object, :published)
             %th.last= check_box_tag :check_all, :checked => false
         %tbody
           = partial 'pages/tree', :locals => { :tree => @tree, :level => 0 }
-
-- content_for :sidebar, partial("base/sidebar")

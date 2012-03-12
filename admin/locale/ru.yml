@@ -37,7 +37,7 @@ ru:
         folder_id: Папка
         parent_id: Подчинение
         fragment: Визуализатор
-        priority: Приоритет
+        position: Положение
         is_fragment: Является фрагментом
         code: Код
     blocks:

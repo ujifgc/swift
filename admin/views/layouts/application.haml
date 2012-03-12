@@ -16,6 +16,10 @@
             %li= button_to pat(:logout), url(:sessions, :destroy), :method => :delete, :class => :button_to
       #wrapper.wat-cf
         .flash= [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
+        - if @object && @object.dirty?
+          .flash
+            .message.error
+              = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')
         #main
           = yield
           #footer
@@ -25,4 +29,5 @@
                 = Time.now.year
                 Swift Admin — Powered by
                 = link_to "Padrino", "http://github.com/padrino", :target => :_blank
-        #sidebar= yield_content :sidebar
+        #sidebar
+          = yield_content(:sidebar) || partial("base/sidebar")

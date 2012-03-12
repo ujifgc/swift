@@ -10,7 +10,7 @@
       %td.slug= object.slug
       %td= object.path
       %td.tar= object.fragment.title
-      %td.tar= object.priority
+      %td.tar= object.position
       %td.tar= mk_light object
       %td.last= check_box_tag :"check_page[#{object.id}]", :checked => false
       - if leaf[:child]

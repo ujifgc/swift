@@ -16,5 +16,3 @@
             %td.first= link_to object.id, url(:layouts, :edit, :id => object.id)
             %td= object.title
             %td.last= check_box_tag :"check_layout[#{object.id}]", :checked => false
-
-- content_for :sidebar, partial("base/sidebar")

@@ -11,6 +11,7 @@ Admin.controllers :dialogs do
   end
 
   get :assets do
+    @objects = Asset.all
     render "dialogs/assets", :layout => :ajax
   end
 

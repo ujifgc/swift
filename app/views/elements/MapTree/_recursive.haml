@@ -1,5 +1,5 @@
 :ruby
-  pages = Page.published.all( :parent => from, :order => [:priority.desc, :path])
+  pages = Page.published.all( :parent => from, :order => [:position, :path])
   len = pages.length
   k = 1
   tree = []

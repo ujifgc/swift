@@ -14,7 +14,7 @@ Admin.controllers :folders do
     @object = Folder.new(params[:folder])
     if @object.save
       flash[:notice] = pat('folder.created')
-      redirect url(:folders, :edit, :id => @object.id)
+      redirect url(:folders, :index)
     else
       render 'folders/new'
     end
@@ -29,7 +29,7 @@ Admin.controllers :folders do
     @object = Folder.get(params[:id])
     if @object.update(params[:folder])
       flash[:notice] = pat('folder.updated')
-      redirect url(:folders, :edit, :id => @object.id)
+      redirect url(:folders, :index)
     else
       render 'folders/edit'
     end

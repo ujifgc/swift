@@ -1417,6 +1417,10 @@
             }));
             buttons.quote = makeButton("wmd-quote-button", "Blockquote <blockquote> Ctrl+Q", "-60px", bindCommand("doBlockquote"));
             buttons.code = makeButton("wmd-code-button", "Code Sample <pre><code> Ctrl+K", "-80px", bindCommand("doCode"));
+            buttons.asset = makeButton("wmd-asset-button", "Image <img> Ctrl+G", "-300px", bindCommand(function (chunk, postProcessing) {
+                //return this.doLinkOrImage(chunk, postProcessing, true);
+                return this.doPickObject(chunk, postProcessing, 'asset');
+            }));
             buttons.image = makeButton("wmd-image-button", "Image <img> Ctrl+G", "-100px", bindCommand(function (chunk, postProcessing) {
                 //return this.doLinkOrImage(chunk, postProcessing, true);
                 return this.doPickObject(chunk, postProcessing, 'image');
@@ -1706,9 +1710,9 @@
                     chunk.endTag = "]";
 
                     if (!chunk.selection)
-                        chunk.selection = " " + (title.trim() || "enter title here");
+                        chunk.selection = " " + ((''+title).trim() || "enter title here");
                     else
-                        chunk.selection = " " + chunk.selection.trim();
+                        chunk.selection = " " + (''+chunk.selection).trim();
                 }
                 postProcessing();
             }
@@ -1727,30 +1731,24 @@
                 minHeight: 600,
                 modal: true
             });
+            var pick_close = function(){
+                pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
+                dialog.dialog('close');
+                return false;
+            }
             // load remote content
             dialog.load(
-                url, 
-                //{}, // omit this param object to issue a GET request instead a POST request, otherwise you may provide post parameters within the object
+                url,
                 function (responseText, textStatus, XMLHttpRequest) {
                     // remove the loading class
                     dialog.removeClass('loading');
-                    dialog.find('a.pick').click(function(){
-                      pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
-                      dialog.dialog('close');
-                      return false;
+                    $( "#tabs" ).bind( "tabsload", function(event, ui) {
+                      dialog.find('a.pick').click(pick_close);
                     });
+                    dialog.find('a.pick').click(pick_close);
                 }
             );
 
-            /*background = ui.createBackground();
-
-            if (isImage) {
-                if (!this.hooks.insertImageDialog(linkEnteredCallback))
-                    ui.prompt(imageDialogText, imageDefaultText, linkEnteredCallback);
-            }
-            else {
-                ui.prompt(linkDialogText, linkDefaultText, linkEnteredCallback);
-            }*/
             return true;
         }
     };

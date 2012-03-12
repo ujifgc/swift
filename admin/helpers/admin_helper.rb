@@ -36,7 +36,7 @@ Admin.helpers do
   end
 
   def page_tree( from, level, prefix )
-    pages = Page.all :parent_id => from, :order => [:priority.desc, :path]
+    pages = Page.all :parent_id => from, :order => [:position, :path]
     return false  unless pages.length > 0
 
     tree = []
