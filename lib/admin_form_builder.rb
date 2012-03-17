@@ -10,7 +10,7 @@ module Padrino
 
         def input( field, options={} )
           object = @object.class.to_s.downcase
-          html = label field, options[:label] || { :caption => I18n.t("models.object.attributes.#{field}") }
+          html = label( field, options[:label] || { :caption => I18n.t("models.object.attributes.#{field}") })
           html += ' (' + options.delete(:brackets) + ')'  if options[:brackets]
           html += ' ' + error_message_on( object, field ) + ' '
           html += case options.delete(:as)
@@ -49,10 +49,12 @@ module Padrino
               file_field( field, options )
             end
             tag + input
+          when :datetime
+            text_field field, :class => 'text_field datetime_picker'
           else
             text_field field, :class => :text_field
           end
-          html += ' ' + @template.content_tag( :span, options[:descr], :class => :description )
+          html += ' ' + @template.content_tag( :span, options[:description], :class => :description )
           @template.content_tag( :div, html, :class => :group )
         end
 

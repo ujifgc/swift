@@ -8,6 +8,7 @@ ru:
       modules:
         content: Содержимое сайта
         admin: Вёрстка и дизайн
+        news: Новости
       menu:
         help: Быстрые действия
         pages: Страницы
@@ -38,7 +39,7 @@ ru:
         slug: Ссылка
         text: Текст
         path: Путь
-        published: " "
+        published: Опубликовать
         file: Файл
         folder_id: Папка
         parent_id: Подчинение

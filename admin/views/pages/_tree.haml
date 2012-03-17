@@ -9,7 +9,10 @@
       %td= object.title
       %td.slug= object.slug
       %td= object.path
-      %td.tar= object.fragment.title
+      - if current_account.allowed? :admin
+        %td.tar= link_to object.fragment.title, url(:fragments, :edit, :id => object.fragment_id)
+      - else
+        %td.tar= object.fragment.title
       %td.tar= object.position
       %td.tar= mk_light object
       %td.last= check_box_tag :"check_page[#{object.id}]", :checked => false

@@ -45,13 +45,14 @@ class Account
     Folder.all
   end
 
-  def allowed check
+  def allowed( check )
     return self.group.allowed(check)  if self.group
     raise Forbidden  if self.id > ACCOUNT_GROUPS.length
     check_index = ACCOUNT_GROUPS.index(check.to_s)
     self_index  = ACCOUNT_GROUPS.index(self.name.to_s)
     return true  if self_index <= check_index
   end
+  alias allowed? allowed
 
   def role
     self.group ? self.group.role : self.name

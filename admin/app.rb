@@ -1,5 +1,6 @@
 MODULE_GROUPS = {
   :content => %W(pages blocks assets images folders),
+  :news => %W(news_rubrics news_articles),
   :admin => %W(layouts fragments),
 }
 
@@ -22,13 +23,17 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module :fragments, '/fragments'
-    role.project_module :layouts, '/layouts'
     role.project_module :pages, "/pages"
     role.project_module :images, '/images'
     role.project_module :assets, '/assets'
-    role.project_module :folders, '/folders'
     role.project_module :blocks, '/blocks'
+    role.project_module :folders, '/folders'
+
+    role.project_module :news_articles, '/news_articles'
+    role.project_module :news_rubrics, '/news_rubrics'
+
+    role.project_module :fragments, '/fragments'
+    role.project_module :layouts, '/layouts'
   end
 
   # hookers

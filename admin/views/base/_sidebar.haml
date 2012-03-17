@@ -1,10 +1,10 @@
 - MODULE_GROUPS.each do |name, mods|
-  - next  unless mods.length > 0
+  - next  unless (mods & project_modules.map{|m|m.name.to_s}).any?
   .block
     %h3= pat("modules.#{name}")
     %ul.navigation
       - project_modules.each do |project_module|
-        - next  unless mods.include? project_module.path[1..-1]
+        - next  unless mods.include? project_module.name.to_s
         %li{ :class => ("active" if request.path_info =~ /^#{project_module.path}/) }
           = link_to project_module.path("/admin") do
             = project_module.human_name

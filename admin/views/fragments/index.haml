@@ -13,8 +13,9 @@
               %th.first= mat(:object, :id)
               %th= mat(:object, :title)
               %th.last= check_box_tag :check_all, :checked => false
-          - @objects.each do |object|
-            %tr
-              %td.first= link_to object.id, url(:fragments, :edit, :id => object.id)
-              %td= object.title
-              %td.last= check_box_tag :"check_fragment[#{object.id}]", :checked => false
+          %tbody
+            - @objects.each do |object|
+              %tr
+                %td.first= link_to object.id, url(:fragments, :edit, :id => object.id)
+                %td= object.title
+                %td.last= check_box_tag :"check_fragment[#{object.id}]", :checked => false

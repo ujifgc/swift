@@ -3,8 +3,8 @@
   .content
     %h2.title
       = pat(:all)
-      = mt(:folders)
-    %form.inner.multiple#multiple-folders{ :action => url(:folders, :index)/:multiple, :method => :post }
+      = mt(:news_rubrics)
+    %form.inner.multiple#multiple-news_rubrics{ :action => url(:news_rubrics, :index)/:multiple, :method => :post }
       %table.table
         %thead
           %tr
@@ -15,7 +15,7 @@
         %tbody
           - @objects.each do |object|
             %tr
-              %td.first= link_to object.id, url(:folders, :edit, :id => object.id)
+              %td.first= link_to object.id, url(:news_rubrics, :edit, :id => object.id)
               %td= object.title
               %td= object.slug
-              %td.last= check_box_tag :"check_folder[#{object.id}]", :checked => false
+              %td.last= check_box_tag :"check_news_rubric[#{object.id}]", :checked => false
