@@ -9,10 +9,10 @@ module Padrino
         include OutputHelpers
 
         def input( field, options={} )
-          object = @object.class.to_s.downcase
+          object = @object.class.to_s.underscore
           html = label( field, options[:label] || { :caption => I18n.t("models.object.attributes.#{field}") })
           html += ' (' + options.delete(:brackets) + ')'  if options[:brackets]
-          html += ' ' + error_message_on( object, field ) + ' '
+          html += ' ' + error_message_on( @object, field ) + ' '
           html += case options.delete(:as)
           when :text, :textarea, :text_area
             opts = { :class => 'text_area' }
@@ -50,7 +50,7 @@ module Padrino
             end
             tag + input
           when :datetime
-            text_field field, :class => 'text_field datetime_picker'
+            text_field field, :class => 'text_field datetime'
           else
             text_field field, :class => :text_field
           end

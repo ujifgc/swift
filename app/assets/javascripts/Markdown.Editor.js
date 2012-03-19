@@ -1706,7 +1706,8 @@
                 if (id !== null) {
                     chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
                     
-                    chunk.startTag = "[" + type + " " + id;
+                    var label = (type == 'asset' ? 'file' : type);
+                    chunk.startTag = "[" + label + " " + id;
                     chunk.endTag = "]";
 
                     if (!chunk.selection)

@@ -38,8 +38,10 @@ ru:
         title: Заголовок
         slug: Ссылка
         text: Текст
+        info: Краткое содержание
         path: Путь
-        published: Опубликовать
+        is_published: Опубликовать
+        publish_at: Время публикации
         file: Файл
         folder_id: Папка
         parent_id: Подчинение
@@ -47,6 +49,7 @@ ru:
         position: Положение
         is_fragment: Является фрагментом
         account_id: Владелец
+        news_rubric_id: Лента
         code: Код
     blocks:
       name: блоки

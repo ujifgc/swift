@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery-ujs
 //= require jquery-ui
+//= require jquery-ui.datetimepicker
+//= require jquery.ui.datepicker-ru
 //= require jquery.colorbox-min
 //= require paginator3000
 //= require postmessage
@@ -24,6 +26,9 @@ $(function() {
   $('form.multiple input[name^=check]').click(multipleCheck);
   $('form.multiple td.last input, form.multiple th.last input').wrap('<label></label>');
   $('select').each(function() { $(this).easySelectBox() });
+  $('input.datetime').each(function() {
+    $(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );
+  });
 });
 
 multipleOp = function(el) {

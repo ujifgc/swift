@@ -41,7 +41,7 @@ module SwiftDatamapper
     def publishable!
       send :include, PublishableMethods
 
-      property :is_published, DataMapper::Property::Boolean, :default => true
+      property :is_published, DataMapper::Property::Boolean, :default => false
       property :publish_at, DateTime
 
       before :valid? do |i|

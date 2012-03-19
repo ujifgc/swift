@@ -18,6 +18,7 @@ Padrino::Logger::Config[:development] = { :log_level => :devel, :stream => :to_f
 #
 Padrino.before_load do
   I18n.locale = :ru
+  Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
   #Padrino.use Rack::Session::DataMapper
   Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
   Padrino.require_dependencies("#{Padrino.root}/lib/sr-*.rb")
