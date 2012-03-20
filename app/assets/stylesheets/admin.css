@@ -49,3 +49,6 @@ div#sidebar {
 .tar {
   text-align: right;
 }
+.nowrap {
+  white-space: nowrap;
+}

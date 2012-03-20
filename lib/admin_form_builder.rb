@@ -11,7 +11,7 @@ module Padrino
         def input( field, options={} )
           object = @object.class.to_s.underscore
           html = label( field, options[:label] || { :caption => I18n.t("models.object.attributes.#{field}") })
-          html += ' (' + options.delete(:brackets) + ')'  if options[:brackets]
+          html += ' (' + options.delete(:brackets).to_s + ')'  if options[:brackets]
           html += ' ' + error_message_on( @object, field ) + ' '
           html += case options.delete(:as)
           when :text, :textarea, :text_area

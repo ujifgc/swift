@@ -38,7 +38,7 @@ class Admin < Padrino::Application
 
   # hookers
   before do
-     I18n.reload!  if Padrino.env == :development
+     #I18n.reload!  if Padrino.env == :development
 
     params.each do |k,v|
       next  unless v.kind_of? Hash
