@@ -50,7 +50,7 @@ Swift.helpers do
       type = md[1] #         0              12             3    4            5             6
       vars = md[2].scan /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/
       # 0 for element name
-      # 
+      # "
       vars.each do |v|
         case
         when v[0]

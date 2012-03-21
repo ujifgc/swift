@@ -15,10 +15,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
+    @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')
     if model.folder && model.folder.slug == 'images'
       original_filename
     else
-      [Time.now.strftime('%y%m%d%H%M%S'), original_filename].compact.join('_')  if original_filename.present?
+      [@time_stamp,original_filename].compact.join('_')  if original_filename.present?
     end
   end
 
@@ -56,7 +57,8 @@ class AssetUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    [Time.now.strftime('%y%m%d%H%M%S'), original_filename].compact.join('_')  if original_filename.present?
+    @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')
+    [@time_stamp, original_filename].compact.join('_')  if original_filename.present?
   end
 
   def root
