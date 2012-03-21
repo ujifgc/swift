@@ -48,9 +48,9 @@ GIT
 
 GIT
   remote: http://github.com/ujifgc/redcarpet.git
-  revision: 951bd6d43b37ae8b3303497f8f2a47ba994bba27
+  revision: c8318749308b488e6e7c7d332b7430e70e04e2c7
   specs:
-    redcarpet (2.0.0b5)
+    redcarpet (2.1.1)
 
 GEM
   remote: http://rubygems.org/
@@ -106,7 +106,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.17.2)
+    mime-types (1.18)
     mini_magick (3.4)
       subexec (~> 0.2.1)
     multi_json (1.0.4)
