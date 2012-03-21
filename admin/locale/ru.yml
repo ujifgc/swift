@@ -4,7 +4,7 @@ ru:
       publish: Опубликовать
       unpublish: Снять
       not_required: "не обяз."
-      multiple: "или несколько"
+      or_multiple: "или несколько"
       modules:
         content: Содержимое сайта
         admin: Вёрстка и дизайн
@@ -78,3 +78,6 @@ ru:
     fragment:
       name: визуализатор
   asset_uploaded: загружен
+  time:
+    formats:
+      date: "%d %b %Y"
