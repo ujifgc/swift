@@ -2,9 +2,9 @@
   #tabs
     %ul
       - current_account.get_folders.with(:images).each do |folder|
-        %li= link_to folder.title, url(:dialogs, :folder, :folder_id => folder.id, :object_type => :images)
-      %li= link_to pat(:all), url(:dialogs, :folder, :folder_id => :all, :object_type => :images)
+        %li= link_to folder.title, url(:dialogs, :folder, params.merge({:folder_id => folder.id, :object_type => :images}))
+      %li= link_to pat(:all), url(:dialogs, :folder, params.merge({:folder_id => :all, :object_type => :images}))
 :javascript
   $(function() {
-    $('#tabs').tabs();
+    $('#tabs').tabs({ cache: true });
   });

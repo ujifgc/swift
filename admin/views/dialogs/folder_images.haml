@@ -1,6 +1,8 @@
 ﻿- @objects.each do |o|
   .item
-    = link_to o.file.url, :class => :pick, :"data-id" => o.id, :"data-title" => o.title, :onclick => 'return false' do
+    - data = { :id => o.id, :title => o.title }
+    - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]
+    = link_to o.file.url, :class => :pick, :data => data, :onclick => 'return false' do
       .image
         = image_tag o.file.url, :class => :preview
       - unless o.title.blank?

@@ -2,9 +2,11 @@
 - k = 0
 - tree.each do |leaf|
   - k += 1
-  - if object = leaf[:page]
-    %div{ :class => (leaf[:child] ? "openable" : "final") + " level-#{level}", :id => "page-#{object.id}" }
-      - name = object.slug.blank? ? 'index' : object.slug
-      = link_to "#{object.title}", object.path, :"data-id" => object.id, :"data-title" => object.title, :class => :pick
+  - if o = leaf[:page]
+    %div{ :class => (leaf[:child] ? "openable" : "final") + " level-#{level}", :id => "page-#{o.id}" }
+      - name = o.slug.blank? ? 'index' : o.slug
+      - data = { :id => o.id, :title => o.title }
+      - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]
+      = link_to "#{o.title}", o.path, :data => data, :class => :pick, :onclick => 'return false'
       - if leaf[:child]
         = partial 'dialogs/tree', :locals => { :tree => leaf[:child], :level => level + 1 }

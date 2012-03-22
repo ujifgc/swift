@@ -15,8 +15,13 @@ Admin.controllers :dialogs do
     render "dialogs/assets", :layout => :ajax
   end
 
+  get :folders do
+    @objects = Folder.all
+    render "dialogs/folders", :layout => :ajax
+  end
+
   get :folder, :with => [:object_type, :folder_id] do
-    folder = Folder.get params[:folder_id]
+    folder = Folder.by_slug params[:folder_id]
     case params[:object_type]
     when 'images'
       @objects = folder ? folder.images : Image.all
@@ -27,6 +32,19 @@ Admin.controllers :dialogs do
     else
       'error'
     end
+  end
+
+  get :bonds, :with => [:parent_model, :parent_id] do
+    render "dialogs/bonds", :layout => :ajax
+  end
+
+  get :bond, :with => [:parent_model, :parent_id] do
+    @model = params[:parent_model].constantize  rescue nil
+    return "no such model: #{params[:parent_model]}"  unless @model
+    @object = @model.get params[:parent_id]
+    return "no such object: #{model} ##{params[:parent_id]}"  unless @object
+    @bonds = Bond.children_for @object
+    render "dialogs/bonds_tab", :layout => :ajax
   end
 
 end

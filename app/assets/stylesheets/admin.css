@@ -52,3 +52,7 @@ div#sidebar {
 .nowrap {
   white-space: nowrap;
 }
+li.toggle u {
+  text-decoration: none;
+  border-bottom: 1px dashed #fff;
+}

@@ -72,6 +72,10 @@ module SwiftDatamapper
       end
     end
 
+    def bondable!
+      send :include, BondableMethods
+    end
+
   end
 
 
@@ -108,6 +112,24 @@ module SwiftDatamapper
   end
 
   module InstanceMethods
+  end
+
+  module BondableMethods
+    def bound?( parent_model, parent_id = nil )
+      parent_model = if parent_model.kind_of? Symbol
+        parent_model.to_s.singularize.camelize
+      elsif parent_model.kind_of? String
+        parent_model.singularize.camelize
+      elsif parent_model.kind_of? Class
+        parent_model.name
+      else
+        parent_id = parent_model.id
+        parent_model.class.name
+      end
+      return false  unless parent_id
+      bond = Bond.first :parent_model => parent_model, :parent_id => parent_id, :child_model => self.class.to_s, :child_id => self.id, :manual => true, :relation => 1
+      bond ? true : false
+    end
   end
 
 end

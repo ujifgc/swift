@@ -13,6 +13,7 @@ class Page
   publishable!
   timestamps!
   userstamps!
+  bondable!
 
   # relations
   has n, :children, 'Page', :child_key => :parent_id

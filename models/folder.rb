@@ -9,6 +9,7 @@ class Folder
   timestamps!
   userstamps!
   sluggable!
+  bondable!
 
   #relations
   belongs_to :account, :required => false

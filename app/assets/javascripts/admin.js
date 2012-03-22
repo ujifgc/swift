@@ -29,6 +29,25 @@ $(function() {
   $('input.datetime').each(function() {
     $(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );
   });
+  $('a.dialog').click(function() {
+    var url = this.href;
+    var dialog = $('<div style="display:none" class="loading"></div>').appendTo('body');
+    dialog.dialog({
+      close: function(event, ui) {
+        dialog.remove();
+      },
+      width: 800,
+      minHeight: 600,
+      modal: true
+    });
+    dialog.load(
+      url,
+      function (responseText, textStatus, XMLHttpRequest) {
+        dialog.removeClass('loading');
+      }
+    );
+    return false;
+  });
 });
 
 multipleOp = function(el) {

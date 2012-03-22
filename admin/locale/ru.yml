@@ -3,6 +3,7 @@ ru:
     admin:
       publish: Опубликовать
       unpublish: Снять
+      bind: Связать
       not_required: "не обяз."
       or_multiple: "или несколько"
       modules:

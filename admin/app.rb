@@ -3,6 +3,11 @@ MODULE_GROUPS = {
   :news => %W(news_rubrics news_articles),
   :admin => %W(layouts fragments),
 }
+BONDABLES = [
+  Page,
+  Folder,
+  Image,
+]
 
 class Admin < Padrino::Application
   register Padrino::Rendering

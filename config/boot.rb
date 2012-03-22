@@ -34,7 +34,7 @@ end
 #
 Padrino.after_load do
   DataMapper.finalize
-  #I18n.reload!  if Padrino.env == :development
+  I18n.reload!  if Padrino.env == :development
   #stat = $memstat.select{ |k,v| v>0 }.to_a.sort{ |a,b| a[1]<=>b[1] }
   #summ = 0
   #stat.each do |row|

@@ -9,6 +9,7 @@ class Image
   uploadable! ImageUploader
   timestamps!
   userstamps!
+  bondable!
 
   #relations
   property :folder_id, Integer, :default => 1

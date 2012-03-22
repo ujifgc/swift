@@ -6,5 +6,5 @@
       %li= link_to pat(:all), url(:dialogs, :folder, :folder_id => :all, :object_type => :assets)
 :javascript
   $(function() {
-    $('#tabs').tabs();
+    $('#tabs').tabs({ cache: true });
   });
