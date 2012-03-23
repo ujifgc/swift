@@ -31,7 +31,8 @@ $(function() {
   });
   $('a.dialog').click(function() {
     var url = this.href;
-    var dialog = $('<div style="display:none" class="loading"></div>').appendTo('body');
+    var dialog = $('<div id="modal-dialog" style="display:none" class="loading"></div>').appendTo('body');
+    this.dialog = dialog;
     dialog.dialog({
       close: function(event, ui) {
         dialog.remove();
@@ -71,3 +72,67 @@ multipleCheck = function(el) {
     if (this.checked) return $('#operations a.multiple').parent().removeClass('blurry');
   });
 };
+
+$.fn.toggleCheckbox = function() {
+  this.prop('checked', !this.prop('checked'));
+  return $(this);
+}
+
+//Bondables
+bind_bond = function() {
+  $(function() {
+    $('#tabs-bondables').tabs({ cache: true });
+    $('#tabs-bondables').bind( "tabsload", function(event, ui) {
+      var links = $(ui.panel).find('a.pick');
+      links.each(function() {
+        var checked = $(this).data('bound').toString() == 'true' ? 'checked=checked' : '';
+        name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
+        $(this).after('<input type=checkbox '+checked+' name='+name+' />');
+      });
+      links.click(function(event) {
+        $(this).siblings(':checkbox').toggleCheckbox().change();
+      });
+      links.siblings(':checkbox').change(function(event) {
+        var checked = $(this).prop('checked');
+        var link = $(this).siblings('a.pick')
+        data = link.data();
+        var selector = 'a.pick[data-model='+data.model+'][data-id='+data.id+']';
+        $('.active-bonds '+selector).parent().remove();
+        if (checked) {
+          var newlink = link.clone(); //.find('.image').remove().end()
+          newlink.html(link.text() + '(' + data.model + ')');
+          $('.active-bonds').append('<div class=item><a class=unbind href="javascript:;" onclick="bond_uncheck()"><img src="/images/icons/cancel_16.png"/></a></div>').find('div').last().prepend(newlink);
+        }
+      });
+    });
+    $('#tabs-bondables').bind( "tabsselect", function(event, ui) {
+      if ($(ui.tab).data('model') != 'Bond') return true;
+    });
+    $('.dialog-buttons a.button').button();
+    $('a.button.save-dialog').click(function() {
+      var alldata = {};
+      $('.active-bonds a.pick').each(function() {
+        var data = $(this).data();
+        alldata['bond['+data.model+']['+data.id+']'] = 'on';
+      });
+      $.ajax({
+        type: 'POST',
+        url: $('.dialog-bonds form').prop('action'),
+        data: alldata,
+        success: function(jqXHR, textStatus, errorThrown) {
+          if (typeof jqXHR == 'string') {
+            alert(jqXHR);
+          }else{
+            $('#modal-dialog').dialog('close');
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          alert(textStatus);
+        }
+      });
+    });
+    $('a.button.cancel-dialog').click(function() {
+      $('#modal-dialog').dialog('close');
+    });
+  });
+}

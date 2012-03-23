@@ -1,28 +1,12 @@
 ﻿.dialog-bonds
-  %form{ :action => '/admin/bonds/ajax', :method => :post }
+  %form{ :action => url(:dialogs, :bonds_ajax, params[:parent_model], params[:parent_id]), :method => :post }
     #tabs-bondables
       %ul
         %li= link_to 'Bond', url(:dialogs, :bond, params[:parent_model], params[:parent_id]), :"data-model" => 'Bond'
         - BONDABLES.each do |model|
           %li= link_to model.name, url(:dialogs, model.name.underscore.pluralize.to_sym, params)
-        
+    .dialog-buttons
+      = link_to pat('save'), 'javascript:;', :class => 'button save-dialog'
+      = link_to pat('cancel'), 'javascript:;', :class => 'button cancel-dialog'
 :javascript
-  $(function() {
-    $('#tabs-bondables').tabs({ cache: true });
-    $('#tabs-bondables').bind( "tabsload", function(event, ui) {
-      $('#tabs-bondables a.pick').each(function() {
-        if ($(this).find('input:checkbox').length > 0) return;
-        checked = $(this).data('bound') == 'true' ? 'checked=checked' : '';
-        name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
-        $(this).append('<input type=checkbox '+checked+' name='+name+' />');
-      });
-      $('#tabs-bondables a.pick').click(function() {
-        cb = $(this).find('input:checkbox');
-        cb.attr('checked', cb.attr('checked') ? null : 'checked');
-      });
-    });
-    $('#tabs-bondables').bind( "tabsselect", function(event, ui) {
-      if ($(ui.tab).data('model') != 'Bond') return true;
-      alert(ui.tab.innerHTML);
-    });
-  });
+  bind_bond();

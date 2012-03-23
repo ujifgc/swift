@@ -54,4 +54,26 @@ class Bond
     all filter
   end
 
+  def self.generate parent, child
+    object = {
+      :parent_model => parent.class.name,
+      :parent_id    => parent.id,
+      :child_model  => child.class.name,
+      :child_id     => child.id,
+      :manual       => true,
+      :relation     => 1,
+    }
+    first_or_create object
+  end
+
+  def self.separate parent
+    object = {
+      :parent_model => parent.class.name,
+      :parent_id    => parent.id,
+      :manual       => true,
+      :relation     => 1,
+    }
+    all(object).destroy
+  end
+
 end

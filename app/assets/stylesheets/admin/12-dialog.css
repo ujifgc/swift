@@ -26,9 +26,29 @@
 }
 .dialog-images .item .title {
   margin: 3px 0;
+  padding: 0 1.3em;
 }
 .dialog-pages {
 }
 .dialog-pages div {
   padding-left: 1em;
+}
+.dialog-buttons {
+  padding: 1em 0 0 0;
+}
+div.item a.unbind img {
+  vertical-align: middle;
+  margin-left: 1em;
+}
+a.pick + input[type=checkbox] {
+  vertical-align: middle;
+  margin-left: 0.5em;
+}
+.dialog-images .item {
+  position: relative;
+}
+.dialog-images input[type=checkbox] {
+  position: absolute;
+  right: 0.3em;
+  bottom: 0.3em;
 }
