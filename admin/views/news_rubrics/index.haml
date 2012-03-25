@@ -1,21 +1,16 @@
-.block
-  = partial 'base/index_operations'
-  .content
-    %h2.title
-      = pat(:all)
-      = mt(:news_rubrics)
-    %form.inner.multiple#multiple-news_rubrics{ :action => url(:news_rubrics, :index)/:multiple, :method => :post }
-      %table.table
-        %thead
-          %tr
-            %th.first= mat(:object, :id)
-            %th= mat(:object, :title)
-            %th= mat(:object, :slug)
-            %th.last= check_box_tag :check_all, :checked => false
-        %tbody
-          - @objects.each do |object|
-            %tr
-              %td.first= link_to object.id, url(:news_rubrics, :edit, :id => object.id)
-              %td= object.title
-              %td= object.slug
-              %td.last= check_box_tag :"check_news_rubric[#{object.id}]", :checked => false
+= partial 'base/index_operations'
+%form.inner.multiple#multiple-news_rubrics{ :action => url(:news_rubrics, :index)/:multiple, :method => :post }
+  %table.table
+    %thead
+      %tr
+        %th.first= mat(:object, :id)
+        %th= mat(:object, :title)
+        %th= mat(:object, :slug)
+        %th.last= check_box_tag :check_all, :checked => false
+    %tbody
+      - @objects.each do |object|
+        %tr
+          %td.first= link_to object.id, url(:news_rubrics, :edit, :id => object.id)
+          %td= object.title
+          %td= object.slug
+          %td.last= check_box_tag :"check_news_rubric[#{object.id}]", :checked => false

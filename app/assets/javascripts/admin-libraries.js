@@ -1,7 +1,6 @@
-//= require Markdown.Converter
-//= require Markdown.Editor
-//= require Markdown.Sanitizer
-//= require easyselectbox
+//= require_tree ./libraries
+//= require_tree ./bootstrap
+//= require_tree ./markdown
 
 bindMarkdowns = function() {
   $('textarea.markdown').each( function() {

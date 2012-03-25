@@ -1,8 +1,7 @@
-﻿.secondary-navigation#operations
-  %ul.wat-cf
-    %li.first=  mk_single_op :list, url(@models, :index)
-    %li{ :class => @object.new? && :active }= mk_single_op :new,  url(@models, :new)
-    - if !@object.new? && @object.respond_to?(:id)
-      %li.active= mk_single_op :edit, url(@models, :edit, :id => @object.id)
-      - if true #!!!BONDABLES.include? @object.class.name.underscore.to_s
-        %li.toggle= mk_dialog_op :bind, url(:dialogs, :bonds, :parent_model => @object.class, :parent_id => @object.id)
+﻿%ul.tabs.operations
+  %li.first=  mk_single_op :list, url(@models, :index)
+  %li{ :class => @object.new? && :active }= mk_single_op :new,  url(@models, :new)
+  - if !@object.new? && @object.respond_to?(:id)
+    %li.active= mk_single_op :edit, url(@models, :edit, :id => @object.id)
+    - if true #!!!BONDABLES.include? @object.class.name.underscore.to_s
+      %li.toggle= mk_dialog_op :bind, url(:dialogs, :bonds, :parent_model => @object.class, :parent_id => @object.id), :title => pat('dialog.bind_objects')

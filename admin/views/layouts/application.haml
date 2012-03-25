@@ -5,31 +5,39 @@
     %meta{ :charset => "utf-8" }
     %link{ :rel => "shortcut icon", :href => "/images/swift32.png" }
     %title Swift Admin
-    = stylesheet_link_tag :base, "themes/default/style", '/assets/admin'
-    :erb
-      <script src="/assets/admin.js" type="text/javascript"></script>
+    /[if lt IE 9]
+      %script{ :src => "http://html5shim.googlecode.com/svn/trunk/html5.js" }
+    = stylesheet_link_tag '/assets/bootstrap'
+    = stylesheet_link_tag '/assets/admin'
+    /[if IE]
+      = stylesheet_link_tag '/assets/jquery.ui.1.8.16.ie.css'
+    %script{ :src => "/assets/admin-libraries.js" }
+    %script{ :src => '/assets/admin-core.js' }
+
   %body
-    #container
-      #header
-        %h1= link_to "Swift Admin", url(:base_index)
-        #user-navigation
-          %ul.wat-cf
-            %li= button_to pat(:logout), url(:sessions, :destroy), :method => :delete, :class => :button_to
-      #wrapper.wat-cf
-        .flash= [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
-        - if @object && @object.dirty?
-          - err = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')
-          - unless err.blank?
-            .flash
-              .message.error= err
-        #main
-          = yield
-          #footer
-            .block
-              %p
-                Copyright ©
-                = Time.now.year
-                Swift Admin — Powered by
-                = link_to "Padrino", "http://github.com/padrino", :target => :_blank
-        #sidebar
-          = yield_content(:sidebar) || partial("base/sidebar")
+    .topbar
+      .topbar-inner
+        .container-fluid
+          = link_to 'Swift Admin', url(:base_index), :class => 'brand'
+          -#%ul.nav
+            -project_modules.each do |project_module|
+              %li{:class => ('active' if request.path_info =~ /^#{project_module.path}/)}
+                =link_to project_module.human_name, project_module.path('/admin')
+          %ul.nav.secondary-nav
+            - #%li= link_to 'Profile', url(:accounts, :edit, :id => current_account.id)
+            %li= button_to 'Logout', url(:sessions, :destroy), :method => :delete
+    .container-fluid
+      - [:error, :warning, :success].each do |type|
+        - next  if flash[type].blank?
+        .alert-message(class=type data-alert=true)
+          = link_to '&times;', '#', :class => :close
+          = flash[type]
+      - if @object && @object.dirty?
+        - err = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')
+        - unless err.blank?
+          .alert-message.error= err
+      - sidebar = yield_content(:sidebar) || partial("base/sidebar")
+      .sidebar
+        = sidebar
+      .content
+        = yield

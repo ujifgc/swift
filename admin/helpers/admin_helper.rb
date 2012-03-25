@@ -27,8 +27,8 @@ Admin.helpers do
     link_to mk_icon(op) + pat(op), link, :class => :single
   end
 
-  def mk_dialog_op( op, link )
-    link_to content_tag(:u, mk_icon(op) + pat(op)), link, :class => 'single dialog'
+  def mk_dialog_op( op, link, opts={} )
+    link_to content_tag(:u, mk_icon(op) + pat(op)), link, opts.merge(:class => 'single dialog')
   end
 
   def mk_button_op( op, link )

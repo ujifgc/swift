@@ -6,9 +6,6 @@
   background: #eee;
   text-align: right;
 }
-.table th.first, .table th.last {
-  background: #222;
-}
 .table td.first a, .table .last label {
   display: block;
   margin: -10px;
