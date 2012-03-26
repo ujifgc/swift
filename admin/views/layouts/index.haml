@@ -10,5 +10,5 @@
       - @objects.each do |object|
         %tr
           %td.first= link_to object.id, url(:layouts, :edit, :id => object.id)
-          %td= object.title
+          %td= mk_edit object
           %td.last= mk_checkbox object

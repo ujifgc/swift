@@ -3,7 +3,6 @@
   %table.table
     %thead
       %tr
-        %th.first= mat(:object, :id)
         %th= mat(:object, :title)
         %th= mat(:object, :slug)
         %th= mt(:assets)
@@ -11,8 +10,7 @@
     %tbody
       - @objects.each do |object|
         %tr
-          %td.first= link_to object.id, url(:folders, :edit, :id => object.id)
-          %td= object.title
+          %td= mk_edit object
           %td= object.slug
           %td
             - ic = object.images.count

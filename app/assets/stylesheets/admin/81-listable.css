@@ -5,25 +5,23 @@
 .table td.first, .table td.last {
   text-align: right;
 }
-.table td.first a {
-  display: block;
-  margin: -10px;
-  padding: 10px;
-}
-.table .last label {
-  display: block;
-  margin: -10px;
-  padding: 10px;
-}
-.table input[type=checkbox], form.multiple .last label {
+.table label.checkbox {
   cursor: pointer;
+  display: block;
+  margin: -8px;
+  padding: 8px;
+  white-space: nowrap;
+  text-align: right;
 }
 .table input[type=checkbox] {
+  cursor: pointer;
   margin-left: 4px;
   vertical-align: middle;
   display: inline-block;
+  float: none;
 }
-.table .last {
-  white-space: nowrap;
-  text-align: right;
+.table td a.edit {
+  margin: -8px;
+  padding: 8px;
+  display: block;
 }

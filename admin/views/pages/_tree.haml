@@ -5,15 +5,13 @@
   - if object = leaf[:page]
     %tr{ :class => (leaf[:child] ? "openable" : "final") + " level-#{level}", :id => "page-#{object.id}" }
       - name = object.slug.blank? ? 'index' : object.slug
-      %td.first= link_to object.id, url(:pages, :edit, :id => object.id)
-      %td= object.title
+      %td= mk_edit object
       %td.slug= object.slug
       %td= object.path
       - if current_account.allowed? :admin
         %td= link_to object.fragment.title, url(:fragments, :edit, :id => object.fragment_id)
       - else
         %td= object.fragment.title
-      %td= object.position
       %td.last= mk_checkbox object
       - if leaf[:child]
         = partial 'pages/tree', :locals => { :tree => leaf[:child], :level => level + 1 }

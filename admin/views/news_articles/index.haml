@@ -3,7 +3,6 @@
   %table.table
     %thead
       %tr
-        %th.first= mat(:object, :id)
         %th= mat(:object, :title)
         %th= mat(:object, :rubric_id)
         %th= mat(:object, :publish_at)
@@ -11,8 +10,7 @@
     %tbody
       - @objects.each do |object|
         %tr
-          %td.first= link_to object.id, url(:news_articles, :edit, :id => object.id)
-          %td= object.title
+          %td= mk_edit object
           %td= object.news_rubric.title
           %td.nowrap= object.publish_at.kind_of?(DateTime) ? I18n.l( object.publish_at, :format => :date ) : ''
           %td.last= mk_checkbox object

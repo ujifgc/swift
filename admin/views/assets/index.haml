@@ -3,7 +3,6 @@
   %table.table
     %thead
       %tr
-        %th.first= mat(:object, :id)
         %th.title= mat(:object, :title)
         %th.title= mat(:object, :folder_id)
         %th.file= mat(:object, :file)
@@ -11,8 +10,7 @@
     %tbody
       - @objects.each do |object|
         %tr
-          %td.first= link_to object.id, url(:assets, :edit, :id => object.id)
-          %td= object.title
-          %td= object.folder && object.folder.title
-          %td= link_to object.file.url, object.file.url
+          %td= mk_edit object
+          %td.nowrap= object.folder && object.folder.title
+          %td= link_to object.file.size.as_size + " / #{File.extname object.file.url}", object.file.url
           %td.last= mk_checkbox object

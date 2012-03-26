@@ -1,12 +1,15 @@
 Admin.helpers do
+  def mk_edit( target )
+    link_to target.title, url(target.class.storage_name.to_sym, :edit, :id => target.id), :class => :edit
+  end
 
   def mk_checkbox( target )
     name = :"check_#{target.class.name.underscore}[#{target.id}]"
-    content = mk_light( target ) + check_box_tag( name, :checked => false, :id => name )
-    content_tag :label, content, :for => name
+    content = mk_published( target ) + check_box_tag( name, :checked => false, :id => name )
+    content_tag :label, content, :for => name, :class => :checkbox
   end
 
-  def mk_light( target )
+  def mk_published( target )
     return ''  unless target.respond_to? :is_published
     content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'eye-open' : 'eye-close') ) + ' '
   end

@@ -14,7 +14,6 @@
   });
   multipleCheck();
   $('form.multiple input[name^=check]').click(multipleCheck);
-  $('form.multiple th.last input').wrap('<label></label>');
   $('select').each(function() { $(this).easySelectBox() });
   $('input.datetime').each(function() {
     $(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );
@@ -45,7 +44,7 @@
 multipleOp = function(el) {
   if (el.disabled) return false;
   el.disabled = true;
-  var models = $('form.multiple')[0].id.split('-')[1]
+  var models = $('form.multiple')[0].id.split('-')[1];
   var action = '/admin/'+models+'/multiple?_method='+$(el).attr('data-method');
   $('form.multiple').attr( { action: action } ).submit();
   toggleCheck(el, -1);
@@ -67,7 +66,7 @@ multipleCheck = function(el) {
 $.fn.toggleCheckbox = function() {
   this.prop('checked', !this.prop('checked'));
   return $(this);
-}
+};
 
 //Bondables
 bindDialogBonds = function() {
@@ -75,8 +74,8 @@ bindDialogBonds = function() {
   $('#tabs-bondables').bind( "tabsload", function(event, ui) {
     var links = $(ui.panel).find('a.pick');
     links.each(function() {
-      var checked = $(this).data('bound').toString() == 'true' ? 'checked=checked' : '';
-      name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
+      var checked = $(this).data('bound').toString() === 'true' ? 'checked=checked' : '';
+      var name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
       $(this).after('<input type=checkbox '+checked+' name='+name+' />');
     });
     links.click(function(event) {
@@ -84,8 +83,8 @@ bindDialogBonds = function() {
     });
     links.siblings(':checkbox').change(function(event) {
       var checked = $(this).prop('checked');
-      var link = $(this).siblings('a.pick')
-      data = link.data();
+      var link = $(this).siblings('a.pick');
+      var data = link.data();
       var selector = 'a.pick[data-model='+data.model+'][data-id='+data.id+']';
       $('.active-bonds '+selector).parent().remove();
       if (checked) {
@@ -96,7 +95,7 @@ bindDialogBonds = function() {
     });
   });
   $('#tabs-bondables').bind( "tabsselect", function(event, ui) {
-    if ($(ui.tab).data('model') != 'Bond') return true;
+    if ($(ui.tab).data('model') !== 'Bond') return true;
   });
 
   $('a.save-dialog').click(function() {
@@ -110,7 +109,7 @@ bindDialogBonds = function() {
       url: $('.dialog-bonds form').prop('action'),
       data: alldata,
       success: function(jqXHR, textStatus, errorThrown) {
-        if (typeof jqXHR == 'string') {
+        if (typeof jqXHR === 'string') {
           alert(jqXHR);
         }else{
           $('#modal-dialog').dialog('close');
@@ -124,4 +123,4 @@ bindDialogBonds = function() {
   $('a.cancel-dialog').click(function() {
     $('#modal-dialog').dialog('close');
   });
-}
+};
