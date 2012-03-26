@@ -15,17 +15,11 @@
     %script{ :src => '/assets/admin-core.js' }
 
   %body
-    .topbar
-      .topbar-inner
+    .navbar.navbar-fixed-top
+      .navbar-inner
         .container-fluid
           = link_to 'Swift Admin', url(:base_index), :class => 'brand'
-          -#%ul.nav
-            -project_modules.each do |project_module|
-              %li{:class => ('active' if request.path_info =~ /^#{project_module.path}/)}
-                =link_to project_module.human_name, project_module.path('/admin')
-          %ul.nav.secondary-nav
-            - #%li= link_to 'Profile', url(:accounts, :edit, :id => current_account.id)
-            %li= button_to 'Logout', url(:sessions, :destroy), :method => :delete
+          = link_to 'Logout', url(:sessions, :destroy), :method => :delete, :class => 'btn btn-primary pull-right'
     .container-fluid
       - [:error, :warning, :success].each do |type|
         - next  if flash[type].blank?

@@ -13,4 +13,4 @@
           %td.first= link_to object.id, url(:news_rubrics, :edit, :id => object.id)
           %td= object.title
           %td= object.slug
-          %td.last= check_box_tag :"check_news_rubric[#{object.id}]", :checked => false
+          %td.last= mk_checkbox object

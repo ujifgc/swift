@@ -1,22 +1,39 @@
 Admin.helpers do
 
+  def mk_checkbox( target )
+    name = :"check_#{target.class.name.underscore}[#{target.id}]"
+    content = mk_light( target ) + check_box_tag( name, :checked => false, :id => name )
+    content_tag :label, content, :for => name
+  end
+
   def mk_light( target )
-    image_tag target.is_published ? '/images/icons/circle_green_12d.png' : '/images/icons/circle_red_12d.png'
+    return ''  unless target.respond_to? :is_published
+    content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'eye-open' : 'eye-close') ) + ' '
   end
 
   ICONS = {
-    :delete    => 'cross_48.png',
-    :unpublish => 'circle_red.png',
-    :publish   => 'circle_green.png',
-    :list      => 'navigate_48.png',
-    :new       => 'paper_48.png',
-    :edit      => 'paper_content_pencil_48.png',
-    :bind      => 'lock_48.png',
+  # operations
+    :delete    => 'remove',
+    :publish   => 'ok',
+    :unpublish => 'ban-circle',
+    :list      => 'list',
+    :new       => 'plus',
+    :edit      => 'edit',
+    :bind      => 'magnet',
+  # modules
+    :pages     => 'book',
+    :images    => 'picture',
+    :assets    => 'file',
+    :blocks    => 'list-alt',
+    :folders   => 'folder-open',
+    :news_articles => 'bookmark',
+    :news_rubrics  => 'th-large',
+    :fragments => 'th',
+    :layouts   => 'cog',
   }
 
   def mk_icon( op )
-    file = '/images/icons/' + ICONS[op]
-    image_tag file, :class => :op
+    content_tag( :i, '', :class => 'icon-'+ICONS[op] ) + ' '  rescue throw op
   end
 
   def mk_multiple_op( op )

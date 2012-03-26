@@ -9,4 +9,4 @@
       - @objects.each do |object|
         %tr
           %td.first= link_to object.id, url(:<%= @orm.name_plural %>, :edit, :id => object.id)
-          %td.last= check_box_tag :"check_<%= @orm.name_singular %>[#{object.id}]", :checked => false
+          %td.last= mk_checkbox object

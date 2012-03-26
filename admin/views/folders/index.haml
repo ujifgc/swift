@@ -21,4 +21,4 @@
             - stats << "#{mt(:images)}: #{ic}"  if ic > 0
             - stats << "#{mt(:assets)}: #{ac}"  if ac > 0
             = stats.join(', ')
-          %td.last= check_box_tag :"check_folder[#{object.id}]", :checked => false
+          %td.last= mk_checkbox object

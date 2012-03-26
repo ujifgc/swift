@@ -3,23 +3,27 @@
   text-align: right;
 }
 .table td.first, .table td.last {
-  background: #eee;
   text-align: right;
 }
-.table td.first a, .table .last label {
+.table td.first a {
   display: block;
   margin: -10px;
   padding: 10px;
 }
-.table td.first a:hover, .table td.last label:hover {
-  background: #ccc;
-}
-.table th.first a:hover, .table th.last label:hover {
-  background: #555;
-}
-.table td.last {
-  text-align: left;
+.table .last label {
+  display: block;
+  margin: -10px;
+  padding: 10px;
 }
 .table input[type=checkbox], form.multiple .last label {
   cursor: pointer;
+}
+.table input[type=checkbox] {
+  margin-left: 4px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.table .last {
+  white-space: nowrap;
+  text-align: right;
 }

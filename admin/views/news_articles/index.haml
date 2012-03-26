@@ -6,8 +6,7 @@
         %th.first= mat(:object, :id)
         %th= mat(:object, :title)
         %th= mat(:object, :rubric_id)
-        %th.publish= mat(:object, :publish_at)
-        %th.publish
+        %th= mat(:object, :publish_at)
         %th.last= check_box_tag :check_all, :checked => false
     %tbody
       - @objects.each do |object|
@@ -15,6 +14,5 @@
           %td.first= link_to object.id, url(:news_articles, :edit, :id => object.id)
           %td= object.title
           %td= object.news_rubric.title
-          %td.tar.nowrap= object.publish_at.kind_of?(DateTime) ? I18n.l( object.publish_at, :format => :date ) : ''
-          %td.tar= mk_light object
-          %td.last= check_box_tag :"check_news_article[#{object.id}]", :checked => false
+          %td.nowrap= object.publish_at.kind_of?(DateTime) ? I18n.l( object.publish_at, :format => :date ) : ''
+          %td.last= mk_checkbox object

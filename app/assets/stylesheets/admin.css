@@ -3,14 +3,8 @@
  *= require_tree ./admin
  */
 
-a.multiple, a.single {
-  padding-left: 3.5em !important;
-}
-a.multiple img.op, a.single img.op {
-  vertical-align: middle;
-  width: 2em;
-  position: absolute;
-  margin: -0.2em 0 0 -2.75em;
+body {
+  padding-top: 60px;
 }
 .blurry {
   opacity: 0.3;
@@ -35,9 +29,6 @@ div#sidebar {
 .form a {
   font-size: 1em;
 }
-.tar {
-  text-align: right;
-}
 .nowrap {
   white-space: nowrap;
 }
@@ -54,20 +45,7 @@ li.toggle u {
   border-radius:2px;
 }
 th.action  { width: 110px; text-align:center }
-
-.login form,
-.login .actions { margin-bottom:0px; }
-.login .alert-message{ margin:10px; }
-.login .logo{
-  text-align: center;
-  padding: 5px 0;
-}
-.login
-  background-color: @white;
-  border: 2px solid @gray;
-  box-shadow: 0px 0px 20px @gray;
-  border-radius: 3px;
-  padding-top: 10px;
-  width: 500px;
-  margin: 0px auto;
+/* bootstrap: glyph icons */
+.sidebar li [class^="icon-"], [class*=" icon-"], .operations li [class^="icon-"], [class*=" icon-"] {
+  width: 18px;
 }

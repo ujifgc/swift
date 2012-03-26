@@ -13,4 +13,4 @@
           %tr
             %td.first= link_to object.id, url(:fragments, :edit, :id => object.id)
             %td= object.title
-            %td.last= check_box_tag :"check_fragment[#{object.id}]", :checked => false
+            %td.last= mk_checkbox object

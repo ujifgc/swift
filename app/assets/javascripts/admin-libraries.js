@@ -1,5 +1,5 @@
 //= require_tree ./libraries
-//= require_tree ./bootstrap
+//= #require_tree ./bootstrap
 //= require_tree ./markdown
 
 bindMarkdowns = function() {

@@ -11,4 +11,4 @@
         %tr
           %td.first= link_to object.id, url(:blocks, :edit, :id => object.id)
           %td= object.title
-          %td.last= check_box_tag :"check_block[#{object.id}]", :checked => false
+          %td.last= mk_checkbox object

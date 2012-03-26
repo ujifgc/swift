@@ -14,7 +14,7 @@
   });
   multipleCheck();
   $('form.multiple input[name^=check]').click(multipleCheck);
-  $('form.multiple td.last input, form.multiple th.last input').wrap('<label></label>');
+  $('form.multiple th.last input').wrap('<label></label>');
   $('select').each(function() { $(this).easySelectBox() });
   $('input.datetime').each(function() {
     $(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );

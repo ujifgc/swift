@@ -9,7 +9,7 @@ ru:
       modules:
         content: Содержимое сайта
         admin: Вёрстка и дизайн
-        news: Новости
+        news: Новостные ленты
       menu:
         help: Быстрые действия
         pages: Страницы
@@ -19,6 +19,8 @@ ru:
         blocks: Блоки
         layouts: Раскладки
         fragments: Визуализаторы
+        news_articles: Новости
+        news_rubrics: Ленты
         add:
           images: Добавить картинки
           assets: Добавить файлы
@@ -42,7 +44,7 @@ ru:
         info: Краткое содержание
         path: Путь
         is_published: Опубликовать
-        publish_at: Время публикации
+        publish_at: Дата
         file: Файл
         folder_id: Папка
         parent_id: Подчинение
@@ -81,6 +83,10 @@ ru:
       name: фрагменты
     fragment:
       name: визуализатор
+    news_articles:
+      name: Новости
+    news_rubrics:
+      name: Ленты
   asset_uploaded: загружен
   time:
     formats:
