@@ -1,0 +1,4 @@
+%ul
+  - @pics.each do |pic|
+    %li
+      = link_to image_tag(pic.file.url), pic.file.url, :rel => 'box-image'
