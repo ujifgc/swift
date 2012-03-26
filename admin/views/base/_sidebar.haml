@@ -9,5 +9,4 @@
           = mk_icon project_module.name
           = project_module.human_name
 
-.block
-  = yield_content(:help) || partial("base/help")
+= yield_content(:help) || partial("base/help")

@@ -4,6 +4,6 @@
 
 - content_for :help do
   %h3= pat('menu.help')
-  %ul.navigation
+  %ul.nav.nav-pills
     %li= link_to pat('menu.add.images'), url(:images, :new, :folder_id => @object.id)
     %li= link_to pat('menu.add.assets'), url(:assets, :new, :folder_id => @object.id)

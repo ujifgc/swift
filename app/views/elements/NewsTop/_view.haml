@@ -1,3 +1,4 @@
-%ul
-  - @news.each do |object|
-    %li= object.title
+%dl
+  - @news.each do |o|
+    %dt= link_to o.title, se_url(o)
+    %dd= o.text

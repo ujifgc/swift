@@ -9,6 +9,7 @@ case Padrino.env
     DataMapper.setup(:default, 'mysql://swift:KcRbQA4LhFdLv5Cr@localhost/swift_development')
   when :production
     #DataMapper.setup(:default, {:adapter  => "redis", :db => 15 })
+    DataMapper.setup(:default, 'mysql://swift:KcRbQA4LhFdLv5Cr@localhost/swift_development')
   when :test
     #DataMapper.setup(:default, {:adapter  => "redis", :db => 15 })
 end

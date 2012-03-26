@@ -12,8 +12,6 @@ class Swift < Padrino::Application
   set :default_builder, 'SwiftFormBuilder'
 
   before do
-    logger << "\n\n---\n"
-
     @swift = init_instance
 
     @page = Page.new :title => 'Default title'
@@ -22,17 +20,17 @@ class Swift < Padrino::Application
   # if no controller got the request, try finding some content in the sitemap
   # if the sitemap does not have the requested page then show the real 404
   not_found do
-    if @page = Page.first( :path => request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' ) )
+    path = request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' )
+    if @page = Page.first( :conditions => [ '? LIKE path', path ] )
       @page.text = parse_uub( @page.text ).html
       #params.reverse_merge!  !!!FIXME
       response.body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
-      halt 200
-    else
-      @page = Page.first :path => '/error/404'
-      @page.text = parse_uub( @page.text ).html
-      response.body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
-      halt 404
+      return halt 200  unless @swift[:not_found]
     end
+    @page = Page.first :path => '/error/404'
+    @page.text = parse_uub( @page.text ).html
+    response.body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
+    halt 404
   end
 
   # requested wrong service or wrong parameters

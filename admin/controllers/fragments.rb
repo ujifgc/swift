@@ -19,7 +19,7 @@ Admin.controllers :fragments do
       File.open "#{Swift.root}/views/fragments/_#{@object.id}.haml", 'w', 0644 do |file|
         file.write @code.strip + "\n\n"
       end
-      redirect url(:fragments, :edit, :id => @object.id)
+      redirect url(:fragments, :index)
     else
       render 'fragments/new'
     end
@@ -45,7 +45,7 @@ Admin.controllers :fragments do
       File.open "#{Swift.root}/views/fragments/_#{@object.id}.haml", 'w', 0644 do |file|
         file.write @code.strip + "\n\n"
       end
-      redirect url(:fragments, :edit, :id => @object.id)
+      redirect url(:fragments, :index)
     else
       render 'fragments/edit'
     end

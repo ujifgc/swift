@@ -9,6 +9,7 @@ Swift.helpers do
     core_file = 'elements/' + name + '/core'
     view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
     core = File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" ) ? partial( core_file ) : ''
+    return ''  if @swift[:not_found]  # !!!FIX this madness
     result = core + partial( view_file )
     result
   rescue Padrino::Rendering::TemplateNotFound
@@ -33,6 +34,8 @@ Swift.helpers do
       page = Page.first :path => url
       swift[:path_ids] << page.id  if page && !url.blank?
     end
+
+    swift[:slug] = path.gsub( /(.+)\/$/, '\1' ).rpartition('/')[2] # !!!FIXME benchmark this regex
 
     swift
   end
@@ -86,6 +89,15 @@ Swift.helpers do
     end
     @parse_level -= 1
     str
+  end
+
+  def se_url( o )
+    case o.class.name
+    when 'NewsArticle'
+      '/news/show/'+o.slug
+    else
+      '/'
+    end
   end
 
 end

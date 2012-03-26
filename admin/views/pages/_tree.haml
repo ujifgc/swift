@@ -8,10 +8,10 @@
       %td= mk_edit object
       %td.slug= object.slug
       %td= object.path
-      - if current_account.allowed? :admin
-        %td= link_to object.fragment.title, url(:fragments, :edit, :id => object.fragment_id)
+      - if current_account.allowed? :designer
+        %td.nowrap= link_to object.fragment.title, url(:fragments, :edit, :id => object.fragment_id)
       - else
-        %td= object.fragment.title
+        %td.nowrap= object.fragment.title
       %td.last= mk_checkbox object
       - if leaf[:child]
         = partial 'pages/tree', :locals => { :tree => leaf[:child], :level => level + 1 }

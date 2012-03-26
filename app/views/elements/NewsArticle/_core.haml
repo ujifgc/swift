@@ -1,0 +1,3 @@
+﻿:ruby
+  @new = NewsArticle.by_slug @swift[:slug]
+  @swift[:not_found] = true  unless @new  # !!!FIX this madness
