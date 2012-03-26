@@ -1,9 +1,3 @@
-.block
-  = partial 'base/edit_operations'
-  .content
-    %h2.title
-      = pat(:new)
-      = mt(:page)
-    .inner
-      - form_for :object, url(:pages, :create), :class => :form do |f|
-        = partial "pages/form", :locals => { :f => f }
+= partial 'base/edit_operations'
+- form_for :object, url(:pages, :create), :class => 'form form-horizontal edit' do |f|
+  = partial "pages/form", :locals => { :f => f }

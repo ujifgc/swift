@@ -51,6 +51,9 @@ ru:
         is_fragment: Является фрагментом
         account_id: Владелец
         news_rubric_id: Лента
+        fragment_id: Визуализатор
+        layout_id: Раскладка
+        rubric_id: Лента
         code: Код
     blocks:
       name: блоки

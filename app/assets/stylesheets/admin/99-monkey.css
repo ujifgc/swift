@@ -1,0 +1,85 @@
+﻿/* jquery-ui */
+.ui-tabs .ui-tabs-panel {
+  padding: 0;
+}
+.ui-dialog .ui-dialog-content {
+  padding: 0;
+}
+.ui-dialog .ui-dialog-title {
+  margin: 0;
+  padding: 0;
+}
+input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .uneditable-input {
+  color: #000;
+}
+
+/* bootstrap */
+.topbar {
+  z-index: 1000;
+}
+.nav-tabs li.last {
+  float: right;
+}
+.container-fluid > .sidebar {
+  min-height: 100%;
+  margin-top: 35px;
+  border-right: 1px solid #ddd;
+}
+.container-fluid > .content {
+  margin-bottom: -35px;
+}
+
+/* botstrap:vertical tabs */
+.nav-tabs.vertical {
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 0 1px 0 0;
+}
+.nav-tabs.vertical > li {
+    position: relative;
+    margin-right: -1px;
+    float: none;
+}
+.nav-tabs.vertical > li > a {
+      margin-right: 0;
+      border: 1px solid transparent;
+      -webkit-border-radius: 4px 0 0 4px;
+      -moz-border-radius: 4px 0 0 4px;
+      border-radius: 4px 0 0 4px;
+}
+.nav-tabs.vertical > li > a:hover {
+        border-color: #eee #ddd #eee #eee;
+}
+.nav-tabs.vertical > li.active > a,
+.nav-tabs.vertical > li.active > a:hover {
+    border: 1px solid #ddd;
+    border-right-color: transparent;
+}
+
+/* multidimentional tabs for a sheet */
+.nav-tabs.operations {
+  margin-left: -20px;
+  padding-left: 20px;
+}
+.nav-tabs.sidebar {
+  border-right: 0;
+}
+
+/* bootstrap: sidebar */
+.container-fluid {
+    position: relative;
+}
+.container-fluid > .sidebar {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 220px;
+}
+.container-fluid > .content {
+    margin-left: 240px;
+}
+
+/* jquery ui & bootstrap comflicts */
+.btn-primary, .btn-primary:hover, .btn-warning, .btn-warning:hover, .btn-danger, .btn-danger:hover, .btn-success, .btn-success:hover, .btn-info, .btn-info:hover, .btn-inverse, .btn-inverse:hover {
+  color: #fff !important;
+}

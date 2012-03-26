@@ -1,12 +1,6 @@
-.block
-  = partial 'base/edit_operations'
-  .content
-    %h2.title
-      = pat(:edit)
-      = mt(:folder)
-    .inner
-      - form_for :object, url(:folders, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => "edit-folders" do |f|
-        = partial "folders/form", :locals => { :f => f }
+= partial 'base/edit_operations'
+- form_for :object, url(:folders, :update, :id => @object.id), :method => :put, :class => 'form form-horizontal edit', :id => "edit-folders" do |f|
+  = partial "folders/form", :locals => { :f => f }
 
 - content_for :help do
   %h3= pat('menu.help')

@@ -1,9 +1,3 @@
-.block
-  = partial 'base/edit_operations'
-  .content
-    %h2.title
-      = pat(:edit)
-      = mt(:<%= @orm.name_singular %>)
-    .inner
-      - form_for :object, url(:<%= @orm.name_plural %>, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => "edit-<%= @orm.name_plural %>" do |f|
-        = partial "<%= @orm.name_plural %>/form", :locals => { :f => f }
+= partial 'base/edit_operations'
+- form_for :object, url(:<%= @orm.name_plural %>, :update, :id => @object.id), :method => :put, :class => 'form edit', :id => "edit-<%= @orm.name_plural %>" do |f|
+  = partial "<%= @orm.name_plural %>/form", :locals => { :f => f }

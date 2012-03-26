@@ -5,8 +5,8 @@
         %li= link_to 'Bond', url(:dialogs, :bond, params[:parent_model], params[:parent_id]), :"data-model" => 'Bond'
         - BONDABLES.each do |model|
           %li= link_to model.name, url(:dialogs, model.name.underscore.pluralize.to_sym, params)
-    .dialog-buttons
-      = link_to pat('save'), 'javascript:;', :class => 'button save-dialog'
-      = link_to pat('cancel'), 'javascript:;', :class => 'button cancel-dialog'
+    .dialog-buttons.modal-footer
+      = link_to pat('save'), 'javascript:;', :class => 'btn btn-primary save-dialog'
+      = link_to pat('cancel'), 'javascript:;', :class => 'btn cancel-dialog'
 :javascript
-  bind_bond();
+  bindDialogBonds();

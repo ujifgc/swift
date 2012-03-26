@@ -1,9 +1,3 @@
-.block
-  = partial 'base/edit_operations'
-  .content
-    %h2.title
-      = pat(:new)
-      = mt(:news_article)
-    .inner
-      - form_for :object, url(:news_articles, :create), :method => :post, :class => 'form edit', :id => "edit-news_articles" do |f|
-        = partial "news_articles/form", :locals => { :f => f }
+= partial 'base/edit_operations'
+- form_for :object, url(:news_articles, :create), :method => :post, :class => 'form form-horizontal edit', :id => "edit-news_articles" do |f|
+  = partial "news_articles/form", :locals => { :f => f }
