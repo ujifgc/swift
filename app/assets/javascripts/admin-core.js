@@ -19,7 +19,6 @@
   $('input.datetime').each(function() {
     $(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );
   });
-  $('.button').addClass('btn');
   $('a.dialog').click(function() {
     var url = this.href;
     var title = this.title ? this.title : '';
@@ -99,9 +98,8 @@ bindDialogBonds = function() {
   $('#tabs-bondables').bind( "tabsselect", function(event, ui) {
     if ($(ui.tab).data('model') != 'Bond') return true;
   });
-  $('.button').addClass('btn');
 
-  $('a.button.save-dialog').click(function() {
+  $('a.save-dialog').click(function() {
     var alldata = {};
     $('.active-bonds a.pick').each(function() {
       var data = $(this).data();
@@ -123,21 +121,7 @@ bindDialogBonds = function() {
       }
     });
   });
-  $('a.button.cancel-dialog').click(function() {
+  $('a.cancel-dialog').click(function() {
     $('#modal-dialog').dialog('close');
   });
 }
-/*
-$(function(){
-  $('table').dataTable({
-    StateSave: true,
-    aLengthMenu: [[50, 100, 150, -1], [50, 100, 150, 'All']],
-  });
-
-  $('.alert-message.modal').modal({
-    show: true,
-    keyboard: true,
-    backdrop: true
-  });
-});
-*/

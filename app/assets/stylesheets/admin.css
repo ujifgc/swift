@@ -3,12 +3,6 @@
  *= require_tree ./admin
  */
 
-body, td, input, textarea {
-  font: normal 12px "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-ul.wat-cf li.last {
-  float: right;
-}
 a.multiple, a.single {
   padding-left: 3.5em !important;
 }
@@ -16,7 +10,7 @@ a.multiple img.op, a.single img.op {
   vertical-align: middle;
   width: 2em;
   position: absolute;
-  margin: 0.4em 0 0 -2.75em;
+  margin: -0.2em 0 0 -2.75em;
 }
 .blurry {
   opacity: 0.3;
@@ -52,9 +46,6 @@ li.toggle u {
   border-bottom: 1px dashed #0069D6;
 }
 
-body { padding-top: 60px; }
-footer p { text-align: center; }
-footer p a { padding: 0 5px; }
 .action form { padding: 0 2px; margin: 0px;}
 .action input {
   font-size:11px;
