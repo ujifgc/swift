@@ -1,3 +1,14 @@
 /*
- *= require normalize
+ *= require_tree ./elements
  */
+body {
+  max-width: 940px;
+  min-width: 480px;
+  margin: 0 auto;
+}
+
+.inline {
+  display: inline-block;
+  float: none !important;
+  vertical-align: top;
+}

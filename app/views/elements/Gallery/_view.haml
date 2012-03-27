@@ -1,4 +1,7 @@
-%ul
+.se-gallery
   - @pics.each do |pic|
-    %li
-      = link_to image_tag(pic.file.url), pic.file.url, :rel => 'box-image'
+    .item
+      .well
+        = link_to pic.file.url, :rel => 'box-image' do
+          .image= se_image pic.file
+          .title= pic.title

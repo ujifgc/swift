@@ -96,6 +96,14 @@ Swift.helpers do
     str
   end
 
+  def div_open( opt )
+    "<div class='#{opt.to_s}'>"
+  end
+
+  def div_close( opt )
+    '</div>'
+  end
+
   def se_url( o )
     case o.class.name
     when 'NewsArticle'
@@ -103,6 +111,10 @@ Swift.helpers do
     else
       '/'
     end
+  end
+
+  def se_image( o )
+    image_tag o.url, :width => "100%"
   end
 
 end

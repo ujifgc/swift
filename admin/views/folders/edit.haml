@@ -3,7 +3,12 @@
   = partial "folders/form", :locals => { :f => f }
 
 - content_for :help do
-  %h3= pat('menu.help')
-  %ul.nav.nav-pills
-    %li= link_to pat('menu.add.images'), url(:images, :new, :folder_id => @object.id)
-    %li= link_to pat('menu.add.assets'), url(:assets, :new, :folder_id => @object.id)
+  %li.nav-header= pat('menu.help')
+  %li
+    = link_to url(:images, :new, :folder_id => @object.id) do
+      = mk_glyphs 'picture', 'arrow-right', 'folder-open'
+      = pat('menu.add.images')
+  %li
+    = link_to url(:assets, :new, :folder_id => @object.id) do
+      = mk_glyphs 'file', 'arrow-right', 'folder-open'
+      = pat('menu.add.assets')

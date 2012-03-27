@@ -21,8 +21,12 @@ class Swift < Padrino::Application
   get '/*' do
     path = request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' )
     if @page = Page.first( :conditions => [ '? LIKE path', path ] )
+      if @page.text.blank?
+        cs = @page.children.all :order => :position
+        redirect cs.first.path  if cs.any?
+      end # !!!FIXME this feels like bad redirect
       @page.text = parse_uub( @page.text ).html
-      #params.reverse_merge!  !!!FIXME
+      #params.reverse_merge!  !!!FIXME add page parameters
       render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
     else
       not_found

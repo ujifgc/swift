@@ -12,10 +12,8 @@
     leaf[:title] = page.title
     leaf[:href] = page.path
 
-    leaf[:class] = master ? 'm' : 's'
-    if ensued
-      leaf[:class] += master ? ' ma' : ' sa'
-    end
+    leaf[:class] = master ? 'master' : 'slave'
+    leaf[:class] += ' active'  if ensued
 
     child = false
     if ensued || @opts[:expand]
@@ -23,10 +21,10 @@
     end
 
     if child
-      leaf[:class] += master ? ' mo' : ' so'
+      leaf[:class] += ' open'
       leaf[:child] = child
     else
-      leaf[:class] += ensued && !master ? ' la' : ''
+      leaf[:class] += ' leaf'  if ensued && !master
     end
 
     leaf[:class] += ' first'  if k == 1

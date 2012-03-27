@@ -31,7 +31,7 @@
         - unless err.blank?
           .alert-message.error= err
       - sidebar = yield_content(:sidebar) || partial("base/sidebar")
-      .sidebar
+      .sidebar.tabs-left
         = sidebar
       .content
         = yield

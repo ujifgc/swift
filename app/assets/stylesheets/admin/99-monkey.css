@@ -23,13 +23,13 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
 .container-fluid > .sidebar {
   min-height: 100%;
   margin-top: 35px;
-  border-right: 1px solid #ddd;
 }
 .container-fluid > .content {
   margin-bottom: -35px;
 }
 
 /* botstrap:vertical tabs */
+/*
 .nav-tabs.vertical {
   border-color: #ddd;
   border-style: solid;
@@ -55,6 +55,18 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
     border: 1px solid #ddd;
     border-right-color: transparent;
 }
+*/
+.tabs-left .nav-tabs {
+    float: none;
+    margin-right: 0;
+}
+.nav-tabs li + .nav-header {
+    margin-top: 18px;
+}
+.nav-tabs .nav-header {
+    line-height: 24px;
+}
+
 
 /* multidimentional tabs for a sheet */
 .nav-tabs.operations {

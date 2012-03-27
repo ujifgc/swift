@@ -1,3 +1,12 @@
-#header
-  %h1= link_to 'Root', url(:core_index)
+﻿.navbar
+  .navbar-inner
+    .container
+      = link_to 'ГУП ТПО ЖКХ УР', url(:core_index), :class => :brand
+
+= div_open 'row-fluid'
+
+.span3
   = element 'MapTree', :expand => false, :root => nil
+
+= div_open 'span9'
+

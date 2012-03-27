@@ -39,6 +39,18 @@ Admin.helpers do
     content_tag( :i, '', :class => 'icon-'+ICONS[op] ) + ' '  rescue throw op
   end
 
+  def mk_glyph( s )
+    content_tag( :i, '', :class => 'icon-'+s )
+  end
+
+  def mk_glyphs( *ss )
+    ret = ''
+    ss.each do |s|
+      ret += content_tag( :i, '', :class => 'icon-'+s )
+    end
+    ret
+  end
+
   def mk_multiple_op( op )
     link_to mk_icon(op) + pat(op), :method => op, :class => :multiple
   end
