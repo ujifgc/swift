@@ -90,4 +90,6 @@ ru:
   asset_uploaded: загружен
   time:
     formats:
-      date: "%d %b %Y"
+      date: "%e %b %Y"
+      date_other_year: "%e %B %Y"
+      date_same_year: "%e %B"

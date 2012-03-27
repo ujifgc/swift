@@ -23,6 +23,7 @@ Swift.helpers do
   def init_instance
     swift = {}
     swift[:path_ids] = []
+    swift[:path_titles] = []
 
     full = request.env['PATH_INFO']
     path = full.gsub /\/\d+/, ''
@@ -31,11 +32,15 @@ Swift.helpers do
     url = '/'
     names.each do |name|
       url += (url[-1]=='/' ? '' : '/') + "#{name}"
-      page = Page.first :path => url
-      swift[:path_ids] << page.id  if page && !url.blank?
+      page = Page.first( :conditions => [ '? LIKE path', url ] )
+      if page && url.length <= page.path.length
+        swift[:path_ids] << page.id
+        swift[:path_titles] << page.title
+      elsif page
+        swift[:slug] = name
+      end
     end
 
-    swift[:slug] = path.gsub( /(.+)\/$/, '\1' ).rpartition('/')[2] # !!!FIXME benchmark this regex
 
     swift
   end

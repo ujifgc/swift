@@ -91,9 +91,11 @@ class String
 end
 
 class Symbol
+
   def / (s)
     "#{self.to_s}/#{s.to_s}"
   end
+
 end
 
 class Object
@@ -107,6 +109,13 @@ class Object
       i -= 1
     end
     ((s > 9 || s.modulo(1) < 0.1 ? '%d' : '%.1f') % s) + ' ' + prefix[i]
+  end
+
+  def as_date( d = nil )
+    d = (d || self)
+    return ''  unless [Date, Time, DateTime].include? d.class
+    format = d.year == Date.today.year ? 'date_same_year' : 'date_other_year'
+    I18n.l d, :format => I18n.t( 'time.formats.' + format )
   end
 
 end
