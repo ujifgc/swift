@@ -5,7 +5,7 @@ class Page
   property :id,       Serial
 
   property :title,    String
-  property :text,     Text
+  property :text,     Text, :lazy => false
   property :path,     String, :length => 2000, :index => true
   property :position, Integer
 

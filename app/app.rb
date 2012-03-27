@@ -21,7 +21,7 @@ class Swift < Padrino::Application
   get '/*' do
     path = request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' )
     if @page = Page.first( :conditions => [ '? LIKE path', path ] )
-      if @page.text.blank?
+      if @page.fragment_id == 'page' && @page.text.blank?
         cs = @page.children.all :order => :position
         redirect cs.first.path  if cs.any?
       end # !!!FIXME this feels like bad redirect
