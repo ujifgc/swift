@@ -16,8 +16,8 @@ Admin.controllers :layouts do
     if @object.save
       flash[:notice] = pat('layout.created')
       File.open "#{Swift.root}/views/layouts/#{@object.id}.haml", 'w', 0644 do |file|
-        file.write "\uFEFF"
-        file.write @code.strip + "\n\n"
+        #file.write "\uFEFF"
+        file.write @code.strip + "\n"
       end
       redirect url(:layouts, :edit, :id => @object.id)
     else
@@ -29,7 +29,7 @@ Admin.controllers :layouts do
     @object = Layout.get(params[:id])
     @code = begin
       File.open "#{Swift.root}/views/layouts/#{@object.id}.haml", "r:bom|utf-8" do |file|
-        file.read
+        file.read + "\n"
       end
     rescue
       ''
@@ -43,8 +43,8 @@ Admin.controllers :layouts do
     if @object.update(params[:layout])
       flash[:notice] = pat('layout.updated')
       File.open "#{Swift.root}/views/layouts/#{@object.id}.haml", 'w', 0644 do |file|
-        file.write "\uFEFF"
-        file.write @code.strip + "\n\n"
+        #file.write "\uFEFF"
+        file.write @code.strip + "\n"
       end
       redirect url(:layouts, :edit, :id => @object.id)
     else
