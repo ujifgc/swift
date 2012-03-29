@@ -41,7 +41,6 @@ Swift.helpers do
       end
     end
 
-
     swift
   end
 
@@ -111,10 +110,6 @@ Swift.helpers do
     else
       '/'
     end
-  end
-
-  def se_image( o )
-    image_tag o.url, :width => "100%"
   end
 
 end

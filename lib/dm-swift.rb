@@ -1,4 +1,5 @@
 #coding:utf-8
+
 module SwiftDatamapper
   module ClassMethods
 
@@ -76,8 +77,13 @@ module SwiftDatamapper
       send :include, BondableMethods
     end
 
-  end
+    def amorphous!
+      send :include, AmorphousMethods
 
+      property :json, DataMapper::Property::Json, :default => {}
+    end
+
+  end
 
   module SluggableMethods
     def to_param
@@ -129,6 +135,22 @@ module SwiftDatamapper
       return false  unless parent_id
       bond = Bond.first :parent_model => parent_model, :parent_id => parent_id, :child_model => self.class.to_s, :child_id => self.id, :manual => true, :relation => 1
       bond ? true : false
+    end
+  end
+
+  module AmorphousMethods
+    def [](key)
+      return super key  if properties.any?{ |p| p.name==key }
+      self.json[key.to_s].freeze  #!!!FIXME freeze is a safeguard for a smartass eager to use something like `<<` instead of `=`, maybe fix it sometime
+    end
+
+    def []=(key, value)
+      return super( key, value )  if properties.any?{ |p| p.name==key } # !!!FIXME benchmark it against `if attributes.has_key? key`, find a faster finder
+      embed(key, value)
+    end
+
+    def embed(key, value)
+      self.json[key.to_s] = value
     end
   end
 

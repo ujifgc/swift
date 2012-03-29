@@ -31,6 +31,8 @@ Admin.helpers do
     :folders   => 'folder-open',
     :news_articles => 'bookmark',
     :news_rubrics  => 'th-large',
+    :cat_cards => 'inbox',
+    :cat_nodes => 'folder-close',
     :fragments => 'th',
     :layouts   => 'cog',
   }

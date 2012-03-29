@@ -25,10 +25,10 @@
         .alert-message(class=type data-alert=true)
           = link_to '&times;', '#', :class => :close
           = flash[type]
-      - if @object && @object.dirty?
+      -# if @object && @object.dirty?
         - err = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')
         - unless err.blank?
-          .alert-message.error= err
+          .alert.alert-error= err
       - sidebar = yield_content(:sidebar) || partial("base/sidebar")
       .sidebar.tabs-left
         = sidebar

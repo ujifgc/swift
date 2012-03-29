@@ -1,7 +1,7 @@
 ﻿/* Easy Select Box */
 .easy-select-box {
   position: relative;
-  width: 390px;
+  width: 290px;
   font-size: 12px;
   line-height: 18px;
   color:#0c2245;
@@ -54,7 +54,7 @@
   left:-1px;
   border-top:1px solid #cccccc;
   display:none;
-  width:398px;
+  width:298px;
   overflow:auto;
   background:#FFFFFF;
   list-style: none; padding: 0;

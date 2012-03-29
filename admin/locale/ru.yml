@@ -9,6 +9,7 @@ ru:
       modules:
         content: Содержимое сайта
         admin: Вёрстка и дизайн
+        cat: Каталог
         news: Новостные ленты
       menu:
         help: Быстрые действия
@@ -21,9 +22,13 @@ ru:
         fragments: Визуализаторы
         news_articles: Новости
         news_rubrics: Ленты
+        cat_nodes: Ресурсы
+        cat_cards: Карточки
         add:
           images: Добавить картинки
           assets: Добавить файлы
+          nodes: Добавить ресурсы
+          fields: Добавить поле
       error:
         select_file: Пожалуйста, выберите файл для загрузки
       multiple:
@@ -53,10 +58,12 @@ ru:
         is_fragment: Является фрагментом
         account_id: Владелец
         news_rubric_id: Лента
+        cat_card_id: Карточка
         fragment_id: Визуализатор
         layout_id: Раскладка
         rubric_id: Лента
         code: Код
+        fields: Дополнительные поля
     blocks:
       name: блоки
     block:

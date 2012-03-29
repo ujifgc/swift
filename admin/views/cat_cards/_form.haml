@@ -1,0 +1,17 @@
+= f.input :title
+= f.input :text, :as => :text, :markdown => true
+- allow :auditor do
+  .control-group.as_group
+    = f.group_label :fields
+    - @object.json.each do |key, type|
+      .controls.horizontal
+        = text_field_tag :'key[]', :value => key
+        = select_tag :'type[]', :selected => type, :options => CatCard::Types, :include_blank => 'Удалить'
+    .hide.controls.horizontal
+      = text_field_tag :'key[]'
+      = select_tag :'type[]', :selected => 'string', :options => CatCard::Types, :include_blank => 'Удалить'
+    .controls.clone
+      = link_to mk_glyph('plus-sign') + ' ' + pat('menu.add.fields'), 'javascript:;', :onclick => 'cloneControlGroup(this)', :class => 'btn btn-mini'
+
+  = f.input :slug
+= f.submits

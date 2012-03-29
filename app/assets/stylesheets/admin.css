@@ -5,6 +5,7 @@
 
 body {
   padding-top: 60px;
+  min-width: 800px;
 }
 .blurry {
   opacity: 0.3;

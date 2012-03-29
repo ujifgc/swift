@@ -1,7 +1,10 @@
-﻿module Padrino
+﻿#coding:utf-8
+module Padrino
   module Admin
     module Helpers
       module ViewHelpers
+
+        # show full path to translation key instead of "humanizing" it
         def padrino_admin_translate(word, default=nil)
           t("padrino.admin.#{word}", :default => default)
         end
@@ -28,6 +31,8 @@
 end
 
 module I18n
+
+  # show full path to translation key instead of "humanizing" it
   class MissingTranslation
     module Base
       def message
@@ -35,10 +40,12 @@ module I18n
       end
     end
   end
+
 end
 
 module FileUtils
 
+  # try to move a file and ignore failures
   def self.mv_try( src, dst )
     return nil  if src == dst
     return nil  unless File.exists? src
@@ -100,6 +107,7 @@ end
 
 class Object
 
+  # show size as human-readable number of bytes
   def as_size( s = nil )
     prefix = %W(Тб Гб Мб Кб б)
     s = (s || self).to_f
@@ -111,6 +119,7 @@ class Object
     ((s > 9 || s.modulo(1) < 0.1 ? '%d' : '%.1f') % s) + ' ' + prefix[i]
   end
 
+  # thow a date in locale-specific format
   def as_date( d = nil )
     d = (d || self)
     return ''  unless [Date, Time, DateTime].include? d.class
@@ -120,12 +129,52 @@ class Object
 
 end
 
+# this makes haml to treat templates as properly encoded (respect Encoding.default_external)
 module Tilt
   class HamlTemplate
     def prepare
       @data.force_encoding Encoding.default_external
       options = @options.merge(:filename => eval_file, :line => line)
       @engine = ::Haml::Engine.new(data, options)
+    end
+  end
+end
+
+# this makes #jo_json not to escape unicode characters with \uXXXX stuff
+module ActiveSupport::JSON::Encoding
+  class << self
+    def escape(string)
+      if string.respond_to?(:force_encoding)
+        string = string.encode(::Encoding::UTF_8, :undef => :replace).force_encoding(::Encoding::BINARY)
+      end
+      json = string.gsub(escape_regex) { |s| ESCAPED_CHARS[s] }
+      # here was scary \uXXXX pack-unpack manipulations
+      json = %("#{json}")
+      json.force_encoding(::Encoding::UTF_8) if json.respond_to?(:force_encoding)
+    end
+  end
+end
+
+module DataMapper
+  module Resource
+    def attributes=(attributes)
+      model = self.model
+      attributes.each do |name, value|
+        case name
+          when String, Symbol
+            if model.allowed_writer_methods.include?(setter = "#{name}=")
+              __send__(setter, value)
+            else
+              if self.respond_to? :embed
+                self.embed(name, value)                   #!!!FIXME limit embedding by CatCard fields
+              else
+                raise ArgumentError, "The attribute '#{name}' is not accessible in #{model}"
+              end
+            end
+          when Associations::Relationship, Property
+            self.persistence_state = persistence_state.set(name, value)
+        end
+      end
     end
   end
 end

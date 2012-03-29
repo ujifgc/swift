@@ -14,10 +14,14 @@ module Padrino
           caption = options[:label].delete(:caption) || I18n.t("models.object.attributes.#{field}")
           caption += ' (' + options.delete(:brackets).to_s + ')'  if options[:brackets]
           type = 'string'
+          morphable = options.delete :morphable
           controls = case options.delete(:as)
           when :text, :textarea, :text_area
             opts = { :class => 'text_area' }
-            opts[:class] += ' markdown'  if options[:markdown]
+            if options[:markdown]
+              opts[:class] += ' markdown'
+              options[:label].merge!( :for => "wmd-input-#{@object.class.name.underscore}_#{field}" )
+            end
             if options[:code]
               opts[:class] += ' code'
               opts[:spellcheck] = 'false'
@@ -58,13 +62,24 @@ module Padrino
           when :datetime
             text_field field, :class => 'text_field datetime'
           else
-            text_field field, :class => :text_field
+            opts = { :class => :text_field }
+            opts.merge! :value => options[:value]  if options[:value]
+            text_field field, opts
           end
+          error = @object.errors[field]  rescue []
+          controls += content_tag( :span, error.join(','), :class => 'help-inline' )  if error.any?          
           html = label( field, options[:label].merge( :class => 'control-label', :caption => caption ))
-          html += ' ' + error_message_on( @object, field ) + ' '  if @object.errors.any?
           html += ' ' + @template.content_tag( :div, controls, :class => :controls )
           html += ' ' + @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?
-          @template.content_tag( :div, html, :class => "control-group as_#{type}")
+          klass = "control-group as_#{type}"
+          klass += ' morphable'  if morphable
+          klass += ' error'  if error.any?
+          @template.content_tag( :div, html, :class => klass)
+        end
+
+        def group_label( field, options={} )
+          caption = I18n.t "models.object.attributes.#{field}"
+          label( field, :class => 'control-label', :caption => caption )
         end
 
         def inputs( *args )

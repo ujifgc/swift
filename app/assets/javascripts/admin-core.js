@@ -39,6 +39,7 @@
     );
     return false;
   });
+  $().alert();
 });
 
 multipleOp = function(el) {
@@ -61,6 +62,12 @@ multipleCheck = function(el) {
   $('form.multiple input[name^=check]').each(function() {
     if (this.checked) return $('#operations a.multiple').parent().removeClass('blurry');
   });
+};
+
+cloneControlGroup = function(el) {
+  var g = $(el).parent().siblings('.controls.hide');
+  var c = g.clone(); c.removeClass('hide').find('.easy-select-box').remove().end().find('select').easySelectBox();
+  g.before(c);
 };
 
 $.fn.toggleCheckbox = function() {

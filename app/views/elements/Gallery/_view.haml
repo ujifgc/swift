@@ -3,5 +3,5 @@
     .item
       .well
         = link_to pic.file.url, :rel => 'box-image' do
-          .image= se_image pic.file
+          .image= image_tag pic.file.thumb.url, :width => '100%'
           .title= pic.title

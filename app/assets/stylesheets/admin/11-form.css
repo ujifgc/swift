@@ -30,3 +30,30 @@ padding-left: 7em;
 form table tr.level-4 td.slug {
 padding-left: 9em;
 }
+form input[id$=title] {
+  width: 99%;
+}
+form .as_group .clone {
+  margin-top: 9px;
+}
+form .as_group .horizontal + .horizontal {
+  margin-top: 9px;
+}
+form .as_group .horizontal input {
+  vertical-align: top;
+}
+form .as_group .horizontal .easy-select-box {
+  width: 210px;
+}
+form .as_group .horizontal .easy-select-box ul {
+  width: 218px;
+}
+form .as_group .horizontal .easy-select-box.open {
+  margin-left: 3px;
+}
+.form-horizontal .morphable .control-label {
+  width: 280px;
+}
+.form-horizontal .morphable .controls {
+  margin-left: 300px;
+}

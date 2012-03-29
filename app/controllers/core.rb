@@ -6,5 +6,5 @@ Swift.controllers :core do
 
     #to add some special behavior put some rendering code here and comment `not found`
   end
-  
+
 end

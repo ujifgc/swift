@@ -9,3 +9,4 @@ uploads/*
 public/uploads/*
 public/img/*
 public/doc/*
+public/cache/*

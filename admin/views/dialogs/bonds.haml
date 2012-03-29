@@ -3,7 +3,7 @@
     #tabs-bondables
       %ul
         %li= link_to 'Bond', url(:dialogs, :bond, params[:parent_model], params[:parent_id]), :"data-model" => 'Bond'
-        - BONDABLES.each do |model|
+        - BONDABLE_CHILDREN.each do |model|
           %li= link_to model.name, url(:dialogs, model.name.underscore.pluralize.to_sym, params)
     .dialog-buttons.modal-footer
       = link_to pat('save'), 'javascript:;', :class => 'btn btn-primary save-dialog'

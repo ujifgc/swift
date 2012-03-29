@@ -17,10 +17,25 @@ class Swift < Padrino::Application
     @page = Page.new :title => 'Default title'
   end
 
+  # if web server can't statically serve image request, regenerate the image version
+  # and tell browser to lurk again with new timestamp
+  get '/cache/:version/:model/:id/*' do
+    model = params[:model].constantize  rescue nil
+    error 400  unless model
+    object = model.get params[:id]  rescue nil
+    error 404  unless object
+    url = object.file.versions[params[:version].to_sym].url  rescue nil
+    error 400  unless url
+    filename = object.file.render!( params[:version].to_sym ).url
+    redirect filename + asset_timestamp(filename)                                    # !!!FIXME is this good or the next two lines?
+    #content_type object.file.content_type
+    #send_file Padrino.public + object.file.render!( params[:version].to_sym ).url
+  end
+
   # if no controller got the request, try finding some content in the sitemap
   get '/*' do
     path = request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' )
-    if @page = Page.first( :conditions => [ '? LIKE path', path ] )
+    if @page = Page.first( :conditions => [ '? LIKE path', path ] )                  # !!!FIXME this might be redundant with init_instance
       if @page.fragment_id == 'page' && @page.text.blank?
         cs = @page.children.all :order => :position
         redirect cs.first.path  if cs.any?
