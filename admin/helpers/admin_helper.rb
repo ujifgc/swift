@@ -23,16 +23,21 @@ Admin.helpers do
     :new       => 'plus',
     :edit      => 'edit',
     :bind      => 'magnet',
+
   # modules
     :pages     => 'book',
     :images    => 'picture',
     :assets    => 'file',
     :blocks    => 'list-alt',
     :folders   => 'folder-open',
+
     :news_articles => 'bookmark',
     :news_rubrics  => 'th-large',
-    :cat_cards => 'inbox',
-    :cat_nodes => 'folder-close',
+
+    :cat_cards  => 'inbox',
+    :cat_nodes  => 'folder-close',
+    :cat_groups => 'tag',
+
     :fragments => 'th',
     :layouts   => 'cog',
   }

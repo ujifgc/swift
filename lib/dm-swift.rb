@@ -83,6 +83,19 @@ module SwiftDatamapper
       property :json, DataMapper::Property::Json, :default => {}
     end
 
+    def recursive!
+      send :include, RecursiveMethods
+
+      property :path,     String, :length => 2000, :index => true
+
+      has n, :children, self.name, :child_key => :parent_id
+      belongs_to :parent, self.name, :required => false
+
+      before :save do
+        self.path = self.parent ? self.parent.path + '/' + self.slug : self.slug
+      end
+    end
+
   end
 
   module SluggableMethods
@@ -151,6 +164,22 @@ module SwiftDatamapper
 
     def embed(key, value)
       self.json[key.to_s] = value
+    end
+  end
+
+  module RecursiveMethods
+    def title_tree
+      prepend = ''
+      cp = self.parent_id
+      while cp do
+        cp = self.class.get(cp).parent_id
+        prepend += '· · '
+      end
+      "#{prepend} #{title} (#{slug})"
+    end
+
+    def root?
+      self.path == '/'
     end
   end
 

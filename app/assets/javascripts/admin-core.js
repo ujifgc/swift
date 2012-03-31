@@ -15,6 +15,7 @@
   multipleCheck();
   $('form.multiple input[name^=check]').click(multipleCheck);
   $('select').each(function() { $(this).easySelectBox() });
+  bindCatCards();
   $('input.datetime').each(function() {
     $(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );
   });
@@ -64,15 +65,31 @@ multipleCheck = function(el) {
   });
 };
 
-cloneControlGroup = function(el) {
-  var g = $(el).parent().siblings('.controls.hide');
-  var c = g.clone(); c.removeClass('hide').find('.easy-select-box').remove().end().find('select').easySelectBox();
-  g.before(c);
-};
-
 $.fn.toggleCheckbox = function() {
   this.prop('checked', !this.prop('checked'));
   return $(this);
+};
+
+//Catalogue
+bindCatCards = function(elem) {
+  (elem || $('form#edit-cat_cards .as_group select')).change(function() {
+    if (this.value.match(/select|multiple/))
+      $(this).siblings('textarea').removeClass('hide');
+    else
+      $(this).siblings('textarea').addClass('hide');
+  });
+};
+
+cloneControlGroup = function(el) {
+  var g = $(el).parent().siblings('.controls.hide');
+  var c = g.clone();
+  var add = '-'+(new Date()).getTime();
+  c.children('input, select, textarea').each(function(){ this.name = this.name.replace(/\[(.*)\]/, '[$1'+add+']') });
+  c.removeClass('hide').find('.easy-select-box').remove();
+  sel = c.find('select');
+  sel.easySelectBox();
+  bindCatCards(sel);
+  g.before(c);
 };
 
 //Bondables

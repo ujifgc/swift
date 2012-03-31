@@ -5,11 +5,15 @@
     = f.group_label :fields
     - @object.json.each do |key, type|
       .controls.horizontal
-        = text_field_tag :'key[]', :value => key
-        = select_tag :'type[]', :selected => type, :options => CatCard::Types, :include_blank => 'Удалить'
+        = text_field_tag "key[#{key}]", :value => key
+        = select_tag "type[#{key}]", :selected => type[0], :options => CatCard::Types, :include_blank => 'Удалить'
+        - klass = %W{select multiple}.include?(type[0]) ? 'show' : 'hide'
+        ~ text_area_tag "value[#{key}]", :value => type[1], :class => klass
+         
     .hide.controls.horizontal
-      = text_field_tag :'key[]'
-      = select_tag :'type[]', :selected => 'string', :options => CatCard::Types, :include_blank => 'Удалить'
+      = text_field_tag :'key[cat_node_new]'
+      = select_tag :'type[cat_node_new]', :selected => 'string', :options => CatCard::Types, :include_blank => 'Удалить'
+      ~ text_area_tag "value[cat_node_new]", :value => '', :class => 'hide'
     .controls.clone
       = link_to mk_glyph('plus-sign') + ' ' + pat('menu.add.fields'), 'javascript:;', :onclick => 'cloneControlGroup(this)', :class => 'btn btn-mini'
 

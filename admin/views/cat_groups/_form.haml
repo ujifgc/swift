@@ -1,0 +1,18 @@
+- if @object.new?
+  = f.input :cat_card_id, :as => :select, :selected => @object.cat_card_id, :collection => CatCard.all, :fields => [ :title, :id ], :include_blank => false
+  = f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => CatGroup.all( :order => :path ), :fields => [ :title_tree, :id ], :include_blank => false
+
+= f.input :title
+= f.input :text, :as => :text, :markdown => true
+
+- unless @object.new?
+  .well
+    - @object.cat_card.json.each do |key, type|
+      - next  unless type[0] == 'select'
+      = f.input key, :as => :select, :label => { :caption => key }, :morphable => true, :options => type[1].split(/[\r\n]+/), :selected => @object.json[key], :include_blank => 'Не учитывать'
+
+- allow :auditor do
+  = f.input :is_published, :as => :boolean
+  = f.input :slug
+
+= f.submits

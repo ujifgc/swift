@@ -48,12 +48,15 @@ form .as_group .horizontal .easy-select-box {
 form .as_group .horizontal .easy-select-box ul {
   width: 218px;
 }
-form .as_group .horizontal .easy-select-box.open {
-  margin-left: 3px;
-}
 .form-horizontal .morphable .control-label {
   width: 280px;
 }
 .form-horizontal .morphable .controls {
   margin-left: 300px;
+}
+form .horizontal textarea {
+  margin-top: 0;
+  width: 210px;
+  display: inline-block;
+  vertical-align: top;
 }

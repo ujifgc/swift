@@ -1,0 +1,14 @@
+= partial 'base/index_operations'
+%form.inner.multiple#multiple-cat_groups{ :action => url(:cat_groups, :index)/:multiple, :method => :post }
+  %table.table
+    %thead
+      %tr
+        %th= mat(:object, :title)
+        %th= mat(:object, :slug)
+        %th.last= check_box_tag :check_all, :checked => false
+    %tbody
+      - @objects.each do |object|
+        %tr
+          %td= mk_edit object
+          %td= object.slug
+          %td.last= mk_checkbox object

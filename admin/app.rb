@@ -1,7 +1,7 @@
 MODULE_GROUPS = {
   :content => %W(pages blocks assets images folders),
   :news    => %W(news_articles news_rubrics),
-  :cat     => %W(cat_nodes cat_cards),
+  :cat     => %W(cat_nodes cat_cards cat_groups),
   :admin   => %W(layouts fragments),
 }
 BONDABLE_CHILDREN = [
@@ -34,8 +34,6 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module :cat_nodes, '/cat_nodes'
-    role.project_module :cat_cards, '/cat_cards'
     role.project_module :pages, "/pages"
     role.project_module :images, '/images'
     role.project_module :assets, '/assets'
@@ -44,6 +42,10 @@ class Admin < Padrino::Application
 
     role.project_module :news_articles, '/news_articles'
     role.project_module :news_rubrics, '/news_rubrics'
+
+    role.project_module :cat_nodes, '/cat_nodes'
+    role.project_module :cat_cards, '/cat_cards'
+    role.project_module :cat_groups, '/cat_groups'
 
     role.project_module :fragments, '/fragments'
     role.project_module :layouts, '/layouts'

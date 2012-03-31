@@ -30,6 +30,23 @@ module Padrino
 
 end
 
+module Padrino
+  module Helpers
+    module FormHelpers
+      def label_back_tag(name, options={}, &block)
+        options.reverse_merge!(:caption => "#{name.to_s.humanize}: ", :for => name)
+        caption_text = options.delete(:caption)
+        caption_text << "<span class='required'>*</span> " if options.delete(:required)
+        if block_given? # label with inner content
+          label_content = capture_html(&block) + caption_text
+          concat_content(content_tag(:label, label_content, options))
+        else # regular label
+          content_tag(:label, caption_text, options)
+        end
+      end
+    end
+  end
+end
 module I18n
 
   # show full path to translation key instead of "humanizing" it

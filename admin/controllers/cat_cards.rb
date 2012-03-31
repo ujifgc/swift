@@ -1,12 +1,29 @@
 #
 Admin.controllers :cat_cards do
   before :create, :update do
-    keys = params.delete 'key'
-    types = params.delete 'type'
-    all = Hash[keys.zip types].reject{|k,v|k.blank?}
-    fields = all.reject{|k,v|v.blank?}
-    @deletes = all.select{|k,v|v.blank?}
-    params[:cat_card].merge! fields
+    @keys = params.delete 'key'
+    @types = params.delete 'type'
+    @values = params.delete 'value'
+    @adds = []
+    @rest = []
+    @deletes = []
+    @renames = {}
+    @keys.each do |k,v|
+      if @types[k] == "" || v.blank?
+        @deletes << k
+        next
+      end
+      if k.match(/cat_node_new-\d+/)
+        @adds << k
+        next
+      end
+      if k != v
+        @renames.merge! k => v
+        next
+      end
+      @rest << k
+    end
+    logger << [@adds, @rest, @deletes, @renames].inspect
   end
 
   get :index do
@@ -35,13 +52,19 @@ Admin.controllers :cat_cards do
   end
 
   put :update, :with => :id do
-    logger << params.inspect
     @object = CatCard.get(params[:id])
     @object.attributes = params[:cat_card]
-    if @deletes.any?                                           # !!!FIXME try and refactore this mess to be as neat as in cat_nodes
-      @deletes.each { |k,v| @object.json.delete k }
-      @object.save
+    logger << @object.json.inspect
+    @deletes.each do |k|
+      @object.json.delete k
     end
+    if @renames.any? #!!! FIXME add routines to rename all fields in data store, also add bulk rename of :select value renames (or just alert the user)
+      @object.json = Hash[@object.json.map{ |k,v| @renames[k] ? [@renames[k], [@types[k], @values[k]]] : [k, v] }]
+    end
+    (@adds+@rest).each do |k|
+      @object.json[@keys[k]] = [@types[k], @values[k]]
+    end
+    logger << @object.json.inspect
     if @object.save
       flash[:notice] = pat('cat_card.updated')
       redirect url(:cat_cards, :index)

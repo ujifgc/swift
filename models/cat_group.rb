@@ -1,15 +1,6 @@
 #coding:utf-8
-class CatCard
+class CatGroup
   include DataMapper::Resource
-
-  Types = {
-    'Строка'   => :string,
-    'Число'    => :number,
-    'Вариант'  => :select,
-    'Выборка'  => :multiple,
-    'Файлы'    => :assets,
-    'Картинки' => :images,
-  }
 
   property :id,       Serial
 
@@ -19,13 +10,16 @@ class CatCard
   sluggable!
   timestamps!
   userstamps!
+  publishable!
+  bondable!
   amorphous!
+  recursive!
 
   # relations
-  has n, :cat_nodes
+  belongs_to :cat_card, :required => true
 
   # hookers
 
   # instance helpers
-
+  
 end

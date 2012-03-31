@@ -6,10 +6,24 @@
 
 - unless @object.new?
   .well
-    - k = 0
     - @object.cat_card.json.each do |key, type|
-      - k += 1
-      = f.input key, :as => type, :label => { :caption => key }, :morphable => true, :value => @object.json[key]
+      - as = type[0].to_sym
+      - opts = { :as => as, :label => { :caption => key }, :morphable => true, :value => @object.json[key] }
+      - variants = type[1].split(/[\r\n]+/)
+      - if as == :select
+        - opts.delete :value
+        - opts[:selected] = @object.json[key]
+        - opts[:options] = variants
+      - if as == :multiple
+        - opts.delete :value
+        .control-group.as_multiple.morphable
+          = f.label( key, :class => 'control-label', :caption => key )
+          - variants.each do |v|
+            .controls.horizontal
+              = label_back_tag v, :for => "cat_node[#{key}][#{v}]", :caption => v, :class => :checkbox do
+                = check_box_tag "cat_node[#{key}][]", :value => v, :id => "cat_node[#{key}][#{v}]", :checked => Array(@object.json[key]).include?(v)
+      - else
+        = f.input key, opts
 
 - allow :auditor do
   = f.input :is_published, :as => :boolean
