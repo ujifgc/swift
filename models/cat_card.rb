@@ -20,6 +20,7 @@ class CatCard
   timestamps!
   userstamps!
   amorphous!
+  bondable!
 
   # relations
   has n, :cat_nodes

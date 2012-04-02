@@ -6,6 +6,9 @@
 
 = f.input :fragment_id, :as => :select, :selected => @object.fragment_id, :collection => Fragment.basic, :fields => [ :title, :id ], :include_blank => false
 
+- allow :designer do
+  = f.input :is_module, :as => :boolean
+
 - allow :admin do
   = f.input :layout_id, :as => :select, :selected => @object.layout_id, :collection => Layout.all, :fields => [ :title, :id ], :include_blank => false
 

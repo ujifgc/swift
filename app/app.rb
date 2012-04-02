@@ -13,8 +13,6 @@ class Swift < Padrino::Application
 
   before do
     @swift = init_instance
-
-    @page = Page.new :title => 'Default title'
   end
 
   # if web server can't statically serve image request, regenerate the image version
@@ -27,25 +25,22 @@ class Swift < Padrino::Application
     url = object.file.versions[params[:version].to_sym].url  rescue nil
     error 400  unless url
     filename = object.file.render!( params[:version].to_sym ).url
-    redirect filename + asset_timestamp(filename)                                    # !!!FIXME is this good or the next two lines?
-    #content_type object.file.content_type
-    #send_file Padrino.public + object.file.render!( params[:version].to_sym ).url
+    redirect filename + asset_timestamp(filename)
   end
 
   # if no controller got the request, try finding some content in the sitemap
   get '/*' do
-    path = request.env['PATH_INFO'].gsub( /(.+)\/$/, '\1' )
-    if @page = Page.first( :conditions => [ '? LIKE path', path ] )                  # !!!FIXME this might be redundant with init_instance
-      if @page.fragment_id == 'page' && @page.text.blank?
-        cs = @page.children.all :order => :position
-        redirect cs.first.path  if cs.any?
-      end # !!!FIXME this feels like bad redirect
-      @page.text = parse_uub( @page.text ).html
-      #params.reverse_merge!  !!!FIXME add page parameters
-      render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
-    else
-      not_found
+    not_found  unless @page
+
+    # !!!FIXME this feels like bad redirect, it's for rescuing an empty page and go for children
+    if @page.fragment_id == 'page' && @page.text.blank?
+      cs = @page.children.all :order => :position
+      redirect cs.first.path  if cs.any?
     end
+
+    @page.text = parse_uub( @page.text ).html
+    #params.reverse_merge!  !!!FIXME add page parameters
+    render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
   end
 
   # if the sitemap does not have the requested page then show the 404
@@ -60,6 +55,41 @@ class Swift < Padrino::Application
     @page = Page.first :path => '/error/501'
     @page.text = parse_uub( @page.text ).html
     render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
+  end
+
+protected
+
+  def init_instance
+    swift = {}
+    swift[:path_pages] = []
+    swift[:path_ids] = []
+    swift[:skip_view] = {}
+
+    path = request.env['PATH_INFO']
+    path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1
+    path = path.gsub /\/\d+/, ''
+    page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
+    @page = page
+
+    if page && path.length >= page.path.length
+      swift[:slug] = path.gsub /^#{page.path}/, ''
+      case swift[:slug][0]
+      when nil
+        nil
+      when '/'
+        swift[:slug] = swift[:slug][1..-1]
+      else
+        not_found
+      end
+    end
+
+    while page
+      swift[:path_pages].unshift page
+      swift[:path_ids].unshift page.id
+      page = page.parent
+    end
+
+    swift
   end
 
 end

@@ -5,10 +5,12 @@
       %tr
         %th= mat(:object, :title)
         %th= mat(:object, :slug)
+        %th= mat(:object, :path)
         %th.last= check_box_tag :check_all, :checked => false
     %tbody
       - @objects.each do |object|
         %tr
           %td= mk_edit object
           %td= object.slug
+          %td= object.path
           %td.last= mk_checkbox object

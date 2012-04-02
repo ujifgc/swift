@@ -8,40 +8,18 @@ Swift.helpers do
     @args = args
     core_file = 'elements/' + name + '/core'
     view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
-    core = File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" ) ? partial( core_file ) : ''
-    return ''  if @swift[:not_found]  # !!!FIX this madness
-    result = core + partial( view_file )
-    result
+    core = partial( core_file )  if File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" )
+    if @swift[:skip_view][name]
+      core
+    else
+      partial( view_file )
+    end
   rescue Padrino::Rendering::TemplateNotFound
     "[Element '#{name}' missing]"
   end
 
   def fragment( name, *args )
     partial 'fragments/'+name, *args
-  end
-
-  def init_instance
-    swift = {}
-    swift[:path_ids] = []
-    swift[:path_titles] = []
-
-    full = request.env['PATH_INFO']
-    path = full.gsub /\/\d+/, ''
-    names = path.split '/'
-    names = ['']  if names.empty?
-    url = '/'
-    names.each do |name|
-      url += (url[-1]=='/' ? '' : '/') + "#{name}"
-      page = Page.first( :conditions => [ '? LIKE path', url ] )
-      if page && url.length <= page.path.length
-        swift[:path_ids] << page.id
-        swift[:path_titles] << page.title
-      elsif page
-        swift[:slug] = name
-      end
-    end
-
-    swift
   end
 
   def parse_uub( str )

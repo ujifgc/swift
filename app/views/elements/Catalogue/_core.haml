@@ -1,0 +1,4 @@
+﻿:ruby
+  bonds = Bond.children_for @page, 'CatCard'
+  card_ids = bonds.map(&:child).map(&:id)
+  @nodes = CatNode.all :cat_card_id => card_ids

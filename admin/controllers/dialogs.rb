@@ -20,6 +20,21 @@ Admin.controllers :dialogs do
     render "dialogs/folders", :layout => :ajax
   end
 
+  get :cat_groups do
+    @objects = CatGroup.all
+    render "dialogs/cat_groups", :layout => :ajax
+  end
+
+  get :cat_cards do
+    @objects = CatCard.all
+    render "dialogs/cat_cards", :layout => :ajax
+  end
+
+  get :cat_nodes do
+    @objects = CatNode.all
+    render "dialogs/cat_nodes", :layout => :ajax
+  end
+
   get :folder, :with => [:object_type, :folder_id] do
     folder = Folder.by_slug params[:folder_id]
     case params[:object_type]

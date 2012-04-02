@@ -1,0 +1,9 @@
+﻿- @nodes.each do |node|
+  %article
+    %h3= node.title
+    .text= node.text
+    %dl
+      - node.cat_card.json.each do |key, value|
+        %dt= key
+        %dd= node.json[key]
+      

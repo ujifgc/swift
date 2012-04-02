@@ -8,6 +8,8 @@ BONDABLE_CHILDREN = [
   Page,
   Folder,
   Image,
+  CatGroup,
+  CatCard,
 ]
 BONDABLE_PARENTS = [
   Page,

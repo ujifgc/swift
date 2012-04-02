@@ -14,6 +14,7 @@ class CatGroup
   bondable!
   amorphous!
   recursive!
+  bondable!
 
   # relations
   belongs_to :cat_card, :required => true

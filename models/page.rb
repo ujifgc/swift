@@ -2,12 +2,13 @@
 class Page
   include DataMapper::Resource
 
-  property :id,       Serial
+  property :id,        Serial
 
-  property :title,    String
-  property :text,     Text, :lazy => false
-  property :path,     String, :length => 2000, :index => true
-  property :position, Integer
+  property :title,     String
+  property :text,      Text, :lazy => false
+  property :path,      String, :length => 2000, :index => true
+  property :position,  Integer
+  property :is_module, Boolean, :default => false
 
   sluggable! :unique_index => false
   publishable!
