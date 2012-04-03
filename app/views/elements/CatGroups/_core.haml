@@ -1,0 +1,7 @@
+:ruby
+  @opts[:expand] = true
+
+  @recursive  = 'elements/CatGroups/recursive'
+  @view       = 'elements/CatGroups/view'
+
+  @tree = partial @recursive, :locals => { :from => nil, :level => 0, :prefix => '' }

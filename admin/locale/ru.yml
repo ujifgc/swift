@@ -56,6 +56,7 @@ ru:
         fragment: Визуализатор
         position: Положение
         is_fragment: Является фрагментом
+        is_module: Подключен модуль
         account_id: Владелец
         news_rubric_id: Лента
         cat_card_id: Карточка

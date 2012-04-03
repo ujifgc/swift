@@ -67,12 +67,14 @@ protected
 
     path = request.env['PATH_INFO']
     path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1
+    swift[:uri] = path
     path = path.gsub /\/\d+/, ''
     page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
 
     if page && path.length >= page.path.length
       swift[:slug] = path.gsub /^#{page.path}/, ''
+      swift[:module_root] = page.path
       case swift[:slug][0]
       when nil
         nil
