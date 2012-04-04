@@ -15,21 +15,6 @@
 .form input.check_box {
   vertical-align: middle;
 }
-form table tr.level-0 td.slug {
-padding-left: 1em;
-}
-form table tr.level-1 td.slug {
-padding-left: 3em;
-}
-form table tr.level-2 td.slug {
-padding-left: 5em;
-}
-form table tr.level-3 td.slug {
-padding-left: 7em;
-}
-form table tr.level-4 td.slug {
-padding-left: 9em;
-}
 form input[id$=title] {
   width: 99%;
 }
@@ -59,4 +44,8 @@ form .horizontal textarea {
   width: 210px;
   display: inline-block;
   vertical-align: top;
+}
+.form .as_file img {
+  max-width: 200px;
+  max-height: 200px;
 }

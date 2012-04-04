@@ -1,8 +1,8 @@
 GIT
   remote: http://github.com/jnicklas/carrierwave.git
-  revision: 34aa12e9c6937cf0cdf9d447edccc6e25b9cbe6e
+  revision: 9c6826394506bf41c94a30e41657a047bb099251
   specs:
-    carrierwave (0.6.0)
+    carrierwave (0.6.1)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
 
@@ -45,6 +45,14 @@ GIT
     padrino-mailer (0.10.6)
       mail (~> 2.3.0)
       padrino-core (= 0.10.6)
+
+GIT
+  remote: http://github.com/ujifgc/rack-datamapper-session.git
+  revision: 3053c97f0bb5b39c34ed737ddcee53dfcc5ce110
+  specs:
+    rack-datamapper-session (0.4)
+      dm-core (>= 0.9.10)
+      rack (>= 1.3)
 
 GIT
   remote: http://github.com/ujifgc/redcarpet.git
@@ -96,6 +104,7 @@ GEM
       data_objects (= 0.10.8)
     fastercsv (1.5.4)
     haml (3.1.4)
+    hashie (1.2.0)
     hike (1.2.1)
     http_router (0.10.2)
       rack (>= 1.0.0)
@@ -110,13 +119,23 @@ GEM
     mini_magick (3.4)
       subexec (~> 0.2.1)
     multi_json (1.0.4)
+    omniauth (1.0.3)
+      hashie (~> 1.2)
+      rack
+    omniauth-openid (1.0.1)
+      omniauth (~> 1.0)
+      rack-openid (~> 1.3.1)
     padrino-sprockets (0.0.1)
       sprockets
     polyglot (0.3.3)
     rack (1.4.1)
+    rack-openid (1.3.1)
+      rack (>= 1.1.0)
+      ruby-openid (>= 2.1.8)
     rack-protection (1.2.0)
       rack
     rake (0.9.2.2)
+    ruby-openid (2.1.8)
     russian (0.6.0)
       i18n (>= 0.5.0)
     sinatra (1.3.2)
@@ -158,8 +177,12 @@ DEPENDENCIES
   dm-validations
   haml
   mini_magick
+  omniauth
+  omniauth-openid
   padrino!
   padrino-sprockets
+  rack-datamapper-session!
+  rack-openid
   rake
   redcarpet!
   russian

@@ -40,7 +40,7 @@
     );
     return false;
   });
-  $().alert();
+  //$(".alert").alert();
 });
 
 multipleOp = function(el) {

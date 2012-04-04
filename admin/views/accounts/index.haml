@@ -1,0 +1,12 @@
+= partial 'base/index_operations'
+%form.inner.multiple#multiple-accounts{ :action => url(:accounts, :index)/:multiple, :method => :post }
+  %table.table
+    %thead
+      %tr
+        %th.title= mat(:object, :name)
+        %th.last= check_box_tag :check_all, :checked => false
+    %tbody
+      - @objects.each do |object|
+        %tr
+          %td= mk_edit object
+          %td.last= mk_checkbox object

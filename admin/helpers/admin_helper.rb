@@ -40,6 +40,7 @@ Admin.helpers do
 
     :fragments => 'th',
     :layouts   => 'cog',
+    :accounts  => 'user',
   }
 
   def mk_icon( op )

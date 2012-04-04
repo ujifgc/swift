@@ -59,6 +59,7 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
 .tabs-left .nav-tabs {
     float: none;
     margin-right: 0;
+    border-right: 0;
 }
 .nav-tabs li + .nav-header {
     margin-top: 18px;
@@ -66,7 +67,9 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
 .nav-tabs .nav-header {
     line-height: 24px;
 }
-
+.sidebar.tabs-left {
+    border-right: 1px solid #DDDDDD;
+}
 
 /* multidimentional tabs for a sheet */
 .nav-tabs.operations {

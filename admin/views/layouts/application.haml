@@ -20,10 +20,10 @@
           = link_to 'Swift Admin', url(:base_index), :class => 'brand'
           = link_to 'Logout', url(:sessions, :destroy), :method => :delete, :class => 'btn btn-primary pull-right'
     .container-fluid
-      - [:error, :warning, :success].each do |type|
+      - [:error, :warning, :success, :notice].each do |type|
         - next  if flash[type].blank?
-        .alert-message(class=type data-alert=true)
-          = link_to '&times;', '#', :class => :close
+        .alert.alert-message{ :class => 'alert-' + (type == :notice ? :info : type).to_s,  :"data-alert" => true }
+          = link_to '&times;', 'javascript:;', :class => :close, :"data-dismiss" => "alert"
           = flash[type]
       -# if @object && @object.dirty?
         - err = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')

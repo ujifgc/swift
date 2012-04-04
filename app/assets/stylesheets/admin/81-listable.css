@@ -25,3 +25,18 @@
   padding: 8px;
   display: block;
 }
+.table tr.level-1 td:first-child {
+  padding-left: 2em;
+}
+.table tr.level-2 td:first-child {
+  padding-left: 4em;
+}
+.table tr.level-3 td:first-child {
+  padding-left: 6em;
+}
+.table tr.level-4 td:first-child {
+  padding-left: 8em;
+}
+.table tr.level-5 td:first-child {
+  padding-left: 10em;
+}

@@ -44,7 +44,7 @@ module Padrino
               caption += ' (' + I18n::t('asset_uploaded') + ')'
               content_tag( :div ) do
                 if file.content_type.index('image')
-                  image_tag(file.url)
+                  link_to image_tag(file.url), file.url, :rel => 'box-image'
                 else
                   link_to file.url, file.url
                 end
@@ -67,7 +67,7 @@ module Padrino
             text_field field, opts
           end
           error = @object.errors[field]  rescue []
-          controls += content_tag( :span, error.join(','), :class => 'help-inline' )  if error.any?          
+          controls += content_tag( :span, error.join(', '), :class => 'help-inline' )  if error.any?          
           html = label( field, options[:label].merge( :class => 'control-label', :caption => caption ))
           html += ' ' + @template.content_tag( :div, controls, :class => :controls )
           html += ' ' + @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?

@@ -50,3 +50,9 @@ th.action  { width: 110px; text-align:center }
 .sidebar li [class^="icon-"], [class*=" icon-"], .operations li [class^="icon-"], [class*=" icon-"] {
   width: 18px;
 }
+.alert {
+  position: absolute;
+  top: -3em;
+  left: 50%;
+  z-index: 2000;
+}

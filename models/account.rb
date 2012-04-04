@@ -29,7 +29,7 @@ class Account
 
   # relations
   has n, :folders
-  property :group_id, Integer, :default => 6
+  property :group_id, Integer, :default => 6, :writer => :protected
   belongs_to :group, 'Account', :required => false
 
   # hookers
@@ -58,6 +58,10 @@ class Account
     self.group ? self.group.role : self.name
   end
 
+  def title
+    group_id ? "#{name} #{surname}" : I18n.t("group.#{name}")
+  end
+
   def has_password?(password)
     ::BCrypt::Password.new(crypted_password) == password
   end
@@ -72,10 +76,29 @@ class Account
     get(id) rescue nil
   end
 
+  def self.create_with_omniauth(auth)
+    name = email = ''
+    name = auth['info']['name']
+    email = auth['info']['email']
+    raise Exception  if name.blank?
+
+    email = "auto.#{auth['uid']}.#{auth['provider']}@localhost"  if email.blank?
+    account = Account.first :uid => auth['uid'], :provider => auth['provider']
+    return account  if account
+
+    pwd = Digest::MD5.hexdigest(rand.to_s)[4..11]
+    account = Account.create :provider => auth['provider'],
+                             :uid      => auth['uid'],
+                             :name     => name,
+                             :email    => email,
+                             :password => pwd,
+                             :password_confirmation => pwd
+  end
+
 private
 
   def password_required
-    crypted_password.blank? || password.present?
+    uid.blank? && (crypted_password.blank? || password.present?)
   end
 
   def encrypt_password

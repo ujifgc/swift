@@ -39,6 +39,13 @@ ru:
       form:
         save: Сохранить
         back: Назад
+  group:
+    admin: Администратор
+    designer: Дизайнер
+    auditor: Аудитор
+    editor: Редактор
+    robot: Робот
+    user: Пользователь
   models:
     object:
       attributes:
@@ -65,6 +72,14 @@ ru:
         rubric_id: Лента
         code: Код
         fields: Дополнительные поля
+        name: Имя
+        surname: Фамилия
+        email: E-mail
+        provider: Регистратор
+        uid: Идентификатор
+        group_id: Группа
+        password: Пароль
+        password_confirmation: Пароль ещё раз
     blocks:
       name: блоки
     block:
