@@ -9,7 +9,7 @@
         %th.last= check_box_tag :check_all, :checked => false
     %tbody
       - @objects.each do |object|
-        %tr
+        %tr{ :class => 'level-'+(object.path.split('/').length-1).to_s }
           %td= mk_edit object
           %td= object.slug
           %td= object.path

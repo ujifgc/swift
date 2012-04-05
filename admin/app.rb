@@ -2,7 +2,8 @@ MODULE_GROUPS = {
   :content => %W(pages blocks assets images folders),
   :news    => %W(news_articles news_rubrics),
   :cat     => %W(cat_nodes cat_cards cat_groups),
-  :admin   => %W(layouts fragments accounts),
+  :design  => %W(layouts fragments),
+  :admin   => %W(accounts),
 }
 BONDABLE_CHILDREN = [
   Page,

@@ -1,7 +1,7 @@
 Admin.controllers :cat_groups do
 
   get :index do
-    @objects = CatGroup.all
+    @objects = CatGroup.all :order => :path
     render 'cat_groups/index'
   end
 

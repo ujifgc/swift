@@ -4,9 +4,11 @@
     %thead
       %tr
         %th.title= mat(:object, :name)
+        %th= mat(:object, :role)
         %th.last= check_box_tag :check_all, :checked => false
     %tbody
       - @objects.each do |object|
         %tr
           %td= mk_edit object
+          %td= object.group.title
           %td.last= mk_checkbox object

@@ -8,9 +8,10 @@ ru:
       or_multiple: "или несколько"
       modules:
         content: Содержимое сайта
-        admin: Вёрстка и дизайн
+        admin: Настройки
         cat: Каталог
         news: Новостные ленты
+        design: Вёрстка и дизайн
       menu:
         help: Быстрые действия
         pages: Страницы
@@ -24,6 +25,8 @@ ru:
         news_rubrics: Ленты
         cat_nodes: Ресурсы
         cat_cards: Карточки
+        cat_groups: Группы
+        accounts: Пользователи
         add:
           images: Добавить картинки
           assets: Добавить файлы
@@ -80,6 +83,7 @@ ru:
         group_id: Группа
         password: Пароль
         password_confirmation: Пароль ещё раз
+        role: Группа
     blocks:
       name: блоки
     block:
