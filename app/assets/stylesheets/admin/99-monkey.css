@@ -98,3 +98,12 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
 .btn-primary, .btn-primary:hover, .btn-warning, .btn-warning:hover, .btn-danger, .btn-danger:hover, .btn-success, .btn-success:hover, .btn-info, .btn-info:hover, .btn-inverse, .btn-inverse:hover {
   color: #fff !important;
 }
+
+/* bootstrap: modal dialog */
+.modal {
+  top: 0;
+  margin-top: 0;
+  max-height: 100%;
+}
+.modal-body {
+}

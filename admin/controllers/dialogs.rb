@@ -50,7 +50,8 @@ Admin.controllers :dialogs do
   end
 
   get :bonds, :with => [:parent_model, :parent_id] do
-    render "dialogs/bonds", :layout => :ajax
+    @title = pat('dialog.title.bonds')
+    render "dialogs/bonds", :layout => :dialog
   end
 
   get :bond, :with => [:parent_model, :parent_id] do

@@ -19,28 +19,23 @@
   $('input.datetime').each(function() {
     $(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );
   });
-  $('a.dialog').click(function() {
+  $('a[data-toggle=modal]').click(function() {
     var url = this.href;
-    var title = this.title ? this.title : '';
-    var dialog = $('<div id="modal-dialog" title="'+title+'"style="display:none" class="loading"></div>').appendTo('body');
+    var dialog = $('<div id="modal-dialog" class="modal hide loading"></div>').appendTo('body');
     this.dialog = dialog;
-    dialog.dialog({
-      close: function(event, ui) {
-        dialog.remove();
-      },
-      width: 800,
-      minHeight: 600,
-      modal: true
-    });
     dialog.load(
       url,
       function (responseText, textStatus, XMLHttpRequest) {
         dialog.removeClass('loading');
       }
     );
+    dialog.modal('show');
+    dialog.on('hidden', function () {
+      dialog.remove();
+    });
     return false;
   });
-  //$(".alert").alert();
+  $('textarea').TextAreaResizer();
 });
 
 multipleOp = function(el) {
@@ -92,35 +87,52 @@ cloneControlGroup = function(el) {
   g.before(c);
 };
 
+addCheckboxes = function(selector) {
+  var links = $(selector).find('a.pick');
+  links.each(function() {
+    var checked = $(this).data('bound').toString() === 'true' ? 'checked=checked' : '';
+    var name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
+    $(this).after('<input type=checkbox '+checked+' name='+name+' />');
+  });
+  links.click(function(event) {
+    $(this).siblings(':checkbox').toggleCheckbox().change();
+  });
+  links.siblings(':checkbox').change(function(event) {
+    var checked = $(this).prop('checked');
+    var link = $(this).siblings('a.pick');
+    var data = link.data();
+    var selector = 'a.pick[data-model='+data.model+'][data-id='+data.id+']';
+    $('.active-bonds '+selector).parent().remove();
+    if (checked) {
+      var newlink = link.clone();
+      newlink.html(link.text() + '(' + data.model + ')');
+      $('.active-bonds').append('<div class=item><a class=unbind href="javascript:;" onclick="bond_uncheck()"><img src="/images/icons/cancel_16.png"/></a></div>').find('div').last().prepend(newlink);
+    }
+  });
+}
+
+bindTabs = function(selector) {
+  $(selector).tab();
+  $(selector).find('li.tab.active a').data('cached', 1);
+  var url = $(selector).find('li.tab.active a').data('url');
+  var pane = $(selector).next().find('.tab-pane.active');
+  pane.load(url, function() {
+    addCheckboxes(pane);
+  });
+  $(selector).on('show', function(e) {
+    if ($(e.target).data('cached')) return;
+    var url = $(e.target).data('url');
+    var pane = $($(e.target).attr('href'));
+    pane.load(url, function() {
+      $(e.target).data('cached', 1);
+      addCheckboxes(pane);
+    });
+  });
+};
+
 //Bondables
 bindDialogBonds = function() {
-  $('#tabs-bondables').tabs({ cache: true });
-  $('#tabs-bondables').bind( "tabsload", function(event, ui) {
-    var links = $(ui.panel).find('a.pick');
-    links.each(function() {
-      var checked = $(this).data('bound').toString() === 'true' ? 'checked=checked' : '';
-      var name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
-      $(this).after('<input type=checkbox '+checked+' name='+name+' />');
-    });
-    links.click(function(event) {
-      $(this).siblings(':checkbox').toggleCheckbox().change();
-    });
-    links.siblings(':checkbox').change(function(event) {
-      var checked = $(this).prop('checked');
-      var link = $(this).siblings('a.pick');
-      var data = link.data();
-      var selector = 'a.pick[data-model='+data.model+'][data-id='+data.id+']';
-      $('.active-bonds '+selector).parent().remove();
-      if (checked) {
-        var newlink = link.clone(); //.find('.image').remove().end()
-        newlink.html(link.text() + '(' + data.model + ')');
-        $('.active-bonds').append('<div class=item><a class=unbind href="javascript:;" onclick="bond_uncheck()"><img src="/images/icons/cancel_16.png"/></a></div>').find('div').last().prepend(newlink);
-      }
-    });
-  });
-  $('#tabs-bondables').bind( "tabsselect", function(event, ui) {
-    if ($(ui.tab).data('model') !== 'Bond') return true;
-  });
+  bindTabs('#tabs-bondables');
 
   $('a.save-dialog').click(function() {
     var alldata = {};

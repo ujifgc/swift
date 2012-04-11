@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/jnicklas/carrierwave.git
-  revision: c7826c56b6990e19f3c15ad427edafc2a9c2eef8
+  revision: 38f9cccc36364898ac692058cb89a0eed15fd6bb
   specs:
     carrierwave (0.6.1)
       activemodel (>= 3.2.0)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: http://github.com/ujifgc/padrino-framework.git
-  revision: d70cb45eccde87a16aca154ecd5856c5a9ea2fc0
+  revision: f2055485950739a2d1776ce54def851b03e2503b
   specs:
     padrino (0.10.6)
       padrino-admin (= 0.10.6)

@@ -2,25 +2,26 @@
 }
 .dialog-images .item {
   display: inline-block;
-  width: 200px;
+  width: 120px;
   Rheight: 150px;
   Rpadding: 5px;
   overflow: hidden;
-  margin: 5px;
+  margin: 2px;
   vertical-align: top;
   Rbackground: #333;
-  border-radius: 4px;
+  border-radius: 2px;
   border: 1px solid #DDDDDD;
   text-align: center;
 }
 .dialog-images .item img.preview {
-  max-width: 200px;
-  max-height: 150px;
+  max-width: 100px;
+  max-height: 75px;
   vertical-align: middle;
 }
 .dialog-images .item .image {
-  width: 200px;
-  height: 150px;
+  width: 120px;
+  height: 75px;
+  padding: 3px 0 0 0;
 }
 .dialog-images .item .link {
   display: none;
@@ -33,9 +34,6 @@
 }
 .dialog-pages div {
   padding-left: 1em;
-}
-.dialog-buttons {
-  padding: 1em 0 0 0;
 }
 div.item a.unbind img {
   vertical-align: middle;
@@ -52,4 +50,14 @@ a.pick + input[type=checkbox] {
   position: absolute;
   right: 0.3em;
   bottom: 0.3em;
+}
+div.grippie {
+  background:#EEEEEE url(/images/grippie.png) no-repeat scroll center 2px;
+  border-color:#DDDDDD;
+  border-style:solid;
+  border-width:0pt 1px 1px;
+  cursor:s-resize;
+  height:9px;
+  overflow:hidden;
+  margin-top: -2px;
 }

@@ -68,7 +68,7 @@ Admin.helpers do
   end
 
   def mk_dialog_op( op, link, opts={} )
-    link_to content_tag(:u, mk_icon(op) + pat(op)), link, opts.merge(:class => 'single dialog')
+    link_to content_tag(:u, mk_icon(op) + pat(op)), link, opts.merge(:class => 'single dialog', :'data-toggle' => :modal)
   end
 
   def mk_button_op( op, link )

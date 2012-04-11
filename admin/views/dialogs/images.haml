@@ -1,10 +1,25 @@
 ﻿.dialog-images
-  #tabs
-    %ul
-      - current_account.get_folders.with(:images).each do |folder|
-        %li= link_to folder.title, url(:dialogs, :folder, params.merge({:folder_id => folder.id, :object_type => :images}))
-      %li= link_to pat(:all), url(:dialogs, :folder, params.merge({:folder_id => :all, :object_type => :images}))
+  %ul.nav.nav-tabs#tabs-images
+    - tabs = current_account.get_folders.with(:images)
+    - @first = true
+    - tabs.each do |folder|
+      - data = { :url => url(:dialogs, :folder, params.merge({:folder_id => folder.id, :object_type => :images})), :toggle => :tab }
+      - if @first
+        - klass = 'active'
+        - @first = false
+      - else
+        - klass = ''
+      %li.tab{ :class => klass }= link_to folder.title, "##{folder.slug}", :data => data
+    %li.tab= link_to pat(:all), '#All', 'data-url' => url(:dialogs, :folder, params.merge({:folder_id => :all, :object_type => :images})), 'data-toggle' => :tab
+  .tab-content
+    - @first = true
+    - tabs.each do |folder|
+      - if @first
+        - klass = 'active'
+        - @first = false
+      - else
+        - klass = ''
+      .tab-pane{ :id => folder.slug, :class => klass }
+    .tab-pane#All
 :javascript
-  $(function() {
-    $('#tabs').tabs({ cache: true });
-  });
+  bindTabs('#tabs-images');

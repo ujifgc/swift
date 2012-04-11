@@ -58,4 +58,11 @@ class Page
     self.path == '/'
   end
 
+
+  validates_with_method :zip_code, :method => :in_the_right_location?
+
+  def in_the_right_location?
+    return [false, "You're in the wrong zip code"]
+  end
+
 end

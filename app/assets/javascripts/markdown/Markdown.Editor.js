@@ -1719,6 +1719,26 @@
             }
 
             var url = '/admin/dialogs/' + objectType + 's';
+            var dialog = $('<div class="modal fade loading hide" id="pick_'+objectType+'"></div>').appendTo('body');
+            // load remote content
+            var pick_close = function(){
+                pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
+                dialog.modal('hide');
+                return false;
+            }
+            dialog.load(
+                url,
+                function (responseText, textStatus, XMLHttpRequest) {
+                    // remove the loading class
+                    dialog.removeClass('loading');
+                    $( "#tabs" ).bind( "tabsload", function(event, ui) {
+                      dialog.find('a.pick').click(pick_close);
+                    });
+                    dialog.find('a.pick').click(pick_close);
+                }
+            );
+            dialog.modal('show');
+            /*
             // show a spinner or something via css
             var dialog = $('<div style="display:none" class="loading"></div>').appendTo('body');
             // open the dialog
@@ -1749,7 +1769,7 @@
                     dialog.find('a.pick').click(pick_close);
                 }
             );
-
+            */
             return true;
         }
     };

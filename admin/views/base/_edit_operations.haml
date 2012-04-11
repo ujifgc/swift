@@ -4,4 +4,5 @@
   - if !@object.new? && @object.respond_to?(:id)
     %li.active= mk_single_op :edit, url(@models, :edit, :id => @object.id)
     - if BONDABLE_PARENTS.include? @object.class
-      %li.toggle= mk_dialog_op :bind, url(:dialogs, :bonds, :parent_model => @object.class, :parent_id => @object.id), :title => pat('dialog.bind_objects')
+      %li.toggle
+        = mk_dialog_op :bind, url(:dialogs, :bonds, :parent_model => @object.class, :parent_id => @object.id), :title => pat('dialog.bind_objects')
