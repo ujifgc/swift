@@ -1,7 +1,11 @@
 Admin.controllers :assets do
 
   get :index do
-    @objects = Asset.all
+    filter = {}
+    unless params[:folder].blank?
+      filter[:folder] = Folder.by_slug params[:folder]
+    end
+    @objects = Asset.all filter
     render 'assets/index'
   end
 

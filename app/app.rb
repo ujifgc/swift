@@ -39,7 +39,7 @@ class Swift < Padrino::Application
     end
 
     @page.text = parse_uub( @page.text ).html
-    #params.reverse_merge!  !!!FIXME add page parameters
+    params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
     render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
   end
 

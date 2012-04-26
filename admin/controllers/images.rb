@@ -1,7 +1,11 @@
 Admin.controllers :images do
 
   get :index do
-    @objects = Image.all
+    filter = {}
+    unless params[:folder].blank?
+      filter[:folder] = Folder.by_slug params[:folder]
+    end
+    @objects = Image.all filter
     render 'images/index'
   end
 

@@ -8,6 +8,7 @@
 
 - allow :designer do
   = f.input :is_module, :as => :boolean
+  = f.input :params
 
 - allow :admin do
   = f.input :layout_id, :as => :select, :selected => @object.layout_id, :collection => Layout.all, :fields => [ :title, :id ], :include_blank => false

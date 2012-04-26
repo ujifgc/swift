@@ -25,7 +25,7 @@
         .alert.alert-message{ :class => 'alert-' + (type == :notice ? :info : type).to_s,  :"data-alert" => true }
           = link_to '&times;', 'javascript:;', :class => :close, :"data-dismiss" => "alert"
           = flash[type]
-      -# if @object && @object.dirty?
+      - if @object && @object.dirty?
         - err = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')
         - unless err.blank?
           .alert.alert-error= err

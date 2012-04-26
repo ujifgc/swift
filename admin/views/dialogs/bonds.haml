@@ -3,11 +3,11 @@
     %ul.nav.nav-tabs#tabs-bondables
       - data = { :url => url(:dialogs, :bond, params[:parent_model], params[:parent_id]), :model => 'Bond', :toggle => :tab, :cached => 1 }
       %li.tab.active= link_to 'Bond', '#Bond', :data => data
-      - BONDABLE_CHILDREN.each do |model|
-        %li.tab= link_to model.name, "##{model.name}", :'data-url' => url(:dialogs, model.name.underscore.pluralize.to_sym, params), :'data-toggle' => :tab
+      - BONDABLE_CHILDREN.each do |model_name|
+        %li.tab= link_to model_name, "##{model_name}", :'data-url' => url(:dialogs, model_name.underscore.pluralize.to_sym, params), :'data-toggle' => :tab
     .tab-content
       .tab-pane.active#Bond
-      - BONDABLE_CHILDREN.each do |model|
-        .tab-pane{ :id => model.name }
+      - BONDABLE_CHILDREN.each do |model_name|
+        .tab-pane{ :id => model_name }
 :javascript
   bindDialogBonds();

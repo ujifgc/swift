@@ -84,6 +84,7 @@ ru:
         password: Пароль
         password_confirmation: Пароль ещё раз
         role: Группа
+        params: Параметры
     blocks:
       name: блоки
     block:

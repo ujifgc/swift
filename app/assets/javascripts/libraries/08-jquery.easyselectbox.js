@@ -17,7 +17,6 @@
 			//Settings list and the default values
 			var defaults = {
 				className: 'easy-select-box',
-				speed:0//speed of opening and closing drop down in ms
 			};
 			
 			var options = $.extend(defaults, options);
@@ -65,20 +64,18 @@
 				//Attach click event
 				easySelect.click(function(e){
 					if($(easySelect).children('ul').is(':visible')){
-						$(easySelect).children('ul').slideUp(o.speed);
+						$(easySelect).children('ul').slideUp(0);
 						easySelect.css('z-index',0).removeClass('open');
 					} else {
-						
-
 						easySelectRegistry = $(document).data('easySelect');//get all easySelect in this document
 						if(easySelectRegistry!=null){
 							$.each(easySelectRegistry, function(){
 								opts = $(this).data('o');//use this easySelect's options
-								$(this).children('ul').slideUp(opts.speed);	
+								$(this).children('ul').slideUp(0);	
 								$(this).css('z-index',0).removeClass('open');
 							});
 						}
-						$(easySelect).children('ul').slideDown(o.speed);
+						$(easySelect).children('ul').slideDown(0);
 						easySelect.css('z-index',1).addClass('open');
 					}
 					e.stopPropagation();
@@ -92,7 +89,7 @@
 						$.each(easySelectRegistry, function(){
 							if($(this).children('ul').is(':visible')){
 								opts = $(this).data('o');//use this easySelect's options
-								$(this).removeClass('open').children('ul').slideUp(opts.speed);	
+								$(this).removeClass('open').children('ul').slideUp(0);	
 							}
 						});
 					}

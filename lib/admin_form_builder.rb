@@ -17,7 +17,7 @@ module Padrino
           morphable = options.delete :morphable
           controls = case options.delete(:as)
           when :text, :textarea, :text_area
-            opts = { :class => 'text_area' }
+            opts = { :class => 'text_area resizable' }
             if options[:markdown]
               opts[:class] += ' markdown'
               options[:label].merge!( :for => "wmd-input-#{@object.class.name.underscore}_#{field}" )
@@ -33,7 +33,16 @@ module Padrino
             password_field field, :class => :password_field
           when :select
             type = 'select'
-            select field, { :class => :select }.merge( options )
+            tag = select field, { :class => :select }.merge( options )
+            parent_field = field.to_s.gsub(/_id$/,'').to_sym
+            add = if @object.class.relationships[parent_field]
+              parent_model = @object.class.relationships[parent_field].parent_model 
+              #mk_dialog_op :plus, "/dialogs/create_parent/?parent_model=#{parent_model}", :title => I18n.t('padrino.admin.dialog.add_parent') # !!!FIX the url
+              link_to content_tag( :i, '', :class => 'icon-plus' ) + ' ' + content_tag(:u, I18n.t('padrino.admin.dialog.add_parent')), "/admin/dialogs/create_parent/?parent_model=#{parent_model}&field=#{field}", :class => 'single dialog', :'data-toggle' => :modal
+            else
+              ''
+            end
+            tag + ' ' + add
           when :boolean, :checkbox
             type = 'checkbox'
             label( field, :caption => check_box( field, :class => :check_box ), :class => :checkbox)

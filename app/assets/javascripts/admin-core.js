@@ -17,7 +17,7 @@
   $('select').each(function() { $(this).easySelectBox() });
   bindCatCards();
   $('input.datetime').each(function() {
-    $(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );
+    //$(this).datetimepicker( { dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm' } );
   });
   $('a[data-toggle=modal]').click(function() {
     var url = this.href;
@@ -35,7 +35,7 @@
     });
     return false;
   });
-  $('textarea').TextAreaResizer();
+  $('textarea.resizable').TextAreaResizer();
 });
 
 multipleOp = function(el) {
@@ -158,5 +158,31 @@ bindDialogBonds = function() {
   });
   $('a.cancel-dialog').click(function() {
     $('#modal-dialog').dialog('close');
+  });
+};
+
+//Create parent
+bindDialogCreateParent = function() {
+  var form = $('#modal-dialog').find('form');
+  $('a.save-dialog').click(function() {
+    $.ajax({
+      type: 'POST',
+      url: form.prop('action'),
+      data: form.serialize(),
+      success: function(jqXHR, textStatus, errorThrown) {
+        if (typeof jqXHR === 'string') {
+          alert(jqXHR);
+        }else{
+          $('select[id$='+jqXHR.field+']')
+            .append('<option value="'+jqXHR.key+'">'+jqXHR.value+'</option>')
+            .val(jqXHR.key)
+            .siblings('.easy-select-box').remove();
+          $('select[id$='+jqXHR.field+']').easySelectBox();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert(textStatus);
+      }
+    });
   });
 };

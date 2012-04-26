@@ -1,4 +1,12 @@
 = partial 'base/index_operations'
+%ul.nav.nav-tabs.folders
+  - klass = params[:folder].blank? && 'active'
+  %li{ :class => klass }
+    = link_to pat(:all), url(:images, :index)
+  - current_account.get_folders.with(:images).each do |folder|
+    - klass = folder.slug == params[:folder] && 'active'
+    %li{ :class => klass }
+      = link_to folder.title, url(:images, :index, :folder => folder.slug)
 %form.inner.multiple#multiple-images{ :action => url(:images, :index)/:multiple, :method => :post }
   %table.table
     %thead
