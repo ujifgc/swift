@@ -1,16 +1,23 @@
 = partial 'base/index_operations'
 %form.inner.multiple#multiple-news_articles{ :action => url(:news_articles, :index)/:multiple, :method => :post }
-  %table.table
+  %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead
       %tr
+        %th
         %th= mat(:object, :title)
         %th= mat(:object, :rubric_id)
         %th= mat(:object, :publish_at)
-        %th.last= check_box_tag :check_all, :checked => false
     %tbody
       - @objects.each do |object|
         %tr
+          %td.last= mk_checkbox object
           %td= mk_edit object
           %td= object.news_rubric.title
           %td.nowrap= object.publish_at.kind_of?(DateTime) ? I18n.l( object.publish_at, :format => :date ) : ''
-          %td.last= mk_checkbox object
+    %tfoot
+      %tr
+        %th.last= check_box_tag :check_all, :checked => false
+        %th
+        %th
+        %th
+= partial 'base/index_operations_bottom'

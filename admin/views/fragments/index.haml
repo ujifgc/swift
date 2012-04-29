@@ -2,15 +2,21 @@
 %form.inner.multiple#multiple-fragments{ :action => url(:fragments, :index)/:multiple, :method => :post }
   - [:basics, :fragments].each do |var|
     - @objects = instance_variable_get :"@#{var}"
-    %table.table
+    %table.table{ :class => @objects.length > 15 && 'smart' }
       %thead
         %tr
+          %th
           %th.first= mat(:object, :id)
           %th= mat(:object, :title)
-          %th.last= check_box_tag :check_all, :checked => false
       %tbody
         - @objects.each do |object|
           %tr
+            %td.last= mk_checkbox object
             %td.first= link_to object.id, url(:fragments, :edit, :id => object.id)
             %td= mk_edit object
-            %td.last= mk_checkbox object
+      %tfoot
+        %tr
+          %th.last= check_box_tag :check_all, :checked => false
+          %th
+          %th
+= partial 'base/index_operations_bottom'

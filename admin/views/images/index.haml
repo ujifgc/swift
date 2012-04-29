@@ -8,17 +8,24 @@
     %li{ :class => klass }
       = link_to folder.title, url(:images, :index, :folder => folder.slug)
 %form.inner.multiple#multiple-images{ :action => url(:images, :index)/:multiple, :method => :post }
-  %table.table
+  %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead
       %tr
+        %th
         %th.title= mat(:object, :title)
         %th.title= mat(:object, :folder_id)
         %th.file= mat(:object, :file)
-        %th.last= check_box_tag :check_all, :checked => false
     %tbody
       - @objects.each do |object|
         %tr
+          %td.last= mk_checkbox object
           %td= mk_edit object
           %td.nowrap= object.folder && object.folder.title
           %td.nowrap= link_to object.file.size.as_size + " #{File.extname object.file.url}", object.file.url, :rel => 'box-image'
-          %td.last= mk_checkbox object
+    %tfoot
+      %tr
+        %th.last= check_box_tag :check_all, :checked => false
+        %th
+        %th
+        %th
+= partial 'base/index_operations_bottom'

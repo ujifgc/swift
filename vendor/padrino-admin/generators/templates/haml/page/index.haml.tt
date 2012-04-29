@@ -3,10 +3,15 @@
   %table.table
     %thead
       %tr
+        %th
         %th.first= mat(:object, :id)
-        %th.last= check_box_tag :check_all, :checked => false
     %tbody
       - @objects.each do |object|
         %tr
-          %td.first= link_to object.id, url(:<%= @orm.name_plural %>, :edit, :id => object.id)
           %td.last= mk_checkbox object
+          %td.first= link_to object.id, url(:<%= @orm.name_plural %>, :edit, :id => object.id)
+    %tfoot
+      %tr
+        %th.last= check_box_tag :check_all, :checked => false
+        %th
+= partial 'base/index_operations_bottom'

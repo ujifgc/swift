@@ -9,6 +9,32 @@
   $('a.multiple').click(function(){
     multipleOp(this);
   });
+
+  // datatables
+
+/* Table initialisation */
+  var cols = [ { "sType": "by-data" } ];
+  for ( var i = $('.multiple table.table tbody tr').first().children().length; i > 1; i--) cols.push(null);
+  $('.multiple table.smart').dataTable( {
+    "sDom": "<'page-filter'rf>t<'page-control'<'inline pick-page'p><'hide length'l>>",
+    "sPaginationType": "bootstrap",
+    "bStateSave": true,
+	"oLanguage": {
+      "sLengthMenu": "_MENU_",
+      "sSearch": "Фильтр: ",
+      "oPaginate": {
+        "sNext": "",
+        "sPrevious": ""
+      }
+	},
+	"aoColumns": cols,
+	"aLengthMenu": [[15, -1], [15, "Все"]],
+	"iDisplayLength": 15
+  } );
+  $('.dataTables_length').parent().after('<div class="inline pick-length"><ul class="nav nav-pills"><li class="nav-header">Объектов на странице:</li><li><a href="javascript:;" onclick="pickLength(this)" data-length="15">15</a></li><li><a href="javascript:;" onclick="pickLength(this)" data-length="-1">Все</a></li></ul></div>');
+  var len = $('table.table').dataTableSettings[0]._iDisplayLength;
+  $('.pick-length a[data-length='+len+']').parent().addClass('active');
+
   $('a.single.button_to').click(function(){
     singleOp(this);
   });
@@ -37,6 +63,18 @@
   });
   $('textarea.resizable').TextAreaResizer();
 });
+
+pickLength = function(e) {
+  var len = $(e).data('length');
+  if (len == -1) {
+    $('.inline .pagination').hide();
+  }else{
+    $('.inline .pagination').show();
+  }
+  $('.dataTables_length select').val(len).change();
+  $('.pick-length li').removeClass('active');
+  $(e).parent().addClass('active');
+};
 
 multipleOp = function(el) {
   if (el.disabled) return false;

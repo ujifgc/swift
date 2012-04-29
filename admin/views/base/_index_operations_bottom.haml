@@ -1,0 +1,7 @@
+﻿.tabs-below
+  %ul.nav.nav-tabs.operations
+    - allow :auditor do
+      - if @the_model.respond_to? :published
+        %li= mk_multiple_op :publish
+        %li= mk_multiple_op :unpublish
+      %li= mk_multiple_op :delete

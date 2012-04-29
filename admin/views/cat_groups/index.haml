@@ -1,16 +1,23 @@
 = partial 'base/index_operations'
 %form.inner.multiple#multiple-cat_groups{ :action => url(:cat_groups, :index)/:multiple, :method => :post }
-  %table.table
+  %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead
       %tr
+        %th
         %th= mat(:object, :title)
         %th= mat(:object, :slug)
         %th= mat(:object, :path)
-        %th.last= check_box_tag :check_all, :checked => false
     %tbody
       - @objects.each do |object|
         %tr{ :class => 'level-'+(object.path.split('/').length-1).to_s }
+          %td.last= mk_checkbox object
           %td= mk_edit object
           %td= object.slug
           %td= object.path
-          %td.last= mk_checkbox object
+    %tfoot
+      %tr
+        %th.last= check_box_tag :check_all, :checked => false
+        %th
+        %th
+        %th
+= partial 'base/index_operations_bottom'

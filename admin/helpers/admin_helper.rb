@@ -3,15 +3,15 @@ Admin.helpers do
     link_to target.title, url(target.class.storage_name.to_sym, :edit, :id => target.id), :class => :edit
   end
 
-  def mk_checkbox( target )
+  def mk_checkbox( target, sorter = nil )
     name = :"check_#{target.class.name.underscore}[#{target.id}]"
     content = mk_published( target ) + check_box_tag( name, :checked => false, :id => name )
-    content_tag :label, content, :for => name, :class => :checkbox
+    content_tag :label, content, :for => name, :class => :checkbox, :'data-sorter' => (sorter || target.id)
   end
 
   def mk_published( target )
     return ''  unless target.respond_to? :is_published
-    content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'eye-open' : 'eye-close') ) + ' '
+    content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'ok' : 'ban-circle') ) + ' '
   end
 
   ICONS = {
