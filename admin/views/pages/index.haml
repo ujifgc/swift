@@ -7,7 +7,7 @@
         %th= mat(:object, :title)
         %th= mat(:object, :slug)
         %th= mat(:object, :path)
-        %th.publish= mat(:object, :fragment)
+        %th= mat(:object, :fragment)
     %tbody
       - @k = 0
       = partial 'pages/tree', :locals => { :tree => @tree, :level => 0 }
