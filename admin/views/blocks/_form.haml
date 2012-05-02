@@ -1,5 +1,9 @@
 = f.input :title
+= f.input :type, :as => :select, :selected => @object.type, :options => Block::Types.map{|k,v|[mat(:object,"type_#{v}"),k]}, :include_blank => false
 ~ f.input :text, :as => :text, :markdown => true
 - allow :auditor do
   = f.input :slug
 = f.submits
+
+:javascript
+  bindBlockType();

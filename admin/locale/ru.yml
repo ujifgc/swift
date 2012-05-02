@@ -85,6 +85,10 @@ ru:
         password_confirmation: Пароль ещё раз
         role: Группа
         params: Параметры
+        type: Тип данных
+        type_table: Таблица
+        type_html: HTML
+        type_text: Текст
     blocks:
       name: блоки
     block:

@@ -7,6 +7,13 @@ class Block
   property :title,    String
   property :text,     Text
 
+  property :type,     Integer, :default => 0
+  Types = {
+    0 => :text,
+    1 => :html,
+    2 => :table
+  }
+
   sluggable!
   timestamps!
   userstamps!
@@ -17,5 +24,8 @@ class Block
   # hookers
 
   # instance helpers
+  def html?
+    self.type > 0
+  end
 
 end
