@@ -100,7 +100,7 @@
 					easySelect.children('.'+displayClass).html($(this).children('a').html());	
 					selectObj.children('option').removeAttr('selected');
 					selectObj.find('option').eq($(this).index()).attr('selected','selected');//mark the selected option
-					selectObj.change();
+                    selectObj.change();
 				});
     		});
     	}

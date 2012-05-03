@@ -224,3 +224,92 @@ bindDialogCreateParent = function() {
     });
   });
 };
+
+bindBlockType = function() {
+  $.fn.editable.defaults.placeholder = '&nbsp;';
+  var select = $('select[id$=block_type]');
+  var area = $('textarea[id$=block_text]');
+  var controls = area.closest('.controls');
+  controls.after('<div class="table controls">' + 
+    '<div class="inline vtop wrapper"></div><div class="inline">' +
+      '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-plus"></i></a>' +
+      '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-minus"></i></a>' +
+      '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-bold"></i></a>' +
+    '</div><div class="block">' +
+      '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-plus"></i></a>' +
+      '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-minus"></i></a>' +
+      '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-bold"></i></a>' +
+    '</div></div>');
+  var table = controls.siblings('div.table').find('.wrapper');
+
+  chTable = function(e) {
+    var op = $(e).find('i')[0].className;
+    var tg = $(e).parent()[0].className;
+    var the_table = table.find('table');
+    switch (tg) {
+    case 'inline':
+      if (op == 'icon-plus') {
+        the_table.find('tr').append('<td></td>');
+      }else if (op == 'icon-minus') {
+        if (the_table.find('tr td').length > 1)
+          the_table.find('tr td:last-child').remove();
+      }
+      edifyTable();
+      break;
+    case 'block':
+      if (op == 'icon-plus') {
+        var row = '<tr>';
+        for (var i = the_table.find('tr:last-child td').length; i > 0; i--) {
+          row += '<td></td>';
+        }
+        row += '</tr>';
+        the_table.append(row);
+      }else if (op == 'icon-minus') {
+        if (the_table.find('tr').length > 1)
+          the_table.find('tr:last-child').remove();
+      }
+      edifyTable();
+      break;
+    }
+  };
+
+  edifyTable = function() {
+    table.find('table td, table.th').click(function() {
+      $('.btn-primary').attr('disabled','disabled');
+    }).editable(function(value, settings) {
+      return value;
+    }, {
+      onblur: "submit",
+      callback: function(value, settings) {
+        $('.btn-primary').removeAttr('disabled');
+        area.val(table.html());
+      }
+    });
+  };
+
+  select.change(function() {
+    var html = area.val();
+    var wmdpanel = controls.find('[id^=wmd-button-bar]');
+    switch (select.find('option[selected]').val()) {
+    case "0":
+      controls.show();
+      wmdpanel.show();
+      table.hide();
+      break;
+    case "1":
+      controls.show();
+      wmdpanel.hide();
+      table.hide();
+      break;
+    case "2":
+      controls.hide();
+      table.show();
+      table.html(html.indexOf('table') == -1 ? '<table><tr><td>Новая таблица</table>' : html);
+      edifyTable();
+      break;
+    }
+  });
+  $(function() {
+    select.change();
+  });
+};

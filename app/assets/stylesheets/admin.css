@@ -63,3 +63,6 @@ th.action  { width: 110px; text-align:center }
   float: none;
   *float: left;
 }
+.vtop {
+  vertical-align: top;
+}

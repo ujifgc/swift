@@ -49,3 +49,16 @@ form .horizontal textarea {
   max-width: 200px;
   max-height: 200px;
 }
+.controls.table table form {
+  margin: 0; padding: 0;
+}
+.controls.table table form input {
+  margin: -5px;
+}
+.controls.table table td, .controls.table table th {
+  min-width: 120px;
+  min-height: 17px;
+}
+.controls.table table td:hover, .controls.table table th:hover {
+  background-color: #eee;
+}
