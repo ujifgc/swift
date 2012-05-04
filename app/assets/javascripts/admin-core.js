@@ -283,7 +283,9 @@ bindBlockType = function() {
       onblur: "submit",
       callback: function(value, settings) {
         $('.btn-primary').removeAttr('disabled');
-        area.val(table.html());
+        var clone = table.clone();
+        clone.find('table').removeClass('table table-bordered');
+        area.val(clone.html().replace(" class=\"\"", ''));
       }
     });
   };
@@ -305,7 +307,8 @@ bindBlockType = function() {
     case "2":
       controls.hide();
       table_controls.show();
-      table.html(html.indexOf('table') == -1 ? '<table><tr><td>Новая таблица</table>' : html);
+      table.html(html.indexOf('table') == -1 ? '<table class="table table-bordered"><tr><td>Новая таблица</table>' : html);
+      table.find('table').addClass('table table-bordered');
       edifyTable();
       break;
     }
