@@ -18,7 +18,10 @@ class Block
   timestamps!
   userstamps!
 
-  #relations
+  # validations
+  validates_presence_of :title
+
+  # relations
   belongs_to :folder, :required => false
 
   # hookers

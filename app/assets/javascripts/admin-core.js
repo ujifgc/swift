@@ -241,6 +241,7 @@ bindBlockType = function() {
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-bold"></i></a>' +
     '</div></div>');
   var table = controls.siblings('div.table').find('.wrapper');
+  var table_controls = table.parent();
 
   chTable = function(e) {
     var op = $(e).find('i')[0].className;
@@ -294,16 +295,16 @@ bindBlockType = function() {
     case "0":
       controls.show();
       wmdpanel.show();
-      table.hide();
+      table_controls.hide();
       break;
     case "1":
       controls.show();
       wmdpanel.hide();
-      table.hide();
+      table_controls.hide();
       break;
     case "2":
       controls.hide();
-      table.show();
+      table_controls.show();
       table.html(html.indexOf('table') == -1 ? '<table><tr><td>Новая таблица</table>' : html);
       edifyTable();
       break;

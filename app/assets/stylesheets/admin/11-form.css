@@ -54,6 +54,7 @@ form .horizontal textarea {
 }
 .controls.table table form input {
   margin: -5px;
+  vertical-align: top;
 }
 .controls.table table td, .controls.table table th {
   min-width: 120px;
