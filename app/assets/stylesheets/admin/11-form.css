@@ -49,6 +49,9 @@ form .horizontal textarea {
   max-width: 200px;
   max-height: 200px;
 }
+.controls.table {
+  white-space: nowrap;
+}
 .controls.table table form {
   margin: 0; padding: 0;
 }

@@ -231,33 +231,75 @@ bindBlockType = function() {
   var area = $('textarea[id$=block_text]');
   var controls = area.closest('.controls');
   controls.after('<div class="table controls">' + 
-    '<div class="inline vtop wrapper"></div><div class="inline">' +
+    '<div class="inline vtop wrapper"></div><div class="btn-group inline">' +
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-plus"></i></a>' +
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-minus"></i></a>' +
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-bold"></i></a>' +
-    '</div><div class="block">' +
+    '</div><div class="btn-group block">' +
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-plus"></i></a>' +
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-minus"></i></a>' +
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-bold"></i></a>' +
     '</div></div>');
   var table = controls.siblings('div.table').find('.wrapper');
   var table_controls = table.parent();
+  table_controls.siblings('label').append('<div class="insert"><a class="btn btn-mini" onclick="insertTable(this)"><i class="icon-share"></i> Вставить</a>');
+  var insert = table_controls.siblings('label').find('.insert');
+
+  insertTable = function(e) {
+    var dialog = $('<div id="modal-dialog" class="modal hide">' + 
+      '<div class="modal-header"><a data-dismiss="modal" class="close">×</a><h3>Вставка таблицы</h3>Вставьте в поле ввода таблицу из табличного редактора или текстового процессора с помощью клавиш <b>Ctrl-V</b> или <b>Shift-Insert</b>, затем нажмите кнопку «Вставить».<br><b>Внимание!</b> Содержимое блока будет заменено новыми данными.</div>' +
+      '<div class="modal-body"><textarea id="spreadsheet-data"></textarea></div>' +
+      '<div class="modal-footer"><a href="javascript:;" data-dismiss="modal" class="btn btn-primary save-dialog">Вставить</a><a href="javascript:;" data-dismiss="modal" class="btn cancel-dialog">Отмена</a></div>' +
+    '</div>').appendTo('body');
+    dialog.find('a.save-dialog').click(function() {
+      var clipRows = $('textarea#spreadsheet-data').val().split(/[\r\n]+/);
+      for (i=0; i<clipRows.length; i++) {
+        clipRows[i] = clipRows[i].split(/\t/);
+      }
+      var newTable = '<table>';
+      for (i=0; i<clipRows.length - 1; i++) {
+        var cells = '';
+        for (j=0; j<clipRows[i].length; j++) {
+          cells += '<td>' + clipRows[i][j] + "</td>";
+        }
+        newTable += '<tr>' + cells + '</tr>';
+      }
+      newTable += '</table>';
+      if (newTable.length > 15) table.html(newTable);
+      edifyTable();
+      $('#modal-dialog').dialog('close');
+    });
+    dialog.find('a.cancel-dialog').click(function() {
+      $('#modal-dialog').dialog('close');
+    });
+    e.dialog = dialog;
+    dialog.modal('show');
+    dialog.on('hidden', function () {
+      dialog.remove();
+    });
+    return false;
+  };
 
   chTable = function(e) {
     var op = $(e).find('i')[0].className;
     var tg = $(e).parent()[0].className;
     var the_table = table.find('table');
-    switch (tg) {
-    case 'inline':
+    if (tg.match(/inline/)) {
       if (op == 'icon-plus') {
         the_table.find('tr').append('<td></td>');
       }else if (op == 'icon-minus') {
         if (the_table.find('tr td').length > 1)
           the_table.find('tr td:last-child').remove();
+      }else if (op == 'icon-bold') {
+        var tds = the_table.find('tr').first().html();
+        if (tds.match(/\<td(.*?)\>/))
+          tds = tds.replace(/\<td(.*?)\>/g, "<th$1>");
+        else
+          tds = tds.replace(/\<th(.*?)\>/g, "<td$1>");
+        the_table.find('tr').first().html(tds);
       }
       edifyTable();
-      break;
-    case 'block':
+    }else if (tg.match(/block/)) {
       if (op == 'icon-plus') {
         var row = '<tr>';
         for (var i = the_table.find('tr:last-child td').length; i > 0; i--) {
@@ -268,13 +310,24 @@ bindBlockType = function() {
       }else if (op == 'icon-minus') {
         if (the_table.find('tr').length > 1)
           the_table.find('tr:last-child').remove();
+      }else if (op == 'icon-bold') {
+        the_table.find('tr').each(function() {
+          var tds = $(this).html();
+          if (tds.match(/\<th(.*?)\>/))
+            tds = tds.replace(/\<th(.*?)\>/, "<td$1>");
+          else
+            tds = tds.replace(/\<td(.*?)\>/, "<th$1>");
+          $(this).html(tds);
+        });
       }
       edifyTable();
-      break;
     }
   };
 
   edifyTable = function() {
+    var clone = table.clone();
+    clone.find('table').removeClass('table table-bordered');
+    area.val(clone.html().replace(" class=\"\"", ''));
     table.find('table td, table.th').click(function() {
       $('.btn-primary').attr('disabled','disabled');
     }).editable(function(value, settings) {
@@ -290,6 +343,8 @@ bindBlockType = function() {
     });
   };
 
+  if (!area.val().match(/^\<table.*table\>$/) && area.val().length > 0 )
+    select.parents('.control-group').remove();
   select.change(function() {
     var html = area.val();
     var wmdpanel = controls.find('[id^=wmd-button-bar]');
@@ -298,15 +353,18 @@ bindBlockType = function() {
       controls.show();
       wmdpanel.show();
       table_controls.hide();
+      insert.hide();
       break;
     case "1":
       controls.show();
       wmdpanel.hide();
       table_controls.hide();
+      insert.hide();
       break;
     case "2":
       controls.hide();
       table_controls.show();
+      insert.show();
       table.html(html.indexOf('table') == -1 ? '<table class="table table-bordered"><tr><td>Новая таблица</table>' : html);
       table.find('table').addClass('table table-bordered');
       edifyTable();
