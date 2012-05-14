@@ -22,7 +22,7 @@ Swift.helpers do
     partial 'fragments/'+name, *args
   end
 
-  def parse_uub( str )
+  def parse_content( str )
     @parse_level = @parse_level.to_i + 1
     return t(:parse_level_too_deep)  if @parse_level > 3
 

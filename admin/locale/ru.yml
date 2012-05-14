@@ -89,6 +89,8 @@ ru:
         type_table: Таблица
         type_html: HTML
         type_text: Текст
+        is_single: Одиночный
+        html: HTML код
     blocks:
       name: блоки
     block:

@@ -26,7 +26,7 @@ gem 'rack-datamapper-session', :git => 'http://github.com/ujifgc/rack-datamapper
 
 gem 'padrino', :git => 'http://github.com/ujifgc/padrino-framework.git'
 
-# markdown
+# markdown and content parsing
 gem 'redcarpet', :git => 'http://github.com/ujifgc/redcarpet.git'
 
 # asset compressing

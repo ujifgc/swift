@@ -1,0 +1,47 @@
+Admin.controllers :codes do
+
+  get :index do
+    @objects = Code.all
+    render 'codes/index'
+  end
+
+  get :new do
+    @object = Code.new
+    render 'codes/new'
+  end
+
+  post :create do
+    @object = Code.new(params[:code])
+    if @object.save
+      flash[:notice] = pat('code.created')
+      redirect url(:codes, :index)
+    else
+      render 'codes/new'
+    end
+  end
+
+  get :edit, :with => :id do
+    @object = Code.get(params[:id])
+    render 'codes/edit'
+  end
+
+  put :update, :with => :id do
+    @object = Code.get(params[:id])
+    if @object.update(params[:code])
+      flash[:notice] = pat('code.updated')
+      redirect url(:codes, :index)
+    else
+      render 'codes/edit'
+    end
+  end
+
+  delete :destroy, :with => :id do
+    @object = Code.get(params[:id])
+    if @object.destroy
+      flash[:notice] = pat('code.destroyed')
+    else
+      flash[:error] = pat('code.not_destroyed')
+    end
+    redirect url(:codes, :index)
+  end
+end

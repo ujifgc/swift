@@ -1,4 +1,12 @@
 #coding:utf-8
+# timestamps!  creation and updating timestamps
+# userstamps!  creation and updating user ids
+# sluggable!   string shortcut for the object
+# publishable! publication flag and time
+# uploadable!  mounts uploader to file attribute
+# bondable!    to check bound?
+# amorphous!   stores custom data in json
+# recursive!   adds relation with self and path builder
 
 module SwiftDatamapper
   module ClassMethods
