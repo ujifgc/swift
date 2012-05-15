@@ -74,7 +74,7 @@ Admin.helpers do
 
   def mk_button_op( op, link )
     op = :delete  if op == :destroy
-    link_to mk_icon(op) + pat(op), link, :method => op, :class => 'single button_to', 
+    link_to mk_icon(op) + pat(op), link, :method => op, :class => 'single button_to'
   end
 
   def allow role
