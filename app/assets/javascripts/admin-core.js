@@ -33,7 +33,7 @@
   } );
   $('.dataTables_length').parent().after('<div class="inline pick-length"><ul class="nav nav-pills"><li class="nav-header">Объектов на странице:</li><li><a href="javascript:;" onclick="pickLength(this)" data-length="15">15</a></li><li><a href="javascript:;" onclick="pickLength(this)" data-length="-1">Все</a></li></ul></div>');
   $('.dataTables_filter input[type=text]').addClass('search-query');
-  if ($('table.table').length > 0 && typeof $('table.table').dataTableSettings == 'array') {
+  if ($('table.table').length > 0 && $('table.table').dataTableSettings[0]) {
     var len = $('table.table').dataTableSettings[0]._iDisplayLength;
     if (len == -1) $('.inline .pagination').hide(); else $('.inline .pagination').show();
     $('.pick-length a[data-length='+len+']').parent().addClass('active');

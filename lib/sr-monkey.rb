@@ -1,4 +1,4 @@
-﻿#coding:utf-8
+#coding:utf-8
 module Padrino
   module Admin
     module Helpers
@@ -20,6 +20,18 @@ module Padrino
         end
         alias :mt :model_translate
 
+      end
+      module AuthenticationHelpers
+        def login_required
+          unless allowed?
+            if logged_in?
+              redirect '/admin'
+            else
+              store_location! if store_location
+              access_denied
+            end
+          end
+        end
       end
     end
   end

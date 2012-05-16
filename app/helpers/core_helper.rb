@@ -44,11 +44,11 @@ Swift.helpers do
   end
 
   def parse_code( html, args, content = '' )
-    html.gsub(/\[(\d+)\]|\[(content)\]/) do |s|
-      tag = $1
-      if tag.to_i > 0
-        args[tag.to_i-1]
-      elsif $2 == 'content'
+    html.gsub(/\[(\d+)(?:\:(.*?))?\]|\[(content)\]/) do |s|
+      idx = $1.to_i
+      if idx > 0
+        (args[idx-1] || $2).to_s
+      elsif $3 == 'content'
         content
       else
         "[#{tag}]"

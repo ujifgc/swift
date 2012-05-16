@@ -1194,6 +1194,9 @@
                     case "k":
                         doClick(buttons.code);
                         break;
+                    case "f":
+                        doClick(buttons.asset);
+                        break;
                     case "g":
                         doClick(buttons.image);
                         break;
@@ -1376,7 +1379,7 @@
                 button.id = id + postfix;
                 button.appendChild(buttonImage);
                 button.title = title;
-                button.XShift = "0px";
+                $(button).tooltip({placement: 'bottom'})
                 if (textOp)
                     button.textOp = textOp;
                 setupIcon(button, true);
@@ -1391,39 +1394,39 @@
                 buttonRow = buttonBar.appendChild(buttonRow);
             };
 
-            buttons.bold = makeIcon("wmd-bold-button", "Strong <strong> Ctrl+B", "bold", bindCommand("doBold"));
-            buttons.italic = makeIcon("wmd-italic-button", "Emphasis <em> Ctrl+I", "italic", bindCommand("doItalic"));
-            buttons.code =  makeIcon("wmd-code-button", "Code Sample <pre><code> Ctrl+K", "code", bindCommand("doCode"));
+            buttons.bold = makeIcon("wmd-bold-button", "Жирный - Ctrl+B", "bold", bindCommand("doBold"));
+            buttons.italic = makeIcon("wmd-italic-button", "Курсив - Ctrl+I", "italic", bindCommand("doItalic"));
+            buttons.code =  makeIcon("wmd-code-button", "Код - Ctrl+K", "code", bindCommand("doCode"));
             nextRow();
 
-            buttons.link = makeIcon("wmd-link-button", "Hyperlink <a> Ctrl+L", "globe", bindCommand(function (chunk, postProcessing) {
+            buttons.link = makeIcon("wmd-link-button", "Ссылка - Ctrl+L", "globe", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'page');
             }));
-            buttons.asset = makeIcon("wmd-asset-button", "Asset <img> Ctrl+G", "file", bindCommand(function (chunk, postProcessing) {
+            buttons.asset = makeIcon("wmd-asset-button", "Файл - Ctrl+F", "file", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'asset');
             }));
-            buttons.image = makeIcon("wmd-image-button", "Image <img> Ctrl+G", "picture", bindCommand(function (chunk, postProcessing) {
+            buttons.image = makeIcon("wmd-image-button", "Картинка - Ctrl+G", "picture", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'image');
             }));
             nextRow();
 
-            buttons.quote = makeIcon("wmd-quote-button", "Blockquote <blockquote> Ctrl+Q", "blockquote", bindCommand("doBlockquote"));
-            buttons.olist = makeIcon("wmd-olist-button", "Numbered List <ol> Ctrl+O", "olist", bindCommand(function (chunk, postProcessing) {
+            buttons.quote = makeIcon("wmd-quote-button", "Цитата - Ctrl+Q", "blockquote", bindCommand("doBlockquote"));
+            buttons.olist = makeIcon("wmd-olist-button", "Нумерованный список - Ctrl+O", "olist", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
             }));
-            buttons.ulist = makeIcon("wmd-ulist-button", "Bulleted List <ul> Ctrl+U", "list", bindCommand(function (chunk, postProcessing) {
+            buttons.ulist = makeIcon("wmd-ulist-button", "Ненумерованный список - Ctrl+U", "list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, false);
             }));
-            buttons.heading = makeIcon("wmd-heading-button", "Heading <h1>/<h2> Ctrl+H", "header", bindCommand("doHeading"));
-            buttons.hr = makeIcon("wmd-hr-button", "Horizontal Rule <hr> Ctrl+R", "hr-line", bindCommand("doHorizontalRule"));
+            buttons.heading = makeIcon("wmd-heading-button", "Заголовок - Ctrl+H", "header", bindCommand("doHeading"));
+            buttons.hr = makeIcon("wmd-hr-button", "Черта - Ctrl+R", "hr-line", bindCommand("doHorizontalRule"));
             nextRow();
 
-            buttons.undo = makeIcon("wmd-undo-button", "Undo - Ctrl+Z", "undo", null);
+            buttons.undo = makeIcon("wmd-undo-button", "Отменить - Ctrl+Z", "undo", null);
             buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
             var redoTitle = /win/.test(nav.platform.toLowerCase()) ?
-                "Redo - Ctrl+Y" :
-                "Redo - Ctrl+Shift+Z"; // mac and other non-Windows platforms
+                "Повторить - Ctrl+Y" :
+                "Повторить - Ctrl+Shift+Z"; // mac and other non-Windows platforms
 
             buttons.redo = makeIcon("wmd-redo-button", redoTitle, "share-alt", null);
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };

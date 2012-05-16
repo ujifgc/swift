@@ -42,6 +42,12 @@ ru:
       form:
         save: Сохранить
         back: Назад
+      dialog:
+        add_parent: 'Новый...'
+        create_fragment: 'Создать новый фрагмент'
+        create_layout: 'Создать новую раскладку'
+        create_page: 'Создать новую страницу'
+        select_bonds: 'Выберите связи объекта'
   group:
     admin: Администратор
     designer: Дизайнер

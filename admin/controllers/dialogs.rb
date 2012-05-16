@@ -2,7 +2,7 @@ Admin.controllers :dialogs do
   layout :ajax
 
   get :create_parent do
-    @title = pat 'dialog.create_parent'
+    @title = pat 'dialog.create_' + params[:parent_model].downcase
     render "dialogs/create_parent", :layout => :dialog
   end
 
@@ -65,7 +65,7 @@ Admin.controllers :dialogs do
   end
 
   get :bonds, :with => [:parent_model, :parent_id] do
-    @title = pat('dialog.title.bonds')
+    @title = pat 'dialog.select_bonds'
     render "dialogs/bonds", :layout => :dialog
   end
 

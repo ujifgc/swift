@@ -110,7 +110,7 @@ class Admin < Padrino::Application
     end
     redirect url(@models, :index)
   end
-  
+
   get '/:controller/multiple' do
     redirect url(@the_model ? @models : :base, :index)
   end
@@ -118,16 +118,16 @@ class Admin < Padrino::Application
   def do_auth(request)
     auth    = request.env["omniauth.auth"]
     account = Account.create_with_omniauth(auth)
-    if account.new?
+    if account.saved?
+      set_current_account account
+      redirect_back_or_default url(:base, :index)
+    else
       flash[:error] = account.errors.to_a.flatten.join(', ') + ': ' + content_tag(:code, "#{account.email}<br>#{account.provider}: #{account.uid}")
       set_current_account nil
       redirect url(:sessions, :new)
-    else
-      set_current_account account
-      redirect url(:base, :index)
     end
   end
-  
+
   post '/auth/:provider/callback' do
     do_auth request
   end
