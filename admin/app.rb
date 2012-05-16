@@ -24,7 +24,7 @@ class Admin < Padrino::Application
   set :default_builder, 'AdminFormBuilder'
 
   enable :sessions
-  disable :store_location
+  enable :store_location
 
   use OmniAuth::Builder do
     provider :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
@@ -88,7 +88,7 @@ class Admin < Padrino::Application
 
   # common routes
   post '/:controller/multiple' do
-    return redirect url(:base_index)  unless @the_model
+    return redirect url(:base, :index)  unless @the_model
     if params["check_#{@model}"].kind_of? Hash
       ids = params["check_#{@model}"].keys
       case params['_method']
