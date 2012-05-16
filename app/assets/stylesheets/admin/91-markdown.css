@@ -1,3 +1,22 @@
+.icon-blockquote,
+.icon-code,
+.icon-olist,
+.icon-header,
+.icon-hr-line,
+.icon-undo {
+	background-image: url(/images/Markdown.Editor.Icons.png);
+}
+.icon-blockquote        { background-position: -24px  0; }
+.icon-code              { background-position: -48px  0; }
+.icon-olist             { background-position: -96px  0; }
+.icon-header            { background-position: -120px 0; }
+.icon-hr-line           { background-position: -144px 0; }
+.icon-undo               { background-position: -168px -1px; }
+
+[id^=wmd-button-bar-] {
+  margin: 0;
+}
+
 .wmd-input { 
   Rheight: 150px;
   font-size: 12px;
@@ -41,23 +60,19 @@
 }
 
 .wmd-button {
-    width: 20px;
+    width: 17px;
     height: 20px;
-    padding-left: 2px;
-    padding-right: 3px;
+    padding-left: 3px;
     position: absolute;
     display: inline-block;
     list-style: none;
     cursor: pointer;
 }
-
-.wmd-button > span {
-    background-image: url(/images/wmd-buttons1.png);
-    background-repeat: no-repeat;
-    background-position: 0px 0px;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
+.wmd-button:hover {
+  background-color: #ccc;
+}
+.wmd-button:active {
+  margin: 1px 0 0 1px;
 }
 
 .wmd-spacer1

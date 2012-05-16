@@ -1320,22 +1320,9 @@
             }
         };
 
-        function setupButton(button, isEnabled) {
-
-            var normalYShift = "0px";
-            var disabledYShift = "-20px";
-            var highlightYShift = "-40px";
-            var image = button.getElementsByTagName("span")[0];
+        function setupIcon( button, isEnabled ) {
+            var image = button.getElementsByTagName("i")[0];
             if (isEnabled) {
-                image.style.backgroundPosition = button.XShift + " " + normalYShift;
-                button.onmouseover = function () {
-                    image.style.backgroundPosition = this.XShift + " " + highlightYShift;
-                };
-
-                button.onmouseout = function () {
-                    image.style.backgroundPosition = this.XShift + " " + normalYShift;
-                };
-
                 // IE tries to select the background image "button" text (it's
                 // implemented in a list item) so we have to cache the selection
                 // on mousedown.
@@ -1349,19 +1336,15 @@
                     };
                 }
 
-                if (!button.isHelp) {
-                    button.onclick = function () {
-                        if (this.onmouseout) {
-                            this.onmouseout();
-                        }
-                        doClick(this);
-                        return false;
-                    }
+            	$(button).removeAttr('disabled');
+                button.onclick = function () {
+                    doClick(this);
+                    return false;
                 }
             }
             else {
-                image.style.backgroundPosition = button.XShift + " " + disabledYShift;
-                button.onmouseover = button.onmouseout = button.onclick = function () { };
+            	$(button).attr('disabled', 'disabled');
+                button.onclick = function () { };
             }
         }
 
@@ -1374,101 +1357,84 @@
         function makeSpritedButtonRow() {
 
             var buttonBar = panels.buttonBar;
+            buttonBar.className = 'btn-toolbar';
 
             var normalYShift = "0px";
             var disabledYShift = "-20px";
             var highlightYShift = "-40px";
 
-            var buttonRow = document.createElement("ul");
+            var buttonRow = document.createElement("div");
             buttonRow.id = "wmd-button-row" + postfix;
-            buttonRow.className = 'wmd-button-row';
+            buttonRow.className = 'btn-group';
             buttonRow = buttonBar.appendChild(buttonRow);
-            var xPosition = 0;
-            var makeButton = function (id, title, XShift, textOp) {
-                var button = document.createElement("li");
-                button.className = "wmd-button";
-                button.style.left = xPosition + "px";
-                xPosition += 25;
-                var buttonImage = document.createElement("span");
+
+            var makeIcon = function( id, title, icon, textOp ) {
+                var button = document.createElement("a");
+                button.className = "btn";
+                var buttonImage = document.createElement("i");
+                buttonImage.className = "icon-"+icon;
                 button.id = id + postfix;
                 button.appendChild(buttonImage);
                 button.title = title;
-                button.XShift = XShift;
+                button.XShift = "0px";
                 if (textOp)
                     button.textOp = textOp;
-                setupButton(button, true);
+                setupIcon(button, true);
                 buttonRow.appendChild(button);
                 return button;
             };
-            var makeSpacer = function (num) {
-                var spacer = document.createElement("li");
-                spacer.className = "wmd-spacer wmd-spacer" + num;
-                spacer.id = "wmd-spacer" + num + postfix;
-                buttonRow.appendChild(spacer);
-                xPosition += 25;
-            }
 
-            buttons.bold = makeButton("wmd-bold-button", "Strong <strong> Ctrl+B", "0px", bindCommand("doBold"));
-            buttons.italic = makeButton("wmd-italic-button", "Emphasis <em> Ctrl+I", "-20px", bindCommand("doItalic"));
-            makeSpacer(1);
-            buttons.link = makeButton("wmd-link-button", "Hyperlink <a> Ctrl+L", "-40px", bindCommand(function (chunk, postProcessing) {
-                //return this.doLinkOrImage(chunk, postProcessing, false);
+            var nextRow = function() {
+                buttonRow = document.createElement("div");
+                buttonRow.id = "wmd-button-row" + postfix;
+                buttonRow.className = 'btn-group';
+                buttonRow = buttonBar.appendChild(buttonRow);
+            };
+
+            buttons.bold = makeIcon("wmd-bold-button", "Strong <strong> Ctrl+B", "bold", bindCommand("doBold"));
+            buttons.italic = makeIcon("wmd-italic-button", "Emphasis <em> Ctrl+I", "italic", bindCommand("doItalic"));
+            buttons.code =  makeIcon("wmd-code-button", "Code Sample <pre><code> Ctrl+K", "code", bindCommand("doCode"));
+            nextRow();
+
+            buttons.link = makeIcon("wmd-link-button", "Hyperlink <a> Ctrl+L", "globe", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'page');
             }));
-            buttons.quote = makeButton("wmd-quote-button", "Blockquote <blockquote> Ctrl+Q", "-60px", bindCommand("doBlockquote"));
-            buttons.code = makeButton("wmd-code-button", "Code Sample <pre><code> Ctrl+K", "-80px", bindCommand("doCode"));
-            buttons.asset = makeButton("wmd-asset-button", "Image <img> Ctrl+G", "-300px", bindCommand(function (chunk, postProcessing) {
-                //return this.doLinkOrImage(chunk, postProcessing, true);
+            buttons.asset = makeIcon("wmd-asset-button", "Asset <img> Ctrl+G", "file", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'asset');
             }));
-            buttons.image = makeButton("wmd-image-button", "Image <img> Ctrl+G", "-100px", bindCommand(function (chunk, postProcessing) {
-                //return this.doLinkOrImage(chunk, postProcessing, true);
+            buttons.image = makeIcon("wmd-image-button", "Image <img> Ctrl+G", "picture", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'image');
             }));
-            makeSpacer(2);
-            buttons.olist = makeButton("wmd-olist-button", "Numbered List <ol> Ctrl+O", "-120px", bindCommand(function (chunk, postProcessing) {
+            nextRow();
+
+            buttons.quote = makeIcon("wmd-quote-button", "Blockquote <blockquote> Ctrl+Q", "blockquote", bindCommand("doBlockquote"));
+            buttons.olist = makeIcon("wmd-olist-button", "Numbered List <ol> Ctrl+O", "olist", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
             }));
-            buttons.ulist = makeButton("wmd-ulist-button", "Bulleted List <ul> Ctrl+U", "-140px", bindCommand(function (chunk, postProcessing) {
+            buttons.ulist = makeIcon("wmd-ulist-button", "Bulleted List <ul> Ctrl+U", "list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, false);
             }));
-            buttons.heading = makeButton("wmd-heading-button", "Heading <h1>/<h2> Ctrl+H", "-160px", bindCommand("doHeading"));
-            buttons.hr = makeButton("wmd-hr-button", "Horizontal Rule <hr> Ctrl+R", "-180px", bindCommand("doHorizontalRule"));
-            makeSpacer(3);
-            buttons.undo = makeButton("wmd-undo-button", "Undo - Ctrl+Z", "-200px", null);
+            buttons.heading = makeIcon("wmd-heading-button", "Heading <h1>/<h2> Ctrl+H", "header", bindCommand("doHeading"));
+            buttons.hr = makeIcon("wmd-hr-button", "Horizontal Rule <hr> Ctrl+R", "hr-line", bindCommand("doHorizontalRule"));
+            nextRow();
+
+            buttons.undo = makeIcon("wmd-undo-button", "Undo - Ctrl+Z", "undo", null);
             buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
             var redoTitle = /win/.test(nav.platform.toLowerCase()) ?
                 "Redo - Ctrl+Y" :
                 "Redo - Ctrl+Shift+Z"; // mac and other non-Windows platforms
 
-            buttons.redo = makeButton("wmd-redo-button", redoTitle, "-220px", null);
+            buttons.redo = makeIcon("wmd-redo-button", redoTitle, "share-alt", null);
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
-
-            if (helpOptions) {
-                var helpButton = document.createElement("li");
-                var helpButtonImage = document.createElement("span");
-                helpButton.appendChild(helpButtonImage);
-                helpButton.className = "wmd-button wmd-help-button";
-                helpButton.id = "wmd-help-button" + postfix;
-                helpButton.XShift = "-240px";
-                helpButton.isHelp = true;
-                helpButton.style.right = "0px";
-                helpButton.title = helpOptions.title || defaultHelpHoverTitle;
-                helpButton.onclick = helpOptions.handler;
-
-                setupButton(helpButton, true);
-                buttonRow.appendChild(helpButton);
-                buttons.help = helpButton;
-            }
 
             setUndoRedoButtonStates();
         }
 
         function setUndoRedoButtonStates() {
             if (undoManager) {
-                setupButton(buttons.undo, undoManager.canUndo());
-                setupButton(buttons.redo, undoManager.canRedo());
+                setupIcon(buttons.undo, undoManager.canUndo());
+                setupIcon(buttons.redo, undoManager.canRedo());
             }
         };
 
