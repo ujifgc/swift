@@ -17,17 +17,20 @@ Admin.controllers :dialogs do
 
   get :pages do
     @tree = page_tree( nil, 0, '' )
-    render "dialogs/pages"
+    @title = pat 'dialog.pick_page'
+    render "dialogs/pages", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
   end
 
   get :images do
     @objects = Image.all
-    render "dialogs/images"
+    @title = pat 'dialog.pick_image'
+    render "dialogs/images", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
   end
 
   get :assets do
     @objects = Asset.all
-    render "dialogs/assets"
+    @title = pat 'dialog.pick_asset'
+    render "dialogs/assets", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
   end
 
   get :folders do

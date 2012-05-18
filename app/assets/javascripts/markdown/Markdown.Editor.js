@@ -957,207 +957,6 @@
         init();
     };
 
-    // Creates the background behind the hyperlink text entry box.
-    // And download dialog
-    // Most of this has been moved to CSS but the div creation and
-    // browser-specific hacks remain here.
-    ui.createBackground = function () {
-
-        var background = doc.createElement("div"),
-            style = background.style;
-        
-        background.className = "wmd-prompt-background";
-        
-        style.position = "absolute";
-        style.top = "0";
-
-        style.zIndex = "1000";
-
-        if (uaSniffed.isIE) {
-            style.filter = "alpha(opacity=50)";
-        }
-        else {
-            style.opacity = "0.5";
-        }
-
-        var pageSize = position.getPageSize();
-        style.height = pageSize[1] + "px";
-
-        if (uaSniffed.isIE) {
-            style.left = doc.documentElement.scrollLeft;
-            style.width = doc.documentElement.clientWidth;
-        }
-        else {
-            style.left = "0";
-            style.width = "100%";
-        }
-
-        doc.body.appendChild(background);
-        return background;
-    };
-
-    // This simulates a modal dialog box and asks for the URL when you
-    // click the hyperlink or image buttons.
-    //
-    // text: The html for the input box.
-    // defaultInputText: The default value that appears in the input box.
-    // callback: The function which is executed when the prompt is dismissed, either via OK or Cancel.
-    //      It receives a single argument; either the entered text (if OK was chosen) or null (if Cancel
-    //      was chosen).
-    ui.prompt = function (text, defaultInputText, callback) {
-
-        // These variables need to be declared at this level since they are used
-        // in multiple functions.
-        var dialog;         // The dialog box.
-        var input;         // The text box where you enter the hyperlink.
-
-
-        if (defaultInputText === undefined) {
-            defaultInputText = "";
-        }
-
-        // Used as a keydown event handler. Esc dismisses the prompt.
-        // Key code 27 is ESC.
-        var checkEscape = function (key) {
-            var code = (key.charCode || key.keyCode);
-            if (code === 27) {
-                close(true);
-            }
-        };
-
-        // Dismisses the hyperlink input box.
-        // isCancel is true if we don't care about the input text.
-        // isCancel is false if we are going to keep the text.
-        var close = function (isCancel) {
-            util.removeEvent(doc.body, "keydown", checkEscape);
-            var text = input.value;
-
-            if (isCancel) {
-                text = null;
-            }
-            else {
-                // Fixes common pasting errors.
-                text = text.replace('http://http://', 'http://');
-                text = text.replace('http://https://', 'https://');
-                text = text.replace('http://ftp://', 'ftp://');
-
-                if (text.indexOf('http://') === -1 && text.indexOf('ftp://') === -1 && text.indexOf('https://') === -1 && text.indexOf('/') != 0) {
-                    text = 'http://' + text;
-                }
-            }
-
-            dialog.parentNode.removeChild(dialog);
-
-            callback(text);
-            return false;
-        };
-
-
-
-        // Create the text input box form/window.
-        var createDialog = function () {
-
-            // The main dialog box.
-            dialog = doc.createElement("div");
-            dialog.className = "wmd-prompt-dialog";
-            dialog.style.padding = "10px;";
-            dialog.style.position = "fixed";
-            dialog.style.width = "400px";
-            dialog.style.zIndex = "1001";
-
-            // The dialog text.
-            var question = doc.createElement("div");
-            question.innerHTML = text;
-            question.style.padding = "5px";
-            dialog.appendChild(question);
-
-            // The web form container for the text box and buttons.
-            var form = doc.createElement("form"),
-                style = form.style;
-            form.onsubmit = function () { return close(false); };
-            style.padding = "0";
-            style.margin = "0";
-            style.cssFloat = "left";
-            style.width = "100%";
-            style.textAlign = "center";
-            style.position = "relative";
-            dialog.appendChild(form);
-
-            // The input text box
-            input = doc.createElement("input");
-            input.type = "text";
-            input.value = defaultInputText;
-            style = input.style;
-            style.display = "block";
-            style.width = "80%";
-            style.marginLeft = style.marginRight = "auto";
-            form.appendChild(input);
-
-            // The ok button
-            var okButton = doc.createElement("input");
-            okButton.type = "button";
-            okButton.onclick = function () { return close(false); };
-            okButton.value = "OK";
-            style = okButton.style;
-            style.margin = "10px";
-            style.display = "inline";
-            style.width = "7em";
-
-
-            // The cancel button
-            var cancelButton = doc.createElement("input");
-            cancelButton.type = "button";
-            cancelButton.onclick = function () { return close(true); };
-            cancelButton.value = "Cancel";
-            style = cancelButton.style;
-            style.margin = "10px";
-            style.display = "inline";
-            style.width = "7em";
-
-            form.appendChild(okButton);
-            form.appendChild(cancelButton);
-
-            util.addEvent(doc.body, "keydown", checkEscape);
-            dialog.style.top = "50%";
-            dialog.style.left = "50%";
-            dialog.style.display = "block";
-            if (uaSniffed.isIE_5or6) {
-                dialog.style.position = "absolute";
-                dialog.style.top = doc.documentElement.scrollTop + 200 + "px";
-                dialog.style.left = "50%";
-            }
-            doc.body.appendChild(dialog);
-
-            // This has to be done AFTER adding the dialog to the form if you
-            // want it to be centered.
-            dialog.style.marginTop = -(position.getHeight(dialog) / 2) + "px";
-            dialog.style.marginLeft = -(position.getWidth(dialog) / 2) + "px";
-
-        };
-
-        // Why is this in a zero-length timeout?
-        // Is it working around a browser bug?
-        setTimeout(function () {
-
-            createDialog();
-
-            var defTextLen = defaultInputText.length;
-            if (input.selectionStart !== undefined) {
-                input.selectionStart = 0;
-                input.selectionEnd = defTextLen;
-            }
-            else if (input.createTextRange) {
-                var range = input.createTextRange();
-                range.collapse(false);
-                range.moveStart("character", -defTextLen);
-                range.moveEnd("character", defTextLen);
-                range.select();
-            }
-
-            input.focus();
-        }, 0);
-    };
-
     function UIManager(postfix, panels, undoManager, previewManager, commandManager, helpOptions) {
 
         var inputBox = panels.input,
@@ -1622,8 +1421,6 @@
         });
     }
 
-    commandProto.doLinkOrImage = function() { alert('error doLinkOrImage'); };
-
     commandProto.doPickObject = function (chunk, postProcessing, objectType) {
 
         chunk.trimWhitespace();
@@ -1650,45 +1447,22 @@
                 return;
             }
             var that = this;
-            // The function to be executed when you enter a link and press OK or Cancel.
-            // Marks up the link and adds the ref.
-            var linkEnteredCallback = function (link) {
-
-                //background.parentNode.removeChild(background);
-
-                if (link !== null) {
-                    chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
-                    
-                    var linkDef = " [999]: " + properlyEncoded(link);
-
-                    var num = that.addLinkDef(chunk, linkDef);
-                    chunk.startTag = isImage ? "![" : "[";
-                    chunk.endTag = "][" + num + "]";
-
-                    if (!chunk.selection) 
-                        chunk.selection = "enter title here";
-                }
-                postProcessing();
-            };
 
             var pickIdCallback = function(type, id, title) {
                 if (id !== null) {
                     chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
                     
                     var label = (type == 'asset' ? 'file' : type);
-                    chunk.startTag = "[" + label + " " + id;
-                    chunk.endTag = "]";
 
-                    if (!chunk.selection)
-                        chunk.selection = " " + ((''+title).trim() || "enter title here");
-                    else
-                        chunk.selection = " " + (''+chunk.selection).trim();
+                    chunk.startTag = "[" + label + " " + id + " " + (chunk.selection || (''+title).trim() || "enter title here") + "]";
+                    chunk.endTag = "";
+                    chunk.selection = "";
                 }
                 postProcessing();
             }
 
-            var url = '/admin/dialogs/' + objectType + 's';
-            var dialog = $('<div class="modal fade loading hide" id="pick_'+objectType+'"></div>').appendTo('body');
+            var url = '/admin/dialogs/' + objectType + 's?pick';
+            var dialog = $('<div class="modal loading hide" id="pick_'+objectType+'"></div>').appendTo('body');
             // load remote content
             var pick_close = function(){
                 pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
@@ -1700,45 +1474,16 @@
                 function (responseText, textStatus, XMLHttpRequest) {
                     // remove the loading class
                     dialog.removeClass('loading');
-                    $( "#tabs" ).bind( "tabsload", function(event, ui) {
+                    dialog.find( ".tab-content .tab-pane" ).bind( 'pane-loaded', function() {
                       dialog.find('a.pick').click(pick_close);
                     });
                     dialog.find('a.pick').click(pick_close);
                 }
             );
             dialog.modal('show');
-            /*
-            // show a spinner or something via css
-            var dialog = $('<div style="display:none" class="loading"></div>').appendTo('body');
-            // open the dialog
-            dialog.dialog({
-                // add a close listener to prevent adding multiple divs to the document
-                close: function(event, ui) {
-                    // remove div with all data and events
-                    dialog.remove();
-                },
-                width: 800,
-                minHeight: 600,
-                modal: true
+            dialog.on('hidden', function() {
+              dialog.remove();
             });
-            var pick_close = function(){
-                pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
-                dialog.dialog('close');
-                return false;
-            }
-            // load remote content
-            dialog.load(
-                url,
-                function (responseText, textStatus, XMLHttpRequest) {
-                    // remove the loading class
-                    dialog.removeClass('loading');
-                    $( "#tabs" ).bind( "tabsload", function(event, ui) {
-                      dialog.find('a.pick').click(pick_close);
-                    });
-                    dialog.find('a.pick').click(pick_close);
-                }
-            );
-            */
             return true;
         }
     };

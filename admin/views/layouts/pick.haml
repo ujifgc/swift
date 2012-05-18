@@ -1,0 +1,7 @@
+.modal-header
+  %a.close{ :'data-dismiss' => :modal } ×
+  %h3= @title
+.modal-body
+  = yield
+.modal-footer
+  = link_to pat('cancel'), 'javascript:;', :class => 'btn cancel-dialog', :'data-dismiss' => :modal

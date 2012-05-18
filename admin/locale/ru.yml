@@ -43,7 +43,7 @@ ru:
         save: Сохранить
         back: Назад
       dialog:
-        add_parent: 'Новый...'
+        add_parent: ''
         create_fragment: 'Создать новый фрагмент'
         create_layout: 'Создать новую раскладку'
         create_page: 'Создать новую страницу'

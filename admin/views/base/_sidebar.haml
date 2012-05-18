@@ -1,6 +1,6 @@
-%ul.nav.nav-tabs
-  - MODULE_GROUPS.each do |name, mods|
-    - next  unless (mods & project_modules.map{|m|m.name.to_s}).any?
+- MODULE_GROUPS.each do |name, mods|
+  - next  unless (mods & project_modules.map{|m|m.name.to_s}).any?
+  %ul.nav.nav-tabs{ :id => "nav-group-#{name}" }
     %li.nav-header= pat("modules.#{name}")
     - project_modules.each do |project_module|
       - next  unless mods.include? project_module.name.to_s
