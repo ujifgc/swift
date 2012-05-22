@@ -3,7 +3,7 @@
   %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead
       %tr
-        %th
+        %th.first
         %th= mat(:object, :title)
         %th= mat(:object, :slug)
         %th= mat(:object, :path)
@@ -14,10 +14,4 @@
           %td= mk_edit object
           %td= object.slug
           %td= object.path
-    %tfoot
-      %tr
-        %th.last= check_box_tag :check_all, :checked => false
-        %th
-        %th
-        %th
 = partial 'base/index_operations_bottom'

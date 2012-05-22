@@ -55,9 +55,6 @@ th.action  { width: 110px; text-align:center }
   left: 50%;
   z-index: 2000;
 }
-.inline .pagination {
-  margin: 0;
-}
 .inline {
   display: inline-block;
   float: none;

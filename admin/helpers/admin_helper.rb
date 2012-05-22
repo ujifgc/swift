@@ -61,7 +61,7 @@ Admin.helpers do
   end
 
   def mk_multiple_op( op )
-    link_to mk_icon(op) + pat(op), :method => op, :class => :multiple
+    link_to mk_icon(op) + pat(op), :method => op, :class => 'multiple btn'
   end
 
   def mk_single_op( op, link )

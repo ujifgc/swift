@@ -3,7 +3,7 @@
   %table.table.smart
     %thead
       %tr
-        %th.last
+        %th.first
         %th= mat(:object, :title)
         %th= mat(:object, :slug)
         %th= mat(:object, :path)
@@ -11,12 +11,4 @@
     %tbody
       - @k = 0
       = partial 'pages/tree', :locals => { :tree => @tree, :level => 0 }
-    %tfoot
-      %tr
-        %th
-          = check_box_tag :check_all, :checked => false
-        %th
-        %th
-        %th
-        %th
 = partial 'base/index_operations_bottom'

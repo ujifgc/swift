@@ -1462,27 +1462,35 @@
             }
 
             var url = '/admin/dialogs/' + objectType + 's?pick';
-            var dialog = $('<div class="modal loading hide" id="pick_'+objectType+'"></div>').appendTo('body');
+            var dialogNew = 'pick_'+objectType;
+            var dialog = $('#'+dialogNew);
+            if (dialog.length == 0) {
+              dialog = $('<div class="modal loading hide" id="'+dialogNew+'"></div>').appendTo('body');
+            }else{
+              dialogNew = false;
+            }
             // load remote content
             var pick_close = function(){
                 pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
                 dialog.modal('hide');
                 return false;
             }
-            dialog.load(
-                url,
-                function (responseText, textStatus, XMLHttpRequest) {
-                    // remove the loading class
-                    dialog.removeClass('loading');
-                    dialog.find( ".tab-content .tab-pane" ).bind( 'pane-loaded', function() {
+            if (dialogNew) {
+              dialog.load(
+                  url,
+                  function (responseText, textStatus, XMLHttpRequest) {
+                      // remove the loading class
+                      dialog.removeClass('loading');
+                      dialog.find( ".tab-content .tab-pane" ).bind( 'pane-loaded', function() {
+                        dialog.find('a.pick').click(pick_close);
+                      });
                       dialog.find('a.pick').click(pick_close);
-                    });
-                    dialog.find('a.pick').click(pick_close);
-                }
-            );
+                  }
+              );
+            }
             dialog.modal('show');
             dialog.on('hidden', function() {
-              dialog.remove();
+              //dialog.remove();
             });
             return true;
         }

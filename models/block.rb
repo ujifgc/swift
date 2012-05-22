@@ -31,4 +31,8 @@ class Block
     self.type > 0
   end
 
+  def get_type
+    I18n.t "models.object.attributes.type_#{Types[self.type]}"
+  end
+
 end

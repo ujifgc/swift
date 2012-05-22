@@ -1,7 +1,9 @@
-﻿.tabs-below
-  %ul.nav.nav-tabs.operations
-    - allow :auditor do
-      - if @the_model.respond_to? :published
-        %li= mk_multiple_op :publish
-        %li= mk_multiple_op :unpublish
-      %li= mk_multiple_op :delete
+﻿.form-actions
+  %label.btn{ :for => 'check-all' }
+    = check_box_tag :check_all, :checked => false, :id => 'check-all', :class => 'inline'
+    Отметить всё
+  - allow :auditor do
+    - if @the_model.respond_to? :published
+      = mk_multiple_op :publish
+      = mk_multiple_op :unpublish
+    = mk_multiple_op :delete

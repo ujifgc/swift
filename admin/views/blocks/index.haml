@@ -3,15 +3,13 @@
   %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead
       %tr
-        %th
+        %th.first
         %th= mat(:object, :title)
+        %th= mat(:object, :type)
     %tbody
       - @objects.each do |object|
         %tr
           %td.last= mk_checkbox object
           %td= mk_edit object
-    %tfoot
-      %tr
-        %th.last= check_box_tag :check_all, :checked => false
-        %th
+          %td= object.get_type
 = partial 'base/index_operations_bottom'

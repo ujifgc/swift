@@ -11,7 +11,7 @@
   %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead
       %tr
-        %th
+        %th.first
         %th.title= mat(:object, :title)
         %th.title= mat(:object, :folder_id)
         %th.file= mat(:object, :file)
@@ -22,10 +22,4 @@
           %td= mk_edit object
           %td.nowrap= object.folder && object.folder.title
           %td.nowrap= link_to object.file.size.as_size + " #{File.extname object.file.url}", object.file.url, :rel => 'box-image'
-    %tfoot
-      %tr
-        %th.last= check_box_tag :check_all, :checked => false
-        %th
-        %th
-        %th
 = partial 'base/index_operations_bottom'

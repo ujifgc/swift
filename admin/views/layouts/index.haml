@@ -3,18 +3,13 @@
   %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead
       %tr
-        %th
-        %th.first= mat(:object, :id)
+        %th.first
+        %th= mat(:object, :id)
         %th= mat(:object, :title)
     %tbody
       - @objects.each do |object|
         %tr
-          %td.last= mk_checkbox object
-          %td.first= link_to object.id, url(:layouts, :edit, :id => object.id)
+          %td= mk_checkbox object
+          %td= link_to object.id, url(:layouts, :edit, :id => object.id)
           %td= mk_edit object
-    %tfoot
-      %tr
-        %th.last= check_box_tag :check_all, :checked => false
-        %th
-        %th
 = partial 'base/index_operations_bottom'
