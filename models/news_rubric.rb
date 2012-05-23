@@ -13,6 +13,7 @@ class NewsRubric
 
   # relations
   has n, :news_articles
+  has n, :news_events
 
   # hookers
 

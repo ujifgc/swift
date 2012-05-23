@@ -21,6 +21,12 @@ Admin.controllers :dialogs do
     render "dialogs/pages", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
   end
 
+  get :blocks do
+    @objects = Block.all
+    @title = pat 'dialog.pick_block'
+    render "dialogs/blocks", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
+  end
+
   get :images do
     @objects = Image.all
     @title = pat 'dialog.pick_image'

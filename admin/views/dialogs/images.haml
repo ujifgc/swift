@@ -1,5 +1,5 @@
 ﻿.dialog-images
-  %ul.nav.nav-tabs#tabs-images
+  %ul.nav.nav-pills#tabs-images
     - tabs = current_account.get_folders.with(:images)
     - @first = true
     - tabs.each do |folder|

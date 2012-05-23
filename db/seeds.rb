@@ -52,3 +52,4 @@ Fragment.create :title => 'Default page', :id => 'page',   :is_fragment => false
 
 # news
 NewsRubric.create :id => 1, :title => 'Site news', :text => 'Default news rubric', :slug => 'default'
+NewsRubric.create :id => 2, :title => 'Site events', :text => 'Default events rubric', :slug => 'events'

@@ -1,5 +1,5 @@
 #coding:utf-8
-class NewsArticle
+class NewsEvent
   include DataMapper::Resource
 
   property :id,       Serial
@@ -7,6 +7,15 @@ class NewsArticle
   property :title,    String
   property :info,     Text
   property :text,     Text
+  property :period,   String
+
+  Periods = {
+    'Нет' => '',
+    'Год' => 'year',
+    'Месяц' => 'month',
+    'Неделя' => 'week',
+    'День' => 'day',
+  }
 
   sluggable!
   timestamps!
@@ -15,7 +24,7 @@ class NewsArticle
   dateable!
 
   # relations
-  property :news_rubric_id, Integer, :default => 1
+  property :news_rubric_id, Integer, :default => 2
   belongs_to :news_rubric, :required => true
 
   # validations

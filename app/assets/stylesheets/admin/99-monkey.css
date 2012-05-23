@@ -108,7 +108,7 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
 .modal-body {
 }
 
-/* bootstrap: label for nav-pills */
+/* bootstrap: label/header for nav-pills */
 .nav-pills .nav-header {
     margin-bottom: 0px;
     margin-top: 0px;

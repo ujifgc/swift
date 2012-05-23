@@ -1,5 +1,5 @@
 ﻿.dialog-assets
-  %ul.nav.nav-tabs#tabs-assets
+  %ul.nav.nav-pills#tabs-assets
     - tabs = current_account.get_folders.with(:assets)
     - @first = true
     - tabs.each do |folder|

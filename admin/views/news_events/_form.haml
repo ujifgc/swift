@@ -1,11 +1,11 @@
 = f.input :title
 ~ f.input :info, :as => :text, :markdown => true
 ~ f.input :text, :as => :text, :markdown => true
+= f.input :period, :as => :select, :selected => @object.period, :options => NewsEvent::Periods, :include_blank => false
 = f.input :news_rubric_id, :as => :select, :selected => @object.news_rubric_id, :collection => NewsRubric.all, :fields => [ :title, :id ], :include_blank => false
 = f.input :date, :as => :datetime
 - allow :auditor do
   = f.input :is_published, :as => :boolean
-  = f.input :publish_at, :as => :datetime
   = f.input :slug
 
 = f.submits

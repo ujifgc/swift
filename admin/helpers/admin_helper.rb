@@ -33,6 +33,7 @@ Admin.helpers do
 
     :news_articles => 'bookmark',
     :news_rubrics  => 'th-large',
+    :news_events   => 'flag',
 
     :cat_cards  => 'inbox',
     :cat_nodes  => 'folder-close',

@@ -1005,6 +1005,9 @@
                     case "u":
                         doClick(buttons.ulist);
                         break;
+                    case "s":
+                        doClick(buttons.block);
+                        break;
                     case "h":
                         doClick(buttons.heading);
                         break;
@@ -1200,6 +1203,9 @@
 
             buttons.link = makeIcon("wmd-link-button", "Ссылка - Ctrl+L", "globe", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'page');
+            }));
+            buttons.block = makeIcon("wmd-block-button", "Блок - Ctrl+S", "list-alt", bindCommand(function (chunk, postProcessing) {
+                return this.doPickObject(chunk, postProcessing, 'block');
             }));
             buttons.asset = makeIcon("wmd-asset-button", "Файл - Ctrl+F", "file", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'asset');

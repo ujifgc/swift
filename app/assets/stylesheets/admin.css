@@ -63,3 +63,6 @@ th.action  { width: 110px; text-align:center }
 .vtop {
   vertical-align: top;
 }
+.nav-pills > li > a {
+  outline: none;
+}

@@ -2,9 +2,9 @@
   %form{ :action => url(:dialogs, :bonds_ajax, params[:parent_model], params[:parent_id]), :method => :post }
     %ul.nav.nav-tabs#tabs-bondables
       - data = { :url => url(:dialogs, :bond, params[:parent_model], params[:parent_id]), :model => 'Bond', :toggle => :tab, :cached => 1 }
-      %li.tab.active= link_to 'Bond', '#Bond', :data => data
+      %li.tab.active= link_to mt('bonds'), '#Bond', :data => data
       - BONDABLE_CHILDREN.each do |model_name|
-        %li.tab= link_to model_name, "##{model_name}", :'data-url' => url(:dialogs, model_name.underscore.pluralize.to_sym, params), :'data-toggle' => :tab
+        %li.tab= link_to mt(model_name.underscore.pluralize).ru_cap, "##{model_name}", :'data-url' => url(:dialogs, model_name.underscore.pluralize.to_sym, params), :'data-toggle' => :tab
     .tab-content
       .tab-pane.active#Bond
       - BONDABLE_CHILDREN.each do |model_name|

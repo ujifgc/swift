@@ -1,0 +1,6 @@
+﻿.dialog-blocks
+  %ul
+    - @objects.each do |o|
+      %li
+        - data = { :id => o.id, :title => o.title }
+        = link_to "#{o.title}", o.slug, :data => data, :class => :pick, :onclick => 'return false'

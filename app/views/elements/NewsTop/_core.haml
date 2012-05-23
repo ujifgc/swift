@@ -6,5 +6,5 @@
   filter[:offset] = @opts[:offset].to_i                              if @opts[:offset]
   filter[:limit] = @opts[:limit].to_i                                if @opts[:limit]
   filter[:limit] ||= 5
-  filter[:order] = :publish_at.desc
-  @news = NewsArticle.all( filter )
+  filter[:order] = :date.desc
+  @news = NewsArticle.published.all( filter )

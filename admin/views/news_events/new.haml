@@ -1,0 +1,3 @@
+= partial 'base/edit_operations'
+- form_for :object, url(:news_events, :create), :method => :post, :class => 'form form-horizontal edit', :id => "edit-news_events" do |f|
+  = partial "news_events/form", :locals => { :f => f }

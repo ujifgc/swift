@@ -23,6 +23,7 @@ ru:
         fragments: Визуализаторы
         news_articles: Новости
         news_rubrics: Ленты
+        news_events: Даты и события
         cat_nodes: Ресурсы
         cat_cards: Карточки
         cat_groups: Группы
@@ -48,6 +49,10 @@ ru:
         create_layout: 'Создать новую раскладку'
         create_page: 'Создать новую страницу'
         select_bonds: 'Выберите связи объекта'
+        pick_page: 'Выберите страницу для вставки ссылки'
+        pick_block: 'Выберите блок для вставки'
+        pick_asset: 'Выберите файл для вставки'
+        pick_image: 'Выберите картинку для вставки'
   group:
     admin: Администратор
     designer: Дизайнер
@@ -65,7 +70,9 @@ ru:
         info: Краткое содержание
         path: Путь
         is_published: Опубликовать
-        publish_at: Дата
+        publish_at: Дата публикации
+        date: Дата
+        period: Периодичность
         file: Файл
         folder_id: Папка
         parent_id: Подчинение
@@ -127,6 +134,18 @@ ru:
       name: Новости
     news_rubrics:
       name: Ленты
+    bonds:
+      name: связи
+    bond:
+      name: связь
+    cat_groups:
+      name: группы
+    cat_group:
+      name: группа
+    cat_cards:
+      name: карточки
+    cat_card:
+      name: карточка
   asset_uploaded: загружен
   time:
     formats:

@@ -59,7 +59,15 @@ module SwiftDatamapper
       end
 
       def self.published
-        all( :is_published => true )
+        all( :is_published => true, :conditions => ["IFNULL(publish_at,0) < ?", DateTime.now] )
+      end
+    end
+
+    def dateable!
+      property :date, DateTime, :required => true
+
+      before :valid? do |i|
+        self.date = nil  if self.date.blank?
       end
     end
 
@@ -130,7 +138,7 @@ module SwiftDatamapper
     end
 
     def published?
-      self.is_published == true && self.publish_at <= DateTime.now
+      self.is_published && DateTime.new(self.publish_at.to_i) <= DateTime.now
     end
 
   end  

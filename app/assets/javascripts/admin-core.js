@@ -15,7 +15,8 @@
 /* Table initialisation */
   var cols = [ { "sType": "by-data" } ];
   for ( var i = $('.multiple table.table tbody tr').first().children().length; i > 1; i--) cols.push(null);
-  $('.multiple table.smart').dataTable( {
+  var lenHash = [[15, 25, -1], [15, 25, "Все"]];
+  $('.multiple table.smart').addClass('table-condensed').dataTable( {
     "sDom": "<'page-filter'rf>t<'page-control'<'inline pick-page'p><'hide length'l>>",
     "sPaginationType": "bootstrap",
     "bStateSave": true,
@@ -28,12 +29,17 @@
       }
 	},
 	"aoColumns": cols,
-	"aLengthMenu": [[15, -1], [15, "Все"]],
-	"iDisplayLength": 15
+	"aLengthMenu": lenHash,
+	"iDisplayLength": -1
   } );
-  $('.dataTables_length').parent().after('<div class="inline pick-length"><ul class="nav nav-pills"><li class="nav-header">Объектов на странице:</li><li><a href="javascript:;" onclick="pickLength(this)" data-length="15">15</a></li><li><a href="javascript:;" onclick="pickLength(this)" data-length="-1">Все</a></li></ul></div>');
-  $('.dataTables_filter input[type=text]').addClass('search-query');
   if ($('table.table').length > 0 && $('table.table').dataTableSettings[0]) {
+    var lengthes = '';
+    for (var ii in lenHash[0]) {
+      lengthes += '<li><a href="javascript:;" onclick="pickLength(this)" data-length="'+lenHash[0][ii]+'">'+lenHash[1][ii]+'</a></li>';
+    }
+    $('.dataTables_length').parent().after('<div class="inline pick-length"><ul class="nav nav-pills"><li class="nav-header">Объектов на странице:</li>'+lengthes+'</ul></div>');
+    $('.dataTables_filter input[type=text]').addClass('search-query');
+
     var len = $('table.table').dataTableSettings[0]._iDisplayLength;
     if (len == -1) $('.inline .pagination').hide(); else $('.inline .pagination').show();
     $('.pick-length a[data-length='+len+']').parent().addClass('active');
@@ -51,6 +57,7 @@
   });
   $('a[data-toggle=modal]').click(function() {
     var url = this.href;
+    $('body > .modal').remove();
     var dialog = $('<div id="modal-dialog" class="modal hide loading"></div>').appendTo('body');
     this.dialog = dialog;
     dialog.load(
@@ -191,16 +198,13 @@ bindDialogBonds = function() {
         if (typeof jqXHR === 'string') {
           alert(jqXHR);
         }else{
-          $('#modal-dialog').remove();
+          $('#modal-dialog').modal('hide');
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert(textStatus);
       }
     });
-  });
-  $('a.cancel-dialog').click(function() {
-    $('#modal-dialog').remove();
   });
 };
 
@@ -258,11 +262,11 @@ bindBlockType = function() {
     '</div>').appendTo('body');
     dialog.find('a.save-dialog').click(function() {
       var clipRows = $('textarea#spreadsheet-data').val().split(/[\r\n]+/);
-      for (i=0; i<clipRows.length; i++) {
+      for (i=0; i < clipRows.length; i++) {
         clipRows[i] = clipRows[i].split(/\t/);
       }
-      var newTable = '<table>';
-      for (i=0; i<clipRows.length - 1; i++) {
+      var newTable = '<table class="table table-bordered">';
+      for (i=0; i < clipRows.length; i++) {
         var cells = '';
         for (j=0; j<clipRows[i].length; j++) {
           cells += '<td>' + clipRows[i][j] + "</td>";
@@ -272,10 +276,7 @@ bindBlockType = function() {
       newTable += '</table>';
       if (newTable.length > 15) table.html(newTable);
       edifyTable();
-      $('#modal-dialog').dialog('close');
-    });
-    dialog.find('a.cancel-dialog').click(function() {
-      $('#modal-dialog').dialog('close');
+      dialog.modal('hide');
     });
     e.dialog = dialog;
     dialog.modal('show');
@@ -348,8 +349,8 @@ bindBlockType = function() {
     });
   };
 
-  if (!area.val().match(/^\<table.*table\>$/) && area.val().length > 0 )
-    select.parents('.control-group').remove();
+  //if (!area.val().match(/$\<table.*table\>^/) && area.val().length > 0 )
+  //  select.parents('.control-group').remove();
   select.change(function() {
     var html = area.val();
     var wmdpanel = controls.find('[id^=wmd-button-bar]');

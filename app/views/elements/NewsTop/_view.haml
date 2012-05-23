@@ -1,6 +1,6 @@
 %dl
   - @news.each do |o|
     %dt
-      %span.date= o.publish_at.as_date
+      %span.date= o.date.as_date
       = link_to o.title, se_url(o)
     %dd= o.info

@@ -1,5 +1,5 @@
 = partial 'base/index_operations'
-%ul.nav.nav-tabs.folders
+%ul.nav.nav-pills.folders
   - klass = params[:folder].blank? && 'active'
   %li{ :class => klass }
     = link_to pat(:all), url(:assets, :index)
