@@ -20,6 +20,6 @@ bindMarkdowns = function() {
 };
 
 $(function() {
-  bindMarkdowns();
+  //bindMarkdowns();
+  $('textarea.markdown').wysiwym({});
 });
-

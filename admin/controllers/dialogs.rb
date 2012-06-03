@@ -15,6 +15,15 @@ Admin.controllers :dialogs do
     render "dialogs/create_parent.json"
   end
 
+  get :dropdown_codes do
+    @objects = Code.all :is_system => false
+    if params.has_key?('drop')
+      render "dialogs/dropdown_codes"
+    else
+      render "dialogs/dialog_codes", :layout => :dialog
+    end
+  end
+
   get :pages do
     @tree = page_tree( nil, 0, '' )
     @title = pat 'dialog.pick_page'

@@ -1480,19 +1480,24 @@
                 pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
                 dialog.modal('hide');
                 return false;
-            }
+            };
+            var rebindPicks = function() {
+                dialog.find( ".tab-content .tab-pane" ).unbind('pane-loaded').bind( 'pane-loaded', function() {
+                  dialog.find('a.pick').unbind('click').bind('click',pick_close);
+                });
+                dialog.find('a.pick').unbind('click').bind('click',pick_close);
+            };
             if (dialogNew) {
               dialog.load(
                   url,
                   function (responseText, textStatus, XMLHttpRequest) {
                       // remove the loading class
                       dialog.removeClass('loading');
-                      dialog.find( ".tab-content .tab-pane" ).bind( 'pane-loaded', function() {
-                        dialog.find('a.pick').click(pick_close);
-                      });
-                      dialog.find('a.pick').click(pick_close);
+                      rebindPicks();
                   }
               );
+            }else{
+              rebindPicks();
             }
             dialog.modal('show');
             dialog.on('hidden', function() {
