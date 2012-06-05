@@ -110,6 +110,10 @@ Swift.helpers do
     str
   end
 
+  def render_text( text )
+    parse_content(text).html
+  end
+
   def div_open( opt )
     "<div class='#{opt.to_s}'>"
   end

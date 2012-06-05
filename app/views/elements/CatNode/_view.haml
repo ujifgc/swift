@@ -2,7 +2,7 @@
 .article
   %h4
     = link_to node.title, "#{@swift[:module_root]}/show/#{node.slug}"
-  .text= node.text
+  .text= render_text node.text
   %dl
     - node.cat_card.json.each do |key, value|
       - unless node.json[key].blank?

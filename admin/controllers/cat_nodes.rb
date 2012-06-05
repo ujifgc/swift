@@ -2,6 +2,8 @@ Admin.controllers :cat_nodes do
 
   get :index do
     @objects = CatNode.all
+    @group = CatGroup.by_slug params[:group]
+    @objects = @objects.filter_by(@group)  if @group
     render 'cat_nodes/index'
   end
 
