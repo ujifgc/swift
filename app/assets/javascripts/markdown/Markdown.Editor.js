@@ -1201,7 +1201,7 @@
             buttons.code =  makeIcon("wmd-code-button", "Код - Ctrl+K", "code", bindCommand("doCode"));
             nextRow();
 
-            buttons.link = makeIcon("wmd-link-button", "Ссылка - Ctrl+L", "globe", bindCommand(function (chunk, postProcessing) {
+            buttons.link = makeIcon("wmd-link-button", "Ссылка - Ctrl+L", "book", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'page');
             }));
             buttons.block = makeIcon("wmd-block-button", "Блок - Ctrl+S", "list-alt", bindCommand(function (chunk, postProcessing) {
@@ -1215,8 +1215,8 @@
             }));
             nextRow();
 
-            buttons.quote = makeIcon("wmd-quote-button", "Цитата - Ctrl+Q", "blockquote", bindCommand("doBlockquote"));
-            buttons.olist = makeIcon("wmd-olist-button", "Нумерованный список - Ctrl+O", "olist", bindCommand(function (chunk, postProcessing) {
+            buttons.quote = makeIcon("wmd-quote-button", "Цитата - Ctrl+Q", "quote", bindCommand("doBlockquote"));
+            buttons.olist = makeIcon("wmd-olist-button", "Нумерованный список - Ctrl+O", "number-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
             }));
             buttons.ulist = makeIcon("wmd-ulist-button", "Ненумерованный список - Ctrl+U", "list", bindCommand(function (chunk, postProcessing) {
@@ -1237,6 +1237,12 @@
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
 
             setUndoRedoButtonStates();
+            nextRow();
+
+            buttons.codes = makeIcon("wmd-codes-button", "Спецкоды", "cog", bindCommand(function (chunk, postProcessing) {
+                return this.doPickObject(chunk, postProcessing, 'code');
+            }));
+
         }
 
         function setUndoRedoButtonStates() {
@@ -1255,6 +1261,91 @@
     }
 
     var commandProto = CommandManager.prototype;
+
+    commandProto.doPickObject = function (chunk, postProcessing, objectType) {
+
+        chunk.trimWhitespace();
+        chunk.findTags(/\s*!?\[/, /\][ ]?(?:\n[ ]*)?(\[.*?\])?/);
+        var background;
+
+        if (chunk.endTag.length > 1 && chunk.startTag.length > 0) {
+
+            chunk.startTag = chunk.startTag.replace(/!?\[/, "");
+            chunk.endTag = "";
+            this.addLinkDef(chunk, null);
+
+        }
+        else {
+            
+            // We're moving start and end tag back into the selection, since (as we're in the else block) we're not
+            // *removing* a link, but *adding* one, so whatever findTags() found is now back to being part of the
+            // link text. linkEnteredCallback takes care of escaping any brackets.
+            chunk.selection = chunk.startTag + chunk.selection + chunk.endTag;
+            chunk.startTag = chunk.endTag = "";
+
+            if (/\n\n/.test(chunk.selection)) {
+                this.addLinkDef(chunk, null);
+                return;
+            }
+            var that = this;
+
+            var pickIdCallback = function(type, data) {
+                var id = data['id'];
+                var title = data['title'];
+                if (data['type']) {
+                    chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
+                    chunk.startTag = "[" + data['type'] + " " + (chunk.selection || (title ? (''+title).trim() : "параметры") ) + "]";
+                    chunk.endTag = "";
+                    chunk.selection = "";
+                }else if (id !== null) {
+                    chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
+                    var label = (type == 'asset' ? 'file' : type);
+                    chunk.startTag = "[" + label + " " + id + " " + (chunk.selection || (''+title).trim() || "заголовок") + "]";
+                    chunk.endTag = "";
+                    chunk.selection = "";
+                }
+                postProcessing();
+            }
+
+            var url = '/admin/dialogs/' + objectType + 's?pick';
+            var dialogNew = 'pick_'+objectType;
+            var dialog = $('#'+dialogNew);
+            if (dialog.length == 0) {
+              dialog = $('<div class="modal loading hide" id="'+dialogNew+'"></div>').appendTo('body');
+            }else{
+              dialogNew = false;
+            }
+            // load remote content
+            var pick_close = function(){
+                pickIdCallback(objectType, $(this).data());
+                dialog.modal('hide');
+                return false;
+            };
+            var rebindPicks = function() {
+                dialog.find( ".tab-content .tab-pane" ).unbind('pane-loaded').bind( 'pane-loaded', function() {
+                  dialog.find('a.pick').unbind('click').bind('click',pick_close);
+                });
+                dialog.find('a.pick').unbind('click').bind('click',pick_close);
+            };
+            if (dialogNew) {
+              dialog.load(
+                  url,
+                  function (responseText, textStatus, XMLHttpRequest) {
+                      // remove the loading class
+                      dialog.removeClass('loading');
+                      rebindPicks();
+                  }
+              );
+            }else{
+              rebindPicks();
+            }
+            dialog.modal('show');
+            dialog.on('hidden', function() {
+              //dialog.remove();
+            });
+            return true;
+        }
+    };
 
     // The markdown symbols - 4 spaces = code, > = blockquote, etc.
     commandProto.prefixes = "(?:\\s{4,}|\\s*>|\\s*-\\s+|\\s*\\d+\\.|=|\\+|-|_|\\*|#|\\s*\\[[^\n]]+\\]:)";
@@ -1426,86 +1517,6 @@
             return title ? link + ' "' + title + '"' : link;
         });
     }
-
-    commandProto.doPickObject = function (chunk, postProcessing, objectType) {
-
-        chunk.trimWhitespace();
-        chunk.findTags(/\s*!?\[/, /\][ ]?(?:\n[ ]*)?(\[.*?\])?/);
-        var background;
-
-        if (chunk.endTag.length > 1 && chunk.startTag.length > 0) {
-
-            chunk.startTag = chunk.startTag.replace(/!?\[/, "");
-            chunk.endTag = "";
-            this.addLinkDef(chunk, null);
-
-        }
-        else {
-            
-            // We're moving start and end tag back into the selection, since (as we're in the else block) we're not
-            // *removing* a link, but *adding* one, so whatever findTags() found is now back to being part of the
-            // link text. linkEnteredCallback takes care of escaping any brackets.
-            chunk.selection = chunk.startTag + chunk.selection + chunk.endTag;
-            chunk.startTag = chunk.endTag = "";
-
-            if (/\n\n/.test(chunk.selection)) {
-                this.addLinkDef(chunk, null);
-                return;
-            }
-            var that = this;
-
-            var pickIdCallback = function(type, id, title) {
-                if (id !== null) {
-                    chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
-                    
-                    var label = (type == 'asset' ? 'file' : type);
-
-                    chunk.startTag = "[" + label + " " + id + " " + (chunk.selection || (''+title).trim() || "enter title here") + "]";
-                    chunk.endTag = "";
-                    chunk.selection = "";
-                }
-                postProcessing();
-            }
-
-            var url = '/admin/dialogs/' + objectType + 's?pick';
-            var dialogNew = 'pick_'+objectType;
-            var dialog = $('#'+dialogNew);
-            if (dialog.length == 0) {
-              dialog = $('<div class="modal loading hide" id="'+dialogNew+'"></div>').appendTo('body');
-            }else{
-              dialogNew = false;
-            }
-            // load remote content
-            var pick_close = function(){
-                pickIdCallback(objectType, $(this).data('id'), $(this).data('title'));
-                dialog.modal('hide');
-                return false;
-            };
-            var rebindPicks = function() {
-                dialog.find( ".tab-content .tab-pane" ).unbind('pane-loaded').bind( 'pane-loaded', function() {
-                  dialog.find('a.pick').unbind('click').bind('click',pick_close);
-                });
-                dialog.find('a.pick').unbind('click').bind('click',pick_close);
-            };
-            if (dialogNew) {
-              dialog.load(
-                  url,
-                  function (responseText, textStatus, XMLHttpRequest) {
-                      // remove the loading class
-                      dialog.removeClass('loading');
-                      rebindPicks();
-                  }
-              );
-            }else{
-              rebindPicks();
-            }
-            dialog.modal('show');
-            dialog.on('hidden', function() {
-              //dialog.remove();
-            });
-            return true;
-        }
-    };
 
     // When making a list, hitting shift-enter will put your cursor on the next line
     // at the current indent level.

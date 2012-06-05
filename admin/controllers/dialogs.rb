@@ -24,6 +24,12 @@ Admin.controllers :dialogs do
     end
   end
 
+  get :codes do
+    @objects = Code.all
+    @title = pat 'dialog.pick_code'
+    render "dialogs/codes", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
+  end
+
   get :pages do
     @tree = page_tree( nil, 0, '' )
     @title = pat 'dialog.pick_page'

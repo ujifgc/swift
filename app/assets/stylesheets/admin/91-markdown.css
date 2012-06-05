@@ -22,3 +22,7 @@
 .icon-asset             { background-position: -24px -24px; }   
 .icon-block             { background-position: -264px -24px; }   
 .icon-image             { background-position: -456px -48px; }
+
+[id^=wmd-button-bar-] {
+  margin: 0;
+}
