@@ -32,7 +32,6 @@ class Swift < Padrino::Application
   get '/*' do
     not_found  unless @page
 
-    # !!!FIXME this feels like bad redirect, it's for rescuing an empty page and go for children
     if @page.fragment_id == 'page' && @page.text.blank?
       cs = @page.children.all :order => :position
       redirect cs.first.path  if cs.any?

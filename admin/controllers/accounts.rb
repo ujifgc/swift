@@ -11,7 +11,11 @@ Admin.controllers :accounts do
   end
 
   get :index do
-    @objects = Account.all :group_id.not => nil
+    filter = { :group_id.not => nil }
+    if params[:group] == 'groups' && current_account.allowed?(:admin)
+      filter = { :group_id => nil }
+    end    
+    @objects = Account.all filter
     render 'accounts/index'
   end
 

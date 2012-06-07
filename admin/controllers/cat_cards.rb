@@ -58,7 +58,7 @@ Admin.controllers :cat_cards do
     @deletes.each do |k|
       @object.json.delete k
     end
-    if @renames.any? #!!! FIXME add routines to rename all fields in data store, also add bulk rename of :select value renames (or just alert the user)
+    if @renames.any?
       @object.json = Hash[@object.json.map{ |k,v| @renames[k] ? [@renames[k], [@types[k], @values[k]]] : [k, v] }]
     end
     (@adds+@rest).each do |k|

@@ -170,7 +170,7 @@ module SwiftDatamapper
   module AmorphousMethods
     def [](key)
       return super key  if properties.any?{ |p| p.name==key }
-      self.json[key.to_s].freeze  #!!!FIXME freeze is a safeguard for a smartass eager to use something like `<<` instead of `=`, maybe fix it sometime
+      self.json[key.to_s].freeze  # !!!FIXME freeze is a safeguard for a smartass eager to use something like `<<` instead of `=`, maybe fix it sometime
     end
 
     def []=(key, value)
