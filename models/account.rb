@@ -27,6 +27,10 @@ class Account
   validates_length_of        :password, :min => 4, :max => 40,   :if => :password_required
   validates_confirmation_of  :password,                          :if => :password_required
 
+  timestamps!
+  userstamps!
+  property :logged_at, DateTime
+
   # relations
   has n, :folders
   property :group_id, Integer, :default => 6, :writer => :protected
@@ -68,8 +72,14 @@ class Account
 
   # class helpers
   def self.authenticate(email, password)
-    account = first(:conditions => { :email => email }) if email.present?
-    account && account.has_password?(password) ? account : nil
+    account = first( :email => email )  if email.present?
+    if account && account.has_password?(password)
+      account.logged_at = DateTime.now
+      account.save
+      account
+    else
+      nil
+    end
   end
 
   def self.find_by_id(id)
@@ -83,16 +93,20 @@ class Account
     raise Exception  if name.blank?
 
     email = "auto.#{auth['uid']}.#{auth['provider']}@localhost"  if email.blank?
-    account = Account.first :uid => auth['uid'], :provider => auth['provider']
-    return account  if account
 
-    pwd = Digest::MD5.hexdigest(rand.to_s)[4..11]
-    account = Account.create :provider => auth['provider'],
-                             :uid      => auth['uid'],
-                             :name     => name,
-                             :email    => email,
-                             :password => pwd,
-                             :password_confirmation => pwd
+    if account = Account.first( :uid => auth['uid'], :provider => auth['provider'] )
+      account.logged_at = DateTime.now
+      account.save
+      account
+    else
+      pwd = Digest::MD5.hexdigest(rand.to_s)[4..11]
+      account = Account.create :provider => auth['provider'],
+                               :uid      => auth['uid'],
+                               :name     => name,
+                               :email    => email,
+                               :password => pwd,
+                               :password_confirmation => pwd
+    end
   end
 
 private

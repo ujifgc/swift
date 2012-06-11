@@ -24,6 +24,60 @@ Admin.controllers :accounts do
     render 'accounts/new'
   end
 
+  get :reset do
+    render 'accounts/reset', :layout => false
+  end
+
+  post :reset do
+    account = Account.first :email => params[:email]
+    if account
+      code = Digest::SHA2.hexdigest(Digest::SHA1.hexdigest(account.inspect) + 'herjovFas8' + Date.today.to_s)[6..11]
+      host = env['SERVER_NAME']
+      if params[:reset]
+        if code == params[:reset]
+          pwd = `apg -qd -c#{rand(0..9)} -m8 -x8 -n1`  rescue Digest::SHA2.hexdigest(DateTime.now.to_s+rand(0..9).to_s).gsub(/[^\d]/,'')[0..5]
+          account.password = account.password_confirmation = pwd
+          account.crypted_password = Digest::SHA2.hexdigest(pwd)[0..5]  # dummy action to make account dirty
+          if account.save
+            email do
+              @host = host
+              @pwd = pwd
+              @login = account.email
+              @address = "http://#{@host}/admin"
+              from "noreply@#{@host}"
+              to   account.email
+              subject  "resetting padrino password"
+              body render 'reset_account_done'
+            end
+            set_current_account account
+            flash[:notice] = pat('account.reset_done')
+            redirect url(:base, :index)
+          else
+            flash[:error] = pat('account.save_failed')
+            render 'accounts/reset', :layout => false
+          end
+        else
+          flash[:error] = pat('account.code_wrong')
+          render 'accounts/reset', :layout => false
+        end              
+      else
+        email do
+          @code = code
+          @host = host
+          from "noreply@#{@host}"
+          to   account.email
+          subject  "resetting padrino password"
+          body render 'reset_account'
+        end
+        render 'accounts/reset', :layout => false
+      end
+    else
+      params[:email] = nil
+      flash[:error] = pat('account.doesnt_exist')
+      render 'accounts/reset', :layout => false
+    end
+  end
+
   post :create do
     @object = Account.new(params[:account])
     @object.group = @group  if @group

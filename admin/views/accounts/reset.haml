@@ -1,0 +1,34 @@
+!!! Strict
+%html{:lang => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %title Padrino Admin
+    =stylesheet_link_tag :base, "themes/default/style"
+  %body
+    #container
+      #box
+        %h1 Padrino Admin
+        #block-login.block
+          %h2 Login Box
+          .content.login
+            .flash=[:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
+            - form_tag(url(:accounts, :reset), :class => 'form login', :autocomplete => "off") do
+              - if params[:email].blank?
+                .group.wat-cf
+                  .left
+                    %label.label.right E-mail
+                  .right= text_field_tag :email, :value => params[:email], :class => :text_field
+              - else
+                .group.wat-cf
+                  .left
+                    %label.label.right Resetting
+                  .right
+                    = hidden_field_tag :email, :value => params[:email], :class => :text_field
+                    = params[:email]
+                .group.wat-cf
+                  .left
+                    %label.label.right Reset code
+                  .right= text_field_tag :reset, :value => params[:reset], :class => :text_field
+              .group.navform.wat-cf
+                .right= submit_tag('Reset', :class => :button)
+                .right= link_to 'Back', url(:base, :index), :class => :button

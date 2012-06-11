@@ -35,6 +35,7 @@ class Admin < Padrino::Application
     role.protect "/"
     role.allow "/sessions"
     role.allow "/auth"
+    role.allow "/accounts/reset"
   end
 
   access_control.roles_for :admin do |role|
