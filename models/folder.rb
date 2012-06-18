@@ -11,12 +11,12 @@ class Folder
   sluggable!
   bondable!
 
-  #relations
+  # relations
   belongs_to :account, :required => false
   has n, :images
   has n, :assets
 
-  # class helpert
+  # class helper
   def self.with( type )
     type = type.to_s.pluralize
     return []  unless ['images', 'assets'].include? type

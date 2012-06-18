@@ -1,7 +1,11 @@
 Admin.controllers :news_articles do
 
   get :index do
-    @objects = NewsArticle.all
+    filter = {}
+    unless params[:news_rubric].blank?
+      filter[:news_rubric_id] = NewsRubric.by_slug( params[:news_rubric] ).id  rescue nil
+    end
+    @objects = NewsArticle.all filter
     render 'news_articles/index'
   end
 

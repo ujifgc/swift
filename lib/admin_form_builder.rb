@@ -51,6 +51,13 @@ module Padrino
             tag = if loaded
               file = @object.send(field)
               caption += ' (' + I18n::t('asset_uploaded') + ')'
+              unless file.content_type.blank?
+                caption += tag(:br) + content_tag(:code) do
+                  file.content_type
+                end + tag(:br) + content_tag(:span, :class => :label) do
+                  file.size.as_size
+                end
+              end
               content_tag( :div ) do
                 if file.content_type.index('image')
                   link_to image_tag(file.url), file.url, :rel => 'box-image'
