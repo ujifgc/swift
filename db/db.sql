@@ -66,6 +66,11 @@ CREATE TABLE `accounts` (
   `provider` varchar(255) DEFAULT NULL,
   `uid` varchar(255) DEFAULT NULL,
   `group_id` int(11) DEFAULT '6',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_by_id` int(10) unsigned DEFAULT NULL,
+  `updated_by_id` int(10) unsigned DEFAULT NULL,
+  `logged_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -76,7 +81,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'admin','group','admin@localhost','$2a$10$sG1P2w41TQQxv21vZCR6YOoWSuX4xGBU91VzbsTWv/rC24paKBz.m',NULL,NULL,NULL),(2,'designer','group','designer@localhost','$2a$10$cHhWYvttbVIlg5/FhY718OJb6t8RZhJ3Af7kifs6lT3DYzuOhqhdy',NULL,NULL,NULL),(3,'auditor','group','auditor@localhost','$2a$10$PU2f4H75EbAlf87hEwTTD.bTzJPNAeX7UU/Hzo.U.oLWC3/W9zbLa',NULL,NULL,NULL),(4,'editor','group','editor@localhost','$2a$10$eiKO4ObMJ8LhlA79vVzBgePy7sabRe8xM3vY.f9oKv.cZWW3fu9jq',NULL,NULL,NULL),(5,'robot','group','robot@localhost','$2a$10$aO8eg1wRJV7pbxQ43xNrS.gkF206B/CCsHmlTxoLCRf79zX3Mx4/a',NULL,NULL,NULL),(6,'user','group','user@localhost','$2a$10$mY6GFR6PKUjjDnKP8V5MROS8wP8khzAWXa97g5G5CKLPRHE8KVZRe',NULL,NULL,NULL),(8,'Игорь Бочкарёв','','ujifgc@ya.ru',NULL,'yandex','http://openid.yandex.ru/ujifgc/',4),(9,'Igor Bochkariov','','ujifgc@gmail.com',NULL,'google','https://www.google.com/accounts/o8/id?id=AItOawkE8RSHwhGP-DsS-XRd4G199E-eLmmZR0o',1);
+INSERT INTO `accounts` VALUES (1,'admin','group','admin@localhost','$2a$10$sG1P2w41TQQxv21vZCR6YOoWSuX4xGBU91VzbsTWv/rC24paKBz.m',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'designer','group','designer@localhost','$2a$10$cHhWYvttbVIlg5/FhY718OJb6t8RZhJ3Af7kifs6lT3DYzuOhqhdy',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'auditor','group','auditor@localhost','$2a$10$PU2f4H75EbAlf87hEwTTD.bTzJPNAeX7UU/Hzo.U.oLWC3/W9zbLa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'editor','group','editor@localhost','$2a$10$eiKO4ObMJ8LhlA79vVzBgePy7sabRe8xM3vY.f9oKv.cZWW3fu9jq',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'robot','group','robot@localhost','$2a$10$aO8eg1wRJV7pbxQ43xNrS.gkF206B/CCsHmlTxoLCRf79zX3Mx4/a',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,'user','group','user@localhost','$2a$10$mY6GFR6PKUjjDnKP8V5MROS8wP8khzAWXa97g5G5CKLPRHE8KVZRe',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,'Игорь Бочкарёв','','ujifgc@ya.ru',NULL,'yandex','http://openid.yandex.ru/ujifgc/',4,NULL,NULL,NULL,NULL,NULL),(9,'Igor Bochkariov','','ujifgc@gmail.com','$2a$10$pV7ZGMg075KU8vzGZKF9u.REPeeciwiZXckyPjdw55jEcvNTkwKiG','google','https://www.google.com/accounts/o8/id?id=AItOawkE8RSHwhGP-DsS-XRd4G199E-eLmmZR0o',1,NULL,'2012-06-11 12:07:28',NULL,9,'2012-06-11 11:57:58');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -650,7 +655,7 @@ CREATE TABLE `news_events` (
 
 LOCK TABLES `news_events` WRITE;
 /*!40000 ALTER TABLE `news_events` DISABLE KEYS */;
-INSERT INTO `news_events` VALUES (1,'Четверг!','','','chetverg','2012-05-23 11:36:04','2012-05-23 11:43:15',1,'2012-05-23 11:36:09',2,1,1,'2012-05-24 00:00:00','week');
+INSERT INTO `news_events` VALUES (1,'Четверг!','','','chetverg','2012-05-23 11:36:04','2012-06-07 12:36:41',1,'2012-05-23 11:36:09',2,1,1,'2012-02-04 00:00:00','week');
 /*!40000 ALTER TABLE `news_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -786,4 +791,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-07 10:43:16
+-- Dump completed on 2012-06-18 11:09:04
