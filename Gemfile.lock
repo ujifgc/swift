@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/jnicklas/carrierwave.git
-  revision: d91ad986f3a8579e62290be3e6974c5c070b1791
+  revision: 9793c7178fc3dcf2680739c80c2ffd06173d553e
   specs:
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: http://github.com/ujifgc/padrino-framework.git
-  revision: 8c360759066f80f6494adcc338f4685ca3a41b0a
+  revision: 491dbc3044dd223c1632be63edd9964147f90920
   specs:
     padrino (0.10.6)
       padrino-admin (= 0.10.6)
@@ -63,10 +63,10 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    activemodel (3.2.3)
-      activesupport (= 3.2.3)
+    activemodel (3.2.6)
+      activesupport (= 3.2.6)
       builder (~> 3.0.0)
-    activesupport (3.2.3)
+    activesupport (3.2.6)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.8)
@@ -119,7 +119,7 @@ GEM
     mini_magick (3.4)
       subexec (~> 0.2.1)
     multi_json (1.0.4)
-    nokogiri (1.5.2)
+    nokogiri (1.5.4)
     omniauth (1.1.0)
       hashie (~> 1.2)
       rack
