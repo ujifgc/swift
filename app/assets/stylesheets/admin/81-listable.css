@@ -25,9 +25,21 @@
   padding: 8px;
   display: block;
 }
+.table-condensed td a.edit {
+  margin: -4px -5px;
+  padding: 4px 5px;
+}
 .table td.edit i {
   float: left;
   margin: 0.13em 0.5em 0;
+}
+.table td.edit .controls {
+  display: none;
+  float: right;
+  margin: -19px 0;
+}
+.table tr:hover td.edit .controls {
+  display: block;
 }
 .table tr.level-1 td.edit {
   padding-left: 2em;

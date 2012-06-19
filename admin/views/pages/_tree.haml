@@ -11,6 +11,11 @@
       %td.edit
         = mk_published object
         = mk_edit object
+        .controls.btn-group
+          .btn.btn-mini
+            = mk_glyph 'chevron-up', :'data-reposition' => :up
+          .btn.btn-mini
+            = mk_glyph 'chevron-down', :'data-reposition' => :down
       %td.slug= object.slug
       %td= object.path
       - if current_account.allowed? :designer

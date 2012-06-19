@@ -1293,10 +1293,16 @@
                 var id = data['id'];
                 var title = data['title'];
                 if (data['type']) {
-                    chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
-                    chunk.startTag = "[" + data['type'] + " " + (chunk.selection || (title ? (''+title).trim() : "параметры") ) + "]";
-                    chunk.endTag = "";
-                    chunk.selection = "";
+                    if (data['single']) {
+                        chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
+                        chunk.startTag = "[" + data['type'] + " " + (chunk.selection || data['placeholder']) + "]";
+                        chunk.endTag = "";
+                        chunk.selection = "";
+                    }else{
+                        chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
+                        chunk.startTag = "[" + data['type'] + (data['placeholder'] ? " " + data['placeholder'] : "") + "]";
+                        chunk.endTag = "[/" + data['type'] + "]";
+                    }
                 }else if (id !== null) {
                     chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
                     var label = (type == 'asset' ? 'file' : type);

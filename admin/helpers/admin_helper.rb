@@ -49,8 +49,8 @@ Admin.helpers do
     content_tag( :i, '', :class => 'icon-'+ICONS[op] ) + ' '  rescue throw op
   end
 
-  def mk_glyph( s )
-    content_tag( :i, '', :class => 'icon-'+s )
+  def mk_glyph( s, opt = {} )
+    content_tag( :i, '', { :class => 'icon-'+s }.merge(opt) )
   end
 
   def mk_glyphs( *ss )

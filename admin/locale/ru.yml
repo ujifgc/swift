@@ -105,6 +105,8 @@ ru:
         type_html: HTML
         type_text: Текст
         is_single: Одиночный
+        placeholder: Комментарий
+        duration: Длительность
         html: HTML код
     blocks:
       name: блоки

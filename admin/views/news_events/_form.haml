@@ -2,6 +2,13 @@
 ~ f.input :info, :as => :text, :markdown => true
 ~ f.input :text, :as => :text, :markdown => true
 = f.input :period, :as => :select, :selected => @object.period, :options => NewsEvent::Periods, :include_blank => false
+.control-group.as_group
+  = f.label( :duration, :class => 'control-label', :caption => mat(:object, :duration) )
+  .controls.horizontal
+    = f.text_field :duration_count, :value => @object.get_duration(:count), :class => 'input-mini'
+    = ' '
+    = f.select :duration_units, :selected => @object.get_duration(:units), :options => NewsEvent::Durations, :include_blank => false
+    = ' '
 = f.input :news_rubric_id, :as => :select, :selected => @object.news_rubric_id, :collection => NewsRubric.all, :fields => [ :title, :id ], :include_blank => false
 = f.input :date, :as => :datetime
 - allow :auditor do

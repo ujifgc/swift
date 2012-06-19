@@ -8,6 +8,7 @@ class NewsEvent
   property :info,     Text
   property :text,     Text
   property :period,   String
+  property :duration, String
 
   Periods = {
     'Нет' => '',
@@ -15,6 +16,14 @@ class NewsEvent
     'Месяц' => 'month',
     'Неделя' => 'week',
     'День' => 'day',
+  }
+
+  Durations = {
+    'час' => 'hour',
+    'день' => 'day',
+    'неделя' => 'week',
+    'месяц' => 'month',
+    'год' => 'year',
   }
 
   sluggable!
@@ -33,5 +42,14 @@ class NewsEvent
   # hookers
 
   # instance helpers
+  def get_duration(what)
+    tags = self.duration.to_s.split '.'
+    case what
+    when :count
+      tags[0]
+    when :units
+      tags[1]
+    end
+  end
 
 end

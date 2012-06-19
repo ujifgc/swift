@@ -59,7 +59,15 @@ Admin.controllers :cat_cards do
       @object.json.delete k
     end
     if @renames.any?
+      logger << @renames.inspect
+      logger << @types.inspect
+      logger << @values.inspect
       @object.json = Hash[@object.json.map{ |k,v| @renames[k] ? [@renames[k], [@types[k], @values[k]]] : [k, v] }]
+      @object.cat_nodes.each do |node|
+        node.json = Hash[node.json.map{ |k,v| @renames[k] ? [@renames[k], v] : [k, v] }]
+        node.save
+      end
+      logger << @resources.inspect
     end
     (@adds+@rest).each do |k|
       @object.json[@keys[k]] = [@types[k], @values[k]]

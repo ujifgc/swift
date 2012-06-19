@@ -34,9 +34,9 @@ class Page
   # hookers
   before :valid? do
     self.parent_id = nil  if self.id == self.parent_id
-    if self.position == nil || self.position == ''
+    if self.position.blank?
       max = Page.all( :parent => self.parent ).max :position
-      self.position = max.to_i + 1
+      self.position = max.to_i + 10
     end
   end
 
@@ -57,6 +57,22 @@ class Page
 
   def root?
     self.path == '/'
+  end
+
+  def reposition!( dir )
+    opos = self.position
+    sibling = case dir.downcase.to_sym
+    when :up
+      Page.first :position.lte => opos, :id.not => self.id, :parent_id => self.parent_id, :order => [:position.desc]
+    when :down
+      Page.first :position.gte => opos, :id.not => self.id, :parent_id => self.parent_id, :order => [:position]
+    end
+    if sibling
+      self.position = sibling.position
+      self.save
+      sibling.position = opos
+      sibling.save
+    end
   end
 
 end

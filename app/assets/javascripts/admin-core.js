@@ -10,6 +10,16 @@
     multipleOp(this);
   });
 
+/* pages */
+  $('[data-reposition]').closest('.btn').on('click', function() {
+    if (this.disabled) return false;
+    this.disabled = true;
+    var models = $('form.multiple')[0].id.split('-')[1];
+    var id = $(this).closest('tr')[0].id.split('-')[1];
+    var action = '/admin/'+models+'/reposition/'+id+'/'+$(this).find('[data-reposition]').data('reposition');
+    $('form.multiple').attr( { action: action } ).submit();
+  });
+
   // datatables
 
 /* Table initialisation */

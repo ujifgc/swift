@@ -1,5 +1,13 @@
 Admin.controllers :news_events do
 
+  before :update, :create do
+    durc = params[:news_event].delete( 'duration_count' ).to_i
+    duru = params[:news_event].delete( 'duration_units' )
+    if NewsEvent::Durations.has_value? duru
+      params[:news_event]['duration'] = "#{durc}.#{duru}"
+    end
+  end
+
   get :index do
     @objects = NewsEvent.all
     render 'news_events/index'

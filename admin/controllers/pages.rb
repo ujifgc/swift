@@ -36,6 +36,17 @@ Admin.controllers :pages do
     end
   end
 
+  post :reposition, :with => [:id, :direction] do
+    @object = Page.get(params[:id])
+    if @object
+      @object.reposition! params[:direction]
+      flash[:notice] = pat('page.repositioned')
+    else
+      flash[:notice] = pat('page.not_found')
+    end
+    redirect url(:pages, :index)
+  end
+
   delete :destroy, :with => :id do
     @object = Page.get(params[:id])
     if @object.destroy
