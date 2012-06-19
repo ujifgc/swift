@@ -1,6 +1,6 @@
 //= require_tree ./libraries
 //= require_tree ./bootstrap
-//#= require_tree ./markdown
+//= require_tree ./markdown
 
 bindMarkdowns = function() {
   $('textarea.markdown').each( function() {
