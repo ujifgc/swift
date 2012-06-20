@@ -26,8 +26,8 @@ Swift.helpers do
     args = []
     hash = {}
     # 0 for element name
-    #             0              12             3    4            5             6
-    vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ ) #"
+    #                     0              12             3    4            5             6
+    vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ )    #"
     vars.each do |v|
       case
       when v[0]
@@ -49,7 +49,7 @@ Swift.helpers do
       if idx > 0
         (args[idx-1] || $2).to_s
       elsif $3 == 'content'
-        content
+        parse_content content
       else
         "[#{tag}]"
       end
@@ -58,11 +58,11 @@ Swift.helpers do
 
   def parse_content( str )
     @parse_level = @parse_level.to_i + 1
-    return t(:parse_level_too_deep)  if @parse_level > 3
+    return t(:parse_level_too_deep)  if @parse_level > 4
     needs_capturing = false
 
-    str.gsub!(/\[(.*?)\]/) do |s|
-      tag = $1
+    str.gsub!(/(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/) do |s|
+      tag = $1[1..-2]
       md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)\s+(.*)/
       unless md
         tags = tag.partition ' '
@@ -83,7 +83,7 @@ Swift.helpers do
         else
           args[1..-1]
         end.join(' ').strip
-        hash[:title] = newtitle.blank? ? nil : newtitle
+        hash[:title] = newtitle.blank? ? nil : parse_content(newtitle)
       end
       case type
       when 'page', 'link'
@@ -100,8 +100,10 @@ Swift.helpers do
     end
     if needs_capturing
       logger << str
-      str.gsub!( /\[([^\s]*)(.*)\](.*)\[\/(\1)\]/ ) do |s|
+      str.gsub!( /\[([^\s]*)\s+(.*?)\](.*)\[\/(\1)\]/ ) do |s|
+        #throw [$1, $2, $3, $4, $5, $6]
         args, hash = parse_vars $2
+        #throw [args, hash]
         code = Code.by_slug $1
         parse_code( code.html, args, $3 )
       end
