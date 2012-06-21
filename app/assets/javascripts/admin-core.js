@@ -20,6 +20,38 @@
     $('form.multiple').attr( { action: action } ).submit();
   });
 
+/* sidebar */
+  $('h5.nav-header[data-toggle]').popover({ trigger: 'manual', placement: 'right-down', animation: 'show' });
+  $('h5.nav-header[data-toggle]').mouseenter(function() {
+    if ($(this).hasClass('collapsed'))
+      $(this).popover('show');
+  });
+  $('h5.nav-header[data-toggle]').mouseleave(function() {
+    $(this).popover('hide')
+  });
+  $('h5.nav-header[data-toggle]').on('click', function() {
+    var target = $($(this).data('toggle'));
+    if (target.find('li.active').length > 0) {
+      hei = target.height();
+      target.animate( { height: '0px' }, 500 );
+      setTimeout(function() {
+        target.stop().animate( { height: hei + 'px' }, 125, function() {
+          target.css( { height: 'auto', overflow: 'visible' } );
+        });
+      }, 125);
+      return;
+    }
+    target.slideToggle();
+    $(this).toggleClass('collapsed');
+    var id = $(this).data('toggle').split('-').pop();
+    var coo = ($.cookie('sbc')||'').replace(id+' ', '');
+    if ($(this).hasClass('collapsed'))
+      coo += id + ' ';
+    else
+      $(this).popover('hide')
+    $.cookie('sbc', coo);
+  });
+
   // datatables
 
 /* Table initialisation */
