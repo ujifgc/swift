@@ -99,11 +99,8 @@ Swift.helpers do
       end.strip
     end
     if needs_capturing
-      logger << str
       str.gsub!( /\[([^\s]*)\s+(.*?)\](.*)\[\/(\1)\]/ ) do |s|
-        #throw [$1, $2, $3, $4, $5, $6]
         args, hash = parse_vars $2
-        #throw [args, hash]
         code = Code.by_slug $1
         parse_code( code.html, args, $3 )
       end
@@ -113,7 +110,7 @@ Swift.helpers do
   end
 
   def render_text( text )
-    parse_content(text).html
+    parse_content text.html
   end
 
   def div_open( opt )

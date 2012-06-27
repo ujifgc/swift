@@ -7,7 +7,6 @@ Admin.controllers :accounts do
     @group = nil  unless current_account.allowed @group.role
     params[:account].delete 'password'  if params[:account]['password'].blank?
     params[:account].delete 'password_confirmation'  if params[:account]['password_confirmation'].blank?
-    logger << params.inspect
   end
 
   get :index do

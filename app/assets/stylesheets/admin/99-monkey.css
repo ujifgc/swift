@@ -117,3 +117,6 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
     font-size: 1em;
     text-transform: none;
 }
+
+/* popover right-down arrow */
+.popover.right-down .arrow{top:27px;left:0;margin-top:-5px;border-top:5px solid transparent;border-bottom:5px solid transparent;border-right:5px solid #000000;}

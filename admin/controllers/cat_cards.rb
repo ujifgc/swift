@@ -23,7 +23,6 @@ Admin.controllers :cat_cards do
       end
       @rest << k
     end
-    logger << [@adds, @rest, @deletes, @renames].inspect
   end
 
   get :index do
@@ -54,25 +53,19 @@ Admin.controllers :cat_cards do
   put :update, :with => :id do
     @object = CatCard.get(params[:id])
     @object.attributes = params[:cat_card]
-    logger << @object.json.inspect
     @deletes.each do |k|
       @object.json.delete k
     end
     if @renames.any?
-      logger << @renames.inspect
-      logger << @types.inspect
-      logger << @values.inspect
       @object.json = Hash[@object.json.map{ |k,v| @renames[k] ? [@renames[k], [@types[k], @values[k]]] : [k, v] }]
       @object.cat_nodes.each do |node|
         node.json = Hash[node.json.map{ |k,v| @renames[k] ? [@renames[k], v] : [k, v] }]
         node.save
       end
-      logger << @resources.inspect
     end
     (@adds+@rest).each do |k|
       @object.json[@keys[k]] = [@types[k], @values[k]]
     end
-    logger << @object.json.inspect
     if @object.save
       flash[:notice] = pat('cat_card.updated')
       redirect url(:cat_cards, :index)

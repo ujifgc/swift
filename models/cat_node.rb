@@ -22,7 +22,6 @@ class CatNode
 
   # class helpers
   def self.filter_by( group )
-    logger << group.json.inspect
     filter_strings = []
     filter_regexes = []
     while group

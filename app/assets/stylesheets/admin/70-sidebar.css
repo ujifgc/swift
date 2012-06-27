@@ -25,6 +25,7 @@ h5.nav-header:after {
   Rbackground-position:-288px -120px;
 
   -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
   -moz-transition: all 0.3s ease-in-out;
 
   transform: rotate(135deg);
@@ -35,6 +36,7 @@ h5.nav-header.collapsed {
 }
 h5.nav-header.collapsed:after {
   -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
   transform: rotate(45deg);
   top: 10px;
 }
