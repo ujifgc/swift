@@ -122,7 +122,7 @@ class String
     "#{self}/#{s.to_s}"
   end
 
-  def html
+  def as_html
     $markdown.render(self)
   end
 

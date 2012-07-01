@@ -1,7 +1,7 @@
 /* Easy Select Box */
 .easy-select-box {
   position: relative;
-  width: 290px;
+  min-width: 290px;
   font-size: 12px;
   line-height: 18px;
   color:#0c2245;
@@ -41,6 +41,7 @@
   color:#0c2245;
   text-decoration:none;
   height: 18px;
+  padding-right: 25px;
 }
 .easy-select-box .easy-select-box-disp:hover{
   position:relative;
@@ -54,7 +55,7 @@
   left:-1px;
   border-top:1px solid #cccccc;
   display:none;
-  width:298px;
+  min-width:298px;
   overflow:auto;
   background:#FFFFFF;
   list-style: none; padding: 0;

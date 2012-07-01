@@ -27,7 +27,16 @@ Admin.controllers :folders do
 
   put :update, :with => :id do
     @object = Folder.get(params[:id])
+    old_slug = @object.slug
+    old_img_dir = Image.new( :folder => @object ).file.store_dir
+    old_doc_dir = Asset.new( :folder => @object ).file.store_dir
     if @object.update(params[:folder])
+      unless old_slug == @object.slug
+        new_img_dir = Image.new( :folder => @object ).file.store_dir
+        new_doc_dir = Asset.new( :folder => @object ).file.store_dir
+        File.rename( Padrino.public / old_img_dir, Padrino.public / new_img_dir )  rescue nil
+        File.rename( Padrino.public / old_doc_dir, Padrino.public / new_doc_dir )  rescue nil
+      end
       flash[:notice] = pat('folder.updated')
       redirect url(:folders, :index)
     else

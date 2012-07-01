@@ -35,8 +35,8 @@ class Page
   before :valid? do
     self.parent_id = nil  if self.id == self.parent_id
     if self.position.blank?
-      max = Page.all( :parent => self.parent ).max :position
-      self.position = max.to_i + 10
+      max = Page.all( :parent => self.parent ).published.max :position
+      self.position = max.to_i + 5
     end
   end
 

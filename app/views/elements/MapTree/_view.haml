@@ -5,5 +5,5 @@
       %li{ :class => leaf[:class] }
         %a{ :href => leaf[:href], :class => leaf[:class] }
           = leaf[:title]
-        - if leaf[:child]
+        - if leaf[:child].any?
           = partial @view, :locals => { :tree => leaf[:child] }

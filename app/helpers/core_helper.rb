@@ -99,7 +99,7 @@ Swift.helpers do
       end.strip
     end
     if needs_capturing
-      str.gsub!( /\[([^\s]*)\s+(.*?)\](.*)\[\/(\1)\]/ ) do |s|
+      str.gsub!( /\[([^\s]*)\s*(.*?)\](.*)\[\/(\1)\]/m ) do |s|
         args, hash = parse_vars $2
         code = Code.by_slug $1
         parse_code( code.html, args, $3 )
@@ -110,7 +110,7 @@ Swift.helpers do
   end
 
   def render_text( text )
-    parse_content text.html
+    parse_content text.as_html
   end
 
   def div_open( opt )

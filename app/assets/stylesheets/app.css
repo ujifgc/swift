@@ -12,3 +12,6 @@ body {
   float: none !important;
   vertical-align: top;
 }
+.right {
+  text-align: right;
+}

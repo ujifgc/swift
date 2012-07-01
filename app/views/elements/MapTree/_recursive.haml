@@ -15,7 +15,7 @@
     leaf[:class] = master ? 'master' : 'slave'
     leaf[:class] += ' active'  if ensued
 
-    child = false
+    child = []
     if ensued || @opts[:expand]
       child = partial @recursive, :locals => { :from => page, :level => level + 1, :prefix => prefix + '/' + page.slug }
     end
@@ -34,4 +34,4 @@
     tree << leaf
   end
 
-  return tree.length > 0 ? tree : false
+  return tree
