@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/jnicklas/carrierwave.git
-  revision: 9793c7178fc3dcf2680739c80c2ffd06173d553e
+  revision: e5cca01cc8d057fcd381bbe1024e82bdc388b306
   specs:
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
@@ -45,14 +45,6 @@ GIT
     padrino-mailer (0.10.7)
       mail (~> 2.3.0)
       padrino-core (= 0.10.7)
-
-GIT
-  remote: http://github.com/ujifgc/rack-datamapper-session.git
-  revision: 3053c97f0bb5b39c34ed737ddcee53dfcc5ce110
-  specs:
-    rack-datamapper-session (0.4)
-      dm-core (>= 0.9.10)
-      rack (>= 1.3)
 
 GIT
   remote: http://github.com/ujifgc/redcarpet.git
@@ -145,7 +137,7 @@ GEM
       tilt (~> 1.3, >= 1.3.3)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
-    sprockets (2.4.3)
+    sprockets (2.4.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -183,7 +175,6 @@ DEPENDENCIES
   omniauth-openid
   padrino!
   padrino-sprockets
-  rack-datamapper-session!
   rack-openid
   rake
   redcarpet!

@@ -35,6 +35,9 @@ Admin.helpers do
     :news_rubrics  => 'th-large',
     :news_events   => 'flag',
 
+    :forms_cards   => 'inbox',
+    :forms_results => 'folder-close',
+
     :cat_cards  => 'inbox',
     :cat_nodes  => 'folder-close',
     :cat_groups => 'tag',

@@ -22,7 +22,6 @@ gem 'dm-constraints'
 gem 'dm-aggregates'
 gem 'dm-core', '~> 1.2.0'
 gem 'dm-mysql-adapter'
-gem 'rack-datamapper-session', :git => 'http://github.com/ujifgc/rack-datamapper-session.git'
 
 gem 'padrino', :git => 'http://github.com/ujifgc/padrino-framework.git'
 

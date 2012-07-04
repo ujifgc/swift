@@ -1,6 +1,7 @@
 MODULE_GROUPS = {
   :content => %W(pages blocks assets images folders),
   :news    => %W(news_articles news_rubrics news_events),
+  :forms   => %W(forms_cards forms_results),
   :cat     => %W(cat_nodes cat_cards cat_groups),
   :design  => %W(layouts fragments),
   :admin   => %W(accounts codes),
@@ -16,9 +17,6 @@ class Admin < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
   register Padrino::Admin::AccessControl
-
-  #set :session_id, 'swift.admin'.to_sym
-  #use Rack::Session::DataMapper
 
   set :login_page, "/admin/sessions/new"
   set :default_builder, 'AdminFormBuilder'
@@ -50,6 +48,9 @@ class Admin < Padrino::Application
     role.project_module :news_articles, '/news_articles'
     role.project_module :news_rubrics, '/news_rubrics'
     role.project_module :news_events, '/news_events'
+
+    role.project_module :forms_cards, '/forms_cards'
+    role.project_module :forms_results, '/forms_results'
 
     role.project_module :cat_nodes, '/cat_nodes'
     role.project_module :cat_cards, '/cat_cards'
