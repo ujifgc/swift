@@ -1,0 +1,13 @@
+= partial 'base/index_operations'
+%form.inner.multiple#multiple-forms_results{ :action => url(:forms_results, :index)/:multiple, :method => :post }
+  %table.table
+    %thead
+      %tr
+        %th.first
+        %th= mat(:object, :id)
+    %tbody
+      - @objects.each do |object|
+        %tr
+          %td.last= mk_checkbox object
+          %td.first= link_to object.id, url(:forms_results, :edit, :id => object.id)
+= partial 'base/index_operations_bottom'

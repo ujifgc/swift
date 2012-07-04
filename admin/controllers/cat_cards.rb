@@ -1,30 +1,5 @@
 #
 Admin.controllers :cat_cards do
-  before :create, :update do
-    @keys = params.delete 'key'
-    @types = params.delete 'type'
-    @values = params.delete 'value'
-    @adds = []
-    @rest = []
-    @deletes = []
-    @renames = {}
-    @keys.each do |k,v|
-      if @types[k] == "" || v.blank?
-        @deletes << k
-        next
-      end
-      if k.match(/cat_node_new-\d+/)
-        @adds << k
-        next
-      end
-      if k != v
-        @renames.merge! k => v
-        next
-      end
-      @rest << k
-    end
-  end
-
   get :index do
     @objects = CatCard.all
     render 'cat_cards/index'
@@ -37,6 +12,7 @@ Admin.controllers :cat_cards do
 
   post :create do
     @object = CatCard.new(params[:cat_card])
+    @object.fill_json params, :cat_nodes #!!!FIXME move the second param to the model
     if @object.save
       flash[:notice] = pat('cat_card.created')
       redirect url(:cat_cards, :index)
@@ -53,19 +29,7 @@ Admin.controllers :cat_cards do
   put :update, :with => :id do
     @object = CatCard.get(params[:id])
     @object.attributes = params[:cat_card]
-    @deletes.each do |k|
-      @object.json.delete k
-    end
-    if @renames.any?
-      @object.json = Hash[@object.json.map{ |k,v| @renames[k] ? [@renames[k], [@types[k], @values[k]]] : [k, v] }]
-      @object.cat_nodes.each do |node|
-        node.json = Hash[node.json.map{ |k,v| @renames[k] ? [@renames[k], v] : [k, v] }]
-        node.save
-      end
-    end
-    (@adds+@rest).each do |k|
-      @object.json[@keys[k]] = [@types[k], @values[k]]
-    end
+    @object.fill_json params, :cat_nodes
     if @object.save
       flash[:notice] = pat('cat_card.updated')
       redirect url(:cat_cards, :index)
@@ -83,4 +47,5 @@ Admin.controllers :cat_cards do
     end
     redirect url(:cat_cards, :index)
   end
+
 end

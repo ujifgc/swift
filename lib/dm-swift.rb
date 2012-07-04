@@ -71,7 +71,7 @@ module SwiftDatamapper
       end
     end
 
-    def uploadable! uploader, options={}
+    def uploadable!( uploader, options={} )
       send :include, UploadableMethods
 
       mount_uploader :file, uploader
@@ -180,6 +180,35 @@ module SwiftDatamapper
 
     def embed(key, value)
       self.json[key.to_s] = value
+    end
+
+    def fill_json params, children
+      keys = params.delete 'key'
+      types = params.delete 'type'
+      values = params.delete 'value'
+      renames = {}
+      keys.each do |k,v|
+        if types[k] == "" || v.blank?
+          self.json.delete k
+          next
+        end
+        if k.match(/json_new-\d+/)
+          self.json[keys[k]] = [types[k], values[k]]
+          next
+        end
+        if k != v
+          renames.merge! k => v
+          next
+        end
+        self.json[keys[k]] = [types[k], values[k]]
+      end
+      if renames.any?
+        self.json = Hash[self.json.map{ |k,v| renames[k] ? [renames[k], [types[k], values[k]]] : [k, v] }]
+        self.send(children).each do |node|
+          node.json = Hash[node.json.map{ |k,v| renames[k] ? [renames[k], v] : [k, v] }]
+          node.save
+        end
+      end
     end
   end
 

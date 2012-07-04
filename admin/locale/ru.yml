@@ -12,6 +12,7 @@ ru:
         cat: Каталог
         news: Новостные ленты
         design: Вёрстка и дизайн
+        forms: Формы и опросы
       tooltip:
         content: Содержимое сайта
         admin: Настройки
@@ -33,6 +34,8 @@ ru:
         cat_nodes: Ресурсы
         cat_cards: Карточки
         cat_groups: Группы
+        forms_cards: Карточки
+        forms_results: Результаты
         accounts: Пользователи
         add:
           images: Добавить картинки

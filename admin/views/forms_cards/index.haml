@@ -1,13 +1,15 @@
 = partial 'base/index_operations'
-%form.inner.multiple#multiple-<%= @orm.name_plural %>{ :action => url(:<%= @orm.name_plural %>, :index)/:multiple, :method => :post }
+%form.inner.multiple#multiple-forms_cards{ :action => url(:forms_cards, :index)/:multiple, :method => :post }
   %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead
       %tr
         %th.first
-        %th= mat(:object, :id)
+        %th= mat(:object, :title)
+        %th= mat(:object, :slug)
     %tbody
       - @objects.each do |object|
         %tr
           %td.last= mk_checkbox object
-          %td.first= link_to object.id, url(:<%= @orm.name_plural %>, :edit, :id => object.id)
+          %td= mk_edit object
+          %td= object.slug
 = partial 'base/index_operations_bottom'
