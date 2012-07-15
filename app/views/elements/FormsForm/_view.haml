@@ -1,0 +1,6 @@
+﻿= @out.inspect
+.article
+  %h3= @form.title
+  .text= render_text(@form.text)
+  - form_for :forms_result, se_url(@form, :post) do |f|
+    = f.submit 'go'

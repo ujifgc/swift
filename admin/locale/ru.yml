@@ -117,6 +117,7 @@ ru:
         placeholder: Комментарий
         duration: Длительность
         html: HTML код
+        kind: Вид запроса
     blocks:
       name: блоки
     block:

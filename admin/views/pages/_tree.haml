@@ -19,8 +19,8 @@
       %td.slug= object.slug
       %td= object.path
       - if current_account.allowed? :designer
-        %td.nowrap= link_to object.fragment.title, url(:fragments, :edit, :id => object.fragment_id)
+        %td.nowrap= link_to( object.fragment.title, url(:fragments, :edit, :id => object.fragment_id) )  rescue nil
       - else
-        %td.nowrap= object.fragment.title
+        %td.nowrap= object.fragment.title  rescue nil
       - if leaf[:child]
         = partial 'pages/tree', :locals => { :tree => leaf[:child], :level => level + 1 }

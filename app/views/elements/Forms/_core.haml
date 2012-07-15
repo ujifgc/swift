@@ -1,0 +1,9 @@
+﻿:ruby
+  if md = @swift[:slug].match( /(show|post)\/(.*)/ )
+    @swift[:skip_view]['Forms'] = true
+    @swift[:slug] = md[2]
+    @swift[:path_pages] << Page.new
+    @opts[:method] = md[1]
+    return element( 'FormsForm', @args, @opts )
+  end
+  @forms = FormsCard.all( :kind => :form ).published

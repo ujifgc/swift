@@ -29,7 +29,7 @@ class Swift < Padrino::Application
   end
 
   # if no controller got the request, try finding some content in the sitemap
-  get '/*' do
+  get_or_post = lambda do
     not_found  unless @page
 
     if @page.fragment_id == 'page' && @page.text.blank?
@@ -41,6 +41,10 @@ class Swift < Padrino::Application
     params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
     render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
   end
+
+  # a trick to consume both get and post requests
+  get '/*', &get_or_post
+  post '/*', &get_or_post
 
   # if the sitemap does not have the requested page then show the 404
   not_found do

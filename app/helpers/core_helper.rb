@@ -121,12 +121,12 @@ Swift.helpers do
     '</div>'
   end
 
-  def se_url( o )
+  def se_url( o, method = :show )
     case o.class.name
     when 'NewsArticle'
-      '/news/show/'+o.slug
+      '/news' / method / o.slug
     else
-      '/'
+      @swift[:module_root] ? @swift[:module_root] / method / o.slug : '/'
     end
   end
 
