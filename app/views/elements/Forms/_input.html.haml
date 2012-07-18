@@ -1,0 +1,2 @@
+﻿=# partial "elements/Forms/#{value[0]}", :locals => { :name => key, :value => value[1] }
+= @f.input key, :as => value[0].to_sym, :variants => value[1].split(/[\r\n]+/)

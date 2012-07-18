@@ -14,8 +14,8 @@ Swift.helpers do
     else
       partial( view_file )
     end
-  rescue Padrino::Rendering::TemplateNotFound
-    "[Element '#{name}' missing]"
+  rescue Padrino::Rendering::TemplateNotFound => err
+    "[Element '#{name}' missing #{err.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
   end
 
   def fragment( name, *args )

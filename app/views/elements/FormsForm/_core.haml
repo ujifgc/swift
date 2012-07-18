@@ -1,13 +1,15 @@
 ﻿:ruby
-  @form = FormsCard.by_slug @swift[:slug]
-  not_found  unless @form
-  @swift[:path_pages][-1] = Page.new :title => @form.title
+  @card = FormsCard.by_slug @swift[:slug]
+  not_found  unless @card
+  @swift[:path_pages][-1] = Page.new :title => @card.title
   case @opts[:method].to_sym
   when :post
-    result = @form.fill request
-    if result.saved?
+    @result = @card.fill request
+    if @result.saved?
       flash[:notice] = 'Saved'
-      redirect se_url( @form )
+      redirect se_url( @card )
+    else
     end
   else
+    @result = FormsResult.new :forms_card => @card
   end

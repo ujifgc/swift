@@ -1,6 +1,7 @@
 #coding:utf-8
 
 #DataMapper.logger = logger
+$logger = logger
 DataMapper::Logger.new('log/sql.log', :debug)
 DataMapper::Property::String.length(255)
 

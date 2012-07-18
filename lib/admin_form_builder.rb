@@ -11,7 +11,7 @@ module Padrino
         def input( field, options={} )
           object = @object.class.to_s.underscore
           options[:label] ||= {}
-          caption = options[:label].delete(:caption) || I18n.t("models.object.attributes.#{field}")
+          caption = options[:label].delete(:caption) || make_caption(field)
           caption += ' (' + options.delete(:brackets).to_s + ')'  if options[:brackets]
           type = 'string'
           morphable = options.delete :morphable
@@ -43,6 +43,15 @@ module Padrino
               ''
             end
             tag + ' ' + add
+          when :multiple, :checkboxes, :variants
+            type = 'multiple'
+            out = ''
+            options[:variants].each do |v|
+              out += label_back_tag v, :for => "#{object}_#{field}_#{v}", :caption => v, :class => :checkbox do
+                check_box_tag "#{object}[#{field}][]", :value => v, :id => "#{object}_#{field}_#{v}"
+              end
+            end
+            out
           when :boolean, :checkbox
             type = 'checkbox'
             label( field, :caption => check_box( field, :class => :check_box ), :class => :checkbox)
@@ -94,7 +103,7 @@ module Padrino
         end
 
         def group_label( field, options={} )
-          caption = I18n.t "models.object.attributes.#{field}"
+          caption = make_caption field
           label( field, :class => 'control-label', :caption => caption )
         end
 
@@ -108,6 +117,12 @@ module Padrino
           html = @template.submit_tag options[:save_label] || I18n.t('padrino.admin.form.save'), :class => 'btn btn-primary'
           html += ' ' + @template.submit_tag( options[:back_label] || I18n.t('padrino.admin.form.back'), :onclick => "history.back();return false", :class => 'btn' )
           @template.content_tag( :div, html, :class => 'form-actions bottons' )
+        end
+
+      protected
+        
+        def make_caption( field )
+          I18n.t "models.object.attributes.#{field}"
         end
 
       end

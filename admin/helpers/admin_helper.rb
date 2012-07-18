@@ -1,6 +1,6 @@
 Admin.helpers do
   def mk_edit( target )
-    link_to target.title, url(target.class.storage_name.to_sym, :edit, :id => target.id), :class => :edit
+    link_to( target.title, url(target.class.storage_name.to_sym, :edit, :id => target.id), :class => :edit )
   end
 
   def mk_checkbox( target, sorter = nil )

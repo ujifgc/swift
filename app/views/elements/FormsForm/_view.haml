@@ -1,6 +1,8 @@
-﻿= @out.inspect
-.article
-  %h3= @form.title
-  .text= render_text(@form.text)
-  - form_for :forms_result, se_url(@form, :post) do |f|
+﻿.article
+  %h3= @card.title
+  .text= render_text(@card.text)
+  - form_for @result, se_url(@card, :post), :class => 'form form-horizontal' do |f|
+    - @f = f
+    - @card.json.each do |k,v|
+      = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
     = f.submit 'go'
