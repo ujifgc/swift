@@ -15,6 +15,7 @@ module Padrino
           caption += ' (' + options.delete(:brackets).to_s + ')'  if options[:brackets]
           type = 'string'
           morphable = options.delete :morphable
+          options.delete :options  if options[:options] && options[:options].empty?
           controls = case options.delete(:as)
           when :text, :textarea, :text_area
             opts = { :class => 'text_area resizable' }
@@ -29,9 +30,9 @@ module Padrino
             opts[:value] = options[:value]  if options[:value]
             type = 'textarea'
             text_area field, opts
-          when :password
+          when :password, :password_confirmation
             password_field field, :class => :password_field
-          when :select
+          when :select, :dropdown, :variant
             type = 'select'
             tag = select field, { :class => :select }.merge( options )
             parent_field = field.to_s.gsub(/_id$/,'').to_sym
@@ -43,19 +44,19 @@ module Padrino
               ''
             end
             tag + ' ' + add
-          when :multiple, :checkboxes, :variants
+          when :multiple, :checkboxes, :check_boxes, :variants
             type = 'multiple'
             out = ''
-            options[:variants].each do |v|
+            (options[:options]||[]).each do |v|
               out += label_back_tag v, :for => "#{object}_#{field}_#{v}", :caption => v, :class => :checkbox do
                 check_box_tag "#{object}[#{field}][]", :value => v, :id => "#{object}_#{field}_#{v}"
               end
             end
             out
-          when :boolean, :checkbox
+          when :boolean, :checkbox, :check_box
             type = 'checkbox'
             label( field, :caption => check_box( field, :class => :check_box ), :class => :checkbox)
-          when :file
+          when :file, :asset, :assets, :images
             loaded = @object.send(:"#{field}?")  rescue false
             tag = if loaded
               file = @object.send(field)
@@ -84,7 +85,7 @@ module Padrino
             end
             type = 'file'
             tag + input
-          when :datetime
+          when :datetime, :date_time
             text_field field, :class => 'text_field datetime'
           else
             opts = { :class => :text_field }

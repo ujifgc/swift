@@ -36,7 +36,6 @@ class FormsCard
 
   # instance helpers
   def fill( request )
-    
     object = request.params['forms_result']
     object[:forms_card] = self
     object[:created_by] = nil # FIXME

@@ -67,6 +67,7 @@ protected
     swift[:path_pages] = []
     swift[:path_ids] = []
     swift[:skip_view] = {}
+    swift[:method] = request.env['REQUEST_METHOD']
 
     path = request.env['PATH_INFO']
     path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1

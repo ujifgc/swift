@@ -1,8 +1,15 @@
-﻿.article
-  %h3= @card.title
-  .text= render_text(@card.text)
-  - form_for @result, se_url(@card, :post), :class => 'form form-horizontal' do |f|
-    - @f = f
-    - @card.json.each do |k,v|
-      = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
-    = f.submit 'go'
+﻿- if @result.errors.any?
+  .article
+    Ошибка при заполнении формы
+- elsif @result.new?
+  .article
+    %h3= @card.title
+    .text= render_text(@card.text)
+    - form_for @result, se_url(@card, :post), :class => 'form form-horizontal' do |f|
+      - @f = f
+      - @card.json.each do |k,v|
+        = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
+      = f.submit 'go'
+- else
+  .article
+    Спасибо за заполнение формы
