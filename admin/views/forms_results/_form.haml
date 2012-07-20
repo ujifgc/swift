@@ -1,3 +1,6 @@
-= f.input :json, :as => :text, :markdown => true
-= f.input :forms_card_id
+%dl
+  - @object.json.each do |k,v|
+    %dt= k
+    %dd= v
+  
 = f.submits

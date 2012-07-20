@@ -1,7 +1,13 @@
 Admin.controllers :forms_results do
 
   get :index do
-    @objects = FormsResult.all
+    filter = {}
+    filter[:forms_card] = if params[:forms_card].blank?
+      FormsCard.first :order => [:created_at.desc]
+    else
+      FormsCard.by_slug params[:forms_card]
+    end
+    @objects = FormsResult.all filter
     render 'forms_results/index'
   end
 
