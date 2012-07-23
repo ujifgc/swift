@@ -6,7 +6,7 @@ MODULE_GROUPS = {
   :design  => %W(layouts fragments),
   :admin   => %W(accounts codes),
 }
-BONDABLE_CHILDREN = %W(Page Folder Image CatGroup CatCard)
+BONDABLE_CHILDREN = %W(Page Folder Image FormsCard)
 BONDABLE_PARENTS  = %W(Page CatNode NewsArticle)
 
 require 'omniauth-openid'

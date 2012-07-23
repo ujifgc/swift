@@ -41,8 +41,8 @@ class Bond
 
   ##class methods
 
-  #get children objects (of specified type [child_models]) for given object [parent]
-  def self.children_for( parent, child_models = [] )
+  #get bound objects (of specified type [child_models]) for given object [parent]
+  def self.bonds_for( parent, child_models = [] )
     filter = {
       :parent_model => parent.class.name,
       :parent_id    => parent.id,
@@ -52,6 +52,12 @@ class Bond
     child_models = Array(child_models).map{|cm|cm.to_s.singularize.camelize}.compact
     filter[:child_model] = child_models  if child_models.any?
     all filter
+  end
+
+  #get child objects (of one specified type [child_model]) for given object [parent]
+  def self.children_for( parent, child_model )
+    bonds = bonds_for parent, [child_model]
+    child_model.constantize.all :id => bonds.map(&:child).map(&:id)
   end
 
   def self.generate parent, child

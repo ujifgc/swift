@@ -9,7 +9,7 @@
       - @f = f
       - @card.json.each do |k,v|
         = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
-      = f.submit 'go'
+      = f.submits
 - else
   .article
     Спасибо за заполнение формы

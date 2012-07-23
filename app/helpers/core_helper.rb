@@ -125,6 +125,8 @@ Swift.helpers do
     case o.class.name
     when 'NewsArticle'
       '/news' / method / o.slug
+    when 'FormsCard'
+      '/forms' / method / o.slug
     else
       @swift[:module_root] ? @swift[:module_root] / method / o.slug : '/'
     end

@@ -74,6 +74,11 @@ Admin.controllers :dialogs do
     render "dialogs/cat_nodes"
   end
 
+  get :forms_cards do
+    @objects = FormsCard.all :kind => 'inquiry'
+    render "dialogs/forms_cards"
+  end
+
   get :folder, :with => [:object_type, :folder_id] do
     folder = Folder.by_slug params[:folder_id]
     case params[:object_type]
@@ -98,7 +103,7 @@ Admin.controllers :dialogs do
     return "no such model: #{params[:parent_model]}"  unless @model
     @object = @model.get params[:parent_id]
     return "no such object: #{model} ##{params[:parent_id]}"  unless @object
-    @bonds = Bond.children_for @object
+    @bonds = Bond.bonds_for @object
     render "dialogs/bonds_tab"
   end
 

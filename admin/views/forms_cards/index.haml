@@ -5,11 +5,13 @@
       %tr
         %th.first
         %th= mat(:object, :title)
+        %th= mat(:object, :type)
         %th= mat(:object, :slug)
     %tbody
       - @objects.each do |object|
         %tr
           %td.last= mk_checkbox object
           %td= mk_edit object
+          %td= FormsCard::Kinds.key(object.kind)
           %td= object.slug
 = partial 'base/index_operations_bottom'

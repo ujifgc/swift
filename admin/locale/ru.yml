@@ -161,6 +161,10 @@ ru:
       name: карточки
     cat_card:
       name: карточка
+    forms_cards:
+      name: опросы
+    forms_card:
+      name: опрос
   asset_uploaded: загружен
   time:
     formats:

@@ -4,7 +4,7 @@
     @pics = Image.all :folder => folder
   else
     @pics = []
-    bonds = Bond.children_for @page
+    bonds = Bond.bonds_for @page
     bonds.map do |bond|
       case bond.child_model
       when 'Image'

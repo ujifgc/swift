@@ -1,0 +1,9 @@
+﻿- @cards.each do |card|
+  .article
+    %h5= card.title
+    - @result = FormsResult.new :forms_card => card
+    - form_for @result, se_url(card, :poll), :class => 'form', :remote => true do |f|
+      - @f = f
+      - card.json.each do |k,v|
+        = partial 'elements/Forms/inquiry', :locals => { :key => k, :value => v }
+      = f.submit 'Лады', :class => 'btn btn-small btn-success'

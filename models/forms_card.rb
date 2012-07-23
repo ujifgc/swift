@@ -36,7 +36,7 @@ class FormsCard
 
   # instance helpers
   def fill( request )
-    object = request.params['forms_result']
+    object = request.params['forms_result'] || {}
     object[:forms_card] = self
     object[:created_by] = nil # FIXME
     object[:created_from] = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']

@@ -1,6 +1,7 @@
 ﻿:ruby
   @swift[:module_path_ids] = []
-  bonds = Bond.children_for @page, 'CatCard'
+  # FIXME maybe use `children_for`?
+  bonds = Bond.bonds_for @page, 'CatCard'
   @card_ids = bonds.map(&:child).map(&:id)
   @groups = CatGroup.all :cat_card_id => @card_ids
 
