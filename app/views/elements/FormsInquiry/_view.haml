@@ -1,9 +1,16 @@
 ﻿- @cards.each do |card|
   .article
     %h5= card.title
-    - @result = FormsResult.new :forms_card => card
-    - form_for @result, se_url(card, :poll), :class => 'form', :remote => true do |f|
-      - @f = f
-      - card.json.each do |k,v|
-        = partial 'elements/Forms/inquiry', :locals => { :key => k, :value => v }
-      = f.submit 'Лады', :class => 'btn btn-small btn-success'
+    - session['forms_cards'] ||= []
+    - session['forms_cards'] << card.id  unless session['forms_cards'].include? card.id
+    - @result = FormsResult.first( :origin => request.addr, :forms_card => card ) || FormsResult.new( :forms_card => card )
+    - if @result.new?
+      - form_for @result, se_url(card, :poll), :class => 'form', :remote => true do |f|
+        - @f = f
+        - card.json.each do |k,v|
+          = partial 'elements/Forms/inquiry', :locals => { :key => k, :value => v }
+        = f.submit 'Лады', :class => 'btn btn-small btn-success'
+    - else
+      %dl
+        - card.json.each do |k,v|
+          %dd= @result[k]

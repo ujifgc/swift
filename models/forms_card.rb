@@ -39,7 +39,7 @@ class FormsCard
     object = request.params['forms_result'] || {}
     object[:forms_card] = self
     object[:created_by] = nil # FIXME
-    object[:created_from] = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']
+    object[:origin] = request.addr
     res = FormsResult.create object
     res
   end

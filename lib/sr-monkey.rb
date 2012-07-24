@@ -209,3 +209,12 @@ module DataMapper
     end
   end
 end
+
+# add addr method to get ip address of a client
+module Rack
+  class Request
+    def addr
+      @env['HTTP_X_FORWARDED_FOR'] || @env['REMOTE_ADDR']
+    end
+  end
+end
