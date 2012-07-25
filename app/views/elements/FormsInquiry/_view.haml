@@ -1,8 +1,8 @@
 ﻿- @cards.each do |card|
   .article
     %h5= card.title
-    - session['forms_cards'] ||= []
-    - session['forms_cards'] << card.id  unless session['forms_cards'].include? card.id
+    - session['forms_cards'] ||= Set.new
+    - session['forms_cards'] << card.id
     - @result = FormsResult.first( :origin => request.addr, :forms_card => card ) || FormsResult.new( :forms_card => card )
     - if @result.new?
       - form_for @result, se_url(card, :poll), :class => 'form', :remote => true do |f|
