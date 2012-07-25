@@ -1,0 +1,1469 @@
+Spent 0.000057 s : rubygems
+Spent 0.000598 s :: rubygems/version
+Spent 0.000030 s :: rubygems/version
+Spent 0.000022 s :: rubygems/deprecate
+Spent 0.006330 s : rubygems/requirement
+Spent 0.000020 s : rubygems/version
+Spent 0.000030 s : rubygems/requirement
+Spent 0.000027 s :: rubygems/deprecate
+Spent 0.002563 s : rubygems/platform
+Spent 0.000028 s : rubygems/deprecate
+Spent 0.000569 s :::: pathname.so
+Spent 0.004136 s ::: pathname
+Spent 0.000577 s ::: rubygems
+Spent 0.000523 s :::: rbconfig
+Spent 0.000855 s :::: etc
+Spent 0.000827 s ::::: psych.so
+Spent 0.000675 s ::::::: stringio
+Spent 0.003275 s :::::: psych/nodes/node
+Spent 0.000837 s :::::: psych/nodes/stream
+Spent 0.000893 s :::::: psych/nodes/document
+Spent 0.000877 s :::::: psych/nodes/sequence
+Spent 0.000882 s :::::: psych/nodes/scalar
+Spent 0.000958 s :::::: psych/nodes/mapping
+Spent 0.000851 s :::::: psych/nodes/alias
+Spent 0.021874 s ::::: psych/nodes
+Spent 0.002141 s ::::: psych/streaming
+Spent 0.003335 s :::::: psych/visitors/visitor
+Spent 0.000696 s :::::::: strscan
+Spent 0.003834 s ::::::: psych/scalar_scanner
+Spent 0.007800 s :::::: psych/visitors/to_ruby
+Spent 0.001002 s :::::: psych/visitors/emitter
+Spent 0.002146 s :::::: psych/visitors/yaml_tree
+Spent 0.000568 s ::::::: psych/json/ruby_events
+Spent 0.003197 s :::::: psych/visitors/json_tree
+Spent 0.000850 s :::::: psych/visitors/depth_first
+Spent 0.030282 s ::::: psych/visitors
+Spent 0.000845 s ::::: psych/handler
+Spent 0.000406 s :::::: psych/handler
+Spent 0.003221 s ::::: psych/tree_builder
+Spent 0.000795 s ::::: psych/parser
+Spent 0.002098 s ::::: psych/omap
+Spent 0.000758 s ::::: psych/set
+Spent 0.001011 s ::::: psych/coder
+Spent 0.000940 s ::::: psych/core_ext
+Spent 0.000783 s ::::::: date_core
+Spent 0.000734 s ::::::: date/format
+Spent 0.006092 s :::::: date
+Spent 0.009165 s ::::: psych/deprecated
+Spent 0.000820 s ::::: psych/stream
+Spent 0.000619 s :::::: psych/json/yaml_events
+Spent 0.003357 s ::::: psych/json/tree_builder
+Spent 0.000436 s :::::: psych/json/ruby_events
+Spent 0.000574 s :::::: psych/json/yaml_events
+Spent 0.005631 s ::::: psych/json/stream
+Spent 0.000429 s :::::: psych/tree_builder
+Spent 0.003297 s ::::: psych/handlers/document_stream
+Spent 0.117232 s :::: psych
+Spent 0.000954 s :::: rubygems/psych_additions
+Spent 0.000927 s :::: rubygems/psych_tree
+Spent 0.001074 s :::: yaml
+Spent 0.001052 s :::: rubygems/syck_hack
+Spent 0.141007 s ::: bundler/rubygems_integration
+Spent 0.152442 s :: bundler/shared_helpers
+Spent 0.000519 s ::: rbconfig
+Spent 0.000576 s :::: etc
+Spent 0.012495 s ::: fileutils
+Spent 0.000624 s ::: pathname
+Spent 0.000421 s :::: yaml
+Spent 0.002682 s ::: bundler/psyched_yaml
+Spent 0.002087 s :::: pathname
+Spent 0.000539 s :::: rubygems
+Spent 0.000572 s :::: rubygems/specification
+Spent 0.000303 s ::::: bundler/gem_helpers
+Spent 0.002535 s :::: bundler/match_platform
+Spent 0.014248 s ::: bundler/rubygems_ext
+Spent 0.000131 s ::: bundler/rubygems_integration
+Spent 0.000258 s ::: bundler/version
+Spent 0.045821 s :: bundler
+Spent 0.000545 s ::: digest.so
+Spent 0.003621 s :: digest/sha1
+Spent 0.039403 s :: digest/sha1
+Spent 0.001897 s :: set
+Spent 0.000288 s ::: rubygems/dependency
+Spent 0.000426 s ::: bundler/shared_helpers
+Spent 0.000437 s ::: bundler/rubygems_ext
+Spent 0.008117 s :: bundler/dependency
+Spent 0.007956 s ::: uri/common
+Spent 0.000396 s :::: uri/common
+Spent 0.005976 s ::: uri/generic
+Spent 0.000385 s :::: uri/generic
+Spent 0.003574 s ::: uri/ftp
+Spent 0.000322 s :::: uri/generic
+Spent 0.003023 s ::: uri/http
+Spent 0.000361 s :::: uri/http
+Spent 0.007445 s ::: uri/https
+Spent 0.000372 s :::: uri/generic
+Spent 0.003889 s ::: uri/ldap
+Spent 0.000377 s :::: uri/ldap
+Spent 0.003123 s ::: uri/ldaps
+Spent 0.000361 s :::: uri/generic
+Spent 0.004027 s ::: uri/mailto
+Spent 0.055227 s :: uri
+Spent 0.001997 s :: rubygems/user_interaction
+Spent 0.000309 s ::::: rubygems/specification
+Spent 0.000694 s ::::: rubygems/package/f_sync_dir
+Spent 0.001170 s ::::: rubygems/package/tar_header
+Spent 0.000751 s :::::: zlib
+Spent 0.004336 s ::::: rubygems/package/tar_input
+Spent 0.000953 s ::::: rubygems/package/tar_output
+Spent 0.000680 s :::::: rubygems/package/tar_reader/entry
+Spent 0.003726 s ::::: rubygems/package/tar_reader
+Spent 0.000532 s ::::: rubygems/package/tar_reader/entry
+Spent 0.001085 s ::::: rubygems/package/tar_writer
+Spent 0.029649 s :::: rubygems/package
+Spent 0.032218 s ::: rubygems/format
+Spent 0.000492 s ::: rubygems/exceptions
+Spent 0.000308 s :::: rubygems
+Spent 0.003654 s :::: rubygems/ext/builder
+Spent 0.000327 s ::::: rubygems/ext/builder
+Spent 0.003250 s :::: rubygems/ext/configure_builder
+Spent 0.000311 s ::::: rubygems/ext/builder
+Spent 0.010358 s :::::: optparse
+Spent 0.000721 s :::::: rubygems/user_interaction
+Spent 0.017391 s ::::: rubygems/command
+Spent 0.022702 s :::: rubygems/ext/ext_conf_builder
+Spent 0.000406 s ::::: rubygems/ext/builder
+Spent 0.000566 s ::::: rubygems/command
+Spent 0.006189 s :::: rubygems/ext/rake_builder
+Spent 0.047078 s ::: rubygems/ext
+Spent 0.000359 s :::: rubygems
+Spent 0.003232 s ::: rubygems/require_paths_builder
+Spent 0.000542 s ::: rubygems/user_interaction
+Spent 0.095741 s :: rubygems/installer
+Spent 0.000389 s :::: rubygems
+Spent 0.000444 s :::: rubygems/user_interaction
+Spent 0.000430 s :::: uri
+Spent 0.009431 s ::: rubygems/remote_fetcher
+Spent 0.000499 s ::: rubygems/user_interaction
+Spent 0.000670 s ::: rubygems/errors
+Spent 0.000307 s :::: rubygems
+Spent 0.003304 s ::: rubygems/text
+Spent 0.023665 s :: rubygems/spec_fetcher
+Spent 0.003544 s :: rubygems/format
+Spent 0.000523 s :: digest/sha1
+Spent 0.001704 s :: open3
+Spent 0.000470 s :: rubygems/installer
+Spent 0.000533 s :: strscan
+Spent 0.000502 s :: uri
+Spent 0.000452 s :: rubygems/spec_fetcher
+Spent 0.000820 s :: tsort
+Spent 0.001004 s :: forwardable
+Spent 0.000448 s :: set
+Spent 0.000490 s :: uri
+Spent 0.000540 s :: rubygems/spec_fetcher
+Spent 0.000562 s :: uri
+Spent 0.000548 s :: carrierwave/version
+Spent 0.000557 s :: carrierwave/datamapper/version
+Spent 0.000560 s :: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-core/lib/padrino-core/version.rb
+Spent 0.000470 s :: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-core/lib/padrino-core/version.rb
+Spent 0.000401 s :: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-core/lib/padrino-core/version.rb
+Spent 0.000419 s :: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-core/lib/padrino-core/version.rb
+Spent 0.000416 s :: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-core/lib/padrino-core/version.rb
+Spent 0.000408 s :: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-core/lib/padrino-core/version.rb
+Spent 0.000417 s :: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-core/lib/padrino-core/version.rb
+Spent 0.000377 s :: rubygems/specification
+Spent 0.000467 s :: rubygems/deprecate
+Spent 0.677909 s : bundler/setup
+Spent 0.000621 s :::: thor/core_ext/hash_with_indifferent_access
+Spent 0.001034 s :::: thor/core_ext/ordered_hash
+Spent 0.000775 s :::: thor/error
+Spent 0.000342 s ::::: rbconfig
+Spent 0.003850 s :::: thor/shell
+Spent 0.001129 s :::: thor/invocation
+Spent 0.004379 s ::::: thor/parser/argument
+Spent 0.001364 s ::::: thor/parser/arguments
+Spent 0.001387 s ::::: thor/parser/option
+Spent 0.001565 s ::::: thor/parser/options
+Spent 0.018505 s :::: thor/parser
+Spent 0.001495 s :::: thor/task
+Spent 0.000455 s ::::: rbconfig
+Spent 0.004398 s :::: thor/util
+Spent 0.050862 s ::: thor/base
+Spent 0.054747 s :: thor
+Spent 0.000399 s :: fileutils
+Spent 0.000544 s :: uri
+Spent 0.000796 s :: thor/core_ext/file_binary_read
+Spent 0.001065 s ::: thor/actions/empty_directory
+Spent 0.004634 s :: thor/actions/create_file
+Spent 0.000349 s ::: thor/actions/create_file
+Spent 0.003485 s :: thor/actions/create_link
+Spent 0.000372 s ::: thor/actions/empty_directory
+Spent 0.003646 s :: thor/actions/directory
+Spent 0.000555 s :: thor/actions/empty_directory
+Spent 0.004601 s :::: strscan
+Spent 0.009474 s ::: erb
+Spent 0.000381 s :::: uri
+Spent 0.000793 s :::: stringio
+Spent 0.000403 s ::::: date
+Spent 0.012544 s :::: time
+Spent 0.023853 s ::: open-uri
+Spent 0.039146 s :: thor/actions/file_manipulation
+Spent 0.000406 s ::: thor/actions/empty_directory
+Spent 0.003992 s :: thor/actions/inject_into_file
+Spent 0.143756 s : padrino-core/cli/base
+Spent 0.001419 s ::: delegate
+Spent 0.000345 s :::: fileutils
+Spent 0.000439 s :::: etc.so
+Spent 0.006589 s ::: tmpdir
+Spent 0.001402 s ::: thread
+Spent 0.017650 s :: tempfile
+Spent 0.021994 s : thor/shell/basic
+Spent 0.000600 s : /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/version
+Spent 0.007915 s :: e2mmap
+Spent 0.003451 s :: irb/init
+Spent 0.000956 s ::: irb/workspace
+Spent 0.001252 s ::: irb/inspector
+Spent 0.009145 s :: irb/context
+Spent 0.002792 s :: irb/extend-command
+Spent 0.000363 s ::: e2mmap
+Spent 0.000343 s :::: e2mmap
+Spent 0.000340 s ::::: e2mmap
+Spent 0.000333 s :::::: e2mmap
+Spent 0.003667 s ::::: irb/output-method
+Spent 0.009909 s :::: irb/notifier
+Spent 0.016547 s ::: irb/slex
+Spent 0.011277 s ::: irb/ruby-token
+Spent 0.039428 s :: irb/ruby-lex
+Spent 0.000655 s ::: irb/src_encoding
+Spent 0.001177 s ::: irb/magic-file
+Spent 0.001967 s ::: readline
+Spent 0.012903 s :: irb/input-method
+Spent 0.001711 s :: irb/locale
+Spent 0.096166 s : irb
+Spent 0.000666 s :: readline
+Spent 0.004920 s : irb/completion
+Spent 0.000361 s :: bundler/setup
+Spent 0.000681 s :: rake/version
+Spent 0.000537 s :: rbconfig
+Spent 0.000461 s :: fileutils
+Spent 0.000337 s ::: thread
+Spent 0.003761 s :: singleton
+Spent 0.000365 s ::: thread
+Spent 0.004053 s :: monitor
+Spent 0.000584 s :: optparse
+Spent 0.001172 s :: ostruct
+Spent 0.008191 s ::: rake/ext/core
+Spent 0.000679 s :::: rake/invocation_exception_mixin
+Spent 0.005594 s ::: rake/task
+Spent 0.000428 s :::: rake/task.rb
+Spent 0.000942 s :::: rake/early_time
+Spent 0.007465 s ::: rake/file_task
+Spent 0.000365 s :::: rake/file_task
+Spent 0.000575 s :::: rake/early_time
+Spent 0.006940 s ::: rake/file_creation_task
+Spent 0.000977 s :::: shellwords
+Spent 0.000574 s :::: optparse
+Spent 0.001654 s :::: rake/task_manager
+Spent 0.000336 s :::::: rbconfig
+Spent 0.003637 s ::::: rake/alt_system
+Spent 0.006945 s :::: rake/win32
+Spent 0.023009 s ::: rake/application
+Spent 0.000571 s ::: rake/task_manager
+Spent 0.067612 s :: rake/ext/module
+Spent 0.000334 s ::: rake/ext/core
+Spent 0.004001 s :: rake/ext/string
+Spent 0.000865 s :: rake/ext/time
+Spent 0.000565 s :: rake/win32
+Spent 0.000688 s :: rake/task_argument_error
+Spent 0.001123 s :: rake/rule_recursion_overflow_error
+Spent 0.000429 s ::: rake/application
+Spent 0.004003 s :: rake/rake_module
+Spent 0.001059 s :: rake/pseudo_status
+Spent 0.001262 s :: rake/task_arguments
+Spent 0.001141 s :: rake/invocation_chain
+Spent 0.000627 s :: rake/task
+Spent 0.000535 s :: rake/file_task
+Spent 0.000524 s :: rake/file_creation_task
+Spent 0.000872 s :: rake/multi_task
+Spent 0.000334 s ::::: rbconfig
+Spent 0.000467 s ::::: fileutils
+Spent 0.006722 s :::: rake/file_utils
+Spent 0.010882 s ::: rake/file_utils_ext
+Spent 0.017084 s :: rake/dsl_definition
+Spent 0.000593 s :: rake/file_utils_ext
+Spent 0.000612 s ::: rake/cloneable
+Spent 0.008442 s ::: rake/file_utils_ext
+Spent 0.000438 s :::: rake/ext/string
+Spent 0.004008 s ::: rake/pathmap
+Spent 0.026418 s :: rake/file_list
+Spent 0.000951 s :: rake/default_loader
+Spent 0.000603 s :: rake/early_time
+Spent 0.000873 s :: rake/name_space
+Spent 0.000605 s :: rake/task_manager
+Spent 0.000494 s :: rake/application
+Spent 0.000819 s ::: rack
+Spent 0.001082 s ::::: tilt/template
+Spent 0.004189 s :::: tilt/string
+Spent 0.008434 s ::::: tilt/template
+Spent 0.012217 s :::: tilt/erb
+Spent 0.000471 s ::::: tilt/template
+Spent 0.004264 s :::: tilt/haml
+Spent 0.000435 s ::::: tilt/template
+Spent 0.004256 s :::: tilt/css
+Spent 0.000429 s ::::: tilt/template
+Spent 0.003931 s :::: tilt/coffee
+Spent 0.000422 s ::::: tilt/template
+Spent 0.003976 s :::: tilt/nokogiri
+Spent 0.000406 s ::::: tilt/template
+Spent 0.003933 s :::: tilt/builder
+Spent 0.000407 s ::::: tilt/template
+Spent 0.003933 s :::: tilt/markaby
+Spent 0.000372 s ::::: tilt/template
+Spent 0.003774 s :::: tilt/liquid
+Spent 0.000414 s ::::: tilt/template
+Spent 0.003904 s :::: tilt/radius
+Spent 0.000410 s ::::: tilt/template
+Spent 0.004365 s :::: tilt/markdown
+Spent 0.000372 s ::::: tilt/template
+Spent 0.003803 s :::: tilt/textile
+Spent 0.008799 s ::::: tilt/template
+Spent 0.012441 s :::: tilt/rdoc
+Spent 0.000490 s ::::: tilt/template
+Spent 0.004364 s :::: tilt/wiki
+Spent 0.000478 s ::::: tilt/template
+Spent 0.004242 s :::: tilt/yajl
+Spent 0.115507 s ::: tilt
+Spent 0.000652 s :::: rack/protection/version
+Spent 0.000673 s :::: rack
+Spent 0.007519 s ::: rack/protection
+Spent 0.000642 s ::: thread
+Spent 0.000558 s ::: time
+Spent 0.000538 s ::: uri
+Spent 0.000383 s ::::: ostruct
+Spent 0.000543 s ::::: erb
+Spent 0.000359 s ::::::: fileutils
+Spent 0.000486 s ::::::: set
+Spent 0.000504 s ::::::: tempfile
+Spent 0.001195 s ::::::: rack/multipart
+Spent 0.000493 s ::::::: uri/common
+Spent 0.026491 s :::::: rack/utils
+Spent 0.031362 s ::::: rack/request
+Spent 0.000766 s ::::: rack/utils
+Spent 0.044370 s :::: rack/showexceptions
+Spent 0.048068 s ::: sinatra/showexceptions
+Spent 0.000867 s ::: sinatra/version
+Spent 0.000549 s ::: rack/request
+Spent 0.000589 s ::: rack/utils
+Spent 0.000542 s ::: time
+Spent 0.004369 s ::::: openssl.so
+Spent 0.000937 s ::::: openssl/bn
+Spent 0.001163 s ::::: openssl/cipher
+Spent 0.009417 s :::::: stringio
+Spent 0.014084 s ::::: openssl/config
+Spent 0.001729 s ::::: openssl/digest
+Spent 0.001371 s :::::: openssl/buffering
+Spent 0.001120 s :::::: fcntl
+Spent 0.009915 s ::::: openssl/ssl-internal
+Spent 0.001791 s ::::: openssl/x509-internal
+Spent 0.052671 s :::: openssl
+Spent 0.056507 s ::: securerandom
+Spent 0.272048 s :: sinatra/base
+Spent 0.000351 s :::: delegate
+Spent 0.003860 s ::: sinatra/flash/hash
+Spent 0.007204 s :: sinatra/flash/storage
+Spent 0.000803 s :: sinatra/flash/style
+Spent 0.000665 s :: openssl
+Spent 0.000939 s :: bcrypt_ext
+Spent 0.000349 s :::: erb
+Spent 0.000477 s :::: set
+Spent 0.000698 s :::: enumerator
+Spent 0.000778 s :::: stringio
+Spent 0.009877 s :::: strscan
+Spent 0.000772 s :::: rbconfig
+Spent 0.001033 s :::: haml/root
+Spent 0.035136 s ::: haml/util
+Spent 0.038895 s :: haml/version
+Spent 0.000709 s :: haml/util
+Spent 0.001934 s ::: haml/helpers
+Spent 0.123015 s ::: haml/buffer
+Spent 0.000784 s :::: strscan
+Spent 0.000831 s ::::: strscan
+Spent 0.014114 s :::: haml/shared
+Spent 0.024099 s ::: haml/parser
+Spent 0.002786 s ::::: cgi/core
+Spent 0.001392 s ::::: cgi/cookie
+Spent 0.001633 s ::::: cgi/util
+Spent 0.014821 s :::: cgi
+Spent 0.020412 s ::: haml/compiler
+Spent 0.000390 s :::: rubygems
+Spent 0.004948 s ::: haml/filters
+Spent 0.000884 s ::: haml/error
+Spent 0.192931 s :: haml/engine
+Spent 0.000928 s :: haml/railtie
+Spent 0.000708 s :::: addressable/version
+Spent 0.029518 s ::::::: addressable/idna/pure
+Spent 0.044742 s :::::: addressable/idna
+Spent 0.056600 s ::::: addressable/uri
+Spent 0.001309 s ::::: bigdecimal
+Spent 0.001124 s ::::: bigdecimal/util
+Spent 0.000584 s ::::: date
+Spent 0.000690 s ::::: pathname
+Spent 0.000511 s ::::: set
+Spent 0.011461 s ::::: time
+Spent 0.000695 s ::::: yaml
+Spent 0.001148 s ::::: dm-core/support/ext/blank
+Spent 0.001231 s ::::: dm-core/support/ext/hash
+Spent 0.001201 s ::::: dm-core/support/ext/object
+Spent 0.001079 s ::::: dm-core/support/ext/string
+Spent 0.000704 s :::::: dm-core/core_ext/pathname
+Spent 0.001117 s :::::: dm-core/support/ext/module
+Spent 0.000983 s :::::: dm-core/support/ext/array
+Spent 0.000967 s :::::: dm-core/support/ext/try_dup
+Spent 0.001356 s :::::: dm-core/support/mash
+Spent 0.001548 s :::::: dm-core/support/inflector/inflections
+Spent 0.001303 s :::::: dm-core/support/inflector/methods
+Spent 0.001793 s :::::: dm-core/support/inflections
+Spent 0.000939 s :::::: dm-core/support/chainable
+Spent 0.000940 s :::::: dm-core/support/deprecate
+Spent 0.001037 s :::::: dm-core/support/descendant_set
+Spent 0.001031 s :::::: dm-core/support/equalizer
+Spent 0.000926 s :::::: dm-core/support/assertions
+Spent 0.013238 s :::::: dm-core/support/lazy_array
+Spent 0.001146 s :::::: dm-core/support/local_object_space
+Spent 0.002566 s :::::: dm-core/support/hook
+Spent 0.001100 s :::::: dm-core/support/subject
+Spent 0.001719 s :::::: dm-core/support/ordered_set
+Spent 0.001289 s :::::: dm-core/support/subject_set
+Spent 0.003973 s :::::: dm-core/query
+Spent 0.002035 s :::::: dm-core/query/conditions/operation
+Spent 0.002376 s :::::: dm-core/query/conditions/comparison
+Spent 0.001088 s :::::: dm-core/query/operator
+Spent 0.000921 s :::::: dm-core/query/direction
+Spent 0.002122 s :::::: dm-core/query/path
+Spent 0.000976 s :::::: dm-core/query/sort
+Spent 0.002631 s :::::: dm-core/resource
+Spent 0.012693 s :::::: dm-core/resource/persistence_state
+Spent 0.001475 s :::::: dm-core/resource/persistence_state/transient
+Spent 0.001252 s :::::: dm-core/resource/persistence_state/immutable
+Spent 0.001203 s :::::: dm-core/resource/persistence_state/persisted
+Spent 0.001207 s :::::: dm-core/resource/persistence_state/clean
+Spent 0.001129 s :::::: dm-core/resource/persistence_state/deleted
+Spent 0.001348 s :::::: dm-core/resource/persistence_state/dirty
+Spent 0.003275 s :::::: dm-core/property
+Spent 0.001012 s :::::: dm-core/property/typecast/numeric
+Spent 0.000989 s :::::: dm-core/property/typecast/time
+Spent 0.001056 s :::::: dm-core/property/object
+Spent 0.001140 s :::::: dm-core/property/string
+Spent 0.001024 s :::::: dm-core/property/binary
+Spent 0.000992 s :::::: dm-core/property/text
+Spent 0.001326 s :::::: dm-core/property/numeric
+Spent 0.001011 s :::::: dm-core/property/float
+Spent 0.001121 s :::::: dm-core/property/decimal
+Spent 0.001087 s :::::: dm-core/property/boolean
+Spent 0.001170 s :::::: dm-core/property/integer
+Spent 0.001029 s :::::: dm-core/property/serial
+Spent 0.012874 s :::::: dm-core/property/date
+Spent 0.001440 s :::::: dm-core/property/date_time
+Spent 0.001355 s :::::: dm-core/property/time
+Spent 0.001306 s :::::: dm-core/property/class
+Spent 0.001402 s :::::: dm-core/property/discriminator
+Spent 0.001099 s :::::: dm-core/property/lookup
+Spent 0.001709 s :::::: dm-core/property_set
+Spent 0.002618 s :::::: dm-core/model
+Spent 0.001284 s :::::: dm-core/model/hook
+Spent 0.001014 s :::::: dm-core/model/is
+Spent 0.001120 s :::::: dm-core/model/scope
+Spent 0.001674 s :::::: dm-core/model/relationship
+Spent 0.001440 s :::::: dm-core/model/property
+Spent 0.002873 s :::::: dm-core/collection
+Spent 0.001070 s :::::: dm-core/relationship_set
+Spent 0.002174 s :::::: dm-core/associations/relationship
+Spent 0.001497 s :::::: dm-core/associations/one_to_many
+Spent 0.013061 s :::::: dm-core/associations/one_to_one
+Spent 0.002145 s :::::: dm-core/associations/many_to_one
+Spent 0.002534 s :::::: dm-core/associations/many_to_many
+Spent 0.001011 s :::::: dm-core/identity_map
+Spent 0.001446 s :::::: dm-core/repository
+Spent 0.001354 s :::::: dm-core/adapters
+Spent 0.001421 s :::::: dm-core/adapters/abstract_adapter
+Spent 0.001571 s :::::: dm-core/support/logger
+Spent 0.001132 s :::::: dm-core/support/naming_conventions
+Spent 0.000883 s :::::: dm-core/version
+Spent 0.000926 s :::::: dm-core/core_ext/kernel
+Spent 0.001253 s :::::: dm-core/core_ext/symbol
+Spent 0.000342 s ::::::: dm-core/support/deprecate
+Spent 0.004227 s :::::: dm-core/backwards
+Spent 0.494439 s ::::: dm-core
+Spent 0.000504 s ::::: dm-core
+Spent 0.001606 s ::::: dm-validations/support/ordered_hash
+Spent 0.000871 s ::::: dm-validations/support/object
+Spent 0.000852 s ::::: dm-validations/exceptions
+Spent 0.013214 s ::::: dm-validations/validation_errors
+Spent 0.000496 s :::::: forwardable
+Spent 0.005659 s ::::: dm-validations/contextual_validators
+Spent 0.002195 s ::::: dm-validations/auto_validate
+Spent 0.001065 s ::::: dm-validations/context
+Spent 0.001298 s ::::: dm-validations/validators/generic_validator
+Spent 0.001136 s ::::: dm-validations/validators/required_field_validator
+Spent 0.001077 s ::::: dm-validations/validators/primitive_validator
+Spent 0.001046 s ::::: dm-validations/validators/absent_field_validator
+Spent 0.001097 s ::::: dm-validations/validators/confirmation_validator
+Spent 0.000502 s :::::: pathname
+Spent 0.001156 s :::::: dm-validations/formats/email
+Spent 0.000971 s :::::: dm-validations/formats/url
+Spent 0.012392 s ::::: dm-validations/validators/format_validator
+Spent 0.001291 s ::::: dm-validations/validators/length_validator
+Spent 0.001043 s ::::: dm-validations/validators/within_validator
+Spent 0.001433 s ::::: dm-validations/validators/numeric_validator
+Spent 0.000963 s ::::: dm-validations/validators/method_validator
+Spent 0.000958 s ::::: dm-validations/validators/block_validator
+Spent 0.001163 s ::::: dm-validations/validators/uniqueness_validator
+Spent 0.013221 s ::::: dm-validations/validators/acceptance_validator
+Spent 0.000640 s ::::: dm-core
+Spent 0.000633 s ::::: dm-core
+Spent 0.000610 s :::::: dm-migrations/exceptions/duplicate_migration
+Spent 0.000417 s :::::::: dm-core
+Spent 0.004402 s ::::::: dm-migrations/sql/table_creator
+Spent 0.001150 s ::::::: dm-migrations/sql/table_modifier
+Spent 0.000596 s ::::::::: dm-migrations/sql/column
+Spent 0.004119 s :::::::: dm-migrations/sql/table
+Spent 0.000589 s :::::::: fileutils
+Spent 0.011532 s ::::::: dm-migrations/sql/sqlite
+Spent 0.000360 s :::::::: dm-migrations/sql/table
+Spent 0.004352 s ::::::: dm-migrations/sql/mysql
+Spent 0.001181 s ::::::: dm-migrations/sql/postgres
+Spent 0.037628 s :::::: dm-migrations/sql
+Spent 0.002007 s :::::: benchmark
+Spent 0.051103 s ::::: dm-migrations/migration
+Spent 0.000412 s :::::: dm-core
+Spent 0.004801 s ::::: dm-migrations/auto_migration
+Spent 0.000446 s ::::: dm-core
+Spent 0.001194 s ::::: data_mapper/constraints/resource
+Spent 0.000484 s :::::: dm-migrations/auto_migration
+Spent 0.004710 s ::::: data_mapper/constraints/migrations/model
+Spent 0.001220 s ::::: data_mapper/constraints/migrations/relationship
+Spent 0.001168 s ::::: data_mapper/constraints/migrations/singleton_methods
+Spent 0.001180 s ::::: data_mapper/constraints/relationship/one_to_many
+Spent 0.000417 s :::::: data_mapper/constraints/relationship/one_to_many
+Spent 0.004354 s ::::: data_mapper/constraints/relationship/many_to_many
+Spent 0.001060 s ::::: data_mapper/constraints/adapters/extension
+Spent 0.000388 s :::::: data_mapper/constraints/adapters/extension
+Spent 0.004372 s ::::: data_mapper/constraints/adapters/abstract_adapter
+Spent 0.000517 s ::::: dm-core
+Spent 0.001048 s :::::: dm-aggregates/functions
+Spent 0.004780 s ::::: dm-aggregates/aggregate_functions
+Spent 0.000914 s ::::: dm-aggregates/collection
+Spent 0.000605 s :::::: dm-aggregates/operators
+Spent 0.004386 s ::::: dm-aggregates/core_ext/symbol
+Spent 0.000921 s ::::: dm-aggregates/model
+Spent 0.001067 s ::::: dm-aggregates/query
+Spent 0.013241 s ::::: dm-aggregates/repository
+Spent 0.000595 s :::::::: data_objects/version
+Spent 0.001105 s :::::::: data_objects/utilities
+Spent 0.000396 s ::::::::: time
+Spent 0.005305 s :::::::: data_objects/logger
+Spent 0.000948 s :::::::: data_objects/byte_array
+Spent 0.000369 s ::::::::: set
+Spent 0.000534 s ::::::::: thread
+Spent 0.008434 s :::::::: data_objects/pooling
+Spent 0.002821 s ::::::::: data_objects/connection
+Spent 0.000365 s :::::::::: addressable/uri
+Spent 0.004646 s ::::::::: data_objects/uri
+Spent 0.013720 s ::::::::::: socket.so
+Spent 0.018956 s :::::::::: socket
+Spent 0.000952 s :::::::::: digest
+Spent 0.000642 s ::::::::::: digest
+Spent 0.001294 s ::::::::::: digest/sha2.so
+Spent 0.009216 s :::::::::: digest/sha2
+Spent 0.039579 s ::::::::: data_objects/transaction
+Spent 0.001202 s ::::::::: data_objects/command
+Spent 0.000999 s ::::::::: data_objects/result
+Spent 0.001062 s ::::::::: data_objects/reader
+Spent 0.001248 s ::::::::: data_objects/quoting
+Spent 0.000946 s ::::::::: data_objects/extension
+Spent 0.000907 s ::::::::: data_objects/error
+Spent 0.000997 s ::::::::: data_objects/error/sql_error
+Spent 0.000897 s ::::::::: data_objects/error/connection_error
+Spent 0.000897 s ::::::::: data_objects/error/data_error
+Spent 0.000890 s ::::::::: data_objects/error/integrity_error
+Spent 0.000899 s ::::::::: data_objects/error/syntax_error
+Spent 0.000888 s ::::::::: data_objects/error/transaction_error
+Spent 0.135307 s :::::::: data_objects
+Spent 0.007422 s :::::::: do_mysql/do_mysql
+Spent 0.013220 s :::::::: do_mysql/version
+Spent 0.001364 s :::::::: do_mysql/transaction
+Spent 0.001194 s :::::::: do_mysql/encoding
+Spent 0.174791 s ::::::: do_mysql
+Spent 0.000432 s ::::::::: data_objects
+Spent 0.000595 s ::::::::: dm-core
+Spent 0.001189 s ::::::::: dm-aggregates/adapters/dm-do-adapter
+Spent 0.001291 s ::::::::: data_mapper/constraints/adapters/do_adapter
+Spent 0.000397 s :::::::::: dm-migrations/auto_migration
+Spent 0.005304 s ::::::::: dm-migrations/adapters/dm-do-adapter
+Spent 0.027227 s :::::::: dm-do-adapter/adapter
+Spent 0.031275 s ::::::: dm-do-adapter
+Spent 0.000369 s ::::::::: data_mapper/constraints/adapters/do_adapter
+Spent 0.004164 s :::::::: data_mapper/constraints/adapters/mysql_adapter
+Spent 0.000380 s ::::::::: dm-migrations/auto_migration
+Spent 0.000572 s ::::::::: dm-migrations/adapters/dm-do-adapter
+Spent 0.008604 s :::::::: dm-migrations/adapters/dm-mysql-adapter
+Spent 0.233909 s ::::::: dm-mysql-adapter/adapter
+Spent 0.000339 s :::::::: sinatra/base
+Spent 0.000767 s ::::::::: active_support/core_ext/module/aliasing
+Spent 0.001325 s ::::::::: active_support/core_ext/hash/keys
+Spent 0.001141 s ::::::::: active_support/core_ext/hash/reverse_merge
+Spent 0.001168 s ::::::::: active_support/core_ext/hash/slice
+Spent 0.000641 s :::::::::: active_support/core_ext/string/encoding
+Spent 0.005065 s ::::::::: active_support/core_ext/object/blank
+Spent 0.001019 s ::::::::: active_support/core_ext/array/extract_options
+Spent 0.001000 s :::::::::: active_support/inflector/inflections
+Spent 0.005914 s ::::::::: active_support/inflector/methods
+Spent 0.000651 s ::::::::: active_support/inflector/inflections
+Spent 0.001763 s ::::::::: active_support/inflections
+Spent 0.060366 s :::::::: padrino-core/support_lite
+Spent 0.001455 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/application/rendering.rb
+Spent 0.000351 s :::::::::: set
+Spent 0.000516 s :::::::::: rack
+Spent 0.000478 s :::::::::: uri
+Spent 0.000508 s :::::::::: cgi
+Spent 0.014468 s :::::::::: url_mount
+Spent 0.001745 s :::::::::: http_router/node
+Spent 0.001230 s :::::::::: http_router/request
+Spent 0.001064 s :::::::::: http_router/response
+Spent 0.002459 s :::::::::: http_router/route
+Spent 0.000952 s :::::::::: http_router/rack
+Spent 0.001022 s :::::::::: http_router/regex_route
+Spent 0.001065 s :::::::::: http_router/util
+Spent 0.064499 s ::::::::: http_router
+Spent 0.070648 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/application/routing.rb
+Spent 0.000832 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/application/showexceptions.rb
+Spent 0.002119 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/application.rb
+Spent 0.000963 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/caller.rb
+Spent 0.000342 s ::::::::: rbconfig
+Spent 0.004234 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/command.rb
+Spent 0.001117 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/loader.rb
+Spent 0.001639 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/logger.rb
+Spent 0.001256 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/mounter.rb
+Spent 0.000553 s ::::::::: pathname
+Spent 0.005223 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/reloader.rb
+Spent 0.014021 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/router.rb
+Spent 0.000465 s ::::::::: optparse
+Spent 0.007341 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/server.rb
+Spent 0.000659 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/support_lite.rb
+Spent 0.000763 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/tasks.rb
+Spent 0.000636 s :::::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/version.rb
+Spent 0.227221 s ::::::: padrino-core
+Spent 0.000369 s :::::::: tilt
+Spent 0.000444 s ::::::::: date
+Spent 0.000524 s ::::::::: shellwords
+Spent 0.000497 s ::::::::: uri
+Spent 0.000584 s ::::::::::: socket
+Spent 0.001209 s ::::::::::: timeout
+Spent 0.009769 s :::::::::: net/protocol
+Spent 0.014508 s :::::::::: digest/md5
+Spent 0.000847 s :::::::::: timeout
+Spent 0.000928 s :::::::::: openssl
+Spent 0.041691 s ::::::::: net/smtp
+Spent 0.059553 s ::::::::: mime/types
+Spent 0.001506 s ::::::::: mail/version_specific/ruby_1_9
+Spent 0.001109 s ::::::::: mail/version
+Spent 0.000896 s ::::::::: mail/core_extensions/nil
+Spent 0.000887 s ::::::::: mail/core_extensions/object
+Spent 0.001014 s ::::::::: mail/core_extensions/string
+Spent 0.001007 s ::::::::: mail/core_extensions/shell_escape
+Spent 0.001262 s ::::::::: mail/indifferent_hash
+Spent 0.017070 s :::::::::: active_support/inflector/inflections
+Spent 0.000409 s :::::::::::::: active_support/core_ext/array/extract_options
+Spent 0.004463 s ::::::::::::: active_support/core_ext/module/attribute_accessors
+Spent 0.001370 s ::::::::::::: active_support/multibyte/utils
+Spent 0.012971 s :::::::::::: active_support/multibyte
+Spent 0.016829 s ::::::::::: active_support/core_ext/string/multibyte
+Spent 0.000634 s ::::::::::::: i18n/version
+Spent 0.001679 s ::::::::::::: i18n/exceptions
+Spent 0.001307 s ::::::::::::: i18n/interpolate/ruby
+Spent 0.015068 s :::::::::::: i18n
+Spent 0.001204 s :::::::::::: active_support/lazy_load_hooks
+Spent 0.024995 s ::::::::::: active_support/i18n
+Spent 0.049212 s :::::::::: active_support/inflector/transliterate
+Spent 0.000721 s :::::::::: active_support/inflector/methods
+Spent 0.000647 s :::::::::: active_support/inflections
+Spent 0.000459 s ::::::::::: active_support/inflector/methods
+Spent 0.000659 s ::::::::::: active_support/inflector/transliterate
+Spent 0.008740 s :::::::::: active_support/core_ext/string/inflections
+Spent 0.093079 s ::::::::: active_support/inflector
+Spent 0.016206 s ::::::::: mail/patterns
+Spent 0.001898 s ::::::::: mail/utilities
+Spent 0.000509 s :::::::::: singleton
+Spent 0.005164 s ::::::::: mail/configuration
+Spent 0.000850 s :::::::::: mail/network/retriever_methods/base
+Spent 0.005206 s ::::::::: mail/network
+Spent 0.000448 s :::::::::: yaml
+Spent 0.008630 s ::::::::: mail/message
+Spent 0.001385 s ::::::::: mail/part
+Spent 0.001594 s ::::::::: mail/header
+Spent 0.001101 s ::::::::: mail/parts_list
+Spent 0.001286 s ::::::::: mail/attachments_list
+Spent 0.001563 s ::::::::: mail/body
+Spent 0.000703 s :::::::::: mail/fields
+Spent 0.005792 s ::::::::: mail/field
+Spent 0.001007 s ::::::::: mail/field_list
+Spent 0.000720 s :::::::::: mail/fields/common/common_field
+Spent 0.021222 s ::::::::: mail/envelope
+Spent 0.000856 s ::::::::::: treetop/ruby_extensions/string
+Spent 0.004738 s :::::::::: treetop/ruby_extensions
+Spent 0.001712 s :::::::::: treetop/runtime/compiled_parser
+Spent 0.001663 s :::::::::: treetop/runtime/syntax_node
+Spent 0.001096 s :::::::::: treetop/runtime/terminal_parse_failure
+Spent 0.001401 s ::::::::::: treetop/runtime/interval_skip_list/interval_skip_list
+Spent 0.001024 s ::::::::::: treetop/runtime/interval_skip_list/head_node
+Spent 0.001595 s ::::::::::: treetop/runtime/interval_skip_list/node
+Spent 0.014574 s :::::::::: treetop/runtime/interval_skip_list
+Spent 0.040701 s ::::::::: treetop/runtime
+Spent 0.024017 s ::::::::: mail/parsers/rfc2822_obsolete
+Spent 0.000906 s ::::::::: treetop/runtime
+Spent 0.013695 s ::::::::: mail/parsers/rfc2822
+Spent 0.000697 s ::::::::: treetop/runtime
+Spent 0.001063 s ::::::::: mail/parsers/address_lists
+Spent 0.000705 s ::::::::: treetop/runtime
+Spent 0.001002 s ::::::::: mail/parsers/phrase_lists
+Spent 0.000692 s ::::::::: treetop/runtime
+Spent 0.001137 s ::::::::: mail/parsers/date_time
+Spent 0.000686 s ::::::::: treetop/runtime
+Spent 0.016066 s ::::::::: mail/parsers/received
+Spent 0.000925 s ::::::::: treetop/runtime
+Spent 0.001348 s ::::::::: mail/parsers/message_ids
+Spent 0.000847 s ::::::::: treetop/runtime
+Spent 0.001659 s ::::::::: mail/parsers/envelope_from
+Spent 0.000838 s ::::::::: treetop/runtime
+Spent 0.002194 s ::::::::: mail/parsers/rfc2045
+Spent 0.000788 s ::::::::: treetop/runtime
+Spent 0.001365 s ::::::::: mail/parsers/mime_version
+Spent 0.000728 s ::::::::: treetop/runtime
+Spent 0.002853 s ::::::::: mail/parsers/content_type
+Spent 0.000670 s ::::::::: treetop/runtime
+Spent 0.001913 s ::::::::: mail/parsers/content_disposition
+Spent 0.000669 s ::::::::: treetop/runtime
+Spent 0.001225 s ::::::::: mail/parsers/content_transfer_encoding
+Spent 0.000689 s ::::::::: treetop/runtime
+Spent 0.001166 s ::::::::: mail/parsers/content_location
+Spent 0.001008 s ::::::::: mail/elements
+Spent 0.017199 s ::::::::: mail/encodings
+Spent 0.000762 s ::::::::::::: mail/encodings/transfer_encoding
+Spent 0.004847 s :::::::::::: mail/encodings/binary
+Spent 0.008883 s ::::::::::: mail/encodings/8bit
+Spent 0.012989 s :::::::::: mail/encodings/7bit
+Spent 0.017476 s ::::::::: mail/encodings/base64
+Spent 0.000456 s :::::::::: mail/encodings/7bit
+Spent 0.004942 s ::::::::: mail/encodings/quoted_printable
+Spent 0.001512 s ::::::::: mail/mail
+Spent 0.628541 s :::::::: mail
+Spent 0.000967 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-mailer/lib/padrino-mailer/base.rb
+Spent 0.001554 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-mailer/lib/padrino-mailer/ext.rb
+Spent 0.001074 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-mailer/lib/padrino-mailer/helpers.rb
+Spent 0.000771 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-mailer/lib/padrino-mailer/mime.rb
+Spent 0.653500 s ::::::: padrino-mailer
+Spent 0.000342 s :::::::: cgi
+Spent 0.000574 s :::::::: i18n
+Spent 0.000708 s :::::::: enumerator
+Spent 0.000393 s :::::::::: active_support/core_ext/object/blank
+Spent 0.000959 s :::::::::: active_support/core_ext/object/try
+Spent 0.009521 s ::::::::: active_support/values/time_zone
+Spent 0.000989 s ::::::::: active_support/core_ext/object/acts_like
+Spent 0.016878 s ::::::::: active_support/core_ext/object/inclusion
+Spent 0.039643 s :::::::: active_support/time_with_zone
+Spent 0.000516 s ::::::::: date
+Spent 0.000465 s :::::::::: date
+Spent 0.005278 s ::::::::: active_support/core_ext/time/publicize_conversion_methods
+Spent 0.000709 s ::::::::::: active_support/basic_object
+Spent 0.000397 s ::::::::::::: time
+Spent 0.001729 s :::::::::::::::: active_support/notifications
+Spent 0.001037 s :::::::::::::::: active_support/core_ext/array/wrap
+Spent 0.010130 s ::::::::::::::: active_support/deprecation/behaviors
+Spent 0.017220 s ::::::::::::::: active_support/deprecation/reporting
+Spent 0.000880 s :::::::::::::::: active_support/core_ext/module/deprecation
+Spent 0.000899 s :::::::::::::::: active_support/core_ext/module/aliasing
+Spent 0.000792 s :::::::::::::::: active_support/core_ext/array/extract_options
+Spent 0.014051 s ::::::::::::::: active_support/deprecation/method_wrappers
+Spent 0.000470 s :::::::::::::::: active_support/inflector/methods
+Spent 0.005874 s ::::::::::::::: active_support/deprecation/proxy_wrappers
+Spent 0.061168 s :::::::::::::: active_support/deprecation
+Spent 0.001248 s :::::::::::::: base64
+Spent 0.069879 s ::::::::::::: active_support/base64
+Spent 0.001281 s ::::::::::::: active_support/core_ext/module/delegation
+Spent 0.000725 s ::::::::::::: active_support/core_ext/string/inflections
+Spent 0.000374 s ::::::::::::::: rbconfig
+Spent 0.004585 s :::::::::::::: active_support/core_ext/kernel/reporting
+Spent 0.000690 s :::::::::::::: active_support/core_ext/object/blank
+Spent 0.000860 s :::::::::::::: stringio
+Spent 0.017107 s ::::::::::::: active_support/xml_mini/rexml
+Spent 0.107216 s :::::::::::: active_support/xml_mini
+Spent 0.000678 s :::::::::::: active_support/core_ext/hash/keys
+Spent 0.000568 s :::::::::::: active_support/core_ext/hash/reverse_merge
+Spent 0.000573 s :::::::::::: active_support/core_ext/string/inflections
+Spent 0.123299 s ::::::::::: active_support/core_ext/array/conversions
+Spent 0.000701 s ::::::::::: active_support/core_ext/object/acts_like
+Spent 0.135681 s :::::::::: active_support/duration
+Spent 0.000375 s ::::::::::: active_support/inflector/methods
+Spent 0.000641 s ::::::::::: active_support/core_ext/time/publicize_conversion_methods
+Spent 0.000623 s ::::::::::: active_support/values/time_zone
+Spent 0.012527 s :::::::::: active_support/core_ext/time/conversions
+Spent 0.157179 s ::::::::: active_support/core_ext/time/calculations
+Spent 0.174309 s :::::::: active_support/core_ext/string/conversions
+Spent 0.016981 s :::::::: active_support/core_ext/float/rounding
+Spent 0.000882 s ::::::::: active_support/core_ext/hash/deep_merge
+Spent 0.006043 s :::::::: active_support/option_merger
+Spent 0.000458 s ::::::::: active_support/option_merger
+Spent 0.004914 s :::::::: active_support/core_ext/object/with_options
+Spent 0.000796 s :::::::: active_support/inflector
+Spent 0.001653 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/asset_tag_helpers.rb
+Spent 0.001768 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/form_builder/abstract_form_builder.rb
+Spent 0.000275 s ::::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/form_builder/abstract_form_builder
+Spent 0.004894 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/form_builder/standard_form_builder.rb
+Spent 0.002111 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/form_helpers.rb
+Spent 0.001491 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/format_helpers.rb
+Spent 0.001373 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/number_helpers.rb
+Spent 0.001044 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/output_helpers.rb
+Spent 0.000883 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/output_helpers/abstract_handler.rb
+Spent 0.000894 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/output_helpers/erb_handler.rb
+Spent 0.000829 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/output_helpers/haml_handler.rb
+Spent 0.000914 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/output_helpers/slim_handler.rb
+Spent 0.000865 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/render_helpers.rb
+Spent 0.001103 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/tag_helpers.rb
+Spent 0.000754 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-helpers/lib/padrino-helpers/translation_helpers.rb
+Spent 0.342160 s ::::::: padrino-helpers
+Spent 0.000382 s :::::::: padrino-core
+Spent 0.000856 s :::::::: padrino-helpers
+Spent 0.000445 s :::::::::: active_support/core_ext/array/extract_options
+Spent 0.004887 s ::::::::: active_support/core_ext/class/attribute_accessors
+Spent 0.010143 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-admin/lib/padrino-admin/access_control.rb
+Spent 0.001182 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-admin/lib/padrino-admin/helpers/authentication_helpers.rb
+Spent 0.000937 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-admin/lib/padrino-admin/helpers/view_helpers.rb
+Spent 0.000597 s ::::::::: openssl
+Spent 0.004858 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-admin/lib/padrino-admin/utils/crypt.rb
+Spent 0.000394 s ::::::::: padrino-core/support_lite
+Spent 0.000593 s ::::::::: padrino-core/tasks
+Spent 0.000392 s :::::::::: padrino-core/command
+Spent 0.004524 s ::::::::: padrino-gen/command
+Spent 0.000520 s :::::::::: psych
+Spent 0.000507 s :::::::::: yaml
+Spent 0.009394 s ::::::::: active_support/ordered_hash
+Spent 0.029210 s :::::::: padrino-gen
+Spent 0.088455 s ::::::: padrino-admin
+Spent 0.000336 s :::::::: fileutils
+Spent 0.000589 s :::::::: padrino-core
+Spent 0.000613 s :::::::: padrino-helpers
+Spent 0.000706 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-cache/lib/padrino-cache/helpers/cache_store.rb
+Spent 0.000746 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-cache/lib/padrino-cache/helpers/fragment.rb
+Spent 0.001436 s :::::::: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-cache/lib/padrino-cache/helpers/page.rb
+Spent 0.040767 s ::::::: padrino-cache
+Spent 0.000825 s ::::::: redcarpet.so
+Spent 0.000682 s ::::::: sprockets/version
+Spent 0.000994 s ::::::: hike
+Spent 0.000370 s ::::::::: tilt
+Spent 0.004732 s :::::::: sprockets/eco_template
+Spent 0.000384 s ::::::::: tilt
+Spent 0.005140 s :::::::: sprockets/ejs_template
+Spent 0.000355 s ::::::::: tilt
+Spent 0.005135 s :::::::: sprockets/jst_processor
+Spent 0.001226 s :::::::: sprockets/utils
+Spent 0.000626 s :::::::: tilt
+Spent 0.034524 s ::::::: sprockets/engines
+Spent 0.018164 s :::::::: rack/mime
+Spent 0.022787 s ::::::: sprockets/mime
+Spent 0.000397 s :::::::: sprockets/engines
+Spent 0.000647 s :::::::: sprockets/mime
+Spent 0.000365 s ::::::::: tilt
+Spent 0.005058 s :::::::: sprockets/processor
+Spent 0.000713 s :::::::: sprockets/utils
+Spent 0.021800 s ::::::: sprockets/processing
+Spent 0.000985 s ::::::: sprockets/paths
+Spent 0.000684 s ::::::: pathname
+Spent 0.001018 s :::::::: hike/normalized_array
+Spent 0.005729 s ::::::: hike/extensions
+Spent 0.000514 s :::::::: pathname
+Spent 0.022204 s ::::::: hike/index
+Spent 0.000695 s :::::::: pathname
+Spent 0.000790 s :::::::: hike/normalized_array
+Spent 0.009902 s ::::::: hike/paths
+Spent 0.000560 s :::::::: pathname
+Spent 0.000575 s :::::::: shellwords
+Spent 0.000565 s :::::::: tilt
+Spent 0.000522 s :::::::: yaml
+Spent 0.017628 s ::::::: sprockets/directive_processor
+Spent 0.000364 s :::::::: tilt
+Spent 0.004719 s ::::::: sprockets/safety_colons
+Spent 0.000360 s :::::::: tilt
+Spent 0.004712 s ::::::: sprockets/charset_normalizer
+Spent 0.000508 s ::::::: tilt
+Spent 0.000577 s ::::::: sprockets/sass_template
+Spent 0.000464 s :::::::::: pathname
+Spent 0.005202 s ::::::::: sprockets/asset_attributes
+Spent 0.000369 s ::::::::::: time
+Spent 0.000515 s ::::::::::: set
+Spent 0.009207 s :::::::::: sprockets/asset
+Spent 0.018209 s :::::::::: sprockets/errors
+Spent 0.000842 s :::::::::: fileutils
+Spent 0.000702 s :::::::::: set
+Spent 0.000993 s :::::::::: zlib
+Spent 0.048680 s ::::::::: sprockets/bundled_asset
+Spent 0.001343 s ::::::::: sprockets/caching
+Spent 0.000797 s ::::::::: sprockets/errors
+Spent 0.000393 s :::::::::: sprockets/asset
+Spent 0.000620 s :::::::::: sprockets/utils
+Spent 0.009675 s ::::::::: sprockets/processed_asset
+Spent 0.000372 s :::::::::: time
+Spent 0.000502 s :::::::::: uri
+Spent 0.009230 s ::::::::: sprockets/server
+Spent 0.000380 s :::::::::: sprockets/asset
+Spent 0.000501 s :::::::::: fileutils
+Spent 0.000824 s :::::::::: zlib
+Spent 0.013388 s ::::::::: sprockets/static_asset
+Spent 0.000745 s ::::::::: pathname
+Spent 0.134091 s :::::::: sprockets/base
+Spent 0.000486 s ::::::::: base64
+Spent 0.000647 s ::::::::: rack/utils
+Spent 0.000694 s ::::::::: sprockets/errors
+Spent 0.000673 s ::::::::: sprockets/utils
+Spent 0.000713 s ::::::::: pathname
+Spent 0.000522 s ::::::::: set
+Spent 0.026204 s :::::::: sprockets/context
+Spent 0.000383 s ::::::::: sprockets/base
+Spent 0.005253 s :::::::: sprockets/index
+Spent 0.000698 s :::::::: hike
+Spent 0.000377 s ::::::::: monitor
+Spent 0.006067 s :::::::: logger
+Spent 0.000743 s :::::::: pathname
+Spent 0.000525 s :::::::: tilt
+Spent 0.198561 s ::::::: sprockets/environment
+Spent 0.000520 s ::::::: i18n
+Spent 0.017293 s ::::::: russian_rails
+Spent 0.000546 s ::::::: yaml
+Spent 0.001198 s ::::::: i18n/core_ext/hash
+Spent 0.001063 s ::::::: i18n/core_ext/kernel/surpress_warnings
+Spent 0.000499 s ::::::: tempfile
+Spent 0.001173 s ::::::: subexec
+Spent 0.017104 s ::::::: stringio
+Spent 0.000872 s ::::::: pathname
+Spent 0.000555 s ::::::: fileutils
+Spent 0.000660 s ::::::: active_support/core_ext/object/blank
+Spent 0.000714 s :::::::: active_support/core_ext/kernel/singleton_class
+Spent 0.001090 s :::::::: active_support/core_ext/module/remove_method
+Spent 0.000664 s :::::::: active_support/core_ext/array/extract_options
+Spent 0.013960 s ::::::: active_support/core_ext/class/attribute
+Spent 0.000395 s :::::::: active_support/deprecation
+Spent 0.005017 s ::::::: active_support/concern
+Spent 0.000571 s ::::::: carrierwave
+Spent 0.000552 s ::::::: dm-core
+Spent 0.001135 s ::::::: carrierwave/datamapper/property/uploader
+Spent 0.000499 s ::::::: rack
+Spent 0.000504 s ::::::: singleton
+Spent 0.000607 s ::::::: logger
+Spent 0.000607 s ::::::: omniauth
+Spent 0.000696 s ::::::::: hashie/hash_extensions
+Spent 0.005067 s :::::::: hashie/hash
+Spent 0.009855 s ::::::: hashie/mash
+Spent 0.000515 s ::::::: rack/request
+Spent 0.000524 s ::::::: rack/utils
+Spent 0.000614 s :::::::: openid/version
+Spent 0.000316 s :::::::::::: cgi
+Spent 0.000567 s :::::::::::: uri
+Spent 0.000685 s :::::::::::: logger
+Spent 0.000964 s :::::::::::: openid/extras
+Spent 0.017252 s ::::::::::: openid/util
+Spent 0.001324 s ::::::::::: openid/kvform
+Spent 0.044517 s :::::::::: openid/message
+Spent 0.000390 s ::::::::::: openid/util
+Spent 0.004714 s :::::::::: openid/protocolerror
+Spent 0.000405 s ::::::::::: openid/message
+Spent 0.000510 s ::::::::::::: net/protocol
+Spent 0.000507 s ::::::::::::: uri
+Spent 0.000931 s ::::::::::::: zlib
+Spent 0.017864 s ::::::::::::: stringio
+Spent 0.040251 s :::::::::::: net/http
+Spent 0.000963 s :::::::::::: openid
+Spent 0.000812 s :::::::::::: openid/util
+Spent 0.000515 s ::::::::::::: net/http
+Spent 0.000830 s ::::::::::::: openssl
+Spent 0.009173 s :::::::::::: net/https
+Spent 0.066510 s ::::::::::: openid/fetchers
+Spent 0.074818 s :::::::::: openid/kvpost
+Spent 0.000398 s ::::::::::: uri
+Spent 0.000659 s ::::::::::: openid/util
+Spent 0.000639 s ::::::::::: openid/fetchers
+Spent 0.000392 s :::::::::::: uri
+Spent 0.000644 s :::::::::::: openid/extras
+Spent 0.008974 s ::::::::::: openid/urinorm
+Spent 0.000759 s ::::::::::: openid/message
+Spent 0.000414 s :::::::::::: openid/util
+Spent 0.000662 s :::::::::::: openid/fetchers
+Spent 0.000999 s ::::::::::::: openid/yadis/accept
+Spent 0.005422 s :::::::::::: openid/yadis/constants
+Spent 0.001246 s ::::::::::::: openid/yadis/htmltokenizer
+Spent 0.000660 s ::::::::::::: cgi
+Spent 0.009909 s :::::::::::: openid/yadis/parsehtml
+Spent 0.032438 s ::::::::::: openid/yadis/discovery
+Spent 0.000706 s ::::::::::::::::: rexml/parseexception
+Spent 0.000994 s :::::::::::::::::: rexml/formatters/default
+Spent 0.005967 s ::::::::::::::::: rexml/formatters/pretty
+Spent 0.000772 s ::::::::::::::::: rexml/formatters/default
+Spent 0.018666 s :::::::::::::::: rexml/node
+Spent 0.022916 s ::::::::::::::: rexml/child
+Spent 0.027252 s :::::::::::::: rexml/parent
+Spent 0.000673 s ::::::::::::::: rexml/xmltokens
+Spent 0.005391 s :::::::::::::: rexml/namespace
+Spent 0.000420 s ::::::::::::::: rexml/namespace
+Spent 0.000418 s ::::::::::::::::: rexml/child
+Spent 0.000941 s :::::::::::::::::: rexml/encoding
+Spent 0.023782 s ::::::::::::::::: rexml/source
+Spent 0.000953 s ::::::::::::::::: rexml/xmltokens
+Spent 0.037015 s :::::::::::::::: rexml/entity
+Spent 0.000459 s ::::::::::::::::: rexml/parent
+Spent 0.000699 s ::::::::::::::::: rexml/parseexception
+Spent 0.000698 s ::::::::::::::::: rexml/namespace
+Spent 0.000684 s ::::::::::::::::: rexml/entity
+Spent 0.000435 s :::::::::::::::::: rexml/child
+Spent 0.000680 s :::::::::::::::::: rexml/source
+Spent 0.009094 s ::::::::::::::::: rexml/attlistdecl
+Spent 0.000762 s ::::::::::::::::: rexml/xmltokens
+Spent 0.034644 s :::::::::::::::: rexml/doctype
+Spent 0.000752 s :::::::::::::::: rexml/child
+Spent 0.000677 s :::::::::::::::: rexml/doctype
+Spent 0.000666 s :::::::::::::::: rexml/parseexception
+Spent 0.093032 s ::::::::::::::: rexml/text
+Spent 0.101911 s :::::::::::::: rexml/attribute
+Spent 0.000425 s ::::::::::::::: rexml/text
+Spent 0.005083 s :::::::::::::: rexml/cdata
+Spent 0.001807 s ::::::::::::::: rexml/functions
+Spent 0.000616 s :::::::::::::::: rexml/namespace
+Spent 0.000946 s :::::::::::::::: rexml/xmltokens
+Spent 0.000880 s :::::::::::::::: rexml/attribute
+Spent 0.001400 s :::::::::::::::: rexml/syncenumerator
+Spent 0.000503 s ::::::::::::::::: rexml/namespace
+Spent 0.000707 s ::::::::::::::::: rexml/xmltokens
+Spent 0.011476 s :::::::::::::::: rexml/parsers/xpathparser
+Spent 0.053584 s ::::::::::::::: rexml/xpath_parser
+Spent 0.063451 s :::::::::::::: rexml/xpath
+Spent 0.000773 s :::::::::::::: rexml/parseexception
+Spent 0.227101 s ::::::::::::: rexml/element
+Spent 0.000425 s :::::::::::::: rexml/encoding
+Spent 0.000666 s :::::::::::::: rexml/source
+Spent 0.009513 s ::::::::::::: rexml/xmldecl
+Spent 0.000759 s ::::::::::::: rexml/source
+Spent 0.000413 s :::::::::::::: rexml/child
+Spent 0.005027 s ::::::::::::: rexml/comment
+Spent 0.000758 s ::::::::::::: rexml/doctype
+Spent 0.000411 s :::::::::::::: rexml/child
+Spent 0.000666 s :::::::::::::: rexml/source
+Spent 0.009235 s ::::::::::::: rexml/instruction
+Spent 0.001073 s ::::::::::::: rexml/rexml
+Spent 0.000739 s ::::::::::::: rexml/parseexception
+Spent 0.000431 s :::::::::::::: rexml/encoding
+Spent 0.022873 s ::::::::::::: rexml/output
+Spent 0.000566 s :::::::::::::: rexml/parseexception
+Spent 0.000464 s ::::::::::::::: rexml/parseexception
+Spent 0.005095 s :::::::::::::: rexml/undefinednamespaceexception
+Spent 0.000803 s :::::::::::::: rexml/source
+Spent 0.000558 s :::::::::::::: set
+Spent 0.025732 s ::::::::::::: rexml/parsers/baseparser
+Spent 0.001258 s ::::::::::::: rexml/parsers/streamparser
+Spent 0.000697 s :::::::::::::: rexml/validation/validationexception
+Spent 0.000794 s :::::::::::::: rexml/undefinednamespaceexception
+Spent 0.009865 s ::::::::::::: rexml/parsers/treeparser
+Spent 0.356138 s :::::::::::: rexml/document
+Spent 0.000737 s :::::::::::: rexml/element
+Spent 0.000653 s :::::::::::: rexml/xpath
+Spent 0.000489 s ::::::::::::: openid/yadis/xrds
+Spent 0.000647 s ::::::::::::: openid/fetchers
+Spent 0.009244 s :::::::::::: openid/yadis/xri
+Spent 0.399312 s ::::::::::: openid/yadis/xrds
+Spent 0.000762 s ::::::::::: openid/yadis/xri
+Spent 0.000991 s :::::::::::: openid/yadis/filters
+Spent 0.000739 s :::::::::::: openid/yadis/discovery
+Spent 0.018433 s :::::::::::: openid/yadis/xrds
+Spent 0.031661 s ::::::::::: openid/yadis/services
+Spent 0.000949 s ::::::::::: openid/yadis/filters
+Spent 0.000565 s :::::::::::: openid/yadis/htmltokenizer
+Spent 0.005781 s ::::::::::: openid/consumer/html_parse
+Spent 0.000502 s :::::::::::: cgi
+Spent 0.000769 s :::::::::::: openid/yadis/xri
+Spent 0.000726 s :::::::::::: openid/yadis/xrds
+Spent 0.000707 s :::::::::::: openid/fetchers
+Spent 0.018148 s ::::::::::: openid/yadis/xrires
+Spent 0.543632 s :::::::::: openid/consumer/discovery
+Spent 0.000751 s :::::::::: openid/urinorm
+Spent 0.687369 s ::::::::: openid/consumer/idres.rb
+Spent 0.000424 s :::::::::: openid/message
+Spent 0.000658 s :::::::::: openid/util
+Spent 0.009381 s ::::::::: openid/consumer/checkid_request.rb
+Spent 0.000392 s ::::::::::: openid/util
+Spent 0.000399 s :::::::::::: openid/util
+Spent 0.000845 s :::::::::::: digest/sha1
+Spent 0.000779 s :::::::::::: digest/sha2
+Spent 0.000573 s ::::::::::::: digest
+Spent 0.005360 s :::::::::::: digest/hmac
+Spent 0.039042 s ::::::::::: openid/cryptutil
+Spent 0.047525 s :::::::::: openid/dh
+Spent 0.001141 s :::::::::: openid/util
+Spent 0.000827 s :::::::::: openid/kvpost
+Spent 0.000913 s :::::::::: openid/cryptutil
+Spent 0.000873 s :::::::::: openid/protocolerror
+Spent 0.000454 s ::::::::::: openid/kvform
+Spent 0.000762 s ::::::::::: openid/util
+Spent 0.000726 s ::::::::::: openid/cryptutil
+Spent 0.000696 s ::::::::::: openid/message
+Spent 0.018758 s :::::::::: openid/association
+Spent 0.092940 s ::::::::: openid/consumer/associationmanager.rb
+Spent 0.001346 s ::::::::: openid/consumer/responses.rb
+Spent 0.001275 s ::::::::: openid/consumer/discovery_manager
+Spent 0.000748 s ::::::::: openid/consumer/discovery
+Spent 0.000646 s ::::::::: openid/message
+Spent 0.000641 s ::::::::: openid/yadis/discovery
+Spent 0.000406 s :::::::::: openid/cryptutil
+Spent 0.000518 s :::::::::: date
+Spent 0.000520 s :::::::::: time
+Spent 0.012805 s ::::::::: openid/store/nonce
+Spent 0.839456 s :::::::: openid/consumer
+Spent 0.000490 s ::::::::: openid/cryptutil
+Spent 0.018618 s ::::::::: openid/util
+Spent 0.000821 s ::::::::: openid/dh
+Spent 0.000807 s ::::::::: openid/store/nonce
+Spent 0.000457 s :::::::::: uri
+Spent 0.000791 s :::::::::: openid/urinorm
+Spent 0.010818 s ::::::::: openid/trustroot
+Spent 0.000821 s ::::::::: openid/association
+Spent 0.000710 s ::::::::: openid/message
+Spent 0.000576 s ::::::::: time
+Spent 0.065615 s :::::::: openid/server
+Spent 0.916648 s ::::::: openid
+Spent 0.000755 s ::::::: openid/consumer
+Spent 0.000397 s ::::::::: openid/message
+Spent 0.004568 s :::::::: openid/extension
+Spent 0.000723 s :::::::: openid/util
+Spent 0.000631 s :::::::: openid/message
+Spent 0.017967 s ::::::: openid/extensions/sreg
+Spent 0.000451 s :::::::: openid/extension
+Spent 0.000671 s :::::::: openid/trustroot
+Spent 0.000655 s :::::::: openid/message
+Spent 0.014727 s ::::::: openid/extensions/ax
+Spent 0.000402 s :::::::: openid/extension
+Spent 0.005092 s ::::::: openid/extensions/oauth
+Spent 0.018955 s ::::::: omniauth-openid/version
+Spent 0.000537 s :::::::: omniauth
+Spent 0.000832 s :::::::: rack/openid
+Spent 0.000441 s :::::::::: openid/util
+Spent 0.004933 s ::::::::: openid/store/interface
+Spent 0.009864 s :::::::: openid/store/memory
+Spent 0.000596 s :::::::: omniauth
+Spent 0.000648 s :::::::: hashie/mash
+Spent 0.034929 s ::::::: omniauth/strategies/open_id
+Spent 0.001208 s ::::::: /home/ujif/swift/config/database.rb
+Spent 0.000431 s :::::::: open-uri
+Spent 0.000307 s :::::::::: active_support/core_ext/module/attribute_accessors
+Spent 0.000705 s :::::::::: active_support/core_ext/module/delegation
+Spent 0.001431 s :::::::::: multi_json
+Spent 0.014268 s ::::::::: active_support/json/decoding
+Spent 0.000726 s ::::::::::::: json/version
+Spent 0.000404 s :::::::::::::: ostruct
+Spent 0.005168 s ::::::::::::: json/light_object
+Spent 0.014903 s :::::::::::: json/common
+Spent 0.000773 s :::::::::::: json/version
+Spent 0.000439 s ::::::::::::: json/common
+Spent 0.021230 s ::::::::::::: json/ext/parser
+Spent 0.001899 s ::::::::::::: json/ext/generator
+Spent 0.036363 s :::::::::::: json/ext
+Spent 0.063545 s ::::::::::: json
+Spent 0.068146 s :::::::::: active_support/core_ext/object/to_json
+Spent 0.000872 s :::::::::: active_support/core_ext/module/delegation
+Spent 0.000454 s ::::::::::: active_support/deprecation
+Spent 0.005353 s :::::::::: active_support/json/variable
+Spent 0.000813 s :::::::::: active_support/ordered_hash
+Spent 0.001112 s :::::::::: bigdecimal
+Spent 0.000764 s ::::::::::: bigdecimal
+Spent 0.000797 s ::::::::::: psych
+Spent 0.000570 s ::::::::::: yaml
+Spent 0.014900 s :::::::::: active_support/core_ext/big_decimal/conversions
+Spent 0.000751 s :::::::::: active_support/core_ext/array/wrap
+Spent 0.001038 s :::::::::: active_support/core_ext/hash/except
+Spent 0.000692 s :::::::::: active_support/core_ext/hash/slice
+Spent 0.001042 s :::::::::: active_support/core_ext/object/instance_variables
+Spent 0.000633 s :::::::::: time
+Spent 0.000630 s :::::::::: active_support/core_ext/time/conversions
+Spent 0.000411 s ::::::::::: active_support/inflector/methods
+Spent 0.000640 s ::::::::::: active_support/core_ext/time/conversions
+Spent 0.001381 s ::::::::::: active_support/core_ext/date_time/calculations
+Spent 0.019101 s ::::::::::: active_support/values/time_zone
+Spent 0.037879 s :::::::::: active_support/core_ext/date_time/conversions
+Spent 0.000466 s ::::::::::: date
+Spent 0.000786 s ::::::::::: active_support/inflector/methods
+Spent 0.000417 s :::::::::::: date
+Spent 0.000542 s ::::::::::::: active_support/core_ext/time/calculations
+Spent 0.000754 s ::::::::::::: active_support/time_with_zone
+Spent 0.010003 s :::::::::::: active_support/core_ext/time/zones
+Spent 0.018874 s ::::::::::: active_support/core_ext/date/zones
+Spent 0.000792 s ::::::::::: active_support/core_ext/module/remove_method
+Spent 0.037208 s :::::::::: active_support/core_ext/date/conversions
+Spent 0.000625 s :::::::::: set
+Spent 0.229855 s ::::::::: active_support/json/encoding
+Spent 0.251966 s :::::::: active_support/json
+Spent 0.000407 s :::::::::: active_support/xml_mini
+Spent 0.000404 s :::::::::::: securerandom
+Spent 0.000421 s ::::::::::::: active_support/inflector/methods
+Spent 0.000632 s ::::::::::::: active_support/lazy_load_hooks
+Spent 0.009636 s :::::::::::: active_support/dependencies/autoload
+Spent 0.001105 s :::::::::::: active_support/version
+Spent 0.024065 s ::::::::::: active_support
+Spent 0.019080 s ::::::::::: date
+Spent 0.000900 s ::::::::::: time
+Spent 0.000789 s ::::::::::: active_support/core_ext/time/publicize_conversion_methods
+Spent 0.001645 s ::::::::::: active_support/core_ext/time/marshal
+Spent 0.000457 s :::::::::::: active_support/core_ext/object/acts_like
+Spent 0.005426 s ::::::::::: active_support/core_ext/time/acts_like
+Spent 0.000808 s ::::::::::: active_support/core_ext/time/calculations
+Spent 0.000723 s ::::::::::: active_support/core_ext/time/conversions
+Spent 0.000761 s ::::::::::: active_support/core_ext/time/zones
+Spent 0.000522 s :::::::::::: active_support/core_ext/object/acts_like
+Spent 0.005340 s ::::::::::: active_support/core_ext/date/acts_like
+Spent 0.001306 s ::::::::::: active_support/core_ext/date/freeze
+Spent 0.000414 s :::::::::::: date
+Spent 0.000682 s :::::::::::: active_support/duration
+Spent 0.000669 s :::::::::::: active_support/core_ext/object/acts_like
+Spent 0.000724 s :::::::::::: active_support/core_ext/date/zones
+Spent 0.000698 s :::::::::::: active_support/core_ext/time/zones
+Spent 0.023317 s ::::::::::: active_support/core_ext/date/calculations
+Spent 0.000779 s ::::::::::: active_support/core_ext/date/conversions
+Spent 0.000691 s ::::::::::: active_support/core_ext/date/zones
+Spent 0.000406 s :::::::::::: active_support/core_ext/object/acts_like
+Spent 0.005100 s ::::::::::: active_support/core_ext/date_time/acts_like
+Spent 0.019209 s ::::::::::: active_support/core_ext/date_time/calculations
+Spent 0.000917 s ::::::::::: active_support/core_ext/date_time/conversions
+Spent 0.000542 s :::::::::::: active_support/core_ext/time/zones
+Spent 0.005499 s ::::::::::: active_support/core_ext/date_time/zones
+Spent 0.001349 s ::::::::::: active_support/core_ext/integer/time
+Spent 0.000475 s :::::::::::: active_support/duration
+Spent 0.000723 s :::::::::::: active_support/core_ext/time/calculations
+Spent 0.000751 s :::::::::::: active_support/core_ext/time/acts_like
+Spent 0.014547 s ::::::::::: active_support/core_ext/numeric/time
+Spent 0.206929 s :::::::::: active_support/time
+Spent 0.000847 s :::::::::: active_support/core_ext/array/wrap
+Spent 0.000698 s :::::::::: active_support/core_ext/hash/reverse_merge
+Spent 0.000694 s :::::::::: active_support/core_ext/object/blank
+Spent 0.000665 s :::::::::: active_support/core_ext/string/inflections
+Spent 0.233240 s ::::::::: active_support/core_ext/hash/conversions
+Spent 0.000718 s ::::::::: active_support/core_ext/hash/deep_merge
+Spent 0.001068 s ::::::::: active_support/core_ext/hash/deep_dup
+Spent 0.001146 s ::::::::: active_support/core_ext/hash/diff
+Spent 0.000798 s ::::::::: active_support/core_ext/hash/except
+Spent 0.000418 s ::::::::::: active_support/core_ext/hash/keys
+Spent 0.005202 s :::::::::: active_support/hash_with_indifferent_access
+Spent 0.009834 s ::::::::: active_support/core_ext/hash/indifferent_access
+Spent 0.000699 s ::::::::: active_support/core_ext/hash/keys
+Spent 0.000588 s ::::::::: active_support/core_ext/hash/reverse_merge
+Spent 0.019048 s ::::::::: active_support/core_ext/hash/slice
+Spent 0.301192 s :::::::: active_support/core_ext/hash
+Spent 0.000688 s :::::::: mini_magick
+Spent 0.639272 s ::::::: /home/ujif/swift/lib/dm-carrier.rb
+Spent 0.001658 s ::::::: /home/ujif/swift/lib/dm-swift.rb
+Spent 0.001563 s ::::::: /home/ujif/swift/lib/sr-monkey.rb
+Spent 0.000670 s ::::::: pathname
+Spent 0.000601 s ::::::: active_support/core_ext/string/multibyte
+Spent 0.001392 s ::::::: /home/ujif/swift/lib/admin_form_builder.rb
+Spent 0.000994 s ::::::: /home/ujif/swift/lib/swift_form_builder.rb
+Spent 0.002688 s ::::::: /home/ujif/swift/models/access.rb
+Spent 0.007947 s ::::::: /home/ujif/swift/models/account.rb
+Spent 0.005222 s ::::::: /home/ujif/swift/models/asset.rb
+Spent 0.004706 s ::::::: /home/ujif/swift/models/block.rb
+Spent 0.004364 s ::::::: /home/ujif/swift/models/bond.rb
+Spent 0.000390 s :::::::: dm-core
+Spent 0.005870 s :::::::: dm-types/support/dirty_minder
+Spent 0.000769 s :::::::: multi_json
+Spent 0.024989 s ::::::: /home/ujif/swift/models/cat_card.rb
+Spent 0.006323 s ::::::: /home/ujif/swift/models/cat_group.rb
+Spent 0.005428 s ::::::: /home/ujif/swift/models/cat_node.rb
+Spent 0.005155 s ::::::: /home/ujif/swift/models/code.rb
+Spent 0.004752 s ::::::: /home/ujif/swift/models/folder.rb
+Spent 0.006371 s ::::::: /home/ujif/swift/models/forms_card.rb
+Spent 0.003210 s ::::::: /home/ujif/swift/models/forms_result.rb
+Spent 0.004008 s ::::::: /home/ujif/swift/models/fragment.rb
+Spent 0.005141 s ::::::: /home/ujif/swift/models/image.rb
+Spent 0.003910 s ::::::: /home/ujif/swift/models/layout.rb
+Spent 0.006796 s ::::::: /home/ujif/swift/models/news_article.rb
+Spent 0.007417 s ::::::: /home/ujif/swift/models/news_event.rb
+Spent 0.004701 s ::::::: /home/ujif/swift/models/news_rubric.rb
+Spent 0.002778 s ::::::: /home/ujif/swift/models/option.rb
+Spent 0.009003 s ::::::: /home/ujif/swift/models/page.rb
+Spent 0.004689 s :::::::: /home/ujif/swift/app/app.rb
+Spent 0.000399 s ::::::::: omniauth-openid
+Spent 0.000445 s :::::::::: fileutils
+Spent 0.000865 s :::::::::: pathname
+Spent 0.000655 s :::::::::: tempfile
+Spent 0.000760 s :::::::::: openid/util
+Spent 0.000778 s :::::::::: openid/store/interface
+Spent 0.000763 s :::::::::: openid/association
+Spent 0.028782 s ::::::::: openid/store/filesystem
+Spent 0.000554 s ::::::::: omniauth
+Spent 0.049014 s :::::::: /home/ujif/swift/admin/app.rb
+Spent 0.167080 s ::::::: /home/ujif/swift/config/apps.rb
+    124 KB: thor/invocation
+    128 KB: rubygems/package/tar_writer
+    132 KB: rexml/encoding
+    132 KB: hike/index
+    132 KB: dm-core/property/date
+    132 KB: sprockets/base
+    132 KB: mail/patterns
+    132 KB: rake/ext/time
+    132 KB: dm-validations/support/ordered_hash
+    132 KB: omniauth
+    132 KB: psych/nodes/stream
+    132 KB: psych/nodes/document
+    132 KB: psych/nodes/sequence
+    132 KB: psych/nodes/mapping
+    132 KB: rexml/functions
+    132 KB: psych/tree_builder
+    132 KB: rubygems/platform
+    132 KB: active_support/core_ext/object/blank
+    132 KB: rubygems/psych_tree
+    132 KB: yaml
+    132 KB: active_support/core_ext/hash/slice
+    132 KB: rubygems/package/tar_output
+    132 KB: url_mount
+    132 KB: dm-core/core_ext/pathname
+    132 KB: active_support/core_ext/object/inclusion
+    132 KB: do_mysql/version
+    132 KB: rubygems/spec_fetcher
+    132 KB: rubygems/exceptions
+    132 KB: irb/ruby-token
+    136 KB: dm-core/property/decimal
+    136 KB: active_support/core_ext/array/wrap
+    208 KB: rubygems/specification
+    264 KB: optparse
+    264 KB: rubygems/ext/builder
+    264 KB: rubygems/package/tar_header
+    264 KB: openid/yadis/discovery
+    264 KB: rexml/parseexception
+    264 KB: set
+    264 KB: active_support/inflections
+    264 KB: active_support/core_ext/time/publicize_conversion_methods
+    264 KB: padrino-core
+    264 KB: active_support/deprecation/reporting
+    264 KB: dm-aggregates/repository
+    264 KB: dm-aggregates/query
+    264 KB: active_support/values/time_zone
+    264 KB: dm-validations/exceptions
+    264 KB: timeout
+    264 KB: active_support/core_ext/object/acts_like
+    264 KB: dm-validations/support/object
+    264 KB: openid/extension
+    264 KB: rake/win32
+    264 KB: active_support/inflector/transliterate
+    264 KB: treetop/runtime
+    264 KB: active_support/core_ext/date_time/calculations
+    264 KB: dm-core/property/integer
+    264 KB: dm-core/support/chainable
+    264 KB: rack/mime
+    264 KB: cgi
+    264 KB: dm-core/property/boolean
+    264 KB: mail/parsers/content_location
+    264 KB: padrino-helpers
+    264 KB: dm-core/support/assertions
+    264 KB: active_support/core_ext/object/try
+    264 KB: dm-core/support/ext/module
+    264 KB: dm-core/support/ext/array
+    264 KB: dm-core/support/ext/try_dup
+    264 KB: dm-core/support/equalizer
+    264 KB: dm-core/support/inflector/inflections
+    264 KB: dm-core/support/deprecate
+    264 KB: dm-validations/validators/block_validator
+    268 KB: openssl/cipher
+    356 KB: bundler/rubygems_integration
+    364 KB: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-core/lib/padrino-core/version.rb
+    396 KB: mail/elements
+    396 KB: bigdecimal/util
+    396 KB: dm-core/support/lazy_array
+    396 KB: /home/ujif/.bundler/ruby/1.9.1/padrino-framework-d27521ee6703/padrino-cache/lib/padrino-cache/helpers/cache_store.rb
+    396 KB: addressable/version
+    396 KB: dm-core/support/descendant_set
+    396 KB: dm-core/property/serial
+    396 KB: mail/encodings
+    396 KB: dm-core/support/mash
+    396 KB: mail/parsers/content_transfer_encoding
+    396 KB: ostruct
+    396 KB: rbconfig
+    396 KB: omniauth-openid/version
+    396 KB: dm-validations/validators/uniqueness_validator
+    396 KB: openid/yadis/filters
+    396 KB: dm-core/support/inflector/methods
+    396 KB: rubygems/package/tar_reader/entry
+    396 KB: socket
+    396 KB: digest
+    396 KB: dm-core/support/inflections
+    396 KB: thor/actions/empty_directory
+    400 KB: rubygems
+    400 KB: thor/shell/basic
+    528 KB: dm-core
+    528 KB: sprockets/sass_template
+    528 KB: rake/ext/core
+    528 KB: tsort
+    528 KB: rexml/namespace
+    528 KB: thor/parser/argument
+    656 KB: rubygems/version
+    660 KB: thread
+    660 KB: active_support/core_ext/module/attribute_accessors
+    660 KB: e2mmap
+    776 KB: digest/sha1
+    784 KB: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/version
+    792 KB: active_support/inflector/methods
+    792 KB: open-uri
+    792 KB: openid/yadis/htmltokenizer
+    924 KB: active_support/i18n
+    932 KB: date
+   1056 KB: pathname
+   1584 KB: /home/ujif/swift/admin/app.rb
+   1596 KB: uri
+   1612 KB: uri/common
+   1684 KB: addressable/idna/pure
+   2056 KB: fcntl
+   2060 KB: digest/sha2.so
+   2076 KB: bcrypt_ext
+   2084 KB: json/ext/generator
+   2096 KB: data_objects/transaction
+   2108 KB: tilt/template
+   2128 KB: redcarpet.so
+   2192 KB: socket.so
+   2244 KB: date_core
+   2324 KB: digest/md5
+   2332 KB: etc
+   2376 KB: bigdecimal
+   3164 KB: strscan
+   3248 KB: stringio
+   3268 KB: pathname.so
+   4128 KB: digest.so
+   4508 KB: psych.so
+   6700 KB: zlib
+   8776 KB: openssl.so
+   8804 KB: readline
+  10316 KB: json/ext/parser
+  13292 KB: do_mysql/do_mysql
+  29600 KB: base
+ 165440 KB
+Spent 6.814850 s :::::: /home/ujif/swift/config/boot.rb
+=> Loading development console (Padrino v.0.10.7)
+=> Loading Application Swift
+Spent 0.001028 s ::::::: /home/ujif/swift/app/controllers/core.rb
+Spent 0.000756 s :::::::: digest/md5
+Spent 0.005980 s ::::::: /home/ujif/swift/app/helpers/core_helper.rb
+=> Loading Application Admin
+Spent 0.002414 s ::::::: /home/ujif/swift/admin/controllers/accounts.rb
+Spent 0.002229 s ::::::: /home/ujif/swift/admin/controllers/assets.rb
+Spent 0.001134 s ::::::: /home/ujif/swift/admin/controllers/base.rb
+Spent 0.001950 s ::::::: /home/ujif/swift/admin/controllers/blocks.rb
+Spent 0.001898 s ::::::: /home/ujif/swift/admin/controllers/cat_cards.rb
+Spent 0.001949 s ::::::: /home/ujif/swift/admin/controllers/cat_groups.rb
+Spent 0.001789 s ::::::: /home/ujif/swift/admin/controllers/cat_nodes.rb
+Spent 0.002013 s ::::::: /home/ujif/swift/admin/controllers/codes.rb
+Spent 0.004139 s ::::::: /home/ujif/swift/admin/controllers/dialogs.rb
+Spent 0.001946 s ::::::: /home/ujif/swift/admin/controllers/folders.rb
+Spent 0.001850 s ::::::: /home/ujif/swift/admin/controllers/forms_cards.rb
+Spent 0.001777 s ::::::: /home/ujif/swift/admin/controllers/forms_results.rb
+Spent 0.002146 s ::::::: /home/ujif/swift/admin/controllers/fragments.rb
+Spent 0.002163 s ::::::: /home/ujif/swift/admin/controllers/images.rb
+Spent 0.001941 s ::::::: /home/ujif/swift/admin/controllers/layouts.rb
+Spent 0.001938 s ::::::: /home/ujif/swift/admin/controllers/news_articles.rb
+Spent 0.001838 s ::::::: /home/ujif/swift/admin/controllers/news_events.rb
+Spent 0.002050 s ::::::: /home/ujif/swift/admin/controllers/news_rubrics.rb
+Spent 0.002115 s ::::::: /home/ujif/swift/admin/controllers/pages.rb
+Spent 0.001333 s ::::::: /home/ujif/swift/admin/controllers/sessions.rb
+Spent 0.001211 s ::::::: /home/ujif/swift/admin/helpers/admin_helper.rb
+Spent 1.211747 s :::::: /usr/lib/ruby/gems/1.9.1/gems/padrino-core-0.10.7/lib/padrino-core/cli/console
+Spent 0.000513 s :::::: e2mmap
+irb(main):001:0> exit

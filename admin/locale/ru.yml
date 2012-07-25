@@ -35,7 +35,8 @@ ru:
         cat_cards: Карточки
         cat_groups: Группы
         forms_cards: Карточки
-        forms_results: Результаты
+        forms_results: Записи
+        forms_stats: Результаты
         accounts: Пользователи
         add:
           images: Добавить картинки

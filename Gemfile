@@ -43,4 +43,3 @@ gem 'omniauth'
 gem 'rack-openid', :require => "rack/openid"
 
 gem 'omniauth-openid'
-gem 'nokogiri'

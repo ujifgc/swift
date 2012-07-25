@@ -1,7 +1,7 @@
 MODULE_GROUPS = {
   :content => %W(pages blocks assets images folders),
   :news    => %W(news_articles news_rubrics news_events),
-  :forms   => %W(forms_cards forms_results),
+  :forms   => %W(forms_cards forms_results forms_stats),
   :cat     => %W(cat_nodes cat_cards cat_groups),
   :design  => %W(layouts fragments),
   :admin   => %W(accounts codes),
@@ -51,6 +51,7 @@ class Admin < Padrino::Application
 
     role.project_module :forms_cards, '/forms_cards'
     role.project_module :forms_results, '/forms_results'
+    role.project_module :forms_stats, '/forms_stats'
 
     role.project_module :cat_nodes, '/cat_nodes'
     role.project_module :cat_cards, '/cat_cards'

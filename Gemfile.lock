@@ -111,7 +111,6 @@ GEM
     mini_magick (3.4)
       subexec (~> 0.2.1)
     multi_json (1.0.4)
-    nokogiri (1.5.5)
     omniauth (1.1.0)
       hashie (~> 1.2)
       rack
@@ -170,7 +169,6 @@ DEPENDENCIES
   dm-validations
   haml
   mini_magick
-  nokogiri
   omniauth
   omniauth-openid
   padrino!

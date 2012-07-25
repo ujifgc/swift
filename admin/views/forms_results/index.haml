@@ -1,7 +1,7 @@
 = partial 'base/index_operations'
 %ul.nav.nav-pills.forms_cards
   - klass = nil
-  - FormsCard.all( :kind => 'form', :order => [:created_at.desc] ).each do |forms_card|
+  - FormsCard.all( :order => [:created_at.desc] ).each do |forms_card|
     - if klass || params[:forms_card]
       - if forms_card.slug == params[:forms_card]
         - @card = forms_card

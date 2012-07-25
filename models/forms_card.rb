@@ -13,7 +13,6 @@ class FormsCard
   Kinds = {
     'Форма'    => 'form',
     'Опрос'    => 'inquiry',
-    'Вопрос — ответ' => 'faq',
   }
 
   property :id,       Serial
@@ -21,6 +20,8 @@ class FormsCard
   property :title,    String, :required => true
   property :text,     Text
   property :kind,     String, :length => 10, :default => 'form'
+
+  attr_accessor :stats
 
   sluggable!
   timestamps!
@@ -42,6 +43,34 @@ class FormsCard
     object[:origin] = request.addr
     res = FormsResult.create object
     res
+  end
+
+  def stat( key, var, unit = :percent )
+    results = self.forms_results
+    stats = {}
+    cnt = 0
+    results.each do |result|
+      result.json.each do |k,v|
+        stats[k] ||= {}
+        if v.kind_of? Array
+          v.each do |vv|
+            stats[k][vv] ||= 0
+            stats[k][vv] += 1
+          end
+        else
+          stats[k][v] ||= 0
+          stats[k][v] += 1
+        end
+      end
+      cnt += 1
+    end
+    val = stats[key][var]
+    case unit
+    when :percent
+      100 * val / cnt  rescue 0
+    else
+      val
+    end
   end
 
 end

@@ -37,6 +37,7 @@ Admin.helpers do
 
     :forms_cards   => 'inbox',
     :forms_results => 'folder-close',
+    :forms_stats   => 'check',
 
     :cat_cards  => 'inbox',
     :cat_nodes  => 'folder-close',
