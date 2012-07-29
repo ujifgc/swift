@@ -1,21 +1,16 @@
 #coding:utf-8
-# timestamps!  creation and updating timestamps
-# userstamps!  creation and updating user ids
-# sluggable!   string shortcut for the object
-# publishable! publication flag and time
-# uploadable!  mounts uploader to file attribute
-# bondable!    to check bound?
-# amorphous!   stores custom data in json
-# recursive!   adds relation with self and path builder
-
 module SwiftDatamapper
+
   module ClassMethods
 
+    # Resource has timestamps
     def timestamps!
       property :created_at, DateTime
       property :updated_at, DateTime
     end
 
+    # Resource has userstamps
+    # It fills its creator before creating itself
     def userstamps!
       belongs_to :created_by, 'Account', :required => false
       belongs_to :updated_by, 'Account', :required => false
@@ -25,6 +20,10 @@ module SwiftDatamapper
       end
     end
 
+    # Resource is sluggable
+    # It composes a slug by title before save if the slug is not specified
+    # It extends its model to be able to find a resource by its slug
+    # Slug is a human-readable unique resource identifier
     def sluggable! options = {}
       send :include, PublishableMethods
 
@@ -37,6 +36,7 @@ module SwiftDatamapper
           slug.strip!
           slug.gsub!(/\ +/, '-')
           slug.gsub!(/^-+|-+$/, '')
+          # !!! FIXME get rid of Russian
           self.slug = Russian.translit(slug).downcase
         end
       end
@@ -47,6 +47,10 @@ module SwiftDatamapper
 
     end
 
+    # Resource is publishable
+    # It has publish flag and publish time
+    # It fixes the properties before save
+    # It extends its model to return all published resources
     def publishable!
       send :include, PublishableMethods
 
@@ -63,6 +67,8 @@ module SwiftDatamapper
       end
     end
 
+    # Resource is dateable
+    # It has date property and does some fixing before save
     def dateable!
       property :date, DateTime, :required => true
 
@@ -71,6 +77,9 @@ module SwiftDatamapper
       end
     end
 
+    # Resource is uploadable
+    # It has file property buffed with mighty CarrierWave uploader
+    # It remembers file size and mime type before saving
     def uploadable!( uploader, options={} )
       send :include, UploadableMethods
 
@@ -89,16 +98,23 @@ module SwiftDatamapper
       end
     end
 
+    # Resource is bondable
+    # It can be bound to some parent resource
     def bondable!
       send :include, BondableMethods
     end
 
+    # Resource is amorphous
+    # It has json property to contain any reasonable number of fields
+    # and get/set/fill it with Hash params
     def amorphous!
       send :include, AmorphousMethods
 
       property :json, DataMapper::Property::Json, :default => {}
     end
 
+    # Resource is recursive
+    # Usable for making resources with paths like URIs
     def recursive!
       send :include, RecursiveMethods
 
@@ -114,14 +130,25 @@ module SwiftDatamapper
 
   end
 
+  # Methods for all resourced
+  module InstanceMethods
+  end
+
   module SluggableMethods
+
+    # Resolves the mystery of parametrizing sluggable resource
     def to_param
       self.respond_to?( :slug ) ? self.slug : self.id
     end
+
   end
 
   module PublishableMethods
 
+    # Publishes a publishable resource
+    # if it has no publish time, set it
+    # if it has it, maybe reset it
+    # finally, set the published flag
     def publish!( time = nil )
       if !self.publish_at
         self.publish_at = time || DateTime.now
@@ -132,11 +159,13 @@ module SwiftDatamapper
       self.save
     end
 
+    # Unsets the published flag, doesnt touch publish time
     def unpublish!
       self.is_published = false
       self.save
     end
 
+    # Guesses if resource is published and not in the future
     def published?
       self.is_published && DateTime.new(self.publish_at.to_i) <= DateTime.now
     end
@@ -146,10 +175,10 @@ module SwiftDatamapper
   module UploadableMethods
   end
 
-  module InstanceMethods
-  end
-
   module BondableMethods
+
+    # Guesses if resource is bound to specified parent
+    # The parent is specified by model name and id
     def bound?( parent_model, parent_id = nil )
       parent_model = if parent_model.kind_of? Symbol
         parent_model.to_s.singularize.camelize
@@ -162,27 +191,37 @@ module SwiftDatamapper
         parent_model.class.name
       end
       return false  unless parent_id
-      bond = Bond.first :parent_model => parent_model, :parent_id => parent_id, :child_model => self.class.to_s, :child_id => self.id, :manual => true, :relation => 1
+      bond = Bond.first :parent_model => parent_model,
+                        :parent_id    => parent_id,
+                        :child_model  => self.class.to_s,
+                        :child_id     => self.id,
+                        :manual       => true,
+                        :relation     => 1
       bond ? true : false
     end
+
   end
 
   module AmorphousMethods
-    def [](key)
-      return super key  if properties.any?{ |p| p.name==key }
-      self.json[key.to_s].freeze  # !!!FIXME freeze is a safeguard for a smartass eager to use something like `<<` instead of `=`, maybe fix it sometime
+
+    # A getter for amorphous fields
+    def []( key )
+      return super key  if properties.named? key
+      # !!!FIXME freeze is a safeguard for a smartass eager to use something
+      # like `<<` instead of `=`, maybe fix it sometime
+      self.json[key.to_s].freeze
     end
 
-    def []=(key, value)
-      return super( key, value )  if properties.any?{ |p| p.name==key } # !!!FIXME benchmark it against `if attributes.has_key? key`, find a faster finder
-      embed(key, value)
-    end
-
-    def embed(key, value)
+    # A Setter for amorphous fields
+    def []=( key, value )
+      return super( key, value )  if properties.named? key
       self.json[key.to_s] = value
     end
 
-    def fill_json params, children
+    # Fills amorphous parent with a hash of params, possibly correcting
+    # childrens' keys
+    # Returns nothing of interest
+    def fill_json( params, children_method )
       keys = params.delete 'key'
       types = params.delete 'type'
       values = params.delete 'value'
@@ -204,28 +243,32 @@ module SwiftDatamapper
       end
       if renames.any?
         self.json = Hash[self.json.map{ |k,v| renames[k] ? [renames[k], [types[k], values[k]]] : [k, v] }]
-        self.send(children).each do |node|
-          node.json = Hash[node.json.map{ |k,v| renames[k] ? [renames[k], v] : [k, v] }]
-          node.save
+        self.send(children_method).each do |child|
+          child.json = Hash[child.json.map{ |k,v| renames[k] ? [renames[k], v] : [k, v] }]
+          child.save
         end
       end
     end
   end
 
   module RecursiveMethods
-    def title_tree
+
+    # Prepares a title for tree view of recursive resource
+    def title_tree( connector = '· · ' )
       prepend = ''
       cp = self.parent_id
       while cp do
         cp = self.class.get(cp).parent_id
-        prepend += '· · '
+        prepend += connector
       end
       "#{prepend} #{title} (#{slug})"
     end
 
+    # Guesses if the resource has no parents
     def root?
       self.path == '/'
     end
+
   end
 
 end

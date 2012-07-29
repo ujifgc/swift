@@ -2,9 +2,10 @@
 module Padrino
   module Admin
     module Helpers
+
       module ViewHelpers
 
-        # show full path to translation key instead of "humanizing" it
+        # Shows full path to translation key instead of "humanizing" it
         def padrino_admin_translate(word, default=nil)
           t("padrino.admin.#{word}", :default => default)
         end
@@ -21,7 +22,10 @@ module Padrino
         alias :mt :model_translate
 
       end
+
       module AuthenticationHelpers
+
+        # Stores location before login
         def login_required
           unless allowed?
             if logged_in?
@@ -32,10 +36,13 @@ module Padrino
             end
           end
         end
+
       end
+
     end
   end
 
+  # Gets public folder path
   def self.public
     root + '/public'
   end
@@ -45,23 +52,27 @@ end
 module Padrino
   module Helpers
     module FormHelpers
+
+      # Adds label helper with content before the label text
       def label_back_tag(name, options={}, &block)
         options.reverse_merge!(:caption => "#{name.to_s.humanize}: ", :for => name)
         caption_text = options.delete(:caption)
         caption_text << "<span class='required'>*</span> " if options.delete(:required)
-        if block_given? # label with inner content
+        if block_given?
           label_content = capture_html(&block) + caption_text
           concat_content(content_tag(:label, label_content, options))
-        else # regular label
+        else
           content_tag(:label, caption_text, options)
         end
       end
+
     end
   end
 end
+
 module I18n
 
-  # show full path to translation key instead of "humanizing" it
+  # Shows full path to translation key instead of "humanizing" it
   class MissingTranslation
     module Base
       def message
@@ -74,7 +85,7 @@ end
 
 module FileUtils
 
-  # try to move a file and ignore failures
+  # Tries to move a file and ignore failures
   def self.mv_try( src, dst )
     return nil  if src == dst
     return nil  unless File.exists? src
@@ -90,7 +101,7 @@ class String
 
   JS_ESCAPE_MAP	= { '\\' => '\\\\', '</' => '<\/', "\r\n" => '\n', "\n" => '\n', "\r" => '\n', '"' => '\\"', "'" => "\\'" }
 
-  # !!! FIX THIS BULLSHIT
+  # !!! FIX THIS BULLSHIT and ru_up, ru_lo, ru_cap methods
   LO = %w(а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я)
   UP = %W(А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я)
 
@@ -118,10 +129,13 @@ class String
     end
   end
 
+  # Allows to connect with `/`
+  # 'foo' / :bar # => 'foo/bar'
   def / (s)
     "#{self}/#{s.to_s}"
   end
 
+  # Renders self with global markdown renderer
   def as_html
     $markdown.render(self)
   end
@@ -130,6 +144,8 @@ end
 
 class Symbol
 
+  # Allows symbols to connect with `/`
+  # :foo / :bar # => 'foo/bar'
   def / (s)
     "#{self.to_s}/#{s.to_s}"
   end
@@ -138,7 +154,7 @@ end
 
 class Object
 
-  # show size as human-readable number of bytes
+  # Shows size as human-readable number of bytes
   def as_size( s = nil )
     prefix = %W(Тб Гб Мб Кб б)
     s = (s || self).to_f
@@ -150,7 +166,7 @@ class Object
     ((s > 9 || s.modulo(1) < 0.1 ? '%d' : '%.1f') % s) + ' ' + prefix[i]
   end
 
-  # thow a date in locale-specific format
+  # Shows a date in locale-specific format
   def as_date( d = nil )
     d = (d || self)
     return ''  unless [Date, Time, DateTime].include? d.class
@@ -160,7 +176,7 @@ class Object
 
 end
 
-# this makes haml to treat templates as properly encoded (respect Encoding.default_external)
+# Makes haml to treat templates as properly encoded (respect Encoding.default_external)
 module Tilt
   class HamlTemplate
     def prepare
@@ -171,7 +187,7 @@ module Tilt
   end
 end
 
-# this makes #jo_json not to escape unicode characters with \uXXXX stuff
+# Makes #jo_json not to escape unicode characters with \uXXXX stuff
 module ActiveSupport::JSON::Encoding
   class << self
     def escape(string)
@@ -186,6 +202,7 @@ module ActiveSupport::JSON::Encoding
   end
 end
 
+# Allows amorphous resources to fill its' json with any attributes
 module DataMapper
   module Resource
     def attributes=(attributes)
@@ -196,8 +213,9 @@ module DataMapper
             if model.allowed_writer_methods.include?(setter = "#{name}=")
               __send__(setter, value)
             else
-              if self.respond_to? :embed
-                self.embed(name, value)                   #!!!FIXME limit embedding by CatCard fields
+              if self.respond_to? :json
+                # !!!FIXME limit embedding by CatCard fields
+                self.json[name] = value
               else
                 raise ArgumentError, "The attribute '#{name}' is not accessible in #{model}"
               end
@@ -210,7 +228,7 @@ module DataMapper
   end
 end
 
-# add addr method to get ip address of a client
+# Adds `addr` method to get ip address of a client
 module Rack
   class Request
     def addr

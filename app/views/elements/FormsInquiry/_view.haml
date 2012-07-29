@@ -3,7 +3,7 @@
     %h5= card.title
     - session['forms_cards'] ||= Set.new
     - session['forms_cards'] << card.id
-    - @result = FormsResult.first( :origin => request.addr, :forms_card => card ) || FormsResult.new( :forms_card => card )
+    - @result = FormsResult.first( :origin => request.addr, :forms_card_id => card.id ) || FormsResult.new( :forms_card_id => card.id )
     - if @result.new?
       - form_for @result, se_url(card, :poll), :class => 'form', :remote => true do |f|
         - @f = f
