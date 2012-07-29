@@ -1,17 +1,4 @@
 /*
- *= require_tree ./elements
+ *= require      ./bootstrap
+ *= require_tree ./elements-bs
  */
-body {
-  max-width: 940px;
-  min-width: 480px;
-  margin: 0 auto;
-}
-
-.inline {
-  display: inline-block;
-  float: none !important;
-  vertical-align: top;
-}
-.right {
-  text-align: right;
-}

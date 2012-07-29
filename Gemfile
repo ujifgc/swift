@@ -1,10 +1,5 @@
 source :rubygems
 
-# Server requirements (defaults to WEBrick)
-# gem "sinatra-synchrony"
-# gem 'thin'
-# gem 'mongrel'
-
 # Project requirements
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
@@ -31,6 +26,8 @@ gem 'redcarpet', :git => 'http://github.com/ujifgc/redcarpet.git'
 # asset compressing
 gem 'sprockets'
 gem 'padrino-sprockets', :require => "padrino/sprockets"
+
+# localization
 gem 'russian'
 
 # file assets
@@ -41,5 +38,4 @@ gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper', :git => 'htt
 # authorization
 gem 'omniauth'
 gem 'rack-openid', :require => "rack/openid"
-
 gem 'omniauth-openid'
