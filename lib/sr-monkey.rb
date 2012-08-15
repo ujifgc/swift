@@ -85,7 +85,7 @@ end
 
 module FileUtils
 
-  # Tries to move a file and ignore failures
+  # Tries to move a file and ignores failures
   def self.mv_try( src, dst )
     return nil  if src == dst
     return nil  unless File.exists? src
@@ -176,7 +176,7 @@ class Object
 
 end
 
-# Makes haml to treat templates as properly encoded (respect Encoding.default_external)
+# Makes haml treat templates as properly encoded (respect Encoding.default_external)
 module Tilt
   class HamlTemplate
     def prepare

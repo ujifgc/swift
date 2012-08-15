@@ -32,8 +32,8 @@ gem 'russian'
 
 # file assets
 gem 'mini_magick'
-gem 'carrierwave', :git => 'http://github.com/jnicklas/carrierwave.git'
-gem 'carrierwave-datamapper', :require => 'carrierwave/datamapper', :git => 'http://github.com/ujifgc/carrierwave-datamapper.git'
+gem 'carrierwave'
+gem 'carrierwave-datamapper'
 
 # authorization
 gem 'omniauth'
