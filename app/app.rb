@@ -1,4 +1,6 @@
 #coding:utf-8
+STATIC_FOLDERS = %W(doc images img)
+
 class Swift < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
@@ -63,6 +65,8 @@ class Swift < Padrino::Application
 protected
 
   def init_instance
+    halt 403  if STATIC_FOLDERS.include?( request.env['PATH_INFO'].split('/')[1] )
+
     swift = {}
     swift[:path_pages] = []
     swift[:path_ids] = []
