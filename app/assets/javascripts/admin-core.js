@@ -49,7 +49,7 @@
       coo += id + ' ';
     else
       $(this).popover('hide')
-    $.cookie('sbc', coo);
+    $.cookie('sbc', coo, { path: '/admin/' });
   });
 
   // datatables

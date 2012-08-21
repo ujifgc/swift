@@ -141,6 +141,9 @@
           case 'right':
             tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width}
             break
+          case 'right-down':
+            tp = {top: pos.top, left: pos.left + pos.width}
+            break
         }
 
         $tip
@@ -175,7 +178,7 @@
         })
       }
 
-      $.support.transition && this.$tip.hasClass('fade') ?
+      $.support.transition && this.$tip.hasClass('fade') && (this.options.animation != 'show') ?
         removeWithAnimation() :
         $tip.remove()
 
