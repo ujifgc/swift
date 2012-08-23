@@ -30,6 +30,12 @@ class Swift < Padrino::Application
     redirect filename + asset_timestamp(filename)
   end
 
+  get '/sitemap.xml' do
+    content_type 'application/xml'
+    @pages = Page.all.published
+    render 'layouts/sitemap'
+  end
+
   # if no controller got the request, try finding some content in the sitemap
   get_or_post = lambda do
     not_found  unless @page
