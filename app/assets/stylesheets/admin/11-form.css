@@ -12,9 +12,6 @@
   min-height: 300px;
   font-family: Courier New, monospace;
 }
-.form input.check_box {
-  vertical-align: middle;
-}
 form input[id$=title] {
   width: 99%;
 }
