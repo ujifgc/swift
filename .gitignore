@@ -10,3 +10,5 @@ public/uploads/*
 public/img/*
 public/doc/*
 public/cache/*
+app/views/fragments/*
+app/views/layouts/*
