@@ -3,7 +3,7 @@ MODULE_GROUPS = {
   :news    => %W(news_articles news_rubrics news_events),
   :forms   => %W(forms_cards forms_results forms_stats),
   :cat     => %W(cat_nodes cat_cards cat_groups),
-  :design  => %W(layouts fragments),
+  :design  => %W(layouts fragments elements),
   :admin   => %W(accounts codes),
 }
 BONDABLE_CHILDREN = %W(Page Folder Image FormsCard)
@@ -53,12 +53,13 @@ class Admin < Padrino::Application
     role.project_module :forms_results, '/forms_results'
     role.project_module :forms_stats, '/forms_stats'
 
-    role.project_module :cat_nodes, '/cat_nodes'
-    role.project_module :cat_cards, '/cat_cards'
+    role.project_module :cat_nodes,  '/cat_nodes'
+    role.project_module :cat_cards,  '/cat_cards'
     role.project_module :cat_groups, '/cat_groups'
 
-    role.project_module :fragments, '/fragments'
-    role.project_module :layouts, '/layouts'
+    role.project_module :fragments,  '/fragments'
+    role.project_module :layouts,    '/layouts'
+    role.project_module :elements,   '/elements'
   end
 
   # hookers

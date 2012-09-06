@@ -19,13 +19,15 @@
       %tr
         %th.first
         %th= mat(:object, :created_at)
-        - @card.json.each do |k,v|
-          %th= k
+        - if @card
+          - @card.json.each do |k,v|
+            %th= k
     %tbody
       - @objects.each do |object|
         %tr
           %td.last= mk_checkbox object
           %td= mk_edit object
-          - @card.json.each do |k,v|
-            %td= object.json[k]
+          - if @card
+            - @card.json.each do |k,v|
+              %td= object.json[k]
 = partial 'base/index_operations_bottom'

@@ -47,6 +47,7 @@ Admin.helpers do
     :layouts   => 'cog',
     :accounts  => 'user',
     :codes     => 'font',
+    :elements  => 'cog',
   }
 
   def mk_icon( op )
