@@ -1,12 +1,7 @@
 Admin.controllers :elements do
 
   get :index do
-    #@objects = Element.all
-    @objects = []
-    Dir.entries( 'app/views/elements' ).sort.map do |file|
-      next  if ['.', '..'].include? file
-      @objects << Element.new( :slug => file )
-    end
+    @objects = Element.all
     render 'elements/index'
   end
 

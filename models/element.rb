@@ -1,9 +1,13 @@
 class Element
   include DataMapper::Resource
 
-  # property <name>, <type>
-  property :id, Serial
+  property :id, String, :length => 63, :key => true
+  property :title, String
+  property :text, Text
 
-  sluggable!
+  # hookers
+  before :valid? do
+    self.id = title  if id.blank?
+  end
   
 end
