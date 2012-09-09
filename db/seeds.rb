@@ -35,3 +35,5 @@ Layout.create :id => 'raw',         :title => 'Raw data'
 Fragment.create :title => 'Footer',       :id => 'footer', :is_fragment => true
 Fragment.create :title => 'Header',       :id => 'header', :is_fragment => true
 Fragment.create :title => 'Default page', :id => 'page',   :is_fragment => false
+
+load 'confir/dbinit.rb'
