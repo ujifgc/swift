@@ -1,17 +1,9 @@
 #coding:utf-8
 
-#DataMapper.logger = logger
 $logger = logger
 DataMapper::Logger.new('log/sql.log', :debug)
 DataMapper::Property::String.length(255)
 
-case Padrino.env
-  when :development
-    #DataMapper.setup(:default, {:adapter  => "redis", :db => 15 })
-    DataMapper.setup(:default, 'mysql://swift:KcRbQA4LhFdLv5Cr@10.6.7.55/swift_tpo')
-  when :production
-    #DataMapper.setup(:default, {:adapter  => "redis", :db => 15 })
-    DataMapper.setup(:default, 'mysql://swift:KcRbQA4LhFdLv5Cr@10.6.7.55/swift_tpo')
-  when :test
-    #DataMapper.setup(:default, {:adapter  => "redis", :db => 15 })
+File.open('config/database.yml') do |db|
+  DataMapper.setup :default, YAML::load(db)[Padrino.env.to_s]
 end

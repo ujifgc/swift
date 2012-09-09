@@ -1,0 +1,16 @@
+---
+development: &defaults
+  adapter: mysql
+  database: arcur
+  username: arcus
+  password: XXX
+  host: 10.6.7.55
+ 
+test:
+  <<: *defaults
+ 
+production:
+  <<: *defaults
+ 
+rake:
+  <<: *defaults

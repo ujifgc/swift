@@ -15,7 +15,11 @@ class Fragment
 
   # hookers
   before :valid? do
-    self.id = self.title  if self.id.blank?
+    self.id = title  if id.blank?
+  end
+
+  after :create do
+    FileUtils.touch "#{Swift.root}/views/fragments/_#{id}.haml"
   end
 
   def self.fragments

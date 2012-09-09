@@ -1,5 +1,5 @@
 :ruby
-  folder = Folder.by_slug( @args[1] || @opts[:folder] || @opts[:gallery] )
+  folder = Folder.by_slug( @args[0] || @opts[:folder] || @opts[:gallery] )
   if folder
     @pics = Image.all :folder => folder
   else
