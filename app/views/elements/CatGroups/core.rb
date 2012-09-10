@@ -1,4 +1,4 @@
-:ruby
+def cat_groups( from, level, prefix )
   groups = CatGroup.published.all( :parent => from, :order => [:path])
   len = groups.length
   k = 1
@@ -17,7 +17,7 @@
 
     child = false
     if ensued || @opts[:expand]
-      child = partial @recursive, :locals => { :from => group, :level => level + 1, :prefix => prefix + '/' + group.slug }
+      child = cat_groups( group, level + 1, prefix + '/' + group.slug )
     end
 
     if child
@@ -34,4 +34,9 @@
     tree << leaf
   end
 
-  return tree.length > 0 ? tree : false
+  tree.length > 0 ? tree : false
+end
+
+@opts[:expand] = true  unless @opts.has_key?(:expand)
+
+@tree = cat_groups( nil, 0, '' )
