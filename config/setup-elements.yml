@@ -1,0 +1,42 @@
+---
+Element:
+  Block:
+    title: Текстовый блок
+  Cat:
+    title: Каталог
+  CatGroups:
+    title: "Каталог: группы"
+  CatNode:
+    title: "Каталог: ресурс"
+  CatNodes:
+    title: "Каталог: ресурсы"
+  Eval:
+    title: Выполнение кода Ruby
+  File:
+    title: Файл
+  Forms:
+    title: Формы
+  FormsForm:
+    title: "Формы: форма"
+  FormsInquiry:
+    title: "Формы: опрос"
+  Gallery:
+    title: Галерея
+  Image:
+    title: Картинка
+  MapTree:
+    title: Карта сайта (дерево)
+  News:
+    title: Новости
+  NewsArticle:
+    title: "Новости: новость"
+  NewsTop:
+    title: "Новости: последние новости"
+  Notice:
+    title: Уведомление
+  PageContent:
+    title: Содержимое страницы
+  PageLink:
+    title: Ссылка
+  PageTitle:
+    title: Заголовок окна
