@@ -1,7 +1,0 @@
-:ruby
-  @recursive  = 'elements/MapTree/recursive'
-  @view       = 'elements/MapTree/view'
-
-  root = @opts[:root] || Page.published.first(:parent_id => nil)
-
-  @tree = partial @recursive, :locals => { :from => root, :level => 0, :prefix => '' }

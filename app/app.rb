@@ -47,7 +47,11 @@ class Swift < Padrino::Application
 
     @page.text = render_text @page.text
     params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
-    render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
+    begin
+      render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
+    rescue Padrino::Rendering::TemplateNotFound => err
+      "[Template ##{@page.fragment_id} missing]"
+    end
   end
 
   # a trick to consume both get and post requests

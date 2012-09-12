@@ -17,4 +17,8 @@ class Layout
     self.id = self.title  if self.id.blank?
   end
 
+  after :create do
+    FileUtils.touch "#{Swift.root}/views/layouts/#{id}.haml"
+  end
+
 end

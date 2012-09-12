@@ -1,4 +1,4 @@
-:ruby
+def map_tree( from, level, prefix )
   pages = Page.published.all( :parent => from, :order => [:position, :path])
   len = pages.length
   k = 1
@@ -17,7 +17,7 @@
 
     child = []
     if ensued || @opts[:expand]
-      child = partial @recursive, :locals => { :from => page, :level => level + 1, :prefix => prefix + '/' + page.slug }
+      child = map_tree( page, level + 1, prefix + '/' + page.slug )
     end
 
     if child
@@ -34,4 +34,9 @@
     tree << leaf
   end
 
-  return tree
+  tree
+end
+
+root = @opts[:root] || Page.published.first(:parent_id => nil)
+
+@tree = map_tree( root, 0, '' )
