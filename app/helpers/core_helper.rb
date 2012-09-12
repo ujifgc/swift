@@ -6,10 +6,14 @@ Swift.helpers do
   def element( name, *args )
     @opts = args.last.is_a?(Hash) ? args.pop : {}
     @args = args
-    core_rb = "#{Swift.root}/views/elements/#{name}/core.rb"
-    view_haml = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
-    eval File.read( core_rb )  if File.exists? core_rb
-    partial( view_haml )  unless @swift[:skip_view].delete(name)
+    core_file = 'elements/' + name + '/core'
+    view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
+    core = partial( core_file )  if File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" )
+    if @swift[:skip_view][name]
+      core
+    else
+      partial( view_file )
+    end
   rescue Padrino::Rendering::TemplateNotFound => err
     "[Element '#{name}' missing #{err.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
   end

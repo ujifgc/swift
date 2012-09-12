@@ -5,9 +5,11 @@
       %tr
         %th.first
         %th= mat(:object, :id)
+        %th= mat(:object, :title)
     %tbody
       - @objects.each do |object|
         %tr
           %td.last= mk_checkbox object
-          %td.first= link_to object.id, url(:elements, :edit, :id => object.id)
+          %td= link_to object.id, url(:elements, :edit, :id => object.id)
+          %td= object.title
 = partial 'base/index_operations_bottom'

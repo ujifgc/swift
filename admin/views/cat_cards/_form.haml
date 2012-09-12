@@ -1,7 +1,6 @@
 = f.input :title
 = f.input :text, :as => :text, :markdown => true
 - allow :auditor do
-  throw #{@object.json}
   .control-group.as_group
     = f.group_label :fields
     - @object.json.each do |key, type|

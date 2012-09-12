@@ -1,5 +1,10 @@
 Admin.controllers :cat_groups do
 
+  before :update, :create do
+    parent_id = params[:cat_group].delete( 'parent_id' ).to_i
+    params[:cat_group]['parent_id'] = parent_id  if parent_id > 0
+  end
+
   get :index do
     @objects = CatGroup.all :order => :path
     render 'cat_groups/index'

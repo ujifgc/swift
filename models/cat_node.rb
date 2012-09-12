@@ -34,7 +34,11 @@ class CatNode
     filter = [filter_strings.join(' AND ')]
     filter += filter_regexes
 
-    all :conditions => filter
+    if filter[0].length > 0
+      all :conditions => filter
+    else
+      all
+    end
   end
 
 end
