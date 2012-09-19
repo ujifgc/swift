@@ -1,33 +1,40 @@
-!!! Strict
-%html{:lang => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+!!! 5
+%html
   %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-    %title Padrino Admin
-    =stylesheet_link_tag :base, "themes/default/style"
+    %meta{ :charset => "utf-8" }
+    %title Swift
+    = stylesheet_link_tag '/assets/bootstrap'
   %body
-    #container
-      #box
-        %h1 Padrino Admin
-        #block-login.block
-          %h2 Login Box
-          .content.login
-            .flash=[:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
-            -form_tag(url(:sessions, :create), :class => 'form login') do
-              .group.wat-cf
-                .left
-                  %label.label.right Login
-                .right=text_field_tag :email, :value => params[:email], :class => :text_field
-              .group.wat-cf
-                .left
-                  %label.label.right Password
-                .right=password_field_tag :password, :value => params[:password], :class => :text_field
-              -if Padrino.env == :development
-                .group.wat-cf
-                  .left
-                    %label.label.right Bypass login?
-                  .right=check_box_tag :bypass
-              .group.navform.wat-cf
-                .right=submit_tag('Sign In', :class => :button)
-            = link_to image_tag('/images/social/google.png'), '/admin/auth/google'
-            = link_to image_tag('/images/social/yandex.png'), '/admin/auth/yandex'
-            = link_to image_tag('/images/icons/warning_48.png'), '/admin/accounts/reset'
+    .container{ :style => 'width: 424px' }
+      %h1 Swift Admin
+      .well
+        - [:error, :warning, :notice].map do |type|
+          = flash_tag(type, :class => "alert alert-error")
+        - form_tag(url(:sessions, :create), :class => 'form-horizontal') do
+
+          %legend Enter with social networks
+          .control-group
+            .controls
+              = link_to image_tag('/images/social/google.png'), '/admin/auth/google'
+              = link_to image_tag('/images/social/yandex.png'), '/admin/auth/yandex'
+
+          %legend Or with email and password
+          .control-group
+            %label.control-label{ :for => 'email' } Email
+            .controls
+              = text_field_tag :email, :value => params[:email] #, :placeholder => "email"
+          .control-group
+            %label.control-label{ :for => 'password' } Password
+            .controls
+              = password_field_tag :password, :value => params[:password] #, :placeholder => "password"
+          - if Padrino.env == :development
+            .control-group
+              .controls
+                %label.checkbox
+                  Bypass login
+                  = check_box_tag :bypass
+          .control-group
+            %label.control-label
+              = link_to 'Forgot Password', '/admin/accounts/reset'
+            .controls
+              = submit_tag('Sign In', :class => 'btn btn-primary')

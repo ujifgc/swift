@@ -1,34 +1,35 @@
-!!! Strict
-%html{:lang => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+!!! 5
+%html
   %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-    %title Padrino Admin
-    =stylesheet_link_tag :base, "themes/default/style"
+    %meta{ :charset => "utf-8" }
+    %title Swift
+    = stylesheet_link_tag '/assets/bootstrap'
   %body
-    #container
-      #box
-        %h1 Padrino Admin
-        #block-login.block
-          %h2 Login Box
-          .content.login
-            .flash=[:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
-            - form_tag(url(:accounts, :reset), :class => 'form login', :autocomplete => "off") do
-              - if params[:email].blank?
-                .group.wat-cf
-                  .left
-                    %label.label.right E-mail
-                  .right= text_field_tag :email, :value => params[:email], :class => :text_field
-              - else
-                .group.wat-cf
-                  .left
-                    %label.label.right Resetting
-                  .right
-                    = hidden_field_tag :email, :value => params[:email], :class => :text_field
-                    = params[:email]
-                .group.wat-cf
-                  .left
-                    %label.label.right Reset code
-                  .right= text_field_tag :reset, :value => params[:reset], :class => :text_field
-              .group.navform.wat-cf
-                .right= submit_tag('Reset', :class => :button)
-                .right= link_to 'Back', url(:base, :index), :class => :button
+    .container{ :style => 'width: 424px' }
+      %h1 Swift Admin
+      .well
+        - [:error, :warning, :notice].map do |type|
+          = flash_tag(type, :class => "alert alert-error")
+        - form_tag(url(:accounts, :reset), :class => 'form-horizontal', :autocomplete => "off") do
+
+          - if params[:email].blank?
+            .control-group
+              %label.control-label{ :for => 'email' } Email
+              .controls
+                = text_field_tag :email, :value => params[:email]
+          - else
+            .control-group
+              %label.control-label{ :for => 'email' } Resetting
+              .controls
+                = hidden_field_tag :email, :value => params[:email]
+                = params[:email]
+            .control-group
+              %label.control-label{ :for => 'code' } Reset code
+              .controls
+                = text_field_tag :reset, :value => params[:reset]
+
+          .control-group
+            %label.control-label
+              = link_to 'Back', url(:base, :index), :class => :button
+            .controls
+              = submit_tag('Reset', :class => 'btn btn-primary')
