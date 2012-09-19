@@ -6,10 +6,9 @@
   @groups = CatGroup.all :cat_card_id => @card_ids
 
   if md = @swift[:slug].match( /show\/(.*)/ )
-    @swift[:skip_view]['Cat'] = true
     @swift[:slug] = md[1]
     @swift[:path_pages] << Page.new
-    return element( 'CatNode', @args, @opts )
+    throw :core_halt, element( 'CatNode', @args, @opts )
   end
 
   if md = @swift[:slug].match( /.*/ )
@@ -21,8 +20,7 @@
       @swift[:module_path_ids] << group.id
       @group = group
     end
-    @swift[:skip_view]['Cat'] = true
     core = element( 'CatGroups', @args, @opts )
     core += element( 'CatNodes', @args, @opts )
-    return core
+    throw :core_halt, core
   end

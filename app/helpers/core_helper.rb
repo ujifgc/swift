@@ -8,10 +8,8 @@ Swift.helpers do
     @args = args
     core_file = 'elements/' + name + '/core'
     view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
-    core = partial( core_file )  if File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" )
-    if @swift[:skip_view][name]
-      core
-    else
+    catch :core_halt do
+      partial( core_file )  if File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" )
       partial( view_file )
     end
   rescue Padrino::Rendering::TemplateNotFound => err

@@ -1,3 +1,3 @@
 ﻿:ruby
   @file = Asset.first :id => @args[0]
-  return "[Asset ##{@args[0]} missing]"  unless @file
+  throw :core_halt, "[Asset ##{@args[0]} missing]"  unless @file
