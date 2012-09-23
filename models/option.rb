@@ -3,17 +3,15 @@ class Option
   
   property :id, String, :length => 20, :key => true
   property :title, String
-  property :text, Text, :lazy => false
+  property :json, Json, :lazy => false
+  attr_accessor :value
 
-  def self.get( id )
-    obj = super( id )  or return nil
-    return DateTime.parse(obj.text)  if obj.text.match(/\d\d\d\d\-\d\d\-\d\d/)
-    return obj.text.to_i  if obj.text.match(/^[\+\-\d]+$/)
-    obj.text
+  before :valid? do
+    self.json = { 'value' => value }  if value
   end
 
 end
 
 def Option( id )
-  Option.get id
+  Option.get( id ).json['value']  rescue nil
 end

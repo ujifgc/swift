@@ -200,6 +200,18 @@ module SwiftDatamapper
       bond ? true : false
     end
 
+    # Returns number of bound children of specified type
+    def bond_count( child_model = nil )
+      filter = {
+        :parent_model => self.class.to_s,
+        :parent_id    => self.id,
+        :manual       => true,
+        :relation     => 1
+      }
+      filter.merge :child_model => child_model  if child_model
+      Bond.count filter
+    end
+
   end
 
   module AmorphousMethods

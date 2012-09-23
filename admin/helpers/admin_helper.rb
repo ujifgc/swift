@@ -45,13 +45,15 @@ Admin.helpers do
 
     :fragments => 'th',
     :layouts   => 'cog',
+    :elements  => 'cog',
+
     :accounts  => 'user',
     :codes     => 'font',
-    :elements  => 'cog',
+    :options   => 'wrench',
   }
 
   def mk_icon( op )
-    content_tag( :i, '', :class => 'icon-'+ICONS[op] ) + ' '  rescue throw op
+    content_tag( :i, '', :class => 'icon-'+(ICONS[op]||'warning-sign') ) + ' '
   end
 
   def mk_glyph( s, opt = {} )
@@ -75,7 +77,8 @@ Admin.helpers do
   end
 
   def mk_dialog_op( op, link, opts={} )
-    link_to content_tag(:u, mk_icon(op) + pat(op)), link, opts.merge(:class => 'single dialog', :'data-toggle' => :modal)
+    name = content_tag(:u, mk_icon(op) + pat(op) + (opts.delete(:add)||''))
+    link_to name, link, opts.merge(:class => 'single dialog', :'data-toggle' => :modal)
   end
 
   def mk_button_op( op, link )

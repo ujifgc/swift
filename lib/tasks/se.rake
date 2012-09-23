@@ -10,8 +10,12 @@ namespace :se do
     Dir.glob( Swift.root / 'views/elements/*' ) do |dir|
       slug = File.basename(dir)
       elem = Element.first_or_new :id => slug
-      elem.title = elements['Element'][slug]['title']  rescue slug
-      p elem.save
+      if elem.new?
+        elem.title = elements['Element'][slug]['title']  rescue slug
+        elem.save  or p "error on Element #{slug}"
+      else
+        p "skipped existing Element #{slug}"
+      end
     end
   end
 
