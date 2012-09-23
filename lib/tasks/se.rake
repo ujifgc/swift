@@ -6,11 +6,11 @@ namespace :se do
   task :setup => :environment do
     load 'config/setup.rb'
 
-    elements = YAML::load File.open('config/setup-elements.yml')
+    elements = YAML.load_file 'config/setup-elements.yml'
     Dir.glob( Swift.root / 'views/elements/*' ) do |dir|
       slug = File.basename(dir)
       elem = Element.first_or_new :id => slug
-      elem.title = elements['Element'][slug]['title']
+      elem.title = elements['Element'][slug]['title']  rescue slug
       p elem.save
     end
   end
