@@ -17,11 +17,11 @@ account = Account.first
 # pages
 
 root  = Page.create :parent => nil,   :slug => '',        :title => 'Index', :text => 'index'
-error = Page.create :parent => root,  :slug => 'error',   :title => 'Error', :text => 'Default error page', :is_published => false
-admin = Page.create :parent => root,  :slug => 'admin',   :title => 'Admin panel'
+error = Page.create :parent => root,  :slug => 'error',   :title => 'Error', :text => 'Default error page', :is_published => false, :position => 901
+admin = Page.create :parent => root,  :slug => 'admin',   :title => 'Admin panel', :position => 900
 
-Page.create         :parent => error, :slug => '404',     :title => '404 Not Found',   :text => 'Sorry, page not found', :is_published => false
-Page.create         :parent => error, :slug => '501',     :title => '501 Service Unavailable',   :text => 'Sorry, requested service is unavailable', :is_published => false
+Page.create         :parent => error, :slug => '404',     :title => '404 Not Found',   :text => 'Sorry, page not found', :is_published => false, :position => 902
+Page.create         :parent => error, :slug => '501',     :title => '501 Service Unavailable',   :text => 'Sorry, requested service is unavailable', :is_published => false, :position => 903
 
 # folders
 Folder.create :id => 1, :account => nil, :title => 'Layout graphics', :slug => 'images'
