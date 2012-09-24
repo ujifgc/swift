@@ -40,7 +40,7 @@ class Swift < Padrino::Application
   get_or_post = lambda do
     not_found  unless @page
 
-    if @page.fragment_id == 'page' && @page.text.blank?
+    if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
       cs = @page.children.all :order => :position
       redirect cs.first.path  if cs.any?
     end
