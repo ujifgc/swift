@@ -102,6 +102,10 @@ module SwiftDatamapper
     # It can be bound to some parent resource
     def bondable!
       send :include, BondableMethods
+
+      after :destroy do |parent|
+        Bond.separate parent
+      end
     end
 
     # Resource is amorphous
