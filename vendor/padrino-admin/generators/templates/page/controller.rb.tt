@@ -20,13 +20,19 @@ Admin.controllers :<%= @orm.name_plural %> do
     end
   end
 
-  get :edit, :with => :id do
+  before :edit, :update, :destroy do
     @object = <%= @orm.find("params[:id]") %>
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:<%= @orm.name_plural %>, :index)
+    end
+  end
+
+  get :edit, :with => :id do
     render '<%= @orm.name_plural %>/edit'
   end
 
   put :update, :with => :id do
-    @object = <%= @orm.find("params[:id]") %>
     if @object.update(params[:<%= @orm.name_singular %>])
       flash[:notice] = pat('<%= @orm.name_singular %>.updated')
       redirect url(:<%= @orm.name_plural %>, :index)
@@ -36,7 +42,6 @@ Admin.controllers :<%= @orm.name_plural %> do
   end
 
   delete :destroy, :with => :id do
-    @object = <%= @orm.find("params[:id]") %>
     if @object.destroy
       flash[:notice] = pat('<%= @orm.name_singular %>.destroyed')
     else

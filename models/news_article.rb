@@ -12,6 +12,7 @@ class NewsArticle
   timestamps!
   userstamps!
   publishable!
+  bondable!
   dateable!
 
   # relations
