@@ -1,0 +1,6 @@
+- table = @table
+- table.each do |line|
+  .block
+    - line.each do |tree|
+      %h3= link_to tree[0].title, tree[0].path  
+      = partial 'elements/MapTree/view', :locals => { :tree => tree[1] }
