@@ -16,6 +16,9 @@ form input[id$=title] {
   width: 99%;
 }
 form .as_group .clone {
+  margin-top: 3px;
+}
+form .as_group .horizontal + .hide + .clone {
   margin-top: 9px;
 }
 form .as_group .horizontal + .horizontal {

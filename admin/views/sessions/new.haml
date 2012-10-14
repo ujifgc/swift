@@ -4,37 +4,36 @@
     %meta{ :charset => "utf-8" }
     %title Swift
     = stylesheet_link_tag '/assets/bootstrap'
+    = stylesheet_link_tag '/assets/admin/99-monkey'
   %body
-    .container{ :style => 'width: 424px' }
+    .container{ :style => 'width: 290px' }
       %h1 Swift Admin
-      .well
+      - form_tag(url(:sessions, :create), :class => 'form-horizontal well') do
+
         - [:error, :warning, :notice].map do |type|
           = flash_tag(type, :class => "alert alert-error")
-        - form_tag(url(:sessions, :create), :class => 'form-horizontal') do
 
-          %legend Enter with social networks
-          .control-group
-            .controls
-              = link_to image_tag('/images/social/google.png'), '/admin/auth/google'
-              = link_to image_tag('/images/social/yandex.png'), '/admin/auth/yandex'
+        %legend Enter with social networks
+        .control-group
+          = link_to image_tag('/images/social/google.png'), '/admin/auth/google'
+          = link_to image_tag('/images/social/yandex.png'), '/admin/auth/yandex'
 
-          %legend Or with email and password
-          .control-group
-            %label.control-label{ :for => 'email' } Email
-            .controls
-              = text_field_tag :email, :value => params[:email] #, :placeholder => "email"
-          .control-group
-            %label.control-label{ :for => 'password' } Password
-            .controls
-              = password_field_tag :password, :value => params[:password] #, :placeholder => "password"
+        %legend Or by email and password
+        .control-group
+          .input-prepend
+            %span.add-on>
+              %i.icon-envelope
+            = text_field_tag :email, :value => params[:email], :placeholder => "email"
+        .control-group
+          .input-prepend
+            %span.add-on>
+              %i.icon-lock
+            = password_field_tag :password, :value => params[:password], :placeholder => "password"
+        .form-inline
+          = submit_tag('Sign In', :class => 'btn btn-primary pull-right')
           - if Padrino.env == :development
-            .control-group
-              .controls
-                %label.checkbox
-                  Bypass login
-                  = check_box_tag :bypass
-          .control-group
-            %label.control-label
-              = link_to 'Forgot Password', '/admin/accounts/reset'
-            .controls
-              = submit_tag('Sign In', :class => 'btn btn-primary')
+            %label.checkbox
+              Bypass login
+              = check_box_tag :bypass
+      %small
+        = link_to 'Forgot password', '/admin/accounts/reset'
