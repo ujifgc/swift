@@ -1,7 +1,7 @@
 = f.input :title
 = f.input :text, :as => :text, :markdown => true
 - allow :auditor do
-  .control-group.as_group
+  .control-group.as_group.as_clonable
     = f.group_label :fields
     - @object.json.each do |key, type|
       .controls.horizontal

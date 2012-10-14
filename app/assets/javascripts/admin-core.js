@@ -92,7 +92,6 @@
   });
   multipleCheck();
   $('form.multiple input[name^=check]').click(multipleCheck);
-  $('select').each(function() { $(this).easySelectBox() });
   bindCatCards();
   $('input.datetime').each(function() {
     $(this).wrap('<div class="input-prepend date"></div>');
@@ -157,7 +156,7 @@ $.fn.toggleCheckbox = function() {
 
 //Catalogue
 bindCatCards = function(elem) {
-  (elem || $('form#edit-cat_cards .as_group select')).change(function() {
+  (elem || $('form .as_clonable select')).on('change', function() {
     if (this.value.match(/select|multiple/))
       $(this).siblings('textarea').removeClass('hide');
     else
@@ -170,9 +169,8 @@ cloneControlGroup = function(el) {
   var c = g.clone();
   var add = '-'+(new Date()).getTime();
   c.children('input, select, textarea').each(function(){ this.name = this.name.replace(/\[(.*)\]/, '[$1'+add+']') });
-  c.removeClass('hide').find('.easy-select-box').remove();
+  c.removeClass('hide');
   sel = c.find('select');
-  sel.easySelectBox();
   bindCatCards(sel);
   g.before(c);
 };
@@ -267,9 +265,7 @@ bindDialogCreateParent = function() {
         }else{
           $('select[id$='+jqXHR.field+']')
             .append('<option value="'+jqXHR.key+'">'+jqXHR.value+'</option>')
-            .val(jqXHR.key)
-            .siblings('.easy-select-box').remove();
-          $('select[id$='+jqXHR.field+']').easySelectBox();
+            .val(jqXHR.key);
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {

@@ -4,32 +4,33 @@
     %meta{ :charset => "utf-8" }
     %title Swift
     = stylesheet_link_tag '/assets/bootstrap'
+    = stylesheet_link_tag '/assets/admin/99-monkey'
   %body
-    .container{ :style => 'width: 424px' }
+    .container{ :style => 'width: 290px' }
       %h1 Swift Admin
-      .well
+      - form_tag(url(:accounts, :reset), :class => 'form-horizontal well', :autocomplete => "off") do
         - [:error, :warning, :notice].map do |type|
           = flash_tag(type, :class => "alert alert-error")
-        - form_tag(url(:accounts, :reset), :class => 'form-horizontal', :autocomplete => "off") do
 
-          - if params[:email].blank?
-            .control-group
-              %label.control-label{ :for => 'email' } Email
-              .controls
-                = text_field_tag :email, :value => params[:email]
-          - else
-            .control-group
-              %label.control-label{ :for => 'email' } Resetting
-              .controls
-                = hidden_field_tag :email, :value => params[:email]
-                = params[:email]
-            .control-group
-              %label.control-label{ :for => 'code' } Reset code
-              .controls
-                = text_field_tag :reset, :value => params[:reset]
-
+        %legend Reset password
+        - if params[:email].blank?
           .control-group
-            %label.control-label
-              = link_to 'Back', url(:base, :index), :class => :button
-            .controls
-              = submit_tag('Reset', :class => 'btn btn-primary')
+            .input-prepend
+              %span.add-on>
+                %i.icon-envelope
+              = text_field_tag :email, :value => params[:email], :placeholder => "email"
+        - else
+          .control-group
+            .input-prepend
+              %span.add-on>
+                %i.icon-envelope
+              = text_field_tag :email, :value => params[:email], :placeholder => "email", :disabled => true
+          .control-group
+            .input-prepend
+              %span.add-on>
+                %i.icon-lock
+              = text_field_tag :reset, :value => params[:reset], :placeholder => 'reset code'
+
+        .form-inline
+          = submit_tag('Reset', :class => 'btn btn-primary pull-right')
+          = link_to 'Back', url(:base, :index), :class => :button

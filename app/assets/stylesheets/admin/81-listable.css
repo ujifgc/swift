@@ -20,6 +20,9 @@
   display: inline-block;
   float: none;
 }
+.table td input[type="checkbox"] {
+  margin-top: 0;
+}
 .table td a.edit {
   margin: -8px;
   padding: 8px;

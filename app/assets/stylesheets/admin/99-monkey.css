@@ -128,16 +128,14 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
 /* bootstrap fix 2.1.0 icons on active nav */
 .nav-tabs > .active > a > [class^="icon-"], .nav-tabs > .active > a > [class*=" icon-"] {
   background-image: url("../images/glyphicons-halflings.png");
-  margin-top: 0;
-}
-[class^="icon-"], [class*=" icon-"] {
-  margin-top: 0;
 }
 
-/* bootstrap radio and checkbox fixes */
-input[type="radio"], input[type="checkbox"] {
-  margin-top: 0;
+/* pull floated inline button a bit up */
+.form-inline .pull-right {
+  margin-top: -3px;
 }
-.control-group input[type="radio"], .control-group input[type="checkbox"] {
-  margin-top: 3px;
+
+/* fix mozilla's placeholder color */
+input:-moz-placeholder {
+    color:    #999;
 }
