@@ -1,5 +1,6 @@
 :ruby
   @swift[:module_path_ids] = []
   filter = {}
-  filter[:news_rubric_id] = @rubric.id  if @rubric
+  filter[:news_rubric_id] = @rubric.id if @rubric  
   @articles = NewsArticle.published.all filter
+  
