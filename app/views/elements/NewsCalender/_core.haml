@@ -1,0 +1,19 @@
+﻿:ruby
+  @news_months = []
+  @news_years = []
+  @monthNames = I18n.t("date.month_names")
+  filter = {}
+  filter[:order] = :date.asc
+  firstDate = NewsArticle.first(filter).date
+  lastDate = NewsArticle.last(filter).date
+  @news_years = firstDate.year..lastDate.year
+  @news_months = case params[:year].to_i
+  when firstDate.year
+     firstDate.mon..12
+  when Date.today.year
+     1..lastDate.mon
+  else
+     1..12
+  end  
+  
+  

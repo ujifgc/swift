@@ -2,4 +2,10 @@
   @swift[:module_path_ids] = []
   filter = {}
   filter[:news_rubric_id] = @rubric.id  if @rubric
-  @articles = NewsArticle.published.all filter
+  if params[:year]
+    filter[:date] = Date.new(params[:year].to_i)..Date.new(params[:year].to_i,12,-1)
+  end
+  if params[:month]
+    filter[:date] = Date.new(params[:year].to_i,params[:month].to_i,1)..Date.new(params[:year].to_i,@news_months.last.to_i,-1)
+  end
+  @articles = NewsArticle.published.all(filter)

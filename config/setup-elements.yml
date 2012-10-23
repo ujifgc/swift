@@ -10,8 +10,12 @@ Element:
     title: "Каталог: ресурс"
   CatNodes:
     title: "Каталог: ресурсы"
+  Date:
+    title: "Дата"
   Eval:
     title: Выполнение кода Ruby
+  EventsTop:
+   title: Последние события
   File:
     title: Файл
   Forms:
@@ -30,6 +34,8 @@ Element:
     title: Новости
   NewsArticle:
     title: "Новости: новость"
+  NewsCalender:
+    title: "Календарь новостей"
   NewsTop:
     title: "Новости: последние новости"
   Notice:
@@ -40,3 +46,7 @@ Element:
     title: Ссылка
   PageTitle:
     title: Заголовок окна
+  SiteMap: 
+    title: Карта сайта
+  SiteMapBeauty:
+    title: Красивая карта сайта 
