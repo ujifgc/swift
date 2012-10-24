@@ -12,5 +12,8 @@
         = f.submit 'Лады', :class => 'btn btn-small btn-success'
     - else
       %dl
-        - card.json.each do |k,v|
-          %dd= @result[k]
+        - card.statistic.each do |k,v|
+          %dt= k
+          - v.each do |kk, vv|
+            %dt= kk
+            %dd= vv

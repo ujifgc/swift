@@ -22,7 +22,36 @@
     else
       flash[:notice] = 'Error'
     end
+    
   else
     @cards = Bond.children_for( @page, 'FormsCard' )
     @cards = FormsCard.all( :kind => 'inquiry', :order => :created_at.desc, :limit => 1 ).published  if @cards.empty?
+    @cards.each do |c|
+      incs = @incs || {}
+      c.json.each do |field|
+        case field[1][0].to_sym
+        when :select 
+          results = c.forms_results
+          name = field[0]
+          incs[name] = {}
+          results.each do |r|
+            incs[name][r.json[name]]||=0
+            incs[name][r.json[name]] += 1  
+          end
+        when :multiple 
+          results = c.forms_results
+          name = field[0]
+          incs[name] = {}
+          results.each do |r|
+            r.json[name].each do |v|
+              incs[name][v] ||=0
+              incs[name][v] += 1 
+            end 
+          end
+        end
+      end
+      c.statistic = incs
+      @incs = incs
+      
+    end
   end
