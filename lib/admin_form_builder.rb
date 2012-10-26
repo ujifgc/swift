@@ -34,6 +34,11 @@ module Padrino
             password_field field, :class => :password_field
           when :select, :dropdown, :variant
             type = 'select'
+            if options[:include_blank]
+              unless [String, Array].include? options[:include_blank].class
+                options[:include_blank] = [' ', '']
+              end
+            end
             tag = select field, { :class => :select }.merge( options )
             parent_field = field.to_s.gsub(/_id$/,'').to_sym
             add = if @object.class.relationships[parent_field]

@@ -1,7 +1,7 @@
 .articles
   %dl
     - @articles.each do |article|
-      %dt
+      %dt 
         = link_to article.title, "#{@swift[:module_root]}/show/#{article.slug}"
       %dd
         = article.info  

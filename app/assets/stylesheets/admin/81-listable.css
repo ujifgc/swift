@@ -59,6 +59,12 @@
 .table tr.level-5 td.edit {
   padding-left: 10em;
 }
+.table tr.level-6 td.edit {
+  padding-left: 12em;
+}
+.table tr.level-7 td.edit {
+  padding-left: 14em;
+}
 
 table.table thead .sorting,
 table.table thead .sorting_asc,
