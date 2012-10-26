@@ -22,10 +22,10 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
 }
 .container-fluid > .sidebar {
   min-height: 100%;
-  margin-top: 35px;
+  margin-top: 38px;
 }
 .container-fluid > .content {
-  margin-bottom: -35px;
+  margin-bottom: -38px;
 }
 
 /* botstrap:vertical tabs */

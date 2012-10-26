@@ -85,7 +85,7 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 }
 .page-filter {
   float: right;
-  margin-top: -50px;
+  margin-top: -53px;
 }
 .page-filter input {
   display: inline;

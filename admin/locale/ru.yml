@@ -4,6 +4,7 @@ ru:
       publish: Опубликовать
       unpublish: Снять
       bind: Связать
+      delete: Удалить
       not_required: "не обяз."
       or_multiple: "или несколько"
       modules:
