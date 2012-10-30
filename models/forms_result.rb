@@ -16,6 +16,10 @@ class FormsResult
   before :valid? do
     self.origin = self.origin[0..30]
   end
+  
+  after :save do
+    forms_card.reset_statistic     
+  end
 
   # instance helpers
   def title

@@ -27,15 +27,18 @@
     @cards = Bond.children_for( @page, 'FormsCard' )
     @cards = FormsCard.all( :kind => 'inquiry', :order => :created_at.desc, :limit => 1 ).published  if @cards.empty?
     @cards.each do |c|
-      incs = @incs || {}
+       next  if c.statistic.any? 
+      incs = {}
       c.json.each do |field|
         case field[1][0].to_sym
         when :select 
           results = c.forms_results
           name = field[0]
           incs[name] = {}
+          field[1][1].split("\r\n").each { |char| incs[name][char] = 0 }
           results.each do |r|
-            incs[name][r.json[name]]||=0
+            next unless r.json[name]
+            incs[name][r.json[name]] ||=0
             incs[name][r.json[name]] += 1  
           end
         when :multiple 
@@ -51,7 +54,6 @@
         end
       end
       c.statistic = incs
-      @incs = incs
-      
+      c.save!
     end
   end
