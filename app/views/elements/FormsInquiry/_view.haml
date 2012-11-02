@@ -1,6 +1,6 @@
 ﻿- @cards.each do |card|
   .article
-    %h5= card.title
+    %h3= card.title
     - session['forms_cards'] ||= Set.new
     - session['forms_cards'] << card.id
     - @result = FormsResult.first( :origin => request.addr, :forms_card_id => card.id ) || FormsResult.new( :forms_card_id => card.id )
@@ -12,5 +12,14 @@
         = f.submit 'Лады', :class => 'btn btn-small btn-success'
     - else
       %dl
-        - card.json.each do |k,v|
-          %dd= @result[k]
+        - count = card.forms_results.count
+        - card.statistic.each do |k,v|
+          %dt #{k} (Количество проголосовавших #{count})
+          - v.each do |kk, vv|
+            
+            %small= kk
+            .progress
+              - value = 100.0*vv/count
+              .bar{:style => "width: "+(value).to_s+"%;" }=vv
+              
+                

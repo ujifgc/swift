@@ -20,6 +20,7 @@ class FormsCard
   property :title,    String, :required => true
   property :text,     Text
   property :kind,     String, :length => 10, :default => 'form'
+  property :statistic,    DataMapper::Property::Json, :default => {}
 
   attr_accessor :stats
 
@@ -34,7 +35,10 @@ class FormsCard
   has n, :forms_results
 
   # hookers
-
+  before :save do
+    self.statistic = {}     
+  end
+  
   # instance helpers
   def fill( request )
     object = request.params['forms_result'] || {}
@@ -64,13 +68,18 @@ class FormsCard
       end
       cnt += 1
     end
-    val = stats[key][var]
+    val = stats[key][var] rescue key
     case unit
     when :percent
       100 * val / cnt  rescue 0
     else
       val
     end
+  end
+  
+  def reset_statistic()
+    self.statistic = {}
+    self.save
   end
 
 end

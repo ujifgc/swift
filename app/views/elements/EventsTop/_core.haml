@@ -14,9 +14,8 @@
     filter[:limit] = @opts[:count].to_i                                 
     filter[:order] = :date.asc  
     filter[:date.gte] = Date.today                   
-    @events = NewsEvent.all #$aevents.first(@opts[:count].to_i)
+    @events = NewsEvent.published.all(filter)
   end
-  @events
   
   
   
