@@ -27,7 +27,7 @@ module Padrino
               opts[:class] += ' code'
               opts[:spellcheck] = 'false'
             end
-            opts[:value] = options[:value]  if options[:value]
+            opts[:value] = options[:value] ? options[:value] : CGI.escapeHTML(@object.send(field) || '')
             type = 'textarea'
             text_area field, opts
           when :password, :password_confirmation
