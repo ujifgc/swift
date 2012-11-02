@@ -15,6 +15,7 @@ class Swift < Padrino::Application
 
   before do
     @swift = init_instance
+    not_found  if @swift[:not_found]
   end
 
   # if web server can't statically serve image request, regenerate the image version
@@ -98,7 +99,7 @@ protected
       when '/'
         swift[:slug] = swift[:slug][1..-1]
       else
-        not_found
+        swift[:not_found] = true
       end
     end
 
