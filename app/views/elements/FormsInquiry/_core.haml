@@ -27,7 +27,7 @@
     @cards = Bond.children_for( @page, 'FormsCard' )
     @cards = FormsCard.all( :kind => 'inquiry', :order => :created_at.desc, :limit => 1 ).published  if @cards.empty?
     @cards.each do |c|
-       next  if c.statistic.any? 
+      next  if c.statistic.any? 
       incs = {}
       c.json.each do |field|
         case field[1][0].to_sym

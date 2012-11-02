@@ -152,6 +152,13 @@ class Symbol
 
 end
 
+# NilClass returns nil for any?
+class NilClass
+  def any?
+    nil
+  end
+end
+
 class Object
 
   # Shows size as human-readable number of bytes
