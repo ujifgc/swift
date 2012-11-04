@@ -47,6 +47,13 @@ module Padrino
           @name.is_a?(Symbol) ? I18n.t("padrino.admin.menu.#{@name}", :default => @name.to_s.humanize) : @name
         end
       end
+
+      class Authorization
+        def project_module(name, path, options={})
+          allow(path)
+          @project_modules << ProjectModule.new(name, path, options)  unless @project_modules.index{ |pm| pm.name==name && pm.path==path }
+        end
+      end
     end
 
   end

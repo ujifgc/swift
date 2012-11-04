@@ -9,7 +9,7 @@ Admin.controllers :sessions do
       set_current_account(account)
       redirect_back_or_default url(:base, :index)
     elsif Padrino.env == :development && params[:bypass]
-      account = Account.first
+      account = Account.first :name => params[:bypass], :surname => 'group'
       set_current_account(account)
       redirect_back_or_default url(:base, :index)
     else

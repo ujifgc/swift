@@ -3,8 +3,8 @@ MODULE_GROUPS = {
   :news    => %W(news_articles news_rubrics news_events),
   :forms   => %W(forms_cards forms_results forms_stats),
   :cat     => %W(cat_nodes cat_cards cat_groups),
-  :design  => %W(layouts fragments elements),
-  :admin   => %W(accounts codes options),
+  :design  => %W(layouts fragments elements codes),
+  :admin   => %W(accounts options),
 }
 BONDABLE_CHILDREN = %W(Page Folder Image FormsCard CatCard)
 BONDABLE_PARENTS  = %W(Page CatNode NewsArticle)
@@ -34,6 +34,69 @@ class Admin < Padrino::Application
     role.allow "/sessions"
     role.allow "/auth"
     role.allow "/accounts/reset"
+  end
+
+  access_control.roles_for :editor do |role|
+    role.project_module :pages, "/pages"
+    role.project_module :images, '/images'
+    role.project_module :assets, '/assets'
+    role.project_module :blocks, '/blocks'
+    role.project_module :folders, '/folders'
+
+    role.project_module :news_articles, '/news_articles'
+    role.project_module :news_events, '/news_events'
+
+    role.project_module :forms_results, '/forms_results'
+    role.project_module :forms_stats, '/forms_stats'
+
+    role.project_module :cat_nodes,  '/cat_nodes'
+    role.project_module :cat_groups, '/cat_groups'
+  end
+
+  access_control.roles_for :auditor do |role|
+    role.project_module :pages, "/pages"
+    role.project_module :images, '/images'
+    role.project_module :assets, '/assets'
+    role.project_module :blocks, '/blocks'
+    role.project_module :folders, '/folders'
+
+    role.project_module :news_articles, '/news_articles'
+    role.project_module :news_rubrics, '/news_rubrics'
+    role.project_module :news_events, '/news_events'
+
+    role.project_module :forms_cards, '/forms_cards'
+    role.project_module :forms_results, '/forms_results'
+    role.project_module :forms_stats, '/forms_stats'
+
+    role.project_module :cat_nodes,  '/cat_nodes'
+    role.project_module :cat_cards,  '/cat_cards'
+    role.project_module :cat_groups, '/cat_groups'
+  end
+
+  access_control.roles_for :designer do |role|
+    role.project_module :pages, "/pages"
+    role.project_module :images, '/images'
+    role.project_module :assets, '/assets'
+    role.project_module :blocks, '/blocks'
+    role.project_module :folders, '/folders'
+
+    role.project_module :news_articles, '/news_articles'
+    role.project_module :news_rubrics, '/news_rubrics'
+    role.project_module :news_events, '/news_events'
+
+    role.project_module :forms_cards, '/forms_cards'
+    role.project_module :forms_results, '/forms_results'
+    role.project_module :forms_stats, '/forms_stats'
+
+    role.project_module :cat_nodes,  '/cat_nodes'
+    role.project_module :cat_cards,  '/cat_cards'
+    role.project_module :cat_groups, '/cat_groups'
+
+    role.project_module :fragments,  '/fragments'
+    role.project_module :layouts,    '/layouts'
+    role.project_module :elements,   '/elements'
+
+    role.project_module :codes,      '/codes'
   end
 
   access_control.roles_for :admin do |role|

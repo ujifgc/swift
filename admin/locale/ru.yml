@@ -73,6 +73,8 @@ ru:
         pick_image: 'Выберите картинку для вставки'
       users: Пользователи
       groups: Группы
+      account:
+        doesnt_exist: Нет такого пользователя
   group:
     admin: Администратор
     designer: Дизайнер

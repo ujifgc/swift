@@ -91,6 +91,10 @@ Admin.controllers :accounts do
 
   get :edit, :with => :id do
     @object = Account.get(params[:id])
+    unless @object.group
+      flash[:error] = pat('account.cannot_edit_root_group')
+      redirect back
+    end
     render 'accounts/edit'
   end
 

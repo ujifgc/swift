@@ -171,3 +171,8 @@ input:-moz-placeholder {
 .form-horizontal .control-group {
   margin-bottom: 10px;
 }
+
+/* fix upper margin when a button goes after navbar text in the navbar */
+.navbar-text + .btn {
+  margin-top: 0;
+}

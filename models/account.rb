@@ -62,6 +62,10 @@ class Account
     self.group ? self.group.role : self.name
   end
 
+  def role_title
+    self.group ? self.group.role_title : self.title
+  end
+
   def title
     group_id ? "#{name} #{surname}" : I18n.t("group.#{name}")
   end

@@ -6,7 +6,7 @@
     = stylesheet_link_tag '/assets/bootstrap'
     = stylesheet_link_tag '/assets/admin/99-monkey'
   %body
-    .container{ :style => 'width: 290px' }
+    .container{ :style => 'width: 287px' }
       %h1 Swift Admin
       - form_tag(url(:sessions, :create), :class => 'form-horizontal well') do
 
@@ -29,11 +29,23 @@
             %span.add-on>
               %i.icon-lock
             = password_field_tag :password, :value => params[:password], :placeholder => "password"
-        .form-inline
+        .control-group
           = submit_tag('Sign In', :class => 'btn btn-primary pull-right')
           - if Padrino.env == :development
-            %label.checkbox
-              Bypass login
-              = check_box_tag :bypass
+            %label.radio
+              Администратор
+              = radio_button_tag :bypass, :value => 'admin'
+            %label.radio
+              Дизайнер
+              = radio_button_tag :bypass, :value => 'designer'
+            %label.radio
+              Аудитор
+              = radio_button_tag :bypass, :value => 'auditor'
+            %label.radio
+              Редактор
+              = radio_button_tag :bypass, :value => 'editor'
+            %label.radio
+              Пользователь
+              = radio_button_tag :bypass, :value => 'user'
       %small
         = link_to 'Forgot password', '/admin/accounts/reset'
