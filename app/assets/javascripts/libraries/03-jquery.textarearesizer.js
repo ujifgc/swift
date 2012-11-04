@@ -33,7 +33,8 @@
 
 		    var grippie = $('div.grippie', $(this).parent())[0];
 		    grippie.style.marginRight = (grippie.offsetWidth - $(this)[0].offsetWidth) +'px';
-
+		    var hei = parseInt($.cookie('TextAreaHeight'));
+		    if (hei > 50) textarea.height(hei);
 		});
 	};
 	/* private functions */
@@ -65,6 +66,7 @@
 	function endDrag(e) {
 		$(document).unbind('mousemove', performDrag).unbind('mouseup', endDrag);
 		textarea.css('opacity', 1);
+		$.cookie('TextAreaHeight', textarea.height(), { path: '/admin/' });
 		textarea.focus();
 		textarea = null;
 		staticOffset = null;

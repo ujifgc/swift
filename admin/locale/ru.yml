@@ -7,6 +7,9 @@ ru:
       delete: Удалить
       not_required: "не обяз."
       or_multiple: "или несколько"
+      new: Добавить
+      list: Список
+      edit: Изменить
       modules:
         content: Содержимое сайта
         admin: Настройки
