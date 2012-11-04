@@ -178,7 +178,7 @@
         })
       }
 
-      $.support.transition && this.$tip.hasClass('fade') ?
+      $.support.transition && this.$tip.hasClass('fade') && (this.options.animation != 'show') ?
         removeWithAnimation() :
         $tip.detach()
 
