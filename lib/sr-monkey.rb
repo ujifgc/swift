@@ -40,6 +40,15 @@ module Padrino
       end
 
     end
+
+    module AccessControl
+      class ProjectModule
+        def human_name
+          @name.is_a?(Symbol) ? I18n.t("padrino.admin.menu.#{@name}", :default => @name.to_s.humanize) : @name
+        end
+      end
+    end
+
   end
 
   # Gets public folder path

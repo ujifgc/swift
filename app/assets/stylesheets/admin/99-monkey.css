@@ -161,3 +161,8 @@ input:-moz-placeholder {
 .dropdown-submenu:hover > a > [class*=" icon-"] {
   background-image: url("/images/glyphicons-halflings-white.png");
 }
+
+/* fix btn-toolbar tooltip */
+.btn-group > .btn + .tooltip + .btn {
+  margin-left: -1px;
+}
