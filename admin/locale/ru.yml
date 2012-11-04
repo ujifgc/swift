@@ -10,6 +10,9 @@ ru:
       new: Добавить
       list: Список
       edit: Изменить
+      save: Сохранить
+      cancel: Отменить
+      ok: Лады
       modules:
         content: Содержимое сайта
         admin: Настройки
@@ -56,6 +59,7 @@ ru:
         unpublished: "%{objects} сняты с публикации"
       form:
         save: Сохранить
+        apply: Применить
         back: Назад
       dialog:
         add_parent: ''

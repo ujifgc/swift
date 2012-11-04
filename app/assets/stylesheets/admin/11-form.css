@@ -66,3 +66,8 @@ form .horizontal textarea {
 .controls.table table td:hover, .controls.table table th:hover {
   background-color: #eee;
 }
+label.btn > input[type="checkbox"] {
+  margin-top: -1px;
+  margin-right: 1px;
+}
+

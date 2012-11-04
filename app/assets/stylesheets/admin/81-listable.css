@@ -21,7 +21,7 @@
   float: none;
 }
 .table td input[type="checkbox"] {
-  margin-top: 0;
+  margin-top: -1px;
 }
 .table td a.edit {
   margin: -8px;
@@ -34,12 +34,12 @@
 }
 .table td.edit i {
   float: left;
-  margin: 0.13em 0.5em 0;
+  margin: 3px 0.5em 0;
 }
 .table td.edit .controls {
   display: none;
   float: right;
-  margin: -19px 0;
+  margin: -20px 0;
 }
 .table tr:hover td.edit .controls {
   display: block;

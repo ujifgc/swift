@@ -166,3 +166,8 @@ input:-moz-placeholder {
 .btn-group > .btn + .tooltip + .btn {
   margin-left: -1px;
 }
+
+/* remove horse margin between groups of form-horizontal */
+.form-horizontal .control-group {
+  margin-bottom: 10px;
+}

@@ -1,7 +1,6 @@
 Admin.controllers :pages do
 
   get :index do
-    #@objects = Page.all :order => :path
     @tree = page_tree( nil, 0, '' )
     render 'pages/index'
   end
@@ -30,7 +29,7 @@ Admin.controllers :pages do
     @object = Page.get(params[:id])
     if @object.update(params[:page])
       flash[:notice] = pat('page.updated')
-      redirect url(:pages, :index)
+      redirect params[:apply] ? back : url(:pages, :index)
     else
       render 'pages/edit'
     end
@@ -56,4 +55,5 @@ Admin.controllers :pages do
     end
     redirect url(:pages, :index)
   end
+
 end

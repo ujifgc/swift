@@ -120,7 +120,9 @@ module Padrino
         end
 
         def submits( options={} )
-          html = @template.submit_tag options[:save_label] || I18n.t('padrino.admin.form.save'), :class => 'btn btn-primary'
+          html = ''
+          html += @template.submit_tag( options[:save_label] || I18n.t('padrino.admin.form.save'), :class => 'btn btn-primary', :name => 'submit' )
+          html += ' ' + @template.submit_tag( options[:save_label] || I18n.t('padrino.admin.form.apply'), :class => 'btn', :name => 'apply' )
           html += ' ' + @template.submit_tag( options[:back_label] || I18n.t('padrino.admin.form.back'), :onclick => "history.back();return false", :class => 'btn' )
           @template.content_tag( :div, html, :class => 'form-actions bottons' )
         end
