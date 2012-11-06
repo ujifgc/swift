@@ -13,3 +13,9 @@
 .se-gallery .item .title {
   text-align: center;
 }
+.thumbnail {
+  width: 200px;
+}
+.thumbnail img {
+  width: 100%;
+}

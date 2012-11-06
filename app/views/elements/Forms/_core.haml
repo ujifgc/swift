@@ -7,7 +7,7 @@
     if @opts[:method] == 'post' && @swift[:method] != 'POST' # FIXME ugly
       throw :core_halt, redirect( back )
     else
-      throw :core_halt, element( 'Forms' + @opts[:kind].to_s.camelize, @args, @opts )
+      throw :core_halt, element( 'Forms' + @opts[:kind].to_s.camelize, *@args, @opts )
     end
   end
   if md = @swift[:slug].match( /(poll)\/(.*)/ )
@@ -15,6 +15,6 @@
     @opts[:method] = md[1]
     @swift[:slug] = md[2]
     @swift[:path_pages] << Page.new
-    throw :core_halt, element( 'Forms' + @opts[:kind].to_s.camelize, @args, @opts )
+    throw :core_halt, element( 'Forms' + @opts[:kind].to_s.camelize, *@args, @opts )
   end
   @forms = FormsCard.all( :kind => @opts[:kind] ).published

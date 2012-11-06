@@ -99,7 +99,7 @@ protected
       when '/'
         swift[:slug] = swift[:slug][1..-1]
       else
-        swift[:not_found] = true
+        swift[:not_found] = true  #FIXME
       end
     end
 

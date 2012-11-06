@@ -11,7 +11,7 @@ Element:
   CatNodes:
     title: "Каталог: ресурсы"
   Date:
-    title: "Дата"
+    title: Дата
   Eval:
     title: Выполнение кода Ruby
   EventsTop:
@@ -35,7 +35,7 @@ Element:
   NewsArticle:
     title: "Новости: новость"
   NewsCalender:
-    title: "Календарь новостей"
+    title: Календарь новостей
   NewsTop:
     title: "Новости: последние новости"
   Notice:

@@ -75,7 +75,7 @@ Admin.controllers :dialogs do
   end
 
   get :forms_cards do
-    @objects = FormsCard.all :kind => 'inquiry'
+    @objects = FormsCard.all #:kind => 'inquiry'
     render "dialogs/forms_cards"
   end
 
