@@ -1,0 +1,8 @@
+.thumbnails
+  - @pics.each do |pic|
+    .thumbnail
+      %a{ :rel => "box-image", :href => pic.file.url}
+        = image_tag pic.file.thumb.url
+      .caption
+        = pic.title  
+        

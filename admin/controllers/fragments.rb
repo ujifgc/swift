@@ -8,6 +8,7 @@ Admin.controllers :fragments do
 
   get :new do
     @object = Fragment.new
+    @code = ''
     render 'fragments/new'
   end
 

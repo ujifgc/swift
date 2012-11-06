@@ -95,7 +95,7 @@ protected
       swift[:module_root] = page.path
       case swift[:slug][0]
       when nil
-        nil
+        swift[:slug] = ''
       when '/'
         swift[:slug] = swift[:slug][1..-1]
       else

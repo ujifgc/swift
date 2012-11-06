@@ -1,0 +1,13 @@
+%ul.thumbnails
+  - @galleries.each do |g|
+    %li.span4
+      .thumbnail
+        - img = g.images.sample :folder => g
+        %a{ :href => '/gallery/' + g.slug}
+          =image_tag img.file.thumb.url
+        .caption
+          =g.title
+          %br
+            =link_to g.title,  '/gallery/' + g.slug
+            
+          
