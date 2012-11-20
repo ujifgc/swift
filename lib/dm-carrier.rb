@@ -37,6 +37,13 @@ class ImageUploader < NeatUploader
     end
   end
 
+  version :fill_thumb do
+    process :resize_to_fill => [180,135]
+    def store_dir
+      "cache/#{version_name}/#{model.class.name}/#{model.id}"
+    end
+  end
+
   def store_dir
     case
     when !model.folder

@@ -7,3 +7,17 @@ $(function() {
     boxOptions.transition = "none";
   $('[rel^="box-"]').colorbox(boxOptions);
 });
+$(document).bind('cbox_load', function(){
+  $('#cboxTextOverlay').remove();
+});
+$(document).bind('cbox_complete', function(){
+  var el = $.colorbox.element();
+  var text = '<small>' + el.prop('title') + '</small>';
+  $('#cboxContent').append("<div id='cboxTextOverlay'>"+text+"</div>");
+  $('#cboxTitle').remove();
+  $('#cboxContent').hover(function() {
+    $('#cboxTextOverlay').fadeIn('fast');
+  }, function() {
+    $('#cboxTextOverlay').fadeOut('fast');
+  });
+});

@@ -5,6 +5,7 @@ class Folder
   property :id, Serial
     
   property :title, String, :required => true
+  property :text,  Text
 
   timestamps!
   userstamps!

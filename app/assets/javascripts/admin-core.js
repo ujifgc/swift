@@ -3,13 +3,21 @@
   if ($.browser.msie && $.browser.version < '8.0.0')
     boxOptions.transition = "none";
   $('[rel^="box-"]').colorbox(boxOptions);
+  
+  
   $(':checkbox[name=check_all]').click(function(){
     $(':checkbox[name^=check_]').prop('checked', $(this).prop('checked'));
   });
   $('a.multiple').click(function(){
     multipleOp(this);
   });
-
+  $(document).keypress(function(event) {
+    if (event.ctrlKey && event.charCode == 115) {
+      $(".form-actions .btn-primary").click();
+      return false;
+    }
+  });
+      
 /* pages */
   $('[data-reposition]').closest('.btn').on('click', function() {
     if (this.disabled) return false;
