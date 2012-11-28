@@ -130,6 +130,7 @@ ru:
         html: HTML код
         kind: Вид запроса
         created_at: Дата создания
+        has_event: Создать событие
     blocks:
       name: блоки
     block:

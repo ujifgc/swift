@@ -6,4 +6,4 @@
       = link_to o.file.url, :class => 'pick thumbnail', :data => data, :onclick => 'return false' do
         = image_tag o.file.url
         - unless o.title.blank?
-          .caption= o.title
+          .caption= "#{o.title} (#{o.id})"

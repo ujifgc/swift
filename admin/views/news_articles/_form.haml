@@ -7,5 +7,14 @@
   = f.input :is_published, :as => :boolean
   = f.input :publish_at, :as => :datetime
   = f.input :slug
-
+= f.input :has_event, :as => :boolean
+.control-group.as_group
+  = f.label( :duration, :class => 'control-label', :caption => mat(:object, :duration) )
+  .controls.horizontal
+    = f.text_field :duration_count, :class => 'input-mini'
+    = ' '
+    = f.select :duration_units, :selected => 'day', :options => NewsEvent::Durations, :include_blank => false
+    = ' ' 
+  
 = f.submits
+
