@@ -1,0 +1,8 @@
+%dl
+  %span.date= Date.today.as_date
+  - @news.each do |o|
+    %dt
+      = link_to o.title, se_url(o)
+    %dd= o.info
+  -   
+  =link_to "Архив новостей", @swift[:slug] + "news/archive" 
