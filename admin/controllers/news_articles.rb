@@ -15,7 +15,9 @@ Admin.controllers :news_articles do
       duru = params[:news_article].delete( 'duration_units' )
       event_attributes = params[:news_article].reject{|k,v|k=='publish_at'}
       event_attributes[:duration] = "#{durc}.#{duru}"
-      @new_event = NewsEvent.create(event_attributes)
+      unless NewsEvent.by_slug(params[:news_article]['slug'])
+        @new_event = NewsEvent.create(event_attributes)
+      end
     end
   end
 
@@ -29,7 +31,9 @@ Admin.controllers :news_articles do
   end
 
   get :new do
-    @object = NewsArticle.new
+    #info = {:date => Date.today}
+    @object = NewsArticle.new :date => Date.today, :publish_at => Date.today
+    
     render 'news_articles/new'
   end
 

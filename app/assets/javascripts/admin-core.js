@@ -257,6 +257,14 @@ bindDialogBonds = function() {
       }
     });
   });
+  
+  $('input.search-query').on('keydown keyup change', function() {
+    var val = $('input.search-query').val();
+    $("a.thumbnail div.caption").closest('li').show();
+    if (val != "")
+      $("a.thumbnail div.caption").not(":contains(" + val + ")").closest('li').hide();
+  });
+  
 };
 
 //Create parent
