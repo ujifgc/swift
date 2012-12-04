@@ -792,6 +792,7 @@
 					}
 					if (part == 'yyyy' && val < 100) val += 2000;
 					if (part == 'yyyy' && val < 1000) val += 1000;
+					if (part == 'yyyy' && val > 9999) val %= 10000;
 					parsed[part] = val;
 				}
 				for (var i=0, s; i<setters_order.length; i++){
