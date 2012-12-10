@@ -1,5 +1,13 @@
 Admin.controllers :layouts do
 
+  before :edit, :update, :destroy do
+    @object = Layout.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:layouts, :index)
+    end
+  end
+
   get :index do
     @objects = Layout.all
     render 'layouts/index'

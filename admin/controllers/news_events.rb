@@ -8,6 +8,14 @@ Admin.controllers :news_events do
     end
   end
 
+  before :edit, :update, :destroy do
+    @object = NewsEvent.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:news_events, :index)
+    end
+  end
+
   get :index do
     @objects = NewsEvent.all
     render 'news_events/index'

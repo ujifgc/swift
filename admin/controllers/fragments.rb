@@ -1,5 +1,13 @@
 Admin.controllers :fragments do
 
+  before :edit, :update, :destroy do
+    @object = Fragment.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:fragments, :index)
+    end
+  end
+
   get :index do
     @basics = Fragment.all :is_fragment => false
     @fragments = Fragment.fragments

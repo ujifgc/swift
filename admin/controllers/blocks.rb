@@ -1,5 +1,13 @@
 Admin.controllers :blocks do
 
+  before :edit, :update, :destroy do
+    @object = Block.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:blocks, :index)
+    end
+  end
+
   get :index do
     @objects = Block.all
     render 'blocks/index'

@@ -1,4 +1,13 @@
 Admin.controllers :forms_cards do
+  
+  before :edit, :update, :destroy do
+    @object = FormsCard.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:forms_cards, :index)
+    end
+  end
+
   get :index do
     @objects = FormsCard.all
     render 'forms_cards/index'

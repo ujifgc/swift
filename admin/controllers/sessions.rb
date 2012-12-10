@@ -1,5 +1,13 @@
 Admin.controllers :sessions do
 
+  before :edit, :update, :destroy do
+    @object = Account.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:sessions, :index)
+    end
+  end
+
   get :new do
     render "/sessions/new", nil, :layout => false
   end

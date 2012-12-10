@@ -1,5 +1,13 @@
 Admin.controllers :pages do
 
+  before :edit, :update, :destroy do
+    @object = Page.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:pages, :index)
+    end
+  end
+
   get :index do
     @tree = page_tree( nil, 0, '' )
     render 'pages/index'

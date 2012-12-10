@@ -1,5 +1,13 @@
 Admin.controllers :images do
 
+  before :edit, :update, :destroy do
+    @object = Image.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:images, :index)
+    end
+  end
+
   get :index do
     filter = {}
     unless params[:folder].blank?

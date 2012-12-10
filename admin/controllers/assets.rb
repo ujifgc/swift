@@ -1,5 +1,14 @@
 Admin.controllers :assets do
 
+    
+  before :edit, :update, :destroy do
+    @object = Asset.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:assets, :index)
+    end
+  end
+
   get :index do
     filter = {}
     unless params[:folder].blank?
