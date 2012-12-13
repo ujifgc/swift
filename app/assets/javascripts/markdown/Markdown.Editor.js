@@ -1242,6 +1242,10 @@
             buttons.codes = makeIcon("wmd-codes-button", "Спецкоды", "cog", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'code');
             }));
+            
+            buttons.preview = makeIcon("wmd-preview-button", "Пред. просмотр", "preview", bindCommand(function (chunk, postProcessing) {
+                return this.doPreview(chunk, postProcessing);
+            }));
 
         }
 
@@ -1261,6 +1265,16 @@
     }
 
     var commandProto = CommandManager.prototype;
+    
+    commandProto.doPreview = function (chunk, postProcessing)
+    {
+      var button = document.getElementById('wmd-preview-button-page_text');
+      button['data-toggle'] = 'modal';
+      button['class'] = 'preview';
+      var splits = document.baseURI.split('/');
+      button['href'] = "/admin/dialogs/preview/Page/" + splits[splits.length - 1];
+      button.onclick = showPopup;
+    }
 
     commandProto.doPickObject = function (chunk, postProcessing, objectType) {
 

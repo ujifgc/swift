@@ -1,8 +1,8 @@
 = f.inputs :title, :slug
 ~ f.input :text, :as => :text, :markdown => true
 
-%a{ :class => :preview, 'data-toggle' => 'modal', :href => "/admin/dialogs/preview/Page/" + @object.id.to_s}
-  = 'Пред. просмотр'
+//%a{ :class => :preview, 'data-toggle' => 'modal', :href => "/admin/dialogs/preview/Page/" + @object.id.to_s}
+//  = 'Пред. просмотр'
   
 - unless @object.root?
   = f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => Page.all( :order => :path ), :fields => [ :title_tree, :id ], :include_blank => false
