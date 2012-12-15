@@ -1,5 +1,13 @@
 Admin.controllers :folders do
 
+  before :edit, :update, :destroy do
+    @object = Folder.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:folders, :index)
+    end
+  end
+
   get :index do
     @objects = Folder.all
     render 'folders/index'

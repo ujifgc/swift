@@ -93,8 +93,19 @@ Admin.controllers :dialogs do
     end
   end
 
+  get :preview, :with => [:model, :id] do
+    @title = pat 'dialog.preview'
+    @model = params[:model].constantize  rescue nil
+    return "no such model: #{params[:model]}"  unless @model
+    @object = @model.get params[:id]
+    return "no such object: #{model} ##{params[:id]}"  unless @object
+    @content = @object.text.as_html
+    render 'dialogs/preview', :layout => :dialog
+  end
+
   get :bonds, :with => [:parent_model, :parent_id] do
     @title = pat 'dialog.select_bonds'
+    halt 405  unless request.xhr?
     render "dialogs/bonds", :layout => :dialog
   end
 

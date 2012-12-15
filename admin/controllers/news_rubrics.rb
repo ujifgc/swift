@@ -1,5 +1,13 @@
 Admin.controllers :news_rubrics do
 
+  before :edit, :update, :destroy do
+    @object = NewsRubric.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:news_rubrics, :index)
+    end
+  end
+
   get :index do
     @objects = NewsRubric.all
     render 'news_rubrics/index'

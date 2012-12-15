@@ -1,5 +1,13 @@
 Admin.controllers :cat_groups do
 
+  before :edit, :update, :destroy do
+    @object = CatGroup.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:cat_groups, :index)
+    end
+  end
+
   before :update, :create do
     parent_id = params[:cat_group].delete( 'parent_id' ).to_i
     params[:cat_group]['parent_id'] = parent_id  if parent_id > 0

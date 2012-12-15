@@ -16,6 +16,7 @@
       $(".form-actions .btn-primary").click();
       return false;
     }
+    
   });
       
 /* pages */
@@ -107,25 +108,28 @@
     $(this).siblings('.add-on').click(function() { $(this).siblings('input')[0].focus() });
     $(this).datepicker( { format: 'yyyy-mm-dd', weekStart: 1, language: 'ru', autoclose: true, formatTime: 'hh:mm' } );
   });
-  $('a[data-toggle=modal]').click(function() {
-    var url = this.href;
-    $('body > .modal').remove();
-    var dialog = $('<div id="modal-dialog" class="modal hide loading"></div>').appendTo('body');
-    this.dialog = dialog;
-    dialog.load(
-      url,
-      function (responseText, textStatus, XMLHttpRequest) {
-        dialog.removeClass('loading');
-      }
-    );
-    dialog.modal('show');
-    dialog.on('hidden', function () {
-      dialog.remove();
-    });
-    return false;
-  });
+  $('a[data-toggle=modal]').on('click', showPopup);
   $('textarea.resizable').TextAreaResizer();
+  
 });
+
+showPopup = function() {
+  var url = this.href;
+  $('body > .modal').remove();
+  var dialog = $('<div id="modal-dialog" class="modal hide loading"></div>').appendTo('body');
+  this.dialog = dialog;
+  dialog.load(
+    url,
+    function (responseText, textStatus, XMLHttpRequest) {
+      dialog.removeClass('loading');
+    }
+  );
+  dialog.modal('show');
+  dialog.on('hidden', function () {
+    dialog.remove();
+  });
+  return false;
+};
 
 pickLength = function(e) {
   var len = $(e).data('length');

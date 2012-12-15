@@ -1,5 +1,13 @@
 Admin.controllers :codes do
 
+  before :edit, :update, :destroy do
+    @object = Code.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:codes, :index)
+    end
+  end
+
   get :index do
     @objects = Code.all
     render 'codes/index'

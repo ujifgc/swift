@@ -1,5 +1,13 @@
 Admin.controllers :options do
 
+  before :edit, :update, :destroy do
+    @object = Option.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:options, :index)
+    end
+  end
+
   get :index do
     @objects = Option.all
     render 'options/index'

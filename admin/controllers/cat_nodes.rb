@@ -1,5 +1,13 @@
 Admin.controllers :cat_nodes do
 
+  before :edit, :update, :destroy do
+    @object = CatNode.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:cat_nodes, :index)
+    end
+  end
+
   get :index do
     @objects = CatNode.all
     @group = CatGroup.by_slug params[:group]

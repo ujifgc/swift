@@ -1,5 +1,13 @@
 Admin.controllers :forms_results do
 
+  before :edit, :update, :destroy do
+    @object = FormsResult.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:forms_results, :index)
+    end
+  end
+
   get :index do
     filter = {}
     card_id = params[:forms_card].blank? ? FormsCard.first( :order => [:created_at.desc] ).id : FormsCard.by_slug( params[:forms_card] ).id  rescue nil

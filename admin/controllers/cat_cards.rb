@@ -1,5 +1,14 @@
 #
 Admin.controllers :cat_cards do
+  
+  before :edit, :update, :destroy do
+    @object = CatCard.get(params[:id])
+    unless @object
+      flash[:error] = pat('object.not_found')
+      redirect url(:cat_cards, :index)
+    end
+  end
+  
   get :index do
     @objects = CatCard.all
     render 'cat_cards/index'
