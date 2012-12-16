@@ -4,7 +4,7 @@
     %meta{ :charset => "utf-8" }
     %meta{ :name => "robots", :content => "noindex" }
     %link{ :rel => "shortcut icon", :href => "/images/swift32.png" }
-    %title Swift Admin
+    %title Eaur Admin
     /[if lt IE 9]
       %script{ :src => "http://html5shim.googlecode.com/svn/trunk/html5.js" }
     = stylesheet_link_tag '/assets/bootstrap'
@@ -13,19 +13,19 @@
     %script{ :src => '/assets/admin-core.js' }
 
   %body
-    .navbar.navbar-fixed-top.navbar-inverse
+    .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container-fluid
           = link_to 'Swift Admin', url(:base_index), :class => 'brand'
           .pull-right
             %span.navbar-text= current_account.role_title
-            = link_to current_account.name, url(:accounts, :edit, :id => current_account.id), :class => 'navbar-text'
+            = mk_glyph( :user, :white => true )                                                                            |
+              + link_to( current_account.name, url(:accounts, :edit, :id => current_account.id), :class => 'navbar-text' ) |
             = link_to 'Logout', url(:sessions, :destroy), :method => :delete, :class => 'btn btn-danger btn-small'
     .container-fluid
       - [:error, :warning, :success, :notice].each do |type|
         - next  if flash[type].blank?
         .alert.alert-message{ :class => 'alert-' + (type == :notice ? :info : type).to_s,  :"data-alert" => true }
-          = link_to '&times;', 'javascript:;', :class => :close, :"data-dismiss" => "alert"
           = flash[type]
       - if @object && @object.dirty?
         - err = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')

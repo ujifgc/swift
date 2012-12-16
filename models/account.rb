@@ -58,6 +58,41 @@ class Account
   end
   alias allowed? allowed
 
+  def has_access_to( object, operation = nil ) # FIXME
+    operation_allowed = case operation
+    when :approve
+      allowed( :auditor )
+    when :delete
+      allowed( :editor )
+    else
+      true
+    end
+    return false  unless operation_allowed
+    
+    case
+    when allowed( :admin )
+      true
+    when allowed( :auditor )
+      object.created_by.archive_id == archive_id
+    when allowed( :editor )
+      object.created_by_id == id
+    else
+      false
+    end
+  end
+
+  def all_accessible( object_model ) # FIXME
+    filter = case
+    when allowed( :admin )
+      {}
+    when allowed( :auditor )
+      { 'created_by.archive_id' => archive.id }
+    else
+      { 'created_by_id' => id }
+    end
+    object_model.to_s.singularize.camelize.constantize.all filter
+  end
+
   def role
     self.group ? self.group.role : self.name
   end

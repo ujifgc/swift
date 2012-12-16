@@ -176,3 +176,8 @@ input:-moz-placeholder {
 .navbar-text + .btn {
   margin-top: 0;
 }
+
+/* align inline checkboxes vertically */
+.controls.form-inline .radio, .controls.form-inline > .checkbox {
+  padding-top: 5px;
+}

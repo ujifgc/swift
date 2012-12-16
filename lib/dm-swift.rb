@@ -90,7 +90,7 @@ module SwiftDatamapper
       before :save do
         path = Padrino.public + self.file.url
         if File.exists?(path)
-          self.file_content_type = `file -bp --mime-type #{path}`.to_s.strip
+          self.file_content_type = `file -bp --mime-type '#{path}'`.to_s.strip
           self.file_size = File.size path
         else
           self.file_content_type = self.file_size = nil

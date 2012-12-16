@@ -21,7 +21,7 @@ class NeatUploader < CarrierWave::Uploader::Base
   end
 
   def content_type
-    #`file -bp --mime-type #{root}#{url}`.to_s.strip
+    #`file -bp --mime-type '#{root}#{url}'`.to_s.strip
     model.file_content_type || ''
   end
 

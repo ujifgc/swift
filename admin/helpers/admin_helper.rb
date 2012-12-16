@@ -14,49 +14,11 @@ Admin.helpers do
     content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'ok' : 'ban-circle') ) + ' '
   end
 
-  ICONS = {
-  # operations
-    :delete    => 'remove',
-    :publish   => 'ok',
-    :unpublish => 'ban-circle',
-    :list      => 'list',
-    :new       => 'plus',
-    :edit      => 'edit',
-    :bind      => 'magnet',
-
-  # modules
-    :pages     => 'book',
-    :images    => 'picture',
-    :assets    => 'file',
-    :blocks    => 'list-alt',
-    :folders   => 'folder-open',
-
-    :news_articles => 'bookmark',
-    :news_rubrics  => 'th-large',
-    :news_events   => 'flag',
-
-    :forms_cards   => 'inbox',
-    :forms_results => 'folder-close',
-    :forms_stats   => 'check',
-
-    :cat_cards  => 'inbox',
-    :cat_nodes  => 'folder-close',
-    :cat_groups => 'tag',
-
-    :fragments => 'th',
-    :layouts   => 'cog',
-    :elements  => 'cog',
-
-    :accounts  => 'user',
-    :codes     => 'font',
-    :options   => 'wrench',
-  }
-
-  def mk_icon( op )
-    content_tag( :i, '', :class => 'icon-'+(ICONS[op]||'warning-sign') ) + ' '
-  end
+load 'icons.rb'
 
   def mk_glyph( s, opt = {} )
+    s = s.to_s
+    s += ' icon-white'  if opt.delete( :white )
     content_tag( :i, '', { :class => 'icon-'+s }.merge(opt) )
   end
 
@@ -87,7 +49,11 @@ Admin.helpers do
   end
 
   def allow role
-    yield  if current_account.allowed role
+    if current_account.allowed role
+      @allowed = role
+      yield
+      @allowed = nil
+    end
   end
 
   def page_tree( from, level, prefix )

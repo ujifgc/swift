@@ -1,10 +1,4 @@
 ﻿$(function() {
-  var boxOptions = { opacity: 0.7, loop: false, current: "{current} / {total}", previous: "<", next: ">", close: "x", maxWidth: "100%", maxHeight: "100%" };
-  if ($.browser.msie && $.browser.version < '8.0.0')
-    boxOptions.transition = "none";
-  $('[rel^="box-"]').colorbox(boxOptions);
-  
-  
   $(':checkbox[name=check_all]').click(function(){
     $(':checkbox[name^=check_]').prop('checked', $(this).prop('checked'));
   });
@@ -35,6 +29,7 @@
     if ($(this).hasClass('collapsed'))
       $(this).popover('show');
   });
+  $('[rel=tooltip]').tooltip({ animation: false });
   $('h5.nav-header[data-toggle]').mouseleave(function() {
     $(this).popover('hide')
   });
@@ -102,16 +97,43 @@
   multipleCheck();
   $('form.multiple input[name^=check]').click(multipleCheck);
   bindCatCards();
-  $('input.datetime').each(function() {
-    $(this).wrap('<div class="input-prepend date"></div>');
-    $(this).before('<span class="add-on"><i class="icon-calendar"></i></span>');
-    $(this).siblings('.add-on').click(function() { $(this).siblings('input')[0].focus() });
-    $(this).datepicker( { format: 'yyyy-mm-dd', weekStart: 1, language: 'ru', autoclose: true, formatTime: 'hh:mm' } );
-  });
+  bindDatetime();
+  bindColorbox();
   $('a[data-toggle=modal]').on('click', showPopup);
   $('textarea.resizable').TextAreaResizer();
   
 });
+
+bindColorbox = function() {
+  var boxOptions = { opacity: 0.7, loop: false, current: "{current} / {total}", previous: "<", next: ">", close: "x", maxWidth: "100%", maxHeight: "100%" };
+  if ($.browser.msie && $.browser.version < '8.0.0')
+    boxOptions.transition = "none";
+  $('[rel^="box-"]').colorbox(boxOptions);
+  $('#cboxOverlay').append('<div id="cboxControls"></div>');
+  $(document).bind('cbox_complete', function(){
+    $('#cboxClose, #cboxCurrent, #cboxPrevious, #cboxNext').appendTo('#cboxControls');
+    $('#cboxClose, #cboxCurrent, #cboxPrevious, #cboxNext').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document.body).css('overflow-y', 'scroll');
+  });
+  $(document).bind('cbox_closed', function(){
+    $(document.body).css('overflow-y', 'auto');
+  });
+};
+
+bindDatetime = function() {
+  $('input.datetime').each(function() {
+    if (!$(this).hasClass('datetime-added')) {
+      $(this).wrap('<div class="input-prepend date"></div>');
+      $(this).before('<span class="add-on"><i class="icon-calendar"></i></span>');
+      $(this).siblings('.add-on').click(function() { $(this).siblings('input')[0].focus() });
+      $(this).datepicker( { format: 'yyyy-mm-dd', weekStart: 1, language: 'ru', autoclose: true, formatTime: 'hh:mm' } );
+      $(this).on('show', function(e) { $(e.target).select(); });
+      $(this).addClass('datetime-added');
+    }
+  });
+};
 
 showPopup = function() {
   var url = this.href;

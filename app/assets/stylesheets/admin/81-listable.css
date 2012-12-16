@@ -100,3 +100,9 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
   margin: 0;
   background: #fff;
 }
+.table td a.btn {
+  margin: -4px;
+}
+.table td a.btn i {
+  width: 18px;
+}
