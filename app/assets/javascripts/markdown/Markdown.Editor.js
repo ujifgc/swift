@@ -1268,12 +1268,21 @@
     
     commandProto.doPreview = function (chunk, postProcessing)
     {
-      var button = document.getElementById('wmd-preview-button-page_text');
-      button['data-toggle'] = 'modal';
-      button['class'] = 'preview';
       var splits = document.baseURI.split('/');
-      button['href'] = "/admin/dialogs/preview/Page/" + splits[splits.length - 1];
-      button.onclick = showPopup;
+      var url = "/admin/dialogs/preview/Page/" + splits[splits.length - 1];
+      $('body > .modal').remove();
+      var dialog = $('<div id="modal-dialog" class="modal hide loading"></div>').appendTo('body');
+      this.dialog = dialog;
+      dialog.load(
+        url,
+        function (responseText, textStatus, XMLHttpRequest) {
+          dialog.removeClass('loading');
+        }
+      );
+      dialog.modal('show');
+      dialog.on('hidden', function () {
+        dialog.remove();
+      });
     }
 
     commandProto.doPickObject = function (chunk, postProcessing, objectType) {
