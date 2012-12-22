@@ -60,6 +60,12 @@ th.action  { width: 110px; text-align:center }
   float: none;
   *float: left;
 }
+.block {
+  display: block;
+}
+.btn-group + .btn-group.block {
+  margin-left: 0;
+}
 .vtop {
   vertical-align: top;
 }

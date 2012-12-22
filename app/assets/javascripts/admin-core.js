@@ -318,11 +318,122 @@ bindDialogCreateParent = function() {
 };
 
 bindBlockType = function() {
-  $.fn.editable.defaults.placeholder = '&nbsp;';
+  /*$.fn.editable.defaults.placeholder = '&nbsp;';*/
   var select = $('select[id$=block_type]');
   var area = $('textarea[id$=block_text]');
+
+  var savedrange = [], watchrange = [], savedcontent = '';
+  function handlepaste (elem, e) {
+      var range = window.getSelection().getRangeAt(0);
+      savedcontent = elem.innerHTML;
+      watchrange = [range.startOffset, range.endOffset];
+      if (range.startContainer == range.endContainer) {
+        savedrange = watchrange;
+      }else{
+        var sibs = range.startContainer.parentNode.childNodes;
+        var p = 0;
+        for (var i = 0; i < sibs.length; i++) {
+          if (sibs[i] == range.startContainer)
+            savedrange[0] = p + range.startOffset;
+          if (sibs[i] == range.endContainer)
+            savedrange[1] = p + range.endOffset;
+          p += (typeof sibs[i].innerHTML == 'string') ? sibs[i].outerHTML.length : sibs[i].length;
+        }
+      }
+      waitforpastedata(elem);
+      return true;
+  }
+
+  function waitforpastedata (elem) {
+      var range = window.getSelection().getRangeAt(0);
+      if (range.startOffset != watchrange[0] || range.endOffset != watchrange[1] || savedcontent.length != elem.innerHTML.length) {
+          processpaste(elem);
+      }
+      else {
+          setTimeout(function() {
+              waitforpastedata(elem);
+          },20);
+      }
+  }
+
+  function processpaste (elem) {
+      if (elem.innerHTML.match(/\t|<table/)) {
+        pastesize = elem.innerHTML.replace(/(<br>)?[\r\n]+/g,"<br>\n").length - savedcontent.length - savedrange[0] + savedrange[1];
+        paste = elem.innerHTML.substr(savedrange[0], pastesize);
+        elem.innerHTML = savedcontent;
+        var current = $(elem).closest('td');
+        var offsetJ = current[0].cellIndex;
+        var offsetI = current.parent()[0].rowIndex;
+
+        var tt = table.find('table');
+
+        trs = $(paste).find('tr');
+        if (trs.length > 0) {
+          var i = 0;
+          trs.each(function() {
+            if (tt.find('tr').length < i + 1 + offsetI) {
+              var row = '<tr>';
+              for (var x = tt.find('tr:last-child td').length; x > 0; x--)
+                row += '<td> </td>';
+              row += '</tr>';
+              tt.append(row);
+            }
+            var tr = $(tt.find('tr')[i]);
+            var j = 0;
+            $(this).find('td, th').each(function() {
+              if (tr.find('td, th').length < j + 1 + offsetJ) {
+                tt.find('tr').append('<td> </td>');
+                tr = $(tt.find('tr')[i]);
+              }
+              var td = tt[0].rows[offsetI+i].cells[offsetJ+j];
+              $(td).text($.trim($(this).text()));
+              j += 1;
+            });
+            i += 1;
+          });
+          edifyTable();
+        }else{
+          var trs = paste.replace(/(<br>|[\r\n])+$/,'').split(/<br>|[\n\r]+/);
+          var i = 0;
+          $.each(trs, function() {
+            if (tt.find('tr').length < i + 1 + offsetI) {
+              var row = '<tr>';
+              for (var x = tt.find('tr:last-child td').length; x > 0; x--)
+                row += '<td> </td>';
+              row += '</tr>';
+              tt.append(row);
+            }
+            var tr = $(tt.find('tr')[i]);
+            var tds = this.split(/\t/);
+            var j = 0;
+            $.each(tds, function() {
+              if (tr.find('td, th').length < j + 1 + offsetJ) {
+                tt.find('tr').append('<td> </td>');
+                tr = $(tt.find('tr')[i]);
+              }
+              var td = tt[0].rows[offsetI+i].cells[offsetJ+j];
+              $(td).text($.trim(this));
+              j += 1;
+            });
+            i += 1;
+          });
+          edifyTable();
+        }
+
+        /*var range = document.createRange();
+        range.setStart(elem.firstChild, savedrange[1]);
+        range.deleteContents();
+        range.insertNode(document.createTextNode(pasteddata+'1'));
+        range.setEnd(elem.firstChild, savedrange[1]);
+
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);*/
+      }
+  }
+
   var controls = area.closest('.controls');
-  controls.after('<div class="table controls">' + 
+  controls.before('<div class="table controls edit-table">' + 
     '<div class="inline vtop wrapper"></div><div class="btn-group inline">' +
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-plus"></i></a>' +
       '<a onclick="chTable(this)" class="btn btn-mini"><i class="icon-minus"></i></a>' +
@@ -375,7 +486,7 @@ bindBlockType = function() {
     var the_table = table.find('table');
     if (tg.match(/inline/)) {
       if (op == 'icon-plus') {
-        the_table.find('tr').append('<td></td>');
+        the_table.find('tr').append('<td> </td>');
       }else if (op == 'icon-minus') {
         if (the_table.find('tr td').length > 1)
           the_table.find('tr td:last-child').remove();
@@ -392,7 +503,7 @@ bindBlockType = function() {
       if (op == 'icon-plus') {
         var row = '<tr>';
         for (var i = the_table.find('tr:last-child td').length; i > 0; i--) {
-          row += '<td></td>';
+          row += '<td> </td>';
         }
         row += '</tr>';
         the_table.append(row);
@@ -413,23 +524,53 @@ bindBlockType = function() {
     }
   };
 
+  cleanifyTable = function(html) {
+    return html
+      .replace(" class=\"\"", '')
+      .replace(/\<\/tr\>/g, "</tr>\n")
+      .replace(/\<tbody\>/g, "<tbody>\n")
+      .replace(/\<t(h|d).*?\>/g,'\n    <t$1>')
+      .replace(/(?:\<br\>)?[\r\n\s]*<\/t(h|d)\>/g,'</t$1>')
+      .replace(/\s+[\r\n]/g, "\n")
+      .replace(/[\r\n]+/g, "\n")
+  };
+
   edifyTable = function() {
     var clone = table.clone();
     clone.find('table').removeClass('table table-bordered');
-    area.val(clone.html().replace(" class=\"\"", ''));
-    table.find('table td, table.th').click(function() {
-      $('.btn-primary').attr('disabled','disabled');
-    }).editable(function(value, settings) {
-      return value;
-    }, {
-      onblur: "submit",
-      callback: function(value, settings) {
-        $('.btn-primary').removeAttr('disabled');
+    area.val(cleanifyTable(clone.html()));
+    table.find('table td, table th').attr('contenteditable', 'true');
+    table.find('table [contenteditable]')
+      .on('paste', function(e) {
+        handlepaste(this, e)
+      })
+      .on('focus', function() {
+        var $this = $(this);
+        //$this.css('white-space', 'pre').css('max-width', 'none');
+        if (' ' == $this.html() || '&nbsp;' == $this.html())
+          $this.html('<br>');
+        $this.data('before', $this.html());
+        return $this;
+      }).on('blur keyup paste', function() { 
+        var $this = $(this);
+        if ($this.data('before') !== $this.html()) {
+          $this.data('before', $this.html());
+          $this.trigger('change');
+        }
+        return $this;
+      })
+      .on('blur', function() {
+        var $this = $(this);
+        //$this.css('white-space', 'normal').css('max-width', '240px');
+        if ('' == $this.html() || '<br>' == $this.html())
+          $this.html(' ');
+        return $this;
+      })
+      .on('change', function() {
         var clone = table.clone();
         clone.find('table').removeClass('table table-bordered');
-        area.val(clone.html().replace(" class=\"\"", ''));
-      }
-    });
+        area.val(cleanifyTable(clone.html()));
+      });
   };
 
   //if (!area.val().match(/$\<table.*table\>^/) && area.val().length > 0 )
@@ -437,24 +578,26 @@ bindBlockType = function() {
   select.change(function() {
     var html = area.val();
     var wmdpanel = controls.find('[id^=wmd-button-bar]');
-    switch (select.find('option[selected]').val()) {
+    switch (select.val()) {
     case "0":
       controls.show();
       wmdpanel.show();
-      table_controls.hide();
       insert.hide();
+      table_controls.hide();
       break;
     case "1":
       controls.show();
       wmdpanel.hide();
-      table_controls.hide();
       insert.hide();
+      table_controls.hide();
       break;
     case "2":
-      controls.hide();
+      controls.show();
+      wmdpanel.hide();
+      if ($.browser.msie || $.browser.opera)
+        insert.show();
       table_controls.show();
-      insert.show();
-      table.html(html.indexOf('table') == -1 ? '<table class="table table-bordered"><tr><td>Новая таблица</table>' : html);
+      table.html(html.indexOf('table') == -1 ? '<table class="table table-bordered"><tr><td> </td></tr></table>' : html);
       table.find('table').addClass('table table-bordered');
       edifyTable();
       break;

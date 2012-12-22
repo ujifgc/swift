@@ -61,6 +61,7 @@ form .horizontal textarea {
 }
 .controls.table table td, .controls.table table th {
   min-width: 120px;
+  Rmax-width: 240px;
   min-height: 17px;
 }
 .controls.table table td:hover, .controls.table table th:hover {
