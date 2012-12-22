@@ -596,6 +596,8 @@ bindBlockType = function() {
       wmdpanel.hide();
       if ($.browser.msie || $.browser.opera)
         insert.show();
+      else
+        insert.hide();
       table_controls.show();
       table.html(html.indexOf('table') == -1 ? '<table class="table table-bordered"><tr><td> </td></tr></table>' : html);
       table.find('table').addClass('table table-bordered');
