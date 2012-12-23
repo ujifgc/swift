@@ -18,6 +18,9 @@
     Change the following styles to modify the appearance of ColorBox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
 */
+#cboxContent > #cboxClose, #cboxContent > #cboxCurrent, #cboxContent > #cboxPrevious, #cboxContent > #cboxNext {
+  visibility: hidden;
+}
 #cboxOverlay{background:url(/images/overlay.png) repeat 0 0;}
 /*#colorbox{}
     #cboxTopLeft{width:21px; height:21px; background:url(/images/controls.png) no-repeat -101px 0;}
@@ -51,17 +54,17 @@
         #cboxLoadedContent{border:2px solid #000; background:#fff;}
         #cboxTitle{position:absolute; top:0px; left:0; color:#ccc; background:#fff;}
 
-        #cboxControls{position:absolute; top: 200px; right: 20px; width: 108px; }
+        #cboxControls{position:absolute; top: 200px; right: 12px; width: 108px; font: 30px/33px Georgia, sans; }
 
-        #cboxClose{position:absolute; top:0; right:0; display:block; background:#FFF; width:45%; height:48px; text-indent:-9999px; border-radius: 50%;}
+        #cboxClose{position:absolute; top:0; right:0; display:block; background:#FFF; width:48px; height:48px; border-radius: 6px; text-align: center; font: italic 18px/46px Verdana, serif; text-indent: -6px; }
         #cboxClose:hover{background-position:bottom center;}
 
-        #cboxCurrent{position:absolute; top:60px; height: 36px; right:0; width: 108px; color:#333; background:#fff; font: 30px/33px Georgia, sans; padding: 6px 0; text-align: center; }
+        #cboxCurrent{white-space: nowrap; position:absolute; top:60px; height: 36px; right:0; width: 108px; color:#333; background:#fff; padding: 6px 0; text-align: center; }
 
-        #cboxPrevious{position:absolute; top:120px; left:0; background: #FFF; width:48px; height:48px; text-indent:-9999px; border-radius: 50%;}
+        #cboxPrevious{position:absolute; top:120px; left:0; background: #FFF; width:48px; height:48px; text-align: center; border-radius: 6px; font: 30px/46px Verdana, serif; }
         #cboxPrevious:hover{background-position:bottom left;}
 
-        #cboxNext{position:absolute; top:120px; right:0; background: #FFF; width:48px; height:48px; text-indent:-9999px; border-radius: 50%; }
+        #cboxNext{position:absolute; top:120px; right:0; background: #FFF; width:48px; height:48px; text-align: center; border-radius: 6px; font: 30px/46px Verdana, serif; }
         #cboxNext:hover{background-position:bottom right;}
 
         #cboxSlideshow{position:absolute; top:144px; right:0; color:#fff; background:#fff;}

@@ -105,10 +105,10 @@
 });
 
 bindColorbox = function() {
-  var boxOptions = { opacity: 0.7, loop: false, current: "{current} / {total}", previous: "<", next: ">", close: "x", maxWidth: "100%", maxHeight: "100%" };
+  window.boxOptions = { opacity: 0.85, loop: false, current: "{current} / {total}", previous: "←", next: "→", close: "Esc", maxWidth: "80%", maxHeight: "100%", transition: "none" };
   if ($.browser.msie && $.browser.version < '8.0.0')
-    boxOptions.transition = "none";
-  $('[rel^="box-"]').colorbox(boxOptions);
+    window.boxOptions.transition = "none";
+  $('[rel^="box-"]').colorbox(window.boxOptions);
   $('#cboxOverlay').append('<div id="cboxControls"></div>');
   $(document).bind('cbox_complete', function(){
     $('#cboxClose, #cboxCurrent, #cboxPrevious, #cboxNext').appendTo('#cboxControls');
