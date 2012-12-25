@@ -53,10 +53,10 @@
 
         #cboxControls{position:absolute; top: 200px; right: 20px; width: 108px; }
 
-        #cboxClose{position:absolute; top:0; right:0; display:block; background:#FFF; width:45%; height:48px; text-indent:-9999px; border-radius: 50%;}
+        #cboxClose{position:absolute; top:0; right:0; display:block; background:#FFF; width:48px; height:48px; text-indent:-9999px; border-radius: 50%;}
         #cboxClose:hover{background-position:bottom center;}
 
-        #cboxCurrent{position:absolute; top:60px; height: 36px; right:0; width: 108px; color:#333; background:#fff; font: 30px/33px Georgia, sans; padding: 6px 0; text-align: center; }
+        #cboxCurrent{white-space: nowrap; position:absolute; top:60px; height: 36px; right:0; width: 108px; color:#333; background:#fff; font: 30px/33px Georgia, sans; padding: 6px 0; text-align: center; }
 
         #cboxPrevious{position:absolute; top:120px; left:0; background: #FFF; width:48px; height:48px; text-indent:-9999px; border-radius: 50%;}
         #cboxPrevious:hover{background-position:bottom left;}

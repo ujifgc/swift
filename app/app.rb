@@ -6,6 +6,8 @@ class Swift < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
 
+  helpers Padrino::Helpers::EngineHelpers
+
   enable :sessions
 
   register Padrino::Sprockets

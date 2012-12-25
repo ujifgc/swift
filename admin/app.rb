@@ -18,6 +18,8 @@ class Admin < Padrino::Application
   register Padrino::Helpers
   register Padrino::Admin::AccessControl
 
+  helpers Padrino::Helpers::EngineHelpers
+
   set :login_page, "/admin/sessions/new"
   set :default_builder, 'AdminFormBuilder'
 
