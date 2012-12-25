@@ -105,10 +105,10 @@
 });
 
 bindColorbox = function() {
-  var boxOptions = { opacity: 0.7, loop: false, current: "{current} / {total}", previous: "<", next: ">", close: "x", maxWidth: "100%", maxHeight: "100%" };
+  window.boxOptions = { opacity: 0.85, loop: false, current: "{current} / {total}", previous: "←", next: "→", close: "Esc", maxWidth: "80%", maxHeight: "100%", transition: "none" };
   if ($.browser.msie && $.browser.version < '8.0.0')
-    boxOptions.transition = "none";
-  $('[rel^="box-"]').colorbox(boxOptions);
+    window.boxOptions.transition = "none";
+  $('[rel^="box-"]').colorbox(window.boxOptions);
   $('#cboxOverlay').append('<div id="cboxControls"></div>');
   $(document).bind('cbox_complete', function(){
     $('#cboxClose, #cboxCurrent, #cboxPrevious, #cboxNext').appendTo('#cboxControls');
@@ -357,9 +357,9 @@ bindBlockType = function() {
   }
 
   function processpaste (elem) {
+      pastesize = elem.innerHTML.replace(/(<br>)?[\r\n]+/g,"<br>\n").length - savedcontent.length - savedrange[0] + savedrange[1];
+      paste = elem.innerHTML.substr(savedrange[0], pastesize);
       if (elem.innerHTML.match(/\t|<table/)) {
-        pastesize = elem.innerHTML.replace(/(<br>)?[\r\n]+/g,"<br>\n").length - savedcontent.length - savedrange[0] + savedrange[1];
-        paste = elem.innerHTML.substr(savedrange[0], pastesize);
         elem.innerHTML = savedcontent;
         var current = $(elem).closest('td');
         var offsetJ = current[0].cellIndex;
@@ -393,7 +393,7 @@ bindBlockType = function() {
           });
           edifyTable();
         }else{
-          var trs = paste.replace(/(<br>|[\r\n])+$/,'').split(/<br>|[\n\r]+/);
+          var trs = $(paste).text().replace(/(<br>|[\r\n])+$/,'').split(/<br>|[\n\r]+/);
           var i = 0;
           $.each(trs, function() {
             if (tt.find('tr').length < i + 1 + offsetI) {
@@ -419,16 +419,19 @@ bindBlockType = function() {
           });
           edifyTable();
         }
+      }else if (elem.innerHTML.match(/<.*>/)) {
+        text = $.trim($(paste.replace(/<br.*?>/,'[br-placeholder]').replace(/<\/div>/,'[br-placeholder]')).text()
+          .replace(/\[br-placeholder\]/g,"\n")
+          .replace(/([\r\n]+\s+)+/g,"\n"));
+        elem.innerHTML = savedcontent.substr(0,savedrange[0]) + text + savedcontent.substr(savedrange[1]);
 
-        /*var range = document.createRange();
-        range.setStart(elem.firstChild, savedrange[1]);
-        range.deleteContents();
-        range.insertNode(document.createTextNode(pasteddata+'1'));
-        range.setEnd(elem.firstChild, savedrange[1]);
+        var range = document.createRange();
+        range.setStart(elem.firstChild, savedrange[0] + text.length);
+        range.setEnd(elem.firstChild, savedrange[0] + text.length);
 
         var selection = window.getSelection();
         selection.removeAllRanges();
-        selection.addRange(range);*/
+        selection.addRange(range);
       }
   }
 

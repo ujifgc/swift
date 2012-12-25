@@ -2,13 +2,16 @@
 //= require ./libraries/07-jquery.colorbox-min.js
 
 $(function() {
-  var boxOptions = { opacity: 0.7, loop: false, current: "{current} / {total}", previous: "<", next: ">", close: "x", maxWidth: "100%", maxHeight: "100%" };
+  window.boxOptions = { opacity: 0.85, loop: false, current: "{current} / {total}", previous: "←", next: "→", close: "Esc", maxWidth: "80%", maxHeight: "100%", transition: "elastic" };
   if ($.browser.msie && $.browser.version < '8.0.0')
-    boxOptions.transition = "none";
-  $('[rel^="box-"]').colorbox(boxOptions);
+    window.boxOptions.transition = "none";
+  $('[rel^="box-"]').colorbox(window.boxOptions);
 });
 $(document).bind('cbox_load', function(){
   $('#cboxTextOverlay').remove();
+});
+$(document).bind('cbox_closed', function(){
+  $(document.body).css('overflow-y', 'auto');
 });
 $(document).bind('cbox_complete', function(){
   var el = $.colorbox.element();
@@ -20,4 +23,10 @@ $(document).bind('cbox_complete', function(){
   }, function() {
     $('#cboxTextOverlay').fadeOut('fast');
   });
+  $('#cboxOverlay').append('<div id="cboxControls"></div>');
+  $('#cboxClose, #cboxCurrent, #cboxPrevious, #cboxNext').appendTo('#cboxControls');
+  $('#cboxClose, #cboxCurrent, #cboxPrevious, #cboxNext').click(function(e) {
+    e.stopPropagation();
+  });
+  $(document.body).css('overflow-y', 'scroll');
 });
