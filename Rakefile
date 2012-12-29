@@ -1,2 +1,0 @@
-`padrino rake -T`
-
