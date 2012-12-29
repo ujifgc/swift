@@ -27,8 +27,8 @@ class Admin < Padrino::Application
   enable :store_location
 
   use OmniAuth::Builder do
-    provider :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
-    provider :open_id, :store => OpenID::Store::Filesystem.new('/tmp'), :name => 'yandex', :identifier => 'http://ya.ru/'
+    provider :open_id, :store => OpenID::Store::Filesystem.new(Padrino.root+'/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
+    provider :open_id, :store => OpenID::Store::Filesystem.new(Padrino.root+'/tmp'), :name => 'yandex', :identifier => 'http://ya.ru/'
   end
 
   access_control.roles_for :any do |role|
