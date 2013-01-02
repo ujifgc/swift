@@ -23,11 +23,7 @@ Admin.controllers :accounts do
     render 'accounts/new'
   end
 
-  get :reset do
-    render 'accounts/reset', :layout => false
-  end
-
-  post :reset do
+  get_or_post_reset = lambda do
     account = Account.first :email => params[:email]
     if account
       code = Digest::SHA2.hexdigest(Digest::SHA1.hexdigest(account.inspect) + 'herjovFas8' + Date.today.to_s)[6..11]
@@ -38,44 +34,53 @@ Admin.controllers :accounts do
           account.password = account.password_confirmation = pwd
           account.crypted_password = Digest::SHA2.hexdigest(pwd)[0..5]  # dummy action to make account dirty
           if account.save
+            mail_subject = I18n.t('padrino.admin.account.mail.reset_account_title', :host => host)
             email do
               @host = host
               @pwd = pwd
               @login = account.email
               @address = "http://#{@host}/admin"
-              from "noreply@#{@host}"
-              to   account.email
-              subject  "resetting padrino password"
+
+              from     "noreply@#{@host}"
+              to        account.email
+              subject  mail_subject
               body render 'reset_account_done'
             end
             set_current_account account
-            flash[:notice] = pat('account.reset_done')
+            flash[:notice] = pat('account.reset_account_done')
             redirect url(:base, :index)
           else
-            flash[:error] = pat('account.save_failed')
+            flash.now[:error] = pat('account.save_failed')
             render 'accounts/reset', :layout => false
           end
         else
-          flash[:error] = pat('account.code_wrong')
+          flash.now[:error] = pat('account.code_wrong')
           render 'accounts/reset', :layout => false
         end              
       else
+        mail_subject = I18n.t('padrino.admin.account.mail.reset_account_title', :host => host)
         email do
           @code = code
           @host = host
-          from "noreply@#{@host}"
-          to   account.email
-          subject  "resetting padrino password"
+          @login = account.email
+
+          content_type 'text/html; charset=UTF-8'
+          from    "noreply@#{@host}"
+          to       account.email
+          subject mail_subject
           body render 'reset_account'
         end
+        flash.now[:notice] = pat('account.reset_initiated')
         render 'accounts/reset', :layout => false
       end
     else
-      params[:email] = nil
-      flash[:error] = pat('account.doesnt_exist')
+      flash.now[:error] = pat('account.doesnt_exist')  if params.delete('email')
       render 'accounts/reset', :layout => false
     end
   end
+
+  get :reset, &get_or_post_reset
+  post :reset, &get_or_post_reset
 
   post :create do
     @object = Account.new(params[:account])
@@ -84,7 +89,7 @@ Admin.controllers :accounts do
       flash[:notice] = pat('account.created')
       redirect url(:accounts, :index)
     else
-      flash[:notice] = pat('account.created')
+      flash.now[:notice] = pat('account.created')
       render 'accounts/new'
     end
   end

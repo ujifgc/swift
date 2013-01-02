@@ -4,13 +4,13 @@
     %meta{ :charset => "utf-8" }
     %title Swift
     = stylesheet_link_tag '/assets/bootstrap'
-    = stylesheet_link_tag '/assets/admin/99-monkey'
+    = stylesheet_link_tag '/assets/admin/96-monkey'
   %body
     .container{ :style => 'width: 290px' }
       %h1 Swift Admin
       - form_tag(url(:accounts, :reset), :class => 'form-horizontal well', :autocomplete => "off") do
-        - [:error, :warning, :notice].map do |type|
-          = flash_tag(type, :class => "alert alert-error")
+        = partial 'base/flash'
+        %pre= params.inspect
 
         %legend Reset password
         - if params[:email].blank?
@@ -24,7 +24,8 @@
             .input-prepend
               %span.add-on>
                 %i.icon-envelope
-              = text_field_tag :email, :value => params[:email], :placeholder => "email", :disabled => true
+              = text_field_tag :email, :value => params[:email], :disabled => true
+              = hidden_field_tag :email, :value => params[:email]
           .control-group
             .input-prepend
               %span.add-on>

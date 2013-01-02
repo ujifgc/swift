@@ -22,6 +22,7 @@ class Admin < Padrino::Application
 
   set :login_page, "/admin/sessions/new"
   set :default_builder, 'AdminFormBuilder'
+  set :delivery_method, :sendmail
 
   enable :sessions
   enable :store_location

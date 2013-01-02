@@ -23,10 +23,7 @@
               + link_to( current_account.name, url(:accounts, :edit, :id => current_account.id), :class => 'navbar-text' ) |
             = link_to 'Logout', url(:sessions, :destroy), :method => :delete, :class => 'btn btn-danger btn-small'
     .container-fluid
-      - [:error, :warning, :success, :notice].each do |type|
-        - next  if flash[type].blank?
-        .alert.alert-message{ :class => 'alert-' + (type == :notice ? :info : type).to_s,  :"data-alert" => true }
-          = flash[type]
+      = partial 'base/flash'
       - if @object && @object.dirty?
         - err = @object.errors.to_hash.select{|k,v|v.any?}.map{|k,v|v.join}.join('<br>')
         - unless err.blank?

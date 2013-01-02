@@ -9,9 +9,7 @@
     .container{ :style => 'width: 287px' }
       %h1 Swift Admin
       - form_tag(url(:sessions, :create), :class => 'form-horizontal well') do
-
-        - [:error, :warning, :notice].map do |type|
-          = flash_tag(type, :class => "alert alert-error")
+        = partial 'base/flash'
 
         %legend Enter with social networks
         .control-group

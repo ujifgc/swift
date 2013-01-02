@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/ujifgc/padrino-framework.git
-  revision: 312401f94694cd12a8ee66e614c85f72d4bbde25
+  revision: f0c1873596cda075633cdfb0d97522cb41b62e4a
   specs:
     padrino (0.10.7)
       padrino-admin (= 0.10.7)
@@ -54,7 +54,7 @@ GEM
     carrierwave-datamapper (0.2.1)
       carrierwave (~> 0.6.0)
       dm-core (~> 1.1)
-    data_objects (0.10.10)
+    data_objects (0.10.11)
       addressable (~> 2.1)
     dm-aggregates (1.2.0)
       dm-core (~> 1.2.0)
@@ -82,8 +82,8 @@ GEM
       uuidtools (~> 2.1)
     dm-validations (1.2.0)
       dm-core (~> 1.2.0)
-    do_mysql (0.10.10)
-      data_objects (= 0.10.10)
+    do_mysql (0.10.11)
+      data_objects (= 0.10.11)
     fastercsv (1.5.5)
     haml (3.1.7)
     hashie (1.2.0)
@@ -92,7 +92,7 @@ GEM
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
     i18n (0.6.1)
-    json (1.7.5)
+    json (1.7.6)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)

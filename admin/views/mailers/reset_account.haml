@@ -1,1 +1,5 @@
-﻿Код сброса пароля #{@code}
+﻿Введите код сброса пароля #{@code}
+%br
+или перейдите по ссылке
+%a{ :href => "http://#{@host}/admin/accounts/reset?_method=post&email=#{@login}&reset=#{@code}" }
+  сбросить пароль
