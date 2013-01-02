@@ -22,7 +22,13 @@ class Admin < Padrino::Application
 
   set :login_page, "/admin/sessions/new"
   set :default_builder, 'AdminFormBuilder'
-  set :delivery_method, :sendmail
+
+  `which /usr/sbin/exim` #!!! FIXME this is bullcrap
+  if $?.success?
+    set :delivery_method, :smtp
+  else
+    set :delivery_method, :sendmail
+  end
 
   enable :sessions
   enable :store_location
