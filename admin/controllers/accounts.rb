@@ -51,11 +51,11 @@ Admin.controllers :accounts do
             redirect url(:base, :index)
           else
             flash.now[:error] = pat('account.save_failed')
-            render 'accounts/reset', :layout => false
+            render 'accounts/reset', :layout => 'login'
           end
         else
           flash.now[:error] = pat('account.code_wrong')
-          render 'accounts/reset', :layout => false
+          render 'accounts/reset', :layout => 'login'
         end              
       else
         mail_subject = I18n.t('padrino.admin.account.mail.reset_account_title', :host => host)
@@ -71,11 +71,11 @@ Admin.controllers :accounts do
           body render 'reset_account'
         end
         flash.now[:notice] = pat('account.reset_initiated')
-        render 'accounts/reset', :layout => false
+        render 'accounts/reset', :layout => 'login'
       end
     else
-      flash.now[:error] = pat('account.doesnt_exist')  if params.delete('email')
-      render 'accounts/reset', :layout => false
+      flash.now[:notice] = pat('account.doesnt_exist')  if params.delete('email')
+      render 'accounts/reset', :layout => 'login'
     end
   end
 

@@ -35,6 +35,14 @@ Admin.controllers :options do
 
   put :update, :with => :id do
     @object = Option.get(params[:id])
+
+    val = params[:option].delete 'value'
+    params[:option]['value'] = begin
+      eval(val)
+    rescue Exception
+      val
+    end
+    
     if @object.update(params[:option])
       flash[:notice] = pat('option.updated')
       redirect url(:options, :index)

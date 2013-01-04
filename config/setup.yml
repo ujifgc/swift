@@ -30,3 +30,4 @@ Code:
     html: '<div class="right">[content]</div>'
     placeholder:
     is_single: 0
+    

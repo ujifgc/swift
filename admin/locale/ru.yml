@@ -78,10 +78,25 @@ ru:
         mail:
           reset_account_title: "Сброс пароля панели управления %{host}"
           reset_account_done_title: "Пароль панели управления %{host} сброшен"
-        doesnt_exist: Нет такого пользователя
-        reset_account_done: Пароль сброшен. Новый пароль отправлен вам на почту
-        code_wrong: Неверный или старый код
-        reset_initiated: "Код сброса отправлен<br>Проверьте почту и спам"
+        doesnt_exist: Такой почты нет в базе<br><small>Простите</small>
+        reset_account_done: Пароль успешно сброшен. Новый пароль отправлен вам на почту
+        code_wrong: "Неверный или старый код<br>Проверьте-ка почту и спам"
+        reset_initiated: "Код сброса пароля отправлен<br>Проверьте почту и спам"
+        reset_title: Забылся пароль?
+        reset_email: Адрес почты
+        reset_code: код сброса
+        reset_instruction: Укажите адрес электронной почты, который вы используете для входа на сайт
+        reset_do: Сбросить
+        reset_send: Отправить
+        reset_back: Уже не надо
+      login:
+        title: Панель управления сайтом
+        social: Войти через сети
+        obsolete: или логин и пароль
+        wrong_password: Неверный логин или пароль
+        forgot: вспомнить пароль
+        signin: Лады
+
   group:
     admin: Администратор
     designer: Дизайнер

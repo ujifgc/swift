@@ -1,0 +1,14 @@
+/*
+ *= require ./bootstrap
+ *= require ./admin/96-monkey
+ */
+
+legend {
+  margin-bottom: 14px;
+}
+legend + .control-group {
+  margin-top: 14px;
+}
+.alert {
+  padding-right: 14px;
+}

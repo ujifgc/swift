@@ -7,4 +7,9 @@ namespace :se do
     load 'config/setup.rb'
   end
 
+  desc "grow database for se"
+  task :grow => :environment do
+    load 'config/grow.rb'
+  end
+
 end

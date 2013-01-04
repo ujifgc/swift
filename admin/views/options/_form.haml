@@ -1,3 +1,4 @@
+= f.input :id
 = f.input :title
-= f.input :text, :as => :text, :markdown => true
+= f.input :value, :as => :text, :value => @object.json['value'].kind_of?(String) ? "\"#{@object.json['value']}\"" : @object.json['value']
 = f.submits

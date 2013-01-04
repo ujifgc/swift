@@ -1,21 +1,26 @@
 Admin.controllers :sessions do
+  layout 'login'
 
   get :new do
-    render "/sessions/new", nil, :layout => false
+    render "/sessions/new", nil
+  end
+
+  get :create do
+    redirect url(:sessions, :new)
   end
 
   post :create do
-    if account = Account.authenticate(params[:email], params[:password])
-      set_current_account(account)
-      redirect_back_or_default url(:base, :index)
-    elsif Padrino.env == :development && params[:bypass]
-      account = Account.first :name => params[:bypass], :surname => 'group'
+    account = Account.authenticate(params[:email], params[:password])
+    if Padrino.env == :development && params[:bypass]
+      account ||= Account.first :name => params[:bypass], :surname => 'group'
+    end
+    if account
       set_current_account(account)
       redirect_back_or_default url(:base, :index)
     else
-      params[:email], params[:password] = h(params[:email]), h(params[:password])
-      flash[:warning] = "Login or password wrong."
-      redirect url(:sessions, :new)
+      params.delete 'password'
+      flash.now[:error] = pat('login.wrong_password')
+      render 'sessions/new'
     end
   end
 

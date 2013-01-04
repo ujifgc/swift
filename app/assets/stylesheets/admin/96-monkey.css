@@ -181,3 +181,8 @@ input:-moz-placeholder {
 .controls.form-inline .radio, .controls.form-inline > .checkbox {
   padding-top: 5px;
 }
+
+/* dont wrap words in the header of login container */
+.login h4 small {
+  white-space: nowrap;
+}
