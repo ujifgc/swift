@@ -27,7 +27,7 @@ Admin.controllers :cat_groups do
     @object = CatGroup.new(params[:cat_group])
     if @object.save
       flash[:notice] = pat('cat_group.created')
-      redirect url(:cat_groups, :edit, :id => @object.id)
+      redirect url(:cat_groups, :edit, :id => @object.id) #!!! FIXME should load fields
     else
       render 'cat_groups/new'
     end
@@ -54,7 +54,7 @@ Admin.controllers :cat_groups do
     end
     if @object.save
       flash[:notice] = pat('cat_group.updated')
-      redirect url(:cat_groups, :index)
+      redirect url_after_save
     else
       render 'cat_groups/edit'
     end

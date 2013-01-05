@@ -22,7 +22,7 @@ Admin.controllers :codes do
     @object = Code.new(params[:code])
     if @object.save
       flash[:notice] = pat('code.created')
-      redirect url(:codes, :index)
+      redirect url_after_save
     else
       render 'codes/new'
     end
@@ -37,7 +37,7 @@ Admin.controllers :codes do
     @object = Code.get(params[:id])
     if @object.update(params[:code])
       flash[:notice] = pat('code.updated')
-      redirect url(:codes, :index)
+      redirect url_after_save
     else
       render 'codes/edit'
     end

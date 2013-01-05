@@ -30,7 +30,7 @@ Admin.controllers :news_events do
     @object = NewsEvent.new(params[:news_event])
     if @object.save
       flash[:notice] = pat('news_event.created')
-      redirect url(:news_events, :index)
+      redirect url_after_save
     else
       render 'news_events/new'
     end
@@ -45,7 +45,7 @@ Admin.controllers :news_events do
     @object = NewsEvent.get(params[:id])
     if @object.update(params[:news_event])
       flash[:notice] = pat('news_event.updated')
-      redirect url(:news_events, :index)
+      redirect url_after_save
     else
       render 'news_events/edit'
     end

@@ -1,12 +1,12 @@
 = partial 'base/index_operations'
 %ul.nav.nav-pills.folders
-  - klass = params[:folder].blank? && 'active'
+  - klass = params[:folder_id].present? || 'active'
   %li{ :class => klass }
     = link_to pat(:all), url(:images, :index)
   - current_account.get_folders.with(:images).each do |folder|
-    - klass = folder.slug == params[:folder] && 'active'
+    - klass = folder.id == params[:folder_id].to_i && 'active'
     %li{ :class => klass }
-      = link_to folder.title, url(:images, :index, :folder => folder.slug)
+      = link_to folder.title, url(:images, :index, :folder_id => folder.id)
 %form.inner.multiple#multiple-images{ :action => url(:images, :index)/:multiple, :method => :post }
   %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead

@@ -22,7 +22,7 @@ Admin.controllers :blocks do
     @object = Block.new(params[:block])
     if @object.save
       flash[:notice] = pat('block.created')
-      redirect url(:blocks, :index)
+      redirect url_after_save
     else
       render 'blocks/new'
     end
@@ -37,7 +37,7 @@ Admin.controllers :blocks do
     @object = Block.get(params[:id])
     if @object.update(params[:block])
       flash[:notice] = pat('block.updated')
-      redirect url(:blocks, :index)
+      redirect url_after_save
     else
       render 'blocks/edit'
     end

@@ -41,7 +41,7 @@ Admin.controllers :news_articles do
     @object = NewsArticle.new(params[:news_article])
     if @object.save
       flash[:notice] = pat('news_article.created')
-      redirect url(:news_articles, :index)
+      redirect url_after_save
     else
       render 'news_articles/new'
     end
@@ -55,7 +55,7 @@ Admin.controllers :news_articles do
   put :update, :with => :id do
     if @object.update(params[:news_article])
       flash[:notice] = pat('news_article.updated')
-      redirect url(:news_articles, :index)
+      redirect url_after_save
     else
       render 'news_articles/edit'
     end

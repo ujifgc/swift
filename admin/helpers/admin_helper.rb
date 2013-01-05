@@ -1,4 +1,51 @@
 Admin.helpers do
+
+  ICONS = {
+  # operations
+    :delete    => 'remove',
+    :publish   => 'ok',
+    :unpublish => 'ban-circle',
+    :list      => 'list',
+    :new       => 'plus',
+    :edit      => 'edit',
+    :bind      => 'magnet',
+
+  # modules
+    :pages     => 'book',
+    :images    => 'picture',
+    :assets    => 'file',
+    :blocks    => 'list-alt',
+    :folders   => 'folder-open',
+
+    :news_articles => 'bookmark',
+    :news_rubrics  => 'th-large',
+    :news_events   => 'flag',
+
+    :forms_cards   => 'inbox',
+    :forms_results => 'folder-close',
+    :forms_stats   => 'check',
+
+    :cat_cards  => 'inbox',
+    :cat_nodes  => 'folder-close',
+    :cat_groups => 'tag',
+
+    :fragments => 'th',
+    :layouts   => 'cog',
+    :elements  => 'cog',
+
+    :accounts  => 'user',
+    :codes     => 'font',
+    :options   => 'wrench',
+
+    :archives    => 'sr-archives',
+    :funds       => 'sr-funds',
+    :inventories => 'sr-inventories',
+    :units       => 'sr-units',
+
+    :uploads     => 'upload',
+    :utilities   => 'refresh',
+  }
+
   def mk_edit( target )
     link_to( target.title, url(target.class.storage_name.to_sym, :edit, :id => target.id), :class => :edit )
   end
@@ -14,7 +61,9 @@ Admin.helpers do
     content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'ok' : 'ban-circle') ) + ' '
   end
 
-load 'icons.rb'
+  def mk_icon( op, white = nil )
+    content_tag( :i, '', :class => 'icon-'+(ICONS[op]||'warning-sign')+(white ? ' icon-white' : '') ) + ' '
+  end
 
   def mk_glyph( s, opt = {} )
     s = s.to_s
@@ -75,6 +124,14 @@ load 'icons.rb'
       ret += tree_flat(leaf[:child])
     end
     ret.compact
+  end
+
+  def url_after_save
+    if params[:apply]
+      url(@models, :edit, @object.id)
+    else
+      url(@models, :index)
+    end
   end
 
 end

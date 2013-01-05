@@ -24,7 +24,7 @@ Admin.controllers :cat_nodes do
     @object = CatNode.new(params[:cat_node])
     if @object.save
       flash[:notice] = pat('cat_node.created')
-      redirect url(:cat_nodes, :edit, :id => @object.id)
+      redirect url(:cat_nodes, :edit, :id => @object.id) #!!! FIXME should load actual fields on :new, maybe xhr
     else
       render 'cat_nodes/new'
     end
@@ -39,7 +39,7 @@ Admin.controllers :cat_nodes do
     @object = CatNode.get(params[:id])
     if @object.update(params[:cat_node])
       flash[:notice] = pat('cat_node.updated')
-      redirect url(:cat_nodes, :index)
+      redirect url_after_save
     else
       render 'cat_nodes/edit'
     end

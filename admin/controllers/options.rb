@@ -22,7 +22,7 @@ Admin.controllers :options do
     @object = Option.new(params[:option])
     if @object.save
       flash[:notice] = pat('option.created')
-      redirect url(:options, :index)
+      redirect url_after_save
     else
       render 'options/new'
     end
@@ -45,7 +45,7 @@ Admin.controllers :options do
     
     if @object.update(params[:option])
       flash[:notice] = pat('option.updated')
-      redirect url(:options, :index)
+      redirect url_after_save
     else
       render 'options/edit'
     end

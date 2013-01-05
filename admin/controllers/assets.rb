@@ -2,7 +2,7 @@ Admin.controllers :assets do
 
     
   before :edit, :update, :destroy do
-    @object = Asset.get(params[:id])
+    @object = Asset.get(params[:id].to_i)
     unless @object
       flash[:error] = pat('object.not_found')
       redirect url(:assets, :index)
@@ -11,9 +11,7 @@ Admin.controllers :assets do
 
   get :index do
     filter = {}
-    unless params[:folder].blank?
-      filter[:folder] = Folder.by_slug params[:folder]
-    end
+    filter[:folder_id] = params[:folder_id].to_i  if params[:folder_id]
     @objects = Asset.all filter
     render 'assets/index'
   end
@@ -41,7 +39,7 @@ Admin.controllers :assets do
         end
       end
       flash[:notice] = pat('asset.created')
-      redirect url(:assets, :index)
+      redirect url_after_save
     else
       @object = Asset.new params[:asset]
       @object.errors[:file] = [pat('error.select_file')]
@@ -64,7 +62,7 @@ Admin.controllers :assets do
         @object.file.recreate_versions!
         @object.save
         flash[:notice] = pat('asset.updated')
-        redirect url(:assets, :index)
+        redirect url_after_save
       else
         render 'assets/edit'
       end
@@ -74,7 +72,7 @@ Admin.controllers :assets do
         @obj = Asset.get(params[:id])
         FileUtils.mv_try oldname, Padrino.public + @obj.file.url
         flash[:notice] = pat('asset.updated')
-        redirect url(:assets, :index)
+        redirect url_after_save
       else
         render 'assets/edit'
       end

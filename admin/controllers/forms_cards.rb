@@ -23,7 +23,7 @@ Admin.controllers :forms_cards do
     @object.fill_json params, :forms_results
     if @object.save
       flash[:notice] = pat('forms_card.created')
-      redirect url(:forms_cards, :index)
+      redirect url_after_save
     else
       render 'forms_cards/new'
     end
@@ -40,7 +40,7 @@ Admin.controllers :forms_cards do
     @object.fill_json params, :forms_results
     if @object.save
       flash[:notice] = pat('forms_card.updated')
-      redirect url(:forms_cards, :index)
+      redirect url_after_save
     else
       render 'forms_cards/edit'
     end

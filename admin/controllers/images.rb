@@ -10,9 +10,7 @@ Admin.controllers :images do
 
   get :index do
     filter = {}
-    unless params[:folder].blank?
-      filter[:folder] = Folder.by_slug params[:folder]
-    end
+    filter[:folder_id] = params[:folder_id].to_i  if params[:folder_id]
     @objects = Image.all filter
     render 'images/index'
   end
@@ -40,7 +38,7 @@ Admin.controllers :images do
         end
       end
       flash[:notice] = pat('image.created')
-      redirect url(:images, :index)
+      redirect url_after_save
     else
       @object = Image.new params[:image]
       @object.errors[:file] = [pat('error.select_file')]
@@ -63,7 +61,7 @@ Admin.controllers :images do
         @object.file.recreate_versions!
         @object.save
         flash[:notice] = pat('image.updated')
-        redirect url(:images, :index)
+        redirect url_after_save
       else
         render 'images/edit'
       end
@@ -73,7 +71,7 @@ Admin.controllers :images do
         @obj = Image.get(params[:id])
         FileUtils.mv_try oldname, Padrino.public + @obj.file.url
         flash[:notice] = pat('image.updated')
-        redirect url(:images, :index)
+        redirect url_after_save
       else
         render 'images/edit'
       end

@@ -21,10 +21,10 @@ Admin.controllers :cat_cards do
 
   post :create do
     @object = CatCard.new(params[:cat_card])
-    @object.fill_json params, :cat_nodes #!!!FIXME move the second param to the model
+    @object.fill_json params, :cat_nodes
     if @object.save
       flash[:notice] = pat('cat_card.created')
-      redirect url(:cat_cards, :index)
+      redirect url_after_save
     else
       render 'cat_cards/new'
     end
@@ -41,7 +41,7 @@ Admin.controllers :cat_cards do
     @object.fill_json params, :cat_nodes
     if @object.save
       flash[:notice] = pat('cat_card.updated')
-      redirect url(:cat_cards, :index)
+      redirect url_after_save
     else
       render 'cat_cards/edit'
     end

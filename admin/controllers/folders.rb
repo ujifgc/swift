@@ -22,7 +22,7 @@ Admin.controllers :folders do
     @object = Folder.new(params[:folder])
     if @object.save
       flash[:notice] = pat('folder.created')
-      redirect url(:folders, :index)
+      redirect url_after_save
     else
       render 'folders/new'
     end
@@ -46,7 +46,7 @@ Admin.controllers :folders do
         File.rename( Padrino.public / old_doc_dir, Padrino.public / new_doc_dir )  rescue nil
       end
       flash[:notice] = pat('folder.updated')
-      redirect url(:folders, :index)
+      redirect url_after_save
     else
       render 'folders/edit'
     end

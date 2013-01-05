@@ -22,7 +22,7 @@ Admin.controllers :pages do
     @object = Page.new(params[:page])
     if @object.save
       flash[:notice] = pat('page.created')
-      redirect url(:pages, :index)
+      redirect url_after_save
     else
       render 'pages/new'
     end
@@ -37,7 +37,7 @@ Admin.controllers :pages do
     @object = Page.get(params[:id])
     if @object.update(params[:page])
       flash[:notice] = pat('page.updated')
-      redirect params[:apply] ? back : url(:pages, :index)
+      redirect url_after_save
     else
       render 'pages/edit'
     end

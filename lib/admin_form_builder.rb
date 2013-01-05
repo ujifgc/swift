@@ -127,6 +127,19 @@ module Padrino
           @template.content_tag( :div, html, :class => 'form-actions bottons' )
         end
 
+        def submit( type )
+          case type
+          when :save
+            @template.submit_tag( I18n.t('padrino.admin.form.save'), :class => 'btn btn-primary', :name => 'submit' )
+          when :apply
+            @template.submit_tag( I18n.t('padrino.admin.form.apply'), :class => 'btn', :name => 'apply' )
+          when :back
+            @template.submit_tag( I18n.t('padrino.admin.form.back'), :onclick => "history.back();return false", :class => 'btn' )
+          when :delete
+            @template.submit_tag( I18n.t('padrino.admin.form.delete'), :class => 'btn btn-danger', :name => 'delete' )
+          end
+        end
+
       protected
         
         def make_caption( field )

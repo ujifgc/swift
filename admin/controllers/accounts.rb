@@ -5,8 +5,8 @@ Admin.controllers :accounts do
     gid = params[:account].delete 'group_id'
     @group = Account.get(gid)
     @group = nil  unless current_account.allowed @group.role
-    params[:account].delete 'password'  if params[:account]['password'].blank?
-    params[:account].delete 'password_confirmation'  if params[:account]['password_confirmation'].blank?
+    @password = params[:account].delete 'password'  
+    @password_confirmation = params[:account].delete 'password_confirmation'
   end
 
   get :index do
@@ -87,7 +87,7 @@ Admin.controllers :accounts do
     @object.group = @group  if @group
     if @object.save
       flash[:notice] = pat('account.created')
-      redirect url(:accounts, :index)
+      redirect url_after_save
     else
       flash.now[:notice] = pat('account.created')
       render 'accounts/new'
@@ -107,9 +107,12 @@ Admin.controllers :accounts do
     @object = Account.get(params[:id])
     @object.attributes = params[:account]
     @object.group = @group  if @group
+    @object.attribute_set :updated_at, DateTime.now
+    @object.password = @password
+    @object.password_confirmation = @password_confirmation
     if @object.save
       flash[:notice] = pat('account.updated')
-      redirect url(:accounts, :index)
+      redirect url_after_save
     else
       render 'accounts/edit'
     end

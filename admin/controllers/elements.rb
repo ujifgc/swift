@@ -22,7 +22,7 @@ Admin.controllers :elements do
     @object = Element.new(params[:element])
     if @object.save
       flash[:notice] = pat('element.created')
-      redirect url(:elements, :index)
+      redirect url_after_save
     else
       render 'elements/new'
     end
@@ -37,7 +37,7 @@ Admin.controllers :elements do
     @object = Element.get(params[:id])
     if @object.update(params[:element])
       flash[:notice] = pat('element.updated')
-      redirect url(:elements, :index)
+      redirect url_after_save
     else
       render 'elements/edit'
     end

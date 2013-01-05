@@ -19,6 +19,7 @@ gem 'dm-core', '~> 1.2.0'
 gem 'dm-mysql-adapter'
 
 gem 'padrino', :git => 'http://github.com/ujifgc/padrino-framework.git'
+#gem 'padrino', :path => '/home/ujif/pro/padrino-framework'
 
 # markdown and content parsing
 gem 'redcarpet', :git => 'http://github.com/ujifgc/redcarpet.git'

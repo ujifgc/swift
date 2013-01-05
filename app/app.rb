@@ -5,12 +5,12 @@ class Swift < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
+  register Padrino::Sprockets
 
   helpers Padrino::Helpers::EngineHelpers
 
   enable :sessions
 
-  register Padrino::Sprockets
   sprockets
 
   set :default_builder, 'SwiftFormBuilder'

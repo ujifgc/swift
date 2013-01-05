@@ -24,10 +24,9 @@ Admin.controllers :layouts do
     if @object.save
       flash[:notice] = pat('layout.created')
       File.open "#{Swift.root}/views/layouts/#{@object.id}.haml", 'w', 0644 do |file|
-        #file.write "\uFEFF"
         file.write @code.strip + "\n"
       end
-      redirect url(:layouts, :edit, :id => @object.id)
+      redirect url_after_save
     else
       render 'layouts/new'
     end
@@ -54,7 +53,7 @@ Admin.controllers :layouts do
         #file.write "\uFEFF"
         file.write @code.strip + "\n"
       end
-      redirect url(:layouts, :edit, :id => @object.id)
+      redirect url_after_save
     else
       render 'layouts/edit'
     end

@@ -14,14 +14,14 @@ Admin.controllers :<%= @orm.name_plural %> do
     @object = <%= @orm.build("params[:#{@orm.name_singular}]") %>
     if @object.save
       flash[:notice] = pat('<%= @orm.name_singular %>.created')
-      redirect url(:<%= @orm.name_plural %>, :index)
+      redirect url_after_save
     else
       render '<%= @orm.name_plural %>/new'
     end
   end
 
   before :edit, :update, :destroy do
-    @object = <%= @orm.find("params[:id]") %>
+    @object = <%= @orm.find("params[:id].to_i") %>
     unless @object
       flash[:error] = pat('object.not_found')
       redirect url(:<%= @orm.name_plural %>, :index)
@@ -35,7 +35,7 @@ Admin.controllers :<%= @orm.name_plural %> do
   put :update, :with => :id do
     if @object.update(params[:<%= @orm.name_singular %>])
       flash[:notice] = pat('<%= @orm.name_singular %>.updated')
-      redirect url(:<%= @orm.name_plural %>, :index)
+      redirect url_after_save
     else
       render '<%= @orm.name_plural %>/edit'
     end

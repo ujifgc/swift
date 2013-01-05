@@ -22,7 +22,7 @@ Admin.controllers :news_rubrics do
     @object = NewsRubric.new(params[:news_rubric])
     if @object.save
       flash[:notice] = pat('news_rubric.created')
-      redirect url(:news_rubrics, :index)
+      redirect url_after_save
     else
       render 'news_rubrics/new'
     end
@@ -37,7 +37,7 @@ Admin.controllers :news_rubrics do
     @object = NewsRubric.get(params[:id])
     if @object.update(params[:news_rubric])
       flash[:notice] = pat('news_rubric.updated')
-      redirect url(:news_rubrics, :index)
+      redirect url_after_save
     else
       render 'news_rubrics/edit'
     end

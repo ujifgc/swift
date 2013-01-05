@@ -12,6 +12,7 @@ ru:
       edit: Изменить
       save: Сохранить
       cancel: Отменить
+      close: Закрыть
       ok: Лады
       modules:
         content: Содержимое сайта
@@ -95,7 +96,7 @@ ru:
         obsolete: или логин и пароль
         wrong_password: Неверный логин или пароль
         forgot: вспомнить пароль
-        signin: Лады
+        signin: Войти
 
   group:
     admin: Администратор

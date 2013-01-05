@@ -22,9 +22,12 @@ Padrino.before_load do
 
   Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
   Padrino.require_dependencies("#{Padrino.root}/lib/sr-*.rb")
+
   DataMapper::Model.append_extensions(SwiftDatamapper::ClassMethods)
   DataMapper::Model.append_inclusions(SwiftDatamapper::InstanceMethods)
+
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+
   $renderer = Redcarpet::Render::HTML.new :hard_wrap => true
   $markdown = Redcarpet::Markdown.new $renderer, :autolink => true, :space_after_headers => true, :tables => true, :strikethrough => true
 end
@@ -51,9 +54,9 @@ Padrino.after_load do
     summ = 0
     stat.each do |row|
       summ += row[1]
-      #puts "#{row[1].to_s.rjust(7)} S: #{row[0]}"
+      puts "#{row[1].to_s.rjust(7)} S: #{row[0]}"
     end
-    #puts summ.to_s.rjust(7) + ' S'
+    puts summ.to_s.rjust(7) + ' S'
   end
 
 end

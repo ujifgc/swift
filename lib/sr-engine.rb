@@ -8,15 +8,15 @@ module Padrino
         core_file = 'elements/' + name + '/core'
         view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
         catch :core_halt do
-          partial( core_file )  if File.exists?( "#{Swift.root}/views/elements/#{name}/_core.haml" )
-          partial( view_file )
+          partial( core_file, :views => Swift.views )  if File.exists?( "#{Swift.views}/elements/#{name}/_core.haml" )
+          partial( view_file, :views => Swift.views )
         end
       rescue Padrino::Rendering::TemplateNotFound => err
         "[Element '#{name}' missing #{err.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
       end
 
       def fragment( name, *args )
-        partial 'fragments/'+name, *args
+        partial 'fragments/'+name, *args, :views => Swift.views
       end
       
       def parse_vars( str )

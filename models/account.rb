@@ -6,6 +6,14 @@ class Account
   include DataMapper::Validate
   attr_accessor :password, :password_confirmation
 
+  validates_with_block :password do
+    if password == password_confirmation
+      true
+    else
+      [false, I18n.t('models.account.password.not_confirmed')]
+    end
+  end
+
   # Properties
   property :id,               Serial
   property :name,             String
@@ -37,7 +45,9 @@ class Account
   belongs_to :group, 'Account', :required => false
 
   # hookers
-  before :save, :encrypt_password
+  before :save do
+    encrypt_password
+  end
 
   before :destroy do |a|
     throw halt  unless a.group
@@ -155,7 +165,7 @@ private
   end
 
   def encrypt_password
-    self.crypted_password = ::BCrypt::Password.create(password) if password.present?
+    self.crypted_password = ::BCrypt::Password.create(password)
   end
 
 end
