@@ -11,19 +11,19 @@ Admin.helpers do
     :bind      => 'magnet',
 
   # modules
-    :pages     => 'book',
+    :pages     => 'globe',
     :images    => 'picture',
     :assets    => 'file',
     :blocks    => 'list-alt',
     :folders   => 'folder-open',
 
     :news_articles => 'bookmark',
-    :news_rubrics  => 'th-large',
+    :news_rubrics  => 'tasks',
     :news_events   => 'flag',
 
-    :forms_cards   => 'inbox',
-    :forms_results => 'folder-close',
-    :forms_stats   => 'check',
+    :forms_cards   => 'check',
+    :forms_stats   => 'signal',
+    :forms_results => 'list',
 
     :cat_cards  => 'inbox',
     :cat_nodes  => 'folder-close',

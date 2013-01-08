@@ -1,7 +1,7 @@
 MODULE_GROUPS = {
   :content => %W(pages blocks assets images folders),
   :news    => %W(news_articles news_rubrics news_events),
-  :forms   => %W(forms_cards forms_results forms_stats),
+  :forms   => %W(forms_cards forms_stats forms_results),
   :cat     => %W(cat_nodes cat_cards cat_groups),
   :design  => %W(layouts fragments elements codes),
   :admin   => %W(accounts options),
@@ -18,6 +18,33 @@ class Admin < Padrino::Application
   register Padrino::Helpers
   register Padrino::Admin::AccessControl
 
+  register Sinatra::AssetPack
+
+  assets do
+    serve '/stylesheets', from: '../assets/stylesheets'
+    serve '/javascripts', from: '../assets/javascripts'
+
+    css :login, [
+      '/stylesheets/libraries/bootstrap.css',
+      '/stylesheets/admin/96-monkey.css',
+      '/stylesheets/login.css',
+    ]
+
+    css :admin, [
+      '/stylesheets/libraries/bootstrap.css',
+      '/stylesheets/libraries/colorbox.css',
+      '/stylesheets/admin/*.css',
+    ]
+
+    js :admin, [
+      '/javascripts/libraries/*.js',
+      '/javascripts/bootstrap/*.js',
+      '/javascripts/markdown/*.js',
+      '/javascripts/fileupload/*.js',
+      '/javascripts/admin-core.js',
+    ]
+  end
+
   helpers Padrino::Helpers::EngineHelpers
 
   set :login_page, "/admin/sessions/new"
@@ -30,7 +57,8 @@ class Admin < Padrino::Application
     set :delivery_method, :sendmail
   end
 
-  enable :sessions
+  use Rack::Session::DataMapper, :key => 'swift.sid', :path => '/', :secret => 'Dymp1Shnaneu', :expire_after => 1.month
+
   enable :store_location
 
   use OmniAuth::Builder do
@@ -74,8 +102,8 @@ class Admin < Padrino::Application
     role.project_module :news_events, '/news_events'
 
     role.project_module :forms_cards, '/forms_cards'
-    role.project_module :forms_results, '/forms_results'
     role.project_module :forms_stats, '/forms_stats'
+    role.project_module :forms_results, '/forms_results'
 
     role.project_module :cat_nodes,  '/cat_nodes'
     role.project_module :cat_cards,  '/cat_cards'
@@ -94,8 +122,8 @@ class Admin < Padrino::Application
     role.project_module :news_events, '/news_events'
 
     role.project_module :forms_cards, '/forms_cards'
-    role.project_module :forms_results, '/forms_results'
     role.project_module :forms_stats, '/forms_stats'
+    role.project_module :forms_results, '/forms_results'
 
     role.project_module :cat_nodes,  '/cat_nodes'
     role.project_module :cat_cards,  '/cat_cards'
@@ -120,8 +148,8 @@ class Admin < Padrino::Application
     role.project_module :news_events, '/news_events'
 
     role.project_module :forms_cards, '/forms_cards'
-    role.project_module :forms_results, '/forms_results'
     role.project_module :forms_stats, '/forms_stats'
+    role.project_module :forms_results, '/forms_results'
 
     role.project_module :cat_nodes,  '/cat_nodes'
     role.project_module :cat_cards,  '/cat_cards'

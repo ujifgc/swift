@@ -99,6 +99,7 @@
   bindCatCards();
   bindDatetime();
   bindColorbox();
+  bindMarkdowns();
   $('a[data-toggle=modal]').on('click', showPopup);
   $('textarea.resizable').TextAreaResizer();
   
@@ -119,6 +120,23 @@ bindColorbox = function() {
   });
   $(document).bind('cbox_closed', function(){
     $(document.body).css('overflow-y', 'auto');
+  });
+};
+
+bindMarkdowns = function() {
+  $('textarea.markdown').each( function() {
+    var id = this.id, old = false;
+    if (id.match(/wmd-input/)) {
+      id = id.replace('wmd-input-', '');
+      old = true;
+    }else{
+      this.id = 'wmd-input-'+id;
+    }
+    $(this).addClass('wmd-input');
+    if (!old) $(this).before('<div id="wmd-button-bar-'+id+'"></div>');
+    this.wconverter = Markdown.getSanitizingConverter();
+    this.weditor = new Markdown.Editor(this.wconverter, '-'+id);
+    this.weditor.run();
   });
 };
 
@@ -611,42 +629,5 @@ bindBlockType = function() {
   $(function() {
     select.change();
   });
-  
-  //file uploads
-  bindFileMultiple = function(id) {
-  var input = $('input[multiple]');
-  var upload_id = 0;
-  input.fileupload({
-    dataType: 'json',
-    add: function(e, data) {
-      var f = data.files[0];
-      html = '<div class="accordion-group">' + 
-      '<div class="accordion-heading"><div class="progress pull-right"><div class="bar" style="width:0%"></div></div><a class="accordion-toggle" data-toggle="collapse" data-parent="#' + id + '" href="#' + f.name.replace(/\./,'DOT') + '">' + f.name + '</a></div>' + 
-      '</div>';
-      data.context = $(html).appendTo($('.fileupload-list'));
-      data.submit();
-    },
-    done: function (e, data) {
-      data.context.find('.bar').css('width', '100%');
-      upload_id = data.result[0].upload_id;
-      $.get('/admin/uploads/asset/'+data.result[0].upload_id+'/'+data.result[0].id, function(html) {
-        data.context.fadeOut(function() {
-          data.context.replaceWith(html);
-        });
-        bindCollapser();
-      });
-    },
-    progress: function (e, data) {
-      var bar = data.context.find('.bar');
-      bar.css('width', parseInt(100 * data.loaded / data.total, 10) + '%');
-      bar.text(data.loaded);
-    },
-    stop: function (e) {
-      setTimeout( function() {
-        window.location = '/admin/uploads/edit/' + upload_id;
-      }, 1000);
-    }
-  });
-  bindCollapser();
-};
+
 };

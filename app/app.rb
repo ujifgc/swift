@@ -1,24 +1,38 @@
 #coding:utf-8
-STATIC_FOLDERS = %W(doc images img)
+STATIC_FOLDERS = %W(doc images img stylesheets javascripts)
 
 class Swift < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
-  register Padrino::Sprockets
+  register Sinatra::AssetPack
+
+  assets do
+    serve '/stylesheets', from: '../assets/stylesheets'
+    serve '/javascripts', from: '../assets/javascripts'
+
+    css :app, [
+      '/stylesheets/libraries/bootstrap.css',
+      '/stylesheets/libraries/colorbox.css',
+      '/stylesheets/elements/*.css',
+      '/stylesheets/app/*.css',
+    ]
+
+    js :app, [
+      '/javascripts/libraries/01-jquery.js',
+      '/javascripts/libraries/02-jquery-ujs.js',      
+      '/javascripts/libraries/07-jquery.colorbox.js',
+      '/javascripts/app-core.js',
+    ]
+  end
 
   helpers Padrino::Helpers::EngineHelpers
 
-  enable :sessions
-
-  sprockets
+  use Rack::Session::DataMapper, :key => 'swift.sid', :path => '/', :secret => 'Dymp1Shnaneu', :expire_after => 1.month
 
   set :default_builder, 'SwiftFormBuilder'
 
-  before do
-    @swift = init_instance
-    not_found  if @swift[:not_found]
-  end
+  # serve assets with AssetPack
 
   # if web server can't statically serve image request, regenerate the image version
   # and tell browser to lurk again with new timestamp
@@ -41,6 +55,9 @@ class Swift < Padrino::Application
 
   # if no controller got the request, try finding some content in the sitemap
   get_or_post = lambda do
+    @swift = init_instance
+
+    not_found  if @swift[:not_found]
     not_found  unless @page
 
     if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
@@ -89,7 +106,7 @@ protected
     path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1
     swift[:uri] = path
     path = path.gsub /\/\d+/, ''
-    page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
+    page = Page.published.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
 
     if page && path.length >= page.path.length

@@ -1,0 +1,50 @@
+h5.nav-header {
+  position: relative;
+  display:block;
+  padding:6px 15px;
+  Rfont-size:12px;
+  Rfont-weight:bold;
+  Rline-height:18px;
+  color:#999999;
+  text-shadow:0 1px 0 rgba(255, 255, 255, 0.5);
+  Rtext-transform:uppercase;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  margin: 0 10px 6px 0;
+  cursor: pointer;
+}
+h5.nav-header:after {
+  content: "";
+  width:6px;height:6px;
+  border-top: 3px solid #000;
+  border-right: 3px solid #000;
+  Rbackground-image:url(/images/glyphicons-halflings.png);
+  display: block;
+  position: absolute;
+  right: 10px; top: 9px;
+  Rbackground-position:-288px -120px;
+
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  -moz-transition: all 0.3s ease-in-out;
+
+  transform: rotate(135deg);
+  transition: all 0.3s ease-in-out;
+}
+h5.nav-header.collapsed {
+  border-color: #ddd;
+}
+h5.nav-header.collapsed:after {
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 10px;
+}
+h5.nav-header.collapsed:hover:after {
+  -moz-transform: rotate(70deg);
+  transform: rotate(70deg);
+}
+h5.nav-header + .nav-tabs > li > a {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}

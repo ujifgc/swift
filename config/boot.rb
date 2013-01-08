@@ -54,9 +54,9 @@ Padrino.after_load do
     summ = 0
     stat.each do |row|
       summ += row[1]
-      puts "#{row[1].to_s.rjust(7)} S: #{row[0]}"
+      #puts "%.6f S: #{row[0]}" % row[1]
     end
-    puts summ.to_s.rjust(7) + ' S'
+    #puts summ.to_s.rjust(7) + ' S'
   end
 
 end

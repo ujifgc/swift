@@ -24,6 +24,11 @@ Admin.controllers :sessions do
     end
   end
 
+  get :destroy do
+    set_current_account(nil)
+    redirect url(:sessions, :new)
+  end
+
   delete :destroy do
     set_current_account(nil)
     redirect url(:sessions, :new)

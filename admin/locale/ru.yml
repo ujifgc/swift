@@ -13,7 +13,11 @@ ru:
       save: Сохранить
       cancel: Отменить
       close: Закрыть
+      all: Все
+      logout: Выйти
       ok: Лады
+      dashboard:
+        title: Панель управления
       modules:
         content: Содержимое сайта
         admin: Настройки
@@ -42,7 +46,7 @@ ru:
         cat_nodes: Ресурсы
         cat_cards: Карточки
         cat_groups: Группы
-        forms_cards: Карточки
+        forms_cards: Формы
         forms_results: Записи
         forms_stats: Результаты
         accounts: Пользователи
@@ -97,6 +101,9 @@ ru:
         wrong_password: Неверный логин или пароль
         forgot: вспомнить пароль
         signin: Войти
+      page:
+        repositioned: Позиция страницы изменилась
+        updated: Изменения сохранены
 
   group:
     admin: Администратор

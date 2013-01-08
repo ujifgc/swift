@@ -7,17 +7,16 @@
     %title Eaur Admin
     /[if lt IE 9]
       %script{ :src => "http://html5shim.googlecode.com/svn/trunk/html5.js" }
-    = stylesheet_link_tag '/assets/bootstrap'
-    = stylesheet_link_tag '/assets/admin'
-    %script{ :src => '/assets/admin-libraries.js' }
-    %script{ :src => '/assets/admin-core.js' }
+    = css :admin
+    = js :admin
 
   %body
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          = link_to 'Swift Admin', url(:base_index), :class => 'brand'
+          = link_to Option(:site_title), url(:base_index), :class => 'brand'
           .pull-right
+            = link_to pat('site'), '/'
             %span.navbar-text= current_account.role_title
             = mk_glyph( :user, :white => true )                                                                            |
               + link_to( current_account.name, url(:accounts, :edit, :id => current_account.id), :class => 'navbar-text' ) |

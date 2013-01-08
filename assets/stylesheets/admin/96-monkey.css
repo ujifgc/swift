@@ -127,7 +127,7 @@ input[type="text"], input[type="password"], .ui-autocomplete-input, textarea, .u
 
 /* bootstrap fix 2.1.0 icons on active nav */
 .nav-tabs > .active > a > [class^="icon-"], .nav-tabs > .active > a > [class*=" icon-"] {
-  background-image: url("../images/glyphicons-halflings.png");
+  background-image: url("/images/glyphicons-halflings.png");
 }
 
 /* pull floated inline button a bit up */
