@@ -13,3 +13,5 @@ public/cache/*
 app/views/fragments/*
 app/views/layouts/*
 config/database.yml
+assets/stylesheets/app/*
+assets/javascripts/app/*

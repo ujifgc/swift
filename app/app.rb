@@ -12,17 +12,15 @@ class Swift < Padrino::Application
     serve '/javascripts', from: '../assets/javascripts'
 
     css :app, [
-      '/stylesheets/libraries/bootstrap.css',
-      '/stylesheets/libraries/colorbox.css',
       '/stylesheets/elements/*.css',
       '/stylesheets/app/*.css',
     ]
 
     js :app, [
       '/javascripts/libraries/01-jquery.js',
-      '/javascripts/libraries/02-jquery-ujs.js',      
       '/javascripts/libraries/07-jquery.colorbox.js',
-      '/javascripts/app-core.js',
+      '/javascripts/elements/*.js',
+      '/javascripts/app/*.js',
     ]
   end
 

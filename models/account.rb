@@ -1,4 +1,6 @@
 #coding:utf-8
+require 'bcrypt'
+
 ACCOUNT_GROUPS = %W(admin designer auditor editor robot user)
 
 class Account
