@@ -8,7 +8,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'haml'
 
 # Database requirements
-gem 'bcrypt-ruby', :require => false
+gem 'bcrypt-ruby'
 gem 'dm-types', '~> 1.2.0'
 gem 'dm-validations'
 gem 'dm-timestamps'
