@@ -127,7 +127,7 @@ module Padrino
           @template.content_tag( :div, html, :class => 'form-actions bottons' )
         end
 
-        def submit( type )
+        def submit( type, options = {} )
           case type
           when :save
             @template.submit_tag( I18n.t('padrino.admin.form.save'), :class => 'btn btn-primary', :name => 'submit' )
@@ -137,6 +137,8 @@ module Padrino
             @template.submit_tag( I18n.t('padrino.admin.form.back'), :onclick => "history.back();return false", :class => 'btn' )
           when :delete
             @template.submit_tag( I18n.t('padrino.admin.form.delete'), :class => 'btn btn-danger', :name => 'delete' )
+          else
+            super type, options
           end
         end
 
