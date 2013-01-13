@@ -69,6 +69,7 @@ class Admin < Padrino::Application
   access_control.roles_for :any do |role|
     role.protect "/"
     role.allow "/sessions"
+    role.allow "/assets"
     role.allow "/auth"
     role.allow "/accounts/reset"
   end
@@ -166,8 +167,6 @@ class Admin < Padrino::Application
 
   # hookers
   before do
-     #I18n.reload!  if Padrino.env == :development
-
     params.each do |k,v|
       next  unless v.kind_of? Hash
       params[k].delete 'created_by_id'

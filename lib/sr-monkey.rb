@@ -275,7 +275,7 @@ module Rack
         session.data = session_data
         if options[:expire_after]
           new_at = Time.now + options[:expire_after]
-          session.expires_at = new_at  if new_at - session.expires_at > options[:expire_after] / 2
+          session.expires_at = new_at  if session.expires_at.nil? || (new_at - session.expires_at > options[:expire_after] / 2)
         else
           session.expires_at = nil
         end
@@ -298,5 +298,10 @@ class Sinatra::AssetPack::Package
     files.inject('') do |content, file|
       content << File.read(file)
     end
+  end
+  def production_path
+    app_root = Padrino.mounted_apps.find{ |app| app.name == @assets.app.name }.uri_root
+    asset_path = add_cache_buster( @path, *files )
+    app_root == '/' ? asset_path : ( app_root + asset_path )
   end
 end

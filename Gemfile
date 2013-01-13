@@ -1,7 +1,10 @@
 source :rubygems
 
+group :development, :test do
+  gem 'rake'
+end
+
 # Project requirements
-gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
@@ -15,7 +18,7 @@ gem 'dm-timestamps'
 gem 'dm-migrations', :require => false
 gem 'dm-constraints'
 gem 'dm-aggregates'
-gem 'dm-core', '~> 1.2.0'
+gem 'dm-core', '~> 1.2.0' #, :path => '/home/ujif/pro/dm-core'
 gem 'dm-mysql-adapter'
 
 gem 'padrino', :github => 'ujifgc/padrino-framework'
@@ -25,6 +28,7 @@ gem 'redcarpet', :github => 'ujifgc/redcarpet'
 
 # asset compressing
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :github => 'ujifgc/sinatra-assetpack'
+#gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :path => '/home/ujif/pro/sinatra-assetpack'
 
 # localization
 gem 'russian'
