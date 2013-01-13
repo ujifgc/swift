@@ -15,6 +15,7 @@ ru:
       close: Закрыть
       all: Все
       logout: Выйти
+      site: На сайт
       ok: Лады
       dashboard:
         title: Панель управления
@@ -94,6 +95,7 @@ ru:
         reset_do: Сбросить
         reset_send: Отправить
         reset_back: Уже не надо
+        cannot_edit_root_group: Нельзя редактировать корневую группу
       login:
         title: Панель управления сайтом
         social: Войти через сети

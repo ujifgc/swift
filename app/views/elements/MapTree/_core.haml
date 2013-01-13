@@ -39,6 +39,4 @@
   end
 
   root = @opts[:root] || Page.published.first(:parent_id => nil)
-  $logger << @swift.inspect
-  $logger << root.inspect
   @tree = map_tree( root, 0, '' )

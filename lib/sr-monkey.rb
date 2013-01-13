@@ -110,34 +110,6 @@ class String
 
   JS_ESCAPE_MAP	= { '\\' => '\\\\', '</' => '<\/', "\r\n" => '\n', "\n" => '\n', "\r" => '\n', '"' => '\\"', "'" => "\\'" }
 
-  # !!! FIX THIS BULLSHIT and ru_up, ru_lo, ru_cap methods
-  LO = %w(а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я)
-  UP = %W(А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я)
-
-  def ru_up
-    if idx = LO.index(self)
-      UP[idx]
-    else
-      self.upcase
-    end
-  end
-
-  def ru_lo
-    if idx = UP.index(self)
-      LO[idx]
-    else
-      self.downcase
-    end
-  end
-
-  def ru_cap
-    if self.length > 0
-      self[0].ru_up + self[1..-1]
-    else
-      self
-    end
-  end
-
   # Allows to connect with `/`
   # 'foo' / :bar # => 'foo/bar'
   def / (s)
@@ -212,16 +184,12 @@ end
 
 # Makes #jo_json not to escape unicode characters with \uXXXX stuff
 module ActiveSupport::JSON::Encoding
-  class << self
-    def escape(string)
-      if string.respond_to?(:force_encoding)
-        string = string.encode(::Encoding::UTF_8, :undef => :replace).force_encoding(::Encoding::BINARY)
-      end
-      json = string.gsub(escape_regex) { |s| ESCAPED_CHARS[s] }
-      # here was scary \uXXXX pack-unpack manipulations
-      json = %("#{json}")
-      json.force_encoding(::Encoding::UTF_8) if json.respond_to?(:force_encoding)
-    end
+  def self.escape(string)
+    string = string.encode(::Encoding::UTF_8, :undef => :replace).force_encoding(::Encoding::BINARY)
+    json = string.gsub(escape_regex) { |s| ESCAPED_CHARS[s] }
+    json = %("#{json}")
+    json.force_encoding(::Encoding::UTF_8)
+    json
   end
 end
 
@@ -289,9 +257,9 @@ module Rack
 
       # gets a session data from the store by session id OR returns new session id with no data
       def get_session(env, sid)
-        if sid
-          session = DataMapperSession.first :sid => sid
-          [sid, session && session.data]
+        @last_session = if sid
+          @last_session_object = DataMapperSession.first :sid => sid
+          [sid, @last_session_object && @last_session_object.data]
         else
           [generate_sid, nil]
         end
@@ -299,10 +267,15 @@ module Rack
 
       # puts session data in the store and returns session id if successfull
       def set_session(env, sid, session_data, options)
-        session = DataMapperSession.first_or_new :sid => sid
+        session = if @last_session[1] && @last_session[0] == sid && @last_session_object
+          @last_session_object
+        else
+          DataMapperSession.first_or_new:sid => sid
+        end
         session.data = session_data
         if options[:expire_after]
-          session.expires_at = Time.now + options[:expire_after]
+          new_at = Time.now + options[:expire_after]
+          session.expires_at = new_at  if new_at - session.expires_at > options[:expire_after] / 2
         else
           session.expires_at = nil
         end
@@ -317,4 +290,13 @@ module Rack
     end
   end
 
+end
+
+# patch sinatra-assetpack not to mess with Rack::Test in production
+class Sinatra::AssetPack::Package
+  def combined
+    files.inject('') do |content, file|
+      content << File.read(file)
+    end
+  end
 end
