@@ -28,7 +28,7 @@ Padrino.before_load do
 
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
 
-  $renderer = Redcarpet::Render::HTML.new :hard_wrap => true
+  $renderer = Redcarpet::Render::HTML.new
   $markdown = Redcarpet::Markdown.new $renderer, :autolink => true, :space_after_headers => true, :tables => true, :strikethrough => true
 end
 
