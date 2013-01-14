@@ -60,7 +60,7 @@ module Padrino
 
         str.gsub!(/(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/) do |s|
           tag = $1[1..-2]
-          md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)\s+(.*)/
+          md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)((?:[\:\.\#][\w\-]*)*)\s+(.*)/
           unless md
             tags = tag.partition ' '
             code = Code.by_slug tags[0]  unless tags[0][0] == '/'
@@ -73,7 +73,8 @@ module Padrino
             end
           end
           type = md[1]
-          args, hash = parse_vars md[2]
+          identity = md[2]
+          args, hash = parse_vars md[-1]
           if hash[:title].blank?
             newtitle = if ['element', 'elem', 'lmn'].include?( type )
               args[2..-1]
@@ -82,6 +83,7 @@ module Padrino
             end.join(' ').strip
             hash[:title] = newtitle.blank? ? nil : parse_content(newtitle)
           end
+          hash[:identity] = identity  if identity
           case type
           when 'page', 'link'
             element 'PageLink', args[0], hash

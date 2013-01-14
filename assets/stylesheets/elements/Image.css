@@ -1,0 +1,23 @@
+img {
+  height: ;
+}
+img.left {
+  float: left;
+  clear: left;
+  margin-right: 0.3em
+}
+img.leftof {
+  float: left;
+  clear: none;
+  margin-right: 0.3em
+}
+img.right {
+  float: right;
+  clear: right;
+  margin-left: 0.3em
+}
+img.rightof {
+  float: right;
+  clear: none;
+  margin-left: 0.3em
+}
