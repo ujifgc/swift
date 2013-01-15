@@ -84,7 +84,7 @@ module Padrino
               ''
             end
             input = if options[:multiple]
-              file_field_tag "#{object}[#{field}][]", options
+              file_field_tag "#{object}[#{field}]", options
             else
               file_field( field, options )
             end
