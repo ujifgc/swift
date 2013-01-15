@@ -41,7 +41,7 @@ module Padrino
             end
             tag = select field, { :class => :select }.merge( options )
             parent_field = field.to_s.gsub(/_id$/,'').to_sym
-            add = if @object.class.relationships[parent_field]
+            add = if @object.class.relationships[parent_field] && options[:with_create]
               parent_model = @object.class.relationships[parent_field].parent_model 
               # !!!FIX the url
               link_to content_tag( :i, '', :class => 'icon-plus' ) + ' ' + content_tag(:u, I18n.t('padrino.admin.dialog.add_parent')), "/admin/dialogs/create_parent/?parent_model=#{parent_model}&field=#{field}", :class => 'single dialog', :'data-toggle' => :modal

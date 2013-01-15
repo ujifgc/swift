@@ -4,7 +4,7 @@ class NewsRubric
 
   property :id,       Serial
 
-  property :title,    String
+  property :title,    String, :required => true
   property :text,     Text
 
   sluggable!

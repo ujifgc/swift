@@ -128,7 +128,8 @@ module SwiftDatamapper
       belongs_to :parent, self.name, :required => false
 
       before :save do
-        self.path = self.parent ? self.parent.path + '/' + self.slug : self.slug
+        self.parent = nil  if id == parent_id
+        self.path = parent ? parent.path + '/' + slug : slug
       end
     end
 
@@ -274,7 +275,8 @@ module SwiftDatamapper
       prepend = ''
       cp = self.parent_id
       while cp do
-        cp = self.class.get(cp).parent_id
+        parent_id = self.class.get(cp).parent_id
+        cp = cp == parent_id ? nil : parent_id
         prepend += connector
       end
       "#{prepend} #{title} (#{slug})"

@@ -1,7 +1,7 @@
 - if @object.new?
   = f.input :cat_card_id, :as => :select, :selected => @object.cat_card_id, :collection => CatCard.all, :fields => [ :title, :id ], :include_blank => false
 
-= f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => CatGroup.all( :order => :path ), :fields => [ :title_tree, :id ], :include_blank => true
+= f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => CatGroup.all( :order => :path, :id.not => @object.id ), :fields => [ :title_tree, :id ], :include_blank => true
 
 = f.input :title
 = f.input :text, :as => :text, :markdown => true

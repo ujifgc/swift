@@ -2,7 +2,7 @@ class Code
   include DataMapper::Resource
 
   property :id,          Serial
-  property :title,       String
+  property :title,       String, :required => true
   property :icon,        String
   property :placeholder, String
   property :text,        Text
