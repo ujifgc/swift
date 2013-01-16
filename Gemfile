@@ -4,11 +4,13 @@ group :development, :test do
   gem 'rake'
 end
 
+# Component requirements
+gem 'tilt', :github => 'ujifgc/tilt', :branch => 'lean-and-mean', :require => ['tilt/mean', 'tilt/haml']
+gem 'slim'
+gem 'haml'
+
 # Project requirements
 gem 'sinatra-flash', :require => 'sinatra/flash'
-
-# Component requirements
-gem 'haml'
 
 # Database requirements
 gem 'bcrypt-ruby'

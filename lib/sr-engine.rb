@@ -8,7 +8,7 @@ module Padrino
         core_file = 'elements/' + name + '/core'
         view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
         catch :core_halt do
-          partial( core_file, :views => Swift.views )  if File.exists?( "#{Swift.views}/elements/#{name}/_core.haml" )
+          partial( core_file, :views => Swift.views )  if File.exists?( "#{Swift.views}/elements/#{name}/_core.slim" )
           partial( view_file, :views => Swift.views )
         end
       rescue Padrino::Rendering::TemplateNotFound => err

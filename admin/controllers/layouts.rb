@@ -23,7 +23,7 @@ Admin.controllers :layouts do
     @object = Layout.new(params[:layout])
     if @object.save
       flash[:notice] = pat('layout.created')
-      File.open "#{Swift.root}/views/layouts/#{@object.id}.haml", 'w', 0644 do |file|
+      File.open "#{Swift.root}/views/layouts/#{@object.id}.slim", 'w', 0644 do |file|
         file.write @code.strip + "\n"
       end
       redirect url_after_save
@@ -35,7 +35,7 @@ Admin.controllers :layouts do
   get :edit, :with => :id do
     @object = Layout.get(params[:id])
     @code = begin
-      File.open "#{Swift.root}/views/layouts/#{@object.id}.haml", "r:bom|utf-8" do |file|
+      File.open "#{Swift.root}/views/layouts/#{@object.id}.slim", "r:bom|utf-8" do |file|
         file.read + "\n"
       end
     rescue
@@ -49,7 +49,7 @@ Admin.controllers :layouts do
     @code = params[:layout].delete 'code'
     if @object.update(params[:layout])
       flash[:notice] = pat('layout.updated')
-      File.open "#{Swift.root}/views/layouts/#{@object.id}.haml", 'w', 0644 do |file|
+      File.open "#{Swift.root}/views/layouts/#{@object.id}.slim", 'w', 0644 do |file|
         #file.write "\uFEFF"
         file.write @code.strip + "\n"
       end
@@ -62,7 +62,7 @@ Admin.controllers :layouts do
   delete :destroy, :with => :id do
     @object = Layout.get(params[:id])
     if @object.destroy
-      #File.rm "#{Swift.root}/views/layouts/#{@object.id}.haml"
+      #File.rm "#{Swift.root}/views/layouts/#{@object.id}.slim"
       flash[:notice] = pat('layout.destroyed')
     else
       flash[:error] = pat('layout.not_destroyed')

@@ -1,7 +1,0 @@
-%dl
-  - @news_archive.each do |na|
-    %h5.date= na.date.as_date
-    %dt
-      = link_to na.title, se_url(na)
-    %dd= na.info
-

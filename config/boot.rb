@@ -20,6 +20,13 @@ Padrino.before_load do
   I18n.locale = :ru
   Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
 
+  Slim::Engine.set_default_options( {
+    :pretty => true,
+    :disable_escape => true,
+    :enable_engines => [:ruby, :javascript, :css],
+    :format => :html5
+  } )
+
   Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
   Padrino.require_dependencies("#{Padrino.root}/lib/sr-*.rb")
 

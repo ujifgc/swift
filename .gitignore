@@ -15,3 +15,4 @@ app/views/layouts/*
 config/database.yml
 assets/stylesheets/app/*
 assets/javascripts/app/*
+Gemfile.lock

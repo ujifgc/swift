@@ -1,0 +1,12 @@
+.pagination.pagination-large
+  ul
+    - @news_years.each do |ny|
+      li= link_to ny, @swift[:uri].to_s+"?year=" + ny.to_s
+.pagination
+  ul
+    - @news_months.each do |nm|
+      li
+        - if params[:year]
+          = link_to @monthNames[nm], @swift[:uri].to_s + "?year="+params[:year]+"&month=" + nm.to_s
+        - else
+          = link_to @monthNames[nm], @swift[:uri].to_s + "?year="+Date.today.year.to_s+"&month=" + nm.to_s

@@ -1,0 +1,47 @@
+ruby:
+  @max_level = 0
+  def sitemap(from, level, prefix )
+    pages = Page.published.all( :parent => from, :order => [:position, :path])
+    len = pages.length
+    k = 1
+    site_map = []
+
+    pages.each do |page|
+      ensued = @swift[:path_ids].include? page.id
+      master = level == 0
+
+      leaf = {}
+      
+      leaf[:title] = page.title
+      leaf[:href] = page.path
+      
+      leaf[:class] = master ? 'master' : 'slave'
+      leaf[:class] += ' active'  if ensued
+
+      
+      child = []
+      child = sitemap( page, level + 1, prefix + '/' + page.slug )
+
+      if child
+        leaf[:class] += ' open'
+        leaf[:child] = child
+      else
+        leaf[:class] += ' leaf'  if ensued && !master
+      end
+
+      leaf[:class] += ' first'  if k == 1
+      leaf[:class] += ' last'   if k == len
+      leaf[:class] += ' level-' + level.to_s
+      
+      @max_level = level  if level > @max_level
+      
+      k += 1
+      site_map << leaf
+    end
+
+    site_map
+  end
+  
+  root = @opts[:root] || Page.published.first(:parent_id => nil)
+
+  @site_map = sitemap( root, 0, '' )

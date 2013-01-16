@@ -1,0 +1,14 @@
+.thumbnails
+  - @galleries.each do |g|
+    .thumbnail
+      - bonds = Bond.bonds_for g
+      - img = g.images.sample :folder => g
+      - bonds.map do |bond|
+        - if bond.child_model == 'Image'
+          - img = bond.child
+      a href=('/gallery/' + g.slug)
+        = image_tag img.file.fill_thumb.url
+      .caption
+        = link_to g.title, '/gallery/' + g.slug
+        br
+        = g.text

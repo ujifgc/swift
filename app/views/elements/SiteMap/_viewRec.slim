@@ -1,0 +1,10 @@
+- site_map ||= @site_map
+ul.nav.nav-list id=@rand_id
+  - @rand_id = nil
+  - site_map.each do |map|
+    - if map[:title]
+      li class=map[:class]
+        a href=map[:href] class=map[:class]
+          = map[:title]
+        - if map[:child].any?
+          = partial 'elements/SiteMap/viewRec', :locals => { :site_map => map[:child] }

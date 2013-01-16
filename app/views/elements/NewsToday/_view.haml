@@ -1,8 +1,0 @@
-%dl
-  %span{ :class => 'label label-info'}
-    = 'Сегодня' + Date.today.as_date.to_s
-  - @news.each do |o|
-    %dt
-      = link_to o.title, se_url(o)
-    %dd= o.info
-  -   

@@ -1,7 +1,0 @@
-.thumbnail
-  %a{ :href => '/gallery/' + @folder.slug}
-    =image_tag @image.file.thumb.url
-  .caption
-    = @image.title
-    %br
-    = link_to @folder.title,  '/gallery/' + @folder.slug

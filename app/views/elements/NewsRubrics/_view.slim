@@ -1,0 +1,8 @@
+.article
+  dl
+    - @rubrics.each do |rubric|
+      dt class=(rubric.slug == @swift[:slug] && 'active')
+        = link_to rubric.title, "#{@swift[:module_root]}/#{rubric.slug}"
+      - unless rubric.text.blank?
+        dd
+          = rubric.text

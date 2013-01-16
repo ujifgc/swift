@@ -19,7 +19,7 @@ class Fragment
   end
 
   after :create do
-    FileUtils.touch "#{Swift.root}/views/fragments/_#{id}.haml"
+    FileUtils.touch "#{Swift.root}/views/fragments/_#{id}.slim"
   end
 
   def self.fragments
