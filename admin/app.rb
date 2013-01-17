@@ -72,6 +72,8 @@ class Admin < Padrino::Application
     role.allow "/assets"
     role.allow "/auth"
     role.allow "/accounts/reset"
+    role.allow "/accounts/edit"
+    role.allow "/accounts/update"
   end
 
   access_control.roles_for :editor do |role|

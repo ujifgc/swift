@@ -96,6 +96,10 @@ Admin.controllers :accounts do
 
   get :edit, :with => :id do
     @object = Account.get(params[:id])
+    if !@object || ( @object.id != current_account.id && !current_account.allowed?(:admin) )
+      flash[:notice] = pat('account.dont_hack')
+      redirect url(:accounts, :edit, current_account.id)
+    end
     unless @object.group
       flash[:error] = pat('account.cannot_edit_root_group')
       redirect back
@@ -105,11 +109,17 @@ Admin.controllers :accounts do
 
   put :update, :with => :id do
     @object = Account.get(params[:id])
+    if !@object || ( @object.id != current_account.id && !current_account.allowed?(:admin) )
+      flash[:notice] = pat('account.dont_hack')
+      redirect url(:accounts, :edit, current_account.id)
+    end
     @object.attributes = params[:account]
+    @group = nil  if @object.id == current_account.id
     @object.group = @group  if @group
     @object.attribute_set :updated_at, DateTime.now
     @object.password = @password
     @object.password_confirmation = @password_confirmation
+    @object.crypted_password = 'dummy'  if @password.present? || @password_confirmation.present?
     if @object.save
       flash[:notice] = pat('account.updated')
       redirect url_after_save

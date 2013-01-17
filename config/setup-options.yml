@@ -2,3 +2,9 @@ Option:
   site_title:
     title: Название сайта
     value: Новый сайт
+  max_protocol_size:
+    title: Предельный размер протокола (байтов)
+    value: 2097152
+  max_protocol_period:
+    title: Предельная длительность хранения протокола (дней)
+    value: 280

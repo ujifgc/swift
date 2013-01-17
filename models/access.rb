@@ -2,12 +2,12 @@
 class Access
   include DataMapper::Resource
 
-  property :read_only, Boolean, :default => false
+  property :id, Serial
 
   #relations
-  belongs_to :account, :required => true, :key => true
-  property :accessible_id, Integer, :required => true, :key => true
-  property :accessible_type, String, :key => true
+  belongs_to :account, :required => true
+  property :object_id, Integer, :required => true
+  property :object_type, String, :required => true
 
   # hookers
 

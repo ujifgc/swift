@@ -137,16 +137,16 @@ module SwiftDatamapper
       send :include, LoggableMethods
       attr_accessor :content_altered
       before :save do
-        original_attributes.each do |property, value|
-          next  if Protocol::IGNORED_PROPERTIES.include?(property.name)
-          new_value = self.attribute_get(property.name)
-          $logger.warn [value, new_value, property]
-          break  if @content_altered = value != new_value
-        end
-        @original_content = @content_altered && Hash[original_attributes.map{ |property, value| [property.name, value] }]
+        @original_content = Hash[original_attributes.select do |property, value|
+          if Protocol::IGNORED_PROPERTIES.include?(property.name) || value.kind_of?(DataMapper::Resource)
+            false
+          else
+            value != self.attribute_get(property.name)
+          end
+        end.map{ |property, value| [property.name, value] }]
       end
       after :save do
-        Protocol.log( :save => self, :data => @original_content )  if @content_altered
+        Protocol.log( :save => self, :data => @original_content )  if @original_content.any?
       end
       after :destroy do |object|
         Protocol.log :destroy => object
