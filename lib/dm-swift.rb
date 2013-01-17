@@ -133,6 +133,16 @@ module SwiftDatamapper
       end
     end
 
+    def loggable!
+      send :include, LoggableMethods
+      after :save do
+        Protocol.log :save => self
+      end
+      after :destroy do |object|
+        Protocol.log :destroy => object
+      end
+    end
+
   end
 
   # Methods for all resourced
@@ -287,6 +297,9 @@ module SwiftDatamapper
       self.path == '/'
     end
 
+  end
+
+  module LoggableMethods
   end
 
 end

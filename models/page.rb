@@ -16,6 +16,7 @@ class Page
   timestamps!
   userstamps!
   bondable!
+  loggable!
 
   # relations
   has n, :children, 'Page', :child_key => :parent_id
