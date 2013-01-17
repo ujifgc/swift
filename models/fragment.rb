@@ -9,6 +9,7 @@ class Fragment
   # plugins
   timestamps!
   userstamps!
+  loggable!
 
   # relations
   has n, :pages, :child_key => :fragment_id

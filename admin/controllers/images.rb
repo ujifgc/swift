@@ -22,23 +22,25 @@ Admin.controllers :images do
 
   post :create do
     files = params[:image].delete 'file'
+    title = params[:image].delete 'title'
+    folder_id = params[:image].delete 'folder_id'
     if files.kind_of? Array
       num = files.count > 1 ? 1 : nil
       files.each do |file|
         filename = file[:filename]
         filename = File.basename filename, File.extname(filename)
         object = {
-          :title => (params[:image]['title'].blank? ? filename : "#{params[:image]['title']} #{num}".strip),
+          :title => (title.blank? ? filename : "#{title} #{num}".strip),
           :file => file
         }
-        folder = Folder.get(params[:image]['folder_id'])
+        folder = Folder.get folder_id
         object.merge! :folder => folder  if folder
-        if Image.create object
-          num += 1  if num
-        end
+        object.merge! params[:image]
+        @object = Image.create object
+        num += 1  if num
       end
       flash[:notice] = pat('image.created')
-      redirect url_after_save
+      redirect (files.count > 1) ? url(:images, :index) : url_after_save
     else
       @object = Image.new params[:image]
       @object.errors[:file] = [pat('error.select_file')]

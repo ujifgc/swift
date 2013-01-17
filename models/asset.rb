@@ -9,6 +9,7 @@ class Asset
   uploadable! AssetUploader
   timestamps!
   userstamps!
+  loggable!
 
   #relations
   property :folder_id, Integer, :default => 2

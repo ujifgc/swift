@@ -8,6 +8,7 @@ class Layout
   # plugins
   timestamps!
   userstamps!
+  loggable!
 
   # relations
   has n, :pages, :child_key => :layout_id

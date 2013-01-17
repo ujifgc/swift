@@ -39,12 +39,17 @@ class Account
 
   timestamps!
   userstamps!
+  loggable!
   property :logged_at, DateTime
 
   # relations
   has n, :folders
   property :group_id, Integer, :default => 6, :writer => :protected
   belongs_to :group, 'Account', :required => false
+
+  # classy hookers
+  def self.current; @current; end
+  def self.current=( account ); @current = account; end
 
   # hookers
   before :save do

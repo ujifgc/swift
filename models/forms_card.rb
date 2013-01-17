@@ -27,6 +27,7 @@ class FormsCard
   sluggable!
   timestamps!
   userstamps!
+  loggable!
   amorphous!
   bondable!
   publishable!

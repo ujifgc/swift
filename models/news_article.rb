@@ -11,6 +11,7 @@ class NewsArticle
   sluggable!
   timestamps!
   userstamps!
+  loggable!
   publishable!
   bondable!
   dateable!

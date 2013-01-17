@@ -19,6 +19,7 @@ class CatCard
   sluggable!
   timestamps!
   userstamps!
+  loggable!
   amorphous!
   bondable!
 

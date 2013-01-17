@@ -9,6 +9,7 @@ class CatNode
   sluggable!
   timestamps!
   userstamps!
+  loggable!
   publishable!
   bondable!
   amorphous!

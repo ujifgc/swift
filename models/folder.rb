@@ -9,6 +9,7 @@ class Folder
 
   timestamps!
   userstamps!
+  loggable!
   sluggable!
   bondable!
 

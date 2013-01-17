@@ -17,6 +17,7 @@ class Block
   sluggable!
   timestamps!
   userstamps!
+  loggable!
 
   # validations
   validates_presence_of :title

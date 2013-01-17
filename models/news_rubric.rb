@@ -10,6 +10,7 @@ class NewsRubric
   sluggable!
   timestamps!
   userstamps!
+  loggable!
 
   # relations
   has n, :news_articles

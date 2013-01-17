@@ -29,6 +29,7 @@ class NewsEvent
   sluggable!
   timestamps!
   userstamps!
+  loggable!
   publishable!
   dateable!
 

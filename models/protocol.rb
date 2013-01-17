@@ -4,6 +4,8 @@ require 'zlib'
 class Protocol
   include DataMapper::Resource
 
+  IGNORED_PROPERTIES = [:updated_at]
+
   property :id, Serial
   belongs_to :subject,    'Account',  :required => true
   property :verb,          String,    :required => true
@@ -18,13 +20,14 @@ class Protocol
   def self.log(args)
     verb = args.keys.first
     object = args[verb]
+    data = args[:data] || args[verb].attributes
     p = Protocol.create( {
-      :subject => object.updated_by,
+      :subject => Account.current,
       :verb => verb,
       :time => object.updated_at,
       :object_id => object.id,
       :object_type => object.class.name,
-      :data => object.attributes.to_json
+      :data => data.to_json
     } )
     throw p.errors  if p.errors.any?
   end

@@ -167,6 +167,8 @@ class Admin < Padrino::Application
 
   # hookers
   before do
+    Account.current = current_account
+
     params.each do |k,v|
       next  unless v.kind_of? Hash
       params[k].delete 'created_by_id'

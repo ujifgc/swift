@@ -9,6 +9,7 @@ class Image
   uploadable! ImageUploader
   timestamps!
   userstamps!
+  loggable!
   bondable!
 
   #relations

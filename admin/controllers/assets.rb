@@ -23,23 +23,25 @@ Admin.controllers :assets do
 
   post :create do
     files = params[:asset].delete 'file'
+    title = params[:image].delete 'title'
+    folder_id = params[:image].delete 'folder_id'
     if files.kind_of? Array
       num = files.count > 1 ? 1 : nil
       files.each do |file|
         filename = file[:filename]
         filename = File.basename filename, File.extname(filename)
         object = {
-          'title' => (params[:asset]['title'].blank? ? filename : "#{params[:asset]['title']} #{num}".strip),
-          'file' => file,
+          :title => (title.blank? ? filename : "#{title} #{num}".strip),
+          :file => file
         }
-        folder = Folder.get(params[:asset]['folder_id'])
+        folder = Folder.get folder_id
         object.merge! :folder => folder  if folder
-        if Asset.create object
-          num += 1  if num
-        end
+        object.merge! params[:asset]
+        @object = Asset.create object
+        num += 1  if num
       end
       flash[:notice] = pat('asset.created')
-      redirect url_after_save
+      redirect (files.count > 1) ? url(:assets, :index) : url_after_save
     else
       @object = Asset.new params[:asset]
       @object.errors[:file] = [pat('error.select_file')]

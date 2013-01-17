@@ -10,6 +10,7 @@ class CatGroup
   sluggable!
   timestamps!
   userstamps!
+  loggable!
   publishable!
   bondable!
   amorphous!
