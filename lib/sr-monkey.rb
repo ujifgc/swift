@@ -108,8 +108,6 @@ end
 
 class String
 
-  JS_ESCAPE_MAP	= { '\\' => '\\\\', '</' => '<\/', "\r\n" => '\n', "\n" => '\n', "\r" => '\n', '"' => '\\"', "'" => "\\'" }
-
   # Allows to connect with `/`
   # 'foo' / :bar # => 'foo/bar'
   def / (s)
@@ -118,7 +116,7 @@ class String
 
   # Renders self with global markdown renderer
   def as_html
-    $markdown.render(self)
+    $markdown.render self
   end
 
 end

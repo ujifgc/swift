@@ -21,7 +21,7 @@ module SwiftDatamapper
     end
 
     # Resource is sluggable
-    # It composes a slug by title before save if the slug is not specified
+    # It composes a slug by title before save if the slug is not set already
     # It extends its model to be able to find a resource by its slug
     # Slug is a human-readable unique resource identifier
     def sluggable! options = {}
@@ -31,14 +31,7 @@ module SwiftDatamapper
       validates_uniqueness_of :slug  if options[:unique_index]
 
       before :valid? do |i|
-        if self.slug.blank?
-          slug = (self.title || self.id).to_s.gsub(/[^0-9a-zA-Zа-яёА-ЯЁ]+/, ' ')
-          slug.strip!
-          slug.gsub!(/\ +/, '-')
-          slug.gsub!(/^-+|-+$/, '')
-          # !!! FIXME get rid of Russian
-          self.slug = Russian.translit(slug).downcase
-        end
+        self.slug = (title || id).to_s.as_slug  if slug.blank?
       end
 
       def self.by_slug( slug )
