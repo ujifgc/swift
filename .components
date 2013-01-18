@@ -3,6 +3,6 @@
 :test: none
 :mock: none
 :script: jquery
-:renderer: haml
+:renderer: slim
 :stylesheet: css
-:admin_renderer: haml
+:admin_renderer: slim

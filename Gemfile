@@ -32,9 +32,6 @@ gem 'redcarpet', :github => 'ujifgc/redcarpet'
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :github => 'ujifgc/sinatra-assetpack'
 #gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :path => '/home/ujif/pro/sinatra-assetpack'
 
-# localization
-gem 'russian'
-
 # file assets
 gem 'mini_magick'
 gem 'carrierwave'
