@@ -30,4 +30,9 @@ Code:
     html: '<div class="right">[content]</div>'
     placeholder:
     is_single: 0
-    
+  clear:
+    title: Очистка обтекания
+    text: Текст после данного тега не будет обтекать картинки с атрибутами левого или правого обтекания
+    html: '<div class=clearfix></div>'
+    placeholder:
+    is_single: 1

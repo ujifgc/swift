@@ -47,7 +47,7 @@ class Account
   property :group_id, Integer, :default => 6, :writer => :protected
   belongs_to :group, 'Account', :required => false
 
-  # classy hookers
+  # classy methods
   def self.current; @current; end
   def self.current=( account ); @current = account; end
 

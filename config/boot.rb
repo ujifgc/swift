@@ -12,6 +12,9 @@ Bundler.require(:default, PADRINO_ENV)
 #
 Padrino::Logger::Config[:development] = { :log_level => :devel, :stream => :to_file }
 
+# instance an environment
+ENV['TMP'] = Padrino.root + '/tmp'
+
 ##
 # Add your before load hooks here
 #
