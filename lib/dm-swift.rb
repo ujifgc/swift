@@ -128,7 +128,6 @@ module SwiftDatamapper
 
     def loggable!
       send :include, LoggableMethods
-      attr_accessor :content_altered
       before :save do
         @original_content = Hash[original_attributes.select do |property, value|
           if Protocol::IGNORED_PROPERTIES.include?(property.name) || value.kind_of?(DataMapper::Resource)
