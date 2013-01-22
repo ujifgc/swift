@@ -120,6 +120,10 @@ module SwiftDatamapper
       has n, :children, self.name, :child_key => :parent_id
       belongs_to :parent, self.name, :required => false
 
+      before :valid? do
+        self.parent = nil  if parent_id.blank?
+      end
+
       before :save do
         self.parent = nil  if id == parent_id
         self.path = parent ? parent.path + '/' + slug : slug
@@ -285,13 +289,17 @@ module SwiftDatamapper
     # Prepares a title for tree view of recursive resource
     def title_tree( connector = '· · ' )
       prepend = ''
-      cp = self.parent_id
+      done = { id => true }
+      cp = parent_id
       while cp do
-        parent_id = self.class.get(cp).parent_id
-        cp = cp == parent_id ? nil : parent_id
+        pid = self.class.get(cp).parent_id
+        cp = done[pid] ? nil : pid
         prepend += connector
       end
       "#{prepend} #{title} (#{slug})"
+    end
+
+    def parents
     end
 
     # Guesses if the resource has no parents

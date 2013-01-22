@@ -105,7 +105,7 @@ protected
     path = request.env['PATH_INFO']
     path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1
     swift[:uri] = path
-    path = path.gsub /\/\d+/, ''
+    #path = path.gsub /\/\d+/, ''  !!! this line commented might have something broken
     page = Page.published.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
 

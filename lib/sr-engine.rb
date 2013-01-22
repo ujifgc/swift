@@ -7,12 +7,18 @@ module Padrino
         @args = args
         core_file = 'elements/' + name + '/core'
         view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
-        catch :core_halt do
-          partial( core_file, :views => Swift.views )  if File.exists?( "#{Swift.views}/elements/#{name}/_core.slim" )
-          partial( view_file, :views => Swift.views )
+        catch :output do
+          if File.exists?( "#{Swift.views}/elements/#{name}/_core.slim" )
+            partial( core_file, :views => Swift.views )
+          end
+          if File.exists?( "#{Swift.views}/#{view_file.gsub('/view','/_view')}.slim" )
+            partial( view_file, :views => Swift.views )
+          else
+            raise Padrino::Rendering::TemplateNotFound, 'view'
+          end
         end
       rescue Padrino::Rendering::TemplateNotFound => err
-        "[Element '#{name}' missing #{err.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
+        "[Element '#{name}' is missing #{err.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
       end
 
       def fragment( name, *args )

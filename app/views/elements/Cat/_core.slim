@@ -8,7 +8,7 @@ ruby:
   if md = @swift[:slug].match( /show\/(.*)/ )
     @swift[:slug] = md[1]
     @swift[:path_pages] << Page.new
-    throw :core_halt, element( 'CatNode', @args, @opts )
+    throw :output, element( 'CatNode', @args, @opts )
   end
 
   if md = @swift[:slug].match( /.*/ )
@@ -22,5 +22,5 @@ ruby:
     end
     core = element( 'CatGroups', @args, @opts )
     core += element( 'CatNodes', @args, @opts )
-    throw :core_halt, core
+    throw :output, core
   end

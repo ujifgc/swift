@@ -22,6 +22,7 @@ class CatCard
   loggable!
   amorphous!
   bondable!
+  recursive!
 
   # relations
   has n, :cat_nodes

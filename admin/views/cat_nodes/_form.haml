@@ -3,6 +3,7 @@
 
 = f.input :title
 = f.input :text, :as => :text, :markdown => true
+= f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => CatNode.all( :order => :path, :id.not => @object.id, :cat_card_id => @object.cat_card.parent_id ), :fields => [ :title_tree, :id ], :include_blank => true
 
 - unless @object.new?
   .well

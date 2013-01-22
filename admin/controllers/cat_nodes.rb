@@ -10,8 +10,10 @@ Admin.controllers :cat_nodes do
 
   get :index do
     @objects = CatNode.all
-    @group = CatGroup.by_slug params[:group]
-    @objects = @objects.filter_by(@group)  if @group
+    @card = CatCard.get params[:card_id].to_i
+    @groups = @card ? CatGroup.all( :cat_card_id => @card.id ) : []
+    @group = CatGroup.get params[:group_id].to_i
+    @objects = @objects.filter_by(@card).filter_by(@group)
     render 'cat_nodes/index'
   end
 

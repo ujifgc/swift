@@ -1,12 +1,21 @@
 = partial 'base/index_operations'
-%ul.nav.nav-pills.cat_groups
-  - klass = params[:group].blank? && 'active'
+%ul.nav.nav-pills.cat_cards
+  - klass = params[:card_id].blank? && 'active'
   %li{ :class => klass }
     = link_to pat(:all), url(:cat_nodes, :index)
-  - CatGroup.all.each do |group|
-    - klass = group.slug == params[:group] && 'active'
+  - CatCard.all.each do |card|
+    - klass = card.id.to_s == params[:card_id] && 'active'
     %li{ :class => klass }
-      = link_to group.title, url(:cat_nodes, :index, :group => group.slug)
+      = link_to card.title, url(:cat_nodes, :index, :card_id => card.id)
+- if @groups.count > 0
+  %ul.nav.nav-pills.cat_groups
+    - klass = params[:group].blank? && 'active'
+    %li{ :class => klass }
+      = link_to pat(:all), url(:cat_nodes, :index)
+    - CatGroup.all.each do |group|
+      - klass = group.slug == params[:group] && 'active'
+      %li{ :class => klass }
+        = link_to group.title, url(:cat_nodes, :index, :group => group.slug)
 %form.inner.multiple#multiple-cat_nodes{ :action => url(:cat_nodes, :index)/:multiple, :method => :post }
   %table.table{ :class => @objects.length > 15 && 'smart' }
     %thead

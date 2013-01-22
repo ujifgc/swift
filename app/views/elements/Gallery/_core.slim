@@ -4,7 +4,7 @@ ruby:
     not_found  unless @folder
     @swift[:path_pages] << Page.new
     @opts[:folder] = @swift[:slug]
-    throw :core_halt, element( 'GalleryFolder', *@args, @opts )
+    throw :output, element( 'GalleryFolder', *@args, @opts )
   else 
-    throw :core_halt, element( 'GalleryList', *@args, @opts )
+    throw :output, element( 'GalleryList', *@args, @opts )
   end

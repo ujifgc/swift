@@ -29,7 +29,7 @@ Admin.controllers :fragments do
         #file.write "\uFEFF"
         file.write @code.strip + "\n"
       end
-      redirect after_save
+      redirect url_after_save
     else
       render 'fragments/new'
     end

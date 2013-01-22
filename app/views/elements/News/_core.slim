@@ -5,7 +5,7 @@ ruby:
   if md = @swift[:slug].match( /show\/(.*)/ )
     @swift[:slug] = md[1]
     @swift[:path_pages] << Page.new
-    throw :core_halt, element( 'NewsArticle', @args, @opts )
+    throw :output, element( 'NewsArticle', @args, @opts )
   end
   
   if md = @swift[:slug].match( /.*/ )
@@ -20,5 +20,5 @@ ruby:
 
     core = element( 'NewsRubrics', @args, @opts )
     core += element( 'NewsPager', @args, @opts )
-    throw :core_halt, core
+    throw :output, core
   end

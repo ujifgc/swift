@@ -1,6 +1,8 @@
 = f.input :title
 = f.input :text, :as => :text, :markdown => true
 - allow :auditor do
+  = f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => CatCard.all( :order => :path, :id.not => @object.id ), :fields => [ :title_tree, :id ], :include_blank => true
+
   .control-group.as_group.as_clonable
     = f.group_label :fields
     - @object.json.each do |key, type|
