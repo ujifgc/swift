@@ -119,7 +119,7 @@ module Padrino
       end
 
       def div_open( opt )
-        "<div class='#{opt.to_s}'>"
+        opt[0]==?# ? "<div id='#{opt.to_s[1..-1]}'>" : "<div class='#{opt.to_s}'>"
       end
 
       def div_close( opt )
