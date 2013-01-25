@@ -1,0 +1,6 @@
+.crumbs
+  - @swift[:path_pages].each_with_index do |p, i|
+    %a{:href => p.path}<
+      = p[:title].to_s
+    - if (i != @swift[:path_pages].length - 1)
+      = "»"
