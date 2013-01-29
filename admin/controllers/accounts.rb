@@ -84,12 +84,14 @@ Admin.controllers :accounts do
 
   post :create do
     @object = Account.new(params[:account])
+    @object.password = @password
+    @object.password_confirmation = @password_confirmation
     @object.group = @group  if @group
     if @object.save
       flash[:notice] = pat('account.created')
       redirect url_after_save
     else
-      flash.now[:notice] = pat('account.created')
+      flash.now[:notice] = pat('account.error')
       render 'accounts/new'
     end
   end
