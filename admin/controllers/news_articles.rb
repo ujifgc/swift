@@ -22,9 +22,14 @@ Admin.controllers :news_articles do
   end
 
   get :index do
-    filter = {}
-    unless params[:news_rubric].blank?
-      filter[:news_rubric_id] = NewsRubric.by_slug( params[:news_rubric] ).id  rescue nil
+    filter = { :order => [ :date.desc, :created_at.desc ] }
+    filter[:news_rubric_id] = params[:news_rubric_id].to_i  if params[:news_rubric_id]
+    @count = NewsArticle.count filter
+    if @count > 100
+      @per_page = 25
+      @pagenum = (@count - 1) / @per_page + 1
+      @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+      filter.merge! :limit => @per_page, :offset => (@page - 1)*@per_page
     end
     @objects = NewsArticle.all filter
     render 'news_articles/index'

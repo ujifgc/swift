@@ -30,8 +30,15 @@ module SwiftDatamapper
       property :slug, String, { :unique_index => true }.merge(options)
       validates_uniqueness_of :slug  if options[:unique_index]
 
-      before :valid? do |i|
+      before :valid? do
         self.slug = (title || id).to_s.as_slug  if slug.blank?
+        while self.class.first( :slug => slug )
+          if slug.match(/\-\d+$/)
+            self.slug = slug.gsub(/\-(\d+)$/){ "-#{$1.to_i+1}" }
+          else
+            self.slug = slug + '-1'
+          end
+        end
       end
 
       def self.by_slug( slug )

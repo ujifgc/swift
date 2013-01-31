@@ -146,7 +146,7 @@ bindDatetime = function() {
       $(this).wrap('<div class="input-prepend date"></div>');
       $(this).before('<span class="add-on"><i class="icon-calendar"></i></span>');
       $(this).siblings('.add-on').click(function() { $(this).siblings('input')[0].focus() });
-      $(this).datepicker( { format: 'yyyy-mm-dd', weekStart: 1, language: 'ru', autoclose: true, formatTime: 'hh:mm' } );
+      $(this).datetimepicker( { format: 'yyyy-mm-dd hh:ii:ss', weekStart: 1, language: 'ru', autoclose: true } );
       $(this).on('show', function(e) { $(e.target).select(); });
       $(this).addClass('datetime-added');
     }
