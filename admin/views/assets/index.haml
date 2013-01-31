@@ -21,5 +21,5 @@
           %td.last= mk_checkbox object
           %td= mk_edit object
           %td.nowrap= object.folder && object.folder.title
-          %td= link_to object.file.size.as_size + " / #{File.extname object.file.url}", object.file.url
+          %td= link_to object.file.size.as_size + " / #{File.extname object.file.url}", object.file.url  rescue 'error'
 = partial 'base/index_operations_bottom'

@@ -7,8 +7,8 @@
     %title Eaur Admin
     /[if lt IE 9]
       %script{ :src => "http://html5shim.googlecode.com/svn/trunk/html5.js" }
-    = css :admin
-    = js :admin
+    = css( :admin ).html_safe
+    = js( :admin ).html_safe
 
   %body
     .navbar.navbar-inverse.navbar-fixed-top
@@ -31,5 +31,4 @@
       .sidebar.tabs-left
         = sidebar
       .content
-        = yield
-        %pre= request.env.inspect
+        = yield.html_safe

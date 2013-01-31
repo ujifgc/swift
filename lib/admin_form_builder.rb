@@ -81,7 +81,7 @@ module Padrino
                 end
               end
             else
-              ''
+              ''.html_safe
             end
             input = if options[:multiple]
               file_field_tag "#{object}[#{field}]", options
@@ -99,9 +99,9 @@ module Padrino
           end
           error = @object.errors[field]  rescue []
           controls += content_tag( :span, error.join(', '), :class => 'help-inline' )  if error.any?          
-          html = label( field, options[:label].merge( :class => 'control-label', :caption => caption ))
-          html += ' ' + @template.content_tag( :div, controls, :class => :controls )
-          html += ' ' + @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?
+          html = label( field, options[:label].merge( :class => 'control-label', :caption => caption ) )
+          html += ' '.html_safe + @template.content_tag( :div, controls, :class => :controls )
+          html += ' '.html_safe + @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?
           klass = "control-group as_#{type}"
           klass += ' morphable'  if morphable
           klass += ' error'  if error.any?
@@ -116,14 +116,18 @@ module Padrino
         def inputs( *args )
           options = {}
           options = args.pop  if args.last.kind_of? Hash
-          args.map{ |f| input(f, options) }.join("\n")
+          html = ''.html_safe
+          args.each do |f|
+            html += input(f, options) + "\n".html_safe
+          end
+          html
         end
 
         def submits( options={} )
-          html = ''
+          html = ''.html_safe
           html += @template.submit_tag( options[:save_label] || I18n.t('padrino.admin.form.save'), :class => 'btn btn-primary', :name => 'submit' )
-          html += ' ' + @template.submit_tag( options[:save_label] || I18n.t('padrino.admin.form.apply'), :class => 'btn', :name => 'apply' )
-          html += ' ' + @template.submit_tag( options[:back_label] || I18n.t('padrino.admin.form.back'), :onclick => "history.back();return false", :class => 'btn' )
+          html += ' '.html_safe + @template.submit_tag( options[:save_label] || I18n.t('padrino.admin.form.apply'), :class => 'btn', :name => 'apply' )
+          html += ' '.html_safe + @template.submit_tag( options[:back_label] || I18n.t('padrino.admin.form.back'), :onclick => "history.back();return false", :class => 'btn' )
           @template.content_tag( :div, html, :class => 'form-actions bottons' )
         end
 

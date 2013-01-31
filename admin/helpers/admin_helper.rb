@@ -57,8 +57,8 @@ Admin.helpers do
   end
 
   def mk_published( target )
-    return ''  unless target.respond_to? :is_published
-    content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'ok' : 'ban-circle') ) + ' '
+    return ''.html_safe  unless target.respond_to? :is_published
+    content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'ok' : 'ban-circle') ) + ' '.html_safe
   end
 
   def mk_icon( op, white = nil )
@@ -72,7 +72,7 @@ Admin.helpers do
   end
 
   def mk_glyphs( *ss )
-    ret = ''
+    ret = ''.html_safe
     ss.each do |s|
       ret += content_tag( :i, '', :class => 'icon-'+s )
     end

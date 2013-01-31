@@ -3,7 +3,7 @@
   %head
     %meta{ :charset => "utf-8" }
     %title Swift :: #{Option(:site_title)}
-    = css :login
+    = css( :login ).html_safe
   %body
     .container.login{ :style => 'width: 287px' }
-      = yield
+      = yield.html_safe

@@ -7,10 +7,8 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
-##
 # Enable devel logging
-#
-Padrino::Logger::Config[:development] = { :log_level => :devel, :stream => :to_file }
+Padrino::Logger::Config[:development] = { :log_level => :devel, :format_datetime => " [%Y-%m-%d %H:%M:%S] ", :stream => :to_file, :colorize_logging => false }
 
 # instance an environment
 ENV['TMP'] = Padrino.root + '/tmp'
@@ -26,7 +24,8 @@ Padrino.before_load do
     :pretty => true,
     :disable_escape => true,
     :enable_engines => [:ruby, :javascript, :css],
-    :format => :html5
+    :format => :html5,
+    :use_html_safe => true,
   } )
 
   Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
@@ -39,6 +38,7 @@ Padrino.before_load do
 
   $renderer = Redcarpet::Render::HTML.new
   $markdown = Redcarpet::Markdown.new $renderer, :autolink => true, :space_after_headers => true, :tables => true, :strikethrough => true
+
 end
 
 ##

@@ -180,16 +180,16 @@ module Tilt
   end
 end
 
-# Makes #jo_json not to escape unicode characters with \uXXXX stuff
-module ActiveSupport::JSON::Encoding
-  def self.escape(string)
-    string = string.encode(::Encoding::UTF_8, :undef => :replace).force_encoding(::Encoding::BINARY)
-    json = string.gsub(escape_regex) { |s| ESCAPED_CHARS[s] }
-    json = %("#{json}")
-    json.force_encoding(::Encoding::UTF_8)
-    json
+# Implements #jo_json
+[Object, Array, Float, Hash, Integer, String, NilClass, TrueClass, FalseClass].each do |klass|
+  klass.class_eval do
+    # Dumps object in JSON (JavaScript Object Notation). See www.json.org for more info.
+    def to_json(options = nil)
+      MultiJson.encode(self, options)
+    end
   end
 end
+
 
 # Allows amorphous resources to fill its' json with any attributes
 module DataMapper
