@@ -58,17 +58,11 @@ class ImageUploader < NeatUploader
   end
 
   def filename
-    if original_filename
-      if model.new?
-        @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')
-        if model.folder && model.folder.slug == 'images'
-          original_filename
-        else
-          [@time_stamp,original_filename].compact.join('_')  if original_filename.present?
-        end
-      else
-        model.attribute_get(:file)
-      end
+    @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')
+    if model && model.folder && model.folder.slug == 'images'
+      original_filename
+    else
+      [@time_stamp,original_filename].compact.join('_')  if original_filename.present?
     end
   end
 

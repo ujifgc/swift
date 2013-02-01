@@ -39,7 +39,7 @@ gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :github => 'ujifgc/sin
 # file assets
 gem 'mini_magick'
 gem 'carrierwave', :github => 'ujifgc/carrierwave', :branch => 'multi-json'
-gem 'carrierwave-datamapper'
+gem 'carrierwave-datamapper', :github => 'ujifgc/carrierwave-datamapper'
 
 # authorization
 gem 'omniauth'
