@@ -1,6 +1,0 @@
-﻿.dialog-codes
-  %ul
-    - @objects.each do |o|
-      - data = { :type => o.slug, :single => o.is_single, :placeholder => o.placeholder.to_s }
-      - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]
-      %li= link_to "#{o.title}", o.slug, :data => data, :class => :pick, :onclick => 'return false'
