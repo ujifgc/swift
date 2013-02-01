@@ -22,7 +22,7 @@ class Protocol
     object = args[verb]
     data = args[:data] || args[verb].attributes
     return  unless data.any?
-    Protocol.create( {
+    p = Protocol.create( {
       :subject => Account.current,
       :verb => verb,
       :time => object.updated_at,

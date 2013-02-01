@@ -1,0 +1,7 @@
+﻿- @objects.each do |o|
+  .item
+    - data = { :id => o.id, :title => o.title }
+    - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]
+    = link_to o.file.url, :class => :pick, :data => data, :onclick => 'return false' do
+      - unless o.title.blank?
+        .title #{o.title} (#{File.extname(o.file.url)}, #{as_size(o.file_size)})

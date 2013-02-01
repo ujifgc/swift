@@ -1,0 +1,34 @@
+- if @object.new?
+  = f.input :cat_card_id, :as => :select, :selected => @object.cat_card_id, :collection => CatCard.all, :fields => [ :title, :id ], :include_blank => false
+
+= f.input :title
+= f.input :text, :as => :text, :markdown => true
+- if @object.cat_card
+  = f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => CatNode.all( :order => :path, :id.not => @object.id, :cat_card_id => @object.cat_card.parent_id ), :fields => [ :title_tree, :id ], :include_blank => true
+
+- unless @object.new?
+  .well
+    - @object.cat_card.json.each do |key, type|
+      - as = type[0].to_sym
+      - opts = { :as => as, :label => { :caption => key }, :morphable => true, :value => @object.json[key] }
+      - variants = type[1].split(/[\r\n]+/)
+      - if as == :select
+        - opts.delete :value
+        - opts[:selected] = @object.json[key]
+        - opts[:options] = variants
+      - if as == :multiple
+        - opts.delete :value
+        .control-group.as_multiple.morphable
+          = f.label( key, :class => 'control-label', :caption => key )
+          - variants.each do |v|
+            .controls.horizontal
+              = label_back_tag v, :for => "cat_node[#{key}][#{v}]", :caption => v, :class => :checkbox do
+                = check_box_tag "cat_node[#{key}][]", :value => v, :id => "cat_node[#{key}][#{v}]", :checked => Array(@object.json[key]).include?(v)
+      - else
+        = f.input key, opts
+
+- allow :auditor do
+  = f.input :is_published, :as => :boolean
+  = f.input :slug
+
+= f.submits

@@ -2,16 +2,15 @@ source :rubygems
 
 group :development, :test do
   gem 'rake'
-  gem 'awesome_print'
-  gem 'ruby-progressbar'
+#  gem 'awesome_print'
+#  gem 'ruby-progressbar'
 end
 
 # Component requirements
 gem 'yajl-ruby', :require => 'yajl'
 gem 'multi_json'
-gem 'tilt', :github => 'ujifgc/tilt', :branch => 'lean-and-mean', :require => ['tilt/mean', 'tilt/haml']
-gem 'slim'
-gem 'haml', :git => "git://github.com/Asquera/haml.git", :branch => 'standalone-xss-helpers'
+gem 'tilt', :github => 'ujifgc/tilt', :branch => 'lean-and-mean', :require => 'tilt/mean'
+gem 'slim', :github => 'slim-template/slim'
 
 # Project requirements
 gem 'sinatra-flash', :require => 'sinatra/flash'

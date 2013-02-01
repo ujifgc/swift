@@ -1,0 +1,8 @@
+﻿ul.dropdown-menu
+  - @objects.each do |o|
+    li
+      a href="#" data={ :single => o.is_single ? 'true' : 'false', :code => o.slug }
+        - unless o.icon.blank?
+          i class="icon-#{o.icon}"
+        code= o.slug
+        = o.title

@@ -1,0 +1,13 @@
+= partial 'base/index_operations'
+form.inner.multiple#multiple-options action=url(:options, :index)/:multiple method=:post
+  table.table class=(@objects.length > 15 && 'smart')
+    thead
+      tr
+        th.first
+        th= mat(:object, :id)
+    tbody
+      - @objects.each do |object|
+        tr
+          td.last= mk_checkbox object
+          td.first= link_to object.id, url(:options, :edit, :id => object.id)
+= partial 'base/index_operations_bottom'

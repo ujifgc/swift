@@ -1,0 +1,25 @@
+= partial 'base/index_operations'
+ul.nav.nav-pills.folders
+  - klass = params[:folder_id].present? || 'active'
+  li class=klass
+    = link_to pat(:all), url(:images, :index)
+  - current_account.get_folders.with(:images).each do |folder|
+    - klass = folder.id == params[:folder_id].to_i && 'active'
+    li class=klass
+      = link_to folder.title, url(:images, :index, :folder_id => folder.id)
+form.inner.multiple#multiple-images action=url(:images, :index)/:multiple method=:post
+  table.table class=(@objects.length > 15 && 'smart')
+    thead
+      tr
+        th.first
+        th.title= mat(:object, :title)
+        th.title= mat(:object, :folder_id)
+        th.file= mat(:object, :file)
+    tbody
+      - @objects.each do |object|
+        tr
+          td.last= mk_checkbox object
+          td= mk_edit object
+          td.nowrap= object.folder && object.folder.title
+          td.nowrap= link_to object.file.size.as_size + " #{File.extname object.file.url}", object.file.url, :rel => 'box-image'
+= partial 'base/index_operations_bottom'

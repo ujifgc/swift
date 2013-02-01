@@ -60,6 +60,21 @@ end
 
 module Padrino
   module Helpers
+
+    module OutputHelpers
+      # !!! very dangerous patch
+      def capture_html(*args, &block)
+        handler = find_proper_handler
+        captured_html = ""
+        if handler && handler.is_type? && handler.block_is_type?(block)
+          captured_html = handler.capture_from_template(*args, &block)
+        end
+        # invoking the block directly if there was no template
+        captured_html = block_given? && block.call(*args).html_safe if captured_html.blank?
+        captured_html
+      end
+    end
+
     module FormHelpers
 
       # Adds label helper with content before the label text
@@ -181,15 +196,33 @@ module Tilt
 end
 
 # Implements #jo_json
-[Object, Array, Float, Hash, Integer, String, NilClass, TrueClass, FalseClass].each do |klass|
+[Array, Float, Hash, Integer, String, NilClass, TrueClass, FalseClass].each do |klass|
   klass.class_eval do
-    # Dumps object in JSON (JavaScript Object Notation). See www.json.org for more info.
     def to_json(options = nil)
       MultiJson.encode(self, options)
     end
   end
 end
-
+class Time
+  def to_json(options = nil)
+    xmlschema
+  end
+end
+class Date
+  def to_json(options = nil)
+    strftime("%Y-%m-%d")
+  end
+end
+class DateTime
+  def to_json(options = nil)
+    xmlschema
+  end
+end
+class Object
+  def to_json(options = nil)
+    raise Exception, "MultiJson failed to serialize #{self.inspect}"
+  end
+end
 
 # Allows amorphous resources to fill its' json with any attributes
 module DataMapper

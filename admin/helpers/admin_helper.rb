@@ -62,7 +62,7 @@ Admin.helpers do
   end
 
   def mk_icon( op, white = nil )
-    content_tag( :i, '', :class => 'icon-'+(ICONS[op]||'warning-sign')+(white ? ' icon-white' : '') ) + ' '
+    content_tag( :i, '', :class => 'icon-'+(ICONS[op]||'warning-sign')+(white ? ' icon-white' : '') ) + ' '.html_safe
   end
 
   def mk_glyph( s, opt = {} )

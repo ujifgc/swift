@@ -1,0 +1,15 @@
+= partial 'base/index_operations'
+form.inner.multiple#multiple-codes action=url(:codes, :index)/:multiple method=:post
+  table.table class=(@objects.length > 15 && 'smart')
+    thead
+      tr
+        th.first
+        th= mat(:object, :title)
+        th= mat(:object, :slug)
+    tbody
+      - @objects.each do |object|
+        tr
+          td.last= mk_checkbox object
+          td= mk_edit object
+          td= object.slug
+= partial 'base/index_operations_bottom'

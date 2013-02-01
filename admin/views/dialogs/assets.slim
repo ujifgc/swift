@@ -1,0 +1,25 @@
+﻿.dialog-assets
+  ul.nav.nav-pills#tabs-assets
+    - tabs = current_account.get_folders.with(:assets)
+    - @first = true
+    - tabs.each do |folder|
+      - data = { :url => url(:dialogs, :folder, params.merge({:folder_id => folder.id, :object_type => :assets})), :toggle => :tab }
+      - if @first
+        - klass = 'active'
+        - @first = false
+      - else
+        - klass = ''
+      li.tab class=klass = link_to( folder.title, "#assets-#{folder.slug}", :data => data )
+    li.tab= link_to( pat(:all), '#assets-all', 'data-url' => url(:dialogs, :folder, params.merge({:folder_id => :all, :object_type => :assets})), 'data-toggle' => :tab )
+  .tab-content
+    - @first = true
+    - tabs.each do |folder|
+      - if @first
+        - klass = 'active'
+        - @first = false
+      - else
+        - klass = ''
+      .tab-pane id="assets-#{folder.slug}" class=klass
+    .tab-pane#assets-all
+javascript:
+  bindTabs('#tabs-assets', '#{params.has_key?('pick') ? 'pick' : 'select'}');

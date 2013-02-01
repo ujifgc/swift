@@ -1,0 +1,33 @@
+= partial 'base/index_operations_show'
+ul.nav.nav-pills.forms_cards
+  - klass = nil
+  - FormsCard.all( :order => [:created_at.desc] ).each do |forms_card|
+    - if klass || params[:forms_card_id]
+      - if forms_card.id == params[:forms_card_id].to_i
+        - @card = forms_card
+        - klass = 'active'
+      - else
+        - klass = ''
+    - else
+      - @card = forms_card
+      - klass = 'active'
+    li class=klass
+      = link_to forms_card.title, url(:forms_results, :index, :forms_card_id => forms_card.id)
+form.inner.multiple#multiple-forms_results action=url(:forms_results, :index)/:multiple method=:post
+  table.table class=(@objects.length > 15 && 'smart')
+    thead
+      tr
+        th.first
+        th= mat(:object, :created_at)
+        - if @card
+          - @card.json.each do |k,v|
+            th= k
+    tbody
+      - @objects.each do |object|
+        tr
+          td.last= mk_checkbox object
+          td= mk_edit object
+          - if @card
+            - @card.json.each do |k,v|
+              td= object.json[k]
+= partial 'base/index_operations_bottom'
