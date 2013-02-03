@@ -23,13 +23,13 @@ module Padrino
               opts[:class] += ' markdown'
               options[:label].merge!( :for => "wmd-input-#{@object.class.name.underscore}_#{field}" )
             end
-            if options[:code]
+            opts[:value] = if options[:code]
               opts[:class] += ' code'
               opts[:spellcheck] = 'false'
-              opts[:value] = options[:value] ? options[:value] : ''
+              options[:value] ? options[:value] : ''
             else
-              opts[:value] = options[:value] ? options[:value] : CGI.escapeHTML(@object.send(field) || '')
-            end
+              options[:value] ? options[:value] : CGI.escapeHTML(@object.send(field) || '')
+            end.html_safe
             type = 'textarea'
             text_area field, opts
           when :password, :password_confirmation
@@ -53,13 +53,11 @@ module Padrino
             tag + ' ' + add
           when :multiple, :checkboxes, :check_boxes, :variants
             type = 'multiple'
-            out = ''.html_safe
-            (options[:options]||[]).each do |v|
-              out += label_back_tag v, :for => "#{object}_#{field}_#{v}", :caption => v, :class => :checkbox do
+            (options[:options]||[]).inject(''.html_safe) do |out,v|
+              out << label_back_tag( v, :for => "#{object}_#{field}_#{v}", :caption => v, :class => :checkbox ) do
                 check_box_tag "#{object}[#{field}][]", :value => v, :id => "#{object}_#{field}_#{v}"
               end
             end
-            out
           when :boolean, :checkbox, :check_box
             type = 'checkbox'
             label( field, :caption => check_box( field, :class => :check_box ), :class => :checkbox)
@@ -118,11 +116,9 @@ module Padrino
         def inputs( *args )
           options = {}
           options = args.pop  if args.last.kind_of? Hash
-          html = ''.html_safe
-          args.each do |f|
-            html += input(f, options) + "\n"
+          args.inject(''.html_safe) do |html,f|
+            html << input(f, options) + "\n"
           end
-          html
         end
 
         def submits( options={} )

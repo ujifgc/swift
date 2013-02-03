@@ -65,7 +65,6 @@ class Swift < Padrino::Application
       redirect cs.first.path  if cs.any?
     end
 
-    @page.text = render_text @page.text
     params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
     begin
       render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
@@ -81,14 +80,12 @@ class Swift < Padrino::Application
   # if the sitemap does not have the requested page then show the 404
   not_found do
     @page = Page.first :path => '/error/404'
-    @page.text = render_text @page.text
     render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
   end
 
   # requested wrong service or wrong parameters
   error 501 do
     @page = Page.first :path => '/error/501'
-    @page.text = render_text @page.text
     render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
   end
 

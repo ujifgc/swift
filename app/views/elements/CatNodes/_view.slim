@@ -1,7 +1,7 @@
 - @nodes.each do |node|
   .article
     h4= link_to node.title, se_url(node)
-    .text= render_text node.text
+    .text= engine_render( node.text )
     dl
       - node.cat_card.json.each do |key, value|
         - unless node.json[key].blank?

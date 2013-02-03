@@ -11,7 +11,7 @@ class Block
   Types = {
     0 => :text,
     1 => :html,
-    2 => :table
+    2 => :table,
   }
 
   sluggable!
@@ -29,11 +29,15 @@ class Block
 
   # instance helpers
   def html?
-    self.type > 0
+    type == 1
+  end
+
+  def table?
+    type == 2
   end
 
   def get_type
-    I18n.t "models.object.attributes.type_#{Types[self.type]}"
+    I18n.t "models.object.attributes.type_#{Types[type]}"
   end
 
 end

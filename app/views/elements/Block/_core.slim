@@ -1,3 +1,10 @@
 ruby:
-  @block = Block.by_slug @args[0]
-  throw :output, "[Block ##{@args[0]} missing]"  unless @block
+  block = Block.by_slug @args[0]
+  throw :output, "[Block ##{@args[0]} missing]"  unless block
+  @text = case Block::Types[block.type]
+  when :html
+    # this ensures that tagged HTML content is brought directly to response body without escaping
+    block.text.html_safe
+  else
+    engine_render( block.text )
+  end

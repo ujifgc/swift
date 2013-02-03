@@ -99,7 +99,7 @@ Admin.controllers :dialogs do
     return "no such model: #{params[:model]}"  unless @model
     @object = @model.get params[:id]
     return "no such object: #{model} ##{params[:id]}"  unless @object
-    @content = parse_content @object.text.as_html
+    @content = engine_render( @object.text )
     render 'dialogs/preview', :layout => :dialog_slim
   end
 

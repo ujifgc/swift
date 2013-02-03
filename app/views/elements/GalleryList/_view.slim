@@ -11,4 +11,4 @@
       .caption
         = link_to g.title, '/gallery/' + g.slug
         br
-        = g.text
+        = engine_render( g.text )

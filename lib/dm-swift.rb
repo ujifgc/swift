@@ -32,7 +32,7 @@ module SwiftDatamapper
 
       before :valid? do
         self.slug = (title || id).to_s.as_slug  if slug.blank?
-        while self.class.first( :slug => slug )
+        while self.class.first( :slug => slug, :id.not => id )
           if slug.match(/\-\d+$/)
             self.slug = slug.gsub(/\-(\d+)$/){ "-#{$1.to_i+1}" }
           else

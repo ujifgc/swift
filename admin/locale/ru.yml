@@ -157,6 +157,7 @@ ru:
         type_table: Таблица
         type_html: HTML
         type_text: Текст
+        type_text_with_html: Текст и HTML
         is_single: Одиночный
         placeholder: Комментарий
         duration: Длительность

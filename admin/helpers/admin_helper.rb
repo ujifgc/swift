@@ -58,11 +58,11 @@ Admin.helpers do
 
   def mk_published( target )
     return ''.html_safe  unless target.respond_to? :is_published
-    content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'ok' : 'ban-circle') ) + ' '.html_safe
+    content_tag( :i, '', :class => 'icon-'+(target.is_published ? 'ok' : 'ban-circle') ) + ' '
   end
 
   def mk_icon( op, white = nil )
-    content_tag( :i, '', :class => 'icon-'+(ICONS[op]||'warning-sign')+(white ? ' icon-white' : '') ) + ' '.html_safe
+    content_tag( :i, '', :class => 'icon-'+(ICONS[op]||'warning-sign')+(white ? ' icon-white' : '') ) + ' '
   end
 
   def mk_glyph( s, opt = {} )
@@ -72,11 +72,9 @@ Admin.helpers do
   end
 
   def mk_glyphs( *ss )
-    ret = ''.html_safe
-    ss.each do |s|
-      ret += content_tag( :i, '', :class => 'icon-'+s )
+    ss.inject(''.html_safe) do |all, s|
+      all << content_tag( :i, '', :class => 'icon-'+s )
     end
-    ret
   end
 
   def mk_multiple_op( op )
