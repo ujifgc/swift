@@ -60,23 +60,7 @@ end
 
 module Padrino
   module Helpers
-
-    module OutputHelpers
-      # !!! very dangerous patch
-      def capture_html(*args, &block)
-        handler = find_proper_handler
-        captured_html = ""
-        if handler && handler.is_type? && handler.block_is_type?(block)
-          captured_html = handler.capture_from_template(*args, &block)
-        end
-        # invoking the block directly if there was no template
-        captured_html = block_given? && block.call(*args).html_safe if captured_html.blank?
-        captured_html
-      end
-    end
-
     module FormHelpers
-
       # Adds label helper with content before the label text
       def label_back_tag(name, options={}, &block)
         options.reverse_merge!(:caption => "#{name.to_s.humanize}: ", :for => name)
@@ -89,7 +73,6 @@ module Padrino
           content_tag(:label, caption_text, options)
         end
       end
-
     end
   end
 end
