@@ -115,15 +115,7 @@ module Padrino
       end
 
       def render_text( text )
-        parse_content text.as_html
-      end
-
-      def div_open( opt )
-        opt[0]==?# ? "<div id='#{opt.to_s[1..-1]}'>" : "<div class='#{opt.to_s}'>"
-      end
-
-      def div_close( opt )
-        '</div>'
+        parse_content( $markdown.render( text ) ).html_safe
       end
 
       def se_url( o, method = :show )

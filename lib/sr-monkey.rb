@@ -112,11 +112,6 @@ class String
     "#{self}/#{s.to_s}"
   end
 
-  # Renders self with global markdown renderer
-  def as_html
-    $markdown.render self
-  end
-
 end
 
 class Symbol

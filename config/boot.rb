@@ -21,11 +21,10 @@ Padrino.before_load do
   Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
 
   Slim::Engine.set_default_options( {
-    :pretty => true,
-    :disable_escape => true,
     :enable_engines => [:ruby, :javascript, :css],
     :format => :html5,
     :use_html_safe => true,
+    :generator => Temple::Generators::RailsOutputBuffer,
   } )
 
   Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
