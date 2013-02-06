@@ -13,27 +13,23 @@ module Padrino
           controls = case options.delete(:as)
           when :multiple, :checkboxes, :check_boxes, :variants
             type = 'multiple'
-            out = ''
-            (options[:options]||[]).each do |v|
-              out += label_back_tag v, :for => "#{object}_#{field}_#{v}", :caption => v, :class => :checkbox do
+            (options[:options]||[]).inject(''.html_safe) do |out,v|
+              out << label_back_tag( v, :for => "#{object}_#{field}_#{v}", :caption => v, :class => :checkbox ) do
                 check_box_tag "#{object}[#{field}][]", :value => v, :id => "#{object}_#{field}_#{v}"
               end
             end
-            out
           when :radio, :select, :dropdown, :variant
             type = 'radio'
-            out = ''
-            (options[:options]||[]).each do |v|
-              out += label_back_tag v, :for => "#{object}_#{field}_#{v}", :caption => v, :class => :radio do
+            (options[:options]||[]).inject(''.html_safe) do |out,v|
+              out << label_back_tag( v, :for => "#{object}_#{field}_#{v}", :caption => v, :class => :radio ) do
                 radio_button_tag "#{object}[#{field}]", :value => v, :id => "#{object}_#{field}_#{v}"
               end
             end
-            out
           end
           error = @object.errors[field]  rescue []
           controls += content_tag( :span, error.join(', '), :class => 'help-inline' )  if error.any?          
-          html = controls
-          html += ' ' + @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?
+          html = controls + ' '
+          html += @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?
           klass = "control-group as_#{type}"
           klass += ' morphable'  if morphable
           klass += ' error'  if error.any?
