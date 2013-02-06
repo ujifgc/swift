@@ -28,6 +28,10 @@ class Legacy
         "\n\n"
       when tag == '[br]'
         "  \n"
+      when tag == '[/br]'
+        ""
+      when tag.match(/\[\/?list-[o1]\]/)
+        ""
       when md = tag.match( /\[nlink\s+(.*)\]/ )
         @url = md[1]
         "["
@@ -47,7 +51,6 @@ class Legacy
        .gsub(/^([^\*]{3})(.*)\n \* (.*)$/, "\\1\\2\n\n * \\3")
        .gsub('&laquo;', '«')
        .gsub('&raquo;', '»')
-       .strip
   end
 end
 
@@ -69,7 +72,7 @@ def se_import_pages
     structure.id > 0  or next
     o = Page.new
     o.text = Legacy.cleanup_uub( page.content || '' )
-    o.title = structure.alias.strip
+    o.title = structure.alias.to_s.strip
     o.title = page.name.strip  if o.title.blank?
     o.title = page.id  if o.title.blank?
     o.slug = structure.hru
