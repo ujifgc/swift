@@ -2,8 +2,8 @@ source :rubygems
 
 group :development, :test do
   gem 'rake'
-#  gem 'awesome_print'
-#  gem 'ruby-progressbar'
+  gem 'awesome_print'
+  gem 'ruby-progressbar'
 end
 
 # Component requirements
