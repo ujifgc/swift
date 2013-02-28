@@ -550,7 +550,11 @@ bindBlockType = function() {
       .replace(" class=\"\"", '')
       .replace(/\<\/tr\>/g, "</tr>\n")
       .replace(/\<tbody\>/g, "<tbody>\n")
-      .replace(/\<t(h|d).*?\>/g,'\n    <t$1>')
+      .replace(/<t(h|d)(.*?)>/g,'\n    <t$1$2>')
+      .replace(/<t(h|d)(.*?)class=['"]?\w+['"]?(.*?)>/g,'<t$1$2$3>') // !!!FIXME
+      .replace(/<t(h|d)(.*?)contenteditable="true"(.*?)>/g, '<t$1$2$3>')   // !!!FIXME
+//      .replace(/<t(h|d)(.*?)>/g,'\n    <t$1$2>') 
+//      .replace(/<t(h|d).*?(rowspan=['"]?\d+['"]?|colspan=['"]?\d+['"]?).*?(rowspan=['"]?\d+['"]?|colspan=['"]?\d+['"]?).*?>/g,'\n    <t$1 $2 $3>')
       .replace(/(?:\<br\>)?[\r\n\s]*<\/t(h|d)\>/g,'</t$1>')
       .replace(/\s+[\r\n]/g, "\n")
       .replace(/[\r\n]+/g, "\n")
