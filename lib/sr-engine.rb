@@ -43,6 +43,7 @@ module Padrino
       def element( name, *args )
         @opts = args.last.is_a?(Hash) ? args.pop : {}
         @args = args
+        @identity = {:class => @opts[:class], :id => @opts[:id]}
         core_file = 'elements/' + name + '/core'
         view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
         catch :output do
