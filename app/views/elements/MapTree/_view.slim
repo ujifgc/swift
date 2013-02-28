@@ -1,5 +1,5 @@
 - tree ||= @tree
-ul.nav.nav-list
+ul *@identity
   - tree.each do |leaf|
     - if leaf[:title]
       li class=leaf[:class]
