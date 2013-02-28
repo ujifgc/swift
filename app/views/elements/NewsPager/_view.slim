@@ -1,7 +1,9 @@
-.articles
+.articles.news-list
   dl
     - @articles.each do |article|
       dt
+        span.date= article.date.as_date
         = link_to article.title, "#{@swift[:module_root]}/show/#{article.slug}"
       dd
         = article.info
+  = element 'Pager' 

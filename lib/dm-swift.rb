@@ -25,7 +25,7 @@ module SwiftDatamapper
     # It extends its model to be able to find a resource by its slug
     # Slug is a human-readable unique resource identifier
     def sluggable! options = {}
-      send :include, PublishableMethods
+      send :include, SluggableMethods
 
       property :slug, String, { :unique_index => true }.merge(options)
       validates_uniqueness_of :slug  if options[:unique_index]

@@ -1,20 +1,20 @@
 img.left {
   float: left;
   clear: left;
-  margin-right: 0.3em
+  margin-right: .75em
 }
 img.leftof {
   float: left;
   clear: none;
-  margin-right: 0.3em
+  margin-right: .75em
 }
 img.right {
   float: right;
   clear: right;
-  margin-left: 0.3em
+  margin-left: .75em
 }
 img.rightof {
   float: right;
   clear: none;
-  margin-left: 0.3em
+  margin-left: .75em
 }
