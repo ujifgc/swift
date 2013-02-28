@@ -1,16 +1,26 @@
 ruby:
   @news_months = []
   @news_years = []
-  @monthNames = I18n.t("date.month_names")
+  @monthNames = I18n.t("date.month_names_nominative")
+
+  new_article = NewsArticle.by_slug @swift[:slug].match( /show\/(.*)/ )[1]  rescue nil
+  @new_year, @new_month = if new_article
+    [new_article.date.year, new_article.date.month]
+  else
+    [params[:year], params[:month]]
+  end
+
   filter = {}
   filter[:order] = :date.asc
-  firstDate = NewsArticle.first(filter).date
-  lastDate = NewsArticle.last(filter).date
+  firstDate = NewsArticle.published.first(filter).date
+  lastDate = NewsArticle.published.last(filter).date
   @news_years = firstDate.year..lastDate.year
-  @news_months = case params[:year].to_i
-  when firstDate.year
+  @news_months = case
+  when @new_year.to_i == firstDate.year && @new_year.to_i == Date.today.year
+    firstDate.mon..lastDate.mon
+  when @new_year.to_i == firstDate.year
     firstDate.mon..12
-  when Date.today.year
+  when @new_year.to_i == Date.today.year || !@new_year
     1..lastDate.mon
   else
     1..12
