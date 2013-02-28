@@ -18,6 +18,41 @@ class Legacy
     @legacy.select(q)
   end
 
+  def self.unlegacify( str )
+    str.gsub( /\&\[LEGACY ;(.*?)\&\];/, '\[\1\]' )
+       .gsub /\[LEGACY\s+([^\]]+)\]/ do |tag|
+         mm = $1
+         case 
+         when md = mm.match(/^file\s+([^\]]+)$/)
+           "[file #{md[1]}]"
+         when md = mm.match(/^b$|^\/b$/)
+           "**"
+         when md = mm.match(/^hr$/)
+           "\n\n----------\n\n"
+         when md = mm.match(/^tab(\s+\d+)?$/)
+           " "
+         when md = mm.match(/^i$|^\/i$/)
+           "*"
+         when md = mm.match(/^image\s+(\d+)\s*([^\]]*)?$/)
+           '[image' + (md[2] ? ".#{md[2]}" : "") + " #{md[1]}]"
+         when md = mm.match(/^p right$|^p center$/)
+           "\n"
+         when md = mm.match(/^h3$/)
+           "\n\n### "
+         when md = mm.match(/^\/h3$/)
+           "\n\n"
+         when md = mm.match(/^elink\s+(.*)$/)
+           @url = md[1]
+           "["
+         when md = mm.match(/^\/elink$/)
+           "](#{@url})"
+         else 
+           ap [tag, mm]
+           tag
+         end
+       end
+  end
+
   def self.cleanup_uub( str )
     
     str.gsub(/\[(.*?)\s*\]/) do |tag|
@@ -41,7 +76,7 @@ class Legacy
         "\n * "
       else
         "#{tag}".gsub('[', '[LEGACY ')
-      end        
+      end
     end.gsub(/\A\n/, "")
        .gsub(/\n\n+/, "\n\n")
        .gsub(/ \n/, "\n")
@@ -115,6 +150,71 @@ def se_import_news
   pbar.finish
 end
 
+def se_import_files
+  files = Legacy.select("SELECT * FROM files_10000")
+  ap files
+  folder = Folder.first_or_create( :title => "legacy-files" )
+  folder.assets.destroy
+  files.each do |file|
+    begin
+      o = Asset.new
+      o.id = file.id
+      o.title = file.name.to_s.strip
+      o.folder = folder
+      o.file = File.open("tmp/files/#{file.id}.#{file.ext}")
+      o.save
+    rescue
+      p 'error no file'
+    else
+      p o
+    end
+  end
+end
+
+def se_import_collections
+  collections = Legacy.select("SELECT * FROM collections_10000")
+  folder = Folder.first_or_create( :title => "legacy-images" )
+  folder.images.destroy
+  #ap collections
+  collections.each do |collection|
+    begin
+      o = Image.new
+      o.id = collection.id
+      o.title = collection.name.to_s.strip
+      o.folder = folder
+      o.file = File.open(Dir.glob("tmp/img/#{collection.id}/*").sort.last)
+      o.save
+    rescue
+      p 'error no image file'
+    else
+      p o
+      p o.file.path
+    end
+  end
+end
+
+
+def se_retag( model )
+  method = :"se_retag_#{model}"
+  send method
+end
+
+def se_retag_pages
+  pages = Page.all :text.like => '%LEGACY%'
+  pages.each do |page|
+    page.text = Legacy.unlegacify(page.text)
+    page.save
+  end
+end
+
+def se_retag_news
+  news = NewsArticle.all :text.like => '%LEGACY%'
+  news.each do |article|
+    article.text = Legacy.unlegacify(article.text)
+    article.save
+  end
+end
+
 namespace :se do
 
   desc "load tables from old engine"
@@ -125,6 +225,17 @@ namespace :se do
     else
       puts "USAGE: rake se:import['pages news faq files collections']\n"
       puts "   OR  rake se:import['news']\n"
+      puts "  etc.\n"
+    end
+  end
+
+  desc "replace legacy tags"
+  task :retag, :args do  |t, args|
+    if models = args[:args]
+      models.split(/\s+/).each{ |model| se_retag(model) }
+    else
+      puts "USAGE: rake se:retag['pages news faq']\n"
+      puts "   OR  rake se:retag['news']\n"
       puts "  etc.\n"
     end
   end
