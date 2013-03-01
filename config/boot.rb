@@ -17,7 +17,12 @@ ENV['TMP'] = Padrino.root + '/tmp'
 # Add your before load hooks here
 #
 Padrino.before_load do
+  
+  I18n.load_path += Dir.glob('app/locale/*.yml')
+  I18n.load_path += Dir.glob('admin/locale/*.yml')
+  I18n.reload!
   I18n.locale = :ru
+  
   Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
 
   Slim::Engine.set_default_options( {

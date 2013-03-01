@@ -94,6 +94,13 @@ protected
   def init_instance
     halt 403  if STATIC_FOLDERS.include?( request.env['PATH_INFO'].split('/')[1] )
 
+    # detecting of locale preferred by browser
+    session[:locale] ||= request.env['HTTP_ACCEPT_LANGUAGE'].gsub(/\s+/,'').split(/,/)
+                         .sort_by{|tags| -(tags.partition(/;/).last.split(/=/)[1]||1).to_f }
+                         .first  rescue 'ru'
+    session[:locale] = params[:locale]  if params[:locale]
+    I18n.locale = session[:locale][0..1].to_sym # !!! FIXME might need full format for en_US and en_GB distinction
+
     swift = {}
     swift[:path_pages] = []
     swift[:path_ids] = []
@@ -109,11 +116,16 @@ protected
     if page && path.length >= page.path.length
       swift[:slug] = path.gsub /^#{page.path}/, ''
       swift[:module_root] = page.path
-      case swift[:slug][0]
-      when nil
-        swift[:slug] = ''
-      when '/'
-        swift[:slug] = swift[:slug][1..-1]
+      # !!! FIXME this if-else block is madness
+      if page.is_module || page.published?
+        case swift[:slug][0]
+        when nil
+          swift[:slug] = ''
+        when '/'
+          swift[:slug] = swift[:slug][1..-1]
+        else
+          swift[:not_found] = true  #FIXME
+        end
       else
         swift[:not_found] = true  #FIXME
       end
