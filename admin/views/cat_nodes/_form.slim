@@ -24,6 +24,8 @@
             .controls.horizontal
               = label_back_tag v, :for => "cat_node[#{key}][#{v}]", :caption => v, :class => :checkbox do
                 = check_box_tag "cat_node[#{key}][]", :value => v, :id => "cat_node[#{key}][#{v}]", :checked => Array(@object.json[key]).include?(v)
+      - if as == :json
+        = f.input key, opts.merge({:as => :text, :value => @object.json[key].kind_of?(String) ? @object.json[key] : @object.json[key].to_json })
       - else
         = f.input key, opts
 

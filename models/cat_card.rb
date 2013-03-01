@@ -9,6 +9,7 @@ class CatCard
     'Выборка'  => :multiple,
     'Файлы'    => :assets,
     'Картинки' => :images,
+    'Объект'   => :json,
   }
 
   property :id,       Serial

@@ -195,7 +195,7 @@ module SwiftDatamapper
 
     # Guesses if resource is published and not in the future
     def published?
-      self.is_published && DateTime.new(self.publish_at.to_i) <= DateTime.now
+      self.is_published && Time.at(self.publish_at.to_i).to_datetime <= DateTime.now
     end
 
   end  
@@ -243,6 +243,11 @@ module SwiftDatamapper
   end
 
   module AmorphousMethods
+
+    # A getter/initializer for json errors
+    def json_errors
+      @json_errors ||= {} # !!! FIXME test this, it might fail
+    end
 
     # A getter for amorphous fields
     def []( key )

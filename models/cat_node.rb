@@ -20,6 +20,25 @@ class CatNode
 
   # hookers
 
+  # validations
+  validates_with_block :json do
+    @json_errors = {}
+    cat_card.json.each do |key, type|
+      if type[0].to_sym == :json && json[key].kind_of?(String)
+        begin
+          json[key] = MultiJson.load(json[key])
+        rescue Exception => e
+          @json_errors[key] = e.message.force_encoding('utf-8')
+        end
+      end
+    end
+    if @json_errors.any?
+      [false, I18n.t('datamapper.errors.messages.json_error')]
+    else
+      true
+    end
+  end
+
   # instance helpers
 
   # class helpers
