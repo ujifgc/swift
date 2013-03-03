@@ -99,7 +99,7 @@ protected
                          .sort_by{ |tags| -(tags.partition(/;/).last.split(/=/)[1]||1).to_f }
                          .first  rescue 'ru'
     session[:locale] = params[:locale]  if params[:locale]
-    I18n.locale = session[:locale][0..1].to_sym # !!! FIXME might need full format for en_US and en_GB distinction
+    I18n.locale = :ru #session[:locale][0..1].to_sym # !!! FIXME might need full format for en_US and en_GB distinction
 
     swift = {}
     swift[:path_pages] = []

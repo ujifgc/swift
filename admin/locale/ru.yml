@@ -60,7 +60,7 @@ ru:
         select_file: Пожалуйста, выберите файл для загрузки
       multiple:
         destroyed: "%{objects} удалены"
-        not_destroyed: "Некоторые %{objects} заняты, ничего не удалено"
+        not_destroyed: "Объект '%{objects}' занят"
         published: "%{objects} опубликованы"
         unpublished: "%{objects} сняты с публикации"
       form:
@@ -69,15 +69,19 @@ ru:
         back: Назад
       dialog:
         add_parent: ''
-        create_fragment: 'Создать новый фрагмент'
-        create_layout: 'Создать новую раскладку'
-        create_page: 'Создать новую страницу'
-        select_bonds: 'Выберите связи объекта'
-        pick_page: 'Выберите страницу для вставки ссылки'
-        pick_block: 'Выберите блок для вставки'
-        pick_asset: 'Выберите файл для вставки'
-        pick_image: 'Выберите картинку для вставки'
-        preview: 'Предварительный просмотр'
+        create_fragment: Создать новый фрагмент
+        create_layout: Создать новую раскладку
+        create_page: Создать новую страницу
+        create_folder: Создать новую папку
+        select_bonds: Выберите связи объекта
+        pick_page: Выберите страницу для вставки ссылки
+        pick_block: Выберите блок для вставки
+        pick_asset: Выберите файл для вставки
+        pick_image: Выберите картинку для вставки
+        preview: Предварительный просмотр
+        upload_images: Загрузить ещё
+      flash:
+        folder_created: Папка создана
       users: Пользователи
       groups: Группы
       account:

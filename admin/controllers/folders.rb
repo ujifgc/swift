@@ -3,7 +3,7 @@ Admin.controllers :folders do
   before :edit, :update, :destroy do
     @object = Folder.get(params[:id])
     unless @object
-      flash[:error] = pat('object.not_found')
+      flash[:error] = pat('flash.folder_not_found')
       redirect url(:folders, :index)
     end
   end
@@ -21,7 +21,7 @@ Admin.controllers :folders do
   post :create do
     @object = Folder.new(params[:folder])
     if @object.save
-      flash[:notice] = pat('folder.created')
+      flash[:notice] = pat('flash.folder_created')
       redirect url_after_save
     else
       render 'folders/new'
@@ -45,7 +45,7 @@ Admin.controllers :folders do
         File.rename( Padrino.public / old_img_dir, Padrino.public / new_img_dir )  rescue nil
         File.rename( Padrino.public / old_doc_dir, Padrino.public / new_doc_dir )  rescue nil
       end
-      flash[:notice] = pat('folder.updated')
+      flash[:notice] = pat('flash.folder_updated')
       redirect url_after_save
     else
       render 'folders/edit'
@@ -55,9 +55,9 @@ Admin.controllers :folders do
   delete :destroy, :with => :id do
     @object = Folder.get(params[:id])
     if @object.destroy
-      flash[:notice] = pat('folder.destroyed')
+      flash[:notice] = pat('flash.folder_destroyed')
     else
-      flash[:error] = pat('folder.not_destroyed')
+      flash[:error] = pat('flash.folder_not_destroyed')
     end
     redirect url(:folders, :index)
   end

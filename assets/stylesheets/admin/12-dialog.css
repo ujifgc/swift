@@ -68,14 +68,72 @@ div.grippie {
   position: relative;
   float: none;
   display: inline-block;
+  *float: left;
   margin-left: 16px;
   vertical-align: top;
+}
+.thumbnails a.fileinput-button {
+  cursor: pointer;
+}
+.thumbnails a.fileinput-button:hover {
+  text-decoration: none;
+}
+.thumbnails a.fileinput-button:hover .caption {
+  text-decoration: underline;
+}
+.thumbnail {
+  position: relative;
+}
+.thumbnail .placeholder {
+  width: 130px;
+  height: 100px;
+  background: #eee;
+  text-align: center;
+  color: #fff;
+  font-size: 100px;
+  line-height: 100px;
+  cursor: pointer;
 }
 .thumbnail img {
   max-width: 130px;
   max-height: 100px;
   _width: 130px; _height: 100px;
 }
+.thumbnail .scene {
+  width: 130px;
+  height: 100px;
+  overflow: hidden;
+}
+.thumbnail .scene img {
+  max-width: none;
+  max-height: none;
+  vertical-align: middle;
+}
+.thumbnail .scene img.wide {
+  width: auto;
+  height: 100%;
+}
+.thumbnail .scene img.narrow {
+  width: 100%;
+  height: auto;
+}
+.thumbnail .curtain {
+  position: absolute;
+  width: 130px;
+  height: 100px;
+  top: 4px;
+  background: #fff;
+}
+.thumbnail .caption {
+  word-wrap: break-word;
+  font-size: 12px;
+  padding: 2px 3px;
+}
+.thumbnail {
+  overflown: hidden;
+  max-height: 180px;
+}
 .modal {
-  width: 670px;
+  width: 815px;
+  margin-left: -400px;
 }

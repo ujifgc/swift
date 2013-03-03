@@ -1,4 +1,7 @@
 ﻿$(function() {
+  $(document).bind('drop dragover', function (e) {
+    e.preventDefault();
+  });
   $(':checkbox[name=check_all]').click(function(){
     $(':checkbox[name^=check_]').prop('checked', $(this).prop('checked'));
   });
@@ -314,7 +317,9 @@ bindDialogBonds = function() {
 //Create parent
 bindDialogCreateParent = function() {
   var form = $('#modal-dialog').find('form');
-  $('a.save-dialog').click(function() {
+  $('#parent_title').focus();
+  $(form).submit(function() { $('a.save-dialog').click(); return false } );
+  $('a.save-dialog').click(function(e) {
     $.ajax({
       type: 'POST',
       url: form.prop('action'),
@@ -323,15 +328,64 @@ bindDialogCreateParent = function() {
         if (typeof jqXHR === 'string') {
           alert(jqXHR);
         }else{
-          $('select[id$='+jqXHR.field+']')
-            .append('<option value="'+jqXHR.key+'">'+jqXHR.value+'</option>')
-            .val(jqXHR.key);
+          if (jqXHR.key) {
+            $('select[id$='+jqXHR.field+']')
+              .append('<option value="'+jqXHR.key+'">'+jqXHR.value+'</option>')
+              .val(jqXHR.key);
+            $('#modal-dialog').modal('hide');
+          }
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert(textStatus);
       }
     });
+    return false;
+  });
+};
+
+bindDialogFileUpload = function() {
+  var thumbs = $('.tab-content > .active .thumbnails');
+  var uploader = thumbs.children().first();
+  var input = $('.tab-content > .active .fileinput-button input');
+  input.fileupload({
+    dataType: 'json',
+    dropZone: thumbs,
+    limitConcurrentUploads: 2,
+    formData: { folder_id: thumbs.closest('.tab-pane').attr('id') },
+    add: function(e, data) {
+      var file = data.files[0];
+      var new_li = thumbs.children().last().clone();
+      var new_a = new_li.find('a').attr('href', '');
+      var new_img = new_a.find('img').attr('src','/images/grey-thumb.png')
+      var new_div = new_a.find('div').text(file.name);
+      new_img.wrap('<div class="scene"></div>');
+      new_img.after('<div class="curtain"></div>');
+      if (window.FileReader) {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+          new_img[0].src = reader.result;
+          new_img.on('load', function() {
+            $(this).removeClass('wide narrow').addClass( ( ( this.width / this.height  ) < 1.3 ) ? 'narrow' : 'wide' );
+          });
+        }
+        reader.readAsDataURL(file);
+      }
+      uploader.after(new_li);
+      data.context = new_li;
+      data.submit();
+    },
+    always: function (e, data) {
+      console.log('done');
+      var bar = data.context.find('.curtain');
+      bar.animate({ height: '0' }, 800);
+    },
+    progress: function (e, data) {
+      var bar = data.context.find('.curtain');
+      bar.animate({ height: (100 - parseInt(100 * data.loaded / data.total, 10)) }, 800);
+    },
+    stop: function (e) {
+    }
   });
 };
 

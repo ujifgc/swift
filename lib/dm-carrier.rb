@@ -25,6 +25,32 @@ class NeatUploader < CarrierWave::Uploader::Base
     model.file_content_type || ''
   end
 
+  def original_filename
+    ( model.respond_to?(:upload_name) && model.upload_name.present? ) ? model.upload_name : super
+  end
+
+  def base_dir
+    'base'
+  end
+
+  def store_dir
+    case
+    when !model.folder
+      base_dir + '/other'
+    when model.folder.slug == 'images'
+      base_dir
+    when model.folder.slug.blank?
+      base_dir + '/' + model.folder.id.to_s
+    else
+      base_dir + '/' + model.folder.slug
+    end
+  end
+
+  def filename
+    @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')
+    [@time_stamp, original_filename].compact.join('_')  if original_filename.present?
+  end
+
 end
 
 class ImageUploader < NeatUploader
@@ -44,28 +70,6 @@ class ImageUploader < NeatUploader
     end
   end
 
-  def store_dir
-    case
-    when !model.folder
-      'img/other'
-    when model.folder.slug == 'images'
-      'img'
-    when model.folder.slug.blank?
-      'img/' + model.folder.id.to_s
-    else
-      'img/' + model.folder.slug
-    end
-  end
-
-  def filename
-    @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')
-    if model && model.folder && model.folder.slug == 'images'
-      original_filename
-    else
-      [@time_stamp,original_filename].compact.join('_')  if original_filename.present?
-    end
-  end
-
   def default_url
     '/images/image_missing.png'
   end
@@ -78,25 +82,25 @@ class ImageUploader < NeatUploader
     send(version)
   end
 
+  def base_dir
+    'img'
+  end
+
+  def filename
+    if model && model.folder && model.folder.slug == 'images'
+      original_filename
+    else
+      super
+    end
+  end
+
 end
 
 
 class AssetUploader < NeatUploader
 
-  def store_dir
-    case
-    when !model.folder
-      'doc'
-    when model.folder.slug.blank?
-      'doc/' + model.folder.id.to_s
-    else
-      'doc/' + model.folder.slug
-    end
-  end
-
-  def filename
-    @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')
-    [@time_stamp, original_filename].compact.join('_')  if original_filename.present?
+  def base_dir
+    'doc'
   end
 
 end

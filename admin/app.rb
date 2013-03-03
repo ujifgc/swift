@@ -170,6 +170,7 @@ class Admin < Padrino::Application
   # hookers
   before do
     Account.current = current_account
+    I18n.locale = :ru
 
     params.each do |k,v|
       next  unless v.kind_of? Hash
@@ -197,24 +198,65 @@ class Admin < Padrino::Application
   end
 
   # common routes
+  post_or_put = lambda do
+    models, id = params[:folder_id].split('-')
+    folder = Folder.get(id) || Folder.by_slug(models) || Folder.first
+    model = case models
+    when 'images'; Image
+    when 'assets'; Asset
+    else
+      halt 400
+    end
+
+    report = []
+    params[models].each do |upload|
+      object = model.create :title => upload[:filename],
+                            :file => upload[:tempfile] || File.open(upload[:filetemp], 'rb'),
+                            :created_by => current_account,
+                            :updated_by => current_account,
+                            :folder => folder,
+                            :upload_name => upload[:filename]                           
+      report << {
+        :id => object.id,
+        :folder_id => folder.id,
+        :name => CGI.escape(File.basename(object.file.url)),
+        :size => object.file.size,
+        :url => object.file.url,
+        :thumbnail_url => object.file.fill_thumb.url,
+      }
+      $logger << object.attributes.inspect
+    end
+    report.to_json
+  end
+
+  post '/assets/upload', &post_or_put
+  put '/assets/upload', &post_or_put
+
+  # common routes
   post '/:controller/multiple' do
     return redirect url(:base, :index)  unless @the_model
     if params["check_#{@model}"].kind_of? Hash
       ids = params["check_#{@model}"].keys
       case params['_method']
       when 'delete'
-        if @the_model.all( :id => ids ).destroy
-          flash[:notice] = I18n.t('padrino.admin.multiple.destroyed', :objects => I18n.t("models.#{@models}.name"))
+        errors = []
+        @the_model.all( :id => ids ).to_a.each do |o|
+          o.destroy  or errors << o
+        end
+        if errors.any?
+          flash[:error] = errors.map do |e|
+            I18n.t( 'padrino.admin.multiple.not_destroyed', :objects => e.title || I18n.t("models.#{@models}.name") )
+          end.join(', ')
         else
-          flash[:error] = I18n.t('padrino.admin.multiple.not_destroyed', :objects => I18n.t("models.#{@models}.name"))
+          flash[:notice] = I18n.t('padrino.admin.multiple.destroyed', :objects => I18n.t("models.#{@models}.name"))
         end
       when 'publish'
         break  unless @the_model.respond_to? :published
-        @the_model.all( :id => ids ).to_a.each{ |o| o.publish! } #FIXME to_a for redis
+        @the_model.all( :id => ids ).to_a.each{ |o| o.publish! }
         flash[:notice] = I18n.t('padrino.admin.multiple.published', :objects => I18n.t("models.#{@models}.name"))
       when 'unpublish'
         break  unless @the_model.respond_to? :published
-        @the_model.all( :id => ids ).to_a.each{ |o| o.unpublish! } #FIXME to_a for redis
+        @the_model.all( :id => ids ).to_a.each{ |o| o.unpublish! }
         flash[:notice] = I18n.t('padrino.admin.multiple.unpublished', :objects => I18n.t("models.#{@models}.name"))
       end
     end

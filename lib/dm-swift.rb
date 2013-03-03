@@ -86,6 +86,7 @@ module SwiftDatamapper
       mount_uploader :file, uploader
       property :file_content_type, String, :length => 63
       property :file_size, Integer
+      attr_accessor :upload_name
 
       before :save do
         path = Padrino.public + self.file.url
