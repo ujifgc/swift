@@ -176,7 +176,7 @@ end
 # Implements #jo_json
 [Array, Float, Hash, Integer, String, NilClass, TrueClass, FalseClass].each do |klass|
   klass.class_eval do
-    def to_json(options = nil)
+    def to_json(options = {})
       MultiJson.encode(self, options)
     end
   end

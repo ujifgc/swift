@@ -1,3 +1,4 @@
+#coding:utf-8
 module Markdown
 
   MarkdownExtras = {
@@ -43,15 +44,23 @@ module Padrino
       def element( name, *args )
         @opts = args.last.is_a?(Hash) ? args.pop : {}
         @args = args
-        @identity = {:class => @opts[:class], :id => @opts[:id]}
-        core_file = 'elements/' + name + '/core'
-        view_file = 'elements/' + name + '/view' + (@opts[:instance] ? "-#{@opts[:instance]}" : '')
+        core_tpl = 'elements/' + name + '/core'
+        view_tpl = 'elements/' + name + '/view'
+
+        @identity = { :class => "#{name}" }
+        @identity[:id] = @opts[:id]  if @opts[:id]
+        @identity[:class] += ' ' + @opts[:class]  if @opts[:class]
+        if @opts[:instance]
+          view_tpl += "-#{@opts[:instance]}"
+          @identity[:class] += " #{name}-#{@opts[:instance]}"
+        end
+
         catch :output do
-          if File.exists?( "#{Swift.views}/elements/#{name}/_core.slim" )
-            partial( core_file, :views => Swift.views )
+          if File.exists? "#{Swift.views}/#{core_tpl.gsub(/\/core$/, '/_core.slim')}"
+            partial( core_tpl, :views => Swift.views )
           end
-          if File.exists?( "#{Swift.views}/#{view_file.gsub('/view','/_view')}.slim" )
-            partial( view_file, :views => Swift.views )
+          if File.exists? "#{Swift.views}/#{view_tpl.gsub(/\/view(.*)$/, '/_view\1.slim')}"
+            partial( view_tpl, :views => Swift.views )
           else
             raise Padrino::Rendering::TemplateNotFound, 'view'
           end
@@ -69,7 +78,7 @@ module Padrino
         hash = {}
         # 0 for element name
         #                     0              12             3    4            5             6
-        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ )    #"
+        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ )
         vars.each do |v|
           case
           when v[0]
@@ -119,29 +128,39 @@ module Padrino
             end
           end
           type = md[1]
-          identity = md[2]
           args, hash = parse_vars md[-1]
           if hash[:title].blank?
-            newtitle = if ['element', 'elem', 'lmn'].include?( type )
+            newtitle = if type == 'element'
               args[2..-1]
             else
               args[1..-1]
             end.join(' ').strip
             hash[:title] = newtitle.blank? ? nil : parse_content(newtitle)
           end
-          hash[:identity] = identity  if identity
+          md[2].to_s.scan(/[\.\#][\w\-]*/).each do |attr|
+            case attr[0]
+            when ?#
+              hash[:id] ||= attr[1..-1]  
+            when ?.
+              if hash[:class].blank?
+                hash[:class] = attr[1..-1]
+              else
+                hash[:class] += ' ' + attr[1..-1]
+              end
+            end
+          end
           case type
           when 'page', 'link'
-            element 'PageLink', args[0], hash
-          when 'block', 'text'
-            element 'Block', args[0], hash
+            element 'PageLink', *args, hash
+          when 'block', 'table'
+            element 'Block', *args, hash
           when 'image', 'img'
-            element 'Image', args[0], hash
+            element 'Image', *args, hash
           when 'file', 'asset'
-            element 'File', args[0], hash
-          when 'element', 'elem', 'lmn'
+            element 'File', *args, hash
+          when 'element'
             element *args, hash
-          end.strip
+          end
         end
         if needs_capturing
           str.gsub!( /\[([^\s]*)\s*(.*?)\](.*)\[\/(\1)\]/m ) do |s|

@@ -96,7 +96,7 @@ protected
 
     # detecting of locale preferred by browser
     session[:locale] ||= request.env['HTTP_ACCEPT_LANGUAGE'].gsub(/\s+/,'').split(/,/)
-                         .sort_by{|tags| -(tags.partition(/;/).last.split(/=/)[1]||1).to_f }
+                         .sort_by{ |tags| -(tags.partition(/;/).last.split(/=/)[1]||1).to_f }
                          .first  rescue 'ru'
     session[:locale] = params[:locale]  if params[:locale]
     I18n.locale = session[:locale][0..1].to_sym # !!! FIXME might need full format for en_US and en_GB distinction

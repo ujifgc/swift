@@ -97,7 +97,8 @@ module Padrino
             opts.merge! :value => options[:value]  if options[:value]
             text_field field, opts
           end
-          error = Array(@object.errors.delete(field)) + Array(@object.json_errors.delete(field))
+          error = Array(@object.errors.delete(field))
+          error += Array(@object.json_errors.delete(field))  if @object.respond_to? :json_errors
           controls += content_tag( :span, error.join(', '), :class => 'help-inline' )  if error.any?          
           html = label( field, options[:label].merge( :class => 'control-label', :caption => caption ) ) + ' '
           html += @template.content_tag( :div, controls, :class => :controls ) + ' '

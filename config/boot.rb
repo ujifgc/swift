@@ -8,7 +8,7 @@ require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
 # Enable devel logging
-Padrino::Logger::Config[:development] = { :log_level => :devel, :format_datetime => " [%Y-%m-%d %H:%M:%S] ", :stream => :to_file, :colorize_logging => false }
+Padrino::Logger::Config[:development] = { :log_level => :devel, :format_datetime => " [%Y-%m-%d %H:%M:%S] ", :stream => :to_file, :colorize_logging => true }
 
 # instance an environment
 ENV['TMP'] = Padrino.root + '/tmp'
