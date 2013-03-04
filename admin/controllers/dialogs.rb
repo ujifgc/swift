@@ -81,12 +81,13 @@ Admin.controllers :dialogs do
 
   get :folder, :with => [:object_type, :folder_id] do
     folder = Folder.by_slug params[:folder_id]
+    filter = { :order => :created_at.desc }
     case params[:object_type]
     when 'images'
-      @objects = folder ? folder.images : Image.all
+      @objects = folder ? folder.images(filter) : Image.all(filter)
       render "dialogs/folder_images"
     when 'assets'
-      @objects = folder ? folder.assets : Asset.all
+      @objects = folder ? folder.assets(filter) : Asset.all(filter)
       render "dialogs/folder_assets"
     else
       'error'

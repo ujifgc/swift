@@ -83,6 +83,8 @@ div.grippie {
 }
 .thumbnail {
   position: relative;
+  overflow: hidden;
+  max-height: 140px;
 }
 .thumbnail .placeholder {
   width: 130px;
@@ -98,6 +100,9 @@ div.grippie {
   max-width: 130px;
   max-height: 100px;
   _width: 130px; _height: 100px;
+}
+.thumbnail .progress {
+  margin: 4px 0 0;
 }
 .thumbnail .scene {
   width: 130px;
@@ -127,11 +132,8 @@ div.grippie {
 .thumbnail .caption {
   word-wrap: break-word;
   font-size: 12px;
-  padding: 2px 3px;
-}
-.thumbnail {
-  overflown: hidden;
-  max-height: 180px;
+  padding: 4px 2px 0;
+  width: 126px;
 }
 .modal {
   width: 815px;

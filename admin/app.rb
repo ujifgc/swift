@@ -208,25 +208,19 @@ class Admin < Padrino::Application
       halt 400
     end
 
-    report = []
+    @objects = []
     params[models].each do |upload|
-      object = model.create :title => upload[:filename],
-                            :file => upload[:tempfile] || File.open(upload[:filetemp], 'rb'),
-                            :created_by => current_account,
-                            :updated_by => current_account,
-                            :folder => folder,
-                            :upload_name => upload[:filename]                           
-      report << {
-        :id => object.id,
-        :folder_id => folder.id,
-        :name => CGI.escape(File.basename(object.file.url)),
-        :size => object.file.size,
-        :url => object.file.url,
-        :thumbnail_url => object.file.fill_thumb.url,
+      attributes = {
+        :title => upload[:filename],
+        :file => upload[:tempfile] || File.open(upload[:filetemp], 'rb'),
+        :created_by => current_account,
+        :updated_by => current_account,
+        :folder => folder,
+        :upload_name => upload[:filename],
       }
-      $logger << object.attributes.inspect
+      @objects << model.create( attributes )
     end
-    report.to_json
+    render 'dialogs/folder_images_object', :layout => false
   end
 
   post '/assets/upload', &post_or_put

@@ -347,13 +347,16 @@ bindDialogCreateParent = function() {
 bindDialogFileUpload = function() {
   var thumbs = $('.tab-content > .active .thumbnails');
   var uploader = thumbs.children().first();
+  var placeholder = uploader.find('.placeholder');
   var input = $('.tab-content > .active .fileinput-button input');
+  var counter = null;
   input.fileupload({
-    dataType: 'json',
+    dataType: 'html',
     dropZone: thumbs,
     limitConcurrentUploads: 2,
     formData: { folder_id: thumbs.closest('.tab-pane').attr('id') },
     add: function(e, data) {
+      /* this fancy animation freezes everywhere
       var file = data.files[0];
       var new_li = thumbs.children().last().clone();
       var new_a = new_li.find('a').attr('href', '');
@@ -372,19 +375,45 @@ bindDialogFileUpload = function() {
         reader.readAsDataURL(file);
       }
       uploader.after(new_li);
-      data.context = new_li;
+      data.context = new_li; */
       data.submit();
     },
+    start: function(e) {
+      old_caption = uploader.find('.caption').replaceWith('<div class="progress progress-striped active"><div class="bar" style="width: 0%;"></div></div>');
+      counter = $({number:0})
+      placeholder.css('font-size', '60px');
+    },
     always: function (e, data) {
-      console.log('done');
-      var bar = data.context.find('.curtain');
-      bar.animate({ height: '0' }, 800);
+      var new_li = $(data.result);
+      /* this fancy animation freezes everywhere
+      data.context.replaceWith(new_li); */
+      new_li.insertAfter(uploader);
+      new_li.css('width', 0).animate({width: 140});
     },
     progress: function (e, data) {
+      /* this fancy animation freezes everywhere
       var bar = data.context.find('.curtain');
-      bar.animate({ height: (100 - parseInt(100 * data.loaded / data.total, 10)) }, 800);
+      bar.animate({ height: (100 - parseInt(100 * data.loaded / data.total, 10)) }, 800); */
+    },
+    progressall: function (e, data) {
+      uploader.find('.progress .bar').animate({ width: parseInt(130 * data.loaded / data.total, 10) }, 100);
+      //uploader.find('.placeholder').text( parseInt(100 * data.loaded / data.total, 10) );
+      var progress = parseInt(100 * data.loaded / data.total, 10);
+      counter.animate({number:Math.ceil(progress)}, {
+        duration: 200,
+        step: function() {
+          placeholder.text('' + Math.ceil(this.number) + '%');
+        }
+      });
+      uploader.find('input').attr('disabled', 'disabled');
     },
     stop: function (e) {
+      uploader.find('.progress .bar').animate({ width: 130 }, 500, function() {
+        uploader.find('.progress').replaceWith(old_caption);
+      });
+      placeholder.css('font-size', '100px').text( '+' );
+      uploader.find('input').removeAttr('disabled');
+      uploader.closest('.tab-pane.active').trigger('pane-loaded');
     }
   });
 };

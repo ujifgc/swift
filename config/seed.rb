@@ -19,7 +19,7 @@ Page.create         :parent => error, :slug => '501',     :title => '501 Service
 
 # folders
 Folder.create :id => 1, :account => nil, :title => 'Layout graphics', :slug => 'images'
-Folder.create :id => 2, :account => nil, :title => 'Common files', :slug => 'files'
+Folder.create :id => 2, :account => nil, :title => 'Common files', :slug => 'assets'
 
 # layouts
 Layout.create :id => 'application', :title => 'Default app'

@@ -9,10 +9,4 @@
     javascript:
       bindDialogFileUpload();
   - @objects.each do |o|
-    li.span2
-      - data = { :id => o.id, :title => o.title }
-      - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]
-      = link_to( o.file.url, :class => 'pick thumbnail', :data => data, :onclick => 'return false' ) do
-        = image_tag o.file.fill_thumb.url
-        - unless o.title.blank?
-          .caption= "#{o.title}"
+    = partial 'dialogs/folder_images_object', :locals => { :image => o }
