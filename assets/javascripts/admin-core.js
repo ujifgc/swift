@@ -402,7 +402,7 @@ bindDialogFileUpload = function() {
       counter.animate({number:Math.ceil(progress)}, {
         duration: 200,
         step: function() {
-          placeholder.text('' + Math.ceil(this.number) + '%');
+          placeholder.text('' + (this.number >= 99 ? 99 : Math.ceil(this.number)) + '%');
         }
       });
       uploader.find('input').attr('disabled', 'disabled');
