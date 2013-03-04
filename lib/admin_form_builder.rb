@@ -26,9 +26,19 @@ module Padrino
             opts[:value] = if options[:code]
               opts[:class] += ' code'
               opts[:spellcheck] = 'false'
-              options[:value] ? options[:value] : ''
+              options[:value] || ''
             else
-              options[:value] ? options[:value] : CGI.escapeHTML(@object.send(field) || '')
+              if options[:value]
+                options[:value]
+              else
+                if @object.respond_to?( field )
+                  CGI.escapeHTML(@object.send(field) || '')
+                elsif @object.respond_to? :json
+                  CGI.escapeHTML(@object.json[field] || '')
+                else
+                  ''
+                end
+              end
             end.html_safe
             type = 'textarea'
             text_area field, opts
@@ -94,7 +104,17 @@ module Padrino
             text_field field, :class => 'text_field datetime'
           else
             opts = { :class => :text_field }
-            opts.merge! :value => options[:value]  if options[:value]
+            opts[:value] = if options[:value]
+              options[:value]
+            else
+              if @object.respond_to?( field )
+                @object.send(field) || ''
+              elsif @object.respond_to? :json
+                @object.json[field] || ''
+              else
+                ''
+              end
+            end
             text_field field, opts
           end
           error = Array(@object.errors.delete(field))
@@ -105,6 +125,7 @@ module Padrino
           html += @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?
           klass = "control-group as_#{type}"
           klass += ' morphable'  if morphable
+          klass += ' required'  if options[:required]
           klass += ' error'  if error.any?
           @template.content_tag( :div, html, :class => klass)
         end

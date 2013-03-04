@@ -4,13 +4,15 @@
 - allow :auditor do
   .control-group.as_group.as_clonable
     = f.group_label :fields
-    - @object.json.each do |key, type|
+    - @object.json.each do |key, value|
+      - type, values, require = value
       .controls.horizontal
         = text_field_tag "key[#{key}]", :value => key
-        = select_tag "type[#{key}]", :selected => type[0], :options => FormsCard::Types, :include_blank => 'Удалить'
-        - klass = %W{select multiple}.include?(type[0]) ? 'show' : 'hide'
-        = text_area_tag "value[#{key}]", :value => type[1], :class => klass
-         
+        = check_box_tag "require[#{key}]", :checked => ( require ? 'checked' : nil ), :value => 1
+        = select_tag "type[#{key}]", :selected => type, :options => FormsCard::Types, :include_blank => 'Удалить'
+        - klass = %W{select multiple}.include?(type) ? 'show' : 'hide'
+        = text_area_tag "value[#{key}]", :value => values, :class => klass
+
     .hide.controls.horizontal
       = text_field_tag :'key[json_new]'
       = select_tag :'type[json_new]', :selected => 'string', :options => FormsCard::Types, :include_blank => 'Удалить'

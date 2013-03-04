@@ -1,0 +1,18 @@
+ruby:
+  @card = Bond.children_for( @page, 'FormsCard' ).first
+  not_found  unless @card
+  @swift[:path_pages][-1] = Page.new :title => @card.title
+
+  case @swift[:method]
+  when /POST/i
+    @result = @card.fill request
+    if @result.saved?
+      flash[:notice] = 'Saved'
+    else
+      flash[:notice] = 'Error'
+    end
+  when /GET/i
+    @result = FormsResult.new :card => @card
+  else
+    halt 405, '405 method not allowed'
+  end

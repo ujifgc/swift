@@ -3,12 +3,13 @@ class FormsCard
   include DataMapper::Resource
 
   Types = {
-    'Строка'   => :string,
-    'Число'    => :number,
-    'Вариант'  => :select,
-    'Выборка'  => :multiple,
-    'Файлы'    => :assets,
-    'Картинки' => :images,
+    'Строка'      => :string,
+    'Комментарий' => :text,
+    'Число'       => :number,
+    'Вариант'     => :select,
+    'Выборка'     => :multiple,
+    'Файлы'       => :assets,
+    'Картинки'    => :images,
   }
   Kinds = {
     'Форма'    => 'form',

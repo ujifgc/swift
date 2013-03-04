@@ -271,24 +271,25 @@ module SwiftDatamapper
       keys = params.delete 'key'
       types = params.delete 'type'
       values = params.delete 'value'
+      requires = Hash[(params.delete('require') || []).map{|k,v| [k, v.to_s=='1']}]
       renames = {}
-      keys.each do |k,v|
+      keys.each do |k,v,r|
         if types[k] == "" || v.blank?
           self.json.delete k
           next
         end
         if k.match(/json_new-\d+/)
-          self.json[keys[k]] = [types[k], values[k]]
+          self.json[keys[k]] = [types[k], values[k], requires[k]]
           next
         end
         if k != v
           renames.merge! k => v
           next
         end
-        self.json[keys[k]] = [types[k], values[k]]
+        self.json[keys[k]] = [types[k], values[k], requires[k]]
       end
       if renames.any?
-        self.json = Hash[self.json.map{ |k,v| renames[k] ? [renames[k], [types[k], values[k]]] : [k, v] }]
+        self.json = Hash[self.json.map{ |k,v| renames[k] ? [renames[k], [types[k], values[k], requires[k]]] : [k, v] }]
         self.send(children_method).each do |child|
           child.json = Hash[child.json.map{ |k,v| renames[k] ? [renames[k], v] : [k, v] }]
           child.save

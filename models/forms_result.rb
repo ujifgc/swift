@@ -17,6 +17,21 @@ class FormsResult
     self.origin = self.origin[0..30]
   end
   
+  # validations
+  validates_with_block :json do
+    @json_errors = {}
+    forms_card.json.each do |key, type|
+      if type[2] && json[key].blank?
+        @json_errors[key] = I18n.t('datamapper.errors.messages.json_required')
+      end
+    end
+    if @json_errors.any?
+      [false, I18n.t('datamapper.errors.messages.json_error')]
+    else
+      true
+    end
+  end
+
   after :save do
     forms_card.reset_statistic     
   end

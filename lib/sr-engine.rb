@@ -131,9 +131,9 @@ module Padrino
           args, hash = parse_vars md[-1]
           if hash[:title].blank?
             newtitle = if type == 'element'
-              args[2..-1]
+              args[2..-1]||[]
             else
-              args[1..-1]
+              args[1..-1]||[]
             end.join(' ').strip
             hash[:title] = newtitle.blank? ? nil : parse_content(newtitle)
           end
