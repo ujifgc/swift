@@ -22,6 +22,7 @@ class FormsCard
   property :text,     Text
   property :kind,     String, :length => 10, :default => 'form'
   property :statistic,    DataMapper::Property::Json, :default => {}
+  property :receivers,    String
 
   attr_accessor :stats
 

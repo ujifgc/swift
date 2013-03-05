@@ -32,6 +32,13 @@ class Swift < Padrino::Application
 
   set :default_builder, 'SwiftFormBuilder'
 
+  `which /usr/sbin/exim` #!!! FIXME this is bullcrap
+  if $?.success?
+    set :delivery_method, :smtp
+  else
+    set :delivery_method, :sendmail
+  end
+
   # serve assets with AssetPack
 
   # if web server can't statically serve image request, regenerate the image version
@@ -51,6 +58,12 @@ class Swift < Padrino::Application
     content_type 'application/xml'
     @pages = Page.all.published
     render 'layouts/sitemap'
+  end
+
+  get '/news.xml' do
+    content_type 'application/xml'
+    @news_articles = NewsArticle.all(:limit => 20, :order => :date.desc).published
+    render 'layouts/news'
   end
 
   # if no controller got the request, try finding some content in the sitemap

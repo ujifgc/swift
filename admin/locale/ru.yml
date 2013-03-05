@@ -169,6 +169,7 @@ ru:
         kind: Вид запроса
         created_at: Дата создания
         has_event: Создать событие
+        receivers: Получатели
     blocks:
       name: блоки
     block:

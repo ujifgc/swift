@@ -8,6 +8,26 @@ ruby:
     @result = @card.fill request
     if @result.saved?
       flash[:notice] = 'Saved'
+
+      card = @card
+      result = @result
+      host = env['SERVER_NAME']
+      [@card.receivers, result.json['E-mail']].select do |receiver|
+        receiver.match(/^[\w\d.+-]+@[\w\d.+-]+(?:,\s*[\w\d.+-]+@[\w\d.+-]+)*$/)
+      end.each do |receiver|
+        email do
+          @card_title = card.title
+          @result = result
+          @host = host
+          @receiver = receiver
+
+          from         "robot@#{@host}"
+          to           @receiver
+          subject      "Форма «#{@card_title}» заполнена"
+          content_type 'text/html'
+          body         render 'form_saved'
+        end
+      end
     else
       flash[:notice] = 'Error'
     end
