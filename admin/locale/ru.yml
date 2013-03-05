@@ -224,6 +224,8 @@ ru:
       date_same_year: "%e %B"
       datetime: "%e %b %Y, %H:%M:%S"
   date:
+    formats:
+      long: "%e %b %Y"
     abbr_day_names:
     - Вс
     - Пн

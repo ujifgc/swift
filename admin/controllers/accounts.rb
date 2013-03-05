@@ -70,7 +70,7 @@ Admin.controllers :accounts do
           subject mail_subject
           body render 'reset_account'
         end
-        flash.now[:notice] = pat('account.reset_initiated')
+        flash.now[:notice] = pat('account.reset_initiated').html_safe
         render 'accounts/reset', :layout => 'login'
       end
     else

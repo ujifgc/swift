@@ -11,7 +11,7 @@ h4
     p= pat('account.reset_instruction')
     .control-group
       .input-prepend
-        span.add-on>
+        span.add-on
           i.icon-envelope
         = text_field_tag :email, :value => params[:email], :placeholder => "email"
     .form-inline
@@ -20,13 +20,13 @@ h4
   - else
     .control-group
       .input-prepend
-        span.add-on>
+        span.add-on
           i.icon-envelope
         = text_field_tag :email, :value => params[:email], :disabled => true
         = hidden_field_tag :email, :value => params[:email]
     .control-group
       .input-prepend
-        span.add-on>
+        span.add-on
           i.icon-lock
         = text_field_tag :reset, :value => params[:reset], :placeholder => pat('account.reset_code')
     .form-inline
