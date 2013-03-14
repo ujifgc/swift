@@ -1,6 +1,7 @@
 ru:
   padrino:
     admin:
+      select_all: Выбрать всё
       publish: Опубликовать
       unpublish: Снять
       bind: Связать
@@ -170,6 +171,7 @@ ru:
         created_at: Дата создания
         has_event: Создать событие
         receivers: Получатели
+        is_private: Доступ ограничен
     blocks:
       name: блоки
     block:

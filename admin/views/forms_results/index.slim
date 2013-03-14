@@ -29,5 +29,12 @@ form.inner.multiple#multiple-forms_results action=url(:forms_results, :index)/:m
           td= mk_edit object
           - if @card
             - @card.json.each do |k,v|
-              td= object.json[k]
+              - if v[0] == 'file'
+                - if object.json[k].present?
+                  td
+                    - object.json[k].each do |id|
+                      - a = Asset.get(id)
+                      = link_to(a.title, a.file.url)
+              - else
+                td= object.json[k]
 = partial 'base/index_operations_bottom'

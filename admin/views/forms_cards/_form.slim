@@ -22,4 +22,7 @@
 
   = f.input :slug
   = f.input :receivers
+
+- allow :designer do
+  = f.input :folder_id, :as => :select, :selected => @object.folder_id, :collection => Folder.all, :fields => [ :title, :id ], :include_blank => false
 = f.submits

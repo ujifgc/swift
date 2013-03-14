@@ -6,6 +6,7 @@ class Folder
     
   property :title, String, :required => true
   property :text,  Text
+  property :is_private,  Boolean, :default => false
 
   timestamps!
   userstamps!

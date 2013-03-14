@@ -7,6 +7,24 @@ ruby:
   when /POST/i
     @result = @card.fill request
     if @result.saved?
+      @card.json.select do |k, v|
+        v[0] == 'file'
+      end.each do |k, v|
+        files = params['forms_result'][k]
+        files = [files]  unless files.kind_of? Array
+        @result.json[k] = []
+        files.each do |file|
+          o = Asset.new
+          o.title = file[:filename]
+          o.upload_name = file[:filename]
+          o.file = file[:tempfile]
+          o.folder = @card.folder
+          o.save
+          @result.json[k] << o.id
+        end
+      end
+
+      @result.save
       flash[:notice] = 'Saved'
 
       card = @card

@@ -287,4 +287,14 @@ class Admin < Padrino::Application
     redirect '/admin/session/new'
   end
 
+  get '/private/*' do 
+    path = Padrino.root + CGI.unescape( request.env['REQUEST_URI'].gsub('+','%2B') ).gsub('/admin','')
+    if File.exists?(path)
+      content_type `file -bp --mime-type '#{path}'`.to_s.strip
+      File.binread path
+    else
+      not_found
+    end
+  end
+
 end

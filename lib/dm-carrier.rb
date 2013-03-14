@@ -17,7 +17,11 @@ class NeatUploader < CarrierWave::Uploader::Base
   end
 
   def root
-    Padrino.public
+    if model.folder && model.folder.is_private
+      Padrino.root 'private'
+    else
+      Padrino.public
+    end
   end
 
   def content_type
@@ -45,6 +49,14 @@ class NeatUploader < CarrierWave::Uploader::Base
       base_dir + '/' + model.folder.slug
     end
   end
+
+  def url
+    if !model.folder || !model.folder.is_private
+      super
+    else
+      '/admin/private' + super
+    end
+  end  
 
   def filename
     @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')

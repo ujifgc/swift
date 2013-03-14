@@ -8,8 +8,7 @@ class FormsCard
     'Число'       => :number,
     'Вариант'     => :select,
     'Выборка'     => :multiple,
-    'Файлы'       => :assets,
-    'Картинки'    => :images,
+    'Файл'        => :file,
   }
   Kinds = {
     'Форма'    => 'form',
@@ -36,6 +35,8 @@ class FormsCard
 
   # relations
   has n, :forms_results
+  property :folder_id, Integer
+  belongs_to :folder, :required => false
 
   # hookers
   before :save do
@@ -45,6 +46,11 @@ class FormsCard
   # instance helpers
   def fill( request )
     object = request.params['forms_result'] || {}
+    json.each do |k, v|
+      if v[0] == 'file'
+        object.delete k
+      end
+    end
     object[:forms_card] = self
     object[:created_by] = nil # FIXME
     object[:origin] = request.addr
