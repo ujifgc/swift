@@ -41,6 +41,21 @@ module Padrino
   module Helpers
     module EngineHelpers
 
+      def report_error( error, subsystem = nil, fallback = nil )
+        if Padrino.env == :production
+          relevant_errors = backtrace.reject do |e|
+            e.match /phusion_passenger/
+          end
+          $logger.error "Runtime error at #{subsystem||'system'}"
+          relevant_errors.each do |e|
+            $logger << e.gsub( %r{/home/.*?/}, '~/' )
+          end
+          ''
+        else
+          fallback || raise
+        end
+      end
+
       def element( name, *args )
         @opts = args.last.is_a?(Hash) ? args.pop : {}
         @args = args
@@ -65,8 +80,10 @@ module Padrino
             raise Padrino::Rendering::TemplateNotFound, 'view'
           end
         end
-      rescue Padrino::Rendering::TemplateNotFound => err
-        "[Element '#{name}' is missing #{err.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
+      rescue Padrino::Rendering::TemplateNotFound => e
+        report_error e, :element, "[Element '#{name}' is missing #{e.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
+      rescue Exception => e
+        report_error e, :element
       end
 
       def fragment( name, *args )
