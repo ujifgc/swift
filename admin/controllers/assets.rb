@@ -11,7 +11,11 @@ Admin.controllers :assets do
 
   get :index do
     filter = {}
-    filter[:folder_id] = params[:folder_id].to_i  if params[:folder_id]
+    if params[:folder_id]
+      filter[:folder_id] = params[:folder_id].to_i  unless params[:folder_id] == 'all'
+    else
+      filter[:folder_id] = params[:folder_id] = Folder.with(:assets).last.id  
+    end
     @objects = Asset.all filter
     render 'assets/index'
   end
@@ -23,8 +27,8 @@ Admin.controllers :assets do
 
   post :create do
     files = params[:asset].delete 'file'
-    title = params[:image].delete 'title'
-    folder_id = params[:image].delete 'folder_id'
+    title = params[:asset].delete 'title'
+    folder_id = params[:asset].delete 'folder_id'
     if files.kind_of? Array
       num = files.count > 1 ? 1 : nil
       files.each do |file|
