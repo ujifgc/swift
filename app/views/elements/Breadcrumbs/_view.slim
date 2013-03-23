@@ -1,0 +1,6 @@
+.breadcrumbs
+  - @swift[:path_pages].each do |p|
+    a href=p.path
+      = p.parent ? p.title : t('home')
+    - unless p == @swift[:path_pages].last
+      = @opts[:spacer]

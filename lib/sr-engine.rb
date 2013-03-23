@@ -190,7 +190,7 @@ module Padrino
 
       def meta_for( o )
         meta = o.meta || {}
-        meta['description'] ||= o.title
+        meta['description'] ||= o.respond_to?(:info) && o.info.present? && o.info || o.title
         meta.inject(''.html_safe) do |all, pair|
           all << meta_tag( pair[1], :name => pair[0] )
         end

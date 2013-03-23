@@ -74,6 +74,7 @@ class Swift < Padrino::Application
     not_found  unless @page
 
     @swift[:placeholders]['meta'] = meta_for @page
+    @swift[:placeholders]['html_title'] = @page.title
 
     if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
       cs = @page.children.all :order => :position
@@ -81,12 +82,12 @@ class Swift < Padrino::Application
     end
 
     params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
-    output = begin
+    body = begin
       render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
     rescue Padrino::Rendering::TemplateNotFound => err
       "[Template ##{@page.fragment_id} missing]"
     end
-    inject_placeholders output
+    inject_placeholders body
   end
 
   # a trick to consume both get and post requests
@@ -96,13 +97,15 @@ class Swift < Padrino::Application
   # if the sitemap does not have the requested page then show the 404
   not_found do
     @page = Page.first :path => '/error/404'
-    inject_placeholders( render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id )
+    body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
+    inject_placeholders body
   end
 
   # requested wrong service or wrong parameters
   error 501 do
     @page = Page.first :path => '/error/501'
-    inject_placeholders( render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id )
+    body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
+    inject_placeholders body
   end
 
 protected
@@ -127,7 +130,6 @@ protected
     path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1
     swift[:uri] = path
     swift[:host] = request.env['SERVER_NAME']
-    #path = path.gsub /\/\d+/, ''  !!! this line commented might have something broken
     page = Page.published.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
 
