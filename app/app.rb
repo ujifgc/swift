@@ -11,6 +11,8 @@ class Swift < Padrino::Application
     serve '/stylesheets', from: '../assets/stylesheets'
     serve '/javascripts', from: '../assets/javascripts'
 
+    js_compression :simple
+
     css :app, [
       '/stylesheets/libraries/bootstrap-lite.css',
       '/stylesheets/libraries/colorbox.css',

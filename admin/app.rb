@@ -24,6 +24,8 @@ class Admin < Padrino::Application
     serve '/stylesheets', from: '../assets/stylesheets'
     serve '/javascripts', from: '../assets/javascripts'
 
+    js_compression :simple
+
     css :login, [
       '/stylesheets/libraries/bootstrap.css',
       '/stylesheets/admin/96-monkey.css',
