@@ -50,7 +50,7 @@ module Transliteration
   def slugize( str )
     result = str.scan(SCAN_REGEX).inject('') do |result,char|
       result<<(MIXED[char]||char)
-    end.gsub("'",'').gsub(/[^[:alnum:]]/, '-').squeeze('-').chomp('-')
+    end.strip.gsub("'",'').gsub(/[^[:alnum:]]/, '-').squeeze('-').chomp('-')
     result[0] == ?- ? result[1..-1] : result
   end
 
