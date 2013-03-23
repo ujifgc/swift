@@ -2,6 +2,7 @@
 .dialog-images {
 }
 .dialog-images .item {
+  position: relative;
   display: inline-block;
   width: 120px;
   Rheight: 150px;
@@ -31,6 +32,19 @@
   margin: 3px 0;
   padding: 0 1.3em;
 }
+.dialog-images input[type=checkbox] {
+  visibility: hidden;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  margin: 0;
+}
+.dialog-images a.pick {
+  outline: none !important;
+}
+.dialog-images a.pick:hover + input[type=checkbox], .dialog-images input[checked] {
+  visibility: visible;
+} 
 
 /* Assets */
 .dialog-assets {
@@ -48,9 +62,14 @@
 .dialog-assets .item a {
   display: block;
 }
+
 .dialog-assets .item input, .dialog-blocks .item input, .dialog-codes .item input, .dialog-pages .item input {
   margin-right: 4px;
   float: left;
+}
+.dialog-assets .item a, .dialog-blocks .item a, .dialog-codes .item a, .dialog-pages .item a {
+  display: block;
+  margin-left: 18px;
 }
 
 .dialog-pages {
@@ -64,15 +83,6 @@ div.item a.unbind img {
 }
 a.pick + input[type=checkbox] {
   vertical-align: middle;
-  margin-left: 0.5em;
-}
-.dialog-images .item {
-  position: relative;
-}
-.dialog-images input[type=checkbox] {
-  position: absolute;
-  right: 0.3em;
-  bottom: 0.1em;
 }
 div.grippie {
   background:#EEEEEE url(/images/grippie.png) no-repeat scroll center 2px;

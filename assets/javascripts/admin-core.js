@@ -261,11 +261,13 @@ addCheckboxes = function(selector) {
     var selector = 'a.pick[data-model='+data.model+'][data-id='+data.id+']';
     $('.active-bonds '+selector).parent().remove();
     if (checked) {
+      $(this).attr('checked', 'checked');
       var newlink = link.clone();
       newlink.html(link.text() + '(' + data.model + ')');
       $('.active-bonds').append('<div class=item><a class=unbind href="javascript:;" onclick="bond_uncheck()"><img src="/images/icons/cancel_16.png"/></a></div>').find('div').last().prepend(newlink);
       link.closest('.modal').find('.pick-dialog').data('id'+data.id, data);
     }else{
+      $(this).removeAttr('checked');
       link.closest('.modal').find('.pick-dialog').removeData('id'+data.id);
     }
   });
