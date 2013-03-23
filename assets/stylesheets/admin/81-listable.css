@@ -29,12 +29,12 @@
   display: block;
 }
 .table-condensed td a.edit {
-  margin: -4px -5px;
+  margin: -4px -5px -4px 15px;
   padding: 4px 5px;
 }
 .table td.edit i {
   float: left;
-  margin: 3px 0.5em 0;
+  margin: 3px 6px 0 0;
 }
 .table td.edit .controls {
   display: none;
