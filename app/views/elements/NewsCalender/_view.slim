@@ -1,9 +1,9 @@
 .pagination.pagination-large
   ul
     - @news_years.to_a.reverse.each do |ny|
-      li= link_to ny.to_s, @swift[:module_root].to_s+"?year=" + ny.to_s, :class => @new_year.to_s == ny.to_s ? 'active' : nil
+      li= link_to ny.to_s, @prefix + "?year=" + ny.to_s, :class => @new_year.to_s == ny.to_s ? 'active' : nil
 .pagination
   ul
     - @news_months.each do |nm|
       li
-        = link_to @monthNames[nm], @swift[:module_root].to_s + "?year=#{@new_year||Date.today.year}&month=" + nm.to_s, :class => @new_month.to_s == nm.to_s ? 'active' : nil
+        = link_to @monthNames[nm], @prefix + "?year=#{@new_year||Date.today.year}&month=" + nm.to_s, :class => @new_month.to_s == nm.to_s ? 'active' : nil

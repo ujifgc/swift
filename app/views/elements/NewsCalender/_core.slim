@@ -12,11 +12,25 @@ ruby:
 
   filter = {}
   filter[:order] = :date.asc
-  firstDate = NewsArticle.published.first(filter).date
-  lastDate = NewsArticle.published.last(filter).date
+
+  active_rubrics = Bond.children_for(@page, 'NewsRubric')
+  unless active_rubrics.any?
+    rubrics = NewsRubric.all
+    steps = @swift[:slug].split( '/' )
+    steps.each do |step|
+      rubric = rubrics.by_slug(step)
+      not_found  unless rubric
+      not_found  if @swift[:module_path_ids].last && rubric.parent_id != @swift[:module_path_ids].last
+      active_rubrics << rubric
+    end
+  end
+  filter[:news_rubric_id] = active_rubrics.map(&:id)  if active_rubrics.any? 
+
+  firstDate = NewsArticle.published.first(filter).date  rescue Date.today
+  lastDate = NewsArticle.published.last(filter).date  rescue Date.today
   @news_years = firstDate.year..lastDate.year
   @news_months = case
-  when @new_year.to_i == firstDate.year && @new_year.to_i == Date.today.year
+  when firstDate.year == Date.today.year
     firstDate.mon..lastDate.mon
   when @new_year.to_i == firstDate.year
     firstDate.mon..12
@@ -24,4 +38,6 @@ ruby:
     1..lastDate.mon
   else
     1..12
-  end  
+  end
+
+  @prefix = (  @opts[:root] || @swift[:module_root] ).to_s
