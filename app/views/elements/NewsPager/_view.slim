@@ -6,4 +6,5 @@
         = link_to article.title, "#{@swift[:module_root]}/show/#{article.slug}"
       dd
         = article.info
-  = element 'Pager' 
+  - if @pages_count > 1
+    = element 'Pager' 
