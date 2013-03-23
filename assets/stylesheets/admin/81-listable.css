@@ -32,14 +32,14 @@
   margin: -4px -5px -4px 15px;
   padding: 4px 5px;
 }
-.table td.edit i {
+.table td.edit > i {
   float: left;
   margin: 3px 6px 0 0;
 }
 .table td.edit .controls {
   display: none;
   float: right;
-  margin: -20px 0;
+  margin: -22px 0;
 }
 .table tr:hover td.edit .controls {
   display: block;
