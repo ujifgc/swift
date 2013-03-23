@@ -11,6 +11,7 @@ Admin.controllers :forms_results do
   get :index do
     filter = {}
     filter[:forms_card_id] = params[:forms_card_id].to_i  if params[:forms_card_id]
+    filter[:order] = :created_at.desc
     @objects = FormsResult.all filter
     render 'forms_results/index'
   end
