@@ -33,8 +33,8 @@ form.inner.multiple#multiple-forms_results action=url(:forms_results, :index)/:m
                 - if object.json[k].present?
                   td
                     - object.json[k].each do |id|
-                      - a = Asset.get(id)
-                      = link_to(a.title, a.file.url)
+                      - if a = Asset.get(id)
+                        = link_to(a.title, a.file.url)
               - else
                 td= object.json[k]
 = partial 'base/index_operations_bottom'
