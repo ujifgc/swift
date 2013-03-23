@@ -1,3 +1,4 @@
+/* Images */
 .dialog-images {
 }
 .dialog-images .item {
@@ -30,6 +31,28 @@
   margin: 3px 0;
   padding: 0 1.3em;
 }
+
+/* Assets */
+.dialog-assets {
+}
+.dialog-assets .tab-pane {
+  position: relative;
+}
+.dialog-assets .item {
+  overflow: hidden;
+  margin-bottom: 0.4em;
+}
+.dialog-assets .item .info {
+  float: left;
+}
+.dialog-assets .item a {
+  display: block;
+}
+.dialog-assets .item input, .dialog-blocks .item input, .dialog-codes .item input, .dialog-pages .item input {
+  margin-right: 4px;
+  float: left;
+}
+
 .dialog-pages {
 }
 .dialog-pages div {

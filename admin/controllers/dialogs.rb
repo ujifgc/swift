@@ -1,6 +1,36 @@
 Admin.controllers :dialogs do
   layout :ajax
 
+  get :codes do
+    @objects = Code.all :order => :title
+    @title = pat 'dialog.pick_code'
+    render "dialogs/pick_codes", :layout => params.has_key?('pick') ? 'pick_many' : 'ajax'
+  end
+
+  get :pages do
+    @tree = page_tree( nil, 0, '', :published )
+    @title = pat 'dialog.pick_page'
+    render "dialogs/pick_pages", :layout => params.has_key?('pick') ? 'pick_many' : 'ajax'
+  end
+
+  get :blocks do
+    @objects = Block.all :order => :title
+    @title = pat 'dialog.pick_block'
+    render "dialogs/pick_blocks", :layout => params.has_key?('pick') ? 'pick_many' : 'ajax'
+  end
+
+  get :images do
+    @objects = Image.all :order => :updated_at.desc
+    @title = pat 'dialog.pick_image'
+    render "dialogs/pick_images", :layout => params.has_key?('pick') ? 'pick_many' : 'ajax'
+  end
+
+  get :assets do
+    @objects = Asset.all :order => :updated_at.desc
+    @title = pat 'dialog.pick_asset'
+    render "dialogs/pick_assets", :layout => params.has_key?('pick') ? 'pick_many' : 'ajax'
+  end
+
   get :create_parent do
     @title = pat 'dialog.create_' + params[:parent_model].downcase
     render "dialogs/create_parent", :layout => :dialog
@@ -24,36 +54,6 @@ Admin.controllers :dialogs do
     end
   end
 
-  get :codes do
-    @objects = Code.all
-    @title = pat 'dialog.pick_code'
-    render "dialogs/codes", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
-  end
-
-  get :pages do
-    @tree = page_tree( nil, 0, '' )
-    @title = pat 'dialog.pick_page'
-    render "dialogs/pages", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
-  end
-
-  get :blocks do
-    @objects = Block.all
-    @title = pat 'dialog.pick_block'
-    render "dialogs/blocks", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
-  end
-
-  get :images do
-    @objects = Image.all
-    @title = pat 'dialog.pick_image'
-    render "dialogs/images", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
-  end
-
-  get :assets do
-    @objects = Asset.all
-    @title = pat 'dialog.pick_asset'
-    render "dialogs/assets", :layout => params.has_key?('pick') ? 'pick' : 'ajax'
-  end
-
   get :folders do
     @objects = Folder.all
     render "dialogs/folders"
@@ -72,6 +72,11 @@ Admin.controllers :dialogs do
   get :cat_nodes do
     @objects = CatNode.all
     render "dialogs/cat_nodes"
+  end
+
+  get :news_rubrics do
+    @objects = NewsRubric.all
+    render "dialogs/news_rubrics"
   end
 
   get :forms_cards do
@@ -94,13 +99,17 @@ Admin.controllers :dialogs do
     end
   end
 
-  get :preview, :with => [:model, :id] do
+  post :preview, :with => [:model, :id] do
     @title = pat 'dialog.preview'
-    @model = params[:model].constantize  rescue nil
-    return "no such model: #{params[:model]}"  unless @model
-    @object = @model.get params[:id]
-    return "no such object: #{model} ##{params[:id]}"  unless @object
-    @content = engine_render( @object.text )
+    @content = if params[:text]
+      engine_render( params[:text] )
+    else
+      @model = params[:model].constantize  rescue nil
+      return "no such model: #{params[:model]}"  unless @model
+      @object = @model.get params[:id]
+      return "no such object: #{model} ##{params[:id]}"  unless @object
+      engine_render( @object.text )
+    end
     render 'dialogs/preview', :layout => :dialog_slim
   end
 

@@ -1,0 +1,7 @@
+﻿.dialog-codes
+  - @objects.each do |o|
+    - data = { :id => nil, :title => o.placeholder.to_s, :type => o.slug, :single => o.is_single }
+    - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]
+    .item= link_to "#{o.title}", o.slug, :data => data, :class => :pick, :onclick => 'return false'
+javascript:
+  addCheckboxes('.dialog-codes');

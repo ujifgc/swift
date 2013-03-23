@@ -1198,7 +1198,7 @@
 
             buttons.bold = makeIcon("wmd-bold-button", "Жирный - Ctrl+B", "bold", bindCommand("doBold"));
             buttons.italic = makeIcon("wmd-italic-button", "Курсив - Ctrl+I", "italic", bindCommand("doItalic"));
-            buttons.code =  makeIcon("wmd-code-button", "Код - Ctrl+K", "code", bindCommand("doCode"));
+            //buttons.code =  makeIcon("wmd-code-button", "Код - Ctrl+K", "code", bindCommand("doCode"));
             nextRow();
 
             buttons.link = makeIcon("wmd-link-button", "Ссылка - Ctrl+L", "book", bindCommand(function (chunk, postProcessing) {
@@ -1266,8 +1266,7 @@
 
     var commandProto = CommandManager.prototype;
     
-    commandProto.doPreview = function (chunk, postProcessing)
-    {
+    commandProto.doPreview = function (chunk, postProcessing) {
       var splits = document.baseURI.split('/');
       var url = "/admin/dialogs/preview/Page/" + splits[splits.length - 1];
       $('body > .modal').remove();
@@ -1275,6 +1274,9 @@
       this.dialog = dialog;
       dialog.load(
         url,
+        {
+          text: chunk.before + chunk.selection + chunk.after
+        },
         function (responseText, textStatus, XMLHttpRequest) {
           dialog.removeClass('loading');
         }
@@ -1312,26 +1314,20 @@
             }
             var that = this;
 
-            var pickIdCallback = function(type, data) {
-                var id = data['id'];
-                var title = data['title'];
-                if (data['type']) {
+            var pickMultipleIdCallback = function(datas) {
+                chunk.startTag = "";
+                chunk.endTag = "";
+                if (typeof datas == 'object') for (i in datas) {
+                    var data = datas[i];
+                    var id = data['id'];
+                    var title = data['title'] || data['placeholder'];
                     if (data['single']) {
-                        chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
-                        chunk.startTag = "[" + data['type'] + " " + (chunk.selection || data['placeholder']) + "]";
-                        chunk.endTag = "";
+                        chunk.startTag += "[" + data['type'] + (id?" "+id:"") + (title?" "+title:"") + "]\n";
                         chunk.selection = "";
                     }else{
-                        chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
-                        chunk.startTag = "[" + data['type'] + (data['placeholder'] ? " " + data['placeholder'] : "") + "]";
-                        chunk.endTag = "[/" + data['type'] + "]";
+                        chunk.startTag = "[" + data['type'] + (title?" "+title:"") + "]";
+                        chunk.endTag = "[/" + data['type'] + "]" + chunk.endTag;
                     }
-                }else if (id !== null) {
-                    chunk.selection = (" " + chunk.selection).replace(/([^\\](?:\\\\)*)(?=[[\]])/g, "$1\\").substr(1);
-                    var label = (type == 'asset' ? 'file' : type);
-                    chunk.startTag = "[" + label + " " + id + " " + (chunk.selection || (''+title).trim() || "заголовок") + "]";
-                    chunk.endTag = "";
-                    chunk.selection = "";
                 }
                 postProcessing();
             }
@@ -1346,15 +1342,14 @@
             }
             // load remote content
             var pick_close = function(){
-                pickIdCallback(objectType, $(this).data());
+                pickMultipleIdCallback($(this).data());
                 dialog.modal('hide');
                 return false;
             };
             var rebindPicks = function() {
-                dialog.find( ".tab-content .tab-pane" ).unbind('pane-loaded').bind( 'pane-loaded', function() {
-                  dialog.find('a.pick').unbind('click').bind('click',pick_close);
-                });
-                dialog.find('a.pick').unbind('click').bind('click',pick_close);
+                rebindClick = function() { dialog.find('.pick-dialog').unbind('click').bind('click',pick_close); };
+                rebindClick();
+                dialog.find( ".tab-content .tab-pane" ).unbind('pane-loaded').bind( 'pane-loaded', rebindClick);
             };
             if (dialogNew) {
               dialog.load(
@@ -1370,7 +1365,7 @@
             }
             dialog.modal('show');
             dialog.on('hidden', function() {
-              //dialog.remove();
+              dialog.remove();
             });
             return true;
         }

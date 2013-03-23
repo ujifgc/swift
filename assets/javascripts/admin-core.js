@@ -69,17 +69,17 @@
     "sDom": "<'page-filter'rf>t<'page-control'<'inline pick-page'p><'hide length'l>>",
     "sPaginationType": "bootstrap",
     "bStateSave": true,
-	"oLanguage": {
+  "oLanguage": {
       "sLengthMenu": "_MENU_",
       "sSearch": "Фильтр: ",
       "oPaginate": {
         "sNext": "",
         "sPrevious": ""
       }
-	},
-	"aoColumns": cols,
-	"aLengthMenu": lenHash,
-	"iDisplayLength": -1
+  },
+  "aoColumns": cols,
+  "aLengthMenu": lenHash,
+  "iDisplayLength": -1
   } );
   if ($('table.table').length > 0 && $('table.table').dataTableSettings[0]) {
     var lengthes = '';
@@ -152,6 +152,16 @@ bindDatetime = function() {
       $(this).datetimepicker( { format: 'yyyy-mm-dd hh:ii:ss', weekStart: 1, language: 'ru', autoclose: true } );
       $(this).on('show', function(e) { $(e.target).select(); });
       $(this).addClass('datetime-added');
+    }
+  });
+  $('input.date').each(function() {
+    if (!$(this).hasClass('date-added')) {
+      $(this).wrap('<div class="input-prepend date"></div>');
+      $(this).before('<span class="add-on"><i class="icon-calendar"></i></span>');
+      $(this).siblings('.add-on').click(function() { $(this).siblings('input')[0].focus() });
+      $(this).datetimepicker( { format: 'yyyy-mm-dd', weekStart: 1, language: 'ru', autoclose: true, minView: 'month' } );
+      $(this).on('show', function(e) { $(e.target).select(); });
+      $(this).addClass('date-added');
     }
   });
 };
@@ -233,9 +243,13 @@ cloneControlGroup = function(el) {
 addCheckboxes = function(selector) {
   var links = $(selector).find('a.pick');
   links.each(function() {
-    var checked = $(this).data('bound').toString() === 'true' ? 'checked=checked' : '';
+    var checked = ($(this).data('bound') && $(this).data('bound').toString() === 'true') ? 'checked=checked' : '';
     var name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
-    $(this).after('<input type=checkbox '+checked+' name='+name+' />');
+    if ($(this).closest('.tab-pane').length > 0 && $(this).closest('.tab-pane').attr('id').match(/^images/)) {
+      $(this).after('<input type=checkbox '+checked+' name='+name+' />');
+    }else{
+      $(this).before('<input type=checkbox '+checked+' name='+name+' />');
+    }
   });
   links.click(function(event) {
     $(this).siblings(':checkbox').toggleCheckbox().change();
@@ -250,6 +264,9 @@ addCheckboxes = function(selector) {
       var newlink = link.clone();
       newlink.html(link.text() + '(' + data.model + ')');
       $('.active-bonds').append('<div class=item><a class=unbind href="javascript:;" onclick="bond_uncheck()"><img src="/images/icons/cancel_16.png"/></a></div>').find('div').last().prepend(newlink);
+      link.closest('.modal').find('.pick-dialog').data('id'+data.id, data);
+    }else{
+      link.closest('.modal').find('.pick-dialog').removeData('id'+data.id);
     }
   });
 }

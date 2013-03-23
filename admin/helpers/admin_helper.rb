@@ -103,14 +103,18 @@ Admin.helpers do
     end
   end
 
-  def page_tree( from, level, prefix )
-    pages = Page.all :parent_id => from, :order => [:position, :path]
+  def page_tree( from, level, prefix, published = nil )
+    pages = if published
+      Page.published.all :parent_id => from, :order => [:position, :path]
+    else
+      Page.all :parent_id => from, :order => [:position, :path]
+    end
     return false  unless pages.length > 0
 
     tree = []
     pages.each do |page|
       tree << { :page => page,
-                :child => page_tree(page.id, level + 1, prefix + '/' + page.slug) }
+                :child => page_tree(page.id, level + 1, prefix + '/' + page.slug, published) }
     end
     return tree
   end
