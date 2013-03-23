@@ -49,7 +49,7 @@ th.action  { width: 110px; text-align:center }
   position: absolute;
   top: -3em;
   left: 50%;
-  z-index: 500;
+  z-index: 1040;
 }
 .inline {
   display: inline-block;
