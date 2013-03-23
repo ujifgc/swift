@@ -101,7 +101,15 @@ module Padrino
             type = 'file'
             tag + input
           when :datetime, :date_time
-            text_field field, :class => 'text_field datetime'
+            opts = {}
+            opts[:class] = 'text_field datetime'
+            opts[:value] = options[:value]  if options[:value]
+            text_field field, opts
+          when :date
+            opts = {}
+            opts[:class] = 'text_field date'
+            opts[:value] = options[:value]  if options[:value]
+            text_field field, opts
           else
             opts = { :class => :text_field }
             opts[:value] = if options[:value]

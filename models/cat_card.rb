@@ -9,6 +9,8 @@ class CatCard
     'Выборка'  => :multiple,
     'Файлы'    => :assets,
     'Картинки' => :images,
+    'Дата'         => :date,
+    'Дата и время' => :datetime,
     'Объект'   => :json,
   }
 
