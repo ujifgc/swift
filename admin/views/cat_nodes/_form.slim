@@ -16,7 +16,7 @@
         - opts.delete :value
         - opts[:selected] = @object.json[key]
         - opts[:options] = variants
-      - if as == :multiple
+      - elsif as == :multiple
         - opts.delete :value
         .control-group.as_multiple.morphable
           = f.label( key, :class => 'control-label', :caption => key )
@@ -24,8 +24,12 @@
             .controls.horizontal
               = label_back_tag v, :for => "cat_node[#{key}][#{v}]", :caption => v, :class => :checkbox do
                 = check_box_tag "cat_node[#{key}][]", :value => v, :id => "cat_node[#{key}][#{v}]", :checked => Array(@object.json[key]).include?(v)
-      - if as == :json
+      - elsif as == :json
         = f.input key, opts.merge({:as => :text, :value => @object.json[key].kind_of?(String) ? @object.json[key] : @object.json[key].to_json })
+      - elsif as == :datetime
+        = f.input key, opts.merge( :as => :datetime, :value => @object.json[key] )
+      - elsif as == :date
+        = f.input key, opts.merge( :as => :date, :value => @object.json[key] )
       - else
         = f.input key, opts
 
