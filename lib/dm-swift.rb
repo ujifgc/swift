@@ -32,7 +32,10 @@ module SwiftDatamapper
 
       before :valid? do
         self.slug = (title || id).to_s.as_slug  if slug.blank?
-        while self.class.first( :slug => slug, :id.not => id )
+        self.slug = slug.strip
+        filter = { :id.not => id }
+        filter[:parent] = parent  if self.respond_to? :parent
+        while self.class.first( filter.merge(:slug => slug) )
           if slug.match(/\-\d+$/)
             self.slug = slug.gsub(/\-(\d+)$/){ "-#{$1.to_i+1}" }
           else
@@ -89,7 +92,7 @@ module SwiftDatamapper
       attr_accessor :upload_name
 
       before :save do
-        path = Padrino.public + self.file.url
+        path = self.file.path
         if File.exists?(path)
           self.file_content_type = `file -bp --mime-type '#{path}'`.to_s.strip
           self.file_size = File.size path
@@ -97,6 +100,7 @@ module SwiftDatamapper
           self.file_content_type = self.file_size = nil
         end
       end
+
     end
 
     # Resource is bondable
@@ -157,10 +161,19 @@ module SwiftDatamapper
       end
     end
 
+    def metable!
+      send :include, MetableMethods
+
+      property :meta, DataMapper::Property::Json, :default => {}
+    end
+
   end
 
   # Methods for all resourced
   module InstanceMethods
+  end
+
+  module MetableMethods
   end
 
   module SluggableMethods
@@ -202,6 +215,9 @@ module SwiftDatamapper
   end  
 
   module UploadableMethods
+    def info
+      "#{title} (#{file.content_type}, #{file.size.as_size})"
+    end
   end
 
   module BondableMethods

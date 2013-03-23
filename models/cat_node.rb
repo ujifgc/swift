@@ -14,6 +14,7 @@ class CatNode
   bondable!
   amorphous!
   recursive!
+  metable!
 
   # relations
   belongs_to :cat_card, :required => true

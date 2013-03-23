@@ -73,17 +73,20 @@ class Swift < Padrino::Application
     not_found  if @swift[:not_found]
     not_found  unless @page
 
+    @swift[:placeholders]['meta'] = meta_for @page
+
     if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
       cs = @page.children.all :order => :position
       redirect cs.first.path  if cs.any?
     end
 
     params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
-    begin
+    output = begin
       render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
     rescue Padrino::Rendering::TemplateNotFound => err
       "[Template ##{@page.fragment_id} missing]"
     end
+    inject_placeholders output
   end
 
   # a trick to consume both get and post requests
@@ -93,13 +96,13 @@ class Swift < Padrino::Application
   # if the sitemap does not have the requested page then show the 404
   not_found do
     @page = Page.first :path => '/error/404'
-    render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
+    inject_placeholders( render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id )
   end
 
   # requested wrong service or wrong parameters
   error 501 do
     @page = Page.first :path => '/error/501'
-    render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
+    inject_placeholders( render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id )
   end
 
 protected
@@ -118,10 +121,12 @@ protected
     swift[:path_pages] = []
     swift[:path_ids] = []
     swift[:method] = request.env['REQUEST_METHOD']
+    swift[:placeholders] = {}
 
     path = request.env['PATH_INFO']
     path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1
     swift[:uri] = path
+    swift[:host] = request.env['SERVER_NAME']
     #path = path.gsub /\/\d+/, ''  !!! this line commented might have something broken
     page = Page.published.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
@@ -144,6 +149,12 @@ protected
       end
     end
 
+    unless page
+      root = Page.first( :parent => nil )
+      swift[:path_pages].unshift root
+      swift[:path_ids].unshift root.id
+    end
+    
     while page
       swift[:path_pages].unshift page
       swift[:path_ids].unshift page.id
@@ -151,6 +162,27 @@ protected
     end
 
     swift
+  end
+
+  def inject_placeholders( text )
+    text.gsub /\%\{placeholder\[\:[^\]]+\]\}/ do |pattern|
+      tag = pattern.partition(':').last.chop.chop # !!! FIXME this is bad. somewhy $1 does not work
+      @swift[:placeholders][tag] || ''
+    end
+  end
+
+  Swift.mailer :cron do
+    hostname = Option(:hostname)
+    email :forms_stat do |receivers, message|
+      @hostname = hostname
+      @message = message
+
+      from          "robot@#{@hostname}"
+      to            receivers
+      subject       "Статистка по обращениям в интернет-премную прокуратуры УР в период c #{(DateTime.now - 7).strftime('%d.%m.%Y')} до #{DateTime.now.strftime('%d.%m.%Y')}"
+      content_type  'text/html'
+      body          render 'forms_stat'
+    end
   end
 
 end

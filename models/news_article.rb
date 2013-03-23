@@ -15,6 +15,7 @@ class NewsArticle
   publishable!
   bondable!
   dateable!
+  metable!
 
   # relations
   property :news_rubric_id, Integer, :default => 1

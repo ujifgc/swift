@@ -118,7 +118,7 @@ module Padrino
           md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)((?:[\:\.\#][\w\-]*)*)\s+(.*)/
           unless md
             tags = tag.partition ' '
-            code = Code.by_slug tags[0]  unless tags[0][0] == '/'
+            code = Code.first( :slug => tags[0] )  unless tags[0][0] == '/'
             if code && code.is_single
               args, hash = parse_vars tags[2]
               next parse_code( code.html, args )
@@ -185,6 +185,14 @@ module Padrino
           '/forms' / method / o.slug
         else
           @swift[:module_root] ? @swift[:module_root] / method / o.slug : '/'
+        end
+      end
+
+      def meta_for( o )
+        meta = o.meta || {}
+        meta['description'] ||= o.title
+        meta.inject(''.html_safe) do |all, pair|
+          all << meta_tag( pair[1], :name => pair[0] )
         end
       end
 

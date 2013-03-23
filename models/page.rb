@@ -17,6 +17,7 @@ class Page
   userstamps!
   loggable!
   bondable!
+  metable!
 
   # relations
   has n, :children, 'Page', :child_key => :parent_id
@@ -38,6 +39,10 @@ class Page
     if self.position.blank?
       max = Page.all( :parent => self.parent ).published.max :position
       self.position = max.to_i + 5
+    else
+      while duplicate = Page.first( :parent => parent, :position => position, :id.not => id )
+        self.position += 5
+      end
     end
   end
 
