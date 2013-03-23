@@ -11,6 +11,7 @@ class NewsRubric
   timestamps!
   userstamps!
   loggable!
+  bondable!
 
   # relations
   has n, :news_articles
