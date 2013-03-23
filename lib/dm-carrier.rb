@@ -1,5 +1,14 @@
 class NeatUploader < CarrierWave::Uploader::Base
 
+  def uri_encode_url(url)
+    if url = Addressable::URI.parse(url) #!!! FIXME this is bullcrap
+      url.path = uri_encode_path(url.path)
+      url.to_s
+    end
+  rescue URI::InvalidURIError
+    url
+  end
+
   def kill_cache
     path = File.expand_path(cache_dir, root)
     FileUtils.rm_rf @@kill_list.map{|dir| File.expand_path(dir, path) }
