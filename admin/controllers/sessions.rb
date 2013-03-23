@@ -11,7 +11,7 @@ Admin.controllers :sessions do
 
   post :create do
     account = Account.authenticate(params[:email], params[:password])
-    if Padrino.env == :development && params[:bypass]
+    if Option(:bypass) && Padrino.env == :development && params[:bypass]
       account ||= Account.first :name => params[:bypass], :surname => 'group'
     end
     if account

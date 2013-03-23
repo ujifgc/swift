@@ -25,7 +25,7 @@ h4
       = password_field_tag :password, :value => params[:password], :placeholder => "password"
   .control-group
     = submit_tag(pat('login.signin'), :class => 'btn btn-primary pull-right')
-    - if Padrino.env == :development
+    - if Option(:bypass) && Padrino.env == :development
       - Account.all( :group_id => nil ).map(&:name).each do |name|
         label.radio
           = t('group.'+name)
