@@ -84,7 +84,7 @@ class Admin < Padrino::Application
     role.project_module :folders, '/folders'
 
     role.project_module :news_articles, '/news_articles'
-    role.project_module :news_events, '/news_events'
+#    role.project_module :news_events, '/news_events'
 
     role.project_module :forms_results, '/forms_results'
     role.project_module :forms_stats, '/forms_stats'
@@ -102,10 +102,10 @@ class Admin < Padrino::Application
 
     role.project_module :news_articles, '/news_articles'
     role.project_module :news_rubrics, '/news_rubrics'
-    role.project_module :news_events, '/news_events'
+#    role.project_module :news_events, '/news_events'
 
     role.project_module :forms_cards, '/forms_cards'
-    role.project_module :forms_stats, '/forms_stats'
+#    role.project_module :forms_stats, '/forms_stats'
     role.project_module :forms_results, '/forms_results'
 
     role.project_module :cat_nodes,  '/cat_nodes'
@@ -122,10 +122,10 @@ class Admin < Padrino::Application
 
     role.project_module :news_articles, '/news_articles'
     role.project_module :news_rubrics, '/news_rubrics'
-    role.project_module :news_events, '/news_events'
+ #   role.project_module :news_events, '/news_events'
 
     role.project_module :forms_cards, '/forms_cards'
-    role.project_module :forms_stats, '/forms_stats'
+#    role.project_module :forms_stats, '/forms_stats'
     role.project_module :forms_results, '/forms_results'
 
     role.project_module :cat_nodes,  '/cat_nodes'
@@ -148,10 +148,10 @@ class Admin < Padrino::Application
 
     role.project_module :news_articles, '/news_articles'
     role.project_module :news_rubrics, '/news_rubrics'
-    role.project_module :news_events, '/news_events'
+#    role.project_module :news_events, '/news_events'
 
     role.project_module :forms_cards, '/forms_cards'
-    role.project_module :forms_stats, '/forms_stats'
+#    role.project_module :forms_stats, '/forms_stats'
     role.project_module :forms_results, '/forms_results'
 
     role.project_module :cat_nodes,  '/cat_nodes'
