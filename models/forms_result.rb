@@ -5,6 +5,7 @@ class FormsResult
   property :id,         Serial
   property :created_at, DateTime
   property :origin,     String, :length => 31
+  property :number,     Integer
 
   amorphous!
 
@@ -14,7 +15,8 @@ class FormsResult
 
   # hookers
   before :valid? do
-    self.origin = self.origin[0..30]
+    self.origin = origin[0..30]
+    self.number = FormsResult.all( :forms_card => Bond.children_for(forms_card, 'FormsCard') + [forms_card], :id.not => id ).max(:number).to_i + 1
   end
   
   # validations

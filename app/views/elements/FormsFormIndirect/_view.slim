@@ -12,4 +12,7 @@
   dl
     - @result.json.each do |k,v|
       dt= k
-      dd= v
+      - if @card.json[k][0] == 'file'
+        dd= Asset.all(:id => v).map(&:info).join(', ')
+      - else
+        dd= v
