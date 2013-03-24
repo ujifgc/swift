@@ -29,7 +29,7 @@ gem 'dm-core', '~> 1.2.0'
 gem 'dm-mysql-adapter'
 
 # javascript and css compressing
-gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :github => 'ujifgc/sinatra-assetpack', :branch => 'simple-js'
+gem 'sinatra-assetpack', :require => 'sinatra/assetpack', :github => 'ujifgc/sinatra-assetpack'
 
 # file and picture assets
 gem 'mini_magick'
