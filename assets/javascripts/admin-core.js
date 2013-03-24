@@ -243,18 +243,20 @@ cloneControlGroup = function(el) {
 addCheckboxes = function(selector) {
   var links = $(selector).find('a.pick');
   links.each(function() {
-    var checked = ($(this).data('bound') && $(this).data('bound').toString() === 'true') ? 'checked=checked' : '';
-    var name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
-    if ($(this).closest('.tab-pane').length > 0 && $(this).closest('.tab-pane').attr('id').match(/^images/)) {
-      $(this).after('<input type=checkbox '+checked+' name='+name+' />');
-    }else{
-      $(this).before('<input type=checkbox '+checked+' name='+name+' />');
+    if ($(this).siblings('input[type=checkbox]').length == 0 ) {
+      var checked = ($(this).data('bound') && $(this).data('bound').toString() === 'true') ? 'checked=checked' : '';
+      var name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
+      if ($(this).closest('.tab-pane').length > 0 && $(this).closest('.tab-pane').attr('id').match(/^images/)) {
+        $(this).after('<input type=checkbox '+checked+' name='+name+' />');
+      }else{
+        $(this).before('<input type=checkbox '+checked+' name='+name+' />');
+      }
     }
   });
-  links.click(function(event) {
+  links.off('click').on('click', function(event) {
     $(this).siblings(':checkbox').toggleCheckbox().change();
   });
-  links.siblings(':checkbox').change(function(event) {
+  links.siblings(':checkbox').off('change').on('change', function(event) {
     var checked = $(this).prop('checked');
     var link = $(this).siblings('a.pick');
     var data = link.data();
@@ -375,26 +377,6 @@ bindDialogFileUpload = function() {
     limitConcurrentUploads: 2,
     formData: { folder_id: thumbs.closest('.tab-pane').attr('id') },
     add: function(e, data) {
-      /* this fancy animation freezes everywhere
-      var file = data.files[0];
-      var new_li = thumbs.children().last().clone();
-      var new_a = new_li.find('a').attr('href', '');
-      var new_img = new_a.find('img').attr('src','/images/grey-thumb.png')
-      var new_div = new_a.find('div').text(file.name);
-      new_img.wrap('<div class="scene"></div>');
-      new_img.after('<div class="curtain"></div>');
-      if (window.FileReader) {
-        var reader = new FileReader();
-        reader.onloadend = function() {
-          new_img[0].src = reader.result;
-          new_img.on('load', function() {
-            $(this).removeClass('wide narrow').addClass( ( ( this.width / this.height  ) < 1.3 ) ? 'narrow' : 'wide' );
-          });
-        }
-        reader.readAsDataURL(file);
-      }
-      uploader.after(new_li);
-      data.context = new_li; */
       data.submit();
     },
     start: function(e) {
@@ -404,19 +386,11 @@ bindDialogFileUpload = function() {
     },
     always: function (e, data) {
       var new_li = $(data.result);
-      /* this fancy animation freezes everywhere
-      data.context.replaceWith(new_li); */
       new_li.insertAfter(uploader);
       new_li.css('width', 0).animate({width: 140});
     },
-    progress: function (e, data) {
-      /* this fancy animation freezes everywhere
-      var bar = data.context.find('.curtain');
-      bar.animate({ height: (100 - parseInt(100 * data.loaded / data.total, 10)) }, 800); */
-    },
     progressall: function (e, data) {
       uploader.find('.progress .bar').animate({ width: parseInt(130 * data.loaded / data.total, 10) }, 100);
-      //uploader.find('.placeholder').text( parseInt(100 * data.loaded / data.total, 10) );
       var progress = parseInt(100 * data.loaded / data.total, 10);
       counter.animate({number:Math.ceil(progress)}, {
         duration: 200,
@@ -432,6 +406,7 @@ bindDialogFileUpload = function() {
       });
       placeholder.css('font-size', '100px').text( '+' );
       uploader.find('input').removeAttr('disabled');
+      addCheckboxes(uploader.closest('.tab-pane.active'));
       uploader.closest('.tab-pane.active').trigger('pane-loaded');
     }
   });

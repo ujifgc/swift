@@ -13,7 +13,8 @@ Admin.controllers :images do
     if params[:folder_id]
       filter[:folder_id] = params[:folder_id].to_i  unless params[:folder_id] == 'all'
     else
-      filter[:folder_id] = params[:folder_id] = Folder.with(:images).last.id  
+      folder = Folder.with(:images).last      
+      filter[:folder_id] = params[:folder_id] = folder.id  if folder
     end
     @objects = Image.all filter
     render 'images/index'

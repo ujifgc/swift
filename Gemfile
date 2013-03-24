@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 # console sugar for development
 group :development, :test do

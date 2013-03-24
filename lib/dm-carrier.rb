@@ -68,8 +68,7 @@ class NeatUploader < CarrierWave::Uploader::Base
   end  
 
   def filename
-    @time_stamp ||= Time.now.strftime('%y%m%d%H%M%S')
-    [@time_stamp, original_filename].compact.join('_')  if original_filename.present?
+    original_filename.gsub(/(\+|%20|%2520|\s+)/, '_')
   end
 
 end
@@ -112,7 +111,7 @@ class ImageUploader < NeatUploader
       original_filename
     else
       super
-    end
+    end.gsub(/(\+|%20|%2520|\s+)/, '_')
   end
 
 end
