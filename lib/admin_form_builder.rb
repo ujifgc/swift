@@ -11,7 +11,7 @@ module Padrino
         def input( field, options={} )
           object = @object.class.to_s.underscore
           options[:label] ||= {}
-          caption = options[:label].delete(:caption) || make_caption(field)
+          caption = options[:label].delete(:caption) || make_caption(object, field)
           caption += ' (' + options.delete(:brackets).to_s + ')'  if options[:brackets]
           type = 'string'
           morphable = options.delete :morphable
@@ -134,12 +134,12 @@ module Padrino
           klass = "control-group as_#{type}"
           klass += ' morphable'  if morphable
           klass += ' required'  if options[:required]
-          klass += ' error'  if error.any?
+          klass += ' error l'  if error.any?
           @template.content_tag( :div, html, :class => klass)
         end
 
         def group_label( field, options={} )
-          caption = make_caption field
+          caption = make_caption( 'object', field )
           label( field, :class => 'control-label', :caption => caption )
         end
 
@@ -176,8 +176,10 @@ module Padrino
 
       protected
         
-        def make_caption( field )
-          I18n.t "models.object.attributes.#{field}"
+        def make_caption( model, field )
+          tr = I18n.t "models.#{model}.attributes.#{field}"
+          tr = I18n.t "models.object.attributes.#{field}"  if tr.match(/^..\..+/)
+          tr
         end
 
       end

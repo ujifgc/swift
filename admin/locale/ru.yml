@@ -190,6 +190,8 @@ ru:
       name: папки
     folder:
       name: папку
+      attributes:
+        text: Описание
     images:
       name: картинки
     image:
@@ -200,6 +202,10 @@ ru:
       name: фрагменты
     fragment:
       name: визуализатор
+    news_article:
+      name: новости
+      attributes:
+        slug: Ссылка (не обяз.)
     news_articles:
       name: Новости
     news_rubrics:

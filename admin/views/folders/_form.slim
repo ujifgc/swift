@@ -1,6 +1,7 @@
-= f.inputs :title, :slug
+= f.inputs :title
 = f.input :text, :as => :text, :markdown => true
 
 - allow :auditor do
+  = f.input :slug
   = f.input :is_private, :as => :boolean
 = f.submits

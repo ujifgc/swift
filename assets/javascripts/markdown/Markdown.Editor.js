@@ -1201,31 +1201,6 @@
             //buttons.code =  makeIcon("wmd-code-button", "Код - Ctrl+K", "code", bindCommand("doCode"));
             nextRow();
 
-            buttons.link = makeIcon("wmd-link-button", "Ссылка - Ctrl+L", "book", bindCommand(function (chunk, postProcessing) {
-                return this.doPickObject(chunk, postProcessing, 'page');
-            }));
-            buttons.block = makeIcon("wmd-block-button", "Блок - Ctrl+S", "list-alt", bindCommand(function (chunk, postProcessing) {
-                return this.doPickObject(chunk, postProcessing, 'block');
-            }));
-            buttons.asset = makeIcon("wmd-asset-button", "Файл - Ctrl+F", "file", bindCommand(function (chunk, postProcessing) {
-                return this.doPickObject(chunk, postProcessing, 'asset');
-            }));
-            buttons.image = makeIcon("wmd-image-button", "Картинка - Ctrl+G", "picture", bindCommand(function (chunk, postProcessing) {
-                return this.doPickObject(chunk, postProcessing, 'image');
-            }));
-            nextRow();
-
-            buttons.quote = makeIcon("wmd-quote-button", "Цитата - Ctrl+Q", "quote", bindCommand("doBlockquote"));
-            buttons.olist = makeIcon("wmd-olist-button", "Нумерованный список - Ctrl+O", "number-list", bindCommand(function (chunk, postProcessing) {
-                this.doList(chunk, postProcessing, true);
-            }));
-            buttons.ulist = makeIcon("wmd-ulist-button", "Ненумерованный список - Ctrl+U", "list", bindCommand(function (chunk, postProcessing) {
-                this.doList(chunk, postProcessing, false);
-            }));
-            buttons.heading = makeIcon("wmd-heading-button", "Заголовок - Ctrl+H", "header", bindCommand("doHeading"));
-            buttons.hr = makeIcon("wmd-hr-button", "Черта - Ctrl+R", "hr-line", bindCommand("doHorizontalRule"));
-            nextRow();
-
             buttons.undo = makeIcon("wmd-undo-button", "Отменить - Ctrl+Z", "undo", null);
             buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
@@ -1239,11 +1214,35 @@
             setUndoRedoButtonStates();
             nextRow();
 
+            buttons.link = makeIcon("wmd-link-button", "Ссылка - Ctrl+L", "book", bindCommand(function (chunk, postProcessing) {
+                return this.doPickObject(chunk, postProcessing, 'page');
+            }));
+            buttons.block = makeIcon("wmd-block-button", "Блок - Ctrl+S", "list-alt", bindCommand(function (chunk, postProcessing) {
+                return this.doPickObject(chunk, postProcessing, 'block');
+            }));
+            buttons.asset = makeIcon("wmd-asset-button", "Файл - Ctrl+F", "file", bindCommand(function (chunk, postProcessing) {
+                return this.doPickObject(chunk, postProcessing, 'asset');
+            }));
+            buttons.image = makeIcon("wmd-image-button", "Картинка - Ctrl+G", "picture", bindCommand(function (chunk, postProcessing) {
+                return this.doPickObject(chunk, postProcessing, 'image');
+            }));
             buttons.codes = makeIcon("wmd-codes-button", "Спецкоды", "cog", bindCommand(function (chunk, postProcessing) {
                 return this.doPickObject(chunk, postProcessing, 'code');
             }));
+            nextRow();
             
-            buttons.preview = makeIcon("wmd-preview-button", "Пред. просмотр", "preview", bindCommand(function (chunk, postProcessing) {
+            /*buttons.quote = makeIcon("wmd-quote-button", "Цитата - Ctrl+Q", "quote", bindCommand("doBlockquote"));
+            buttons.olist = makeIcon("wmd-olist-button", "Нумерованный список - Ctrl+O", "number-list", bindCommand(function (chunk, postProcessing) {
+                this.doList(chunk, postProcessing, true);
+            }));
+            buttons.ulist = makeIcon("wmd-ulist-button", "Ненумерованный список - Ctrl+U", "list", bindCommand(function (chunk, postProcessing) {
+                this.doList(chunk, postProcessing, false);
+            }));
+            buttons.heading = makeIcon("wmd-heading-button", "Заголовок - Ctrl+H", "header", bindCommand("doHeading"));
+            buttons.hr = makeIcon("wmd-hr-button", "Черта - Ctrl+R", "hr-line", bindCommand("doHorizontalRule"));
+            nextRow();*/
+
+            buttons.preview = makeIcon("wmd-preview-button", "Предпросмотр", "preview", bindCommand(function (chunk, postProcessing) {
                 return this.doPreview(chunk, postProcessing);
             }));
 
@@ -1396,11 +1395,11 @@
     };
 
     commandProto.doBold = function (chunk, postProcessing) {
-        return this.doBorI(chunk, postProcessing, 2, "strong text");
+        return this.doBorI(chunk, postProcessing, 2, "жирный");
     };
 
     commandProto.doItalic = function (chunk, postProcessing) {
-        return this.doBorI(chunk, postProcessing, 1, "emphasized text");
+        return this.doBorI(chunk, postProcessing, 1, "курсив");
     };
 
     // chunk: The selected region that will be enclosed with */**

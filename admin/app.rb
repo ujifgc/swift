@@ -92,7 +92,6 @@ class Admin < Padrino::Application
     role.project_module :forms_stats, '/forms_stats'
 
     role.project_module :cat_nodes,  '/cat_nodes'
-    role.project_module :cat_groups, '/cat_groups'
   end
 
   access_control.roles_for :auditor do |role|
