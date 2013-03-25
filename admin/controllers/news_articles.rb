@@ -25,12 +25,19 @@ Admin.controllers :news_articles do
     filter = { :order => [ :date.desc, :created_at.desc ] }
     filter[:news_rubric_id] = params[:news_rubric_id].to_i  if params[:news_rubric_id]
     @count = NewsArticle.count filter
-    if @count > 100
-      @per_page = 25
-      @pagenum = (@count - 1) / @per_page + 1
-      @page = params[:page].to_i > 0 ? params[:page].to_i : 1
-      filter.merge! :limit => @per_page, :offset => (@page - 1)*@per_page
+
+    if @count > 200
+      @per_page = (params[:per_page] || Option(:per_page)).to_i
+      @per_page = 20  if @per_page < 1
+      @total_pages = (@count - 1) / @per_page + 1
+      @current_page = (params[:page] || 1).to_i
+      @current_page = 1  if @current_page < 1
+      filter.merge!( {
+        limit: @per_page,
+        offset: (@current_page - 1) * @per_page,
+      } )
     end
+
     @objects = NewsArticle.all filter
     render 'news_articles/index'
   end

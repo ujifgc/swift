@@ -7,6 +7,7 @@ ul.nav.nav-pills.news_rubrics
     - klass = news_rubric.id == params[:news_rubric_id].to_i && 'active'
     li class=klass
       = link_to news_rubric.title, url(:news_articles, :index, :news_rubric_id => news_rubric.id)
+= partial 'base/paginator'
 form.inner.multiple#multiple-news_articles action=url(:news_articles, :index)/:multiple method=:post
   table.table class=(@objects.length > 15 && 'smart')
     thead

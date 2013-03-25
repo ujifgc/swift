@@ -51,7 +51,8 @@ Admin.controllers :pages do
     else
       flash[:notice] = pat('page.not_found')
     end
-    redirect url(:pages, :index)
+    @tree = page_tree( nil, 0, '' )
+    render 'pages/index', :layout => false
   end
 
   delete :destroy, :with => :id do

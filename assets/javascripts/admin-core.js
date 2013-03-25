@@ -67,36 +67,40 @@ bindIndexList = function() {
   $('a.multiple').click(function(){
     multipleOp(this);
   });
-  var cols = [ { "sType": "by-data" } ];
-  for ( var i = $('.multiple table.table tbody tr').first().children().length; i > 1; i--) cols.push(null);
-  var lenHash = [[15, 25, -1], [15, 25, "Все"]];
-  $('.multiple table.smart').addClass('table-condensed').dataTable( {
-    "sDom": "<'page-filter'rf>t<'page-control'<'inline pick-page'p><'hide length'l>>",
-    "sPaginationType": "bootstrap",
-    "bStateSave": true,
-  "oLanguage": {
-      "sLengthMenu": "_MENU_",
-      "sSearch": "Фильтр: ",
-      "oPaginate": {
-        "sNext": "",
-        "sPrevious": ""
+  $('.multiple table.smart').addClass('table-condensed');
+  if ($('#paginator3000').length == 0) {
+    var cols = [ { "sType": "by-data" } ];
+    for ( var i = $('.multiple table.table tbody tr').first().children().length; i > 1; i--) cols.push(null);
+    var lenHash = [[15, 25, -1], [15, 25, "Все"]];
+    $('.multiple table.smart').dataTable( {
+      "sDom": "<'page-filter'rf>t<'page-control'<'inline pick-page'p><'hide length'l>>",
+      "sPaginationType": "bootstrap",
+      "bStateSave": true,
+    "oLanguage": {
+        "sLengthMenu": "_MENU_",
+        "sSearch": "Фильтр: ",
+        "oPaginate": {
+          "sNext": "",
+          "sPrevious": ""
+        }
+    },
+    "aoColumns": cols,
+    "aLengthMenu": lenHash,
+    "iDisplayLength": -1
+    } );
+    if ($('table.table').length > 0 && $('table.table').dataTableSettings[0]) {
+      var lengthes = '';
+      for (var ii in lenHash[0]) {
+        lengthes += '<li><a href="javascript:;" onclick="pickLength(this)" data-length="'+lenHash[0][ii]+'">'+lenHash[1][ii]+'</a></li>';
       }
-  },
-  "aoColumns": cols,
-  "aLengthMenu": lenHash,
-  "iDisplayLength": -1
-  } );
-  if ($('table.table').length > 0 && $('table.table').dataTableSettings[0]) {
-    var lengthes = '';
-    for (var ii in lenHash[0]) {
-      lengthes += '<li><a href="javascript:;" onclick="pickLength(this)" data-length="'+lenHash[0][ii]+'">'+lenHash[1][ii]+'</a></li>';
-    }
-    $('.dataTables_length').parent().after('<div class="inline pick-length"><ul class="nav nav-pills"><li class="nav-header">Объектов на странице:</li>'+lengthes+'</ul></div>');
-    $('.dataTables_filter input[type=text]').addClass('search-query');
+      $('.dataTables_length').parent().after('<div class="inline pick-length"><ul class="nav nav-pills"><li class="nav-header">Объектов на странице:</li>'+lengthes+'</ul></div>');
+      $('.dataTables_filter input[type=text]').addClass('search-query');
 
-    var len = $('table.table').dataTableSettings[0]._iDisplayLength;
-    if (len == -1) $('.inline .pagination').hide(); else $('.inline .pagination').show();
-    $('.pick-length a[data-length='+len+']').parent().addClass('active');
+      var len = $('table.table').dataTableSettings[0]._iDisplayLength;
+      if (len == -1) $('.inline .pagination').hide(); else $('.inline .pagination').show();
+      $('.pick-length a[data-length='+len+']').parent().addClass('active');
+      $('.content > .operations + .nav.nav-pills').css('margin-right', '300px');
+    }
   }
   multipleCheck();
   $('form.multiple input[name^=check]').click(multipleCheck);

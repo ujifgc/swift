@@ -75,9 +75,9 @@ class Page
     end
     if sibling
       self.position = sibling.position
-      self.save
+      self.save!
       sibling.position = opos
-      sibling.save
+      sibling.save!
     end
   end
 

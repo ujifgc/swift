@@ -1,0 +1,6 @@
+- if @total_pages.to_i > 1
+  - uri = request.env['REQUEST_URI'].gsub /\&page=\d+/, ''
+  - uri += '?'  unless uri.match /\?/
+  #paginator3000
+    javascript:
+      new Paginator('paginator3000', #{@total_pages}, 20, #{@current_page}, '#{uri+'&page='}');
