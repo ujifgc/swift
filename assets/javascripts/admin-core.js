@@ -2,12 +2,6 @@
   $(document).bind('drop dragover', function (e) {
     e.preventDefault();
   });
-  $(':checkbox[name=check_all]').click(function(){
-    $(':checkbox[name^=check_]').prop('checked', $(this).prop('checked'));
-  });
-  $('a.multiple').click(function(){
-    multipleOp(this);
-  });
   $(document).keypress(function(event) {
     if (event.ctrlKey && event.charCode == 115) {
       $(".form-actions .btn-primary").click();
@@ -16,15 +10,7 @@
     
   });
       
-/* pages */
-  $('[data-reposition]').closest('.btn').on('click', function() {
-    if (this.disabled) return false;
-    this.disabled = true;
-    var models = $('form.multiple')[0].id.split('-')[1];
-    var id = $(this).closest('tr')[0].id.split('-')[1];
-    var action = '/admin/'+models+'/reposition/'+id+'/'+$(this).find('[data-reposition]').data('reposition');
-    $('form.multiple').attr( { action: action } ).submit();
-  });
+  bindIndexList();
 
 /* sidebar */
   $('h5.nav-header[data-toggle]').popover({ trigger: 'manual', placement: 'right-down', animation: 'show' });
@@ -61,7 +47,26 @@
 
   // datatables
 
-/* Table initialisation */
+  $('a.single.button_to').click(function(){
+    singleOp(this);
+  });
+
+  bindCatCards();
+  bindDatetime();
+  bindColorbox();
+  bindMarkdowns();
+  $('a[data-toggle=modal]').on('click', showPopup);
+  $('textarea.resizable').TextAreaResizer();
+  
+});
+
+bindIndexList = function() {
+  $(':checkbox[name=check_all]').click(function(){
+    $(':checkbox[name^=check_]').prop('checked', $(this).prop('checked'));
+  });
+  $('a.multiple').click(function(){
+    multipleOp(this);
+  });
   var cols = [ { "sType": "by-data" } ];
   for ( var i = $('.multiple table.table tbody tr').first().children().length; i > 1; i--) cols.push(null);
   var lenHash = [[15, 25, -1], [15, 25, "Все"]];
@@ -93,20 +98,22 @@
     if (len == -1) $('.inline .pagination').hide(); else $('.inline .pagination').show();
     $('.pick-length a[data-length='+len+']').parent().addClass('active');
   }
-
-  $('a.single.button_to').click(function(){
-    singleOp(this);
-  });
   multipleCheck();
   $('form.multiple input[name^=check]').click(multipleCheck);
-  bindCatCards();
-  bindDatetime();
-  bindColorbox();
-  bindMarkdowns();
-  $('a[data-toggle=modal]').on('click', showPopup);
-  $('textarea.resizable').TextAreaResizer();
-  
-});
+  $('[data-reposition]').closest('.btn').on('click', function() {
+    if (this.disabled) return false;
+    this.disabled = true;
+    var models = $('form.multiple')[0].id.split('-')[1];
+    var id = $(this).closest('tr')[0].id.split('-')[1];
+    var action = '/admin/'+models+'/reposition/'+id+'/'+$(this).find('[data-reposition]').data('reposition');
+    $('[data-reposition]').closest('.btn').addClass('blurry').off('click');
+    $(this).closest('tr').find('td').css('background-color', '#eee');
+    $.post( action, function(data, textStatus, jqXHR) {
+      $('div > div.content').html(data);
+      bindIndexList();
+    });
+  });
+};
 
 bindColorbox = function() {
   window.boxOptions = { opacity: 0.85, loop: false, current: "{current} / {total}", previous: "←", next: "→", close: "Esc", maxWidth: "80%", maxHeight: "100%", transition: "none" };
