@@ -1,5 +1,4 @@
 Admin.controllers :assets do
-
     
   before :edit, :update, :destroy do
     @object = Asset.get(params[:id].to_i)

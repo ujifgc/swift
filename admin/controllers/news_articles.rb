@@ -23,7 +23,13 @@ Admin.controllers :news_articles do
 
   get :index do
     filter = { :order => [ :date.desc, :created_at.desc ] }
-    filter[:news_rubric_id] = params[:news_rubric_id].to_i  if params[:news_rubric_id]
+
+    if params[:news_rubric_id]
+      filter[:news_rubric_id] = params[:news_rubric_id].to_i  unless params[:news_rubric_id] == 'all'
+    else
+      filter[:news_rubric_id] = params[:news_rubric_id] = NewsArticle.last.news_rubric.id  
+    end
+
     @count = NewsArticle.count filter
 
     if @count > 200
