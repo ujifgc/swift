@@ -37,4 +37,7 @@
   = f.input :is_published, :as => :boolean
   = f.input :slug
 
+- allow :editor do
+  = partial 'base/meta', :locals => { :f => f }
+
 = f.submits

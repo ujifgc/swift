@@ -15,4 +15,8 @@
 
 - allow :auditor do
   = f.input :position
+
+- allow :editor do
+  = partial 'base/meta', :locals => { :f => f }
+
 = f.submits

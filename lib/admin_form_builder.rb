@@ -177,9 +177,25 @@ module Padrino
       protected
         
         def make_caption( model, field )
-          tr = I18n.t "models.#{model}.attributes.#{field}"
-          tr = I18n.t "models.object.attributes.#{field}"  if tr.match(/^..\..+/)
+          field_index = if field.to_s[-1] == ']'
+            field.to_s.chomp(']').gsub(/\[/,'.')
+          else
+            field
+          end
+          tr = I18n.t "models.#{model}.attributes.#{field_index}"
+          tr = I18n.t "models.object.attributes.#{field_index}"  if tr.match(/^..\..+/)
           tr
+        end
+
+        def field_name(field=nil)
+          result = field_result
+          result << field_name_fragment if nested_form?
+          if field.to_s[-1] == ']'
+            result << "[#{field.chomp(']').gsub(/\[/,'][')}]" unless field.blank?
+          else
+            result << "[#{field}]" unless field.blank?
+          end
+          result.flatten.join
         end
 
       end

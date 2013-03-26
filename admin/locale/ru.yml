@@ -178,6 +178,9 @@ ru:
         has_event: Создать событие
         receivers: Получатели
         is_private: Доступ ограничен
+        meta:
+          description: Метаописание
+          keywords: Ключевые слова
     blocks:
       name: блоки
     block:
@@ -304,4 +307,3 @@ ru:
       messages:
         json_error: 'Something is wrong. Perhaps you made a mistake when filling out the data card. Return and try to find her. If the problem persists, contact the developer.'
         json_required: 'Заполните поле'
-

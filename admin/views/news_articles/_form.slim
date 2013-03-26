@@ -17,4 +17,7 @@
     = f.select :duration_units, :selected => 'day', :options => NewsEvent::Durations, :include_blank => false
     = ' ' 
   
+- allow :editor do
+  = partial 'base/meta', :locals => { :f => f }
+
 = f.submits

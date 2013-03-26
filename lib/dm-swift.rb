@@ -174,6 +174,9 @@ module SwiftDatamapper
   end
 
   module MetableMethods
+    def meta
+      attribute_get(:meta) || {}
+    end
   end
 
   module SluggableMethods
