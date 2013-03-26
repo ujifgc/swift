@@ -41,6 +41,7 @@ Admin.controllers :accounts do
               @login = account.email
               @address = "http://#{@host}/admin"
 
+              content_type 'text/html; charset=UTF-8'
               from     "noreply@#{@host}"
               to        account.email
               subject  mail_subject
@@ -74,7 +75,7 @@ Admin.controllers :accounts do
         render 'accounts/reset', :layout => 'login'
       end
     else
-      flash.now[:notice] = pat('account.doesnt_exist')  if params.delete('email')
+      flash.now[:notice] = pat('account.doesnt_exist')  if @email = params.delete('email')
       render 'accounts/reset', :layout => 'login'
     end
   end

@@ -4,7 +4,7 @@ h4
   small= Option(:site_title)
   br
   small= link_to request.env['HTTP_HOST'], '/'
-- form_tag(url(:accounts, :reset), :class => 'form-horizontal well', :autocomplete => "off") do
+- form_tag(url(:accounts, :reset), :class => 'form-horizontal well') do
   = partial 'base/flash'
 
   - if params[:email].blank?
@@ -13,7 +13,7 @@ h4
       .input-prepend
         span.add-on
           i.icon-envelope
-        = text_field_tag :email, :value => params[:email], :placeholder => "email"
+        = text_field_tag :email, :value => @email.to_s, :placeholder => "email"
     .form-inline
       = submit_tag(pat('account.reset_send'), :class => 'btn btn-primary pull-right')
       = link_to pat('account.reset_back'), url(:base, :index), :class => :button

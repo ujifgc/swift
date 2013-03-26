@@ -123,6 +123,10 @@ ru:
     robot: Робот
     user: Пользователь
   models:
+    account:
+      password:
+        must_be_long: Пароль должен содержать не меньше 4 символов
+        not_confirmed: Пароль и его подтверждение должны совпадать
     object:
       attributes:
         id: "#"
@@ -233,6 +237,7 @@ ru:
       date_other_year: "%e %B %Y"
       date_same_year: "%e %B"
       datetime: "%e %b %Y, %H:%M:%S"
+      for_stats: "%a %d %B %Y %T"
   date:
     formats:
       long: "%e %b %Y"

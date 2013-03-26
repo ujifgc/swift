@@ -8,14 +8,6 @@ class Account
   include DataMapper::Validate
   attr_accessor :password, :password_confirmation
 
-  validates_with_block :password do
-    if password == password_confirmation
-      true
-    else
-      [false, I18n.t('models.account.password.not_confirmed')]
-    end
-  end
-
   # Properties
   property :id,               Serial
   property :name,             String
@@ -32,10 +24,18 @@ class Account
   validates_length_of        :email,    :min => 3, :max => 100
   validates_uniqueness_of    :email,    :case_sensitive => false
   validates_format_of        :email,    :with => /\w+@\w+/
-  validates_presence_of      :password,                          :if => :password_required
-  validates_presence_of      :password_confirmation,             :if => :password_required
-  validates_length_of        :password, :min => 4, :max => 40,   :if => :password_required
-  validates_confirmation_of  :password,                          :if => :password_required
+  validates_with_block :password do
+    case 
+    when crypted_password.present? && password.blank? && password_confirmation.blank?
+      true
+    when password.to_s.length < 4
+      [false, I18n.t('models.account.password.must_be_long')]
+    when password != password_confirmation
+      [false, I18n.t('models.account.password.not_confirmed')]
+    else
+      true
+    end
+  end
 
   timestamps!
   userstamps!
@@ -53,7 +53,7 @@ class Account
 
   # hookers
   before :save do
-    encrypt_password
+    encrypt_password  if password.present?
   end
 
   before :destroy do |a|
@@ -131,7 +131,7 @@ class Account
     account = first( :email => email )  if email.present?
     if account && account.has_password?(password)
       account.logged_at = DateTime.now
-      account.save
+      account.save!
       account
     else
       nil
@@ -152,10 +152,10 @@ class Account
 
     if account = Account.first( :uid => auth['uid'], :provider => auth['provider'] )
       account.logged_at = DateTime.now
-      account.save
+      account.save!
       account
     else
-      pwd = Digest::MD5.hexdigest(rand.to_s)[4..11]
+      pwd = Digest::SHA2.hexdigest("#{DateTime.now}5ovCu#{rand}Cry")[4..11]
       account = Account.create :provider => auth['provider'],
                                :uid      => auth['uid'],
                                :name     => name,
@@ -166,10 +166,6 @@ class Account
   end
 
 private
-
-  def password_required
-    uid.blank? && (crypted_password.blank? || password.present?)
-  end
 
   def encrypt_password
     self.crypted_password = ::BCrypt::Password.create(password)
