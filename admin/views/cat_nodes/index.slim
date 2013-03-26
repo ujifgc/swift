@@ -1,12 +1,12 @@
 = partial 'base/index_operations'
 ul.nav.nav-pills.cat_cards
-  - klass = params[:card_id].blank? && 'active'
-  li class=klass
-    = link_to pat(:all), url(:cat_nodes, :index)
-  - CatCard.all.each do |card|
-    - klass = card.id.to_s == params[:card_id] && 'active'
+  - CatCard.all( :order => :created_at.desc ).each do |card|
+    - klass = card.id == params[:card_id].to_i && 'active'
     li class=klass
       = link_to card.title, url(:cat_nodes, :index, :card_id => card.id)
+  - klass = params[:card_id] == 'all' && 'active'
+  li class=klass
+    = link_to pat(:all), url(:cat_nodes, :index, :card_id => :all)
 - if @groups.count > 0
   ul.nav.nav-pills.cat_groups
     - klass = params[:group].blank? && 'active'

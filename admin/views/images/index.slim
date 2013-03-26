@@ -1,6 +1,6 @@
 = partial 'base/index_operations'
 ul.nav.nav-pills.folders
-  - current_account.get_folders.with(:images).each do |folder|
+  - current_account.get_folders.with(:images).all( :order => :created_at.desc ).each do |folder|
     - klass = folder.id == params[:folder_id].to_i && 'active'
     li class=klass
       = link_to folder.title, url(:images, :index, :folder_id => folder.id)

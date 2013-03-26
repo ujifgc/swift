@@ -10,7 +10,13 @@ Admin.controllers :cat_nodes do
 
   get :index do
     @objects = CatNode.all
-    @card = CatCard.get params[:card_id].to_i
+    filter = {}
+    if params[:card_id]
+      filter[:card_id] = params[:card_id].to_i  unless params[:card_id] == 'all'
+    else
+      filter[:card_id] = params[:card_id] = CatCard.last.id  
+    end
+    @card = CatCard.get filter[:card_id]
     @groups = @card ? CatGroup.all( :cat_card_id => @card.id ) : []
     @group = CatGroup.get params[:group_id].to_i
     @objects = @objects.filter_by(@card).filter_by(@group)
