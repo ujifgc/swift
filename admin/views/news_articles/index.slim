@@ -1,6 +1,6 @@
 = partial 'base/index_operations'
 ul.nav.nav-pills.news_rubrics
-  - NewsRubric.with(:news_articles).each do |news_rubric|
+  - NewsRubric.with(:news_articles).all( :order => :created_at.desc ).each do |news_rubric|
     - klass = news_rubric.id == params[:news_rubric_id].to_i && 'active'
     li class=klass
       = link_to news_rubric.title, url(:news_articles, :index, :news_rubric_id => news_rubric.id)

@@ -10,7 +10,11 @@ Admin.controllers :forms_results do
 
   get :index do
     filter = {}
-    filter[:forms_card_id] = params[:forms_card_id].to_i  if params[:forms_card_id]
+    if params[:forms_card_id]
+      filter[:forms_card_id] = params[:forms_card_id].to_i  unless params[:forms_card_id] == 'all'
+    else
+      filter[:forms_card_id] = params[:forms_card_id] = FormsCard.last.id  
+    end
     filter[:order] = :created_at.desc
     @objects = FormsResult.all filter
     render 'forms_results/index'

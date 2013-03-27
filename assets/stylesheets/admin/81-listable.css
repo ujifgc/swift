@@ -29,8 +29,11 @@
   display: block;
 }
 .table-condensed td a.edit {
-  margin: -4px -5px -4px 15px;
+  margin: -4px -5px;
   padding: 4px 5px;
+}
+.table-condensed td i + a.edit {
+  margin-left: 15px;
 }
 .table td.edit > i {
   float: left;
