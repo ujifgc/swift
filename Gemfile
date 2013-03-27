@@ -14,7 +14,7 @@ gem 'tilt', :github => 'ujifgc/tilt', :branch => 'lean-and-mean', :require => 't
 gem 'slim', :github => 'slim-template/slim'
 gem 'redcarpet', :github => 'ujifgc/redcarpet'
 gem 'sinatra-flash', :require => 'sinatra/flash'
-gem 'padrino', :github => 'ujifgc/padrino-framework', :branch => 'double-capture'
+gem 'padrino', :github => 'ujifgc/padrino-framework'
 #gem 'padrino', :path => '/home/ujif/pro/padrino-framework'
 
 # database ORM
