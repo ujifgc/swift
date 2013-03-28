@@ -1,6 +1,6 @@
 ﻿.dialog-images
   ul.nav.nav-pills#tabs-images
-    - tabs = current_account.get_folders.with(:images)
+    - tabs = current_account.get_folders.with(:images).all( :order => :created_at.desc )
     - @first = true
     - tabs.each do |folder|
       - data = { :url => url(:dialogs, :folder, params.merge({:folder_id => folder.id, :object_type => :images})), :toggle => :tab }

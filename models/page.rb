@@ -9,6 +9,7 @@ class Page
   property :path,      String, :length => 2000, :index => true
   property :position,  Integer
   property :is_module, Boolean, :default => false
+  property :is_system, Boolean, :default => false
   property :params,    String, :length => 2000
 
   sluggable! :unique_index => false
@@ -48,6 +49,10 @@ class Page
 
   before :save do
     self.path = self.parent ? self.parent.parent ? self.parent.path + '/' + self.slug : '/' + self.slug : '/'
+  end
+
+  before :destroy do
+    throw :halt  if is_system
   end
 
   # instance helpers

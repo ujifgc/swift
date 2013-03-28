@@ -8,11 +8,10 @@
   position: absolute;
   top: 0;
   right: 0;
-  right: 100%\0/;
   margin: 0;
   opacity: 0.01;
   filter: alpha(opacity=1);
-  zoom: 2;
+  *zoom: 2;
   transform: translate(-100%,0) scale(4);
   -moz-transform: translate(-300%,0) scale(4);
   -webkit-transform: translate(0,-50%) scale(4);

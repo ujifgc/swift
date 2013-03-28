@@ -62,10 +62,14 @@ class Swift < Padrino::Application
     render 'layouts/sitemap'
   end
 
-  get '/news.xml' do
+  get '/rss' do
     content_type 'application/xml'
     @news_articles = NewsArticle.all(:limit => 20, :order => :date.desc).published
     render 'layouts/news'
+  end
+
+  get '/news.xml' do
+    redirect '/rss'
   end
 
   # if no controller got the request, try finding some content in the sitemap

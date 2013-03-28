@@ -1,6 +1,6 @@
 ﻿.dialog-assets
   ul.nav.nav-pills#tabs-assets
-    - tabs = current_account.get_folders.with(:assets)
+    - tabs = current_account.get_folders.with(:assets).all( :order => :created_at.desc )
     - @first = true
     - tabs.each do |folder|
       - data = { :url => url(:dialogs, :folder, params.merge({:folder_id => folder.id, :object_type => :assets})), :toggle => :tab }

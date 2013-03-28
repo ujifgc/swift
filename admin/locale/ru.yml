@@ -180,6 +180,7 @@ ru:
         has_event: Создать событие
         receivers: Получатели
         is_private: Доступ ограничен
+        is_system: Служебная
         meta:
           description: Метаописание
           keywords: Ключевые слова
