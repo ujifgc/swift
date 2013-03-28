@@ -132,6 +132,7 @@ module Padrino
           html += @template.content_tag( :div, controls, :class => :controls ) + ' '
           html += @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?
           klass = "control-group as_#{type}"
+          klass += " #{options[:class]}"  if options[:class].present?
           klass += ' morphable'  if morphable
           klass += ' required'  if options[:required]
           klass += ' error l'  if error.any?

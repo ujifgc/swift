@@ -12,9 +12,10 @@
   min-height: 300px;
   font-family: Courier New, monospace;
 }
-form input[id$=title] {
+form input[id$=title], form .long input.text_field {
   width: 99%;
 }
+
 form .as_group .clone {
   margin-top: 3px;
 }
