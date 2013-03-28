@@ -131,7 +131,7 @@ module Padrino
 
         str.gsub!(/(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/) do |s|
           $1  or next s
-          tag = $1[1..-2]
+          tag = $1[1..-2]#1                                                           2                        3
           md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)((?:[\:\.\#][\w\-]*)*)\s+(.*)/
           unless md
             tags = tag.partition ' '
@@ -154,7 +154,7 @@ module Padrino
             end.join(' ').strip
             hash[:title] = newtitle.blank? ? nil : parse_content(newtitle)
           end
-          md[2].to_s.scan(/[\.\#][\w\-]*/).each do |attr|
+          md[2].to_s.scan(/[\:\.\#][\w\-]*/).each do |attr|
             case attr[0]
             when ?#
               hash[:id] ||= attr[1..-1]  
@@ -164,6 +164,8 @@ module Padrino
               else
                 hash[:class] += ' ' + attr[1..-1]
               end
+            when ?:
+              hash[:instance] = attr[1..-1]
             end
           end
           case type
