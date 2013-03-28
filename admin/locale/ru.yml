@@ -65,6 +65,8 @@ ru:
         not_destroyed: "Объект '%{objects}' занят"
         published: "%{objects} опубликованы"
         unpublished: "%{objects} сняты с публикации"
+      confirm:
+        multiple_delete: "Вы действительно хотите удалить выбранные объекты?"
       form:
         save: Сохранить
         apply: Применить

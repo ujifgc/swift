@@ -65,7 +65,7 @@ bindIndexList = function() {
     $(':checkbox[name^=check_]').prop('checked', $(this).prop('checked'));
   });
   $('a.multiple').click(function(){
-    multipleOp(this);
+    return multipleOp(this);
   });
   $('.multiple table.smart').addClass('table-condensed');
   if ($('#paginator3000').length == 0) {
@@ -205,6 +205,11 @@ pickLength = function(e) {
 
 multipleOp = function(el) {
   if (el.disabled) return false;
+  var confirm_message = $(el).data('prompt');
+  if (confirm_message) {
+    ret = confirm(confirm_message);
+    if (!ret) return false;
+  }
   el.disabled = true;
   var models = $('form.multiple')[0].id.split('-')[1];
   var action = '/admin/'+models+'/multiple?_method='+$(el).attr('data-method');

@@ -78,7 +78,11 @@ Admin.helpers do
   end
 
   def mk_multiple_op( op )
-    link_to mk_icon(op) + pat(op), :method => op, :class => 'multiple btn'
+    if op == :delete || op == :destroy
+      link_to mk_icon(op) + pat(op), :method => op, :class => 'multiple btn', 'data-prompt' => pat('confirm.multiple_delete')
+    else
+      link_to mk_icon(op) + pat(op), :method => op, :class => 'multiple btn'
+    end
   end
 
   def mk_single_op( op, link )
