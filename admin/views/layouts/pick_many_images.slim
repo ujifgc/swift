@@ -1,0 +1,12 @@
+.modal-header
+  a.close data-dismiss=:modal ×
+  h3= @title
+.modal-body
+  = yield
+.modal-footer
+  - options = { 'В тексте' => '', 'Слева' => 'leftno', 'Справа' => 'rightno', 'Слева под предыдущей' => 'leftof', 'Справа под предыдущей' => 'rightof' }
+  = label_tag 'Стиль', :for => :style_select, :class => 'pull-left' do
+    = select_tag :style, :id => :style_select, :options => options
+
+  = link_to pat('pick'), 'javascript:;', :class => 'btn btn-primary pick-dialog'
+  = link_to pat('cancel'), 'javascript:;', :class => 'btn cancel-dialog', :'data-dismiss' => :modal

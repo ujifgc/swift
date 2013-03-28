@@ -1320,12 +1320,15 @@
                     var data = datas[i];
                     var id = data['id'];
                     var title = data['title'] || data['placeholder'];
+                    var tag = data['type'];
+                    var instance = $('select#style_select').val();
+                    if (instance && instance.length > 0) tag += '.' + instance;
                     if (data['single']) {
-                        chunk.startTag += "[" + data['type'] + (id?" "+id:"") + (title?" "+title:"") + "]\n";
+                        chunk.startTag += "[" + tag + (id?" "+id:"") + (title?" "+title:"") + "]\n";
                         chunk.selection = "";
                     }else{
-                        chunk.startTag = "[" + data['type'] + (title?" "+title:"") + "]";
-                        chunk.endTag = "[/" + data['type'] + "]" + chunk.endTag;
+                        chunk.startTag = "[" + tag + (title?" "+title:"") + "]";
+                        chunk.endTag = "[/" + tag + "]" + chunk.endTag;
                     }
                 }
                 postProcessing();

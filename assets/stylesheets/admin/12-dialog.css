@@ -175,3 +175,6 @@ div.grippie {
 .modal-body {
   max-height: 600px;
 }
+.modal-footer label select {
+  vertical-align: baseline;
+}
