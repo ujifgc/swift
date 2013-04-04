@@ -10,8 +10,8 @@ end
 # templates and content parsing
 gem 'yajl-ruby', :require => 'yajl'
 gem 'multi_json'
-gem 'tilt', :github => 'ujifgc/tilt', :branch => 'lean-and-mean', :require => 'tilt/mean'
-gem 'slim', :github => 'slim-template/slim'
+gem 'tilt' #, :github => 'ujifgc/tilt', :branch => 'lean-and-mean', :require => 'tilt/mean'
+gem 'slim' #, :github => 'slim-template/slim'
 gem 'redcarpet', :github => 'ujifgc/redcarpet'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'padrino', :github => 'ujifgc/padrino-framework'
