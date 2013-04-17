@@ -4,7 +4,9 @@ Admin.controllers :accounts do
   before :update, :create do
     gid = params[:account].delete 'group_id'
     @group = Account.get(gid)
-    @group = nil  unless current_account.allowed @group.role
+    unless @group && current_account.allowed(@group.role)
+      @group = nil
+    end
     @password = params[:account].delete 'password'  
     @password_confirmation = params[:account].delete 'password_confirmation'
   end
