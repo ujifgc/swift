@@ -3,4 +3,4 @@ dl
     dt
       span.date= o.date.as_date
       = link_to o.title, se_url(o)
-    dd= o.info
+    dd= engine_render( o.info )
