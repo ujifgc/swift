@@ -30,19 +30,21 @@ Admin.controllers :news_articles do
       filter[:news_rubric_id] = params[:news_rubric_id] = NewsArticle.last.news_rubric.id  
     end
 
+    if params[:title].present?
+      filter[:title.like] = '%' + params[:title] + '%'
+    end
+
     @count = NewsArticle.count filter
 
-    if @count > 200
-      @per_page = (params[:per_page] || Option(:per_page)).to_i
-      @per_page = 20  if @per_page < 1
-      @total_pages = (@count - 1) / @per_page + 1
-      @current_page = (params[:page] || 1).to_i
-      @current_page = 1  if @current_page < 1
-      filter.merge!( {
-        limit: @per_page,
-        offset: (@current_page - 1) * @per_page,
-      } )
-    end
+    @per_page = (params[:per_page] || Option(:per_page)).to_i
+    @per_page = 20  if @per_page < 1
+    @total_pages = (@count - 1) / @per_page + 1
+    @current_page = (params[:page] || 1).to_i
+    @current_page = 1  if @current_page < 1
+    filter.merge!( {
+      limit: @per_page,
+      offset: (@current_page - 1) * @per_page,
+    } )
 
     @objects = NewsArticle.all filter
     render 'news_articles/index'
