@@ -1231,7 +1231,7 @@
             }));
             nextRow();
             
-            /*buttons.quote = makeIcon("wmd-quote-button", "Цитата - Ctrl+Q", "quote", bindCommand("doBlockquote"));
+            buttons.quote = makeIcon("wmd-quote-button", "Цитата - Ctrl+Q", "quote", bindCommand("doBlockquote"));
             buttons.olist = makeIcon("wmd-olist-button", "Нумерованный список - Ctrl+O", "number-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
             }));
@@ -1240,7 +1240,7 @@
             }));
             buttons.heading = makeIcon("wmd-heading-button", "Заголовок - Ctrl+H", "header", bindCommand("doHeading"));
             buttons.hr = makeIcon("wmd-hr-button", "Черта - Ctrl+R", "hr-line", bindCommand("doHorizontalRule"));
-            nextRow();*/
+            nextRow();
 
             buttons.preview = makeIcon("wmd-preview-button", "Предпросмотр", "preview", bindCommand(function (chunk, postProcessing) {
                 return this.doPreview(chunk, postProcessing);
