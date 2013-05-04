@@ -8,8 +8,14 @@ ul.nav.nav-pills.news_rubrics
   li class=klass
     = link_to pat(:all), url(:news_articles, :index, :news_rubric_id => :all)
 = partial 'base/paginator'
+form method=:get action=request.env['REQUEST_URI']
+  | Фильтр: 
+  input.search-query name=:title type=:text value=params[:title]
+  input name=:news_rubric_id type=:hidden value=params[:news_rubric_id]
+  button.btn type=:submit default=true
+    | Искать
 form.inner.multiple#multiple-news_articles action=url(:news_articles, :index)/:multiple method=:post
-  table.table class=(@objects.length > 15 && 'smart')
+  table.table.table-condensed
     thead
       tr
         th.first

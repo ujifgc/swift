@@ -146,9 +146,8 @@ class Account
     name = email = ''
     name = auth['info']['name']
     email = auth['info']['email']
-    raise Exception  if name.blank?
-
     email = "auto.#{auth['uid']}.#{auth['provider']}@localhost"  if email.blank?
+    name = email.gsub(/^(.*?)@.*$/, '\1')  if name.blank?
 
     if account = Account.first( :uid => auth['uid'], :provider => auth['provider'] )
       account.logged_at = DateTime.now

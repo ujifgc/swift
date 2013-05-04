@@ -39,7 +39,7 @@ class NeatUploader < CarrierWave::Uploader::Base
   end
 
   def original_filename
-    ( model.respond_to?(:upload_name) && model.upload_name.present? ) ? model.upload_name : super
+    ( model.respond_to?(:upload_name) && model.upload_name.present? ) ? model.upload_name : (model.new? ? super : model.attribute_get(:file))
   end
 
   def base_dir
