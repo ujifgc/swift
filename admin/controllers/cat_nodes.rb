@@ -14,7 +14,8 @@ Admin.controllers :cat_nodes do
     if params[:card_id]
       filter[:card_id] = params[:card_id].to_i  unless params[:card_id] == 'all'
     else
-      filter[:card_id] = params[:card_id] = CatCard.last.id  
+      cat_card = CatCard.last
+      filter[:card_id] = params[:card_id] = cat_card.id  if cat_card
     end
     @card = CatCard.get filter[:card_id]
     @groups = @card ? CatGroup.all( :cat_card_id => @card.id ) : []
