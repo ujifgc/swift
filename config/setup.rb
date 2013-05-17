@@ -1,7 +1,7 @@
 ﻿#coding:utf-8
 
 # load initial objects
-load 'seed.rb'
+load 'config/seed.rb'
 
 # load additional objects
-load 'grow.rb'
+load 'config/grow.rb'

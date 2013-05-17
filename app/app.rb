@@ -75,10 +75,8 @@ class Swift < Padrino::Application
   # if no controller got the request, try finding some content in the sitemap
   get_or_post = lambda do
     @swift = init_instance
-
     not_found  if @swift[:not_found]
     not_found  unless @page
-
     @swift[:placeholders]['meta'] = meta_for @page
     @swift[:placeholders]['html_title'] = @page.title
 
@@ -105,6 +103,7 @@ class Swift < Padrino::Application
     @page = Page.first :path => '/error/404'
     body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
     inject_placeholders body
+    
   end
 
   # requested wrong service or wrong parameters
@@ -136,7 +135,7 @@ protected
     path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1
     swift[:uri] = path
     swift[:host] = request.env['SERVER_NAME']
-    page = Page.published.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
+    page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
 
     if page && path.length >= page.path.length
