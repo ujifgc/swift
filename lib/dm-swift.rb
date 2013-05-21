@@ -81,26 +81,23 @@ module SwiftDatamapper
     end
 
     # Resource is uploadable
-    # It has file property buffed with mighty CarrierWave uploader
     # It remembers file size and mime type before saving
-    def uploadable!( uploader, options={} )
+    def uploadable!
       send :include, UploadableMethods
 
-      mount_uploader :file, uploader
       property :file_content_type, String, :length => 63
       property :file_size, Integer
-      attr_accessor :upload_name
 
-      before :save do
-        path = self.file.path
+      before :save do |o|
+        path = o.file.access_path
         if File.exists?(path)
-          self.file_content_type = `file -bp --mime-type '#{path}'`.to_s.strip
-          self.file_size = File.size path
+          o.file_content_type = `file -bp --mime-type '#{path}'`.to_s.strip
+          o.file_size = File.size path
         else
-          self.file_content_type = self.file_size = nil
+          o.file_content_type = o.file_size = nil
         end
+        o.save!
       end
-
     end
 
     # Resource is bondable

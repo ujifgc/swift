@@ -72,9 +72,8 @@ module Padrino
             type = 'checkbox'
             label( field, :caption => check_box( field, :class => :check_box ), :class => :checkbox)
           when :file, :asset, :assets, :images
-            loaded = @object.send(:"#{field}?")  rescue false
-            tag = if loaded
-              file = @object.send(field)
+            file = @object.send(field)  rescue false
+            tag = if file.filename.present?
               caption += ' (' + I18n::t('asset_uploaded') + ')'
               unless file.content_type.blank?
                 caption += tag(:br) + content_tag(:code) do

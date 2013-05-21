@@ -6,7 +6,8 @@ class Image
 
   property :title, String
 
-  uploadable! ImageUploader
+  nozzle! :file, ImageAdapter
+  uploadable!
   timestamps!
   userstamps!
   loggable!

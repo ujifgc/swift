@@ -6,7 +6,8 @@ class Asset
 
   property :title, String
 
-  uploadable! AssetUploader
+  nozzle! :file, AssetAdapter
+  uploadable!
   timestamps!
   userstamps!
   loggable!

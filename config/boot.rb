@@ -13,6 +13,8 @@ Padrino::Logger::Config[:development] = { :log_level => :devel, :format_datetime
 # instance an environment
 ENV['TMP'] = Padrino.root + '/tmp'
 
+require 'nozzle/datamapper'
+
 ##
 # Add your before load hooks here
 #
@@ -38,8 +40,6 @@ Padrino.before_load do
   DataMapper::Model.append_extensions(SwiftDatamapper::ClassMethods)
   DataMapper::Model.append_inclusions(SwiftDatamapper::InstanceMethods)
 
-  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
-
 end
 
 ##
@@ -49,14 +49,17 @@ Padrino.after_load do
   DataMapper.finalize
   I18n.reload!  if Padrino.env == :development
 
-  if $memstat
-    stat = $memstat.select{ |k,v| v>0 }.to_a.sort{ |a,b| a[1]<=>b[1] }
-    summ = 0
-    stat.each do |row|
-      summ += row[1]
-      puts "#{row[1].to_s.rjust(7)} KB: #{row[0]}"
-    end
-    puts summ.to_s.rjust(7) + ' KB'
+  $stat = {}
+  sum = { map:0, rss:0 }
+  if $memstatMAP
+    $memstatMAP.inject({}){ |all,one| $stat[one[0]] = [one[1],$memstatRSS[one[0]]] }
+    $stat.to_a.sort_by{ |k,v| v[0] }.each do |k,v|
+      next  if v[0] == 0 && v[1] == 0
+      sum[:map] += v[0]
+      sum[:rss] += v[1]
+      puts "MAP: #{v[0].to_s.rjust(7)} KB / RSS: #{v[1].to_s.rjust(7)} KB : #{k}"
+    end;nil
+    puts " MAP: #{sum[:map].to_s.rjust(7)} KB / RSS: #{sum[:rss].to_s.rjust(7)} KB"
   end
 
   if $timestat

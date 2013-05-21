@@ -7,6 +7,9 @@ group :development, :test do
   gem 'ruby-progressbar'
 end
 
+# basic sugar support
+gem 'activesupport', :require => 'active_support/core_ext/object/conversions'
+
 # templates and content parsing
 gem 'yajl-ruby', :require => 'yajl'
 gem 'multi_json'
@@ -18,7 +21,7 @@ gem 'padrino', :github => 'ujifgc/padrino-framework'
 
 # database ORM
 gem 'bcrypt-ruby'
-gem 'dm-types'
+gem 'dm-types', :github => 'ujifgc/dm-types', :branch => 'no-json'
 gem 'dm-validations'
 gem 'dm-timestamps'
 gem 'dm-migrations', :require => false
@@ -31,9 +34,7 @@ gem 'dm-mysql-adapter'
 gem 'sinatra-assetpack'
 
 # file and picture assets
-gem 'mini_magick'
-gem 'carrierwave'
-gem 'carrierwave-datamapper'
+gem 'nozzle', :github => 'ujifgc/nozzle'
 
 # authorization and authentication
 gem 'omniauth'
