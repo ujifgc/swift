@@ -43,10 +43,11 @@ module Padrino
 
       def report_error( error, subsystem = nil, fallback = nil )
         if Padrino.env == :production
-          relevant_errors = backtrace.reject do |e|
+          relevant_errors = error.backtrace.reject do |e|
             e.match /phusion_passenger/
           end
-          $logger.error "Runtime error at #{subsystem||'system'}"
+          $logger.error "Swift caught a runtime error at #{subsystem||'system'}"
+          $logger.error "Fallback for development was #{fallback||'empty'}, production displayed empty string"
           relevant_errors.each do |e|
             $logger << e.gsub( %r{/home/.*?/}, '~/' )
           end
@@ -81,9 +82,9 @@ module Padrino
           end
         end
       rescue Padrino::Rendering::TemplateNotFound => e
-        report_error e, :element, "[Element '#{name}' is missing #{e.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
+        report_error e, "EngineHelpers#element@#{__LINE__}", "[Element '#{name}' is missing #{e.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
       rescue Exception => e
-        report_error e, :element
+        report_error e, "EngineHelpers#element@#{__LINE__}"
       end
 
       def fragment( name, *args )
@@ -218,3 +219,4 @@ module Padrino
     end
   end
 end
+
