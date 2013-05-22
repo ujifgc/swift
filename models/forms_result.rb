@@ -19,6 +19,19 @@ class FormsResult
     self.number = FormsResult.all( :forms_card => Bond.children_for(forms_card, 'FormsCard') + [forms_card], :id.not => id ).max(:number).to_i + 1
   end
   
+  after :save do
+    forms_card.reset_statistic     
+  end
+
+  after :destroy do |old|
+    $logger << old.attributes.inspect
+    old.forms_card.json.select do |k, v|
+      v[0] == 'file'
+    end.each do |k, v|
+      Asset.all(:id => old.json[k]).destroy
+    end
+  end
+
   # validations
   validates_with_block :json do
     @json_errors = {}
@@ -32,10 +45,6 @@ class FormsResult
     else
       true
     end
-  end
-
-  after :save do
-    forms_card.reset_statistic     
   end
 
   # instance helpers
