@@ -27,7 +27,8 @@ Admin.controllers :news_articles do
     if params[:news_rubric_id]
       filter[:news_rubric_id] = params[:news_rubric_id].to_i  unless params[:news_rubric_id] == 'all'
     else
-      filter[:news_rubric_id] = params[:news_rubric_id] = NewsArticle.last.news_rubric.id  
+      news_article = NewsArticle.last
+      filter[:news_rubric_id] = params[:news_rubric_id] = news_article.news_rubric.id  if news_article
     end
 
     if params[:title].present?
