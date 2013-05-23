@@ -14,7 +14,10 @@ ruby:
         files = [files]  unless files.kind_of? Array
         @result.json[k] = []
         files.each do |file|
-          next  unless file
+          unless file.kind_of? Hash
+            @result.json[k] << file
+            next  
+          end
           o = Asset.new
           o.title = file[:filename]
           o.upload_name = file[:filename]
@@ -49,6 +52,28 @@ ruby:
         end
       end
     else
+
+      @card.json.select do |k, v|
+        v[0] == 'file'
+      end.each do |k, v|
+        files = params['forms_result'][k]
+        files = [files]  unless files.kind_of? Array
+        @result.json[k] = []
+        files.each do |file|
+          unless file.kind_of? Hash
+            @result.json[k] << file
+            next  
+          end
+          o = Asset.new
+          o.title = file[:filename]
+          o.upload_name = file[:filename]
+          o.file = file[:tempfile]
+          o.folder = @card.folder
+          o.save
+          @result.json[k] << o.id
+        end
+      end
+
       flash[:notice] = 'Error'
     end
   when /GET/i

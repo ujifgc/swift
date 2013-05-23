@@ -116,7 +116,7 @@ module SwiftDatamapper
     def amorphous!
       send :include, AmorphousMethods
 
-      property :json, DataMapper::Property::Json, :default => {}
+      property :json, DataMapper::Property::Json, :default => {}, :lazy => false
     end
 
     # Resource is recursive
