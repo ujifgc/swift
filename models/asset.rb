@@ -7,7 +7,6 @@ class Asset
   property :title, String
 
   nozzle! :file, AssetAdapter
-  uploadable!
   timestamps!
   userstamps!
   loggable!
@@ -21,4 +20,7 @@ class Asset
     o.folder_id = 2  unless o.folder_id
   end
 
+  def info
+    "#{title} (#{file.content_type}, #{file.size.as_size})"
+  end
 end

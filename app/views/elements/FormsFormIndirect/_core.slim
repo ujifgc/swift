@@ -20,8 +20,7 @@ ruby:
           end
           o = Asset.new
           o.title = file[:filename]
-          o.upload_name = file[:filename]
-          o.file = file[:tempfile]
+          o.file = file
           o.folder = @card.folder
           o.save
           @result.json[k] << o.id

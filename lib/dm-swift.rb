@@ -80,26 +80,6 @@ module SwiftDatamapper
       end
     end
 
-    # Resource is uploadable
-    # It remembers file size and mime type before saving
-    def uploadable!
-      send :include, UploadableMethods
-
-      property :file_content_type, String, :length => 63
-      property :file_size, Integer
-
-      before :save do |o|
-        path = o.file.access_path
-        if File.exists?(path)
-          o.file_content_type = `file -bp --mime-type '#{path}'`.to_s.strip
-          o.file_size = File.size path
-        else
-          o.file_content_type = o.file_size = nil
-        end
-        o.save!
-      end
-    end
-
     # Resource is bondable
     # It can be bound to some parent resource
     def bondable!
@@ -213,12 +193,6 @@ module SwiftDatamapper
     end
 
   end  
-
-  module UploadableMethods
-    def info
-      "#{title} (#{file.content_type}, #{file.size.as_size})"
-    end
-  end
 
   module BondableMethods
 

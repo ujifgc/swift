@@ -7,7 +7,6 @@ class Image
   property :title, String
 
   nozzle! :file, ImageAdapter
-  uploadable!
   timestamps!
   userstamps!
   loggable!
@@ -20,6 +19,10 @@ class Image
   #hookers
   before :save do |o|
     o.folder_id = 1  unless o.folder_id
+  end
+
+  def info
+    "#{title} (#{file.content_type}, #{file.size.as_size})"
   end
 
 end

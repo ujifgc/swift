@@ -214,11 +214,10 @@ class Admin < Padrino::Application
     params[models].each do |upload|
       attributes = {
         :title => upload[:filename],
-        :file => upload[:tempfile] || File.open(upload[:filetemp], 'rb'),
+        :file => upload,
         :created_by => current_account,
         :updated_by => current_account,
         :folder => folder,
-        :upload_name => upload[:filename],
       }
       @objects << model.create( attributes )
     end
