@@ -13,7 +13,8 @@ Admin.controllers :assets do
     if params[:folder_id]
       filter[:folder_id] = params[:folder_id].to_i  unless params[:folder_id] == 'all'
     else
-      filter[:folder_id] = params[:folder_id] = Folder.with(:assets).last.id  
+      folder = Folder.with(:assets).last
+      filter[:folder_id] = params[:folder_id] = folder.id  if folder
     end
     @objects = Asset.all filter
     render 'assets/index'
