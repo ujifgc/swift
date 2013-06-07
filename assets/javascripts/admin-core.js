@@ -13,7 +13,7 @@
   bindIndexList();
 
 /* sidebar */
-  $('h5.nav-header[data-toggle]').popover({ trigger: 'manual', placement: 'right-down', animation: 'show' });
+  $('h5.nav-header[data-toggle]').popover({ trigger: 'manual', placement: 'right-down', animation: 'show', html: true });
   $('h5.nav-header[data-toggle]').mouseenter(function() {
     if ($(this).hasClass('collapsed'))
       $(this).popover('show');

@@ -48,7 +48,7 @@ class FormsCard
     object = request.params['forms_result'] || {}
     json.each do |k, v|
       if v[0] == 'file'
-        object.delete k
+        object.delete(k)  unless object[k].kind_of? Array
       end
     end
     object[:forms_card] = self
