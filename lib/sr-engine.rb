@@ -203,6 +203,8 @@ module Padrino
           '/news' / method / o.slug
         when 'FormsCard'
           '/forms' / method / o.slug
+        when 'Page'
+          o.path
         else
           @swift[:module_root] ? @swift[:module_root] / method / o.slug : '/'
         end
