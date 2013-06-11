@@ -14,15 +14,9 @@ ruby:
   filter[:order] = :date.asc
 
   active_rubrics = Bond.children_for(@page, 'NewsRubric')
-  unless active_rubrics.any?
-    rubrics = NewsRubric.all
-    steps = @swift[:slug].split( '/' )
-    steps.each do |step|
-      rubric = rubrics.by_slug(step)
-      not_found  unless rubric
-      not_found  if @swift[:module_path_ids].last && rubric.parent_id != @swift[:module_path_ids].last
-      active_rubrics << rubric
-    end
+  if active_rubrics.empty? && @swift[:slug].present?
+    rubric = NewsRubric.by_slug(@swift[:slug])  or not_found
+    active_rubrics << rubric
   end
   filter[:news_rubric_id] = active_rubrics.map(&:id)  if active_rubrics.any? 
 
