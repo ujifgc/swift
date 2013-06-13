@@ -183,7 +183,7 @@ module Padrino
           end
         end
         if needs_capturing
-          str.gsub!( /\[([^\s]*)\s*(.*?)\](.*)\[\/(\1)\]/m ) do |s|
+          str.gsub!( /\[([^\s]*)\s*(.*?)\](.*?)\[\/(\1)\]/m ) do |s|
             args, hash = parse_vars $2
             code = Code.by_slug $1
             parse_code( code.html, args, $3 )
