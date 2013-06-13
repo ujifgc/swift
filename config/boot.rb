@@ -30,6 +30,7 @@ Padrino.before_load do
     :format => :html5,
     :use_html_safe => true,
     :generator => Temple::Generators::RailsOutputBuffer,
+    :pretty => PADRINO_ENV == "development",
   } )
 
   Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
