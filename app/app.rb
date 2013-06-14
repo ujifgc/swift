@@ -130,11 +130,12 @@ protected
     swift[:path_ids] = []
     swift[:method] = request.env['REQUEST_METHOD']
     swift[:placeholders] = {}
-
-    path = request.env['PATH_INFO']
-    path = path.gsub( /(.+)\/$/, '\1' )  if path.length > 1
-    swift[:uri] = path
+    swift[:uri] = request.env['REQUEST_URI']
     swift[:host] = request.env['SERVER_NAME']
+    swift[:path] = request.env['PATH_INFO']
+
+    path = swift[:path]
+    path = path.chomp('/')  if path.length > 1
     page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
 
