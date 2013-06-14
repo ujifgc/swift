@@ -49,7 +49,7 @@ module Padrino
           $logger.error "Swift caught a runtime error at #{subsystem||'system'}"
           $logger.error "Fallback for development was #{fallback||'empty'}, production displayed empty string"
           relevant_errors.each do |e|
-            $logger << e.gsub( %r{/home/.*?/}, '~/' )
+            $logger << e.gsub( %r{/home/.*?/}, '~/' ) #'
           end
           ''
         else
@@ -75,8 +75,11 @@ module Padrino
           if File.exists? "#{Swift.views}/#{core_tpl.gsub(/\/core$/, '/_core.slim')}"
             partial( core_tpl, :views => Swift.views )
           end
-          if File.exists? "#{Swift.views}/#{view_tpl.gsub(/\/view(.*)$/, '/_view\1.slim')}"
+          case #!!! FIXME ugly case
+          when File.exists?( "#{Swift.views}/#{view_tpl.gsub(/\/view(.*)$/, '/_view\1.slim')}" )
             partial( view_tpl, :views => Swift.views )
+          when File.exists?( "#{Swift.views}/#{view_tpl.gsub(/\/view(.*)$/, '/_view.slim')}" )
+            partial( view_tpl.gsub(/\/view(.*)$/, '/view'), :views => Swift.views )
           else
             raise Padrino::Rendering::TemplateNotFound, 'view'
           end
@@ -216,6 +219,26 @@ module Padrino
         meta.inject(''.html_safe) do |all, pair|
           all << meta_tag( pair[1], :name => pair[0] )
         end
+      end
+
+      def url_replace( target, *args )
+        hash = args.last.kind_of?(Hash) && args.last
+        prefix = args.first.kind_of?(String) && args.first
+        if hash
+          target += '?'  unless target.index ??
+          hash.each do |k,v|
+            k_reg = CGI.escape k.to_s
+            target = target.gsub /[\?\&]#{k_reg}=([^&]*)$/, ''
+            target = target.gsub /#{k_reg}=([^&]*)\&/, ''
+            target += "&#{k}=#{v}"  if v
+          end
+          target = target.gsub('?&',??)
+        end
+        if prefix
+          return prefix  unless target.index ??
+          target = target.gsub(/[^?]*(\?.*)/, prefix + '\1')
+        end
+        target
       end
 
     end
