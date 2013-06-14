@@ -34,4 +34,5 @@ ruby:
     1..12
   end
 
-  @prefix = (  @opts[:root] || @swift[:module_root] ).to_s
+  @target = @page.is_module ? @swift[:uri] : ( @opts[:root] || '/news' )
+

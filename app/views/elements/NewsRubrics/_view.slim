@@ -2,7 +2,7 @@
   dl
     - @rubrics.each do |rubric|
       dt class=(rubric.slug == @swift[:slug] && 'active')
-        = link_to rubric.title, "#{@swift[:module_root]}/#{rubric.slug}"
+        = link_to rubric.title, url_replace(@swift[:uri], "#{@swift[:module_root]}/#{rubric.slug}", :page => nil)
       - unless rubric.text.blank?
         dd
           = engine_render( rubric.text )
