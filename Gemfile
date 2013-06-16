@@ -13,7 +13,6 @@ gem 'activesupport', :require => 'active_support/core_ext/object/conversions'
 # templates and content parsing
 gem 'yajl-ruby', :require => 'yajl'
 gem 'multi_json'
-gem 'tilt', '1.3.7'
 gem 'slim'
 gem 'redcarpet', :github => 'ujifgc/redcarpet'
 gem 'sinatra-flash', :require => 'sinatra/flash'
@@ -27,7 +26,7 @@ gem 'dm-timestamps'
 gem 'dm-migrations', :require => false
 gem 'dm-constraints'
 gem 'dm-aggregates'
-gem 'dm-core', '~> 1.2.0'
+gem 'dm-core', '~> 1.2.1'
 gem 'dm-mysql-adapter'
 
 # javascript and css compressing
