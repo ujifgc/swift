@@ -147,7 +147,7 @@ end
 # display date as span with tooltip
 class Date
   def as_span
-    "<span rel=\"tooltip\" data-original-title=\"#{self.as_date.strip}\">#{self.to_s}</span>"
+    %(<span rel="tooltip" data-original-title="#{self.as_date.strip}">#{self.to_s}</span>)
   end
 end
 
