@@ -1,6 +1,7 @@
 #coding: utf-8
 require 'minitest_helper'
-require '../lib/admin_form_builder'
+#require '../lib/admin_form_builder'
+
 describe Swift do
 
   include RenderMethod
@@ -11,7 +12,7 @@ describe Swift do
   include Padrino::Helpers::TagHelpers 
   include Padrino::Helpers::FormHelpers 
   include Padrino::Helpers::FormBuilder
-    
+
   before do
     @args = { :title => "title", :text => "text"}
     @opts1 = { :kind => :form, :method => "show" }
@@ -22,14 +23,15 @@ describe Swift do
     @swift = { :slug =>  @card[:slug], :path_pages => [@page1, @page2] } 
   end
 
-	it 'should kind-form create' do
-		p @swift
-		el = element('FormsForm', @args, @opts1)
-		el.must_equal "<dl></dl>"
-	end
-	
-	after do
-		@card.destroy
-	end
-	
+  it 'should kind-form create' do
+#    p @swift
+skip
+    el = element('FormsForm', @args, @opts1)
+    el.must_equal "<dl></dl>"
+  end
+
+  after do
+    @card.destroy
+  end
+
 end

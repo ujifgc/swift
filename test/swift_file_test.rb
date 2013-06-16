@@ -15,13 +15,10 @@ describe Swift do
     el = element("File")
     el.must_equal "[Asset # missing]"
   end
-  
+
   it "should throw error" do
     el = element("File", -1)
     el.must_equal "[Asset #-1 missing]"
-    
   end
-
-  
 
 end

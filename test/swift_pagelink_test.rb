@@ -11,7 +11,7 @@ describe Swift do
   before do
     @page1 = Page.new :title => "Page 1", :path => "/", :parent => nil
   end
-  
+
   it "should link created" do
     el = element("PageLink", @page1)
     el.must_equal "[Page ##{@args[0]} missing]"
