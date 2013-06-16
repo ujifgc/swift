@@ -9,6 +9,10 @@ Bundler.require(:default, PADRINO_ENV)
 
 # Enable devel logging
 Padrino::Logger::Config[:development] = { :log_level => :devel, :format_datetime => " [%Y-%m-%d %H:%M:%S] ", :stream => :to_file, :colorize_logging => true }
+if defined? AwesomePrint
+  require 'awesome_print/core_ext/logger'
+  Padrino::Logger.send(:include, AwesomePrint::Logger)
+end
 
 # instance an environment
 ENV['TMP'] = Padrino.root + '/tmp'

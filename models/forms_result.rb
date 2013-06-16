@@ -24,7 +24,6 @@ class FormsResult
   end
 
   after :destroy do |old|
-    $logger << old.attributes.inspect
     old.forms_card.json.select do |k, v|
       v[0] == 'file'
     end.each do |k, v|
