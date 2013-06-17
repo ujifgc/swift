@@ -103,7 +103,6 @@ class Swift < Padrino::Application
     @page = Page.first :path => '/error/404'
     body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
     inject_placeholders body
-    
   end
 
   # requested wrong service or wrong parameters
@@ -172,24 +171,11 @@ protected
     swift
   end
 
+  # WARNING! This method returns unsafe version of it's parameter.
+  # It MUST be the last operation on the text buffer before returning to the client.
   def inject_placeholders( text )
-    text.gsub /\%\{placeholder\[\:[^\]]+\]\}/ do |pattern|
-      tag = pattern.partition(':').last.chop.chop # !!! FIXME this is bad. somewhy $1 does not work
-      @swift[:placeholders][tag] || ''
-    end
-  end
-
-  Swift.mailer :cron do
-    hostname = Option(:hostname)
-    email :forms_stat do |receivers, message|
-      @hostname = hostname
-      @message = message
-
-      from          "robot@#{@hostname}"
-      to            receivers
-      subject       "Статистка по обращениям в интернет-премную прокуратуры УР в период c #{(DateTime.now - 7).strftime('%d.%m.%Y')} до #{DateTime.now.strftime('%d.%m.%Y')}"
-      content_type  'text/html'
-      body          render 'forms_stat'
+    text.to_str.gsub /\%\{placeholder\[\:([^\]]+)\]\}/ do
+      @swift[:placeholders][$1] || ''
     end
   end
 

@@ -147,7 +147,7 @@ end
 # display date as span with tooltip
 class Date
   def as_span
-    "<span rel=\"tooltip\" data-original-title=\"#{self.as_date.strip}\">#{self.to_s}</span>"
+    %(<span rel="tooltip" data-original-title="#{self.as_date.strip}">#{self.to_s}</span>)
   end
 end
 
@@ -231,7 +231,6 @@ module DataMapper
               __send__(setter, value)
             else
               if self.respond_to? :json
-                # !!!FIXME limit embedding by CatCard fields
                 self.json[name] = value
               else
                 raise ArgumentError, "The attribute '#{name}' is not accessible in #{model}"

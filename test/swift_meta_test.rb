@@ -11,10 +11,10 @@ describe Swift do
   before do
     
   end
-  
+
   it 'should write meta' do
-	el = element('Meta')
-	el.must_equal "%{placeholder[:meta]}"
+    el = element('Meta')
+    el.must_equal "%{placeholder[:meta]}"
   end 
 
 

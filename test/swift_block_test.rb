@@ -26,17 +26,17 @@ describe Swift do
     el = element("Block", @temp_html.id).strip
     el.must_equal "<a><img src=\"hi\"></a>"
   end
-  
+
   it "should be added the table caption with block title" do
     el = element("Block", @temp_tabl.id).strip
     el.must_equal '<table><caption>table</caption><tr><td>Yes</td></tr></table>'
   end
-  
+
   it "should throw error" do
     el = element("Block", -1)
     el.must_equal "[Block #-1 missing]"
   end
-  
+
   after do
     @temp_html.destroy
     @temp_text.destroy

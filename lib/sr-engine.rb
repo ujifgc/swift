@@ -43,14 +43,17 @@ module Padrino
 
       def report_error( error, subsystem = nil, fallback = nil )
         if Padrino.env == :production
-          relevant_errors = error.backtrace.reject do |e|
-            e.match /phusion_passenger/
+          relevant_steps = error.backtrace.reject{ |e| e.match /phusion_passenger/ }
+          message = "Swift caught a runtime error at #{subsystem||'system'}. Fallback for development was #{fallback||'empty'}, production displayed empty string."
+          logger.error message
+          message << "\r\nCall stack:\r\n"
+          relevant_steps.each do |step|
+            step = step.gsub %r{/home/.*?/}, '~/'
+            message << step
+            logger << step
           end
-          $logger.error "Swift caught a runtime error at #{subsystem||'system'}"
-          $logger.error "Fallback for development was #{fallback||'empty'}, production displayed empty string"
-          relevant_errors.each do |e|
-            $logger << e.gsub( %r{/home/.*?/}, '~/' ) #'
-          end
+          @swift[:error_messages] ||= []
+          @swift[:error_messages] << message
           ''
         else
           fallback || raise
@@ -245,3 +248,12 @@ module Padrino
   end
 end
 
+module Kernel
+  def Logger( *args )
+    if logger.respond_to? :ap
+      args.each { |arg| logger.ap arg }
+    else
+      args.each { |arg| logger << arg.inspect }
+    end
+  end
+end
