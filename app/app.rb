@@ -179,18 +179,4 @@ protected
     end
   end
 
-  Swift.mailer :cron do
-    hostname = Option(:hostname)
-    email :forms_stat do |receivers, message|
-      @hostname = hostname
-      @message = message
-
-      from          "robot@#{@hostname}"
-      to            receivers
-      subject       "Статистка по обращениям в интернет-премную прокуратуры УР в период c #{(DateTime.now - 7).strftime('%d.%m.%Y')} до #{DateTime.now.strftime('%d.%m.%Y')}"
-      content_type  'text/html'
-      body          render 'forms_stat'
-    end
-  end
-
 end
