@@ -43,17 +43,19 @@ class Swift < Padrino::Application
 
   # serve assets with AssetPack
 
-  # if web server can't statically serve image request, regenerate the image version
+  # if web server can't statically serve image request, regenerate the image outlet
   # and tell browser to lurk again with new timestamp
-  get '/cache/:version/:model/:id/*' do
+  get '/cache/:model/:id@:outlet-:file' do
     model = params[:model].constantize  rescue nil
     error 400  unless model
     object = model.get params[:id]  rescue nil
     error 404  unless object
-    url = object.file.versions[params[:version].to_sym].url  rescue nil
-    error 400  unless url
-    filename = object.file.render!( params[:version].to_sym ).url
-    redirect filename + asset_timestamp(filename)
+    outlet = object.file.outlets[params[:outlet].to_sym]  rescue nil
+    error 400  unless outlet
+    outlet.prepare!
+    error 503  unless File.exists?(outlet.path)
+    result = outlet.url
+    redirect result + asset_timestamp(result)
   end
 
   get '/sitemap.xml' do

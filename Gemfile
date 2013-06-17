@@ -33,7 +33,7 @@ gem 'dm-mysql-adapter'
 gem 'sinatra-assetpack'
 
 # file and picture assets
-gem 'nozzle', :github => 'ujifgc/nozzle'
+gem 'nozzle'
 
 # authorization and authentication
 gem 'omniauth'

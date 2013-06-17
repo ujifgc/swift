@@ -57,13 +57,27 @@ class ImageAdapter < NeatAdapter
 
   outlet :thumb do
     def prepare( original, result )
+      FileUtils.mkdir_p File.dirname(result)
       `convert #{original} -thumbnail 180x135 #{result}`
+    end
+    def relative_folder
+      "cache/#{@model}"
+    end
+    def filename
+      "#{@record.id}@#{version_name}-#{super}"
     end
   end
 
   outlet :fill_thumb do
     def prepare( original, result )
+      FileUtils.mkdir_p File.dirname(result)
       `convert #{original} -thumbnail 180x135^ -gravity center -extent 180x135 #{result}`
+    end
+    def relative_folder
+      "cache/#{@model}"
+    end
+    def filename
+      "#{@record.id}@#{version_name}-#{super}"
     end
   end
 
