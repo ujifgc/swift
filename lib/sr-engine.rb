@@ -88,8 +88,11 @@ module Padrino
           when File.exists?(core_tpl)
             render nil, core_tpl, RENDER_OPTIONS
           end
-          if File.exists? view_tpl
+          case
+          when File.exists?( view_tpl )
             render nil, view_tpl, RENDER_OPTIONS
+          when File.exists?( view_tpl.gsub(/-[^.]*/,'') )
+            render nil, view_tpl.gsub(/-[^.]*/,''), RENDER_OPTIONS
           else
             raise Padrino::Rendering::TemplateNotFound, (@opts[:instance] ? "view '#{@opts[:instance]}'" : 'view')
           end
@@ -235,14 +238,15 @@ module Padrino
         hash = args.last.kind_of?(Hash) && args.last
         prefix = args.first.kind_of?(String) && args.first
         if hash
-          target += '?'  unless target.index ??
+          path, _, query = target.partition ??
           hash.each do |k,v|
             k_reg = CGI.escape k.to_s
-            target = target.gsub /[\?\&]#{k_reg}=([^&]*)$/, ''
-            target = target.gsub /#{k_reg}=([^&]*)\&/, ''
-            target += "&#{k}=#{v}"  if v
+            query = query.gsub /[&^]?#{k_reg}=([^&]*)[&$]?/, ''
+            query += "&#{k}=#{v}"  if v
           end
-          target = target.gsub('?&',??)
+          query.gsub! /^&/, ''
+          q_mark = query.present? ? ?? : ''
+          target = [path, q_mark, query].join
         end
         if prefix
           return prefix  unless target.index ??
