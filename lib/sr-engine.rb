@@ -235,14 +235,15 @@ module Padrino
         hash = args.last.kind_of?(Hash) && args.last
         prefix = args.first.kind_of?(String) && args.first
         if hash
-          target += '?'  unless target.index ??
+          path, _, query = target.partition ??
           hash.each do |k,v|
             k_reg = CGI.escape k.to_s
-            target = target.gsub /[\?\&]#{k_reg}=([^&]*)$/, ''
-            target = target.gsub /#{k_reg}=([^&]*)\&/, ''
-            target += "&#{k}=#{v}"  if v
+            query = query.gsub /[&^]?#{k_reg}=([^&]*)[&$]?/, ''
+            query += "&#{k}=#{v}"  if v
           end
-          target = target.gsub('?&',??)
+          query.gsub! /^&/, ''
+          q_mark = query.present? ? ?? : ''
+          target = [path, q_mark, query].join
         end
         if prefix
           return prefix  unless target.index ??
