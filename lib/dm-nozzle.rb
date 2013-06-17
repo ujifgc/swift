@@ -1,3 +1,5 @@
+require 'shellwords'
+
 class NeatAdapter < Nozzle::Adapter::Base
 
   def size
@@ -58,7 +60,7 @@ class ImageAdapter < NeatAdapter
   outlet :thumb do
     def prepare( original, result )
       FileUtils.mkdir_p File.dirname(result)
-      `convert #{original} -thumbnail 180x135 #{result}`
+      `convert #{Shellwords.escape original} -thumbnail 180x135 #{Shellwords.escape result}`
     end
     def relative_folder
       "cache/#{@model}"
@@ -71,7 +73,7 @@ class ImageAdapter < NeatAdapter
   outlet :fill_thumb do
     def prepare( original, result )
       FileUtils.mkdir_p File.dirname(result)
-      `convert #{original} -thumbnail 180x135^ -gravity center -extent 180x135 #{result}`
+      `convert #{Shellwords.escape original} -thumbnail 180x135^ -gravity center -extent 180x135 #{Shellwords.escape result}`
     end
     def relative_folder
       "cache/#{@model}"
