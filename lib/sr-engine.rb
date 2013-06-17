@@ -88,8 +88,11 @@ module Padrino
           when File.exists?(core_tpl)
             render nil, core_tpl, RENDER_OPTIONS
           end
-          if File.exists? view_tpl
+          case
+          when File.exists?( view_tpl )
             render nil, view_tpl, RENDER_OPTIONS
+          when File.exists?( view_tpl.gsub(/-[^.]*/,'') )
+            render nil, view_tpl.gsub(/-[^.]*/,''), RENDER_OPTIONS
           else
             raise Padrino::Rendering::TemplateNotFound, (@opts[:instance] ? "view '#{@opts[:instance]}'" : 'view')
           end
