@@ -266,7 +266,7 @@ module SwiftDatamapper
 
     # A getter/initializer for json errors
     def json_errors
-      @json_errors ||= {} # !!! FIXME test this, it might fail
+      @json_errors ||= {}
     end
 
     # A getter for amorphous fields
