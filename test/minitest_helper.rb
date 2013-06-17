@@ -7,7 +7,7 @@ module RenderMethod
   include Padrino::Helpers::AssetTagHelpers
 
   def render( engine, template, options={} )
-    Slim::Template.new(File.join(Swift.views,template.to_s)+'.slim', options).render(self)
+    Slim::Template.new(template, options).render(self)
   end
 
 end

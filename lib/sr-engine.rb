@@ -60,31 +60,38 @@ module Padrino
         end
       end
 
+      RENDER_OPTIONS = { :views => '', :layout => false }
+
+      def element_view( name )
+        render nil, "#{Swift.views}/elements/#{name}.slim", RENDER_OPTIONS
+      end
+
       def element( name, *args )
         @opts = args.last.is_a?(Hash) ? args.pop : {}
         @args = args
-        core_tpl = 'elements/' + name + '/core'
-        view_tpl = 'elements/' + name + '/view'
+        core_tpl = "#{Swift.views}/elements/#{name}/_core.slim"
+        core_rb = "#{Swift.views}/elements/#{name}/core.rb"
+        view_tpl = "#{Swift.views}/elements/#{name}/_view.slim"
 
         @identity = { :class => "#{name}" }
         @identity[:id] = @opts[:id]  if @opts[:id]
         @identity[:class] += ' ' + @opts[:class]  if @opts[:class]
         if @opts[:instance]
-          view_tpl += "-#{@opts[:instance]}"
+          view_tpl.gsub!( /view\.slim/, "view-#{@opts[:instance]}.slim" )
           @identity[:class] += " #{name}-#{@opts[:instance]}"
         end
 
         catch :output do
-          if File.exists? "#{Swift.views}/#{core_tpl.gsub(/\/core$/, '/_core.slim')}"
-            partial( core_tpl, :views => Swift.views )
+          case
+          when File.exists?(core_rb)
+            binding.eval File.read(core_rb)
+          when File.exists?(core_tpl)
+            render nil, core_tpl, RENDER_OPTIONS
           end
-          case #!!! FIXME ugly case
-          when File.exists?( "#{Swift.views}/#{view_tpl.gsub(/\/view(.*)$/, '/_view\1.slim')}" )
-            partial( view_tpl, :views => Swift.views )
-          when File.exists?( "#{Swift.views}/#{view_tpl.gsub(/\/view(.*)$/, '/_view.slim')}" )
-            partial( view_tpl.gsub(/\/view(.*)$/, '/view'), :views => Swift.views )
+          if File.exists? view_tpl
+            render nil, view_tpl, RENDER_OPTIONS
           else
-            raise Padrino::Rendering::TemplateNotFound, 'view'
+            raise Padrino::Rendering::TemplateNotFound, (@opts[:instance] ? "view '#{@opts[:instance]}'" : 'view')
           end
         end
       rescue Padrino::Rendering::TemplateNotFound => e
