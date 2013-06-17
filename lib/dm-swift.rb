@@ -272,8 +272,7 @@ module SwiftDatamapper
     # A getter for amorphous fields
     def []( key )
       return super key  if properties.named? key
-      # !!!FIXME freeze is a safeguard for a smartass eager to use something
-      # like `<<` instead of `=`, maybe fix it sometime
+      # freeze is a safeguard against `[]<<`
       self.json[key.to_s].freeze
     end
 
