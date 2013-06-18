@@ -67,7 +67,7 @@ module Padrino
       end
 
       def element( name, *args )
-        @opts = args.last.is_a?(Hash) ? args.pop : {}
+        @opts = args.last.kind_of?(Hash) ? args.pop : {}
         @args = args
         core_tpl = "#{Swift.views}/elements/#{name}/_core.slim"
         core_rb = "#{Swift.views}/elements/#{name}/core.rb"
@@ -104,7 +104,9 @@ module Padrino
       end
 
       def fragment( name, *args )
-        partial 'fragments/'+name, *args, :views => Swift.views
+        opts = args.last.kind_of?(Hash) ? args.pop : {}
+        opts.reverse_merge! RENDER_OPTIONS
+        render "#{Swift.views}/fragments/_#{name}.slim", opts
       end
       
       def parse_vars( str )
