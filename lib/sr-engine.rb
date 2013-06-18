@@ -103,8 +103,9 @@ module Padrino
         report_error e, "EngineHelpers#element@#{__LINE__}"
       end
 
-      def fragment( name )
-        render nil, "fragments/_#{name}.slim", :layout => @swift[:layout] || :application
+      def fragment( name, opts = {} )
+        opts[:layout] ||= false
+        render nil, "fragments/_#{name}.slim", opts
       rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
         report_error e, "EngineHelpers#fragment@#{__LINE__}", "[Fragment '#{name}' reports error: #{e}]"
       end

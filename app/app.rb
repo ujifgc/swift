@@ -85,7 +85,7 @@ class Swift < Padrino::Application
 
     params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
 
-    inject_placeholders fragment @page.fragment_id
+    inject_placeholders fragment @page.fragment_id, :layout => @page.layout_id
   end
 
   # a trick to consume both get and post requests
@@ -95,15 +95,13 @@ class Swift < Padrino::Application
   # if the sitemap does not have the requested page then show the 404
   not_found do
     @page = Page.first :path => '/error/404'
-    @swift[:layout] = @page.layout_id
-    inject_placeholders fragment @page.fragment_id
+    inject_placeholders fragment @page.fragment_id, :layout => @page.layout_id
   end
 
   # requested wrong service or wrong parameters
   error 501 do
     @page = Page.first :path => '/error/501'
-    @swift[:layout] = @page.layout_id
-    inject_placeholders fragment @page.fragment_id
+    inject_placeholders fragment @page.fragment_id, :layout => @page.layout_id
   end
 
 protected
@@ -133,7 +131,6 @@ protected
     @page = page
 
     if page
-      swift[:layout] = page.layout_id
       swift[:placeholders]['meta'] = meta_for page
       swift[:placeholders]['html_title'] = page.title
     end
