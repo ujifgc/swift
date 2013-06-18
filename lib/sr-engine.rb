@@ -103,10 +103,10 @@ module Padrino
         report_error e, "EngineHelpers#element@#{__LINE__}"
       end
 
-      def fragment( name, *args )
-        opts = args.last.kind_of?(Hash) ? args.pop : {}
-        opts.reverse_merge! RENDER_OPTIONS
-        render "#{Swift.views}/fragments/_#{name}.slim", opts
+      def fragment( name )
+        render nil, "fragments/_#{name}.slim", :layout => @swift[:layout] || :application
+      rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
+        report_error e, "EngineHelpers#fragment@#{__LINE__}", "[Fragment '#{name}' reports error: #{e}]"
       end
       
       def parse_vars( str )
