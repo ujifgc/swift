@@ -77,8 +77,6 @@ class Swift < Padrino::Application
     @swift = init_instance
     not_found  if @swift[:not_found]
     not_found  unless @page
-    @swift[:placeholders]['meta'] = meta_for @page
-    @swift[:placeholders]['html_title'] = @page.title
 
     if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
       cs = @page.children.all :order => :position
@@ -86,12 +84,8 @@ class Swift < Padrino::Application
     end
 
     params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
-    body = begin
-      render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
-    rescue Padrino::Rendering::TemplateNotFound => err
-      "[Template ##{@page.fragment_id} missing]"
-    end
-    inject_placeholders body
+
+    inject_placeholders fragment @page.fragment_id
   end
 
   # a trick to consume both get and post requests
@@ -101,15 +95,15 @@ class Swift < Padrino::Application
   # if the sitemap does not have the requested page then show the 404
   not_found do
     @page = Page.first :path => '/error/404'
-    body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
-    inject_placeholders body
+    @swift[:layout] = @page.layout_id
+    inject_placeholders fragment @page.fragment_id
   end
 
   # requested wrong service or wrong parameters
   error 501 do
     @page = Page.first :path => '/error/501'
-    body = render 'fragments/_' + @page.fragment_id, :layout => @page.layout_id
-    inject_placeholders body
+    @swift[:layout] = @page.layout_id
+    inject_placeholders fragment @page.fragment_id
   end
 
 protected
@@ -137,6 +131,12 @@ protected
     path = path.chomp('/')  if path.length > 1
     page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
+
+    if page
+      swift[:layout] = page.layout_id
+      swift[:placeholders]['meta'] = meta_for page
+      swift[:placeholders]['html_title'] = page.title
+    end
 
     if page && path.length >= page.path.length
       swift[:slug] = path.gsub /^#{page.path}/, ''
