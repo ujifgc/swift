@@ -44,7 +44,7 @@ module Padrino
             if logged_in?
               redirect '/admin'
             else
-              store_location!  if store_location && !request.env['REQUEST_URI'].match(%r{(?:/stylesheets/|/javascripts/).*(?:\.css|\.js)$})
+              store_location!  if store_location && !request.env['REQUEST_URI'].match(%r{(?:/assets|stylesheets/|/javascripts/).*(?:\.css|\.js)$})
               access_denied
             end
           end
@@ -324,20 +324,6 @@ module Rack
     end
   end
 
-end
-
-# patch sinatra-assetpack not to mess with Rack::Test in production
-class Sinatra::AssetPack::Package
-  def combined
-    files.inject('') do |content, file|
-      content << File.read(file)
-    end
-  end
-  def production_path
-    app_root = Padrino.mounted_apps.find{ |app| app.name == @assets.app.name }.uri_root
-    asset_path = add_cache_buster( @path, *files )
-    app_root == '/' ? asset_path : ( app_root + asset_path )
-  end
 end
 
 require 'rack/showexceptions'
