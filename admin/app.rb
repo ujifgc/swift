@@ -72,11 +72,12 @@ class Admin < Padrino::Application
   access_control.roles_for :any do |role|
     role.protect "/"
     role.allow "/sessions"
-    role.allow "/assets"
     role.allow "/auth"
+    role.allow "/assets/upload"
     role.allow "/accounts/reset"
     role.allow "/accounts/edit"
     role.allow "/accounts/update"
+    role.allow "/stylesheets"
   end
 
   access_control.roles_for :editor do |role|
