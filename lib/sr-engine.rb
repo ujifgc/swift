@@ -180,7 +180,7 @@ module Padrino
 
       # strips text of uub code
       def strip_code( text )
-        text.gsub!(REGEX_RECURSIVE_BRACKETS, '').strip
+        text && text.gsub(REGEX_RECURSIVE_BRACKETS, '').strip
       end
 
       def parse_content( str )
