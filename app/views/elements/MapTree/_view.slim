@@ -1,5 +1,5 @@
-- tree ||= @tree
-ul *@identity
+- identity = defined?(tree) ? {} : ( tree = @tree; @identity )
+ul *identity
   - tree.each do |leaf|
     - if leaf[:title]
       li class=leaf[:class]
