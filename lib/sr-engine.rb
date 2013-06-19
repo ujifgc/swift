@@ -67,7 +67,7 @@ module Padrino
       end
 
       def element( name, *args )
-        @opts = args.last.is_a?(Hash) ? args.pop : {}
+        @opts = args.last.kind_of?(Hash) ? args.pop : {}
         @args = args
         core_tpl = "#{Swift.views}/elements/#{name}/_core.slim"
         core_rb = "#{Swift.views}/elements/#{name}/core.rb"
@@ -103,8 +103,11 @@ module Padrino
         report_error e, "EngineHelpers#element@#{__LINE__}"
       end
 
-      def fragment( name, *args )
-        partial 'fragments/'+name, *args, :views => Swift.views
+      def fragment( name, opts = {} )
+        opts[:layout] ||= false
+        render nil, "fragments/_#{name}.slim", opts
+      rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
+        report_error e, "EngineHelpers#fragment@#{__LINE__}", "[Fragment '#{name}' reports error: #{e}]"
       end
       
       def parse_vars( str )
