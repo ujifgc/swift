@@ -1,0 +1,4 @@
+.article
+  h3= @new.title
+  span.date = l @new.date, :format => :date_other_year
+  .text= engine_render( @new.text )

@@ -1,0 +1,4 @@
+dl *@identity
+  - @pages.each do |p|
+    dt= link_to p.title, se_url(p)
+    dd= p.meta['description']

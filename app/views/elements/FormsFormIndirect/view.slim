@@ -1,0 +1,30 @@
+- if @result.new?
+  .article
+    h3= @card.title
+    .text= engine_render( @card.text )
+    - form_for @result, '', :class => 'form form-horizontal', :multipart => true, :'accept-charset' => nil do |f|
+      - @f = f
+      - @card.json.each do |k,v|
+        - if v[0] == 'file'
+          - if @result.json[k].any?
+            .control-group
+              label
+                = k
+              .controls
+                - @result.json[k].each do |asset_id|
+                  = Asset.get(asset_id).info
+                  = hidden_field_tag "forms_result[#{k}][]", :value => asset_id
+          - else
+            = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
+        - else
+          = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
+      = f.submit :save
+- else
+  .article Спасибо за заполнение формы. Форма с отпарвленными данными:
+  dl
+    - @result.json.each do |k,v|
+      dt= k
+      - if @card.json[k][0] == 'file'
+        dd= Asset.all(:id => v).map(&:info).join(', ')
+      - else
+        dd= v

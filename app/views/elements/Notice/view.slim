@@ -1,0 +1,3 @@
+.flash
+  - [:error, :warning, :notice].each do |type|
+    = flash_tag type, :class => "message #{type}"

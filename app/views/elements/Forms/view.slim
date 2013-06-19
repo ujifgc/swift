@@ -1,0 +1,4 @@
+dl
+  - @forms.each do |o|
+    dt= link_to o.title, se_url(o)
+    dd= engine_render( o.text )

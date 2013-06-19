@@ -1,0 +1,7 @@
+ul.gallery_images
+  - @pics.each do |pic|
+    li
+      a rel="box-image" href=pic.file.url title=pic.title
+        = image_tag pic.file.thumb.url
+      a id="image_title"
+        = pic.title

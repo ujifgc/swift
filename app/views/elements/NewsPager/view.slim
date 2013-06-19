@@ -1,0 +1,10 @@
+.articles.news-list
+  dl
+    - @articles.each do |article|
+      dt
+        span.date= article.date.as_date
+        = link_to article.title, "#{@swift[:module_root]}/show/#{article.slug}"
+      dd
+        = engine_render( article.info )
+  - if @pages_count > 1
+    = element 'Pager' 
