@@ -66,7 +66,7 @@ module Padrino
         render nil, "#{Swift.views}/elements/#{name}.slim", RENDER_OPTIONS
       end
 
-      DEFERRED_ELEMENTS = %W[Breadcrumbs PageTitle Meta].freeze
+      DEFERRED_ELEMENTS = Set.new(%w[Breadcrumbs PageTitle Meta]).freeze
 
       def inject_placeholders( text )
         process_deferred_elements
