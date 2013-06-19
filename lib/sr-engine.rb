@@ -66,9 +66,29 @@ module Padrino
         render nil, "#{Swift.views}/elements/#{name}.slim", RENDER_OPTIONS
       end
 
+      DEFERRED_ELEMENTS = %W[Breadcrumbs PageTitle].freeze
+
+      def defer_element( name, args, opts )
+        @swift[:placeholders][name] = [ name, args, opts ]
+        "%{placeholder[:#{name}]}"
+      end
+
+      def process_deferred_elements
+        @swift[:placeholders] = @swift[:placeholders].each_with_object({}) do |(k,v), h|
+          case v
+          when Array
+            h[k] = element( v[0], *v[1], v[2].merge( :process_defer => true ) )
+          else
+            h[k] = v
+          end
+        end
+      end
+
       def element( name, *args )
         @opts = args.last.kind_of?(Hash) ? args.pop : {}
         @args = args
+        return defer_element( name, @args, @opts )  if DEFERRED_ELEMENTS.include?(name) && @opts[:process_defer].nil?
+
         core_tpl = "#{Swift.views}/elements/#{name}/_core.slim"
         core_rb = "#{Swift.views}/elements/#{name}/core.rb"
         view_tpl = "#{Swift.views}/elements/#{name}/_view.slim"

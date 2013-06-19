@@ -3,4 +3,3 @@ ruby:
   not_found  unless @node
   @swift[:path_pages][-1] = Page.new :title => @node.title
   @swift[:placeholders]['meta'] = meta_for @node
-  @swift[:placeholders]['html_title'] = @node.title
