@@ -68,6 +68,13 @@ module Padrino
 
       DEFERRED_ELEMENTS = %W[Breadcrumbs PageTitle].freeze
 
+      def inject_placeholders( text )
+        process_deferred_elements
+        text.to_str.gsub /\%\{placeholder\[\:([^\]]+)\]\}/ do
+          @swift[:placeholders][$1] || ''
+        end
+      end
+
       def defer_element( name, args, opts )
         @swift[:placeholders][name] = [ name, args, opts ]
         "%{placeholder[:#{name}]}"
