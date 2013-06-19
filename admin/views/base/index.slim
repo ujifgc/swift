@@ -2,3 +2,27 @@
   ul.nav.nav-tabs.operations
     li.active
       = link_to pat('dashboard.title'), url(:base, :index)
+
+  - allow :editor do
+    h5 Наполнение
+    ul.content.thumbnails
+      li.span2
+        =link_to 'Добавить страницу', url( :pages, :new ), :class => :thumbnail
+      li.span2
+        = link_to 'Добавить новость', url( :news_articles, :new ), :class => :thumbnail
+      li.span2
+        =link_to 'Загрузить картинку', url( :images, :new ), :class => :thumbnail
+      li.span2
+        =link_to 'Загрузить файл', url( :assets, :new ), :class => :thumbnail
+
+  - allow :editor do
+    h5 Профиль и пользователи
+    ul.profile.thumbnails
+      - allow :admin do
+        li.span2
+          = link_to 'Создать пользователя', url( :accounts, :new ), :class => :thumbnail
+      li.span2
+        = link_to 'Редактировать свой профиль', url( :accounts, :edit, :id => current_account.id ), :class => :thumbnail
+      li.span2
+        = link_to 'Выйти', url( :sessions, :destroy ), :class => :thumbnail
+ 
