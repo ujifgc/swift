@@ -3,6 +3,7 @@ ruby:
   when :poll
     @card = FormsCard.by_slug @swift[:slug]
     not_found  unless @card
+    @swift[:path_pages] << Page.new( :title => @card.title )
 
     if @card.forms_results.first( :origin => request.addr )
       flash[:notice] = 'Already polled'

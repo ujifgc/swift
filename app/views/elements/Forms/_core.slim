@@ -2,10 +2,9 @@ ruby:
   @opts[:kind] ||= :form
   if md = @swift[:slug].match( /(show|post)\/(.*)/ )
     @swift[:slug] = md[2]
-    @swift[:path_pages] << Page.new
     @opts[:method] = md[1]
-    if @opts[:method] == 'post' && @swift[:method] != 'POST' # FIXME ugly
-      throw :output, redirect( back )
+    if @opts[:method] == 'post' && @swift[:method] != 'POST'
+      throw :output, redirect( @swift[:uri].gsub(/\/post\//, '/show/') )
     else
       throw :output, element( 'Forms' + @opts[:kind].to_s.camelize, *@args, @opts )
     end
@@ -14,7 +13,6 @@ ruby:
     @opts[:kind] = :inquiry
     @opts[:method] = md[1]
     @swift[:slug] = md[2]
-    @swift[:path_pages] << Page.new
     throw :output, element( 'Forms' + @opts[:kind].to_s.camelize, *@args, @opts )
   end
   @forms = FormsCard.all( :kind => @opts[:kind] ).published
