@@ -48,7 +48,7 @@ module Padrino
           logger.error message
           message << "\r\nCall stack:\r\n"
           relevant_steps.each do |step|
-            step = step.gsub %r{/home/.*?/}, '~/'
+            step = step.gsub %r{/home/.*?/}, '~/' #'
             message << step
             logger << step
           end
