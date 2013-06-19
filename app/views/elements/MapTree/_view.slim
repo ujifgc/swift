@@ -6,4 +6,4 @@ ul *identity
         a href=leaf[:href] class=leaf[:class]
           = leaf[:title]
         - if leaf[:child].any?
-          = partial 'elements/MapTree/view', :locals => { :tree => leaf[:child] }
+          div= element_view 'MapTree/_view', :locals => { :tree => leaf[:child] }

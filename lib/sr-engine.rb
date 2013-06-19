@@ -60,12 +60,6 @@ module Padrino
         end
       end
 
-      RENDER_OPTIONS = { :views => '', :layout => false }
-
-      def element_view( name )
-        render nil, "#{Swift.views}/elements/#{name}.slim", RENDER_OPTIONS
-      end
-
       DEFERRED_ELEMENTS = Set.new(%w[Breadcrumbs PageTitle Meta]).freeze
 
       def inject_placeholders( text )
@@ -90,6 +84,8 @@ module Padrino
           end
         end
       end
+
+      RENDER_OPTIONS = { :views => '', :layout => false }
 
       def element( name, *args )
         @opts = args.last.kind_of?(Hash) ? args.pop : {}
@@ -128,6 +124,13 @@ module Padrino
         report_error e, "EngineHelpers#element@#{__LINE__}", "[Element '#{name}' is missing #{e.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
       rescue Exception => e
         report_error e, "EngineHelpers#element@#{__LINE__}"
+      end
+
+      def element_view( name, opts = {} )
+        opts[:layout] ||= false
+        render nil, "elements/#{name}.slim", opts
+      rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
+        report_error e, "EngineHelpers#fragment@#{__LINE__}", "[Fragment '#{name}' reports error: #{e}]"
       end
 
       def fragment( name, opts = {} )
