@@ -1,8 +1,0 @@
-.thumbnail
-  - href = '/gallery/' + @folder.slug
-  a href=href
-    = image_tag @image.file.thumb.url
-  .caption
-    = @image.title
-    br
-    = link_to @folder.title, href

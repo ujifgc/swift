@@ -1,9 +1,0 @@
-- tree ||= @tree
-ul.nav.nav-list
-  - tree.each do |leaf|
-    - if leaf[:title]
-      li class=leaf[:class]
-        a href=leaf[:href] class=leaf[:class]
-          = leaf[:title]
-        - if leaf[:child]
-          = partial 'elements/CatGroups/view', :locals => { :tree => leaf[:child] }

@@ -92,9 +92,8 @@ module Padrino
         @args = args
         return defer_element( name, @args, @opts )  if DEFERRED_ELEMENTS.include?(name) && @opts[:process_defer].nil?
 
-        core_tpl = "#{Swift.views}/elements/#{name}/_core.slim"
         core_rb = "#{Swift.views}/elements/#{name}/core.rb"
-        view_tpl = "#{Swift.views}/elements/#{name}/_view.slim"
+        view_tpl = "#{Swift.views}/elements/#{name}/view.slim"
 
         @identity = { :class => "#{name}" }
         @identity[:id] = @opts[:id]  if @opts[:id]
@@ -105,12 +104,7 @@ module Padrino
         end
 
         catch :output do
-          case
-          when File.exists?(core_rb)
-            binding.eval File.read(core_rb), core_rb
-          when File.exists?(core_tpl)
-            render nil, core_tpl, RENDER_OPTIONS
-          end
+          binding.eval File.read(core_rb), core_rb  if File.exists?(core_rb)
           case
           when File.exists?( view_tpl )
             render nil, view_tpl, RENDER_OPTIONS
@@ -135,7 +129,7 @@ module Padrino
 
       def fragment( name, opts = {} )
         opts[:layout] ||= false
-        render nil, "fragments/_#{name}.slim", opts
+        render nil, "fragments/#{name}.slim", opts
       rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
         report_error e, "EngineHelpers#fragment@#{__LINE__}", "[Fragment '#{name}' reports error: #{e}]"
       end
