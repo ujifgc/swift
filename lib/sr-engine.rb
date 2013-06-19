@@ -142,7 +142,7 @@ module Padrino
         hash = {}
         # 0 for element name
         #                     0              12             3    4            5             6
-        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ )
+        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ ) #"
         vars.each do |v|
           case
           when v[0]
@@ -171,12 +171,21 @@ module Padrino
         end
       end
 
+      # matches recursive brackets
+      # !!! TODO explain
+      REGEX_RECURSIVE_BRACKETS = /(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/.freeze
+
+      # strips text of uub code
+      def strip_code( text )
+        text.gsub!(REGEX_RECURSIVE_BRACKETS, '').strip
+      end
+
       def parse_content( str )
         @parse_level = @parse_level.to_i + 1
         return t(:parse_level_too_deep)  if @parse_level > 4
         needs_capturing = false
 
-        str.gsub!(/(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/) do |s|
+        str.gsub!(REGEX_RECURSIVE_BRACKETS) do |s|
           $1  or next s
           tag = $1[1..-2]#1                                                           2                        3
           md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)((?:[\:\.\#][\w\-]*)*)\s+(.*)/
