@@ -326,6 +326,12 @@ module Rack
 
 end
 
+class Padrino::Rendering::TemplateNotFound
+  def strip
+    'missing ' + to_s.gsub(/template\s+(\'.*?\').*/i, '\1').gsub(/\/elements\/[^\/]+\//, '')
+  end
+end
+
 require 'rack/showexceptions'
 module Sinatra
   class ShowExceptions < Rack::ShowExceptions

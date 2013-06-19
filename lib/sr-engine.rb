@@ -42,6 +42,7 @@ module Padrino
     module EngineHelpers
 
       def report_error( error, subsystem = nil, fallback = nil )
+        @_out_buf ||= ''.html_safe # !!! FIXME this might be fixed at tilt 1.3.8+
         if Padrino.env == :production
           relevant_steps = error.backtrace.reject{ |e| e.match /phusion_passenger/ }
           message = "Swift caught a runtime error at #{subsystem||'system'}. Fallback for development was #{fallback||'empty'}, production displayed empty string."
@@ -85,55 +86,49 @@ module Padrino
         end
       end
 
-      RENDER_OPTIONS = { :views => '', :layout => false }
-
       def element( name, *args )
         @opts = args.last.kind_of?(Hash) ? args.pop : {}
         @args = args
         return defer_element( name, @args, @opts )  if DEFERRED_ELEMENTS.include?(name) && @opts[:process_defer].nil?
-
-        core_rb = "#{Swift.views}/elements/#{name}/core.rb"
-        view_tpl = "#{Swift.views}/elements/#{name}/view.slim"
+        template = "elements/#{name}/view"
 
         @identity = { :class => "#{name}" }
         @identity[:id] = @opts[:id]  if @opts[:id]
         @identity[:class] += ' ' + @opts[:class]  if @opts[:class]
         if @opts[:instance]
-          view_tpl.gsub!( /view\.slim/, "view-#{@opts[:instance]}.slim" )
           @identity[:class] += " #{name}-#{@opts[:instance]}"
+          instance = "#{template}-#{@opts[:instance]}"
+          template = instance  if File.exists?( "#{Swift.views}/#{instance}.slim" ) 
         end
 
         catch :output do
+          core_rb = "#{Swift.views}/elements/#{name}/core.rb"
           binding.eval File.read(core_rb), core_rb  if File.exists?(core_rb)
-          case
-          when File.exists?( view_tpl )
-            render nil, view_tpl, RENDER_OPTIONS
-          when File.exists?( view_tpl.gsub(/-[^.]*/,'') )
-            render nil, view_tpl.gsub(/-[^.]*/,''), RENDER_OPTIONS
-          else
-            raise Padrino::Rendering::TemplateNotFound, (@opts[:instance] ? "view '#{@opts[:instance]}'" : 'view')
-          end
+          render nil, template, :layout => false
         end
       rescue Padrino::Rendering::TemplateNotFound => e
-        report_error e, "EngineHelpers#element@#{__LINE__}", "[Element '#{name}' is missing #{e.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
+        report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[Element '#{name}' error: #{e.strip}]"
       rescue Exception => e
-        report_error e, "EngineHelpers#element@#{__LINE__}"
+        report_error e, "EngineHelpers##{__method__}@#{__LINE__}"
       end
 
       def element_view( name, opts = {} )
-        opts[:layout] ||= false
-        render nil, "elements/#{name}.slim", opts
-      rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
-        report_error e, "EngineHelpers#fragment@#{__LINE__}", "[Fragment '#{name}' reports error: #{e}]"
+        fragment name, :elements, opts
       end
 
-      def fragment( name, opts = {} )
+      def fragment( template, type = nil, opts = {} )
+        if type.kind_of? Hash
+          opts = type
+          type = nil
+        end
+        type ||= :fragments
         opts[:layout] ||= false
-        render nil, "fragments/#{name}.slim", opts
+        render nil, "#{type}/#{template}", opts
       rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
-        report_error e, "EngineHelpers#fragment@#{__LINE__}", "[Fragment '#{name}' reports error: #{e}]"
+        name = template.split('/').first
+        report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[#{type.to_s.singularize.camelize} '#{name}' error: #{e.strip}]"
       end
-      
+
       def parse_vars( str )
         args = []
         hash = {}
