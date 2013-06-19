@@ -111,7 +111,7 @@ module Padrino
         catch :output do
           case
           when File.exists?(core_rb)
-            binding.eval File.read(core_rb)
+            binding.eval File.read(core_rb), core_rb
           when File.exists?(core_tpl)
             render nil, core_tpl, RENDER_OPTIONS
           end
