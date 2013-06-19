@@ -130,8 +130,6 @@ protected
     page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
 
-    swift[:placeholders]['meta'] = meta_for page  if page
-
     if page && path.length >= page.path.length
       swift[:slug] = path.gsub /^#{page.path}/, ''
       swift[:module_root] = page.path

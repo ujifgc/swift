@@ -66,7 +66,7 @@ module Padrino
         render nil, "#{Swift.views}/elements/#{name}.slim", RENDER_OPTIONS
       end
 
-      DEFERRED_ELEMENTS = %W[Breadcrumbs PageTitle].freeze
+      DEFERRED_ELEMENTS = %W[Breadcrumbs PageTitle Meta].freeze
 
       def inject_placeholders( text )
         process_deferred_elements
@@ -253,14 +253,6 @@ module Padrino
           o.path
         else
           @swift[:module_root] ? @swift[:module_root] / method / o.slug : '/'
-        end
-      end
-
-      def meta_for( o )
-        meta = o.meta || {}
-        meta['description'] ||= o.respond_to?(:info) && o.info.present? && o.info || o.title
-        meta.inject(''.html_safe) do |all, pair|
-          all << meta_tag( pair[1], :name => pair[0] )
         end
       end
 
