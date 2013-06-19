@@ -18,7 +18,7 @@ ruby:
   @per_page = @opts[:per_page] || 10
 
   @pages_count = (@articles_count - 1) / @per_page + 1
-  @page = params[:page] ? params[:page].to_i : 1
-  filter.merge! :limit => @per_page, :offset => (@page - 1) * @per_page, :order => [ :date.desc, :id.desc ]
+  @current_page = params[:page] ? params[:page].to_i : 1
+  filter.merge! :limit => @per_page, :offset => (@current_page - 1) * @per_page, :order => [ :date.desc, :id.desc ]
 
   @articles = NewsArticle.published.all(filter)
