@@ -1,6 +1,0 @@
-.pager
-  | страницы: 
-  - (1..@pages_count).each do |page|
-    a href=url_replace( @swift[:uri], :page => page.to_s ) class=(page == @page ? "active" : nil)
-      = page
-    = " "

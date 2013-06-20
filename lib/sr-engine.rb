@@ -42,13 +42,14 @@ module Padrino
     module EngineHelpers
 
       def report_error( error, subsystem = nil, fallback = nil )
+        @_out_buf ||= ''.html_safe # !!! FIXME this might be fixed at tilt 1.3.8+
         if Padrino.env == :production
           relevant_steps = error.backtrace.reject{ |e| e.match /phusion_passenger/ }
           message = "Swift caught a runtime error at #{subsystem||'system'}. Fallback for development was #{fallback||'empty'}, production displayed empty string."
           logger.error message
           message << "\r\nCall stack:\r\n"
           relevant_steps.each do |step|
-            step = step.gsub %r{/home/.*?/}, '~/'
+            step = step.gsub %r{/home/.*?/}, '~/' #'
             message << step
             logger << step
           end
@@ -60,62 +61,80 @@ module Padrino
         end
       end
 
-      RENDER_OPTIONS = { :views => '', :layout => false }
+      DEFERRED_ELEMENTS = Set.new(%w[Breadcrumbs PageTitle Meta]).freeze
 
-      def element_view( name )
-        render nil, "#{Swift.views}/elements/#{name}.slim", RENDER_OPTIONS
+      def inject_placeholders( text )
+        process_deferred_elements
+        text.to_str.gsub /\%\{placeholder\[\:([^\]]+)\]\}/ do
+          @swift[:placeholders][$1] || ''
+        end
+      end
+
+      def defer_element( name, args, opts )
+        @swift[:placeholders][name] = [ name, args, opts ]
+        "%{placeholder[:#{name}]}"
+      end
+
+      def process_deferred_elements
+        @swift[:placeholders] = @swift[:placeholders].each_with_object({}) do |(k,v), h|
+          case v
+          when Array
+            h[k] = element( v[0], *v[1], v[2].merge( :process_defer => true ) )
+          else
+            h[k] = v
+          end
+        end
       end
 
       def element( name, *args )
         @opts = args.last.kind_of?(Hash) ? args.pop : {}
         @args = args
-        core_tpl = "#{Swift.views}/elements/#{name}/_core.slim"
-        core_rb = "#{Swift.views}/elements/#{name}/core.rb"
-        view_tpl = "#{Swift.views}/elements/#{name}/_view.slim"
+        return defer_element( name, @args, @opts )  if DEFERRED_ELEMENTS.include?(name) && @opts[:process_defer].nil?
+        template = "elements/#{name}/view"
 
         @identity = { :class => "#{name}" }
         @identity[:id] = @opts[:id]  if @opts[:id]
         @identity[:class] += ' ' + @opts[:class]  if @opts[:class]
         if @opts[:instance]
-          view_tpl.gsub!( /view\.slim/, "view-#{@opts[:instance]}.slim" )
           @identity[:class] += " #{name}-#{@opts[:instance]}"
+          instance = "#{template}-#{@opts[:instance]}"
+          template = instance  if File.exists?( "#{Swift.views}/#{instance}.slim" ) 
         end
 
         catch :output do
-          case
-          when File.exists?(core_rb)
-            binding.eval File.read(core_rb)
-          when File.exists?(core_tpl)
-            render nil, core_tpl, RENDER_OPTIONS
-          end
-          case
-          when File.exists?( view_tpl )
-            render nil, view_tpl, RENDER_OPTIONS
-          when File.exists?( view_tpl.gsub(/-[^.]*/,'') )
-            render nil, view_tpl.gsub(/-[^.]*/,''), RENDER_OPTIONS
-          else
-            raise Padrino::Rendering::TemplateNotFound, (@opts[:instance] ? "view '#{@opts[:instance]}'" : 'view')
-          end
+          core_rb = "#{Swift.views}/elements/#{name}/core.rb"
+          binding.eval File.read(core_rb), core_rb  if File.exists?(core_rb)
+          render nil, template, :layout => false
         end
       rescue Padrino::Rendering::TemplateNotFound => e
-        report_error e, "EngineHelpers#element@#{__LINE__}", "[Element '#{name}' is missing #{e.to_s.gsub(/template\s+(\'.*?\').*/i, '\1')}]"
+        report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[Element '#{name}' error: #{e.strip}]"
       rescue Exception => e
-        report_error e, "EngineHelpers#element@#{__LINE__}"
+        report_error e, "EngineHelpers##{__method__}@#{__LINE__}"
       end
 
-      def fragment( name, opts = {} )
-        opts[:layout] ||= false
-        render nil, "fragments/_#{name}.slim", opts
-      rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
-        report_error e, "EngineHelpers#fragment@#{__LINE__}", "[Fragment '#{name}' reports error: #{e}]"
+      def element_view( name, opts = {} )
+        fragment name, :elements, opts
       end
-      
+
+      def fragment( template, type = nil, opts = {} )
+        if type.kind_of? Hash
+          opts = type
+          type = nil
+        end
+        type ||= :fragments
+        opts[:layout] ||= false
+        render nil, "#{type}/#{template}", opts
+      rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
+        name = template.split('/').first
+        report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[#{type.to_s.singularize.camelize} '#{name}' error: #{e.strip}]"
+      end
+
       def parse_vars( str )
         args = []
         hash = {}
         # 0 for element name
         #                     0              12             3    4            5             6
-        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ )
+        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ ) #"
         vars.each do |v|
           case
           when v[0]
@@ -144,12 +163,21 @@ module Padrino
         end
       end
 
+      # matches recursive brackets
+      # !!! TODO explain
+      REGEX_RECURSIVE_BRACKETS = /(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/.freeze
+
+      # strips text of uub code
+      def strip_code( text )
+        text && text.gsub(REGEX_RECURSIVE_BRACKETS, '').strip
+      end
+
       def parse_content( str )
         @parse_level = @parse_level.to_i + 1
         return t(:parse_level_too_deep)  if @parse_level > 4
         needs_capturing = false
 
-        str.gsub!(/(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/) do |s|
+        str.gsub!(REGEX_RECURSIVE_BRACKETS) do |s|
           $1  or next s
           tag = $1[1..-2]#1                                                           2                        3
           md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)((?:[\:\.\#][\w\-]*)*)\s+(.*)/
@@ -229,14 +257,6 @@ module Padrino
         end
       end
 
-      def meta_for( o )
-        meta = o.meta || {}
-        meta['description'] ||= o.respond_to?(:info) && o.info.present? && o.info || o.title
-        meta.inject(''.html_safe) do |all, pair|
-          all << meta_tag( pair[1], :name => pair[0] )
-        end
-      end
-
       def url_replace( target, *args )
         hash = args.last.kind_of?(Hash) && args.last
         prefix = args.first.kind_of?(String) && args.first
@@ -258,16 +278,6 @@ module Padrino
         target
       end
 
-    end
-  end
-end
-
-module Kernel
-  def Logger( *args )
-    if logger.respond_to? :ap
-      args.each { |arg| logger.ap arg }
-    else
-      args.each { |arg| logger << arg.inspect }
     end
   end
 end

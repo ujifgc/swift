@@ -132,11 +132,6 @@ protected
     page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
     @page = page
 
-    if page
-      swift[:placeholders]['meta'] = meta_for page
-      swift[:placeholders]['html_title'] = page.title
-    end
-
     if page && path.length >= page.path.length
       swift[:slug] = path.gsub /^#{page.path}/, ''
       swift[:module_root] = page.path
@@ -168,14 +163,6 @@ protected
     end
 
     swift
-  end
-
-  # WARNING! This method returns unsafe version of it's parameter.
-  # It MUST be the last operation on the text buffer before returning to the client.
-  def inject_placeholders( text )
-    text.to_str.gsub /\%\{placeholder\[\:([^\]]+)\]\}/ do
-      @swift[:placeholders][$1] || ''
-    end
   end
 
 end

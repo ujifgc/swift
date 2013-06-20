@@ -25,8 +25,7 @@ Admin.controllers :fragments do
     @object = Fragment.new(params[:fragment])
     if @object.save
       flash[:notice] = pat('fragment.created')
-      File.open "#{Swift.root}/views/fragments/_#{@object.id}.slim", 'w', 0644 do |file|
-        #file.write "\uFEFF"
+      File.open "#{Swift.root}/views/fragments/#{@object.id}.slim", 'w', 0644 do |file|
         file.write @code.strip + "\n"
       end
       redirect url_after_save
@@ -38,7 +37,7 @@ Admin.controllers :fragments do
   get :edit, :with => :id do
     @object = Fragment.get(params[:id])
     @code = begin
-      File.open "#{Swift.root}/views/fragments/_#{@object.id}.slim", 'r:bom|utf-8' do |file|
+      File.open "#{Swift.root}/views/fragments/#{@object.id}.slim", 'r:bom|utf-8' do |file|
         file.read + "\n"
       end
     rescue
@@ -52,8 +51,7 @@ Admin.controllers :fragments do
     @code = params[:fragment].delete 'code'
     if @object.update(params[:fragment])
       flash[:notice] = pat('fragment.updated')
-      File.open "#{Swift.root}/views/fragments/_#{@object.id}.slim", 'w', 0644 do |file|
-        #file.write "\uFEFF"
+      File.open "#{Swift.root}/views/fragments/#{@object.id}.slim", 'w', 0644 do |file|
         file.write @code.strip + "\n"
       end
       redirect url_after_save
