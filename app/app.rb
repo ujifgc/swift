@@ -77,31 +77,25 @@ class Swift < Padrino::Application
     @swift = init_instance
     not_found  if @swift[:not_found]
     not_found  unless @page
-
     if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
       cs = @page.children.all :order => :position
       redirect cs.first.path  if cs.any?
     end
-
     params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
-
-    inject_placeholders fragment @page.fragment_id, :layout => @page.layout_id
+    process_page
   end
 
   # a trick to consume both get and post requests
   get '/*', &get_or_post
   post '/*', &get_or_post
 
-  # if the sitemap does not have the requested page then show the 404
-  not_found do
-    @page = Page.first :path => '/error/404'
-    inject_placeholders fragment @page.fragment_id, :layout => @page.layout_id
-  end
-
-  # requested wrong service or wrong parameters
-  error 501 do
-    @page = Page.first :path => '/error/501'
-    inject_placeholders fragment @page.fragment_id, :layout => @page.layout_id
+  # handle 404 and 501 errors
+  [404, 501].each do |errno|
+    error errno do
+      path = "/error/#{errno}"
+      @page = Page.first :path => path
+      @page ? process_page : "error page '#{path}' not found"
+    end
   end
 
 protected

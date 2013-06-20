@@ -41,20 +41,23 @@ module Padrino
   module Helpers
     module EngineHelpers
 
-      def report_error( error, subsystem = nil, fallback = nil )
+      def report_error( error, subsystem = 'system', fallback = nil )
         @_out_buf ||= ''.html_safe # !!! FIXME this might be fixed at tilt 1.3.8+
         if Padrino.env == :production
-          relevant_steps = error.backtrace.reject{ |e| e.match /phusion_passenger/ }
-          message = "Swift caught a runtime error at #{subsystem||'system'}. Fallback for development was #{fallback||'empty'}, production displayed empty string."
-          logger.error message
-          message << "\r\nCall stack:\r\n"
-          relevant_steps.each do |step|
-            step = step.gsub %r{/home/.*?/}, '~/' #'
-            message << step
+          messages = ''
+          [ "Swift caught a runtime error at #{subsystem}",
+            "Fallback for development was #{fallback||'empty'}, production displayed empty string.",
+            error.message,
+          ].each do |message|
+            logger.error message
+            messages << message + "\r\n"
+          end
+          error.backtrace.reject{ |e| e.match /phusion_passenger/ }.each do |step|
             logger << step
+            messages << step + "\r\n"
           end
           @swift[:error_messages] ||= []
-          @swift[:error_messages] << message
+          @swift[:error_messages] << messages
           ''
         else
           fallback || raise
@@ -63,7 +66,8 @@ module Padrino
 
       DEFERRED_ELEMENTS = Set.new(%w[Breadcrumbs PageTitle Meta]).freeze
 
-      def inject_placeholders( text )
+      def process_page
+        text = fragment @page.fragment_id, :layout => @page.layout_id
         process_deferred_elements
         text.to_str.gsub /\%\{placeholder\[\:([^\]]+)\]\}/ do
           @swift[:placeholders][$1] || ''
@@ -109,7 +113,7 @@ module Padrino
       rescue Padrino::Rendering::TemplateNotFound => e
         report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[Element '#{name}' error: #{e.strip}]"
       rescue Exception => e
-        report_error e, "EngineHelpers##{__method__}@#{__LINE__}"
+        report_error e, "EngineHelpers##{__method__}@#{__LINE__} '#{name}'"
       end
 
       def element_view( name, opts = {} )
