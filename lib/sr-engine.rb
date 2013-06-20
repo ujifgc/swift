@@ -116,7 +116,7 @@ module Padrino
 
         catch :output do
           binding.eval File.read(core_rb), core_rb  if File.exists?(core_rb)
-          render nil, template, :layout => false
+          render nil, template, :layout => false, :views => Swift.views
         end
       rescue Padrino::Rendering::TemplateNotFound => e
         report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[Element '#{name}' error: #{e.strip}]"
