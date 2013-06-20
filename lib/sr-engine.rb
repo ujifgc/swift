@@ -281,13 +281,3 @@ module Padrino
     end
   end
 end
-
-module Kernel
-  def Logger( *args )
-    if logger.respond_to? :ap
-      args.each { |arg| logger.ap arg }
-    else
-      args.each { |arg| logger << arg.inspect }
-    end
-  end
-end
