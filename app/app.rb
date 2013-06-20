@@ -1,6 +1,4 @@
 #coding:utf-8
-STATIC_FOLDERS = %W(doc images img stylesheets javascripts)
-
 class Swift < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
@@ -33,6 +31,7 @@ class Swift < Padrino::Application
   use Rack::Session::DataMapper, :key => 'swift.sid', :path => '/', :secret => 'Dymp1Shnaneu', :expire_after => 1.month
 
   set :default_builder, 'SwiftFormBuilder'
+  set :locales, [ :ru, :en ]
 
   `which /usr/sbin/exim` #!!! FIXME this is bullcrap
   if $?.success?
@@ -86,8 +85,8 @@ class Swift < Padrino::Application
   end
 
   # a trick to consume both get and post requests
-  get '/*', &get_or_post
-  post '/*', &get_or_post
+  get '/:request_uri', :request_uri => /.*/, &get_or_post
+  post '/:request_uri', :request_uri => /.*/, &get_or_post
 
   # handle 404 and 501 errors
   [404, 501].each do |errno|
@@ -101,23 +100,14 @@ class Swift < Padrino::Application
 protected
 
   def init_instance
-    halt 403  if STATIC_FOLDERS.include?( request.env['PATH_INFO'].split('/')[1] )
-
-    # detecting of locale preferred by browser
-    session[:locale] ||= request.env['HTTP_ACCEPT_LANGUAGE'].gsub(/\s+/,'').split(/,/)
-                         .sort_by{ |tags| -(tags.partition(/;/).last.split(/=/)[1]||1).to_f }
-                         .first  rescue 'ru'
-    session[:locale] = params[:locale]  if params[:locale]
-    I18n.locale = :ru #session[:locale][0..1].to_sym # !!! FIXME might need full format for en_US and en_GB distinction
-
     swift = {}
     swift[:path_pages] = []
     swift[:path_ids] = []
     swift[:method] = request.env['REQUEST_METHOD']
     swift[:placeholders] = {}
-    swift[:uri] = request.env['REQUEST_URI']
     swift[:host] = request.env['SERVER_NAME']
-    swift[:path] = request.env['PATH_INFO']
+    swift[:uri] = "/#{params[:request_uri]}"
+    swift[:path] = swift[:uri].partition('?').first
 
     path = swift[:path]
     path = path.chomp('/')  if path.length > 1
