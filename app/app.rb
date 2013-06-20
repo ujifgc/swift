@@ -112,23 +112,16 @@ protected
     path = swift[:path]
     path = path.chomp('/')  if path.length > 1
     page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
-    @page = page
 
-    if page && path.length >= page.path.length
-      swift[:slug] = path.gsub /^#{page.path}/, ''
-      swift[:module_root] = page.path
-      # !!! FIXME this if-else block is madness
-      if page.is_module || page.published?
-        case swift[:slug][0]
-        when nil
-          swift[:slug] = ''
-        when '/'
-          swift[:slug] = swift[:slug][1..-1]
-        else
-          swift[:not_found] = true  #FIXME
-        end
-      else
-        swift[:not_found] = true  #FIXME
+    if page.is_module
+      swift[:module_root] = page.path  # => /news
+      swift[:slug] = case path[page.path.length]
+      when '/'  # /news/some-slug
+        path[(page.path.length+1)..-1] # => some-slug
+      when nil  # /news
+        ''
+      else      # /newsbar
+        page = nil
       end
     end
 
@@ -138,6 +131,9 @@ protected
       swift[:path_ids].unshift root.id
     end
     
+    swift[:resource] = page
+    @page = page
+
     while page
       swift[:path_pages].unshift page
       swift[:path_ids].unshift page.id
