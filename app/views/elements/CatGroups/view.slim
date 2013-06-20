@@ -6,4 +6,4 @@ ul.nav.nav-list
         a href=leaf[:href] class=leaf[:class]
           = leaf[:title]
         - if leaf[:child]
-          = partial 'elements/CatGroups/view', :locals => { :tree => leaf[:child] }
+          = element_view 'CatGroups/view', :locals => { :tree => leaf[:child] }

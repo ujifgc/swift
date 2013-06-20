@@ -15,9 +15,9 @@
                   = Asset.get(asset_id).info
                   = hidden_field_tag "forms_result[#{k}][]", :value => asset_id
           - else
-            = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
+            = element_view 'Forms/input', :locals => { :key => k, :value => v }
         - else
-          = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
+          = element_view 'Forms/input', :locals => { :key => k, :value => v }
       = f.submit :save
 - else
   .article Спасибо за заполнение формы. Форма с отпарвленными данными:
