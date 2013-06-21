@@ -5,6 +5,26 @@ class String
   def / (s)
     "#{self}/#{s.to_s}"
   end
+
+  # Transliterate the string and make it uri-friendly
+  def as_slug
+    Swift::Transliteration.slugize self
+  end
+
+  # case convert for cyrillic strings
+  def case( dir )
+    case dir
+    when :up, :upper
+      Swift::CaseConversion.upcase self
+    when :lo, :low, :lower, :down
+      Swift::CaseConversion.downcase self
+    when :cap
+      Swift::CaseConversion.capitalize self
+    else
+      self
+    end
+  end
+
 end
 
 class Symbol
@@ -87,5 +107,17 @@ end
 class Object
   def to_json(options = nil)
     raise Exception, "MultiJson failed to serialize #{self.inspect}"
+  end
+end
+
+module FileUtils
+  # Tries to move a file and ignores failures
+  def self.mv_try( src, dst )
+    return nil  if src == dst
+    return nil  unless File.exists? src
+    FileUtils.mkpath File.dirname(dst)
+    FileUtils.mv src, dst
+  rescue ArgumentError
+    nil
   end
 end
