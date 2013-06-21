@@ -35,6 +35,7 @@ module Swift
       end
 
       def init_swift
+        I18n.locale = :ru
         swift[:root] = Swift::Application.root
         swift[:public] = Swift::Application.public_folder
         swift[:views] = Swift::Application.views
