@@ -85,8 +85,8 @@ class Swift::Application < Padrino::Application
   [404, 501].each do |errno|
     error errno do
       init_swift
-      @page = Page.first :path => "/error/#{errno}"
-      @page ? process_page : "page /error/#{errno} not found"
+      init_error errno
+      process_page
     end
   end
 

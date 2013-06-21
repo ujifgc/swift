@@ -32,9 +32,21 @@ module Swift
           swift[:path_ids].unshift page.id
           page = page.parent
         end
+
+        @page
+      end
+
+      def init_error( errno )
+        root = Page.first( :parent => nil )
+        page = Page.first :path => "/error/#{errno}"
+        page ||= Page.new :title => "Error #{errno}", :text => "page /error/#{errno} not found"
+        swift[:path_pages] = [ root ]
+        swift[:path_ids] = [ root.id ]
+        @page = page
       end
 
       def init_swift
+        return  if @_inited
         I18n.locale = :ru
         swift[:root] = Swift::Application.root
         swift[:public] = Swift::Application.public_folder
@@ -46,6 +58,8 @@ module Swift
         swift[:host] = request.env['SERVER_NAME']
         swift[:uri] = "/#{params[:request_uri]}"
         swift[:path] = swift[:uri].partition('?').first
+        @_inited = true
+        swift
       end
     end
   end
