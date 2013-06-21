@@ -43,7 +43,6 @@ Padrino.before_load do
   } )
 
   DataMapper::Model.append_extensions(Swift::Datamapper::ClassMethods)
-  DataMapper::Model.append_inclusions(Swift::Datamapper::InstanceMethods)
 
 end
 

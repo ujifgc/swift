@@ -60,14 +60,10 @@ class Swift::Application < Padrino::Application
     render 'layouts/sitemap'
   end
 
-  get '/rss' do
+  get '/news.xml' do
     content_type 'application/xml'
     @news_articles = NewsArticle.all(:limit => 20, :order => :date.desc).published
     render 'layouts/news'
-  end
-
-  get '/news.xml' do
-    redirect '/rss'
   end
 
   # if no controller got the request, try finding some content in the sitemap
@@ -91,8 +87,8 @@ class Swift::Application < Padrino::Application
   [404, 501].each do |errno|
     error errno do
       init_swift
-      @page = Page.first :path => "/error/#{errno}"
-      @page ? process_page : "page /error/#{errno} not found"
+      init_error errno
+      process_page
     end
   end
 
