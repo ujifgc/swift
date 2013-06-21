@@ -14,6 +14,9 @@ if defined? AwesomePrint
   Padrino::Logger.send(:include, AwesomePrint::Logger)
 end
 
+$LOAD_PATH.unshift Padrino.root('lib')
+require 'swift'
+
 # instance an environment
 ENV['TMP'] = Padrino.root + '/tmp'
 
@@ -39,12 +42,8 @@ Padrino.before_load do
     :pretty => PADRINO_ENV == "development",
   } )
 
-  Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
-  Padrino.require_dependencies("#{Padrino.root}/lib/cyrillic.rb")
-  Padrino.require_dependencies("#{Padrino.root}/lib/monkey.rb")
-
-  DataMapper::Model.append_extensions(SwiftDatamapper::ClassMethods)
-  DataMapper::Model.append_inclusions(SwiftDatamapper::InstanceMethods)
+  DataMapper::Model.append_extensions(Swift::Datamapper::ClassMethods)
+  DataMapper::Model.append_inclusions(Swift::Datamapper::InstanceMethods)
 
 end
 
