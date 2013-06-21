@@ -70,7 +70,8 @@ class Swift::Application < Padrino::Application
 
   # if no controller got the request, try finding some content in the sitemap
   get_or_post = lambda do
-    init_instance
+    init_swift
+    init_page
     not_found  unless @page
     if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
       cs = @page.children.all :order => :position
@@ -87,52 +88,9 @@ class Swift::Application < Padrino::Application
   # handle 404 and 501 errors
   [404, 501].each do |errno|
     error errno do
-      path = "/error/#{errno}"
-      @page = Page.first :path => path
-      @page ? process_page : "error page '#{path}' not found"
-    end
-  end
-
-protected
-
-  def init_instance
-    swift[:path_pages] = []
-    swift[:path_ids] = []
-    swift[:method] = request.env['REQUEST_METHOD']
-    swift[:placeholders] = {}
-    swift[:host] = request.env['SERVER_NAME']
-    swift[:uri] = "/#{params[:request_uri]}"
-    swift[:path] = swift[:uri].partition('?').first
-
-    path = swift[:path]
-    path = path.chomp('/')  if path.length > 1
-    page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
-
-    if page && page.is_module
-      swift[:module_root] = page.path  # => /news
-      swift[:slug] = case path[page.path.length]
-      when '/'  # /news/some-slug
-        path[(page.path.length+1)..-1] # => some-slug
-      when nil  # /news
-        ''
-      else      # /newsbar
-        page = nil
-      end
-    end
-
-    unless page
-      root = Page.first( :parent => nil )
-      swift[:path_pages].unshift root
-      swift[:path_ids].unshift root.id
-    end
-    
-    swift[:resource] = page
-    @page = page
-
-    while page
-      swift[:path_pages].unshift page
-      swift[:path_ids].unshift page.id
-      page = page.parent
+      init_swift
+      @page = Page.first :path => "/error/#{errno}"
+      @page ? process_page : "page /error/#{errno} not found"
     end
   end
 
