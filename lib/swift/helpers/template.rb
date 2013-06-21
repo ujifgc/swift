@@ -5,7 +5,7 @@ module Swift
         text = fragment @page.fragment_id, :layout => @page.layout_id
         process_deferred_elements
         text.to_str.gsub /\%\{placeholder\[\:([^\]]+)\]\}/ do
-          @swift[:placeholders][$1] || ''
+          swift.placeholders[$1] || ''
         end
       end
 

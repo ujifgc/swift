@@ -16,8 +16,8 @@ module Swift
             logger << step
             messages << step + "\r\n"
           end
-          @swift[:error_messages] ||= []
-          @swift[:error_messages] << messages
+          swift.error_messages ||= []
+          swift.error_messages << messages
           ''
         else
           fallback || raise

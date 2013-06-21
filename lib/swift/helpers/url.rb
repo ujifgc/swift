@@ -10,7 +10,7 @@ module Swift
         when 'Page'
           o.path
         else
-          @swift[:module_root] ? @swift[:module_root] / method / o.slug : '/'
+          swift.module_root ? swift.module_root / method / o.slug : '/'
         end
       end
 
