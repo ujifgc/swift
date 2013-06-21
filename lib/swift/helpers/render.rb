@@ -1,40 +1,6 @@
 module Swift
   module Helpers
     module Render
-      def parse_vars( str )
-        args = []
-        hash = {}
-        # 0 for element name
-        #                     0              12             3    4            5             6
-        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ ) #"
-        vars.each do |v|
-          case
-          when v[0]
-            args << v[0].to_s
-          when v[1] && v[4]
-            hash.merge! v[2].to_sym => v[4]
-          when v[1] && v[5]
-            hash.merge! v[2].to_sym => v[5]
-          when v[6]
-            args << v[6]
-          end
-        end
-        [args, hash]    
-      end
-
-      def parse_code( html, args, content = '' )
-        html.gsub(/\[(\d+)(?:\:(.*?))?\]|\[(content)\]/) do |s|
-          idx = $1.to_i
-          if idx > 0
-            (args[idx-1] || $2).to_s
-          elsif $3 == 'content'
-            parse_content content
-          else
-            "[#{tag}]"
-          end
-        end
-      end
-
       # matches recursive brackets
       # !!! TODO explain
       REGEX_RECURSIVE_BRACKETS = /(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/.freeze
@@ -115,6 +81,43 @@ module Swift
       def engine_render( text )
         Markdown.render( parse_content( text ) ).html_safe
       end
+
+      private
+
+      def parse_vars( str )
+        args = []
+        hash = {}
+        # 0 for element name
+        #                     0              12             3    4            5             6
+        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ ) #"
+        vars.each do |v|
+          case
+          when v[0]
+            args << v[0].to_s
+          when v[1] && v[4]
+            hash.merge! v[2].to_sym => v[4]
+          when v[1] && v[5]
+            hash.merge! v[2].to_sym => v[5]
+          when v[6]
+            args << v[6]
+          end
+        end
+        [args, hash]    
+      end
+
+      def parse_code( html, args, content = '' )
+        html.gsub(/\[(\d+)(?:\:(.*?))?\]|\[(content)\]/) do |s|
+          idx = $1.to_i
+          if idx > 0
+            (args[idx-1] || $2).to_s
+          elsif $3 == 'content'
+            parse_content content
+          else
+            "[#{tag}]"
+          end
+        end
+      end
+
     end
   end
 end

@@ -9,14 +9,6 @@ module Swift
         end
       end
 
-      def fill_identity( opts = {} )
-        identity = { :class => opts[:name] }
-        identity[:id] = opts[:id]                                 if opts[:id]
-        identity[:class] += " #{opts[:class]}"                    if opts[:class]
-        identity[:class] += " #{opts[:name]}-#{opts[:instance]}"  if opts[:instance]
-        identity
-      end
-
       def element( name, *args )
         @opts = args.last.kind_of?(Hash) ? args.pop : {}
         @args = args
@@ -58,6 +50,16 @@ module Swift
       rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
         name = template.split('/').first
         report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[#{type.to_s.singularize.camelize} '#{name}' error: #{e.strip}]"
+      end
+
+      private
+
+      def fill_identity( opts = {} )
+        identity = { :class => opts[:name] }
+        identity[:id] = opts[:id]                                 if opts[:id]
+        identity[:class] += " #{opts[:class]}"                    if opts[:class]
+        identity[:class] += " #{opts[:name]}-#{opts[:instance]}"  if opts[:instance]
+        identity
       end
     end
   end
