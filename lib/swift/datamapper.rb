@@ -169,10 +169,6 @@ module Swift
 
     end
 
-    # Methods for all resourced
-    module InstanceMethods
-    end
-
     module MetableMethods
       def meta
         attribute_get(:meta) || {}
