@@ -47,7 +47,7 @@ class Admin < Padrino::Application
     ]
   end
 
-  helpers Padrino::Helpers::EngineHelpers
+  helpers Swift::Helpers
 
   set :login_page, "/admin/sessions/new"
   set :default_builder, 'AdminFormBuilder'

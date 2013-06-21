@@ -1,22 +1,18 @@
 # coding:utf-8
 class String
-
   # Allows to connect with `/`
   # 'foo' / :bar # => 'foo/bar'
   def / (s)
     "#{self}/#{s.to_s}"
   end
-
 end
 
 class Symbol
-
   # Allows symbols to connect with `/`
   # :foo / :bar # => 'foo/bar'
   def / (s)
     "#{self.to_s}/#{s.to_s}"
   end
-
 end
 
 # NilClass returns nil for any?
@@ -34,7 +30,6 @@ class Date
 end
 
 class Object
-
   # Shows size as human-readable number of bytes
   def as_size( s = nil )
     prefix = %W(Тб Гб Мб Кб б)
@@ -54,7 +49,6 @@ class Object
     format = d.year == Date.today.year ? 'date_same_year' : 'date_other_year'
     I18n.l d, :format => I18n.t( 'time.formats.' + format )
   end
-
 end
 
 module Kernel
@@ -64,5 +58,34 @@ module Kernel
     else
       args.each { |arg| logger << arg.inspect }
     end
+  end
+end
+
+# Implements #jo_json
+[Array, Float, Hash, Integer, String, NilClass, TrueClass, FalseClass].each do |klass|
+  klass.class_eval do
+    def to_json(options = {})
+      MultiJson.encode(self, options)
+    end
+  end
+end
+class Time
+  def to_json(options = nil)
+    xmlschema
+  end
+end
+class Date
+  def to_json(options = nil)
+    strftime("%Y-%m-%d")
+  end
+end
+class DateTime
+  def to_json(options = nil)
+    xmlschema
+  end
+end
+class Object
+  def to_json(options = nil)
+    raise Exception, "MultiJson failed to serialize #{self.inspect}"
   end
 end

@@ -289,7 +289,7 @@ module SwiftDatamapper
       keys = params.delete 'key'
       types = params.delete 'type'
       values = params.delete 'value'
-      requires = Hash[(params.delete('require') || []).map{|k,v| [k, v.to_s=='1']}]
+      requires = Hash[(params.delete('require') || []).map{ |k,v| [k, v.to_s=='1']}]
       renames = {}
       keys.each do |k,v,r|
         if types[k] == "" || v.blank?

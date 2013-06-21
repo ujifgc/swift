@@ -1,9 +1,10 @@
 #coding:utf-8
-class Swift < Padrino::Application
+class Swift::Application < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
   register Sinatra::AssetPack
+  register Swift::Engine
 
   assets do
     serve '/stylesheets', from: '../assets/stylesheets'
@@ -26,8 +27,6 @@ class Swift < Padrino::Application
     ]
   end
 
-  helpers Padrino::Helpers::EngineHelpers
-
   use Rack::Session::DataMapper, :key => 'swift.sid', :path => '/', :secret => 'Dymp1Shnaneu', :expire_after => 1.month
 
   set :default_builder, 'SwiftFormBuilder'
@@ -39,8 +38,6 @@ class Swift < Padrino::Application
   else
     set :delivery_method, :sendmail
   end
-
-  # serve assets with AssetPack
 
   # if web server can't statically serve image request, regenerate the image version
   # and tell browser to lurk again with new timestamp
@@ -73,8 +70,7 @@ class Swift < Padrino::Application
 
   # if no controller got the request, try finding some content in the sitemap
   get_or_post = lambda do
-    @swift = init_instance
-    not_found  if @swift[:not_found]
+    init_instance
     not_found  unless @page
     if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
       cs = @page.children.all :order => :position
@@ -100,7 +96,6 @@ class Swift < Padrino::Application
 protected
 
   def init_instance
-    swift = {}
     swift[:path_pages] = []
     swift[:path_ids] = []
     swift[:method] = request.env['REQUEST_METHOD']
@@ -113,7 +108,7 @@ protected
     path = path.chomp('/')  if path.length > 1
     page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
 
-    if page.is_module
+    if page && page.is_module
       swift[:module_root] = page.path  # => /news
       swift[:slug] = case path[page.path.length]
       when '/'  # /news/some-slug
@@ -139,8 +134,6 @@ protected
       swift[:path_ids].unshift page.id
       page = page.parent
     end
-
-    swift
   end
 
 end

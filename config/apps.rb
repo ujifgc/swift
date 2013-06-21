@@ -31,6 +31,6 @@ Padrino.configure_apps do
 end
 
 # Mounts the core application for this project
-Padrino.mount("Swift").to('/')
+Padrino.mount("Swift::Application").to('/')
 
 Padrino.mount("Admin").to("/admin")
