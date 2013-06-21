@@ -1,8 +1,8 @@
 @card = Bond.children_for( @page, 'FormsCard' ).first
 not_found  unless @card
-@swift[:path_pages][-1] = Page.new :title => @card.title
+swift.path_pages[-1] = Page.new :title => @card.title
 
-case @swift[:method]
+case swift.method
 when /POST/i
   @result = @card.fill request
   if @result.saved?

@@ -7,7 +7,7 @@
     - form_for @result, se_url(@card, :post), :class => 'form form-horizontal' do |f|
       - @f = f
       - @card.json.each do |k,v|
-        = partial 'elements/Forms/input', :locals => { :key => k, :value => v }
+        = element_view 'Forms/input', :locals => { :key => k, :value => v }
       = f.submits
 - else
   .article Спасибо за заполнение формы

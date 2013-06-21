@@ -40,7 +40,8 @@ Padrino.before_load do
   } )
 
   Padrino.require_dependencies("#{Padrino.root}/lib/dm-*.rb")
-  Padrino.require_dependencies("#{Padrino.root}/lib/sr-*.rb")
+  Padrino.require_dependencies("#{Padrino.root}/lib/cyrillic.rb")
+  Padrino.require_dependencies("#{Padrino.root}/lib/monkey.rb")
 
   DataMapper::Model.append_extensions(SwiftDatamapper::ClassMethods)
   DataMapper::Model.append_inclusions(SwiftDatamapper::InstanceMethods)

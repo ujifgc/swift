@@ -1,23 +1,56 @@
 #coding:utf-8
-
 class HttpRouter::Request
-    def initialize(path, rack_request)
-      @rack_request = rack_request
-      @path = Rack::Utils.unescape(path).split(/\//)
-      @path.shift if @path.first == ''
-      @path.push('') if path[-1] == ?/
-      @extra_env = {}
-      @params = []
-      @acceptable_methods = Set.new
+  def initialize(path, rack_request)
+    @rack_request = rack_request
+    @path = Rack::Utils.unescape(path).split(/\//)
+    @path.shift if @path.first == ''
+    @path.push('') if path[-1] == ?/
+    @extra_env = {}
+    @params = []
+    @acceptable_methods = Set.new
+  end
+end
+
+module Markdown
+  MarkdownExtras = {
+    :autolink => true,
+    :space_after_headers => true,
+    :tables => true,
+    :strikethrough => true,
+    :no_intra_emphasis => true,
+    :superscript => true,
+  }
+
+  # Makes MixedHTML class which will render markdown inside block-level HTML tags
+  class LiteHTML < Redcarpet::Render::HTML
+    def paragraph(text)
+      text
     end
+  end
+
+  class MixedHTML < Redcarpet::Render::HTML
+    HTML_TAG_SPLIT = /\A(\<([^>\s]*)(?:\s+[^>]*)*\>)(.*)(\<\/\2(?:\s+[^>]*)?\>\n*)\z/m.freeze
+    def block_html(raw_html)
+      if data = raw_html.match( HTML_TAG_SPLIT )
+        data[1] + LiteParser.render(data[3]) + data[4]
+      else
+        raw_html
+      end
+    end
+  end  
+
+  LiteParser = Redcarpet::Markdown.new( LiteHTML, MarkdownExtras )
+  MixedParser = Redcarpet::Markdown.new( MixedHTML, MarkdownExtras )
+
+  def self.render( text )
+    MixedParser.render text
+  end
 end
 
 module Padrino
   module Admin
     module Helpers
-
       module ViewHelpers
-
         # Shows full path to translation key instead of "humanizing" it
         def padrino_admin_translate(word, default=nil)
           t("padrino.admin.#{word}", :default => default).html_safe
@@ -33,11 +66,9 @@ module Padrino
           t("models.#{model}.name").html_safe
         end
         alias :mt :model_translate
-
       end
 
       module AuthenticationHelpers
-
         # Stores location before login
         def login_required
           unless allowed?
@@ -49,9 +80,7 @@ module Padrino
             end
           end
         end
-
       end
-
     end
 
     module AccessControl
@@ -91,7 +120,6 @@ module Padrino
 end
 
 module I18n
-
   # Shows full path to translation key instead of "humanizing" it
   class MissingTranslation
     module Base
@@ -100,11 +128,9 @@ module I18n
       end
     end
   end
-
 end
 
 module FileUtils
-
   # Tries to move a file and ignores failures
   def self.mv_try( src, dst )
     return nil  if src == dst
@@ -114,7 +140,6 @@ module FileUtils
   rescue ArgumentError
     nil
   end
-
 end
 
 # Makes haml treat templates as properly encoded (respect Encoding.default_external)
@@ -124,39 +149,6 @@ module Tilt
       @data.force_encoding Encoding.default_external
       options = @options.merge(:filename => eval_file, :line => line)
       @engine = ::Haml::Engine.new(data, options)
-    end
-  end
-end
-
-# Implements #jo_json
-[Array, Float, Hash, Integer, String, NilClass, TrueClass, FalseClass].each do |klass|
-  klass.class_eval do
-    def to_json(options = {})
-      MultiJson.encode(self, options)
-    end
-  end
-end
-class Time
-  def to_json(options = nil)
-    xmlschema
-  end
-end
-class Date
-  def to_json(options = nil)
-    strftime("%Y-%m-%d")
-  end
-end
-class DateTime
-  def to_json(options = nil)
-    xmlschema
-  end
-end
-class Object
-  def to_json(options = nil)
-    if respond_to? :as_json
-      as_json.to_json # !!! FIXME wtf?
-    else
-      raise Exception, "MultiJson failed to serialize #{self.inspect}"
     end
   end
 end

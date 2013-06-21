@@ -1,9 +1,9 @@
 case (@opts[:method] || :show).to_sym
 when :poll
-  @card = FormsCard.by_slug @swift[:slug]
+  @card = FormsCard.by_slug swift.slug
   not_found  unless @card
-  @swift[:path_pages] << Page.new( :title => @card.title )
-  @swift[:resource] = @card
+  swift.path_pages << Page.new( :title => @card.title )
+  swift.resource = @card
 
   if @card.forms_results.first( :origin => request.addr )
     flash[:notice] = 'Already polled'
@@ -15,7 +15,7 @@ when :poll
     redirect back
   end
 
-  @swift[:path_pages][-1] = Page.new :title => @card.title
+  swift.path_pages[-1] = Page.new :title => @card.title
   @result = @card.fill request
   if @result.saved?
     flash[:notice] = 'Saved'

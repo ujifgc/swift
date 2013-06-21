@@ -30,7 +30,7 @@ end
 
 # load elements do db
 elements = YAML.load_file 'config/setup-elements.yml'
-Dir.glob( Swift.root / 'views/elements/*' ) do |dir|
+Dir.glob( Swift::Application.views / 'elements/*' ) do |dir|
   slug = File.basename(dir)
   elem = Element.first_or_new :id => slug
   if elem.new?
