@@ -2,7 +2,7 @@
 @news_years = []
 @monthNames = I18n.t("date.month_names_nominative")
 
-new_article = NewsArticle.by_slug @swift[:slug].match( /show\/(.*)/ )[1]  rescue nil
+new_article = NewsArticle.by_slug swift.slug.match( /show\/(.*)/ )[1]  rescue nil
 @new_year, @new_month = if new_article
   [new_article.date.year, new_article.date.month]
 else
@@ -13,8 +13,8 @@ filter = {}
 filter[:order] = :date.asc
 
 active_rubrics = Bond.children_for(@page, 'NewsRubric')
-if active_rubrics.empty? && @swift[:slug].present? && !@swift[:slug].match( /show\/(.*)/ )
-  rubric = NewsRubric.by_slug(@swift[:slug])  or not_found
+if active_rubrics.empty? && swift.slug.present? && !swift.slug.match( /show\/(.*)/ )
+  rubric = NewsRubric.by_slug(swift.slug)  or not_found
   active_rubrics << rubric
 end
 filter[:news_rubric_id] = active_rubrics.map(&:id)  if active_rubrics.any? 
@@ -33,4 +33,4 @@ else
   1..12
 end
 
-@target = @page.is_module ? @swift[:uri] : ( @opts[:root] || '/news' )
+@target = @page.is_module ? swift.uri : ( @opts[:root] || '/news' )

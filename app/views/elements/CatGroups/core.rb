@@ -5,12 +5,12 @@ def cat_groups( from, level, prefix )
   tree = []
 
   groups.each do |group|
-    ensued = @swift[:module_path_ids].include? group.id
+    ensued = swift.module_path_ids.include? group.id
     master = level == 0
 
     leaf = {}
     leaf[:title] = group.title
-    leaf[:href] = @swift[:module_root] / group.path
+    leaf[:href] = swift.module_root / group.path
 
     leaf[:class] = master ? 'master' : 'slave'
     leaf[:class] += ' active'  if ensued

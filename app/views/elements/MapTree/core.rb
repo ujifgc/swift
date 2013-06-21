@@ -5,7 +5,7 @@ def map_tree( from, level, prefix )
   tree = []
   
   pages.each do |page|
-    ensued = @swift[:path_ids].include? page.id
+    ensued = swift.path_ids.include? page.id
     master = level == 0
 
     leaf = {}

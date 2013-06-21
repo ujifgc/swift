@@ -1,4 +1,4 @@
-@swift[:module_path_ids] = []
+swift.module_path_ids = []
 filter = {}
 if @rubric
   filter[:news_rubric_id] = @rubric.id

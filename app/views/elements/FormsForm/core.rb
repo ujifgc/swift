@@ -1,7 +1,7 @@
-@card = FormsCard.by_slug @swift[:slug]
+@card = FormsCard.by_slug swift.slug
 not_found  unless @card
-@swift[:path_pages] << Page.new( :title => @card.title )
-@swift[:resource] = @card
+swift.path_pages << Page.new( :title => @card.title )
+swift.resource = @card
 case @opts[:method].to_sym
 when :post
   @result = @card.fill request
