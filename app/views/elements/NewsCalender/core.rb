@@ -17,7 +17,7 @@ active_rubrics = Bond.children_for(@page, 'NewsRubric')
 if active_rubrics.empty? && swift.slug.present? && !swift.slug.match( /show\/(.*)/ )
   rubric = NewsRubric.by_slug(swift.slug)  or not_found
   active_rubrics << rubric
-  @target = @swift[:uri]  if @page.is_module
+  @target = @swift.uri  if @page.is_module
 end
 filter[:news_rubric_id] = active_rubrics.map(&:id)  if active_rubrics.any? 
 
