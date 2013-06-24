@@ -20,7 +20,7 @@ gem 'padrino', :github => 'ujifgc/padrino-framework'
 
 # database ORM
 gem 'bcrypt-ruby'
-gem 'dm-types', :github => 'ujifgc/dm-types', :branch => 'no-json'
+gem 'dm-types'
 gem 'dm-validations'
 gem 'dm-timestamps'
 gem 'dm-migrations', :require => false
@@ -33,7 +33,7 @@ gem 'dm-mysql-adapter'
 gem 'sinatra-assetpack', '~> 0.2.6'
 
 # file and picture assets
-gem 'nozzle'
+gem 'nozzle', '~> 0.1.1'
 
 # authorization and authentication
 gem 'omniauth'

@@ -106,7 +106,11 @@ class DateTime
 end
 class Object
   def to_json(options = nil)
-    raise Exception, "MultiJson failed to serialize #{self.inspect}"
+    if respond_to? :as_json
+      as_json.to_json
+    else
+      raise Exception, "MultiJson failed to serialize #{self.inspect}"
+    end
   end
 end
 

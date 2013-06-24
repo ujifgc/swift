@@ -62,11 +62,10 @@ Admin.controllers :images do
     @object = Image.get(params[:id])
     file = params[:image].delete 'file'
     if file.kind_of? Hash
-      @object.remove_file
       if @object.update(params[:image])
         @object.file = file
-        @object.file.recreate_versions!
         @object.save
+        @object.file.cleanup!
         flash[:notice] = pat('image.updated')
         redirect url_after_save
       else
