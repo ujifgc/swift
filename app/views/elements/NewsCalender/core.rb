@@ -12,10 +12,12 @@ end
 filter = {}
 filter[:order] = :date.asc
 
+@target = @opts[:root] || '/news'
 active_rubrics = Bond.children_for(@page, 'NewsRubric')
 if active_rubrics.empty? && swift.slug.present? && !swift.slug.match( /show\/(.*)/ )
   rubric = NewsRubric.by_slug(swift.slug)  or not_found
   active_rubrics << rubric
+  @target = @swift[:uri]  if @page.is_module
 end
 filter[:news_rubric_id] = active_rubrics.map(&:id)  if active_rubrics.any? 
 
@@ -32,5 +34,3 @@ when @new_year.to_i == Date.today.year || !@new_year
 else
   1..12
 end
-
-@target = @page.is_module ? swift.uri : ( @opts[:root] || '/news' )
