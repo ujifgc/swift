@@ -18,7 +18,7 @@ module Swift
         str.gsub!(REGEX_RECURSIVE_BRACKETS) do |s|
           $1  or next s
           tag = $1[1..-2]#1                                                           2                        3
-          md = tag.match /(page|link|block|text|image|img|file|asset|element|elem|lmn)((?:[\:\.\#][\w\-]*)*)\s+(.*)/
+          md = tag.match /(page|link|block|text|image|img|file|asset|element)((?:[\:\.\#][\w\-]*)*)\s+(.*)/
           unless md
             tags = tag.partition ' '
             code = Code.first( :slug => tags[0] )  unless tags[0][0] == '/'
@@ -38,7 +38,7 @@ module Swift
             else
               args[1..-1]||[]
             end.join(' ').strip
-            hash[:title] = newtitle.blank? ? nil : parse_content(newtitle)
+            hash[:title] = parse_content(newtitle)  if newtitle.present?
           end
           md[2].to_s.scan(/[\:\.\#][\w\-]*/).each do |attr|
             case attr[0]
@@ -87,9 +87,17 @@ module Swift
       def parse_vars( str )
         args = []
         hash = {}
-        # 0 for element name
-        #                     0              12             3    4            5             6
-        vars = str.scan( /["']([^"']+)["'],?|(([\S^,]+)\:\s*(["']([^"']+)["']|([^,'"\s]+)))|([^,'"\s]+),?/ ) #"
+        vars = str.scan( /
+          ["']([^"']+)["'],? |           # 0, -- "smth",
+          (                              # 1
+            ([\S^,]+)\:\s*               # 2
+            (                            # 3
+              ["']([^"']+)["'] |         # 4
+              ([^,'"\s]+)                # 5
+            )
+          ),? |                          # 1, -- key: "smth",
+          ([^'"\s]+)                     # 6, -- sm, th
+        /x )
         vars.each do |v|
           case
           when v[0]
