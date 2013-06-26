@@ -24,7 +24,6 @@ class String
       self
     end
   end
-
 end
 
 class Symbol

@@ -42,7 +42,7 @@ Padrino.before_load do
     :pretty => PADRINO_ENV == "development",
   } )
 
-  DataMapper::Model.append_extensions(Swift::Datamapper::ClassMethods)
+  DataMapper::Model.append_extensions(Swift::ModelPlugins::ClassMethods)
 
 end
 
