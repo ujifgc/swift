@@ -1,4 +1,6 @@
-﻿module Swift
+require 'ostruct'
+
+module Swift
   module Engine
     class << self
       def registered(app)
