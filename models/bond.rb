@@ -72,14 +72,21 @@ class Bond
     first_or_create object
   end
 
-  def self.separate parent
-    object = {
-      :parent_model => parent.class.name,
-      :parent_id    => parent.id,
+  def self.separate object
+    parent = {
+      :parent_model => object.class.name,
+      :parent_id    => object.id,
       :manual       => true,
       :relation     => 1,
     }
-    all(object).destroy
+    child = {
+      :child_model  => object.class.name,
+      :child_id     => object.id,
+      :manual       => true,
+      :relation     => 1,
+    }
+    all(parent).destroy
+    all(child).destroy
   end
 
 end

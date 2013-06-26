@@ -85,8 +85,8 @@ module Swift
       def bondable!
         send :include, BondableMethods
 
-        after :destroy do |parent|
-          Bond.separate parent
+        after :destroy do |object|
+          Bond.separate object
         end
       end
 
