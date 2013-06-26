@@ -58,6 +58,9 @@ module Swift
         swift.host = request.env['SERVER_NAME']
         swift.uri = "/#{params[:request_uri]}"
         swift.path = swift.uri.partition('?').first
+        media = params.has_key?('print') ? 'print' : 'screen'
+        swift.send("#{media}?=", media)
+        swift.media = media
         @_inited = true
         swift
       end
