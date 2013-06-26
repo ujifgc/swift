@@ -1,4 +1,4 @@
-﻿.dialog-codes
+.dialog-codes
   - @objects.each do |o|
     - data = { :id => nil, :title => o.placeholder.to_s, :type => o.slug, :single => o.is_single }
     - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]

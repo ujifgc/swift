@@ -1,4 +1,4 @@
-﻿.dialog-images
+.dialog-images
   ul.nav.nav-pills#tabs-images
     - tabs = current_account.get_folders.with(:images).all( :order => :created_at.desc )
     - @first = true

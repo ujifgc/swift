@@ -1,4 +1,4 @@
-﻿ul.nav.nav-tabs.operations
+ul.nav.nav-tabs.operations
   li.first= mk_single_op :list, url(@models, :index)
   - if !@object.new? && @object.respond_to?(:id)
     li.active= mk_single_op :edit, url(@models, :edit, :id => @object.id)

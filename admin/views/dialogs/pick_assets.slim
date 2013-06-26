@@ -1,4 +1,4 @@
-﻿.dialog-assets
+.dialog-assets
   ul.nav.nav-pills#tabs-assets
     - tabs = current_account.get_folders.with(:assets).all( :order => :created_at.desc )
     - @first = true

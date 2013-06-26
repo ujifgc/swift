@@ -1,4 +1,4 @@
-﻿- @objects.each do |o|
+- @objects.each do |o|
   .item
     - data = { :id => o.id, :title => o.title, :type => 'file', :single => true }
     - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]

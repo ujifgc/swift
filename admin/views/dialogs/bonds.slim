@@ -1,4 +1,4 @@
-﻿.dialog-bonds
+.dialog-bonds
   form action=url(:dialogs, :bonds_ajax, params[:parent_model], params[:parent_id]) method=:post
     ul.nav.nav-tabs#tabs-bondables
       - data = { :url => url(:dialogs, :bond, params[:parent_model], params[:parent_id]), :model => 'Bond', :toggle => :tab, :cached => 1 }
