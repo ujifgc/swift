@@ -1,3 +1,4 @@
+#coding:utf-8
 module Swift
   module ModelPlugins
     module Recursive
