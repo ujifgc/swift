@@ -8,7 +8,7 @@
   = label_tag 'Положение', :for => :style_select, :class => 'pull-left' do
     = select_tag :style, :id => :style_select, :options => styles
 
-  - views = { 'Миниатюра со ссылкой' => 'thumbnail-link', 'Картинка' => '', 'Ссылка' => 'link' }
+  - views = { 'Картинка со ссылкой' => 'thumbnail-link', 'Картинка' => '', 'Ссылка' => 'link' }
   = label_tag 'Вид', :for => :view_select, :class => 'pull-left' do
     = select_tag :view, :id => :view_select, :options => views
 
