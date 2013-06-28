@@ -214,7 +214,7 @@ class Admin < Padrino::Application
     @objects = []
     params[models].each do |upload|
       attributes = {
-        :title => upload[:filename],
+        :title => File.basename(upload[:filename], '.*').gsub('_', ' '),
         :file => upload,
         :created_by => current_account,
         :updated_by => current_account,
