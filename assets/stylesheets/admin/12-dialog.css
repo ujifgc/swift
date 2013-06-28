@@ -175,6 +175,16 @@ div.grippie {
 .modal-body {
   max-height: 600px;
 }
-.modal-footer label select {
+#pick_image .modal-footer {
+  padding-top: 26px;
+}
+#pick_image .modal-footer label {
+  text-align: left;
+  margin-right: 10px;
+  margin-top: -20px
+}
+#pick_image .modal-footer label select {
   vertical-align: baseline;
+  display: block;
+  width: 180px;
 }

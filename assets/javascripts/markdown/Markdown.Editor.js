@@ -1141,14 +1141,14 @@
                     };
                 }
 
-            	$(button).removeAttr('disabled');
+              $(button).removeAttr('disabled');
                 button.onclick = function () {
                     doClick(this);
                     return false;
                 }
             }
             else {
-            	$(button).attr('disabled', 'disabled');
+              $(button).attr('disabled', 'disabled');
                 button.onclick = function () { };
             }
         }
@@ -1323,11 +1323,16 @@
                     var tag = data['type'];
                     var instance = $('select#style_select').val();
                     if (instance && instance.length > 0) tag += '.' + instance;
+                    var view = $('select#view_select').val();
+                    if (view && view.length > 0) tag += ':' + view;
+                    var size = $('select#size_select').val();
+                    if (size && size.length > 0) size = ' outlet:"' + size + '"';
+                    else size = '';
                     if (data['single']) {
-                        chunk.startTag += "[" + tag + (id?" "+id:"") + (title?" "+title:"") + "]\n";
+                        chunk.startTag += "[" + tag + (id?" "+id:"") + size + (title ? ' "' + title + '"' : "") + "]\n";
                         chunk.selection = "";
                     }else{
-                        chunk.startTag = "[" + tag + (title?" "+title:"") + "]";
+                        chunk.startTag = "[" + tag + (title?' "' + title + '"' : "") + "]";
                         chunk.endTag = "[/" + tag + "]" + chunk.endTag;
                     }
                 }

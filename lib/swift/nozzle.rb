@@ -83,6 +83,32 @@ class ImageAdapter < NeatAdapter
     end
   end
 
+  outlet :mini_thumb do
+    def prepare( original, result )
+      FileUtils.mkdir_p File.dirname(result)
+      `convert #{Shellwords.escape original} -thumbnail 80x #{Shellwords.escape result}`
+    end
+    def relative_folder
+      "cache/#{@model}"
+    end
+    def filename
+      "#{@record.id}@#{version_name}-#{super}"
+    end
+  end
+
+  outlet :gallery_thumb do
+    def prepare( original, result )
+      FileUtils.mkdir_p File.dirname(result)
+      `convert #{Shellwords.escape original} -thumbnail x135 #{Shellwords.escape result}`
+    end
+    def relative_folder
+      "cache/#{@model}"
+    end
+    def filename
+      "#{@record.id}@#{version_name}-#{super}"
+    end
+  end
+
   def default_url
     '/images/image_missing.png'
   end

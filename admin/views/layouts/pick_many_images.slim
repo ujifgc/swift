@@ -4,9 +4,17 @@
 .modal-body
   = yield
 .modal-footer
-  - options = { 'В тексте' => '', 'Слева' => 'leftno', 'Справа' => 'rightno', 'Слева под предыдущей' => 'leftof', 'Справа под предыдущей' => 'rightof' }
-  = label_tag 'Стиль', :for => :style_select, :class => 'pull-left' do
-    = select_tag :style, :id => :style_select, :options => options
+  - styles = { 'В тексте' => '', 'Слева' => 'leftno', 'Справа' => 'rightno', 'Слева под предыдущей' => 'leftof', 'Справа под предыдущей' => 'rightof' }
+  = label_tag 'Положение', :for => :style_select, :class => 'pull-left' do
+    = select_tag :style, :id => :style_select, :options => styles
+
+  - views = { 'Миниатюра со ссылкой' => 'thumbnail-link', 'Картинка' => '', 'Ссылка' => 'link' }
+  = label_tag 'Вид', :for => :view_select, :class => 'pull-left' do
+    = select_tag :view, :id => :view_select, :options => views
+
+  - sizes = { 'Вписать в 180x135' => 'thumb', 'Обрезать до 180x135' => 'fill_thumb', '80 по ширине' => 'mini_thumb', '135 по высоте' => 'gallery_thumb', 'Оригинал' => '' }
+  = label_tag 'Размер', :for => :size_select, :class => 'pull-left' do
+    = select_tag :size, :id => :size_select, :options => sizes
 
   = link_to pat('pick'), 'javascript:;', :class => 'btn btn-primary pick-dialog'
   = link_to pat('cancel'), 'javascript:;', :class => 'btn cancel-dialog', :'data-dismiss' => :modal

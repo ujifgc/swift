@@ -4,6 +4,16 @@ throw :output, "[Image ##{@args[0]} missing]"  unless @image
 @identity[:class] += ' sized'  if @opts[:width] || @opts[:height]
 @identity[:alt] = @opts[:title].blank? ? @image.title : @opts[:title]
 
+@outlet = case @opts[:outlet]
+when nil
+  @opts[:instance] ? @image.file.thumb : @image.file
+when ''
+  @image.file
+else
+  @image.file.outlets[@opts[:outlet].to_sym]
+end
+throw :output, "[Image ##{@args[0]} outlet '#{@opts[:outlet]}' missing]"  unless @outlet
+
 styles = []
 [:width, :height].each do |dim|
   if @opts[dim]
