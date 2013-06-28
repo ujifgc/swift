@@ -2,7 +2,7 @@
 not_found  unless @card
 swift.path_pages[-1] = Page.new :title => @card.title
 
-case swift.method
+case swift.http_method
 when /POST/i
   @result = @card.fill request
   if @result.saved?

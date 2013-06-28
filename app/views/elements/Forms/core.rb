@@ -2,7 +2,7 @@
 if md = swift.slug.match( /(show|post)\/(.*)/ )
   swift.slug = md[2]
   @opts[:method] = md[1]
-  if @opts[:method] == 'post' && swift.method != 'POST'
+  if @opts[:method] == 'post' && swift.http_method != 'POST'
     throw :output, redirect( swift.uri.gsub(/\/post\//, '/show/') )
   else
     throw :output, element( 'Forms' + @opts[:kind].to_s.camelize, *@args, @opts )

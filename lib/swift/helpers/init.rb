@@ -53,7 +53,7 @@ module Swift
         swift.views = Swift::Application.views
         swift.path_pages = []
         swift.path_ids = []
-        swift.method = request.env['REQUEST_METHOD']
+        swift.http_method = request.env['REQUEST_METHOD']
         swift.placeholders = {}
         swift.host = request.env['SERVER_NAME']
         swift.uri = "/#{params[:request_uri]}"
