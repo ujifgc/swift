@@ -79,10 +79,23 @@ class Page
       Page.first :position.gte => opos, :id.not => self.id, :parent_id => self.parent_id, :order => [:position]
     end
     if sibling
-      self.position = sibling.position
-      self.save!
-      sibling.position = opos
-      sibling.save!
+      if position == sibling.position
+        Page.reposition_all!
+      else
+        self.position = sibling.position
+        self.save!
+        sibling.position = opos
+        sibling.save!
+      end
+    end
+  end
+
+  def self.reposition_all!
+    position = 0
+    all( :order => [ :parent_id, :position, :id ] ).to_a.each do |page|
+      position += 5
+      page.position = position
+      page.save!
     end
   end
 
