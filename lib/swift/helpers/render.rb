@@ -1,6 +1,8 @@
 module Swift
   module Helpers
     module Render
+      MAX_PARSE_LEVEL = 4
+
       # matches recursive brackets
       # !!! TODO explain
       REGEX_RECURSIVE_BRACKETS = /(?<re>\[(?:(?>[^\[\]]+)|\g<re>)*\])/.freeze
@@ -12,12 +14,12 @@ module Swift
 
       def parse_content( str )
         @parse_level = @parse_level.to_i + 1
-        return t(:parse_level_too_deep)  if @parse_level > 4
+        return t(:parse_level_too_deep)  if @parse_level > MAX_PARSE_LEVEL
         needs_capturing = false
 
         str.gsub!(REGEX_RECURSIVE_BRACKETS) do |s|
           $1  or next s
-          tag = $1[1..-2]#1                                                           2                        3
+          tag = $1[1..-2]#1                                                  2                        3
           md = tag.match /(page|link|block|text|image|img|file|asset|element)((?:[\:\.\#][\w\-]*)*)\s+(.*)/
           unless md
             tags = tag.partition ' '
