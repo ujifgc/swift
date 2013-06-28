@@ -408,7 +408,7 @@ bindDialogFileUpload = function() {
     progressall: function (e, data) {
       uploader.find('.progress .bar').animate({ width: parseInt(130 * data.loaded / data.total, 10) }, 100);
       var progress = parseInt(100 * data.loaded / data.total, 10);
-      counter.animate({number:Math.ceil(progress)}, {
+      counter.stop().animate({number:Math.ceil(progress)}, {
         duration: 200,
         step: function() {
           placeholder.text('' + (this.number >= 99 ? 99 : Math.ceil(this.number)) + '%');
@@ -417,10 +417,10 @@ bindDialogFileUpload = function() {
       uploader.find('input').attr('disabled', 'disabled');
     },
     stop: function (e) {
-      uploader.find('.progress .bar').animate({ width: 130 }, 500, function() {
+      uploader.find('.progress .bar').stop().animate({ width: 130 }, 500, function() {
         uploader.find('.progress').replaceWith(old_caption);
+        placeholder.css('font-size', '100px').text( '+' );
       });
-      placeholder.css('font-size', '100px').text( '+' );
       uploader.find('input').removeAttr('disabled');
       addCheckboxes(uploader.closest('.tab-pane.active'));
       uploader.closest('.tab-pane.active').trigger('pane-loaded');
