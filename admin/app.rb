@@ -77,6 +77,7 @@ class Admin < Padrino::Application
     role.allow "/accounts/edit"
     role.allow "/accounts/update"
     role.allow "/stylesheets"
+    role.allow "/javascripts"
     role.allow "/assets/login"
   end
 
