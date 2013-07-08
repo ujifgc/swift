@@ -21,6 +21,7 @@ require 'swift'
 ENV['TMP'] = Padrino.root + '/tmp'
 
 require 'nozzle/datamapper'
+require 'rack-pipeline/sinatra'
 
 ##
 # Add your before load hooks here

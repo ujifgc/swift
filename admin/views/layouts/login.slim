@@ -4,7 +4,7 @@ html
     meta charset="utf-8"
     meta name="robots" content="noindex"
     title Swift :: #{Option(:site_title)}
-    == css :login
+    == pipeline :login, :css
   body
     .container.login style='width: 287px'
       = yield

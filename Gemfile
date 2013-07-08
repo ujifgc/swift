@@ -29,11 +29,9 @@ gem 'dm-aggregates'
 gem 'dm-core', '~> 1.2.1'
 gem 'dm-mysql-adapter'
 
-# javascript and css compressing
-gem 'sinatra-assetpack', '~> 0.2.6'
-
-# file and picture assets
+# file, picture, js, css assets
 gem 'nozzle', '~> 0.1.1'
+gem 'rack-pipeline', '~> 0.0.2'
 
 # authorization and authentication
 gem 'omniauth'
