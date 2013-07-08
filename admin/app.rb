@@ -18,34 +18,31 @@ class Admin < Padrino::Application
   register Padrino::Helpers
   register Padrino::Admin::AccessControl
 
-  register Sinatra::AssetPack
-
-  assets do
-    serve '/stylesheets', from: '../assets/stylesheets'
-    serve '/javascripts', from: '../assets/javascripts'
-
-    js_compression :simple
-
-    css :login, [
-      '/stylesheets/libraries/bootstrap.css',
-      '/stylesheets/admin/96-monkey.css',
-      '/stylesheets/login.css',
-    ]
-
-    css :admin, [
-      '/stylesheets/libraries/bootstrap.css',
-      '/stylesheets/libraries/colorbox.css',
-      '/stylesheets/admin/*.css',
-    ]
-
-    js :admin, [
-      '/javascripts/libraries/*.js',
-      '/javascripts/bootstrap/*.js',
-      '/javascripts/markdown/*.js',
-      '/javascripts/fileupload/*.js',
-      '/javascripts/admin-core.js',
-    ]
-  end
+  set :pipeline, {
+    :combine => Padrino.env == :production,
+    :css => {
+      :login => [
+        '/stylesheets/libraries/bootstrap.css',
+        '/stylesheets/admin/96-monkey.css',
+        '/stylesheets/login.css',
+      ],
+      :admin => [
+        '/stylesheets/libraries/bootstrap.css',
+        '/stylesheets/libraries/colorbox.css',
+        '/stylesheets/admin/*.css',
+      ]
+    },
+    :js => {
+      :admin => [
+        '/javascripts/libraries/*.js',
+        '/javascripts/bootstrap/*.js',
+        '/javascripts/markdown/*.js',
+        '/javascripts/fileupload/*.js',
+        '/javascripts/admin-core.js',
+      ]
+    }
+  }
+  register RackPipeline::Sinatra
 
   helpers Swift::Helpers
 
@@ -76,8 +73,6 @@ class Admin < Padrino::Application
     role.allow "/accounts/reset"
     role.allow "/accounts/edit"
     role.allow "/accounts/update"
-    role.allow "/stylesheets"
-    role.allow "/javascripts"
     role.allow "/assets/login"
   end
 

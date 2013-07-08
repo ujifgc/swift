@@ -5,7 +5,7 @@ html class=swift.print?
     link rel="shortcut icon" href="/favicon.ico"
     = element 'PageTitle'
     = element 'Meta'
-    == css :app
-    == js :app
+    == pipeline :app, :css
+    == pipeline :app, :js
   body
     = yield

@@ -3,29 +3,28 @@ class Swift::Application < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
-  register Sinatra::AssetPack
   register Swift::Engine
 
-  assets do
-    serve '/stylesheets', from: '../assets/stylesheets'
-    serve '/javascripts', from: '../assets/javascripts'
-
-    js_compression :simple
-
-    css :app, [
-      '/stylesheets/libraries/bootstrap-lite.css',
-      '/stylesheets/libraries/colorbox.css',
-      '/stylesheets/elements/*.css',
-      '/stylesheets/app/*.css',
-    ]
-
-    js :app, [
-      '/javascripts/libraries/01-jquery.js',
-      '/javascripts/libraries/07-jquery.colorbox.js',
-      '/javascripts/elements/*.js',
-      '/javascripts/app/*.js',
-    ]
-  end
+  set :pipeline, {
+    :combine => Padrino.env == :production,
+    :css => {
+      :app => [
+        '/stylesheets/libraries/bootstrap-lite.css',
+        '/stylesheets/libraries/colorbox.css',
+        '/stylesheets/elements/*.css',
+        '/stylesheets/app/*.css',
+      ]
+    },
+    :js => {
+      :app => [
+        '/javascripts/libraries/01-jquery.js',
+        '/javascripts/libraries/07-jquery.colorbox.js',
+        '/javascripts/elements/*.js',
+        '/javascripts/app/*.js',
+      ]
+    }
+  }
+  register RackPipeline::Sinatra
 
   use Rack::Session::DataMapper, :key => 'swift.sid', :path => '/', :secret => 'Dymp1Shnaneu', :expire_after => 1.month
 
