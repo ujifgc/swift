@@ -1,17 +1,7 @@
 #coding: utf-8
-require 'minitest_helper'
-#require '../lib/admin_form_builder'
+require 'elements_helper'
 
 describe Swift do
-
-  include RenderMethod
-  include Padrino::Helpers::RenderHelpers
-  include Padrino::Helpers::EngineHelpers
-  include Padrino::Helpers::TranslationHelpers
-  include Padrino::Helpers::OutputHelpers
-  include Padrino::Helpers::TagHelpers 
-  include Padrino::Helpers::FormHelpers 
-  include Padrino::Helpers::FormBuilder
 
   before do
     @args = { :title => "title", :text => "text"}

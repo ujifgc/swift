@@ -2,11 +2,5 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'minitest/autorun'
 require File.expand_path('../../config/boot.rb', __FILE__)
 require 'slim'
+require 'swift'
 
-#module RenderMethod
-#  include Padrino::Helpers::AssetTagHelpers
-#
-#  def render( engine, template, options={} )
-#    Slim::Template.new(File.join(Swift.views,template)+'.slim', options).render(self)
-#  end
-#end

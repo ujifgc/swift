@@ -1,14 +1,7 @@
 #coding: utf-8
-require 'minitest_helper'
+require 'elements_helper'
 
 describe Swift do
-
-  include RenderMethod
-  include Padrino::Helpers::RenderHelpers
-  include Padrino::Helpers::EngineHelpers
-  include Padrino::Helpers::TranslationHelpers
-  include Padrino::Helpers::OutputHelpers
-  include Padrino::Helpers::TagHelpers
 
   before do
     @page1 = Page.new :title => "Page 1", :path => "/", :parent => nil
