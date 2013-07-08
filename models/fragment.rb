@@ -19,8 +19,8 @@ class Fragment
     self.id = title  if id.blank?
   end
 
-  after :create do
-    FileUtils.touch "#{Swift::Application.views}/fragments/_#{id}.slim"
+  after :destroy do
+    FileUtils.rm_f "#{Swift::Application.views}/fragments/#{id}.slim"
   end
 
   def self.fragments

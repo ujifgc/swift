@@ -18,8 +18,8 @@ class Layout
     self.id = self.title  if self.id.blank?
   end
 
-  after :create do
-    FileUtils.touch "#{Swift::Application.views}/layouts/#{id}.slim"
+  after :destroy do
+    FileUtils.rm_f "#{Swift::Application.views}/layouts/#{id}.slim"
   end
 
 end

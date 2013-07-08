@@ -63,7 +63,6 @@ Admin.controllers :fragments do
   delete :destroy, :with => :id do
     @object = Fragment.get(params[:id])
     if @object.destroy
-      #File.rm "#{Swift::Application.views}/fragments/_#{@object.id}.slim"
       flash[:notice] = pat('fragment.destroyed')
     else
       flash[:error] = pat('fragment.not_destroyed')
