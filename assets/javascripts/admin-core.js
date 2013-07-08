@@ -1,4 +1,4 @@
-﻿$(function() {
+$(function() {
   $(document).bind('drop dragover', function (e) {
     e.preventDefault();
   });
