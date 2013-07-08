@@ -19,7 +19,7 @@ class Layout
   end
 
   after :create do
-    FileUtils.touch "#{swift.views}/layouts/#{id}.slim"
+    FileUtils.touch "#{Swift::Application.views}/layouts/#{id}.slim"
   end
 
 end
