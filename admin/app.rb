@@ -50,13 +50,6 @@ class Admin < Padrino::Application
   set :default_builder, 'AdminFormBuilder'
   set :protection, :except => :ip_spoofing
 
-  `which /usr/sbin/exim` #!!! FIXME this is bullcrap
-  if $?.success?
-    set :delivery_method, :smtp
-  else
-    set :delivery_method, :sendmail
-  end
-
   use Rack::Session::DataMapper, :key => 'swift.sid', :path => '/', :secret => 'Dymp1Shnaneu', :expire_after => 1.month
 
   enable :store_location

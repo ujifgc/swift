@@ -31,13 +31,6 @@ class Swift::Application < Padrino::Application
   set :default_builder, 'SwiftFormBuilder'
   set :locales, [ :ru, :en ]
 
-  `which /usr/sbin/exim` #!!! FIXME this is bullcrap
-  if $?.success?
-    set :delivery_method, :smtp
-  else
-    set :delivery_method, :sendmail
-  end
-
   # if web server can't statically serve image request, regenerate the image outlet
   # and tell browser to lurk again with new timestamp
   get '/cache/:model/:id@:outlet-:file' do
