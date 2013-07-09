@@ -21,5 +21,5 @@ form.inner.multiple#multiple-assets action=url(:assets, :index)/:multiple method
           td.last= mk_checkbox object
           td= mk_edit object
           td.nowrap= object.folder && object.folder.title
-          td.nowrap= link_to object.file.size.as_size + " / #{File.extname object.file.url}", object.file.url  rescue 'error'
+          td.nowrap= link_to object.file.size.as_size + " / #{File.extname object.file.url}", object.file.url?  rescue 'error'
 = partial 'base/index_operations_bottom'

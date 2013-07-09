@@ -84,9 +84,9 @@ module Padrino
               end
               content_tag( :div ) do
                 if file.content_type.index('image')
-                  link_to image_tag(file.url), file.url, :rel => 'box-image'
+                  link_to image_tag(file.url?), file.url?, :rel => 'box-image'
                 else
-                  link_to file.url, file.url
+                  link_to file.url, file.url?
                 end
               end
             else

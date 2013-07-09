@@ -288,4 +288,7 @@ class Admin < Padrino::Application
     end
   end
 
+  after do
+    @expires || expires( -86400, :private, :must_revalidate, :no_cache, :no_store )
+  end
 end
