@@ -90,6 +90,19 @@ class Page
     end
   end
 
+  def has_parent?( object )
+    return false  if object.nil?
+    oid = object.kind_of?( Numeric ) ? object : object.id
+    return true  if oid == id
+    has_parent = false
+    page = self
+    while page.parent_id
+      has_parent ||= page.parent_id == oid
+      page = page.parent
+    end
+    has_parent
+  end
+
   def self.reposition_all!
     position = 0
     all( :order => [ :parent_id, :position, :id ] ).to_a.each do |page|
