@@ -5,6 +5,7 @@ module Swift
         path = swift.path
         path = path.chomp('/')  if path.length > 1
         page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
+        params.reverse_merge! Rack::Utils.parse_query(page.params)  if page && page.params.present?
 
         if page && page.is_module
           swift.module_root = page.path  # => /news

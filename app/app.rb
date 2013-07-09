@@ -67,7 +67,6 @@ class Swift::Application < Padrino::Application
       cs = @page.children.all :order => :position
       redirect cs.first.path  if cs.any?
     end
-    params.reverse_merge! Rack::Utils.parse_query(@page.params)  unless @page.params.blank?
     process_page
   end
 
