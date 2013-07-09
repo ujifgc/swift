@@ -16,7 +16,7 @@ gem 'activesupport', :require => 'active_support/core_ext/object/conversions'
 gem 'yajl-ruby', :require => 'yajl'
 gem 'multi_json'
 gem 'slim'
-gem 'redcarpet', :github => 'ujifgc/redcarpet'
+gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'padrino', :github => 'ujifgc/padrino-framework'
 
