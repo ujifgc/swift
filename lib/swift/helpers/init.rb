@@ -7,6 +7,11 @@ module Swift
         page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
         params.reverse_merge! Rack::Utils.parse_query(page.params)  if page && page.params.present?
 
+        if page && page.parent_id && page.fragment_id == 'page' && page.text.blank?
+          first_child = page.children.first( :order => :position )
+          redirect first_child.path  if first_child
+        end
+
         if page && page.is_module
           swift.module_root = page.path  # => /news
           swift.slug = case path[page.path.length]

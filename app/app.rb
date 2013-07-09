@@ -63,10 +63,6 @@ class Swift::Application < Padrino::Application
     init_swift
     init_page
     not_found  unless @page
-    if @page.fragment_id == 'page' && @page.parent_id && @page.text.blank?
-      cs = @page.children.all :order => :position
-      redirect cs.first.path  if cs.any?
-    end
     process_page
   end
 
