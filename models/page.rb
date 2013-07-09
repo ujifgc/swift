@@ -49,8 +49,8 @@ class Page
 
   before :save do
     old_path = path
-    rebuild_path
-    children.each{ |ch| ch.rebuild_path; ch.save }  if old_path != path
+    self.path = rebuild_path
+    children.each{ |ch| ch.change_path!(path) }  if old_path != path
   end
 
   before :destroy do
@@ -115,6 +115,13 @@ class Page
   end
 
   def rebuild_path
-    self.path = self.parent ? self.parent.parent ? self.parent.path + '/' + self.slug : '/' + self.slug : '/'
+    parent ? parent.parent ? parent.path + '/' + slug : '/' + slug : '/'
   end
+
+  def change_path!( parent_path )
+    self.path = parent_path + '/' + slug
+    save!
+    children.each{ |ch| ch.change_path! path }
+  end
+
 end
