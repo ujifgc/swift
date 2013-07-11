@@ -17,6 +17,19 @@ class Admin < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
   register Padrino::Admin::AccessControl
+  helpers Swift::Helpers
+  use Rack::Session::File
+
+  set :login_page, "/admin/sessions/new"
+  set :default_builder, 'AdminFormBuilder'
+  set :protection, :except => :ip_spoofing
+
+  enable :store_location
+
+  use OmniAuth::Builder do
+    provider :open_id, :store => OpenID::Store::Filesystem.new(Padrino.root+'/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
+    provider :open_id, :store => OpenID::Store::Filesystem.new(Padrino.root+'/tmp'), :name => 'yandex', :identifier => 'http://ya.ru/'
+  end
 
   set :pipeline, {
     :combine => Padrino.env == :production,
@@ -43,21 +56,6 @@ class Admin < Padrino::Application
     }
   }
   register RackPipeline::Sinatra
-
-  helpers Swift::Helpers
-
-  set :login_page, "/admin/sessions/new"
-  set :default_builder, 'AdminFormBuilder'
-  set :protection, :except => :ip_spoofing
-
-  use Rack::Session::DataMapper, :key => 'swift.sid', :path => '/', :secret => 'Dymp1Shnaneu', :expire_after => 1.month
-
-  enable :store_location
-
-  use OmniAuth::Builder do
-    provider :open_id, :store => OpenID::Store::Filesystem.new(Padrino.root+'/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
-    provider :open_id, :store => OpenID::Store::Filesystem.new(Padrino.root+'/tmp'), :name => 'yandex', :identifier => 'http://ya.ru/'
-  end
 
   access_control.roles_for :any do |role|
     role.protect "/"

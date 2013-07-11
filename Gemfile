@@ -6,7 +6,6 @@ group :development, :test do
   gem 'awesome_print'
   gem 'ruby-progressbar'
   gem "rack-test", ">= 0.5.0"
-  gem "webrat",    ">= 0.5.1"
 end
 
 # basic sugar support
@@ -18,7 +17,6 @@ gem 'multi_json'
 gem 'slim'
 gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
-#gem 'padrino', :path => '/home/ujif/pro/padrino-framework'
 gem 'padrino', :github => 'ujifgc/padrino-framework'
 
 # database ORM
