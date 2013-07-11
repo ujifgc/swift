@@ -18,7 +18,8 @@ gem 'multi_json'
 gem 'slim'
 gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
-gem 'padrino', :github => 'ujifgc/padrino-framework'
+gem 'padrino', :path => '/home/ujif/pro/padrino-framework'
+#gem 'padrino', :github => 'ujifgc/padrino-framework'
 
 # database ORM
 gem 'bcrypt-ruby'
@@ -33,7 +34,7 @@ gem 'dm-mysql-adapter'
 
 # file, picture, js, css assets
 gem 'nozzle', '~> 0.1.3'
-gem 'rack-pipeline', '~> 0.0.2'
+gem 'rack-pipeline', '~> 0.0.3'
 
 # authorization and authentication
 gem 'omniauth'

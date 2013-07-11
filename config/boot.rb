@@ -39,7 +39,6 @@ Padrino.before_load do
     :enable_engines => [:ruby, :javascript, :css],
     :format => :html5,
     :use_html_safe => true,
-    :generator => Temple::Generators::RailsOutputBuffer,
     :pretty => PADRINO_ENV == "development",
   } )
 
