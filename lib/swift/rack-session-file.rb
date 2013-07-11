@@ -33,9 +33,8 @@ module Rack
 
       # gets a session data from the store by session id OR returns new session id with no data
       def get_session(env, sid)
-        file = path sid
         @data = nil
-        @sid = if sid && ::File.file?( file )
+        @sid = if sid && ::File.file?( file = path(sid) )
           @data, expiry = *Marshal.load(::File.binread file)
           if now_after? expiry
             File.unlink( file ) rescue nil
