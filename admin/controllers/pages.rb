@@ -45,12 +45,7 @@ Admin.controllers :pages do
 
   post :reposition, :with => [:id, :direction] do
     @object = Page.get(params[:id])
-    if @object
-      @object.reposition! params[:direction]
-      flash[:notice] = pat('page.repositioned')
-    else
-      flash[:notice] = pat('page.not_found')
-    end
+    @object.reposition! params[:direction]  if @object
     @tree = page_tree( nil, 0, '' )
     render 'pages/index', :layout => false
   end

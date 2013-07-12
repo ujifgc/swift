@@ -3,15 +3,10 @@ require 'shellwords'
 class NeatAdapter < Nozzle::Adapter::Base
 
   def size
-    #return -1
-    #raise Exception, 'not implemented'
     @record.file_size || -1
   end
 
   def content_type
-    #return 'not/implemented'
-    #raise Exception, 'not implemented'
-    #`file -bp --mime-type '#{root}#{url}'`.to_s.strip
     @record.file_content_type || ''
   end
 
