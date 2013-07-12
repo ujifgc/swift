@@ -1,5 +1,3 @@
-﻿#coding:utf-8
-
 # load initial objects
 load 'config/seed.rb'
 

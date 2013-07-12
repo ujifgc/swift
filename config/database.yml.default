@@ -1,8 +1,8 @@
 ---
 development: &defaults
   adapter: mysql
-  database: arcur
-  username: arcus
+  database: swift_site
+  username: swift
   password: XXX
   host: 10.6.7.55
  
