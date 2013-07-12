@@ -1,6 +1,5 @@
 #coding:utf-8
 class Swift::Application < Padrino::Application
-  register Padrino::Mailer
   register Padrino::Helpers
   register Swift::Engine
   use Rack::Session::File
