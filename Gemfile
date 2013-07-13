@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# console sugar for development
+# development
 group :development, :test do
   gem 'rake'
   gem 'awesome_print'
@@ -8,7 +8,7 @@ group :development, :test do
   gem "rack-test", ">= 0.5.0"
 end
 
-# basic sugar support
+# basic support
 gem 'activesupport', :require => 'active_support/core_ext/object/conversions'
 
 # templates and content parsing

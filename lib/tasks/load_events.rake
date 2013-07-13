@@ -1,10 +1,10 @@
-﻿#coding:utf-8
+#coding:utf-8
 
 namespace :se do
 
   desc "load array of events"
   
-  task :loadEvent => :environment do
+  task :load_events => :environment do
     filter = {}
     filter[:period.not] = '' 
     NewsEvent.published.all(filter).each do |ne|
