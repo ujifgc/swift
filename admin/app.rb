@@ -9,9 +9,6 @@ MODULE_GROUPS = {
 BONDABLE_CHILDREN = %W(Page Folder Image FormsCard CatCard NewsRubric)
 BONDABLE_PARENTS  = %W(Page CatNode NewsArticle Folder FormsCard)
 
-require 'omniauth-openid'
-require 'openid/store/filesystem'
-
 class Admin < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer

@@ -23,6 +23,10 @@ require 'swift'
 require 'nozzle/datamapper'
 require 'rack-pipeline/sinatra'
 
+# openid authorization
+require 'omniauth-openid'
+require 'openid/store/filesystem'
+
 Padrino.before_load do
   I18n.load_path += Dir.glob('app/locale/*.yml')
   I18n.load_path += Dir.glob('admin/locale/*.yml')
