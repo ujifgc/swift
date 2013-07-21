@@ -42,9 +42,22 @@
 .dialog-images a.pick {
   outline: none !important;
 }
-.dialog-images a.pick:hover + input[type=checkbox], .dialog-images input[checked] {
+.dialog-images a.pick:hover + input[type=checkbox], .dialog-images input[checked], .dialog-images input[type=checkbox]:hover, .dialog-images abbr.id:hover ~ input {
   visibility: visible;
 } 
+.dialog-images abbr.id {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  margin: 0;
+  opacity: 0.3;
+  background: rgba(255,255,255,0.7);
+  padding: 0 5px;
+}
+.dialog-images a.pick:hover ~ abbr.id, .dialog-images abbr.id:hover, .dialog-images input[type=checkbox]:hover ~ abbr.id {
+  opacity: 1;
+  background: rgba(255,255,255,0.9);
+}
 
 /* Assets */
 .dialog-assets {
