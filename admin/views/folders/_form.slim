@@ -7,4 +7,4 @@
 - allow :designer do
   = f.input :is_private, :as => :boolean
 
-= f.submits
+= f.submits :append => mk_timestamps( @object )

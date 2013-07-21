@@ -20,4 +20,4 @@
 - allow :editor do
   = partial 'base/meta', :locals => { :f => f }
 
-= f.submits
+= f.submits :append => mk_timestamps( @object )

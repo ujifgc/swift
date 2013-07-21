@@ -9,6 +9,7 @@ Admin.helpers do
     :new       => 'plus',
     :edit      => 'edit',
     :bind      => 'magnet',
+    :show      => 'eye-open',
 
   # modules
     :pages     => 'globe',
@@ -97,6 +98,29 @@ Admin.helpers do
   def mk_button_op( op, link )
     op = :delete  if op == :destroy
     link_to mk_icon(op) + pat(op), link, :method => op, :class => 'single button_to'
+  end
+
+  BADGE_COLOR = {
+    :created_at => 'badge-success',
+    :updated_at => 'badge-info',
+  }.freeze
+  def mk_timestamps( obj )
+    timestamps = [ :updated_at, :created_at ].inject(''.html_safe) do |html, tag|
+      next html  unless obj.respond_to? tag
+      date = obj.send(tag)
+      user_method = tag.to_s.sub('_at','_by').to_sym
+      user = obj.respond_to?( user_method ) ? obj.send( user_method ) : nil
+      tags = content_tag( :span, mat(:object,tag) + ':', :class => 'legend' )
+      tags << content_tag( :span, date.as_date, :class => "badge #{BADGE_COLOR[tag]}" )
+      if user
+        title = user.role_title.html_safe + ' '.html_safe
+        title << mk_glyph( :user, :white => true ) + ' '.html_safe
+        title << link_to( user.name, url(:accounts, :show, :id => user.id), :class => 'white' )
+        tags << content_tag( :span, title, :class => "badge #{BADGE_COLOR[tag]}" )
+      end
+      html << content_tag( :div, tags, :class => 'partition' )
+    end
+    content_tag( :div, timestamps, :class => 'timestamps' )
   end
 
   def allow role

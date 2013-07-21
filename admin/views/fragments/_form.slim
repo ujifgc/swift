@@ -2,4 +2,4 @@
 = f.input :code, :as => :text, :code => true, :value => @code
 = f.input :id
 = f.input :is_fragment, :as => :boolean
-= f.submits
+= f.submits :append => mk_timestamps( @object )

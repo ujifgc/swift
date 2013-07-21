@@ -6,4 +6,4 @@
 = f.input :provider
 = f.input :uid
 = f.input :group_id, :as => :select, :selected => @object.group_id, :collection => Account.all( :group_id => nil ), :fields => [ :title, :id ], :include_blank => false
-= f.submits
+= f.submits :append => mk_timestamps( @object )

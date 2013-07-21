@@ -25,4 +25,4 @@
 
 - allow :designer do
   = f.input :folder_id, :as => :select, :selected => @object.folder_id, :collection => Folder.all, :fields => [ :title, :id ], :include_blank => false
-= f.submits
+= f.submits :append => mk_timestamps( @object )
