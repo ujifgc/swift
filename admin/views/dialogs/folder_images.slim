@@ -1,12 +1,13 @@
 ul.thumbnails
-  li.span2
-    a.thumbnail.fileinput-button
-      input type='file' name='images[]' multiple=true data-url='/admin/assets/upload'
-      .placeholder
-        | +
-      .caption
-        = pat 'dialog.upload_images'
-    javascript:
-      bindDialogFileUpload();
+  - unless params[:parent_model]
+    li.span2
+      a.thumbnail.fileinput-button
+        input type='file' name='images[]' multiple=true data-url='/admin/assets/upload'
+        .placeholder
+          | +
+        .caption
+          = pat 'dialog.upload_images'
+      javascript:
+        bindDialogFileUpload();
   - @objects.each do |o|
     = partial 'dialogs/folder_images_object', :locals => { :image => o }
