@@ -100,11 +100,12 @@ Admin.controllers :accounts do
   end
 
   get :show, :with => :id do
-    @object = Account.get(params[:id])
-    if !@object || ( @object.id != current_account.id && !current_account.allowed?(:editor) )
+    @subject = Account.get(params[:id])
+    if !@subject || ( @subject.id != current_account.id && !current_account.allowed?(:editor) )
       flash[:notice] = pat('account.dont_hack')
       redirect url(:accounts, :show, current_account.id)
     end
+    @object = params[:object_type].constantize.get(params[:object_id].to_i)  rescue nil
     render 'accounts/show'
   end
 

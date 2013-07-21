@@ -115,7 +115,7 @@ Admin.helpers do
       if user
         title = user.role_title.html_safe + ' '.html_safe
         title << mk_glyph( :user, :white => true ) + ' '.html_safe
-        title << link_to( user.name, url(:accounts, :show, :id => user.id), :class => 'white' )
+        title << link_to( user.name, url(:accounts, :show, :id => user.id, :object_id => obj.id, :object_type => obj.class.name).html_safe, :class => 'white' )
         tags << content_tag( :span, title, :class => "badge #{BADGE_COLOR[tag]}" )
       end
       html << content_tag( :div, tags, :class => 'partition' )

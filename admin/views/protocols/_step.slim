@@ -1,0 +1,22 @@
+dl
+  - unless @by_user
+    dt
+    dd
+      = step.subject.role_title
+      = step.subject.name
+  dt
+  dd
+    = step.verb
+  dt
+  dd
+    = step.time.as_date
+  - unless @by_object
+    dt
+    dd
+      = step.object_id
+    dt
+    dd
+      = step.object_type
+  dt
+  dd
+    = step.data
