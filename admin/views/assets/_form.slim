@@ -1,4 +1,4 @@
 = f.input :title, :brackets => pat('not_required')
 = f.input :file, { :as => :file }.merge( @object.new? ? { :multiple => true, :brackets => pat(:or_multiple) } : {} )
 = f.input :folder_id, :as => :select, :selected => @object.folder_id, :collection => current_account.get_folders, :fields => [ :title, :id ], :include_blank => true, :with_create => true
-= f.submits
+= f.submits :append => mk_timestamps( @object )

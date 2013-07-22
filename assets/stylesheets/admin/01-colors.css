@@ -4,3 +4,9 @@
 .green {
   color: #5BB75B;
 }
+.white {
+  color: #fff;
+}
+.white:hover {
+  color: #fff;
+}

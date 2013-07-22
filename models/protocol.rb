@@ -50,6 +50,31 @@ class Protocol
     row ? { :object_id => row.object_id, :object_type => row.object_type } : nil
   end
 
+  def self.for( subject, object = nil, opts = {} )
+    range = case opts[:range]
+    when Range
+      opts[:range]
+    when Fixnum
+      (DateTime.now - opts[:range])..DateTime.now
+    else
+      nil
+    end
+    filter = { :order => :time.desc }
+    filter[:time] = range  if range      
+    case subject
+    when Account
+      filter[:subject_id] = subject.id
+      if object
+        filter[:object_id] = object.id
+        filter[:object_type] = object.class.name
+      end
+    else
+      filter[:object_id] = subject.id
+      filter[:object_type] = subject.class.name
+    end
+    all filter
+  end
+
   # instance helpers
   def object
     JSON.parse data

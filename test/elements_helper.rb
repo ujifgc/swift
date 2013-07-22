@@ -8,8 +8,6 @@ end
 
 class MiniTest::Spec
   include Rack::Test::Methods
-  include Webrat::Methods
-  include Webrat::Matchers
 
   def app
     ElementApp

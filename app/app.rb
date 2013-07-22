@@ -1,9 +1,11 @@
 #coding:utf-8
 class Swift::Application < Padrino::Application
-  register Padrino::Mailer
   register Padrino::Helpers
   register Swift::Engine
+  use Rack::Session::File
 
+  set :default_builder, 'SwiftFormBuilder'
+  set :locales, [ :ru, :en ]
   set :pipeline, {
     :combine => Padrino.env == :production,
     :css => {
@@ -24,11 +26,6 @@ class Swift::Application < Padrino::Application
     }
   }
   register RackPipeline::Sinatra
-
-  use Rack::Session::DataMapper, :key => 'swift.sid', :path => '/', :secret => 'Dymp1Shnaneu', :expire_after => 1.month
-
-  set :default_builder, 'SwiftFormBuilder'
-  set :locales, [ :ru, :en ]
 
   # if web server can't statically serve image request, regenerate the image outlet
   # and tell browser to lurk again with new timestamp

@@ -1,15 +1,14 @@
 source 'https://rubygems.org'
 
-# console sugar for development
+# development
 group :development, :test do
   gem 'rake'
   gem 'awesome_print'
   gem 'ruby-progressbar'
   gem "rack-test", ">= 0.5.0"
-  gem "webrat",    ">= 0.5.1"
 end
 
-# basic sugar support
+# basic support
 gem 'activesupport', :require => 'active_support/core_ext/object/conversions'
 
 # templates and content parsing
@@ -18,7 +17,6 @@ gem 'multi_json'
 gem 'slim'
 gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
-#gem 'padrino', :path => '/home/ujif/pro/padrino-framework'
 gem 'padrino', :github => 'ujifgc/padrino-framework'
 
 # database ORM
@@ -34,7 +32,7 @@ gem 'dm-mysql-adapter'
 
 # file, picture, js, css assets
 gem 'nozzle', '~> 0.1.3'
-gem 'rack-pipeline', '~> 0.0.3'
+gem 'rack-pipeline', '~> 0.0.4'
 
 # authorization and authentication
 gem 'omniauth'

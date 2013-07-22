@@ -72,4 +72,24 @@ label.btn > input[type="checkbox"] {
   margin-top: -1px;
   margin-right: 10px;
 }
-
+div.timestamps {
+  display: inline-block;
+  vertical-align: top;
+  margin: -10px 0 -100% 1em;
+}
+div.timestamps span.legend {
+  font-size: 0.85em;
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  padding: 0 5px;
+}
+div.timestamps .badge {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  margin-right: 0.5em;
+}
+div.timestamps .partition {
+  margin: 0 0 0.4em;
+}

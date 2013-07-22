@@ -18,4 +18,4 @@
     .controls.clone
       = link_to mk_glyph('plus-sign') + ' ' + pat('menu.add.fields'), 'javascript:;', :onclick => 'cloneControlGroup(this)', :class => 'btn btn-mini'
   = f.input :slug
-= f.submits
+= f.submits :append => mk_timestamps( @object )

@@ -177,6 +177,7 @@ ru:
         html: HTML код
         kind: Вид запроса
         created_at: Дата создания
+        updated_at: Дата изменения
         has_event: Создать событие
         receivers: Получатели
         is_private: Доступ ограничен

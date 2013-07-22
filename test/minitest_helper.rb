@@ -1,6 +1,9 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'minitest/autorun'
+ENV['RACK_ENV'] = 'test'
 require File.expand_path('../../config/boot.rb', __FILE__)
-require 'slim'
-require 'swift'
+require 'minitest/autorun'
 
+class MiniTest::Spec
+  def swift
+    @test_swift ||= OpenStruct.new
+  end
+end

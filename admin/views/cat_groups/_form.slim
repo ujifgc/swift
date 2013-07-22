@@ -16,4 +16,4 @@
   = f.input :is_published, :as => :boolean
   = f.input :slug
 
-= f.submits
+= f.submits :append => mk_timestamps( @object )

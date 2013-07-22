@@ -1,38 +1,38 @@
-# Defines our constants
+# configure environment
 PADRINO_ENV  = ENV["PADRINO_ENV"] ||= ENV["RACK_ENV"] ||= "development"  unless defined?(PADRINO_ENV)
-PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
+PADRINO_ROOT = File.expand_path('../..', __FILE__)  unless defined?(PADRINO_ROOT)
+ENV['TMP'] = File.join(PADRINO_ROOT, 'tmp')
 
-# Load our dependencies
+# load bundle
 require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
-# Enable devel logging
+# configure logging
 Padrino::Logger::Config[:development] = { :log_level => :devel, :format_datetime => " [%Y-%m-%d %H:%M:%S] ", :stream => :to_file, :colorize_logging => true }
 if defined? AwesomePrint
   require 'awesome_print/core_ext/logger'
   Padrino::Logger.send(:include, AwesomePrint::Logger)
 end
 
+# allow requiring swift stack from lib and require it
 $LOAD_PATH.unshift Padrino.root('lib')
 require 'swift'
 
-# instance an environment
-ENV['TMP'] = Padrino.root + '/tmp'
-
+# plug in external gems: nozzle for image processing, rack-pipeline for js/css combining
 require 'nozzle/datamapper'
 require 'rack-pipeline/sinatra'
 
-##
-# Add your before load hooks here
-#
+# openid authorization
+require 'omniauth-openid'
+require 'openid/store/filesystem'
+
 Padrino.before_load do
-  
   I18n.load_path += Dir.glob('app/locale/*.yml')
   I18n.load_path += Dir.glob('admin/locale/*.yml')
   I18n.reload!
   I18n.locale = :ru
-  
+
   Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
 
   Slim::Engine.set_default_options( {
@@ -41,41 +41,11 @@ Padrino.before_load do
     :use_html_safe => true,
     :pretty => PADRINO_ENV == "development",
   } )
-
-  DataMapper::Model.append_extensions(Swift::ModelPlugins::ClassMethods)
-
 end
 
-##
-# Add your after load hooks here
-#
 Padrino.after_load do
   DataMapper.finalize
   I18n.reload!  if Padrino.env == :development
-
-  $stat = {}
-  sum = { map:0, rss:0 }
-  if $memstatMAP
-    $memstatMAP.inject({}){ |all,one| $stat[one[0]] = [one[1],$memstatRSS[one[0]]] }
-    $stat.to_a.sort_by{ |k,v| v[0] }.each do |k,v|
-      next  if v[0] == 0 && v[1] == 0
-      sum[:map] += v[0]
-      sum[:rss] += v[1]
-      puts "MAP: #{v[0].to_s.rjust(7)} KB / RSS: #{v[1].to_s.rjust(7)} KB : #{k}"
-    end;nil
-    puts " MAP: #{sum[:map].to_s.rjust(7)} KB / RSS: #{sum[:rss].to_s.rjust(7)} KB"
-  end
-
-  if $timestat
-    stat = $timestat.select{ |k,v| v>0 }.to_a.sort{ |a,b| a[1]<=>b[1] }
-    summ = 0
-    stat.each do |row|
-      summ += row[1]
-      #puts "%.6f S: #{row[0]}" % row[1]
-    end
-    #puts summ.to_s.rjust(7) + ' S'
-  end
-
 end
 
 Padrino.load!

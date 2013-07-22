@@ -263,7 +263,7 @@ addCheckboxes = function(selector) {
       var checked = ($(this).data('bound') && $(this).data('bound').toString() === 'true') ? 'checked=checked' : '';
       var name = 'bond['+$(this).data('model')+']['+$(this).data('id')+']';
       if ($(this).closest('.tab-pane').length > 0 && $(this).closest('.tab-pane').attr('id').match(/^images/)) {
-        $(this).after('<input type=checkbox '+checked+' name='+name+' />');
+        $(this).after('<input type=checkbox '+checked+' name='+name+' /><abbr class=id>'+$(this).data('id')+'</abbr>');
       }else{
         $(this).before('<input type=checkbox '+checked+' name='+name+' />');
       }
