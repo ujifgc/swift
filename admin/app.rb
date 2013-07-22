@@ -254,7 +254,11 @@ class Admin < Padrino::Application
       set_current_account account
       redirect_back_or_default url(:base, :index)
     else
-      flash[:error] = account.errors.to_a.flatten.join(', ') + ': ' + content_tag(:code, "#{account.email}<br>#{account.provider}: #{account.uid}")
+      error = ''.html_safe
+      error << content_tag(:code, "#{account.email}") << ': ' \
+            << account.errors.to_a.flatten.join(', ') << ': ' << tag(:br) \
+            << content_tag(:code, "#{account.provider}: #{account.uid}")
+      flash[:error] = error
       set_current_account nil
       redirect url(:sessions, :new)
     end

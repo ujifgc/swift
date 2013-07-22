@@ -5,7 +5,7 @@ group :development, :test do
   gem 'rake'
   gem 'awesome_print'
   gem 'ruby-progressbar'
-  gem "rack-test", ">= 0.5.0"
+  gem 'rack-test', ">= 0.5.0"
 end
 
 # basic support

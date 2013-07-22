@@ -20,10 +20,9 @@ class Account
   property :uid,              String
 
   # Validations
-  validates_presence_of      :email
-  validates_length_of        :email,    :min => 3, :max => 100
-  validates_uniqueness_of    :email,    :case_sensitive => false
-  validates_format_of        :email,    :with => /\w+@\w+/
+  validates_presence_of      :email, :message => I18n.t('datamapper.errors.email.presense')
+  validates_uniqueness_of    :email, :message => I18n.t('datamapper.errors.email.uniqueness'), :case_sensitive => false
+  validates_format_of        :email, :message => I18n.t('datamapper.errors.email.format'),     :with => /\w+@\w+/
   validates_with_block :password do
     case 
     when crypted_password.present? && password.blank? && password_confirmation.blank?
