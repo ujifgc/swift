@@ -16,6 +16,7 @@
         - opts.delete :value
         - opts[:selected] = @object.json[key]
         - opts[:options] = variants
+        = f.input key, opts
       - elsif as == :multiple
         - opts.delete :value
         .control-group.as_multiple.morphable
