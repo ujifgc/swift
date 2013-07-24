@@ -103,7 +103,20 @@ class ImageAdapter < NeatAdapter
       "#{@record.id}@#{version_name}-#{super}"
     end
   end
-
+  
+  outlet :index_thumb do
+    def prepare( original, result )
+      FileUtils.mkdir_p File.dirname(result)
+      `convert #{Shellwords.escape original} -thumbnail 360x240 #{Shellwords.escape result}`
+    end
+    def relative_folder
+      "cache/#{@model}"
+    end
+    def filename
+      "#{@record.id}@#{version_name}-#{super}"
+    end
+  end
+  
   def default_url
     '/images/image_missing.png'
   end
