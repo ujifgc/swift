@@ -10,7 +10,7 @@ def cat_groups( from, level, prefix )
 
     leaf = {}
     leaf[:title] = group.title
-    leaf[:href] = swift.module_root / group.path
+    leaf[:href] = @opts[:root] ? swift.module_root.sub(/#{Regexp.escape @opts[:root]}$/, '') + group.path : swift.module_root / group.path
 
     leaf[:class] = master ? 'master' : 'slave'
     leaf[:class] += ' active'  if ensued
@@ -39,4 +39,5 @@ end
 
 @opts[:expand] = true  unless @opts.has_key?(:expand)
 
-@tree = cat_groups( nil, 0, '' )
+group = CatGroup.published.first(:path => @opts[:root])
+@tree = cat_groups(group, 1, '')
