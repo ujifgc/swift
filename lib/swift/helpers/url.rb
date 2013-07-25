@@ -4,16 +4,16 @@ require 'cgi'
 module Swift
   module Helpers
     module Url
-      def se_url( o, method = :show )
-        case o.class.name
-        when 'NewsArticle'
-          '/news' / method / o.slug
-        when 'FormsCard'
-          '/forms' / method / o.slug
-        when 'Page'
-          o.path
+      def se_url( obj, method = :show )
+        case obj
+        when NewsArticle
+          '/news' / method / obj.slug
+        when FormsCard
+          '/forms' / method / obj.slug
+        when Page
+          obj.path
         else
-          swift.module_root ? swift.module_root / method / o.slug : '/'
+          swift.module_root ? swift.module_root / method / obj.slug : '/'
         end
       end
 
