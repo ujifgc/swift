@@ -15,24 +15,14 @@ module Swift
       end
 
       def url_replace( target, *args )
-        hash = args.last.kind_of?(Hash) && args.last
-        prefix = args.first.kind_of?(String) && args.first
-        if hash
-          path, _, query = target.partition ??
-          hash.each do |k,v|
-            k_reg = CGI.escape k.to_s
-            query = query.gsub /[&^]?#{k_reg}=([^&]*)[&$]?/, ''
-            query += "&#{k}=#{v}"  if v
-          end
-          query.gsub! /^&/, ''
-          q_mark = query.present? ? ?? : ''
-          target = [path, q_mark, query].join
+        uri = URI.parse(URI::DEFAULT_PARSER.escape target)
+        uri.path = CGI.escape(args.first)  if args.first.kind_of?(String)
+        if args.last.kind_of?(Hash)
+          query = uri.query ? CGI.parse(uri.query) : {}
+          args.last.each{ |k,v| v ? query[k.to_s] = v.to_s : query.delete(k.to_s) }
+          uri.query = query.any? && URI.encode_www_form(query)
         end
-        if prefix
-          return prefix  unless target.index ??
-          target = target.gsub(/[^?]*(\?.*)/, prefix + '\1')
-        end
-        target
+        CGI.unescape(uri.to_s)
       end
     end
   end
