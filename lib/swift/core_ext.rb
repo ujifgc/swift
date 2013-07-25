@@ -3,7 +3,7 @@ class String
   # Allows to connect with `/`
   # 'foo' / :bar # => 'foo/bar'
   def / (s)
-    "#{self}/#{s.to_s}"
+    "#{self}/#{s.to_s}".squeeze(?/)
   end
 
   # Transliterate the string and make it uri-friendly
@@ -21,7 +21,7 @@ class String
     when :cap
       Swift::CaseConversion.capitalize self
     else
-      self
+      fail ArgumentError, "wrong direction '#{dir}', use :up, :lo or :cap"
     end
   end
 end
@@ -30,7 +30,7 @@ class Symbol
   # Allows symbols to connect with `/`
   # :foo / :bar # => 'foo/bar'
   def / (s)
-    "#{self.to_s}/#{s.to_s}"
+    self.to_s / s
   end
 end
 
