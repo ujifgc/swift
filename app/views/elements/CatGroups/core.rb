@@ -39,5 +39,5 @@ end
 
 @opts[:expand] = true  unless @opts.has_key?(:expand)
 
-group = CatGroup.published.first(:path => @opts[:root])
-@tree = cat_groups(group, 1, '')
+@root_group = CatGroup.published.first(:path => @opts[:root])
+@tree = cat_groups(@root_group, 1, '')
