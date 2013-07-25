@@ -46,7 +46,17 @@ Admin.controllers :cat_nodes do
 
   put :update, :with => :id do
     @object = CatNode.get(params[:id])
-    if @object.update(params[:cat_node])
+    attributes = {}
+    params[:cat_node].each do |k,v|
+      card_field = @object.cat_card.json[k]
+      if card_field && ['assets', 'images'].include?(card_field[0])
+        value = MultiJson.load(v)  rescue nil
+        attributes[k] = value  if value
+      else
+        attributes[k] = v
+      end
+    end
+    if @object.update(attributes)
       flash[:notice] = pat('cat_node.updated')
       redirect url_after_save
     else

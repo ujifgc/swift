@@ -22,7 +22,7 @@ Admin.controllers :dialogs do
   get :images do
     @objects = Image.all :order => :updated_at.desc
     @title = pat 'dialog.pick_image'
-    render "dialogs/pick_images", :layout => params.has_key?('pick') ? 'pick_many_images' : 'ajax'
+    render "dialogs/pick_images", :layout => params.has_key?('pick') ? params.has_key?('styleless') ? 'pick_many' : 'pick_many_images' : 'ajax'
   end
 
   get :assets do
