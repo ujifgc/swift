@@ -1,3 +1,6 @@
+require 'uri'
+require 'cgi'
+
 module Swift
   module Helpers
     module Url
