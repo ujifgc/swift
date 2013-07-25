@@ -31,6 +31,10 @@
         = f.input key, opts.merge( :as => :datetime, :value => @object.json[key] )
       - elsif as == :date
         = f.input key, opts.merge( :as => :date, :value => @object.json[key] )
+      - elsif as == :assets
+        = f.input key, opts.merge( :as => :pick_asset )
+      - elsif as == :images
+        = f.input key, opts.merge( :as => :pick_image )
       - else
         = f.input key, opts
 

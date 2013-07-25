@@ -99,6 +99,27 @@ module Padrino
             end
             type = 'file'
             tag + input
+          when :pick_image
+            # !!! FIXME html_safe should be NOT needed. this is link_to or url bug
+            opts = {}
+            opts[:value] = if options[:value]
+              options[:value]
+            else
+              val = @object.respond_to?(field) ? @object.send(field) : @object.json[field]
+              val.present? ? val.to_json : ''
+            end
+            div = hidden_field( field, opts )
+            div << link_to( "#{opts[:value]} Not Implemented", '/admin/dialogs/images?pick&styleless'.html_safe, 'data-toggle' => :pick_cat )
+          when :pick_asset
+            opts = {}
+            opts[:value] = if options[:value]
+              options[:value]
+            else
+              val = @object.respond_to?(field) ? @object.send(field) : @object.json[field]
+              val.present? ? val.to_json : ''
+            end
+            div = hidden_field( field, opts )
+            div << link_to( "#{opts[:value]} Not Implemented", '/admin/dialogs/assets?pick&styleless'.html_safe, 'data-toggle' => :pick_cat )
           when :datetime, :date_time
             opts = {}
             opts[:class] = 'text_field datetime'

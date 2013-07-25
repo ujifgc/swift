@@ -311,3 +311,7 @@ ru:
       messages:
         json_error: 'Something is wrong. Perhaps you made a mistake when filling out the data card. Return and try to find her. If the problem persists, contact the developer.'
         json_required: 'Заполните поле'
+      email:
+        presense: 'Нужен адрес электронной почты. Он будет использоваться как логин и на него будут отправляться уведомления'
+        uniqueness: 'адрес занят. Если это ваш адрес, зайдите с помощью пароля и замените сетевой идентификатор на этот'
+        format: 'Проверьте адрес почты. Должно быть похоже на user@example.com'

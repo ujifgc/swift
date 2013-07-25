@@ -56,6 +56,7 @@ $(function() {
   bindColorbox();
   bindMarkdowns();
   $('a[data-toggle=modal]').on('click', showPopup);
+  $('a[data-toggle=pick_cat]').on('click', pickCatObject);
   $('textarea.resizable').TextAreaResizer();
   
 });
@@ -186,6 +187,31 @@ showPopup = function() {
     url,
     function (responseText, textStatus, XMLHttpRequest) {
       dialog.removeClass('loading');
+    }
+  );
+  dialog.modal('show');
+  dialog.on('hidden', function () {
+    dialog.remove();
+  });
+  return false;
+};
+
+pickCatObject = function() {
+  var url = this.href;
+  var input = $(this).siblings('input');
+  $('body > .modal').remove();
+  var dialog = $('<div id="pick_image" class="modal hide loading"></div>').appendTo('body');
+  this.dialog = dialog;
+  dialog.load(
+    url,
+    function (responseText, textStatus, XMLHttpRequest) {
+      dialog.removeClass('loading');
+      dialog.find('.pick-dialog').click(function() {
+        var result = [];
+        dialog.find(':checkbox[checked]').each(function(i,e){result.push(e.name.replace(/.*?(\d+).*/g,'$1'))});
+        input.val('['+result.join(',')+']');
+        dialog.modal('hide');
+      });
     }
   );
   dialog.modal('show');

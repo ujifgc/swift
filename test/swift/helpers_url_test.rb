@@ -1,3 +1,4 @@
+#coding:utf-8
 require 'minitest_helper'
 
 MiniTest::Spec.send :include, Swift::Helpers::Url
@@ -8,10 +9,12 @@ describe 'url_replace' do
     url_replace( '/news', { b: nil } ).must_equal '/news'
     url_replace( '/news?b=2', { b: nil } ).must_equal '/news'
     url_replace( '/news?b=2', { b: 3 } ).must_equal '/news?b=3'
+    url_replace( '/мама?мыла=раму', { :'мыла' => 'окно' } ).must_equal '/мама?мыла=окно'
   end
 
   it "should work on string" do
     url_replace( '/news?a=b', '/bar' ).must_equal '/bar?a=b'
+    url_replace( '/мама?мыла=раму', '/баба' ).must_equal '/баба?мыла=раму'
   end
 
   it "should work on string and hash" do
@@ -19,6 +22,7 @@ describe 'url_replace' do
     url_replace( '/news?a=b&c=d', '/bar', c: nil ).must_equal '/bar?a=b'
     url_replace( '/news?a=b&c=d', '/bar', a: nil ).must_equal '/bar?c=d'
     url_replace( '/news?a=b&c=d', '/bar', c: nil, a: nil ).must_equal '/bar'
+    url_replace( '/мама?мыла=раму', '/папа', :'мыл' => 'раму', :'мыла' => nil ).must_equal '/папа?мыл=раму'
   end
 end
 
