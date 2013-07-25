@@ -36,7 +36,7 @@ module Swift
         def fill_json( params, children_method )
           keys = params.delete 'key'
           types = params.delete 'type'
-          values = params.delete 'value'
+          values = Hash[params.delete('value').map{|k,v| [k,v.gsub(/ *(\r|\n|\r\n) *| *$/m,'\1')]}]
           requires = Hash[(params.delete('require') || []).map{ |k,v| [k, v.to_s=='1']}]
           renames = {}
           keys.each do |k,v,r|
