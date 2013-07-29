@@ -27,7 +27,7 @@ module Swift
 
         catch :output do
           binding.eval File.read(core_rb), core_rb  if File.exists?(core_rb)
-          render :slim, template.to_sym, :layout => false, :views => Swift::Application.views
+          render :slim, template.to_sym, :layout => false, :views => Swift::Application.views, :format => :html5
         end
       rescue Padrino::Rendering::TemplateNotFound => e
         report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[Element '#{name}' error: #{e.strip}]"
@@ -46,6 +46,7 @@ module Swift
         end
         type ||= :fragments
         opts[:layout] ||= false
+        opts[:format] ||= :html5
         render :slim, :"#{type}/#{template}", opts
       rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
         name = template.split('/').first
