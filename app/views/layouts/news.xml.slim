@@ -6,12 +6,15 @@ rss version="2.0"
   channel
     title= title
     description= description || title
-    link= "http://#{request.host}/"
+    link= absolute_url('/')
     - @news_articles.each do |article|
-      - link = se_url(article, :absolute => true)
+      - link = absolute_url(se_url article)
+      - image = Image.get article.info.gsub(/.*?\[image[^\s]*\s+(\d+)\s+.*\].*/m, '\1')
       item
         title= article.title
         link= link
         description= strip_tags(engine_render article.info)
         pubDate= article.date.rfc822
         guid= link
+        - if image
+          enclosure url=absolute_url(image.file.url) type=image.file.content_type

@@ -20,7 +20,7 @@ module Swift
           swift.module_root ? swift.module_root / method / obj.slug : '/'
         end
         if opts[:absolute]
-          "http://#{swift.host||request.host}#{url}"
+          absolute_url url
         else
           url
         end
