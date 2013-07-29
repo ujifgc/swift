@@ -1,3 +1,4 @@
+#coding:utf-8
 require 'minitest_helper'
 
 describe String do
@@ -29,5 +30,14 @@ end
 describe NilClass do
   it 'should appear empty' do
     nil.any?.must_equal nil
+  end
+end
+
+describe OpenStruct do
+  it 'should behave like Hash' do
+    o = OpenStruct.new
+    o[:foo].must_equal nil
+    (o[:foo] = 'bar').must_equal 'bar'
+    o[:foo].must_equal 'bar'
   end
 end

@@ -124,3 +124,14 @@ module FileUtils
     nil
   end
 end
+
+if RUBY_VERSION < '2.0.0'
+  class OpenStruct
+    def [](name)
+      @table[name.to_sym]
+    end
+    def []=(name, value)
+      modifiable[new_ostruct_member(name)] = value
+    end
+  end
+end
