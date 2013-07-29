@@ -4,8 +4,12 @@ require 'cgi'
 module Swift
   module Helpers
     module Url
-      def se_url( obj, method = :show )
-        case obj
+      def se_url( obj, method = :show, opts = {} )
+        if method.kind_of? Hash
+          opts = method
+          method = :show
+        end
+        url = case obj
         when NewsArticle
           '/news' / method / obj.slug
         when FormsCard
@@ -14,6 +18,11 @@ module Swift
           obj.path
         else
           swift.module_root ? swift.module_root / method / obj.slug : '/'
+        end
+        if opts[:absolute]
+          "http://#{swift.host||request.host}#{url}"
+        else
+          url
         end
       end
 

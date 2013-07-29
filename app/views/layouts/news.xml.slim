@@ -1,18 +1,17 @@
-- host = "http://#{request.host}"
 - title = "#{Option('site_title')} — #{I18n.t(:news)}"
-- description = Page.first( :path => '/news' ).meta['description']
-- description = title  if description.blank?
-<?xml version="1.0" encoding="UTF-8"?>
+- description = Page.first( :path => '/news' )
+- description = description.meta['description']  if description.present?
+doctype xml
 rss version="2.0"
   channel
     title= title
-    description= description
-    link= host
+    description= description || title
+    link= "http://#{request.host}/"
     - @news_articles.each do |article|
-      - link = host + se_url(article)
+      - link = se_url(article, :absolute => true)
       item
         title= article.title
         link= link
-        description= strip_tags( engine_render(article.info) )
+        description= strip_tags(engine_render article.info)
         pubDate= article.date.rfc822
         guid= link

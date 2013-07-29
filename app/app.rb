@@ -45,13 +45,13 @@ class Swift::Application < Padrino::Application
   get '/sitemap.xml' do
     content_type 'application/xml'
     @pages = Page.all.published
-    render 'layouts/sitemap'
+    render :slim, :'layouts/sitemap.xml', :format => :xhtml
   end
 
   get '/news.xml' do
     content_type 'application/xml'
     @news_articles = NewsArticle.all(:limit => 20, :order => :date.desc).published
-    render 'layouts/news'
+    render :slim, :'layouts/news.xml', :format => :xhtml
   end
 
   # if no controller got the request, try finding some content in the sitemap
