@@ -67,6 +67,7 @@ module Swift
         media = params.has_key?('print') ? 'print' : 'screen'
         swift.send("#{media}?=", media)
         swift.media = media
+        swift.send("pretty?=", Padrino.env == :development)
         @_inited = true
         swift
       end

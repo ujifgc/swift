@@ -12,9 +12,18 @@ module Swift
         "%{placeholder[:#{name}]}"
       end
 
-      def process_deferred_elements
-        swift.placeholders = swift.placeholders.each_with_object({}) do |(k,v), h|
-          h[k] = v.kind_of?(Array) ? element( v[0], *v[1], v[2].merge( :process_defer => true ) ) : v
+      def process_deferred_elements( text )
+        text.to_str.gsub /(\s*)\%\{placeholder\[\:([^\]]+)\]\}/ do
+          if deferred = swift.placeholders[$2]
+            output = element( deferred[0], *deferred[1], deferred[2].merge( :process_deferred => true ) )
+            if swift.pretty?
+              $1+output.gsub(/\r|\n|\r\n/, $1)+$1
+            else
+              output
+            end  
+          else
+           ''
+          end
         end
       end
     end
