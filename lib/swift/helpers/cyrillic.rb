@@ -54,7 +54,6 @@ module Swift
       end.strip.gsub("'",'').gsub(/[^[:alnum:]]/, '-').squeeze('-').chomp('-')
       result[0] == ?- ? result[1..-1] : result
     end
-
   end
 
   module CaseConversion
@@ -77,6 +76,5 @@ module Swift
     def capitalize( str )
       upcase(str[0]) + downcase(str[1..-1])
     end
-
   end
 end

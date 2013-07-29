@@ -14,12 +14,7 @@ module Swift
 
       def process_deferred_elements
         swift.placeholders = swift.placeholders.each_with_object({}) do |(k,v), h|
-          case v
-          when Array
-            h[k] = element( v[0], *v[1], v[2].merge( :process_defer => true ) )
-          else
-            h[k] = v
-          end
+          h[k] = v.kind_of?(Array) ? element( v[0], *v[1], v[2].merge( :process_defer => true ) ) : v
         end
       end
     end
