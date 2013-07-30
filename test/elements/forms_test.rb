@@ -8,7 +8,7 @@ describe Swift do
     @opts1 = { :kind => :form, :method => "show" }
     @opts2 = { :kind => :inquiry, :method => "post" }
     @swift = {}
-    @swift[:slug] =  "slug1/slug2/slug3"\
+    @swift[:slug] =  "slug1/slug2/slug3"
     
     @page1 = Page.new :title => "Page 1", :path => "/", :parent => nil
     @page2 = Page.new :title => "Page 2", :path => "/page2", :parent => @page1
@@ -16,7 +16,8 @@ describe Swift do
   end
 
   it 'should kind-form create' do
-skip
+    skip
+    p '@swift.slug = ' + @swift[:slug]
     el = element('Forms', @args, @opts1)
     el.must_equal "<dl></dl>"
   end

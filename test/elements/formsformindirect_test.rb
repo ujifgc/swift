@@ -21,6 +21,5 @@ describe Swift do
 		el = element('FormsFormIndirect')
 		el.must_equal ""
 	end
-	
 
 end

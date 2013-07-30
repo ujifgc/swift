@@ -8,31 +8,26 @@ describe Swift do
   end
 
   it "should provide @text" do
-  skip
-    element("Block", @temp_html.id)
-    @text.must_equal "<a><img src=\"hi\"></a>"
+    el = element("Block", @temp_html.id)
+    el.must_equal "<a><img src=\"hi\"></a>"
   end
 
   it "should be added pharragraph open tag before text and pharragraph close tag with line feed after text" do
-  skip
     el = element("Block", @temp_text.id).strip
     el.must_equal "<p>Hello world!</p>"
   end
 
   it "should be save html-code" do
-  skip
     el = element("Block", @temp_html.id).strip
     el.must_equal "<a><img src=\"hi\"></a>"
   end
 
   it "should be added the table caption with block title" do
-  skip
     el = element("Block", @temp_tabl.id).strip
     el.must_equal '<table><caption>table</caption><tr><td>Yes</td></tr></table>'
   end
 
   it "should throw error" do
-  skip
     el = element("Block", -1)
     el.must_equal "[Block #-1 missing]"
   end
