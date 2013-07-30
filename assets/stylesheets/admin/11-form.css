@@ -93,3 +93,15 @@ div.timestamps .badge {
 div.timestamps .partition {
   margin: 0 0 0.4em;
 }
+form.multiple {
+  margin-bottom: 90px;
+}
+form.multiple + .form-actions {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding-left: 12px;
+  margin-left: -19px;
+  margin-bottom: 0;
+  margin-top: 0;
+}

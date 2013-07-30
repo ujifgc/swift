@@ -45,8 +45,6 @@ $(function() {
     $.cookie('sbc', coo, { path: '/admin/' });
   });
 
-  // datatables
-
   $('a.single.button_to').click(function(){
     singleOp(this);
   });
@@ -70,24 +68,38 @@ bindIndexList = function() {
   });
   $('.multiple table.smart').addClass('table-condensed');
   if ($('#paginator3000').length == 0) {
-    var cols = [ { "sType": "by-data" } ];
-    for ( var i = $('.multiple table.table tbody tr').first().children().length; i > 1; i--) cols.push(null);
+    var nowraps = [], i = 0;
+    $('table.smart thead tr th').each(function() {
+      var data = $(this).data();
+      if (data.nowrap) nowraps.push(i);
+      i += 1;
+    });
     var lenHash = [[15, 25, -1], [15, 25, "Все"]];
+    var form = $('.multiple table.smart').closest('form');
+    var model = form.attr('action').replace(/^\/admin\/([^\/]*).*$/,'$1');
     $('.multiple table.smart').dataTable( {
-      "sDom": "<'page-filter'rf>t<'page-control'<'inline pick-page'p><'hide length'l>>",
+      "sDom": "<'page-control'<'inline pick-page'p><'hide length'l>><'page-filter'rf>t",
       "sPaginationType": "bootstrap",
       "bStateSave": true,
-    "oLanguage": {
+      "bAutoWidth": false,
+
+      "oLanguage": {
         "sLengthMenu": "_MENU_",
         "sSearch": "Фильтр: ",
         "oPaginate": {
           "sNext": "",
           "sPrevious": ""
         }
-    },
-    "aoColumns": cols,
-    "aLengthMenu": lenHash,
-    "iDisplayLength": -1
+      },
+      "aLengthMenu": lenHash,
+      "iDisplayLength": -1,
+      "bProcessing": true,
+      "bServerSide": true,
+      "sAjaxSource": "/admin/data_tables/"+model,
+      "aoColumnDefs": [
+        { "sType": "by-data", "aTargets": [ 0 ] },
+        { "sClass": "nowrap", "aTargets": nowraps },
+      ]
     } );
     if ($('table.table').length > 0 && $('table.table').dataTableSettings[0]) {
       var lengthes = '';

@@ -53,7 +53,7 @@ Admin.helpers do
 
   def mk_checkbox( target, sorter = nil )
     name = :"check_#{target.class.name.underscore}[#{target.id}]"
-    content = mk_published( target ) + check_box_tag( name, :checked => false, :id => name )
+    content = check_box_tag( name, :checked => false, :id => name ) + mk_published( target )
     content_tag :label, content, :for => name, :class => :checkbox, :'data-sorter' => (sorter || target.id)
   end
 

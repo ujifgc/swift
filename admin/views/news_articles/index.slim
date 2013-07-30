@@ -7,28 +7,6 @@ ul.nav.nav-pills.news_rubrics
   - klass = params[:news_rubric_id] == 'all' && 'active'
   li class=klass
     = link_to pat(:all), url(:news_articles, :index, :news_rubric_id => :all)
-= partial 'base/paginator'
-form method=:get action=request.env['REQUEST_URI']
-  | Фильтр: 
-  input.search-query name=:title type=:text value=params[:title]
-  input name=:news_rubric_id type=:hidden value=params[:news_rubric_id]
-  button.btn type=:submit default=true
-    | Искать
 form.inner.multiple#multiple-news_articles action=url(:news_articles, :index)/:multiple method=:post
-  table.table.table-condensed
-    thead
-      tr
-        th.first
-        th= mat(:object, :title)
-        th= mat(:object, :rubric_id)
-        th= mat(:object, :date)
-        th= mat(:object, :publish_at)
-    tbody
-      - @objects.each do |object|
-        tr
-          td.last= mk_checkbox object
-          td= mk_edit object
-          td= object.news_rubric && object.news_rubric.title
-          td.nowrap= object.date.kind_of?(DateTime) ? I18n.l( object.date, :format => :date ) : ''
-          td.nowrap= object.publish_at.kind_of?(DateTime) ? I18n.l( object.publish_at, :format => :date ) : ''
+  = mk_data_table NewsArticle
 = partial 'base/index_operations_bottom'

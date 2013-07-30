@@ -183,6 +183,7 @@ ru:
         is_private: Доступ ограничен
         is_system: Служебная
         value: Значение
+        news_rubric: Лента
         meta:
           description: Метаописание
           keywords: Ключевые слова
