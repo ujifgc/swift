@@ -1,4 +1,3 @@
-#coding:utf-8
 class Block
   include DataMapper::Resource
 
@@ -39,5 +38,4 @@ class Block
   def get_type
     I18n.t "models.object.attributes.type_#{Types[type]}"
   end
-
 end

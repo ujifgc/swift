@@ -1,4 +1,3 @@
-#coding:utf-8
 class Access
   include DataMapper::Resource
 
@@ -9,9 +8,4 @@ class Access
   property :object_id, Integer, :required => true
   property :object_type, String, :required => true
   property :deny, Boolean, :required => true, :default => false
-
-  # hookers
-
-  # instance helpers
-
 end

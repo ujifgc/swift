@@ -1,4 +1,3 @@
-#coding:utf-8
 class Bond
   include DataMapper::Resource
 
@@ -88,5 +87,4 @@ class Bond
     all(parent).destroy
     all(child).destroy
   end
-
 end

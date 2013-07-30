@@ -1,4 +1,3 @@
-#coding:utf-8
 class Image
   include DataMapper::Resource
 
@@ -24,5 +23,4 @@ class Image
   def info
     "#{title} (#{file.content_type}, #{file.size.as_size})"
   end
-
 end

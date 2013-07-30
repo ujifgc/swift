@@ -1,4 +1,3 @@
-#coding:utf-8
 class FormsResult
   include DataMapper::Resource
 
@@ -50,7 +49,4 @@ class FormsResult
   def title
     I18n.l( self.created_at, :format => :datetime )
   end
-
-  # class helpers
-
 end

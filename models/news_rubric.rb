@@ -1,4 +1,3 @@
-#coding:utf-8
 class NewsRubric
   include DataMapper::Resource
 
@@ -27,5 +26,4 @@ class NewsRubric
     return []  unless ['news_articles', 'news_events'].include? type
     NewsRubric.all(:conditions => [ "0 < (SELECT count(id) FROM `#{type}` WHERE news_rubric_id=`news_rubrics`.id)" ])
   end
-
 end

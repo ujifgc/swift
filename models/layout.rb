@@ -1,4 +1,3 @@
-#coding:utf-8
 class Layout
   include DataMapper::Resource
 
@@ -21,5 +20,4 @@ class Layout
   after :destroy do
     FileUtils.rm_f "#{Swift::Application.views}/layouts/#{id}.slim"
   end
-
 end

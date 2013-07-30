@@ -11,5 +11,4 @@ class Code
   property :is_system,   Boolean, :default => false
 
   sluggable!
-  
 end

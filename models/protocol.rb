@@ -1,4 +1,3 @@
-#coding:utf-8
 require 'zlib'
 
 class Protocol
@@ -91,5 +90,4 @@ class Protocol
   def data=(value)
     attribute_set( :data, Zlib.deflate( value.force_encoding('binary') ) )
   end
-
 end

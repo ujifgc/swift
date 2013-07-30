@@ -52,5 +52,4 @@ class NewsEvent
       tags[1]
     end
   end
-
 end

@@ -29,9 +29,4 @@ class CatCard
 
   # relations
   has n, :cat_nodes
-
-  # hookers
-
-  # instance helpers
-
 end

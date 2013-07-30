@@ -1,4 +1,3 @@
-#coding:utf-8
 class NewsArticle
   include DataMapper::Resource
 
@@ -27,5 +26,4 @@ class NewsArticle
   # hookers
 
   # instance helpers
-
 end

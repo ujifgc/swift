@@ -9,5 +9,4 @@ class Element
   before :valid? do
     self.id = title  if id.blank?
   end
-  
 end

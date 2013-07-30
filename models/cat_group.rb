@@ -1,4 +1,3 @@
-#coding:utf-8
 class CatGroup
   include DataMapper::Resource
 
@@ -19,9 +18,4 @@ class CatGroup
 
   # relations
   belongs_to :cat_card, :required => true
-
-  # hookers
-
-  # instance helpers
-  
 end

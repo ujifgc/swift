@@ -168,5 +168,4 @@ private
   def encrypt_password
     self.crypted_password = ::BCrypt::Password.create(password)
   end
-
 end

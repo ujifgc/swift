@@ -1,4 +1,3 @@
-#coding:utf-8
 class Folder
   include DataMapper::Resource
 
@@ -25,5 +24,4 @@ class Folder
     return []  unless ['images', 'assets'].include? type
     Folder.all(:conditions => [ "0 < (SELECT count(id) FROM `#{type}` WHERE folder_id=`folders`.id)" ])
   end
-
 end

@@ -1,4 +1,3 @@
-#coding:utf-8
 class Option
   include DataMapper::Resource
   
@@ -14,7 +13,6 @@ class Option
   def get_value
     json['value']
   end
-
 end
 
 def Option( id )

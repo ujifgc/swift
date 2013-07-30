@@ -90,5 +90,4 @@ class FormsCard
     self.statistic = {}
     self.save
   end
-
 end

@@ -1,4 +1,3 @@
-#coding:utf-8
 class Fragment
   include DataMapper::Resource
 
@@ -30,5 +29,4 @@ class Fragment
   def self.basic
     all :is_fragment => false
   end
-
 end

@@ -123,5 +123,4 @@ class Page
     save!
     children.each{ |ch| ch.change_path! path }
   end
-
 end

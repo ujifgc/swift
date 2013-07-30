@@ -69,5 +69,4 @@ class CatNode
       all
     end
   end
-
 end
