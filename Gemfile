@@ -32,7 +32,7 @@ gem 'dm-mysql-adapter'
 
 # file, picture, js, css assets
 gem 'nozzle', '~> 0.1.3'
-gem 'rack-pipeline', '~> 0.0.4'
+gem 'rack-pipeline', '~> 0.0.5'
 
 # authorization and authentication
 gem 'omniauth'

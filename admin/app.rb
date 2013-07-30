@@ -32,23 +32,22 @@ class Admin < Padrino::Application
     :combine => Padrino.env == :production,
     :css => {
       :login => [
-        '/stylesheets/libraries/bootstrap.css',
-        '/stylesheets/admin/96-monkey.css',
-        '/stylesheets/login.css',
+        'vendor/stylesheets/libraries/bootstrap.css',
+        'assets/stylesheets/admin/96-monkey.css',
+        'assets/stylesheets/login.css',
       ],
       :admin => [
-        '/stylesheets/libraries/bootstrap.css',
-        '/stylesheets/libraries/colorbox.css',
-        '/stylesheets/admin/*.css',
+        'vendor/stylesheets/libraries/bootstrap.css',
+        'vendor/stylesheets/libraries/colorbox.css',
+        'assets/stylesheets/admin/*.css',
       ]
     },
     :js => {
       :admin => [
-        '/javascripts/libraries/*.js',
-        '/javascripts/bootstrap/*.js',
-        '/javascripts/markdown/*.js',
-        '/javascripts/fileupload/*.js',
-        '/javascripts/admin-core.js',
+        'vendor/javascripts/libraries/*.js',
+        'vendor/javascripts/bootstrap/*.js',
+        'vendor/javascripts/markdown/*.js',
+        'assets/javascripts/admin-core.js',
       ]
     }
   }

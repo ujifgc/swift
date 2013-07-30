@@ -10,18 +10,18 @@ class Swift::Application < Padrino::Application
     :combine => Padrino.env == :production,
     :css => {
       :app => [
-        '/stylesheets/libraries/bootstrap-lite.css',
-        '/stylesheets/libraries/colorbox.css',
-        '/stylesheets/elements/*.css',
-        '/stylesheets/app/*.css',
+        'vendor/stylesheets/libraries/bootstrap-lite.css',
+        'vendor/stylesheets/libraries/colorbox.css',
+        'assets/stylesheets/elements/*.css',
+        'assets/stylesheets/app/*.css',
       ]
     },
     :js => {
       :app => [
-        '/javascripts/libraries/01-jquery.js',
-        '/javascripts/libraries/07-jquery.colorbox.js',
-        '/javascripts/elements/*.js',
-        '/javascripts/app/*.js',
+        'vendor/javascripts/libraries/01-jquery.js',
+        'vendor/javascripts/libraries/07-jquery.colorbox.js',
+        'assets/javascripts/elements/*.js',
+        'assets/javascripts/app/*.js',
       ]
     }
   }
