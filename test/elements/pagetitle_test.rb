@@ -19,9 +19,4 @@ skip
     el.must_equal "<p>small text info</p>"
   end
 
-  after do
-  end
-  
-
-
 end

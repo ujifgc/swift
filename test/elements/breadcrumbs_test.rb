@@ -11,7 +11,10 @@ describe Swift do
   end
 
   it "should not nil page" do
-skip
+    skip
+    p @page1
+    p @page2
+    p @swift
     el = element("Breadcrumbs", :spacer => ">")
     el.must_equal "<div class=\"breadcrumbs\"><a href=\"/\">Главная</a>&gt;<a href=\"/page2\">Page 2</a></div>"
   end

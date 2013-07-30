@@ -17,7 +17,7 @@ describe Swift do
   end
 
   it 'should view map' do 
-skip
+    skip
     el = element('SiteMap')
     el.must_equal ""
   end
