@@ -32,7 +32,7 @@ module Padrino
             if logged_in?
               redirect '/admin'
             else
-              store_location!  if store_location && !request.env['REQUEST_URI'].match(%r{(?:/assets|stylesheets/|/javascripts/).*(?:\.css|\.js)$})
+              store_location!  if store_location && !request.env['REQUEST_URI'].match(%r{(?:/assets|stylesheets/|/javascripts/).*(?:\.css|\.js|\.png)$})
               access_denied
             end
           end
