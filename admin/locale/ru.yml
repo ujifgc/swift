@@ -182,6 +182,7 @@ ru:
         receivers: Получатели
         is_private: Доступ ограничен
         is_system: Служебная
+        value: Значение
         meta:
           description: Метаописание
           keywords: Ключевые слова
