@@ -31,13 +31,25 @@ Admin.controllers :data_tables do
     paginator[:limit] = params[:iDisplayLength].to_i
     paginator.delete(:limit)  if paginator[:limit] < 0
 
-    filter = { :order => :updated_at.desc }
+    filter = { }
+    filter[:title.like] = '%' + params[:sSearch] + '%'
+
+    order = { :order => [ ] }
+    params[:iSortingCols].to_i.times do |i|
+      column_name = columns.keys[params[:"iSortCol_#{i}"].to_i].to_s
+      column_name += '_id'  unless model.properties.named? column_name
+      next  unless model.properties.named? column_name
+      next  if column_name.blank?
+      direction = params[:"sSortDir_#{i}"] == 'desc' ? :desc : :asc
+      order[:order] << column_name.to_sym.send(direction)
+    end
+    order[:order] << :updated_at.desc
 
     result = {}
     result[:iTotalRecords] = model.count
     result[:iTotalDisplayRecords] = model.count filter
     result[:sEcho] = params[:sEcho].to_i
-    result[:aaData] = model.all(paginator.merge filter).map do |o|
+    result[:aaData] = model.all(paginator.merge(filter).merge(order)).map do |o|
       data = {}
       columns.each_with_index do |(k,v),i|
         data[i] = binding.eval(v[:code])
