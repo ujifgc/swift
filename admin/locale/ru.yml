@@ -16,6 +16,7 @@ ru:
       cancel: Отменить
       close: Закрыть
       all: Все
+      group: Группа
       logout: Выйти
       site: На сайт
       ok: Лады
@@ -116,6 +117,8 @@ ru:
       page:
         repositioned: Позиция страницы изменилась
         updated: Изменения сохранены
+      news_article:
+        updated: Статья сохранена
 
   group:
     admin: Администратор

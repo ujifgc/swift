@@ -1,29 +1,7 @@
-class NewsArticle
-  def self.admin_columns
-    columns = {
-      :id          => { :code => 'mk_checkbox o', :head_class => 'last' },
-      :title       => { :code => 'mk_edit o', :body_class => 'wide' },
-      :news_rubric => { :code => 'o.news_rubric && o.news_rubric.title' },
-      :date        => { :code => "o.date.kind_of?(DateTime) ? I18n.l( o.date, :format => :date ) : ''" },
-      :publish_at  => { :code => "o.publish_at.kind_of?(DateTime) ? I18n.l( o.publish_at, :format => :date ) : ''" },
-    }
-    columns.keys.each do |k|
-      columns[k][:header_title] = I18n.t("models.object.attributes.#{k}")
-      case k
-      when :date, :publish_at, :created_at, :updated_at, :news_rubric
-        columns[k][:data] ||= {}
-        columns[k][:data][:nowrap] = true
-      end
-    end
-    columns
-  end
-end
-
 Admin.controllers :data_tables do
   get :index, :with => [ :model ] do
-    Logger params
     model = params[:model].singularize.camelize.constantize  rescue error(501)
-    columns = model.admin_columns  rescue error(501)
+    columns = model.dynamic_columns  rescue error(501)
 
     paginator = {}
     paginator[:offset] = params[:iDisplayStart].to_i
@@ -32,7 +10,13 @@ Admin.controllers :data_tables do
     paginator.delete(:limit)  if paginator[:limit] < 0
 
     filter = { }
-    filter[:title.like] = '%' + params[:sSearch] + '%'
+    filter[:conditions] = [ 'title LIKE ? OR id LIKE ?', "%#{params[:sSearch]}%", "%#{params[:sSearch]}%" ]
+
+    if params[:sGroup] && params[:sGroupName]
+      column_name = :"#{params[:sGroupName]}_id"
+      group_id = params[:sGroup].to_i
+      filter[column_name] = group_id  if model.properties.named?(column_name) && group_id > 0
+    end
 
     order = { :order => [ ] }
     params[:iSortingCols].to_i.times do |i|

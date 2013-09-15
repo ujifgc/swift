@@ -12,6 +12,7 @@ module Swift
       include Swift::ModelPlugins::Recursive::ClassMethods
       include Swift::ModelPlugins::Sluggable::ClassMethods
       include Swift::ModelPlugins::Stamps::ClassMethods
+      include Swift::ModelPlugins::Datatables::ClassMethods
     end
   end
 end

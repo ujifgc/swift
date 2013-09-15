@@ -17,7 +17,7 @@ ul.nav.nav-pills.cat_cards
       li class=klass
         = link_to group.title, url(:cat_nodes, :index, :group => group.slug)
 form.inner.multiple#multiple-cat_nodes action=url(:cat_nodes, :index)/:multiple method=:post
-  table.table class=(@objects.length > 15 && 'smart')
+  table.table
     thead
       tr
         th.first

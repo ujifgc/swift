@@ -73,6 +73,9 @@
 .table tr.level-7 td.edit {
   padding-left: 14em;
 }
+.table th.sorting, .table th.sorting_asc, .table th.sorting_desc {
+  padding-right: 16px;
+}
 
 table.table thead .sorting,
 table.table thead .sorting_asc,
@@ -93,20 +96,61 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
   margin-bottom: 0;
 }
 .page-control {
-  float: right;
-  margin: 0 0 -8px 0;
-  padding: 15px 20px 0;
+  text-align: right;
+  margin-bottom: 2px;
+  position: relative;
+  padding: 8px 8px 6px;
 }
 .page-filter {
-  float: right;
-  margin-top: -53px;
+}
+.page-control .inline {
+  vertical-align: top;
+  margin-left: 1em;
+  margin-bottom: 2px;
+}
+.page-control .inline:first-child {
+  margin-left: 0;
+}
+.page-control label {
+  margin: 0;
+}
+.page-control select {
+  vertical-align: baseline;
+  margin: 0;
+}
+.page-control .pagination ul > li > a, .page-control .pagination ul > li > span {
+  line-height: 18px;
+}
+.page-control select {
+  width: auto;
+  max-width: 220px
 }
 .page-filter input {
   display: inline;
+  height: 18px;
+  width: 190px;
 }
-.inline .pagination {
-  margin: 0;
+.page-control .page-paginate {
+  float: left;
+}
+.page-control .pagination {
+  margin: 0 0 -5px;
+}
+.page-control .pagination ul {
   background: #fff;
+}
+.page-control .page-processing > div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+}
+.page-control .page-processing > div .shadow {
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
 }
 .table td a.btn {
   margin: -4px;

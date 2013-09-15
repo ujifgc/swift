@@ -4,9 +4,9 @@ form.inner.multiple#multiple-pages action=url(:pages, :index)/:multiple method=:
     thead
       tr
         th.first
-        th= mat(:object, :title)
-        th= mat(:object, :slug)
-        th= mat(:object, :path)
+        th data={ :search => true } = mat(:object, :title)
+        th data={ :search => true } = mat(:object, :slug)
+        th data={ :search => true } = mat(:object, :path)
         th= mat(:object, :fragment)
     tbody
       - @k = 0

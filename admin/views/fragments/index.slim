@@ -2,7 +2,7 @@
 form.inner.multiple#multiple-fragments action=url(:fragments, :index)/:multiple method=:post
   - [:basics, :fragments].each do |var|
     - @objects = instance_variable_get :"@#{var}"
-    table.table class=(@objects.length > 15 && 'smart')
+    table.table
       thead
         tr
           th.first

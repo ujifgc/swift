@@ -8,7 +8,7 @@ ul.nav.nav-pills.folders
   li class=klass
     = link_to pat(:all), url(:images, :index, :folder_id => 'all')
 form.inner.multiple#multiple-images action=url(:images, :index)/:multiple method=:post
-  table.table class=(@objects.length > 15 && 'smart')
+  table.table
     thead
       tr
         th.first

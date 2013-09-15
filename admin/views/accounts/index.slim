@@ -8,7 +8,7 @@
     li class=klass
       = link_to pat(:groups), url(:accounts, :index, :group => 'groups')
 form.inner.multiple#multiple-accounts action=url(:accounts, :index)/:multiple method=:post
-  table.table class=(@objects.length > 15 && 'smart')
+  table.table
     thead
       tr
         th.first

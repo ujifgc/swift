@@ -1,6 +1,6 @@
 - tree ||= @tree
 - k = 0
-- tree.each do |leaf|
+- (tree||[]).each do |leaf|
   - k += 1
   - if o = leaf[:page]
     div.item class=( (leaf[:child] ? "openable" : "final") + " level-#{level}" ) id="page-#{o.id}"

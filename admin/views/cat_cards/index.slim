@@ -1,6 +1,6 @@
 = partial 'base/index_operations'
 form.inner.multiple#multiple-cat_cards action=url(:cat_cards, :index)/:multiple method=:post
-  table.table class=(@objects.length > 15 && 'smart')
+  table.table
     thead
       tr
         th.first

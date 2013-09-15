@@ -1,0 +1,7 @@
+.dataTables_group#DataTables_Table_0_group data={ :name => @group_name }
+  label
+    = pat('group') + ': '
+    select name="DataTables_Table_0_group" size="1" aria-controls="DataTables_Table_0"
+      option value="all" selected=(@selected.empty? && "selected") = pat('all')
+      - @groups.each do |group|
+        option value=group.id selected=(@selected[group.id] && "selected") = group.title

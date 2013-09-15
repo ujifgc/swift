@@ -14,7 +14,7 @@ ul.nav.nav-pills.forms_cards
     li class=klass
       = link_to forms_card.title, url(:forms_results, :index, :forms_card_id => forms_card.id)
 form.inner.multiple#multiple-forms_results action=url(:forms_results, :index)/:multiple method=:post
-  table.table class=(@objects.length > 15 && 'smart')
+  table.table
     thead
       tr
         th.first

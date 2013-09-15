@@ -68,46 +68,84 @@ bindIndexList = function() {
   });
   $('.multiple table.smart').addClass('table-condensed');
   if ($('#paginator3000').length == 0) {
-    var nowraps = [], i = 0;
+    var nowraps = [], searchable = [], unsearchable = [], i = 0;
     $('table.smart thead tr th').each(function() {
       var data = $(this).data();
       if (data.nowrap) nowraps.push(i);
+      if (data.search) searchable.push(i); else unsearchable.push(i);
       i += 1;
     });
     var lenHash = [[15, 25, -1], [15, 25, "Все"]];
-    var form = $('.multiple table.smart').closest('form');
-    var model = form.attr('action').replace(/^\/admin\/([^\/]*).*$/,'$1');
-    $('.multiple table.smart').dataTable( {
-      "sDom": "<'page-control'<'inline pick-page'p><'hide length'l>><'page-filter'rf>t",
+    var tableOptions = {
+      "sDom": "<'page-control well well-small'<'inline page-paginate'p><'inline page-filter'f><'inline page-group'><'inline page-length'l><'inline page-processing'r>>t",
       "sPaginationType": "bootstrap",
       "bStateSave": true,
       "bAutoWidth": false,
-
+      "aLengthMenu": lenHash,
+      "iDisplayLength": -1,
+      "aoColumnDefs": [
+        { "sType": "by-data", "aTargets": [ 0 ] },
+        { "bSearchable": false, "aTargets": unsearchable },
+        { "bSearchable": true, "aTargets": searchable },
+        { "sClass": "nowrap", "aTargets": nowraps },
+      ],
       "oLanguage": {
-        "sLengthMenu": "_MENU_",
-        "sSearch": "Фильтр: ",
+        "sLengthMenu": "На странице: _MENU_",
+        "sSearch": "Поиск: ",
         "oPaginate": {
           "sNext": "",
           "sPrevious": ""
+        },
+        "sProcessing": "<div class='shadow'></div>",
+      },
+      "fnStateSaveParams": function (oSettings, oData) {
+        if ($('.dataTables_group select').length > 0) {
+          oData.iGroup = $('.dataTables_group select').val();
         }
       },
-      "aLengthMenu": lenHash,
-      "iDisplayLength": -1,
-      "bProcessing": true,
-      "bServerSide": true,
-      "sAjaxSource": "/admin/data_tables/"+model,
-      "aoColumnDefs": [
-        { "sType": "by-data", "aTargets": [ 0 ] },
-        { "sClass": "nowrap", "aTargets": nowraps },
-      ]
-    } );
+      "fnStateLoadParams": function (oSettings, oData) {
+        if ($('.dataTables_group select').length > 0) {
+          $('.dataTables_group select').val(oData.iGroup);
+        }
+      },
+    };
+    if ($('.multiple table.smart.dynamic').length > 0) {
+      var form = $('.multiple table.smart').closest('form');
+      var model = '';
+      if (form.length > 0) model = form.attr('action').replace(/^\/admin\/([^\/]*).*$/,'$1');
+      tableOptions["fnServerData"] = function ( sSource, aoData, fnCallback ) {
+        if ($('.dataTables_group select').length > 0) {
+          aoData.push( { "name": "sGroup", "value": $('.dataTables_group select').val() } );
+          aoData.push( { "name": "sGroupName", "value": $('.dataTables_group').data('name') } );
+        }
+        $.getJSON( sSource, aoData, function (json) { fnCallback(json) } );
+      };
+      tableOptions["bProcessing"] = true;
+      tableOptions["bServerSide"] = true;
+      tableOptions["sAjaxSource"] = "/admin/data_tables/"+model;
+    }else{
+      tableOptions["aoColumnDefs"].push( {
+        "aTargets": [ 1 ],
+        "mData": function ( source, type, val ) {
+          if (type === 'set') {
+            source.for_display = val;
+            source.for_filter = $.trim( (val.indexOf('<') >= 0) ? $(val).text() : val );
+            return;
+          }
+          else if (type === 'filter')
+            return source.for_filter;
+          else
+            return source.for_display;
+        }
+      } );
+    }
+    $('.multiple table.smart').dataTable( tableOptions );
     if ($('table.table').length > 0 && $('table.table').dataTableSettings[0]) {
-      var lengthes = '';
-      for (var ii in lenHash[0]) {
-        lengthes += '<li><a href="javascript:;" onclick="pickLength(this)" data-length="'+lenHash[0][ii]+'">'+lenHash[1][ii]+'</a></li>';
-      }
-      $('.dataTables_length').parent().after('<div class="inline pick-length"><ul class="nav nav-pills"><li class="nav-header">Объектов на странице:</li>'+lengthes+'</ul></div>');
       $('.dataTables_filter input[type=text]').addClass('search-query');
+      if ($('.dataTables_group').length > 0) {
+        $('.dataTables_group').appendTo('.page-group');
+        $('.dataTables_group select').on('change', function() { $('.multiple table.smart').dataTable().fnDraw() });
+      }
 
       var len = $('table.table').dataTableSettings[0]._iDisplayLength;
       if (len == -1) $('.inline .pagination').hide(); else $('.inline .pagination').show();
@@ -232,7 +270,7 @@ pickCatObject = function() {
   });
   return false;
 };
-
+/*
 pickLength = function(e) {
   var len = $(e).data('length');
   if (len == -1) $('.inline .pagination').hide(); else $('.inline .pagination').show();
@@ -240,7 +278,7 @@ pickLength = function(e) {
   $('.pick-length li').removeClass('active');
   $(e).parent().addClass('active');
 };
-
+*/
 multipleOp = function(el) {
   if (el.disabled) return false;
   var confirm_message = $(el).data('prompt');
