@@ -39,7 +39,7 @@ module Padrino
                   ''
                 end
               end
-            end.html_safe
+            end.to_s.html_safe
             type = 'textarea'
             text_area field, opts
           when :password, :password_confirmation
