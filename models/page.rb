@@ -57,6 +57,10 @@ class Page
     throw :halt  if is_system
   end
 
+  def self.root
+    first :parent_id => nil
+  end
+
   # instance helpers
   def title_tree
     prepend = ''
