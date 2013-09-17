@@ -82,7 +82,7 @@ bindIndexList = function() {
       "bStateSave": true,
       "bAutoWidth": false,
       "aLengthMenu": lenHash,
-      "iDisplayLength": -1,
+      "iDisplayLength": 25,
       "aoColumnDefs": [
         { "sType": "by-data", "aTargets": [ 0 ] },
         { "bSearchable": false, "aTargets": unsearchable },
