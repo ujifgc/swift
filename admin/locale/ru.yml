@@ -242,6 +242,8 @@ ru:
       name: опросы
     forms_card:
       name: опрос
+    options:
+      name: настройки
   asset_uploaded: загружен
   time:
     formats:
