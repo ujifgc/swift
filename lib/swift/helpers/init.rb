@@ -53,23 +53,34 @@ module Swift
 
       def init_swift
         return  if @_inited
-        I18n.locale = :ru
-        swift.root = Swift::Application.root
-        swift.public = Swift::Application.public_folder
-        swift.views = Swift::Application.views
-        swift.path_pages = []
-        swift.path_ids = []
+        init_folders
+        init_media
+        init_http
+        @_inited = true
+      end
+
+      private
+
+      def init_http
         swift.http_method = request.env['REQUEST_METHOD']
-        swift.placeholders = {}
         swift.host = request.env['SERVER_NAME']
         swift.uri = "/#{params[:request_uri]}"
         swift.path = swift.uri.partition('?').first
+        swift.path_pages = []
+        swift.path_ids = []
+      end
+
+      def init_folders
+        swift.root = Swift::Application.root
+        swift.public = Swift::Application.public_folder
+        swift.views = Swift::Application.views
+      end
+
+      def init_media
         media = params.has_key?('print') ? 'print' : 'screen'
         swift.send("#{media}?=", media)
         swift.media = media
         swift.send("pretty?=", Padrino.env == :development)
-        @_inited = true
-        swift
       end
     end
   end
