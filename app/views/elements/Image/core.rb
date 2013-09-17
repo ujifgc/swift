@@ -6,13 +6,13 @@ throw :output, "[Image ##{@args[0]} missing]"  unless @image
 
 @outlet = case @opts[:outlet]
 when nil
-  @opts[:instance] ? @image.file.thumb : @image.file
+  @opts[:instance] ? @image.file.outlets[:thumb] : @image.file
 when ''
   @image.file
 else
   @image.file.outlets[@opts[:outlet].to_sym]
 end
-throw :output, "[Image ##{@args[0]} outlet '#{@opts[:outlet]}' missing]"  unless @outlet
+throw :output, "[Image ##{@args[0]} outlet '#{@opts[:outlet]||'thumb'}' missing]"  unless @outlet
 
 styles = []
 [:width, :height].each do |dim|
