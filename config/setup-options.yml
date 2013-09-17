@@ -8,3 +8,16 @@ Option:
   max_protocol_period:
     title: Предельная длительность хранения протокола (дней)
     value: 280
+  outlets:
+    title: Размеры масштабирования картинок
+    value:
+      fill_thumb:
+        fill: 180x135
+      thumb:
+        fit: 180x135
+      mini_thumb:
+        fit: 80x
+      gallery_thumb:
+        fit: x135
+      index_thumb:
+        fit: 360x240

@@ -45,6 +45,7 @@ end
 
 Padrino.after_load do
   DataMapper.finalize
+  Nozzle.finalize
   I18n.reload!  if Padrino.env == :development
 end
 

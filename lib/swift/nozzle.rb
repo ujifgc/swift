@@ -1,7 +1,6 @@
 require 'shellwords'
 
 class NeatAdapter < Nozzle::Adapter::Base
-
   def size
     @record.file_size || -1
   end
@@ -47,76 +46,9 @@ class NeatAdapter < Nozzle::Adapter::Base
       super
     end
   end  
-
 end
 
 class ImageAdapter < NeatAdapter
-
-  outlet :thumb do
-    def prepare( original, result )
-      FileUtils.mkdir_p File.dirname(result)
-      `convert #{Shellwords.escape original} -thumbnail 180x135 #{Shellwords.escape result}`
-    end
-    def relative_folder
-      "cache/#{@model}"
-    end
-    def filename
-      "#{@record.id}@#{version_name}-#{super}"
-    end
-  end
-
-  outlet :fill_thumb do
-    def prepare( original, result )
-      FileUtils.mkdir_p File.dirname(result)
-      `convert #{Shellwords.escape original} -thumbnail 180x135^ -gravity center -extent 180x135 #{Shellwords.escape result}`
-    end
-    def relative_folder
-      "cache/#{@model}"
-    end
-    def filename
-      "#{@record.id}@#{version_name}-#{super}"
-    end
-  end
-
-  outlet :mini_thumb do
-    def prepare( original, result )
-      FileUtils.mkdir_p File.dirname(result)
-      `convert #{Shellwords.escape original} -thumbnail 80x #{Shellwords.escape result}`
-    end
-    def relative_folder
-      "cache/#{@model}"
-    end
-    def filename
-      "#{@record.id}@#{version_name}-#{super}"
-    end
-  end
-
-  outlet :gallery_thumb do
-    def prepare( original, result )
-      FileUtils.mkdir_p File.dirname(result)
-      `convert #{Shellwords.escape original} -thumbnail x135 #{Shellwords.escape result}`
-    end
-    def relative_folder
-      "cache/#{@model}"
-    end
-    def filename
-      "#{@record.id}@#{version_name}-#{super}"
-    end
-  end
-  
-  outlet :index_thumb do
-    def prepare( original, result )
-      FileUtils.mkdir_p File.dirname(result)
-      `convert #{Shellwords.escape original} -thumbnail 360x240 #{Shellwords.escape result}`
-    end
-    def relative_folder
-      "cache/#{@model}"
-    end
-    def filename
-      "#{@record.id}@#{version_name}-#{super}"
-    end
-  end
-  
   def default_url
     '/images/image_missing.png'
   end
@@ -124,14 +56,38 @@ class ImageAdapter < NeatAdapter
   def base_dir
     'img'
   end
-
 end
 
-
 class AssetAdapter < NeatAdapter
-
   def base_dir
     'doc'
   end
+end
 
+module Nozzle
+  RESIZE_METHODS = {
+    :fit  => '-thumbnail {size}',
+    :fill => '-thumbnail {size}^ -gravity center -extent {size}',
+  }
+  def self.finalize
+    outlets = Option(:outlets) || []
+    outlets.each do |name,process|
+      ImageAdapter.instance_eval do
+        outlet name.to_sym do
+          @resize_method = RESIZE_METHODS[process.keys.first.to_sym].gsub('{size}', process.values.first)
+          def self.resize_method; @resize_method; end
+          def prepare( original, result )
+            FileUtils.mkdir_p File.dirname(result)
+            `convert #{Shellwords.escape original} #{self.class.resize_method} #{Shellwords.escape result}`
+          end
+          def relative_folder
+            "cache/#{@model}"
+          end
+          def filename
+            "#{@record.id}@#{version_name}-#{super}"
+          end
+        end
+      end
+    end
+  end
 end
