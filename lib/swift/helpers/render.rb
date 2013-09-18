@@ -3,22 +3,6 @@ module Swift
     module Render
       MAX_PARSE_LEVEL = 4
 
-      REGEX_INTERNAL_TAG = /
-        \[                                                     # [
-        (page|link|block|text|image|img|file|asset|element)    # 1, -- tag name
-        (                                                      # 2, -- identity
-          (?:[\:\.\#][\w\-]*)*                                 #
-        )                                                      #
-        \s+                                                    #
-        (.*)                                                   # 3, -- arguments
-        \]                                                     # ]
-      /x.freeze
-
-      REGEX_IDENTITY = /
-        [\:\.\#]    # prefix :.#
-        [\w\-]*     # identity name
-      /x.freeze
-
       REGEX_RECURSIVE_BRACKETS = /
         (?<re>             #
           \[               #
@@ -30,30 +14,6 @@ module Swift
           \]               #
         )                  #
       /x.freeze
-
-      REGEX_VARS = /
-        ["']([^"']+)["'],? |           # 0, -- "smth",
-        (                              # 1
-          ([\S^,]+)\:\s*               # 2
-          (                            # 3
-            ["']([^"']+)["'] |         # 4
-            ([^,'"\s]+)                # 5 "'
-          )                            # "
-        ),? |                          # 1, -- key: "smth",
-        ([^'"\s]+)                     # 6, -- sm, th "'
-      /x.freeze
-
-      INTERNAL_TAGS = {
-        'page'  => 'PageLink',
-        'link'  => 'PageLink',
-        'block' => 'Block',
-        'table' => 'Block',
-        'image' => 'Image',
-        'img'   => 'Image',
-        'file'  => 'File',
-        'asset' => 'File',
-        'element' => :self,
-      }.freeze
 
       def parse_content( text )
         limit_recursion do |flags|
@@ -74,9 +34,32 @@ module Swift
 
       private
 
+      REGEX_INTERNAL_TAG = /
+        \[                                                     # [
+        (page|link|block|text|image|img|file|asset|element)    # 1, -- tag name
+        (                                                      # 2, -- identity
+          (?:[\:\.\#][\w\-]*)*                                 #
+        )                                                      #
+        \s+                                                    #
+        (.*)                                                   # 3, -- arguments
+        \]                                                     # ]
+      /x.freeze
+
       def dispatch_tag( tag, flags )
         internal_tag(tag.match(REGEX_INTERNAL_TAG)) || external_tag(tag, flags)
       end
+
+      INTERNAL_TAGS = {
+        'page'  => 'PageLink',
+        'link'  => 'PageLink',
+        'block' => 'Block',
+        'table' => 'Block',
+        'image' => 'Image',
+        'img'   => 'Image',
+        'file'  => 'File',
+        'asset' => 'File',
+        'element' => :self,
+      }.freeze
 
       def dispatch_element( tag_name, args, opts )
         element_name = INTERNAL_TAGS[tag_name]  or return
@@ -104,6 +87,11 @@ module Swift
           tag
         end
       end
+
+      REGEX_IDENTITY = /
+        [\:\.\#]    # prefix :.#
+        [\w\-]*     # identity name
+      /x.freeze
 
       def detect_identity( identity, opts )
         identity.to_s.scan(REGEX_IDENTITY).each do |attr|
@@ -150,26 +138,46 @@ module Swift
         result
       end
 
-      def parse_vars( str )
+      REGEX_VARS = /
+        (                              # 0
+          ([\S^,]+)\:\s*               # 1
+          (?:                          #
+            ["']([^"']+)["'] |         # 2
+            ([^,'"\s]+)                # 3 "'
+          )                            #
+        ),? |                          #
+        (                              # 4
+          ([^'"\s]+) |                 # 5 "'
+          ["']([^"']+)["'],?           # 6
+        )
+      /x.freeze
+
+      def parse_vars( vars )
         args = []
         opts = {}
-        str.scan(REGEX_VARS).each do |v|
-          case
-          when v[0]
-            args << v[0].to_s
-          when v[1] && v[4]
-            opts.merge! v[2].to_sym => v[4]
-          when v[1] && v[5]
-            opts.merge! v[2].to_sym => v[5]
-          when v[6]
-            args << v[6]
-          end
+        vars.scan(REGEX_VARS).each do |v|
+          opts[v[1].to_sym] = ( v[2] || v[3] )  if v[0]
+          args << ( v[5] || v[6] )  if v[4]
         end
         [args, opts]    
       end
 
+      REGEX_EXTERNAL_TAG = /
+        \[
+          (\d+)
+          (?:
+            \:
+            (.*?)
+          )?
+        \]
+        |
+        \[
+          (content)
+        \]
+      /x.freeze
+
       def parse_code( html, args, content = '' )
-        html.gsub(/\[(\d+)(?:\:(.*?))?\]|\[(content)\]/) do |s|
+        html.gsub(REGEX_EXTERNAL_TAG) do |s|
           idx = $1.to_i
           if idx > 0
             (args[idx-1] || $2).to_s
