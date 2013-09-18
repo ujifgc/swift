@@ -1,6 +1,4 @@
-#
 Admin.controllers :cat_cards do
-  
   before :edit, :update, :destroy do
     @object = CatCard.get(params[:id])
     unless @object
@@ -56,5 +54,4 @@ Admin.controllers :cat_cards do
     end
     redirect url(:cat_cards, :index)
   end
-
 end

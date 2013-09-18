@@ -19,48 +19,52 @@ module Swift
 
         # A getter for amorphous fields
         def []( key )
-          return super key  if properties.named? key
+          return super(key)  if properties.named? key
           # freeze is a safeguard against `[]<<`
-          self.json[key.to_s].freeze
+          json[key.to_s].freeze
         end
 
         # A Setter for amorphous fields
         def []=( key, value )
-          return super( key, value )  if properties.named? key
-          self.json[key.to_s] = value
+          return super(key, value)  if properties.named? key
+          json[key.to_s] = value
         end
 
         # Fills amorphous parent with a hash of params, possibly correcting
         # childrens' keys
         # Returns nothing of interest
         def fill_json( params, children_method )
-          keys = params.delete 'key'
-          types = params.delete 'type'
-          values = Hash[params.delete('value').map{|k,v| [k,v.gsub(/ *(\r|\n|\r\n) *| *$/m,'\1')]}]
-          requires = Hash[(params.delete('require') || []).map{ |k,v| [k, v.to_s=='1']}]
+          types = params['type']
+          values = Hash[params['value'].map{ |k,v| [k, strip_lines(v)] }]
+          requires = Hash[(params['require']||[]).map{ |k,v| [k, v.to_s=='1'] }]
           renames = {}
-          keys.each do |k,v,r|
-            if types[k] == "" || v.blank?
-              self.json.delete k
-              next
-            end
-            if k.match(/json_new-\d+/)
-              self.json[keys[k]] = [types[k], values[k], requires[k]]
-              next
-            end
-            if k != v
-              renames.merge! k => v
-              next
-            end
-            self.json[keys[k]] = [types[k], values[k], requires[k]]
-          end
-          if renames.any?
-            self.json = Hash[self.json.map{ |k,v| renames[k] ? [renames[k], [types[k], values[k], requires[k]]] : [k, v] }]
-            self.send(children_method).each do |child|
-              child.json = Hash[child.json.map{ |k,v| renames[k] ? [renames[k], v] : [k, v] }]
-              child.save
+          params['key'].each do |k,v|
+            if types[k].blank? || v.blank?
+              json.delete k
+            else
+              json[k] = [types[k], values[k], requires[k]]
+              renames[k] = v  unless k == v
             end
           end
+          perform_renaming( renames, children_method )  if renames.any?
+        end
+
+        private
+
+        def strip_lines( s )
+          s.gsub(/\s*(\r|\n|\r\n)\s*|\s*$/m,'\1')
+        end
+
+        def perform_renaming( renames, children_method )
+          self.json = rename_json_keys json, renames
+          send(children_method).each do |child|
+            child.json = rename_json_keys child.json, renames
+            child.save!
+          end
+        end
+
+        def rename_json_keys( hash, renames )
+          Hash[hash.map{ |k,v| renames[k] ? [renames[k], v] : [k, v] }]
         end
       end
     end
