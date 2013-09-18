@@ -18,7 +18,7 @@ module Swift
       def parse_content( text )
         limit_recursion do |flags|
           draft = text.gsub(REGEX_RECURSIVE_BRACKETS) do |tag|
-            dispatch_tag tag, flags
+            internal_tag(tag) || external_tag(tag, flags)
           end
           capture_tag_content draft, flags
         end
@@ -33,21 +33,6 @@ module Swift
       end
 
       private
-
-      REGEX_INTERNAL_TAG = /
-        \[                                                     # [
-        (page|link|block|text|image|img|file|asset|element)    # 1, -- tag name
-        (                                                      # 2, -- identity
-          (?:[\:\.\#][\w\-]*)*                                 #
-        )                                                      #
-        \s+                                                    #
-        (.*)                                                   # 3, -- arguments
-        \]                                                     # ]
-      /x.freeze
-
-      def dispatch_tag( tag, flags )
-        internal_tag(tag.match(REGEX_INTERNAL_TAG)) || external_tag(tag, flags)
-      end
 
       INTERNAL_TAGS = {
         'page'  => 'PageLink',
@@ -64,12 +49,23 @@ module Swift
       def dispatch_element( tag_name, args, opts )
         element_name = INTERNAL_TAGS[tag_name]  or return
         element_name = args.shift  if element_name == :self
-        element element_name, *args, opts
+        process_element element_name, args, opts
       end
 
-      def internal_tag( data )
-        return  unless data
-        tag_name, identity, vars = data[1], data[2], data[-1]
+      REGEX_INTERNAL_TAG = /
+        \[                                                     # [
+        (page|link|block|text|image|img|file|asset|element)    # 1, -- tag name
+        (                                                      # 2, -- identity
+          (?:[\:\.\#][\w\-]*)*                                 #
+        )                                                      #
+        \s+                                                    #
+        (.*)                                                   # 3, -- arguments
+        \]                                                     # ]
+      /x.freeze
+
+      def internal_tag( tag )
+        data = tag.match(REGEX_INTERNAL_TAG)  or return
+        tag_name, identity, vars = data[1..-1]
         args, opts = parse_vars vars
         opts[:title] = detect_title( tag_name, args )  if opts[:title].blank?
         detect_identity identity, opts
