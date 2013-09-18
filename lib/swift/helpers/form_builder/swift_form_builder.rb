@@ -37,7 +37,9 @@ module Padrino
           klass += ' error'  if error.any?
           @template.content_tag( :div, html, :class => klass)
         end
-      protected
+
+        protected
+
         def make_caption( field )
           field
         end
