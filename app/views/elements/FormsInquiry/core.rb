@@ -23,7 +23,6 @@ when :poll
   else
     flash[:notice] = 'Error'
   end
-  
 else
   @cards = Bond.children_for( @page, 'FormsCard' )
   @cards = FormsCard.all( :kind => 'inquiry', :order => :created_at.desc, :limit => 1 ).published  if @cards.empty?

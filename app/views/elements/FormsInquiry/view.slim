@@ -6,7 +6,7 @@
     - session['forms_cards'] << card.id
     - @result = FormsResult.first( :origin => request.addr, :forms_card_id => card.id ) || FormsResult.new( :forms_card_id => card.id )
     - if @result.new?
-      - form_for @result, se_url(card, :poll), :class => 'form', :remote => true do |f|
+      = form_for @result, se_url(card, :poll), :class => 'form', :remote => true do |f|
         - @f = f
         - card.json.each do |k,v|
           = element_view 'Forms/inquiry', :locals => { :key => k, :value => v }

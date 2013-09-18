@@ -4,7 +4,7 @@
   .article
     h3= @card.title
     .text= engine_render( @card.text )
-    - form_for @result, se_url(@card, :post), :class => 'form form-horizontal' do |f|
+    = form_for @result, se_url(@card, :post), :class => 'form form-horizontal' do |f|
       - @f = f
       - @card.json.each do |k,v|
         = element_view 'Forms/input', :locals => { :key => k, :value => v }

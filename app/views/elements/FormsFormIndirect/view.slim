@@ -2,7 +2,7 @@
   .article
     h3= @card.title
     .text= engine_render( @card.text )
-    - form_for @result, '', :class => 'form form-horizontal', :multipart => true, :'accept-charset' => nil do |f|
+    = form_for @result, '', :class => 'form form-horizontal', :multipart => true, :'accept-charset' => nil do |f|
       - @f = f
       - @card.json.each do |k,v|
         - if v[0] == 'file'
