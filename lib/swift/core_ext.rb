@@ -15,11 +15,11 @@ class String
   def case( dir )
     case dir
     when :up, :upper
-      Swift::CaseConversion.upcase self
+      self.mb_chars.upcase.to_s
     when :lo, :low, :lower, :down
-      Swift::CaseConversion.downcase self
+      self.mb_chars.downcase.to_s
     when :cap
-      Swift::CaseConversion.capitalize self
+      self.mb_chars.capitalize.to_s
     else
       fail ArgumentError, "wrong direction '#{dir}', use :up, :lo or :cap"
     end

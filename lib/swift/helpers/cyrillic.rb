@@ -55,26 +55,4 @@ module Swift
       result[0] == ?- ? result[1..-1] : result
     end
   end
-
-  module CaseConversion
-    extend self
-
-    # case conversion
-    DOWNCASE = %W(а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я ґ є ї і)
-    UPCASE   = %W(А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я Ґ Є Ї І)
-    DOWN_UP = Hash[DOWNCASE.zip UPCASE].freeze
-    UP_DOWN = Hash[UPCASE.zip DOWNCASE].freeze
-
-    def upcase( str )
-      str.chars.inject(''){|s,c| s << ( DOWN_UP[c] || c.upcase ) }
-    end
-
-    def downcase( str )
-      str.chars.inject(''){|s,c| s << ( UP_DOWN[c] || c.downcase ) }
-    end
-
-    def capitalize( str )
-      upcase(str[0]) + downcase(str[1..-1])
-    end
-  end
 end
