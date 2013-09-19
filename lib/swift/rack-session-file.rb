@@ -49,6 +49,9 @@ module Rack
           new_sid
         end
         [ @sid, @data ]
+      rescue Psych::SyntaxError
+        ::File.unlink file
+        retry
       end
 
       # puts session data in the store and returns session id
