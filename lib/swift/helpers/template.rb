@@ -6,24 +6,19 @@ module Swift
       end
 
       def element( name, *args )
-        @opts = args.last.kind_of?(Hash) ? args.pop : {}
-        @args = args
-        defer_element( name, @args, @opts ) || process_element( name, @args, @opts )
+        opts = Hash === args.last ? args.pop : {}
+        defer_element( name, args, opts ) || process_element( name, args, opts )
       end
 
       def element_view( name, opts = {} )
         fragment name, :elements, opts
       end
 
-      RENDER_DEFAULTS = {
-        :layout => false,
-        :format => :html5
-      }.freeze
-
       def fragment( template, type = nil, opts = {} )
         opts, type = type, nil  if type.kind_of? Hash
+        opts[:layout] ||= false
         type ||= :fragments
-        render :slim, :"#{type}/#{template}", RENDER_DEFAULTS.merge(opts)
+        render :slim, :"#{type}/#{template}", opts
       rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
         name = template.partition('/').first
         report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[#{type.to_s.singularize.camelize} '#{name}' error: #{e.to_s.strip}]"
@@ -32,12 +27,12 @@ module Swift
       private
 
       def process_element( name, args, opts )
-        @args, @opts = args, opts
-        core, view = find_element name, @opts[:instance]
-        @identity = fill_identity name, @opts
+        core, view = find_element name, opts[:instance]
+        fill_identity name, opts
         catch :output do
+          @args, @opts = args, opts
           binding.eval File.read(core), core  if File.exists?(core)
-          render :slim, view.to_sym, RENDER_DEFAULTS.merge( :views => Swift::Application.views )
+          render :slim, view.to_sym, :layout => false, :views => Swift::Application.views
         end
       rescue Padrino::Rendering::TemplateNotFound => e
         report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[Element '#{name}' error: #{e.strip}]"
@@ -55,11 +50,10 @@ module Swift
       end
 
       def fill_identity( element_name, opts = {} )
-        identity = { :class => element_name.dup }
-        identity[:id] = opts[:id]                                 if opts[:id]
-        identity[:class] << " #{opts[:class]}"                    if opts[:class]
-        identity[:class] << " #{element_name}-#{opts[:instance]}" if opts[:instance]
-        identity
+        @identity = { :class => element_name.dup }
+        @identity[:id] = opts[:id]                                 if opts[:id]
+        @identity[:class] << " #{opts[:class]}"                    if opts[:class]
+        @identity[:class] << " #{element_name}-#{opts[:instance]}" if opts[:instance]
       end
     end
   end
