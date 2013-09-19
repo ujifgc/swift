@@ -13,8 +13,8 @@ module Swift
           property :publish_at, DateTime
 
           before :valid? do |i|
-            self.is_published = false  if self.is_published.blank?
-            self.publish_at = nil  if self.publish_at.blank?
+            self.is_published = false  if is_published.blank?
+            self.publish_at = nil  if publish_at.blank?
           end
 
           def self.published
@@ -29,24 +29,24 @@ module Swift
         # if it has it, maybe reset it
         # finally, set the published flag
         def publish!( time = nil )
-          if !self.publish_at
+          if !publish_at
             self.publish_at = time || DateTime.now
           elsif time
             self.publish_at = time
           end
           self.is_published = true
-          self.save
+          save
         end
 
         # Unsets the published flag, doesnt touch publish time
         def unpublish!
           self.is_published = false
-          self.save
+          save
         end
 
         # Guesses if resource is published and not in the future
         def published?
-          self.is_published && Time.at(self.publish_at.to_i).to_datetime <= DateTime.now
+          is_published && Time.at(publish_at.to_i).to_datetime <= DateTime.now
         end
       end
     end

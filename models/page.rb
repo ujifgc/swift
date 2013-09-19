@@ -36,9 +36,9 @@ class Page
 
   # hookers
   before :valid? do
-    self.parent_id = nil  if self.id == self.parent_id
-    if self.position.blank?
-      max = Page.all( :parent => self.parent ).published.max :position
+    self.parent_id = nil  if id == parent_id
+    if position.blank?
+      max = Page.all( :parent => parent ).published.max :position
       self.position = max.to_i + 5
     else
       while duplicate = Page.first( :parent => parent, :position => position, :id.not => id )
@@ -64,7 +64,7 @@ class Page
   # instance helpers
   def title_tree
     prepend = ''
-    cp = self.parent_id
+    cp = parent_id
     while cp do
       cp = Page.get(cp).parent_id
       prepend += '· · '
@@ -77,19 +77,19 @@ class Page
   end
 
   def reposition!( dir )
-    opos = self.position
+    opos = position
     sibling = case dir.downcase.to_sym
     when :up
-      Page.first :position.lte => opos, :id.not => self.id, :parent_id => self.parent_id, :order => [:position.desc]
+      Page.first :position.lte => opos, :id.not => id, :parent_id => parent_id, :order => [:position.desc]
     when :down
-      Page.first :position.gte => opos, :id.not => self.id, :parent_id => self.parent_id, :order => [:position]
+      Page.first :position.gte => opos, :id.not => id, :parent_id => parent_id, :order => [:position]
     end
     if sibling
       if position == sibling.position
         Page.reposition_all!
       else
         self.position = sibling.position
-        self.save!
+        save!
         sibling.position = opos
         sibling.save!
       end

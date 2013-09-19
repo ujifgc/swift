@@ -8,10 +8,10 @@ module Swift
         def recursive!
           send :include, InstanceMethods
 
-          property :path,     String, :length => 2000, :index => true
+          property :path, String, :length => 2000, :index => true
 
-          has n, :children, self.name, :child_key => :parent_id
-          belongs_to :parent, self.name, :required => false
+          has n, :children, name, :child_key => :parent_id
+          belongs_to :parent, name, :required => false
 
           before :valid? do
             self.parent = nil  if parent_id.blank?

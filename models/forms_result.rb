@@ -47,6 +47,6 @@ class FormsResult
 
   # instance helpers
   def title
-    I18n.l( self.created_at, :format => :datetime )
+    I18n.l( created_at, :format => :datetime )
   end
 end

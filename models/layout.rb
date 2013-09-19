@@ -14,7 +14,7 @@ class Layout
   
   # hookers
   before :valid? do
-    self.id = self.title  if self.id.blank?
+    self.id = title  if id.blank?
   end
 
   after :destroy do

@@ -66,10 +66,10 @@ class Account
   end
 
   def allowed( check )
-    return self.group.allowed(check)  if self.group
-    raise Forbidden  if self.id > ACCOUNT_GROUPS.length
+    return group.allowed(check)  if group
+    raise Forbidden  if id > ACCOUNT_GROUPS.length
     check_index = ACCOUNT_GROUPS.index(check.to_s)
-    self_index  = ACCOUNT_GROUPS.index(self.name.to_s)
+    self_index  = ACCOUNT_GROUPS.index(name.to_s)
     return true  if self_index <= check_index
   end
   alias allowed? allowed
@@ -110,11 +110,11 @@ class Account
   end
 
   def role
-    self.group ? self.group.role : self.name
+    group ? group.role : name
   end
 
   def role_title
-    self.group ? self.group.role_title : self.title
+    group ? group.role_title : title
   end
 
   def title

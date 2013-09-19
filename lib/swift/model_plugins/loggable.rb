@@ -8,7 +8,7 @@ module Swift
               if Protocol::IGNORED_PROPERTIES.include?(property.name) || value.kind_of?(DataMapper::Resource)
                 false
               else
-                value != self.attribute_get(property.name)
+                value != attribute_get(property.name)
               end
             end.map{ |property, value| [property.name, value] }]
           end

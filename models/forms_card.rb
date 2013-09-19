@@ -59,7 +59,7 @@ class FormsCard
   end
 
   def stat( key, var, unit = :percent )
-    results = self.forms_results
+    results = forms_results
     stats = {}
     cnt = 0
     results.each do |result|
@@ -88,6 +88,6 @@ class FormsCard
   
   def reset_statistic()
     self.statistic = {}
-    self.save
+    save!
   end
 end

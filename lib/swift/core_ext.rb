@@ -15,11 +15,11 @@ class String
   def case( dir )
     case dir
     when :up, :upper
-      self.mb_chars.upcase.to_s
+      mb_chars.upcase.to_s
     when :lo, :low, :lower, :down
-      self.mb_chars.downcase.to_s
+      mb_chars.downcase.to_s
     when :cap
-      self.mb_chars.capitalize.to_s
+      mb_chars.capitalize.to_s
     else
       fail ArgumentError, "wrong direction '#{dir}', use :up, :lo or :cap"
     end
@@ -30,7 +30,7 @@ class Symbol
   # Allows symbols to connect with `/`
   # :foo / :bar # => 'foo/bar'
   def / (s)
-    self.to_s / s
+    to_s / s
   end
 end
 
@@ -44,7 +44,7 @@ end
 # display date as span with tooltip
 class Date
   def as_span
-    %(<span rel="tooltip" data-original-title="#{self.as_date.strip}">#{self.to_s}</span>)
+    %(<span rel="tooltip" data-original-title="#{as_date.strip}">#{to_s}</span>)
   end
 end
 
@@ -108,7 +108,7 @@ class Object
     if respond_to? :as_json
       as_json.to_json
     else
-      raise Exception, "MultiJson failed to serialize #{self.inspect}"
+      raise Exception, "MultiJson failed to serialize #{inspect}"
     end
   end
 end

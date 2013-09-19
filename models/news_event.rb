@@ -44,7 +44,7 @@ class NewsEvent
 
   # instance helpers
   def get_duration(what)
-    tags = self.duration.to_s.split '.'
+    tags = duration.to_s.split '.'
     case what
     when :count
       tags[0]

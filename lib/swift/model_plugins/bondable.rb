@@ -30,7 +30,7 @@ module Swift
           bond = Bond.first :parent_model => parent_model,
                             :parent_id    => parent_id,
                             :child_model  => self.class.to_s,
-                            :child_id     => self.id,
+                            :child_id     => id,
                             :manual       => true,
                             :relation     => 1
           bond ? true : false
@@ -40,7 +40,7 @@ module Swift
         def bond_count( child_model = nil )
           filter = {
             :parent_model => self.class.to_s,
-            :parent_id    => self.id,
+            :parent_id    => id,
             :manual       => true,
             :relation     => 1
           }

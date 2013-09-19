@@ -1,4 +1,4 @@
-﻿module Swift
+module Swift
   module ModelPlugins
     module Dateable
       module ClassMethods
@@ -8,7 +8,7 @@
           property :date, DateTime, :required => true
 
           before :valid? do |i|
-            self.date = nil  if self.date.blank?
+            self.date = nil  if date.blank?
           end
         end
       end
