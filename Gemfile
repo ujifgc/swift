@@ -21,7 +21,6 @@ gem 'padrino', :github => 'ujifgc/padrino-framework'
 
 # database ORM
 gem 'bcrypt-ruby'
-gem 'dm-types'
 gem 'dm-validations'
 gem 'dm-timestamps'
 gem 'dm-migrations', :require => false
