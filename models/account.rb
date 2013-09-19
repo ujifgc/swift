@@ -142,21 +142,17 @@ class Account
   end
 
   def self.create_with_omniauth(auth)
-    name = email = ''
-    name = auth['info']['name']
     email = auth['info']['email']
-    email = "auto.#{auth['uid']}.#{auth['provider']}@localhost"  if email.blank?
-    name = email.gsub(/^(.*?)@.*$/, '\1')  if name.blank?
+    email = "#{auth['uid']}.#{auth['provider']}@localhost"  if email.blank?
 
     if account = Account.first( :uid => auth['uid'], :provider => auth['provider'] )
-      account.logged_at = DateTime.now
-      account.save!
+      account.update! :logged_at => DateTime.now
       account
     else
       pwd = Digest::SHA2.hexdigest("#{DateTime.now}5ovCu#{rand}Cry")[4..11]
       account = Account.create :provider => auth['provider'],
                                :uid      => auth['uid'],
-                               :name     => name,
+                               :name     => auth['info']['name'],
                                :email    => email,
                                :password => pwd,
                                :password_confirmation => pwd
