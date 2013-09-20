@@ -15,15 +15,6 @@ module Swift
         )                  #
       /x.freeze
 
-      def parse_content( text )
-        limit_recursion do |flags|
-          draft = text.gsub(REGEX_RECURSIVE_BRACKETS) do |tag|
-            internal_tag(tag) || external_tag(tag, flags)
-          end
-          capture_tag_content draft, flags
-        end
-      end
-
       def strip_code( text )
         text && text.gsub(REGEX_RECURSIVE_BRACKETS, '').strip
       end
@@ -33,6 +24,15 @@ module Swift
       end
 
       private
+
+      def parse_content( text )
+        limit_recursion do |flags|
+          draft = text.gsub(REGEX_RECURSIVE_BRACKETS) do |tag|
+            internal_tag(tag) || external_tag(tag, flags)
+          end
+          capture_tag_content draft, flags
+        end
+      end
 
       INTERNAL_TAGS = {
         'page'  => 'PageLink',
