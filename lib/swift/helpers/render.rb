@@ -77,7 +77,7 @@ module Swift
         code = Code.first( :slug => tag_name )  unless tag_name[0] == '/'
         if code && code.is_single
           args, opts = parse_vars vars
-          [ parse_code( code.html, args ) ]
+          parse_code( code.html, args )
         else
           flags[:needs_capturing] = true  if code
           tag
