@@ -4,7 +4,7 @@ h4
   small= Option(:site_title)
   br
   small= link_to request.env['HTTP_HOST'], '/'
-- form_tag( url(:sessions, :create), :class => 'form-horizontal well' ) do
+= form_tag( url(:sessions, :create), :class => 'form-horizontal well' ) do
   = partial 'base/flash'
 
   legend= pat('login.social')

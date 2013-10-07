@@ -2,17 +2,16 @@ require 'ostruct'
 
 module Swift
   module Engine
-    class << self
-      def registered(app)
-        app.send(:include, InstanceMethods)
-        app.helpers Swift::Helpers
-      end
-      alias :included :registered
+    module_function
 
-      module InstanceMethods
-        def swift
-          @swift ||= OpenStruct.new
-        end
+    def registered(app)
+      app.send(:include, InstanceMethods)
+      app.helpers Swift::Helpers
+    end
+
+    module InstanceMethods
+      def swift
+        @swift ||= OpenStruct.new
       end
     end
   end

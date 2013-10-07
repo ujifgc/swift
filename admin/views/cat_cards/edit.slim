@@ -1,5 +1,5 @@
 = partial 'base/edit_operations'
-- form_for :object, url(:cat_cards, :update, :id => @object.id), :method => :put, :class => 'form form-horizontal edit', :id => "edit-cat_cards" do |f|
+= form_for :object, url(:cat_cards, :update, :id => @object.id), :method => :put, :class => 'form form-horizontal edit', :id => "edit-cat_cards" do |f|
   = partial "cat_cards/form", :locals => { :f => f }
 
 - content_for :help do

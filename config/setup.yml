@@ -10,7 +10,7 @@ Code:
     title: Внимание
     text: Блок с подложкой и текстом
     html: '<div class="alert alert-info"><h4>[1]</h4>[content]</div>'
-    placeholder:
+    placeholder: Заголовок
     is_single: 0
   sub:
     title: Нижний индекс

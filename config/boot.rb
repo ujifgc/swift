@@ -28,9 +28,6 @@ require 'omniauth-openid'
 require 'openid/store/filesystem'
 
 Padrino.before_load do
-  I18n.load_path += Dir.glob('app/locale/*.yml')
-  I18n.load_path += Dir.glob('admin/locale/*.yml')
-  I18n.reload!
   I18n.locale = :ru
 
   Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
@@ -46,7 +43,6 @@ end
 Padrino.after_load do
   DataMapper.finalize
   Nozzle.finalize
-  I18n.reload!  if Padrino.env == :development
 end
 
 Padrino.load!
