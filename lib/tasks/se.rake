@@ -4,6 +4,7 @@ namespace :se do
 
   desc "init database for se"
   task :setup => :environment do
+    DataMapper.auto_upgrade!
     load 'config/setup.rb'
   end
 
