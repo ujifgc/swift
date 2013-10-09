@@ -11,6 +11,10 @@ class String
     Swift::Transliteration.slugize self
   end
 
+  def normalize_lf
+    self.gsub /\r\n?/m, "\n"
+  end
+
   # case convert for cyrillic strings
   def case( dir )
     case dir
