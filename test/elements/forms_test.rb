@@ -2,7 +2,6 @@
 require 'elements_helper'
 
 describe Swift do
-
   before do
     @args = { :title => "title", :text => "text"}
     @opts1 = { :kind => :form, :method => "show" }
@@ -27,5 +26,4 @@ skip
     el = element('Forms', @args, @opts2)
     el.must_equal "<dl></dl>"
   end
-
 end

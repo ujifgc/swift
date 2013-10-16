@@ -2,7 +2,6 @@
 require 'elements_helper'
 
 describe Swift do
-
   before do
     @page1 = Page.new :title => "Page 1", :path => "/", :parent => nil
     @page2 = Page.new :title => "Page 2", :path => "/page2", :parent => @page1
@@ -21,5 +20,4 @@ describe Swift do
     el = element('SiteMap')
     el.must_equal ""
   end
-
 end

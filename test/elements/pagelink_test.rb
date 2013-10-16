@@ -2,7 +2,6 @@
 require 'elements_helper'
 
 describe Swift do
-
   before do
     @page1 = Page.new :title => "Page 1", :path => "/", :parent => nil
   end
@@ -18,5 +17,4 @@ describe Swift do
     el = element("PageLink")
     el.must_equal "[Page # missing]"
   end
-
 end

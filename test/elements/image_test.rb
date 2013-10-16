@@ -2,7 +2,6 @@
 require 'elements_helper'
 
 describe Swift do
-
   before do
     @image = Image.create :title => "asdfas"
     @file = Asset.create :title => "asdfas"

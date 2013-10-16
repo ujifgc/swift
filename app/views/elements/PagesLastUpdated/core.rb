@@ -4,3 +4,4 @@ filter[:limit] = @opts[:limit].to_i    if @opts[:limit]
 filter[:limit] ||= 5
 filter[:order] = :updated_at.desc
 @pages = Page.published.all( filter )
+

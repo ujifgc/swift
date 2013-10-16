@@ -2,7 +2,6 @@
 require 'elements_helper'
 
 describe Swift do
-
   before do
     @page = Page.create :title => "Page 1", :path => "/", :text => "small text info"
   end
@@ -15,5 +14,4 @@ describe Swift do
   after do
     @page.destroy
   end
-
 end

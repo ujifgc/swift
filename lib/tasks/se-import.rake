@@ -1,5 +1,4 @@
 #coding:utf-8
-
 require 'awesome_print'
 
 class Legacy
@@ -54,7 +53,6 @@ class Legacy
   end
 
   def self.cleanup_uub( str )
-    
     str.gsub(/\[(.*?)\s*\]/) do |tag|
       case
       when tag == '[p]'
@@ -92,8 +90,6 @@ end
 def se_import( table )
   method = :"se_import_#{table}"
   send method
-#rescue Exception => e
-#  ap "missing #{method}, #{e}"
 end
 
 def se_import_pages
@@ -193,7 +189,6 @@ def se_import_collections
   end
 end
 
-
 def se_retag( model )
   method = :"se_retag_#{model}"
   send method
@@ -216,7 +211,6 @@ def se_retag_news
 end
 
 namespace :se do
-
   desc "load tables from old engine"
   task :import, :args do |t, args|
     #'pages news faq files collections'
@@ -239,5 +233,4 @@ namespace :se do
       puts "  etc.\n"
     end
   end
-
 end

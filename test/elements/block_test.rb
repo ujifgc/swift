@@ -1,6 +1,6 @@
 require 'elements_helper'
-describe Swift do
 
+describe Swift do
   before do
     @temp_text = Block.create :text => "Hello world!", :title => "text", :type => 0
     @temp_html = Block.create :text => "<a><img src=\"hi\"></a>", :title => "html", :type => 1
@@ -37,5 +37,4 @@ describe Swift do
     @temp_text.destroy
     @temp_tabl.destroy
   end
-
 end

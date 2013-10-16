@@ -79,3 +79,4 @@ when /GET/i
 else
   halt 405, '405 method not allowed'
 end
+

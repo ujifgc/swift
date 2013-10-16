@@ -1,4 +1,3 @@
-
 module I18n
   # Shows full path to translation key instead of "humanizing" it
   class MissingTranslation

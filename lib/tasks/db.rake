@@ -1,7 +1,5 @@
-﻿#coding:utf-8
-
+#coding:utf-8
 namespace :db do
-
   desc "backup database"
   task :backup => :environment do
     connection = YAML.load_file( Padrino.root('config/database.yml') )[PADRINO_ENV]
@@ -9,5 +7,4 @@ namespace :db do
     `mysqldump #{connection['database']} --host=#{connection['host']} --user=#{connection['username']} --password=#{connection['password']} --databases > #{Padrino.root}/tmp/#{dbname}`
     p "tmp/#{dbname}"
   end
-
 end

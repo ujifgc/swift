@@ -1,9 +1,6 @@
 #coding:utf-8
-
 namespace :se do
-
   desc "load array of events"
-  
   task :load_events => :environment do
     filter = {}
     filter[:period.not] = '' 

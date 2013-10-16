@@ -2,7 +2,6 @@
 require 'elements_helper'
 
 describe Swift do
-
   before do
   end
 

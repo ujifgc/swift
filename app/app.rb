@@ -73,5 +73,4 @@ class Swift::Application < Padrino::Application
       process_page
     end
   end
-
 end

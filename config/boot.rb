@@ -36,7 +36,7 @@ Padrino.before_load do
     :enable_engines => [:ruby, :javascript, :css],
     :format => :html5,
     :use_html_safe => true,
-    :pretty => PADRINO_ENV == "development",
+    :pretty => Padrino.env == :development,
   } )
 end
 

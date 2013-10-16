@@ -54,7 +54,6 @@ module Padrino
   def self.public
     root + '/public'
   end
-
 end
 
 module Padrino

@@ -2,9 +2,7 @@
 require 'elements_helper'
 
 describe Swift do
-
   before do
-    
   end
 
   it 'should write meta' do
@@ -12,6 +10,4 @@ describe Swift do
     el = element('Meta')
     el.must_equal "%{placeholder[:meta]}"
   end 
-
-
 end

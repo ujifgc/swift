@@ -1,7 +1,5 @@
-﻿#coding:utf-8
-
+#coding:utf-8
 namespace :se do
-
   desc "init database for se"
   task :setup => :environment do
     DataMapper.auto_upgrade!
@@ -12,5 +10,4 @@ namespace :se do
   task :grow => :environment do
     load 'config/grow.rb'
   end
-
 end

@@ -2,7 +2,6 @@
 require 'elements_helper'
 
 describe Swift do
-
   before do
     @args = { :title => "title", :text => "text"}
     @opts1 = { :kind => :form, :method => "show" }
@@ -23,5 +22,4 @@ skip
   after do
     @card.destroy
   end
-
 end

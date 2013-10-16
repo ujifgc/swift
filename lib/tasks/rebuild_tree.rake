@@ -1,7 +1,5 @@
-﻿#coding:utf-8
-
+#coding:utf-8
 namespace :se do
-
   def rebuild_tree(root)
     root.path = nil
     root.save
@@ -12,5 +10,4 @@ namespace :se do
   task :retree => :environment do
     rebuild_tree Page.first( :parent => nil )
   end
-
 end
