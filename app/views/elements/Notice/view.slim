@@ -1,3 +1,4 @@
-.flash
-  - [:error, :warning, :notice].each do |type|
-    = flash_tag type, :class => "message #{type}"
+- if flash.any?
+  .flash
+    - [:error, :warning, :notice].each do |type|
+      = flash_tag type, :class => "message #{type}"
