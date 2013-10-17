@@ -2,4 +2,4 @@ table.table.smart class=@dynamic
   thead
     tr
       - @columns.each do |k,v|
-        th class=v[:head_class] data=v[:data] = v[:header_title]
+        th class=v[:head_class] data=v[:data] = I18n.t(v[:header_title_key])

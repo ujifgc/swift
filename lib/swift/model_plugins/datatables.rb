@@ -7,7 +7,7 @@ module Swift
 
           columns = options[:columns].dup
           columns.keys.each do |k|
-            columns[k][:header_title] = I18n.t("models.object.attributes.#{k}")
+            columns[k][:header_title_key] = "models.object.attributes.#{k}"
             case k
             when :date, :publish_at, :created_at, :updated_at, :news_rubric
               columns[k][:data] ||= {}
