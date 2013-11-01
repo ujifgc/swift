@@ -1,7 +1,8 @@
-if @opts[:folder]
-  @folder = Folder.by_slug(@opts[:folder].to_a.sample) 
-  @image = @folder.images.sample  if @folder
+@folder = if @opts[:folder]
+  Folder.all( :slug => Array(@opts[:folder]||@opts[:folders]) ).sample
 else
-  @folder = (Bond.all.children_for @page, 'Folder').sample
-  @image = @folder.images.sample  if @folder
+  Bond.children_for(@page, 'Folder').sample
 end
+throw :output, "[No bound folders for GalleryRandomImage]"  unless @folder
+@image = @folder.images.sample
+throw :output, "[No images in Folder##{@folder.slug}]"  unless @image
