@@ -16,7 +16,7 @@ def map_tree( from, level, prefix )
     leaf[:class] += ' active'  if ensued
 
     child = []
-    if ensued || @opts[:expand]
+    if (ensued || @opts[:expand]) && (@opts[:limit] ? level < @opts[:limit] : true)
       child = map_tree( page, level + 1, prefix + '/' + page.slug )
     end
 
