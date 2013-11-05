@@ -9,5 +9,5 @@ Padrino.configure_apps do
   end
 end
 
-Padrino.mount("Swift::Application").to('/')
 Padrino.mount("Admin").to("/admin")
+Padrino.mount("Swift::Application").to('/')
