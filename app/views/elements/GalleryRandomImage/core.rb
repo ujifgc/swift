@@ -1,5 +1,10 @@
 @folder = if @opts[:folder]
-  Folder.all( :slug => Array(@opts[:folder]||@opts[:folders]) ).sample
+  case @opts[:folder]
+  when Symbol, String
+    Folder.all( :slug => Array(@opts[:folder]) ).sample
+  else
+    @opts[:folder].sample
+  end
 else
   Bond.children_for(@page, 'Folder').sample
 end
