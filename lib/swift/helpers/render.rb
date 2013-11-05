@@ -20,7 +20,7 @@ module Swift
       end
 
       def engine_render( text )
-        Markdown.render( parse_content( text ) ).html_safe
+        Markdown.render( parse_content( text.to_s ) ).html_safe
       end
 
       private

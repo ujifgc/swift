@@ -14,7 +14,7 @@ html
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          = link_to Option(:site_title), url(:base_index), :class => 'brand'
+          = link_to Option(:site_title), url(:base, :index), :class => 'brand'
           .pull-right
             = link_to pat('site'), '/'
             | 
