@@ -1,0 +1,16 @@
+.content ul.folders, .content ul.folders li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+.content ul.folders li {
+  display: inline-block;
+  *float: left;
+  margin: 0 0.5em 1.5em 0;
+  text-align: center;
+}
+.content ul.folders li img {
+  padding: 5px;
+  border: 1px solid #b9b9b9;
+}

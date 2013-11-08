@@ -1,0 +1,8 @@
+ul.folders.folders-list
+  - @folders.each do |folder|
+    li
+      - image = folder.images.last
+      a href=(swift.path/folder.slug)
+        = image_tag image.file.gallery_thumb.url, :alt => image.title
+        .caption= folder.title
+      = engine_render( folder.text ) if folder.text.present?

@@ -1,0 +1,6 @@
+ul.folders.folders-images
+  - @images.each do |image|
+    li
+      a href=image.file.url title=image.title rel='box-image'
+        = image_tag image.file.gallery_thumb.url, :alt => image.title
+        .caption= image.title
