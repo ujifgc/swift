@@ -1,6 +1,7 @@
-dl
-  - @news.each do |o|
-    dt
-      span.date= o.date.as_date
-      = link_to o.title, se_url(o)
-    dd= engine_render( o.info )
+.articles.news-list
+  dl
+    - @news.each do |o|
+      dt
+        span.date= o.date.as_date
+        h4= link_to o.title, se_url(o)
+      dd= engine_render( o.info )
