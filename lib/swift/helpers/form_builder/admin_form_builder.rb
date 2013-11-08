@@ -11,8 +11,9 @@ module Padrino
         def input( field, options={} )
           object = @object.class.to_s.underscore
           options[:label] ||= {}
-          caption = options[:label].delete(:caption) || make_caption(object, field)
-          caption += ' (' + options.delete(:brackets).to_s + ')'  if options[:brackets]
+          caption = ''.html_safe
+          caption << (options[:label].delete(:caption) || make_caption(object, field))
+          caption << ' (' + options.delete(:brackets).to_s + ')'  if options[:brackets]
           type = 'string'
           morphable = options.delete :morphable
           options.delete :options  if options[:options] && options[:options].empty?
@@ -74,13 +75,9 @@ module Padrino
           when :file, :asset, :assets, :images
             file = @object.send(field)  rescue false
             tag = if file && file.filename.present?
-              caption += ' (' + I18n::t('asset_uploaded') + ')'
-              unless file.content_type.blank?
-                caption += tag(:br) + content_tag(:code) do
-                  file.content_type
-                end + tag(:br) + content_tag(:span, :class => :label) do
-                  file.size.as_size
-                end
+              caption << ' (' << I18n::t('asset_uploaded') << ')'
+              if file.content_type.present?
+                caption += tag(:br) + content_tag(:code, file.content_type) + tag(:br) + content_tag(:span, file.size.as_size, :class => :label)
               end
               content_tag( :div ) do
                 if file.content_type.index('image')
