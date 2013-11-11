@@ -3,6 +3,6 @@ urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   - @pages.each do |page|
     url
       loc= absolute_url(page.path)
-      lastmod= page.updated_at.xmlschema
+      lastmod= page.last_update.xmlschema
       changefreq monthly
       priority 0.5
