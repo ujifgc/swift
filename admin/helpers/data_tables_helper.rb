@@ -5,8 +5,9 @@ Admin.helpers do
     partial 'base/data-table'
   end
 
-  def mk_group_selector( model, group, params )
-    @groups = group.all
+  def mk_group_selector( model, group, params, options = {} )
+    filter = options[:filter] || {}
+    @groups = options[:with] ? group.with(options[:with]) : group.all(filter)
     @group_name = group.name.underscore
     @selected = {}
     selected_id = params[:"#{@group_name}_id"].to_i

@@ -1,5 +1,5 @@
 = partial 'base/index_operations'
 form.inner.multiple#multiple-assets action=url(:assets, :index)/:multiple method=:post
-  = mk_group_selector Asset, Folder, params
+  = mk_group_selector Asset, Folder, params, :with => :assets
   = mk_data_table Asset
 = partial 'base/index_operations_bottom'
