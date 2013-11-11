@@ -12,7 +12,7 @@ class Asset
   datatables!( :id, :title, :folder, :file,
     :format => {
       :folder => { :code => 'o.folder && o.folder.title' },
-      :file => { :code => 'link_to o.file.size.as_size + " / #{File.extname o.file.url}", o.file.url?  rescue "error"' }
+      :file => { :code => 'link_to o.file.size.as_size + " / #{File.extname o.file.url}", o.file.url?  rescue "error"', :body_class => 'nowrap' }
     }
   )
 

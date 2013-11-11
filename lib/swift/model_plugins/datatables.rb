@@ -21,7 +21,7 @@ module Swift
             column_formats[key] = format[key] || {}
             column_formats[key][:header_title_key] = "models.object.attributes.#{key}"
             case key
-            when :date, :publish_at, :created_at, :updated_at, :news_rubric
+            when :date, :publish_at, :created_at, :updated_at, :news_rubric, :file
               column_formats[key][:data] ||= {}
               column_formats[key][:data][:nowrap] = true
             end
