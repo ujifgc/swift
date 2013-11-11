@@ -36,7 +36,7 @@ Admin.controllers :data_tables do
     result[:aaData] = model.all(paginator.merge(filter).merge(order)).map do |o|
       data = {}
       columns.each_with_index do |(k,v),i|
-        data[i] = binding.eval(v[:code])
+        data[i] = String === v[:code] ? binding.eval(v[:code]) : ''
       end
       data[:DT_RowId] = "#{model}-#{o.id}"
       data

@@ -187,6 +187,8 @@ ru:
         is_system: Служебная
         value: Значение
         news_rubric: Лента
+        folder: Папка
+        folder_id: Папка
         meta:
           description: Метаописание
           keywords: Ключевые слова
