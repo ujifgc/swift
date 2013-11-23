@@ -12,10 +12,11 @@ Admin.controllers :data_tables do
     filter = { }
     filter[:conditions] = [ 'title LIKE ? OR id LIKE ?', "%#{params[:sSearch]}%", "%#{params[:sSearch]}%" ]
 
-    if params[:sGroup] && params[:sGroupName]
-      column_name = :"#{params[:sGroupName]}_id"
+    if params[:sGroup].present? && params[:sGroupName].present? && params[:sGroup] != 'all'
       group_id = params[:sGroup].to_i
-      filter[column_name] = group_id  if model.properties.named?(column_name) && group_id > 0
+      column_name = params[:sGroupName]
+      column_name += '_id'  unless model.properties.named?(column_name)
+      filter[column_name.to_sym] = group_id  if model.properties.named?(column_name)
     end
 
     order = { :order => [ ] }

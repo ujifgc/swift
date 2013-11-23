@@ -1,15 +1,5 @@
 = partial 'base/index_operations'
 form.inner.multiple#multiple-blocks action=url(:blocks, :index)/:multiple method=:post
-  table.table
-    thead
-      tr
-        th.first
-        th= mat(:object, :title)
-        th= mat(:object, :type)
-    tbody
-      - @objects.each do |object|
-        tr
-          td.last= mk_checkbox object
-          td= mk_edit object
-          td= object.get_type
+  = mk_group_selector Block, { :type => Hash[Block::Types.keys.map{|k| [k,Block.get_type(k)] }] }, params
+  = mk_data_table Block
 = partial 'base/index_operations_bottom'

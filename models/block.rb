@@ -17,6 +17,9 @@ class Block
   timestamps!
   userstamps!
   loggable!
+  datatables!( :id, :title, :type, :slug,
+    :format => { :type => { :code => 'o.get_type' } }
+  )
 
   # validations
   validates_presence_of :title
@@ -35,7 +38,11 @@ class Block
     type == 2
   end
 
-  def get_type
+  def self.get_type(type)
     I18n.t "models.object.attributes.type_#{Types[type]}"
+  end
+
+  def get_type
+    self.class.get_type(type)
   end
 end
