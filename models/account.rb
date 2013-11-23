@@ -8,6 +8,10 @@ class Account
   include DataMapper::Validate
   attr_accessor :password, :password_confirmation
 
+  class << self
+    attr_accessor :current
+  end
+
   # Properties
   property :id,               Serial
   property :name,             String
@@ -45,10 +49,6 @@ class Account
   has n, :folders
   property :group_id, Integer, :default => 6, :writer => :protected
   belongs_to :group, 'Account', :required => false
-
-  # classy methods
-  def self.current; @current; end
-  def self.current=( account ); @current = account; end
 
   # hookers
   before :save do

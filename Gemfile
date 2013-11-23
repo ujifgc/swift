@@ -17,7 +17,7 @@ gem 'multi_json'
 gem 'slim'
 gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
-gem 'padrino', :github => 'ujifgc/padrino-framework'
+gem 'padrino', '0.11.4'
 
 # database ORM
 gem 'bcrypt-ruby'
