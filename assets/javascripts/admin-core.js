@@ -77,7 +77,7 @@ bindIndexList = function() {
     });
     var lenHash = [[15, 25, -1], [15, 25, "Все"]];
     var tableOptions = {
-      "sDom": "<'page-control well well-small'<'inline page-paginate'p><'inline page-filter'f><'inline page-group'><'inline page-length'l><'inline page-processing'r>>t",
+      "sDom": "<'page-control well well-small'<'inline page-paginate'p><'inline page-length'l><'inline page-total badge badge-info'i><'inline page-filter'f><'inline page-group'><'inline page-processing'r>>t",
       "sPaginationType": "bootstrap",
       "bStateSave": true,
       "bAutoWidth": false,
@@ -90,7 +90,11 @@ bindIndexList = function() {
         { "sClass": "nowrap", "aTargets": nowraps },
       ],
       "oLanguage": {
-        "sLengthMenu": "На странице: _MENU_",
+        "sLengthMenu": "По: _MENU_",
+        "sInfoEmpty": "Ничего не найдено",
+        "sInfo": "найдено _TOTAL_",
+        "sInfoFiltered": "из _MAX_",
+        "sInfoThousands": "",
         "sSearch": "Поиск: ",
         "oPaginate": {
           "sNext": "",

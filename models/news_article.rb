@@ -15,7 +15,7 @@ class NewsArticle
   bondable!
   dateable!
   metable!
-  datatables!( :id, :title, :date, :news_rubric, :publish_at,
+  datatables!( :id, :title, :date, :publish_at, :news_rubric,
     :format => { :news_rubric => { :code => 'o.news_rubric && o.news_rubric.title' } }
   )
 
