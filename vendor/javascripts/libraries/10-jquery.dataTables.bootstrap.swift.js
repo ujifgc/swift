@@ -58,6 +58,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
                   $('li', an[i]).hide();
                 }else{
                   $('li', an[i]).show();
+                  $(an[i]).show();
                   var iActive = oPaging.iPage + 1;
                   for ( j=iStart ; j<=iEnd ; j++ ) {
                       var bActive = (j == oPaging.iPage + 1);

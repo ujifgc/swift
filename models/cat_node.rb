@@ -15,6 +15,9 @@ class CatNode
   amorphous!
   recursive!
   metable!
+  datatables!( :id, :title, :cat_card,
+    :format => { :cat_card => { :code => 'o.cat_card && o.cat_card.title' } }
+  )
 
   # relations
   belongs_to :cat_card, :required => true

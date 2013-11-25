@@ -189,6 +189,7 @@ ru:
         news_rubric: Лента
         folder: Папка
         folder_id: Папка
+        cat_card: Карточка
         meta:
           description: Метаописание
           keywords: Ключевые слова
@@ -318,7 +319,7 @@ ru:
   datamapper:
     errors:
       messages:
-        json_error: 'Something is wrong. Perhaps you made a mistake when filling out the data card. Return and try to find her. If the problem persists, contact the developer.'
+        json_error: 'Ошибка JSON'
         json_required: 'Заполните поле'
       email:
         presense: 'Нужен адрес электронной почты. Он будет использоваться как логин и на него будут отправляться уведомления'

@@ -1,32 +1,5 @@
 = partial 'base/index_operations'
-ul.nav.nav-pills.cat_cards
-  - CatCard.all( :order => :created_at.desc ).each do |card|
-    - klass = card.id == params[:card_id].to_i && 'active'
-    li class=klass
-      = link_to card.title, url(:cat_nodes, :index, :card_id => card.id)
-  - klass = params[:card_id] == 'all' && 'active'
-  li class=klass
-    = link_to pat(:all), url(:cat_nodes, :index, :card_id => :all)
-- if @groups.count > 0
-  ul.nav.nav-pills.cat_groups
-    - klass = params[:group].blank? && 'active'
-    li class=klass
-      = link_to pat(:all), url(:cat_nodes, :index)
-    - CatGroup.all.each do |group|
-      - klass = group.slug == params[:group] && 'active'
-      li class=klass
-        = link_to group.title, url(:cat_nodes, :index, :group => group.slug)
 form.inner.multiple#multiple-cat_nodes action=url(:cat_nodes, :index)/:multiple method=:post
-  table.table
-    thead
-      tr
-        th.first
-        th= mat(:object, :title)
-        th= mat(:object, :slug)
-    tbody
-      - @objects.each do |object|
-        tr
-          td.last= mk_checkbox object
-          td= mk_edit object
-          td= object.slug
+  = mk_group_selector CatNode, CatCard, params
+  = mk_data_table CatNode
 = partial 'base/index_operations_bottom'
