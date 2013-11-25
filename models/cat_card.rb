@@ -4,6 +4,7 @@ class CatCard
 
   Types = {
     'Строка'   => :string,
+    'Текст'    => :text,
     'Число'    => :number,
     'Вариант'  => :select,
     'Выборка'  => :multiple,
