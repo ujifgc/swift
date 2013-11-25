@@ -18,18 +18,13 @@ module Swift
             filter = { :id.not => id }
             filter[:parent] = parent  if respond_to? :parent
             while self.class.first( filter.merge(:slug => slug) )
-              if slug.match(/\-\d+$/)
-                self.slug = slug.gsub(/\-(\d+)$/){ "-#{$1.to_i+1}" }
-              else
-                self.slug = slug + '-1'
-              end
+              slug.match(/\-\d+$/) ? self.slug.succ! : (self.slug += '-1')
             end
           end
 
           def self.by_slug( slug )
             get( slug ) || first( :slug => slug )
           end
-
         end
       end
 
