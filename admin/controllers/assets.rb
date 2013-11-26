@@ -62,11 +62,10 @@ Admin.controllers :assets do
     @object = Asset.get(params[:id])
     file = params[:asset].delete 'file'
     if file.kind_of? Hash
-      @object.remove_file
       if @object.update(params[:asset])
         @object.file = file
-        @object.file.recreate_versions!
         @object.save
+        @object.file.cleanup!
         flash[:notice] = pat('asset.updated')
         redirect url_after_save
       else
