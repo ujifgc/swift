@@ -23,6 +23,10 @@ module Swift
         Markdown.render( parse_content( text.to_s ) ).html_safe
       end
 
+      def inline_render( text )
+        engine_render( text ).gsub(/^<p>(.*)<\/p>$/, '\1').chomp
+      end
+
       private
 
       def parse_content( text )
