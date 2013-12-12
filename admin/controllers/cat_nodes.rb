@@ -48,10 +48,16 @@ Admin.controllers :cat_nodes do
     @object = CatNode.get(params[:id])
     attributes = {}
     params[:cat_node].each do |k,v|
-      card_field = @object.cat_card.json[k]
-      if card_field && ['assets', 'images'].include?(card_field[0])
-        value = MultiJson.load(v)  rescue nil
-        attributes[k] = value  if value
+      if card_field = @object.cat_card.json[k]
+        case card_field[0]
+        when 'assets', 'images'
+          value = MultiJson.load(v)  rescue nil
+          attributes[k] = value  if value
+        when "number"
+          attributes[k] = v.to_i
+        else
+          attributes[k] = v
+        end
       else
         attributes[k] = v
       end
