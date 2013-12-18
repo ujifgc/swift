@@ -21,19 +21,19 @@ module Swift
       end
 
       def detect_preferred_locale
-        accept_language = request.env['HTTP_ACCEPT_LANGUAGE']
-        detected_locale = if accept_language.present?
-          begin
-            locale_priority = accept_language.gsub(/\s+/,'').split(/,/)
-                                             .sort_by{ |tags| -(tags.partition(/;/).last.split(/=/)[1]||1).to_f }
-                                             .map{ |language| language[0..1] }.uniq
-            (locale_priority & swift.locales).first
-          rescue # !!! FIXME detect valid Exceptions
-            nil
-          end
+        detected_locale = if preferred_languages = request.env['HTTP_ACCEPT_LANGUAGE']
+          (parse_http_accept_language(preferred_languages) & swift.locales).first
         end
         detected_locale ||= swift.locales.first
         detected_locale.to_sym
+      end
+
+      def parse_http_accept_language( languages )
+        languages.gsub(/\s+/,'').split(/,/)
+                 .sort_by{ |tags| -(tags.partition(/;/).last.split(/=/)[1]||1).to_f }
+                 .map{ |language| language[0..1] }.uniq
+      rescue # !!! FIXME detect valid Exceptions
+        []
       end
     end
   end
