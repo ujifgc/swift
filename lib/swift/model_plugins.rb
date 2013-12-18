@@ -13,6 +13,7 @@ module Swift
       include Swift::ModelPlugins::Sluggable::ClassMethods
       include Swift::ModelPlugins::Stamps::ClassMethods
       include Swift::ModelPlugins::Datatables::ClassMethods
+      include Swift::ModelPlugins::Positionable::ClassMethods
     end
   end
 end
