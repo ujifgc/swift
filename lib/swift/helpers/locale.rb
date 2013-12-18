@@ -1,0 +1,40 @@
+module Swift
+  module Helpers
+    module Locale
+      private
+
+      def detect_selected_locale
+        selected_locale = params[:locale].to_s[0..1]
+        if swift.locales.include?(selected_locale)
+          selected_locale.to_sym
+        else
+          detect_session_locale
+        end
+      end
+
+      def detect_session_locale
+        if session[:locale].present? && swift.locales.include?(session[:locale].to_s)
+          session[:locale].to_sym
+        else
+          detect_preferred_locale
+        end
+      end
+
+      def detect_preferred_locale
+        accept_language = request.env['HTTP_ACCEPT_LANGUAGE']
+        detected_locale = if accept_language.present?
+          begin
+            locale_priority = accept_language.gsub(/\s+/,'').split(/,/)
+                                             .sort_by{ |tags| -(tags.partition(/;/).last.split(/=/)[1]||1).to_f }
+                                             .map{ |language| language[0..1] }.uniq
+            (locale_priority & swift.locales).first
+          rescue # !!! FIXME detect valid Exceptions
+            nil
+          end
+        end
+        detected_locale ||= swift.locales.first
+        detected_locale.to_sym
+      end
+    end
+  end
+end

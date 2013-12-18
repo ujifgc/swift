@@ -20,6 +20,7 @@ module Swift
         return  if @_inited
         init_folders
         init_media
+        init_locale
         init_http
         @_inited = true
       end
@@ -90,6 +91,13 @@ module Swift
         swift.send("#{media}?=", media)
         swift.media = media
         swift.send("pretty?=", Padrino.env == :development)
+      end
+
+      def init_locale
+        swift.locales = Option(:locales) || %w(ru en)
+        swift.locale = params[:locale] ? detect_selected_locale : detect_session_locale
+        session[:locale] = swift.locale
+        I18n.locale = swift.locale
       end
     end
   end

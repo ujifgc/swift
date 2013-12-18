@@ -21,3 +21,6 @@ Option:
         fit: x135
       index_thumb:
         fit: 360x240
+  locales:
+    title: Доступные языки интерфейса
+    value: [ru]
