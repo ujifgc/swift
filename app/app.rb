@@ -2,7 +2,7 @@
 class Swift::Application < Padrino::Application
   register Padrino::Helpers
   register Swift::Engine
-  use Rack::Session::File
+  enable :sessions
 
   set :default_builder, 'SwiftFormBuilder'
   set :locales, [ :ru, :en ]

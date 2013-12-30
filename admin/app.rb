@@ -15,7 +15,7 @@ class Admin < Padrino::Application
   register Padrino::Helpers
   register Padrino::Admin::AccessControl
   helpers Swift::Helpers
-  use Rack::Session::File
+  enable :sessions
 
   set :login_page, "/admin/sessions/new"
   set :default_builder, 'AdminFormBuilder'
