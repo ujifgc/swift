@@ -1,4 +1,5 @@
 Admin.controllers :images do
+  set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
     @object = Image.get(params[:id])

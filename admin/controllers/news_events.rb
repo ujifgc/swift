@@ -1,4 +1,5 @@
 Admin.controllers :news_events do
+#  set_access :admin, :designer, :auditor, :editor
 
   before :update, :create do
     durc = params[:news_event].delete( 'duration_count' ).to_i

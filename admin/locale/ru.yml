@@ -54,6 +54,9 @@ ru:
         forms_results: Записи
         forms_stats: Результаты
         accounts: Пользователи
+        codes: Спецкоды
+        elements: Элементы
+        options: Настройки
         add:
           images: Добавить картинки
           assets: Добавить файлы

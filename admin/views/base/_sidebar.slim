@@ -1,19 +1,20 @@
-- sbc = request.cookies['sbc']
-- MODULE_GROUPS.each do |name, mods|
-  - next  unless (mods & project_modules.map{|m|m.name.to_s}).any?
-  - collapsed = (sbc||'').index("#{name} ")
+- collapsed_groups = request.cookies['sbc']
+- admin_modules = access_objects.map{ |object| object.to_s.pluralize.to_sym }
+- MODULE_GROUPS.each do |name, modules|
+  - next if (admin_modules & modules).empty?
+  - collapsed = (collapsed_groups||'').index("#{name} ")
   - content = ''.html_safe
-  - project_modules.each do |project_module|
-    - next  unless mods.include? project_module.name.to_s
-    - content += content_tag( :ul, content_tag(:li, mk_icon( project_module.name ) + ' ' + project_module.human_name), :class => :unstyled )
-    - collapsed = nil  if request.path_info =~ /^#{project_module.path}/
+  - admin_modules.each do |controller|
+    - next  unless modules.include?(controller)
+    - content += content_tag( :ul, content_tag(:li, mk_icon(controller) + ' ' + pat("menu.#{controller}")), :class => :unstyled )
+    - collapsed = nil  if request.path_info =~ /^\/#{controller}$|^\/#{controller}\//
   - data = { :toggle => "#nav-group-#{name}", :'original-title' => pat("tooltip.#{name}"), :content => content }
   h5.nav-header data=data class=(collapsed && 'collapsed') = pat("modules.#{name}")
   ul.nav.nav-tabs id="nav-group-#{name}" style=(collapsed && 'display:none')
-    - project_modules.each do |project_module|
-      - next  unless mods.include? project_module.name.to_s
-      li class=("active"  if request.path_info =~ /^#{project_module.path}/)
-        = link_to mk_icon( project_module.name ) + project_module.human_name, project_module.path("/admin")
+    - admin_modules.each do |controller|
+      - next unless modules.include?(controller)
+      li class=("active"  if request.path_info =~ /^\/#{controller}$|^\/#{controller}\//)
+        = link_to mk_icon(controller) + pat("menu.#{controller}"), url(controller, :index)
 
 ul.nav.nav-tabs id="nav-group-help"
   = yield_content(:help) || partial("base/help")

@@ -1,4 +1,6 @@
 Admin.controllers :data_tables do
+  set_access :admin, :designer, :auditor, :editor
+
   get :index, :with => [ :model ] do
     model = params[:model].singularize.camelize.constantize  rescue error(501)
     columns = model.dynamic_columns  rescue error(501)

@@ -1,4 +1,5 @@
 Admin.controllers :elements do
+  set_access :admin, :designer
 
   before :edit, :update, :destroy do
     @object = Element.get(params[:id])

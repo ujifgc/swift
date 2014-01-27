@@ -1,4 +1,5 @@
 Admin.controllers :cat_nodes do
+  set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
     @object = CatNode.get(params[:id])

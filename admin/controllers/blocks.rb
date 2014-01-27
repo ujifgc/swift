@@ -1,4 +1,5 @@
 Admin.controllers :blocks do
+  set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
     @object = Block.get(params[:id])

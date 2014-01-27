@@ -4,13 +4,13 @@ h4
   small= Option(:site_title)
   br
   small= link_to request.env['HTTP_HOST'], '/'
-= form_tag( url(:sessions, :create), :class => 'form-horizontal well' ) do
+= form_tag( url(:login, :create), :class => 'form-horizontal well' ) do
   = partial 'base/flash'
 
   legend= pat('login.social')
   .control-group
-    = link_to image_tag('/images/social/google.png'), '/admin/auth/google'
-    = link_to image_tag('/images/social/yandex.png'), '/admin/auth/yandex'
+    = link_to image_tag('/images/social/google.png'), url(:login, :auth, :provider => :google)
+    = link_to image_tag('/images/social/yandex.png'), url(:login, :auth, :provider => :yandex)
 
   legend= pat('login.obsolete')
   .control-group
@@ -31,4 +31,4 @@ h4
           = t('group.'+name)
           = radio_button_tag :bypass, :value => name
 small
-  = link_to pat('login.forgot'), '/admin/accounts/reset'
+  = link_to pat('login.forgot'), url(:login, :reset)

@@ -1,4 +1,5 @@
 Admin.controllers :assets do
+  set_access :admin, :designer, :auditor, :editor
     
   before :edit, :update, :destroy do
     @object = Asset.get(params[:id].to_i)

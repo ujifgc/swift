@@ -1,4 +1,5 @@
 Admin.controllers :fragments do
+  set_access :admin, :designer
 
   before :edit, :update, :destroy do
     @object = Fragment.get(params[:id])

@@ -1,4 +1,5 @@
 Admin.controllers :pages do
+  set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
     @object = Page.get(params[:id])

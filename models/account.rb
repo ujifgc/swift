@@ -126,14 +126,19 @@ class Account
   end
 
   # class helpers
-  def self.authenticate(email, password)
-    account = first( :email => email )  if email.present?
-    if account && account.has_password?(password)
-      account.logged_at = DateTime.now
-      account.save!
-      account
+  def self.authenticate(credentials)
+    case
+    when credentials[:email] && credentials[:password]
+      account = first( :email => credentials[:email] )
+      if account && account.has_password?(credentials[:password])
+        account.logged_at = DateTime.now
+        account.save!
+        account
+      end
+    when credentials.has_key?(:id)
+      get(credentials[:id].to_i)
     else
-      nil
+      false
     end
   end
 
@@ -142,20 +147,22 @@ class Account
   end
 
   def self.create_with_omniauth(auth)
-    email = auth['info']['email']
-    email = "#{auth['uid']}.#{auth['provider']}@localhost"  if email.blank?
+    attributes = { :provider => auth['provider'] }
+    by_uid = attributes.merge :uid => auth['uid']
+    by_email = attributes.merge :email => auth['info']['email']
 
-    if account = Account.first( :uid => auth['uid'], :provider => auth['provider'] )
-      account.update! :logged_at => DateTime.now
+    if account = (Account.first(by_uid) || Account.first(by_email))
+      account.update! :logged_at => DateTime.now, :uid => auth['uid']
       account
     else
-      pwd = Digest::SHA2.hexdigest("#{DateTime.now}5ovCu#{rand}Cry")[4..11]
-      account = Account.create :provider => auth['provider'],
-                               :uid      => auth['uid'],
-                               :name     => auth['info']['name'],
-                               :email    => email,
-                               :password => pwd,
-                               :password_confirmation => pwd
+      password = Digest::SHA2.hexdigest("#{DateTime.now}5ovCu#{rand}Cy")[4..11]
+      attributes.merge!(by_uid).merge!(by_email).merge!(
+        :name     => auth['info']['name'],
+        :password => password,
+        :password_confirmation => password,
+      )
+      attributes[:email] = "#{auth['uid']}.#{auth['provider']}@localhost" if attributes[:email].blank?
+      Account.create(attributes)
     end
   end
 

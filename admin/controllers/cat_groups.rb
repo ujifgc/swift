@@ -1,4 +1,5 @@
 Admin.controllers :cat_groups do
+  set_access :admin, :designer, :auditor
 
   before :edit, :update, :destroy do
     @object = CatGroup.get(params[:id])

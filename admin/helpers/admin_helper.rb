@@ -163,5 +163,4 @@ Admin.helpers do
       url(@models, :index)
     end
   end
-
 end

@@ -1,4 +1,5 @@
 Admin.controllers :layouts do
+  set_access :admin, :designer
 
   before :edit, :update, :destroy do
     @object = Layout.get(params[:id])

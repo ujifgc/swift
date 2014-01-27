@@ -1,4 +1,5 @@
 Admin.controllers :codes do
+  set_access :admin, :designer
 
   before :edit, :update, :destroy do
     @object = Code.get(params[:id])

@@ -1,4 +1,6 @@
 Admin.controllers :forms_cards do
+  set_access :admin, :designer, :auditor
+
   before :edit, :update, :destroy do
     @object = FormsCard.get(params[:id])
     unless @object

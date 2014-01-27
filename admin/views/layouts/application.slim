@@ -22,7 +22,7 @@ html
             | 
             = mk_glyph( :user, :white => true ) + link_to( current_account.name, url(:accounts, :edit, :id => current_account.id), :class => 'navbar-text' )
             | 
-            = link_to pat(:logout), url(:sessions, :destroy), :method => :delete, :class => 'btn btn-danger btn-small'
+            = link_to pat(:logout), url(:login, :destroy), :class => 'btn btn-danger btn-small'
     .container-fluid
       = partial 'base/flash'
       - if @object && @object.dirty?

@@ -1,4 +1,5 @@
 Admin.controllers :folders do
+  set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
     @object = Folder.get(params[:id])

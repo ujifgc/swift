@@ -1,4 +1,6 @@
 Admin.controllers :dialogs do
+  set_access :admin, :designer, :auditor, :editor
+
   layout :ajax
 
   get :codes do

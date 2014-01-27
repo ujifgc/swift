@@ -1,4 +1,5 @@
 Admin.controllers :news_rubrics do
+  set_access :admin, :designer, :auditor
 
   before :edit, :update, :destroy do
     @object = NewsRubric.get(params[:id])

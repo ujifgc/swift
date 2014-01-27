@@ -1,4 +1,5 @@
 Admin.controllers :forms_results do
+  set_access :admin, :designer, :auditor
 
   before :edit, :destroy do
     @object = FormsResult.get(params[:id])

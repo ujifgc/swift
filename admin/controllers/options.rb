@@ -1,4 +1,5 @@
 Admin.controllers :options do
+  set_access :admin
 
   before :edit, :update, :destroy do
     @object = Option.get(params[:id])

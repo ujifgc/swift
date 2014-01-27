@@ -1,4 +1,5 @@
 Admin.controllers :news_articles do
+  set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
     @object = NewsArticle.get(params[:id])
