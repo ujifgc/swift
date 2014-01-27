@@ -1,5 +1,5 @@
 body {
-  padding-top: 60px;
+  padding-top: 50px;
   min-width: 800px;
 }
 .blurry {
@@ -67,4 +67,10 @@ th.action  { width: 110px; text-align:center }
 }
 .nav-pills > li > a {
   outline: none;
+}
+.icon-swift-cog {
+  background-image: url('/images/swift16.png') !important;
+  background-position: 0 0;
+  height: 16px;
+  margin-top: 0;
 }

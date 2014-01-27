@@ -14,7 +14,7 @@ html
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          = link_to Option(:site_title), url(:base, :index), :class => 'brand'
+          = link_to Option(:site_title), url(:base, :index), :class => 'navbar-text title'
           .pull-right
             = link_to pat('site'), '/'
             | 
@@ -22,7 +22,7 @@ html
             | 
             = mk_glyph( :user, :white => true ) + link_to( current_account.name, url(:accounts, :edit, :id => current_account.id), :class => 'navbar-text' )
             | 
-            = link_to pat(:logout), url(:login, :destroy), :class => 'btn btn-danger btn-small'
+            = link_to pat(:logout), url(:login, :destroy), :class => 'btn btn-danger btn-mini'
     .container-fluid
       = partial 'base/flash'
       - if @object && @object.dirty?

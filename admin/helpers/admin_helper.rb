@@ -18,6 +18,8 @@ Admin.helpers do
     :blocks    => 'list-alt',
     :folders   => 'folder-open',
 
+    :control_panel => 'swift-cog',
+
     :news_articles => 'bookmark',
     :news_rubrics  => 'tasks',
     :news_events   => 'flag',

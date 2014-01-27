@@ -1,7 +1,7 @@
 .content
   ul.nav.nav-tabs.operations
     li.active
-      = link_to pat('dashboard.title'), url(:base, :index)
+      = mk_single_op :control_panel, url(:base, :index)
 
   - allow :editor do
     h5 Наполнение

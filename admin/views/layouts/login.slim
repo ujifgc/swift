@@ -5,6 +5,6 @@ html
     meta name="robots" content="noindex"
     title Swift :: #{Option(:site_title)}
     == pipeline :login, :css
-  body
+  body.login
     .container.login style='width: 287px'
       = yield

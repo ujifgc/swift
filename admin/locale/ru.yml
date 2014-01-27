@@ -20,8 +20,7 @@ ru:
       logout: Выйти
       site: На сайт
       ok: Лады
-      dashboard:
-        title: Панель управления
+      control_panel: Панель управления
       modules:
         content: Содержимое сайта
         admin: Настройки
