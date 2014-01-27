@@ -1,5 +1,5 @@
 #coding:utf-8
-require 'bcrypt'
+require 'digest/sha2'
 
 ACCOUNT_GROUPS = %W(admin designer auditor editor robot user)
 
@@ -52,7 +52,7 @@ class Account
 
   # hookers
   before :save do
-    encrypt_password  if password.present?
+    self.crypted_password = encrypt_password  if password.present?
   end
 
   before :destroy do |a|
@@ -121,8 +121,19 @@ class Account
     group_id ? "#{name} #{surname}" : I18n.t("group.#{name}")
   end
 
-  def has_password?(password)
-    ::BCrypt::Password.new(crypted_password) == password
+  def has_password?(pwd)
+    crypted_password == encrypt_password(pwd)
+  end
+
+  def reset_code
+    Digest::SHA2.hexdigest(Digest::SHA1.hexdigest(attributes.inspect) + 'hrjovFas8' + Date.today.to_s)[6..11]
+  end
+
+  def new_password
+    random_password = `apg -qd -c#{rand(0..9)} -m8 -x8 -n1`  rescue Digest::SHA2.hexdigest(DateTime.now.to_s+rand.to_s).gsub(/[^\d]/,'')[0..5]
+    self.password = self.password_confirmation = random_password
+    self.crypted_password = encrypt_password
+    random_password
   end
 
   # class helpers
@@ -168,7 +179,7 @@ class Account
 
   private
 
-  def encrypt_password
-    self.crypted_password = ::BCrypt::Password.create(password)
+  def encrypt_password(pwd = password)
+    Digest::SHA2.hexdigest("==#{created_at}==yudBuHid5==#{pwd}==")
   end
 end

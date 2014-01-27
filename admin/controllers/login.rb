@@ -40,30 +40,22 @@ Admin.controllers :login do
   route_verbs [:get, :post], :reset do
     account = Account.first :email => params[:email]
     if account
-      code = Digest::SHA2.hexdigest(Digest::SHA1.hexdigest(account.inspect) + 'herjovFas8' + Date.today.to_s)[6..11]
       host = env['SERVER_NAME']
       if params[:reset]
-        if code == params[:reset]
-          pwd = `apg -qd -c#{rand(0..9)} -m8 -x8 -n1`  rescue Digest::SHA2.hexdigest(DateTime.now.to_s+rand(0..9).to_s).gsub(/[^\d]/,'')[0..5]
-          account.password = account.password_confirmation = pwd
-          account.crypted_password = Digest::SHA2.hexdigest(pwd)[0..5]  # dummy action to make account dirty
+        if account.reset_code == params[:reset]
+          password = account.new_password
           if account.save
             mail_subject = I18n.t('padrino.admin.account.mail.reset_account_title', :host => host)
-            email do
-              @host = host
-              @pwd = pwd
-              @login = account.email
-              @address = absolute_url('')
-
-              content_type 'text/html; charset=UTF-8'
-              from     "noreply@#{@host}"
-              to        account.email
-              subject  mail_subject
-              body render 'reset_account_done'
-            end
-            set_current_account account
+            html = render('mailers/reset_account_done', :layout => false, :locals => { :email => account.email, :password => password, :admin => absolute_url('') })
+            Mail.email({
+              :from    => "noreply@#{host}",
+              :to      => account.email,
+              :subject => mail_subject,
+              :html    => html,
+            })
             flash[:notice] = pat('account.reset_account_done')
-            redirect url(:base, :index)
+            save_credentials(account)
+            restore_location
           else
             flash.now[:error] = pat('account.save_failed')
             render 'reset', :layout => 'login'
@@ -74,17 +66,13 @@ Admin.controllers :login do
         end              
       else
         mail_subject = I18n.t('padrino.admin.account.mail.reset_account_title', :host => host)
-        email do
-          @code = code
-          @host = host
-          @login = account.email
-
-          content_type 'text/html; charset=UTF-8'
-          from    "noreply@#{@host}"
-          to       account.email
-          subject mail_subject
-          body render 'reset_account'
-        end
+        html = render('mailers/reset_account', :layout => false, :locals => { :account => account })
+        Mail.email({
+          :from    => "noreply@#{host}",
+          :to      => account.email,
+          :subject => mail_subject,
+          :html    => html,
+        })
         flash.now[:notice] = pat('account.reset_initiated').html_safe
         render 'reset', :layout => 'login'
       end

@@ -23,10 +23,8 @@ padrino_version = '0.12.0.rc3'
 #gem 'padrino', padrino_version
 gem 'padrino-core', padrino_version
 gem 'padrino-helpers', padrino_version
-gem 'padrino-mailer', padrino_version
 
 # database ORM
-gem 'bcrypt-ruby'
 gem 'dm-validations'
 gem 'dm-timestamps'
 gem 'dm-migrations', :require => false
@@ -43,3 +41,6 @@ gem 'rack-pipeline', '~> 0.0.5'
 gem 'omniauth'
 gem 'rack-openid', :require => "rack/openid"
 gem 'omniauth-openid'
+
+# mailing
+gem 'system_mail', '~> 0.0.3'

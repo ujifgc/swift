@@ -1,7 +1,9 @@
-| Введите код сброса пароля #{@code}
+| Введите код сброса пароля #{account.reset_code}
 br
 | или перейдите по ссылке 
-a href="http://#{@host}/admin/accounts/reset?email=#{@login}&reset=#{@code}" сбросить пароль
+- url = absolute_url(:login, :reset, :email => account.email, :reset => account.reset_code)
+a href=url
+  = url
 br
 br
 | Код и ссылка действуют только #{I18n.l Date.today, :format => :long}

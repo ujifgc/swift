@@ -11,7 +11,6 @@ BONDABLE_PARENTS  = %W(Page CatNode NewsArticle Folder FormsCard)
 
 class Admin < Padrino::Application
   register Padrino::Rendering
-  register Padrino::Mailer if defined? Padrino::Mailer
   register Padrino::Helpers
   helpers Swift::Helpers
   enable :sessions

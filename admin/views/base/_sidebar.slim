@@ -4,15 +4,15 @@
   - next if (admin_modules & modules).empty?
   - collapsed = (collapsed_groups||'').index("#{name} ")
   - content = ''.html_safe
-  - admin_modules.each do |controller|
-    - next  unless modules.include?(controller)
+  - modules.each do |controller|
+    - next  unless admin_modules.include?(controller)
     - content += content_tag( :ul, content_tag(:li, mk_icon(controller) + ' ' + pat("menu.#{controller}")), :class => :unstyled )
     - collapsed = nil  if request.path_info =~ /^\/#{controller}$|^\/#{controller}\//
   - data = { :toggle => "#nav-group-#{name}", :'original-title' => pat("tooltip.#{name}"), :content => content }
   h5.nav-header data=data class=(collapsed && 'collapsed') = pat("modules.#{name}")
   ul.nav.nav-tabs id="nav-group-#{name}" style=(collapsed && 'display:none')
-    - admin_modules.each do |controller|
-      - next unless modules.include?(controller)
+    - modules.each do |controller|
+      - next unless admin_modules.include?(controller)
       li class=("active"  if request.path_info =~ /^\/#{controller}$|^\/#{controller}\//)
         = link_to mk_icon(controller) + pat("menu.#{controller}"), url(controller, :index)
 
