@@ -22,6 +22,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 padrino_version = '0.12.0.rc3'
 #gem 'padrino', padrino_version
 gem 'padrino-core', padrino_version
+gem 'padrino-gen', padrino_version
 gem 'padrino-helpers', padrino_version
 
 # database ORM

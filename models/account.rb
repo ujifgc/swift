@@ -173,7 +173,12 @@ class Account
         :password_confirmation => password,
       )
       attributes[:email] = "#{auth['uid']}.#{auth['provider']}@localhost" if attributes[:email].blank?
-      Account.create(attributes)
+      account = Account.create(attributes)
+      if Padrino.env == :development && Account.count(:group_id.not => nil, :id.not => account.id) == 0
+        account.group = Account.get(1)
+        account.save!
+      end
+      account
     end
   end
 
