@@ -7,9 +7,6 @@ $(function() {
 $(document).bind('cbox_load', function(){
   $('#cboxTextOverlay').remove();
 });
-$(document).bind('cbox_closed', function(){
-  $(document.body).css('overflow-y', 'auto');
-});
 $(document).bind('cbox_complete', function(){
   var el = $.colorbox.element();
   var text = '<small>' + el.prop('title') + '</small>';
@@ -25,5 +22,4 @@ $(document).bind('cbox_complete', function(){
   $('#cboxClose, #cboxCurrent, #cboxPrevious, #cboxNext').click(function(e) {
     e.stopPropagation();
   });
-  $(document.body).css('overflow-y', 'scroll');
 });
