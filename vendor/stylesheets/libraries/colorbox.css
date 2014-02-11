@@ -23,7 +23,7 @@
 }
 #cboxOverlay{background:url(/images/overlay.png) repeat 0 0;}
 
-#colorbox{}
+#colorbox{  margin-left: -54px; }
     #cboxContent{gmargin-top:20px;}
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
