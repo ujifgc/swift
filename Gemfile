@@ -19,7 +19,7 @@ gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework
-padrino_version = '0.12.0.rc3'
+padrino_version = '0.12.0'
 #gem 'padrino', padrino_version
 gem 'padrino-core', padrino_version
 gem 'padrino-gen', padrino_version

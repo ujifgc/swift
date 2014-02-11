@@ -6,7 +6,7 @@ class Legacy
 
   def self.initialize
     return  if @legacy
-    settings = YAML.load_file( Padrino.root('config/database.yml') )[PADRINO_ENV]
+    settings = YAML.load_file( Padrino.root('config/database.yml') )[RACK_ENV]
     settings['database'] = DATABASE
     DataMapper.setup :legacy, settings
     @legacy = repository(:legacy).adapter
