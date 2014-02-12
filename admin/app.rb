@@ -22,6 +22,7 @@ class Admin < Padrino::Application
 
   set :default_builder, 'AdminFormBuilder'
   set :protection, :except => :ip_spoofing
+  set :protect_from_csrf, true
 
   use OmniAuth::Builder do
     options :path_prefix => '/login/auth'
@@ -152,6 +153,12 @@ class Admin < Padrino::Application
     else
       not_found
     end
+  end
+
+  error 403 do
+    @time = DateTime.now
+    @error = I18n.t('error.forbidden')
+    render 'base/error'
   end
 
   after do
