@@ -104,12 +104,16 @@ bindIndexList = function() {
       },
       "fnStateSaveParams": function (oSettings, oData) {
         if ($('.dataTables_group select').length > 0) {
-          oData.iGroup = $('.dataTables_group select').val();
+          $('.dataTables_group select').each(function() {
+            oData['iGroup'+$(this).data('name')] = $(this).val();
+          });
         }
       },
       "fnStateLoadParams": function (oSettings, oData) {
         if ($('.dataTables_group select').length > 0) {
-          $('.dataTables_group select').val(oData.iGroup);
+          $('.dataTables_group select').each(function() {
+            $(this).val(oData['iGroup'+$(this).data('name')]);
+          });
         }
       },
     };
@@ -119,8 +123,10 @@ bindIndexList = function() {
       if (form.length > 0) model = form.attr('action').replace(/^\/admin\/([^\/]*).*$/,'$1');
       tableOptions["fnServerData"] = function ( sSource, aoData, fnCallback ) {
         if ($('.dataTables_group select').length > 0) {
-          aoData.push( { "name": "sGroup", "value": $('.dataTables_group select').val() } );
-          aoData.push( { "name": "sGroupName", "value": $('.dataTables_group').data('name') } );
+          $('.dataTables_group select').each(function() {
+            var select = $(this);
+            aoData.push( { "name": "sGroup"+select.data('name'), "value": select.val() } );
+          });
         }
         $.getJSON( sSource, aoData, function (json) { fnCallback(json) } );
       };
@@ -228,6 +234,16 @@ bindDatetime = function() {
       $(this).datetimepicker( { format: 'yyyy-mm-dd', weekStart: 1, language: 'ru', autoclose: true, minView: 'month' } );
       $(this).on('show', function(e) { $(e.target).select(); });
       $(this).addClass('date-added');
+    }
+  });
+  $('input.time').each(function() {
+    if (!$(this).hasClass('time-added')) {
+      $(this).wrap('<div class="input-prepend date"></div>');
+      $(this).before('<span class="add-on"><i class="icon-calendar"></i></span>');
+      $(this).siblings('.add-on').click(function() { $(this).siblings('input')[0].focus() });
+      $(this).datetimepicker( { format: 'hh:ii:ss', weekStart: 1, language: 'ru', autoclose: true, startView: 'day', maxView: 'day', minView: 'hour' } );
+      $(this).on('show', function(e) { $(e.target).select(); });
+      $(this).addClass('time-added');
     }
   });
 };

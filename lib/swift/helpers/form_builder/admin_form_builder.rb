@@ -127,8 +127,14 @@ module Padrino
             opts[:class] = 'text_field date'
             opts[:value] = options[:value]  if options[:value]
             text_field field, opts
+          when :time
+            opts = {}
+            opts[:class] = 'text_field time'
+            opts[:value] = options[:value]  if options[:value]
+            text_field field, opts
           else
-            opts = { :class => :text_field }
+            opts = { :class => 'text_field' }
+            opts[:class] += ' long' if options[:long]
             opts[:value] = if options[:value]
               options[:value]
             else
@@ -188,6 +194,10 @@ module Padrino
             @template.submit_tag( I18n.t('padrino.admin.form.back'), :onclick => "history.back();return false", :class => 'btn' )
           when :delete
             @template.submit_tag( I18n.t('padrino.admin.form.delete'), :class => 'btn btn-danger', :name => 'delete' )
+          when :to_accepted
+            @template.submit_tag( I18n.t('padrino.admin.form.to_accepted'), :class => 'btn btn-danger', :name => type )
+          when :to_planned
+            @template.submit_tag( I18n.t('padrino.admin.form.to_planned'), :class => 'btn btn-danger', :name => type )
           else
             super type, options
           end

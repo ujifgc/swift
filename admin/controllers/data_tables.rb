@@ -14,11 +14,11 @@ Admin.controllers :data_tables do
     filter = { }
     filter[:conditions] = [ 'title LIKE ? OR id LIKE ?', "%#{params[:sSearch]}%", "%#{params[:sSearch]}%" ]
 
-    if params[:sGroup].present? && params[:sGroupName].present? && params[:sGroup] != 'all'
-      group_id = params[:sGroup].to_i
-      column_name = params[:sGroupName]
+    params.each do |key,value|
+      next unless key.to_s.start_with?('sGroup') && params[key].present? && params[key] != 'all'
+      column_name = key.to_s.sub(/^sGroup/, '').underscore
       column_name += '_id'  unless model.properties.named?(column_name)
-      filter[column_name.to_sym] = group_id  if model.properties.named?(column_name)
+      filter[column_name.to_sym] = params[key]  if model.properties.named?(column_name)
     end
 
     order = { :order => [ ] }
@@ -39,7 +39,7 @@ Admin.controllers :data_tables do
     result[:aaData] = model.all(paginator.merge(filter).merge(order)).map do |o|
       data = {}
       columns.each_with_index do |(k,v),i|
-        data[i] = String === v[:code] ? binding.eval(v[:code]) : ''
+        data[i] = String === v[:code] ? binding.eval(v[:code]) : o.send(k)
       end
       data[:DT_RowId] = "#{model}-#{o.id}"
       data

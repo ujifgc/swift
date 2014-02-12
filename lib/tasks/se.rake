@@ -8,6 +8,7 @@ namespace :se do
 
   desc "grow database for se"
   task :grow => :environment do
+    DataMapper.auto_upgrade!
     load 'config/grow.rb'
   end
 end

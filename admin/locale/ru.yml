@@ -11,12 +11,16 @@ ru:
       new: Добавить
       list: Список
       edit: Изменить
+      show: Просмотреть
       save: Сохранить
       pick: Вставить
       cancel: Отменить
       close: Закрыть
       all: Все
-      group: Группа
+      group:
+        type: Тип
+        status: Статус
+        news_rubric: Рубрика
       logout: Выйти
       site: На сайт
       ok: Лады
@@ -28,6 +32,7 @@ ru:
         news: Новостные ленты
         design: Вёрстка и дизайн
         forms: Формы и опросы
+        theses: Диссертации
       tooltip:
         content: Содержимое сайта
         admin: Настройки
@@ -56,6 +61,9 @@ ru:
         codes: Спецкоды
         elements: Элементы
         options: Настройки
+        dissertations: Диссертации
+        reviews: Отзывы
+        boards: Советы
         add:
           images: Добавить картинки
           assets: Добавить файлы
@@ -74,6 +82,8 @@ ru:
         save: Сохранить
         apply: Применить
         back: Назад
+        to_accepted: Принять к защите и опубликовать
+        to_planned: Назначить защиту
       dialog:
         add_parent: ''
         create_fragment: Создать новый фрагмент
@@ -192,6 +202,17 @@ ru:
         folder: Папка
         folder_id: Папка
         cat_card: Карточка
+        chair: Председатель
+        secretary: Секретарь
+        board_id: Совет
+        status: Этап
+        specialty: Специальность
+        author: Автор
+        synopsis: Автореферат
+        defence_date: Дата защиты
+        defence_time: Время защиты
+        defence_location: Место проведения защиты
+        dissertation_id: Диссертация
         meta:
           description: Метаописание
           keywords: Ключевые слова

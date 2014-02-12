@@ -332,3 +332,7 @@
   width: 14px;
   height: 14px;
 }
+
+.datetimepicker-hours thead .switch, .datetimepicker-minutes thead .switch {
+  visibility: hidden;
+}

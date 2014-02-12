@@ -179,3 +179,10 @@ table.table thead .sorting_desc_disabled { background: url('/images/sort_desc_di
 table.smart {
   width: 100%;
 }
+.dataTables_wrapper .dataTables_group {
+  display: inline-block;
+  margin-left: 0.5em;
+}
+.dataTables_wrapper .dataTables_group:first-child {
+  margin-left: 0;
+}

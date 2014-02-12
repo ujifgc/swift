@@ -9,20 +9,25 @@ Admin.helpers do
 
   def mk_group_selector( model, group, params, options = {} )
     filter = options[:filter] || {}
+    @groups = {}
     case group
     when Hash
       group.each do |name, variants|
-        # !!! FIXME many groups?
-        @groups = variants.map{ |k,v| OpenStruct.new(:id => k, :title => v) }
         @group_name = name.to_s
+        @groups[@group_name] = variants.map{ |k,v| OpenStruct.new(:id => k, :title => v) }
+        selected = params[@group_name]
+        @selected ||= {}
+        @selected[@group_name] = {} 
+        @selected[@group_name][selected] = true if selected
       end
     else
-      @groups = options[:with] ? group.with(options[:with]) : group.all(filter)
       @group_name = group.name.singularize.underscore
+      @groups[@group_name] = options[:with] ? group.with(options[:with]) : group.all(filter)
+      selected = params[@group_name]
+      @selected ||= {}
+      @selected[@group_name] = {} 
+      @selected[@group_name][selected] = true if selected
     end
-    @selected = {}
-    selected_id = params[:"#{@group_name}_id"].to_i
-    @selected[selected_id] = true  if selected_id > 0
     partial 'base/group-select'
   end
 end

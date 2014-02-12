@@ -12,7 +12,7 @@
   min-height: 300px;
   font-family: Courier New, monospace;
 }
-form input[id$=title], form .long input.text_field {
+form input[id$=title], form .long input.text_field, form input.long {
   width: 99%;
 }
 
