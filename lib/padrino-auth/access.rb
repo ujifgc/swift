@@ -140,8 +140,8 @@ module Padrino
       ##
       # Populates the list of objects the current visitor is allowed to interact with.
       #
-      def access_objects(subject = access_subject)
-        settings.permissions.find_objects(subject)
+      def access_objects(subject = access_subject, action = nil)
+        settings.permissions.find_objects(subject, action)
       end
     end
   end

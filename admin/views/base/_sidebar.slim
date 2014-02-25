@@ -1,5 +1,5 @@
 - collapsed_groups = request.cookies['sbc']
-- admin_modules = access_objects.map{ |object| object.to_s.pluralize.to_sym }
+- admin_modules = access_objects(access_subject, :index).map{ |object| object.to_s.pluralize.to_sym }
 - MODULE_GROUPS.each do |name, modules|
   - next if (admin_modules & modules).empty?
   - collapsed = (collapsed_groups||'').index("#{name} ")
