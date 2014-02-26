@@ -1,14 +1,6 @@
 require 'shellwords'
 
 class NeatAdapter < Nozzle::Adapter::Base
-  def size
-    @record.file_size || -1
-  end
-
-  def content_type
-    @record.file_content_type || ''
-  end
-
   def root
     if @record.folder && @record.folder.is_private
       Padrino.root 'private'

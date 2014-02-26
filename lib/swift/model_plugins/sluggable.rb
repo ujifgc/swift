@@ -6,20 +6,27 @@ module Swift
         # It composes a slug by title before save if the slug is not set already
         # It extends its model to be able to find a resource by its slug
         # Slug is a human-readable unique resource identifier
-        def sluggable! options = {}
+        def sluggable!(*args)
           send :include, InstanceMethods
+
+          options = args.extract_options!
+          @slug_field = args.first || :title
 
           property :slug, String, { :unique_index => true }.merge(options)
           validates_uniqueness_of :slug  if options[:unique_index]
 
           before :valid? do
-            self.slug = (title || id).to_s.as_slug  if slug.blank?
+            self.slug = (send(self.class.slug_field) || id).to_s.as_slug  if slug.blank?
             self.slug = slug.strip
             filter = { :id.not => id }
             filter[:parent] = parent  if respond_to? :parent
             while self.class.first( filter.merge(:slug => slug) )
               slug.match(/\-\d+$/) ? self.slug.succ! : (self.slug += '-1')
             end
+          end
+
+          def self.slug_field
+            @slug_field
           end
 
           def self.by_slug( slug )
