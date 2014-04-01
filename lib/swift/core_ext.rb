@@ -53,9 +53,21 @@ class Date
 end
 
 class Object
-  # Shows size as human-readable number of bytes
+  # Shows size as human-readable number of bytes, base 1000
   def as_size( s = nil )
-    prefix = %W(Тб Гб Мб Кб б)
+    prefix = %W(ТБ ГБ МБ КБ Б)
+    s = (s || self).to_f
+    i = prefix.length - 1
+    while s > 500 && i > 0
+      s /= 1000
+      i -= 1
+    end
+    ((s > 9 || s.modulo(1) < 0.1 ? '%d' : '%.1f') % s) + ' ' + prefix[i]
+  end
+
+  # Shows size as human-readable number of bytes, base 1024
+  def as_size2( s = nil )
+    prefix = %W(ТиБ ГиБ МиБ КиБ Б)
     s = (s || self).to_f
     i = prefix.length - 1
     while s > 512 && i > 0
@@ -70,6 +82,14 @@ class Object
     d = (d || self)
     return ''  unless [Date, Time, DateTime].include? d.class
     format = d.year == Date.today.year ? 'date_same_year' : 'date_other_year'
+    I18n.l d, :format => I18n.t( 'time.formats.' + format )
+  end
+
+  # Shows a date in locale-specific format
+  def as_time( d = nil )
+    d = (d || self)
+    return ''  unless [Time, DateTime].include? d.class
+    format = 'time_short'
     I18n.l d, :format => I18n.t( 'time.formats.' + format )
   end
 end

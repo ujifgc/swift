@@ -3,6 +3,8 @@ html class=swift.print?
   head
     meta charset="utf-8"
     link rel="shortcut icon" href="/favicon.ico"
+    /[if lt IE 9]
+      script src='/javascripts/html5ie8tags.js'
     = element 'PageTitle'
     = element 'Meta'
     == pipeline :app, :css

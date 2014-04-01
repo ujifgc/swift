@@ -12,13 +12,13 @@ module Swift
           property :is_published, DataMapper::Property::Boolean, :default => false
           property :publish_at, DateTime
 
-          before :valid? do |i|
+          before :valid? do
             self.is_published = false  if is_published.blank?
             self.publish_at = nil  if publish_at.blank?
           end
 
           def self.published
-            all( :is_published => true, :conditions => ["IFNULL(publish_at,0) < ?", DateTime.now] )
+            all( :is_published => true, :conditions => ["IFNULL(#{self.to_s.underscore.pluralize}.publish_at,0) < ?", DateTime.now] )
           end
         end
       end

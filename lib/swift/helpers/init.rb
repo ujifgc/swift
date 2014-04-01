@@ -74,6 +74,7 @@ module Swift
       def init_http
         swift.http_method = request.env['REQUEST_METHOD']
         swift.host = request.env['SERVER_NAME']
+        swift.request = request.env['REQUEST_URI']
         swift.uri = "/#{params[:request_uri]}"
         swift.path = swift.uri.partition('?').first
         swift.path_pages = []

@@ -1,7 +1,8 @@
-.articles.news-list
-  dl
-    - @news.each do |o|
-      dt
-        span.date= o.date.as_date
-        h4= link_to o.title, se_url(o)
-      dd= engine_render( o.info )
+section.news-top.news-list
+  - @articles.each do |article|
+    article
+      header
+        time pubdate=true datetime=article.date = article.date.as_date
+        h4.title= link_to article.title, "/news/show/#{article.slug}"
+      - if article.info.present?
+        section.short-text= engine_render(article.info)

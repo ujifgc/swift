@@ -23,6 +23,7 @@ if md = swift.slug.match( /.+/ )
     not_found  if swift.module_path_ids.last && rubric.parent_id != swift.module_path_ids.last
     swift.module_path_ids << rubric.id
     @active_rubrics << rubric
+    swift.path_pages << Page.new(:title => rubric.title, :path => swift.url)
   end
 
   core = element( 'NewsRubrics', @args, @opts )

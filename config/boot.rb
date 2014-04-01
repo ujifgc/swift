@@ -29,6 +29,7 @@ require 'openid/store/filesystem'
 
 Padrino.before_load do
   I18n.locale = :ru
+  I18n.available_locales = [:ru]
 
   Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
 

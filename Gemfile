@@ -20,8 +20,6 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework
 padrino_version = '0.12.0'
-#padrino_version = { :path => 'padrino-framework' }
-#gem 'padrino', padrino_version
 gem 'padrino-core', padrino_version
 gem 'padrino-gen', padrino_version
 gem 'padrino-helpers', padrino_version
@@ -36,8 +34,8 @@ gem 'dm-core', '~> 1.2.1'
 gem 'dm-mysql-adapter'
 
 # file, picture, js, css assets
-gem 'nozzle', '~> 0.1.3'
-gem 'rack-pipeline', '~> 0.0.8'
+gem 'nozzle', '~> 0.1.5'
+gem 'rack-pipeline', '~> 0.0.9'
 
 # authorization and authentication
 gem 'omniauth'
@@ -46,3 +44,4 @@ gem 'omniauth-openid'
 
 # mailing
 gem 'system_mail', '~> 0.0.3'
+gem 'petrovich'

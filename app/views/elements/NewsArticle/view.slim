@@ -1,4 +1,5 @@
-.article
-  h3= @new.title
-  span.date = l @new.date, :format => :date_other_year
-  .text= engine_render( @new.text )
+article.news-article
+  header
+    time pubdate=true datetime=@article.date = @article.date.as_date
+    h3.title= @article.title
+  section.full-text= engine_render(@article.text )

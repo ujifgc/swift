@@ -7,7 +7,6 @@ $(function() {
       $(".form-actions .btn-primary").click();
       return false;
     }
-    
   });
       
   bindIndexList();
@@ -56,7 +55,6 @@ $(function() {
   $('a[data-toggle=modal]').on('click', showPopup);
   $('a[data-toggle=pick_cat]').on('click', pickCatObject);
   $('textarea.resizable').TextAreaResizer();
-  
 });
 
 bindIndexList = function() {
@@ -334,6 +332,7 @@ $.fn.toggleCheckbox = function() {
 //Catalogue
 bindCatCards = function(elem) {
   (elem || $('form .as_clonable select')).on('change', function() {
+    if ($(this).hasClass('static')) return;
     if (this.value.match(/select|multiple/))
       $(this).siblings('textarea').removeClass('hide');
     else
@@ -345,11 +344,14 @@ cloneControlGroup = function(el) {
   var g = $(el).parent().siblings('.controls.hide');
   var c = g.clone();
   var add = '-'+(new Date()).getTime();
-  c.children('input, select, textarea').each(function(){ this.name = this.name.replace(/\[(.*)\]/, '[$1'+add+']') });
+  c.find('input, select, textarea').each(function(){ this.id = this.name = this.name.replace(/\[(.*)\]/, '[$1'+add+']'); $(this).removeClass('date-added'); });
+  c.find('label').each(function(){ $(this).attr('for', $(this).children().first()[0].id) });
+  c.find('.add-on').remove();
   c.removeClass('hide');
   sel = c.find('select');
   bindCatCards(sel);
   g.before(c);
+  bindDatetime();
 };
 
 addCheckboxes = function(selector) {
@@ -822,5 +824,4 @@ bindBlockType = function() {
   $(function() {
     select.change();
   });
-
 };

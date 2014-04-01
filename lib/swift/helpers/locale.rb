@@ -1,6 +1,10 @@
 module Swift
   module Helpers
     module Locale
+      def mk_datetime(date, time)
+        DateTime.new date.year, date.month, date.day, time.hour, time.min, time.sec
+      end
+
       private
 
       def detect_selected_locale

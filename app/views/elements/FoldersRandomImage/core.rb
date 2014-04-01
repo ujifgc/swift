@@ -11,3 +11,4 @@ end
 throw :output, "[No bound folders for GalleryRandomImage]"  unless @folder
 @image = @folder.images.sample
 throw :output, "[No images in Folder##{@folder.slug}]"  unless @image
+throw :output, image_tag(@image.file.url, :alt => @image.title) if @opts[:raw]

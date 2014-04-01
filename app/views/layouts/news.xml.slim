@@ -9,11 +9,14 @@ rss version="2.0"
     link= absolute_url('/')
     - @news_articles.each do |article|
       - link = absolute_url(se_url article)
-      - image = Image.get article.info.gsub(/.*?\[image[^\s]*\s+(\d+)\s+.*\].*/m, '\1')
+      - image = Image.get(article.info.to_s.gsub(/.*?\[image[^\s]*\s+(\d+)\s+.*\].*/m, '\1'))
+      - description = strip_tags(engine_render article.text)
+      - if params.has_key?('koi')
+        - description.gsub!(/[«»]/, '"')
       item
         title= article.title
         link= link
-        description= strip_tags(engine_render article.info)
+        description= description
         pubDate= article.date.rfc822
         guid= link
         - if image
