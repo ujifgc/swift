@@ -19,10 +19,10 @@ gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework
-padrino_version = '0.12.0'
+padrino_version = '0.12.1'
 gem 'padrino-core', padrino_version
-gem 'padrino-gen', padrino_version
 gem 'padrino-helpers', padrino_version
+gem 'padrino-auth', '~> 0.0.12'
 
 # database ORM
 gem 'dm-validations'
@@ -44,4 +44,3 @@ gem 'omniauth-openid'
 
 # mailing
 gem 'system_mail', '~> 0.0.3'
-gem 'petrovich'
