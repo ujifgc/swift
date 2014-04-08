@@ -1,5 +1,6 @@
 = partial 'base/index_operations'
 form.inner.multiple#multiple-images action=url(:images, :index)/:multiple method=:post
+  = csrf_token_field
   = mk_group_selector Image, Folder, params, :with => :images
   = mk_data_table Image
 = partial 'base/index_operations_bottom'

@@ -8,6 +8,7 @@
     li class=klass
       = link_to pat(:groups), url(:accounts, :index, :group => 'groups')
 form.inner.multiple#multiple-accounts action=url(:accounts, :index)/:multiple method=:post
+  = csrf_token_field
   table.table
     thead
       tr
