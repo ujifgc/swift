@@ -17,6 +17,7 @@ end
 
 Admin.controllers :login do
   layout 'login'
+  set_access :*
 
   get :new, :map => '/login' do
     render 'new'

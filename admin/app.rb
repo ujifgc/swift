@@ -22,7 +22,7 @@ class Admin < Padrino::Application
 
   set :default_builder, 'AdminFormBuilder'
   set :protection, :except => :ip_spoofing
-  set :protect_from_csrf, true
+  set :protect_from_csrf, :except => %r{^/login/auth/yandex/}
 
   use OmniAuth::Builder do
     options :path_prefix => '/login/auth'
