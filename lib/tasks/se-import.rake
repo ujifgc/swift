@@ -2,7 +2,7 @@
 require 'awesome_print'
 
 class Legacy
-  DATABASE = 'swift_udmproc_old'
+  DATABASE = 'swift_purga_old'
 
   def self.initialize
     return  if @legacy
@@ -24,6 +24,8 @@ class Legacy
          case 
          when md = mm.match(/^file\s+([^\]]+)$/)
            "[file #{md[1]}]"
+         when md = mm.match(/^table\s+([^\]]+)$/)
+           "[block #{md[1]}]"
          when md = mm.match(/^b$|^\/b$/)
            "**"
          when md = mm.match(/^hr$/)
@@ -36,6 +38,10 @@ class Legacy
            '[image' + (md[2] ? ".#{md[2]}" : "") + " #{md[1]}]"
          when md = mm.match(/^p right$|^p center$/)
            "\n"
+         when md = mm.match(/^h2$/)
+           "\n\n## "
+         when md = mm.match(/^\/h2$/)
+           "\n\n"
          when md = mm.match(/^h3$/)
            "\n\n### "
          when md = mm.match(/^\/h3$/)
@@ -50,6 +56,7 @@ class Legacy
            tag
          end
        end
+       .gsub(/\*\*\s*([^*]*?)\s*\*\*/,'**\1**')
   end
 
   def self.cleanup_uub( str )
@@ -84,6 +91,7 @@ class Legacy
        .gsub(/^([^\*]{3})(.*)\n \* (.*)$/, "\\1\\2\n\n * \\3")
        .gsub('&laquo;', '«')
        .gsub('&raquo;', '»')
+       .gsub('&quot;', '"')
   end
 end
 
@@ -148,22 +156,24 @@ end
 
 def se_import_files
   files = Legacy.select("SELECT * FROM files_10000")
-  ap files
   folder = Folder.first_or_create( :title => "legacy-files" )
   folder.assets.destroy
+  pbar = ProgressBar.create :title => "files", :total => files.count
   files.each do |file|
     begin
       o = Asset.new
       o.id = file.id
-      o.title = file.name.to_s.strip
+      o.title = Legacy.cleanup_uub file.name.to_s.strip
       o.folder = folder
-      o.file = File.open("tmp/files/#{file.id}.#{file.ext}")
+      o.file = File.open("tmp/malayapurga.ru/html/files/#{file.id}.#{file.ext}")
       o.save
+      pbar.increment
     rescue
       p 'error no file'
     else
       p o
     end
+    pbar.finish
   end
 end
 
@@ -171,15 +181,16 @@ def se_import_collections
   collections = Legacy.select("SELECT * FROM collections_10000")
   folder = Folder.first_or_create( :title => "legacy-images" )
   folder.images.destroy
-  #ap collections
+  pbar = ProgressBar.create :title => "collections", :total => collections.count
   collections.each do |collection|
     begin
       o = Image.new
       o.id = collection.id
-      o.title = collection.name.to_s.strip
+      o.title = Legacy.cleanup_uub collection.name.to_s.strip
       o.folder = folder
-      o.file = File.open(Dir.glob("tmp/img/#{collection.id}/*").sort.last)
+      o.file = File.open(Dir.glob("tmp/malayapurga.ru/html/img/#{collection.id}/*").sort.last)
       o.save
+      pbar.increment
     rescue
       p 'error no image file'
     else
@@ -187,6 +198,7 @@ def se_import_collections
       p o.file.path
     end
   end
+  pbar.finish
 end
 
 def se_retag( model )
@@ -213,11 +225,17 @@ end
 namespace :se do
   desc "load tables from old engine"
   task :import, :args do |t, args|
-    #'pages news faq files collections'
+    require File.expand_path('config/boot.rb', Rake.application.original_dir)
+
+    Padrino.mounted_apps.each do |app|
+      app.app_obj.setup_application!
+    end
+
+    #'pages news files collections'
     if tables = args[:args]
       tables.split(/\s+/).each{ |table| se_import(table) }
     else
-      puts "USAGE: rake se:import['pages news faq files collections']\n"
+      puts "USAGE: rake se:import['pages news files collections']\n"
       puts "   OR  rake se:import['news']\n"
       puts "  etc.\n"
     end
@@ -225,10 +243,16 @@ namespace :se do
 
   desc "replace legacy tags"
   task :retag, :args do  |t, args|
+    require File.expand_path('config/boot.rb', Rake.application.original_dir)
+
+    Padrino.mounted_apps.each do |app|
+      app.app_obj.setup_application!
+    end
+
     if models = args[:args]
       models.split(/\s+/).each{ |model| se_retag(model) }
     else
-      puts "USAGE: rake se:retag['pages news faq']\n"
+      puts "USAGE: rake se:retag['pages news']\n"
       puts "   OR  rake se:retag['news']\n"
       puts "  etc.\n"
     end
