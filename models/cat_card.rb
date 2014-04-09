@@ -20,6 +20,8 @@ class CatCard
   property :title,    String, :required => true
   property :text,     Text
 
+  belongs_to :folder
+
   sluggable!
   timestamps!
   userstamps!
@@ -28,6 +30,15 @@ class CatCard
   bondable!
   recursive!
 
+  before :valid? do
+    self.folder = Folder.for_card(self)
+  end
+
   # relations
   has n, :cat_nodes
+
+  # instance helpers
+  def json_of_type(type)
+    json.select{ |k, v| v[0] == type.to_s }
+  end
 end

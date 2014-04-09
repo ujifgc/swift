@@ -24,4 +24,12 @@ class Folder
     return []  unless ['images', 'assets'].include? type
     Folder.all(:conditions => [ "0 < (SELECT count(id) FROM `#{type}` WHERE folder_id=`folders`.id)" ])
   end
+
+  def self.for_card(card)
+    return unless card
+    return card.folder if card.folder
+    first_attributes = { :slug => "cat-card-#{card.slug}" }
+    create_attributes = { :title => "Загрузки карточки #{card.title}" }
+    Folder.first_or_create(first_attributes, first_attributes.merge(create_attributes))
+  end
 end
