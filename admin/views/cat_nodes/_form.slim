@@ -13,12 +13,9 @@
       - opts = { :as => as, :label => { :caption => key }, :morphable => true, :value => @object.json[key] }
       - variants = type[1].split(/[\r\n]+/)
       - if as == :select
-        - opts.delete :value
-        - opts[:selected] = @object.json[key]
         - opts[:options] = variants
         = f.input key, opts
       - elsif as == :multiple
-        - opts.delete :value
         .control-group.as_multiple.morphable
           = f.label( key, :class => 'control-label', :caption => key )
           - variants.each do |v|

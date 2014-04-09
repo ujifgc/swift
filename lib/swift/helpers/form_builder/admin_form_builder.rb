@@ -204,7 +204,7 @@ module Padrino
         end
 
         protected
-        
+
         def make_caption( model, field )
           field_index = if field.to_s[-1] == ']'
             field.to_s.chomp(']').gsub(/\[/,'.')
@@ -225,6 +225,26 @@ module Padrino
             result << "[#{field}]" unless field.blank?
           end
           result.flatten.join
+        end
+
+        def field_result
+          result = []
+          result << object_model_name if root_form?
+          result
+        end
+
+        def nested_form?
+          @options[:nested] && @options[:nested][:parent] && @options[:nested][:parent].respond_to?(:object)
+          is_nested && object.respond_to?(:new_record?) && !object.new_record? && object.id
+        end
+
+        def object_model_name(explicit_object=object)
+          return @options[:as] if root_form? && @options[:as].is_a?(Symbol)
+          explicit_object.is_a?(Symbol) ? explicit_object : explicit_object.class.to_s.underscore.gsub(/\//, '_')
+        end
+
+        def root_form?
+          !nested_form?
         end
       end
     end
