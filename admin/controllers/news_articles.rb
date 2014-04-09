@@ -29,7 +29,7 @@ Admin.controllers :news_articles do
       filter[:news_rubric_id] = params[:news_rubric_id].to_i  unless params[:news_rubric_id] == 'all'
     else
       news_article = NewsArticle.last
-      filter[:news_rubric_id] = params[:news_rubric_id] = news_article.news_rubric.id  if news_article
+      filter[:news_rubric_id] = params[:news_rubric_id] = news_article.news_rubric.id  if news_article && news_article.news_rubric
     end
 
     if params[:title].present?
