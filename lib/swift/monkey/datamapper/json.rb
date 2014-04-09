@@ -1,5 +1,4 @@
 require 'dm-core'
-require 'multi_json'
 
 module DataMapper
   class Property

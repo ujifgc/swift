@@ -9,17 +9,16 @@ group :development, :test do
 end
 
 # basic support
-gem 'activesupport', :require => 'active_support/core_ext/object/conversions'
+gem 'activesupport', '4.1.0', :require => false
 
 # templates and content parsing
-gem 'yajl-ruby', :require => 'yajl'
-gem 'multi_json'
 gem 'slim'
 gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework
 padrino_version = '0.12.1'
+padrino_version = { :path => '/home/ujif/pro/padrino-framework' }
 gem 'padrino-core', padrino_version
 gem 'padrino-helpers', padrino_version
 gem 'padrino-auth', '~> 0.0.12'

@@ -104,39 +104,6 @@ module Kernel
   end
 end
 
-# Implements #jo_json
-[Array, Float, Hash, Integer, String, NilClass, TrueClass, FalseClass].each do |klass|
-  klass.class_eval do
-    def to_json(options = {})
-      MultiJson.encode(self, options)
-    end
-  end
-end
-class Time
-  def to_json(options = nil)
-    xmlschema
-  end
-end
-class Date
-  def to_json(options = nil)
-    strftime("%Y-%m-%d")
-  end
-end
-class DateTime
-  def to_json(options = nil)
-    xmlschema
-  end
-end
-class Object
-  def to_json(options = nil)
-    if respond_to? :as_json
-      as_json.to_json
-    else
-      raise Exception, "MultiJson failed to serialize #{inspect}"
-    end
-  end
-end
-
 module FileUtils
   # Tries to move a file and ignores failures
   def self.mv_try( src, dst )
