@@ -277,7 +277,8 @@ pickCatObject = function() {
       dialog.find('.pick-dialog').click(function() {
         var result = [];
         dialog.find(':checkbox[checked]').each(function(i,e){result.push(e.name.replace(/.*?(\d+).*/g,'$1'))});
-        input.val('['+result.join(',')+']');
+        input.prop('type', 'hidden')
+        input.val(JSON.stringify(result));
         dialog.modal('hide');
       });
     }
