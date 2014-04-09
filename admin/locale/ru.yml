@@ -21,6 +21,8 @@ ru:
         type: Тип
         status: Статус
         news_rubric: Рубрика
+        folder: Папка
+        cat_card: Карточка
       logout: Выйти
       site: На сайт
       ok: Лады
