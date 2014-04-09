@@ -117,6 +117,15 @@ module Padrino
             end
             div = hidden_field( field, opts )
             div << link_to( "#{opts[:value]} Not Implemented", '/admin/dialogs/assets?pick&styleless'.html_safe, 'data-toggle' => :pick_cat )
+          when :pick_or_upload_asset
+            div = ''.html_safe
+            folder = Folder.for_card(@object.cat_card)
+            assets = Array(@object.json[field]).map{ |id| Asset.get(id) }.select(&:present?)
+            div << content_tag(:div, assets.map(&:title).join(', ')) if assets.present?
+            div << link_to( 'Выбрать', "/admin/dialogs/assets?pick&styleless&folder_id=#{folder.id}".html_safe, 'data-toggle' => :pick_cat, :class => 'btn btn-success' )
+            div << ' '.html_safe
+            div << file_field_tag("#{object}[#{field}]", options.merge(:multiple => true))
+            div << hidden_field_tag("#{object}[#{field}][]", options)
           when :datetime, :date_time
             opts = {}
             opts[:class] = 'text_field datetime'
@@ -151,7 +160,8 @@ module Padrino
           error = Array(@object.errors.delete(field))
           error += Array(@object.json_errors.delete(field))  if @object.respond_to? :json_errors
           controls += content_tag( :span, error.join(', '), :class => 'help-inline' )  if error.any?          
-          html = label( field, options[:label].merge( :class => 'control-label', :caption => caption ) ) + ' '
+          # ramove , :id => nil after 0.12.2
+          html = label( field, options[:label].merge( :class => 'control-label', :caption => caption, :id => nil ) ) + ' '
           html += @template.content_tag( :div, controls, :class => :controls ) + ' '
           html += @template.content_tag( :span, options[:description], :class => :description )  unless options[:description].blank?
           klass = "control-group as_#{type}"
@@ -214,6 +224,26 @@ module Padrino
           tr = I18n.t "models.#{model}.attributes.#{field_index}"
           tr = I18n.t "models.object.attributes.#{field_index}"  if tr.match(/^..\..+/)
           tr
+        end
+
+        def field_result
+          result = []
+          result << object_model_name if root_form?
+          result
+        end
+
+        def nested_form?
+          @options[:nested] && @options[:nested][:parent] && @options[:nested][:parent].respond_to?(:object)
+          is_nested && object.respond_to?(:new_record?) && !object.new_record? && object.id
+        end
+
+        def object_model_name(explicit_object=object)
+          return @options[:as] if root_form? && @options[:as].is_a?(Symbol)
+          explicit_object.is_a?(Symbol) ? explicit_object : explicit_object.class.to_s.underscore.gsub(/\//, '_')
+        end
+
+        def root_form?
+          !nested_form?
         end
 
         def field_name(field=nil)

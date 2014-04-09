@@ -6,7 +6,7 @@
 - if @object.cat_card
   = f.input :parent_id, :as => :select, :selected => @object.parent_id, :collection => CatNode.all( :order => :path, :id.not => @object.id, :cat_card_id => @object.cat_card.parent_id ), :fields => [ :title_tree, :id ], :include_blank => true
 
-- unless @object.new?
+- if @object.cat_card
   .well
     - @object.cat_card.json.each do |key, type|
       - as = type[0].to_sym
@@ -29,7 +29,7 @@
       - elsif as == :date
         = f.input key, opts.merge( :as => :date, :value => @object.json[key] )
       - elsif as == :assets
-        = f.input key, opts.merge( :as => :pick_asset )
+        = f.input key, opts.merge( :as => :pick_or_upload_asset )
       - elsif as == :images
         = f.input key, opts.merge( :as => :pick_image )
       - else
@@ -43,3 +43,6 @@
   = partial 'base/meta', :locals => { :f => f }
 
 = f.submits :append => mk_timestamps( @object )
+
+javascript:
+  $('#cat_node_cat_card_id').on('change', function() { window.location = window.location.pathname.replace('create','new') + '?' + $('#edit-cat_nodes').serialize() });

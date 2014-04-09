@@ -9,6 +9,44 @@ Admin.controllers :cat_nodes do
     end
   end
 
+  before :create, :update do
+    node = params[:cat_node]
+    card = @object && @object.cat_card || CatCard.get(node['cat_card_id'])
+    @assets = []
+    card.json_of_type(:assets).each do |k,v|
+      files = node[k]
+      files = [files] unless files.kind_of? Array
+      files = files.inject([]) do |all,data|
+        if data.kind_of?(String)
+          begin
+            data = MultiJson.decode(data)
+          rescue JSON::ParserError
+          end
+        end
+        data = nil if data.blank?
+        all += data.kind_of?(Array) ? data : [data]
+      end
+      assets = files.uniq.map do |file|
+        case file
+        when Hash
+          Asset.create(
+            :title => file[:filename],
+            :file => file,
+            :folder => card.folder,
+          )
+        else
+          Asset.get(file)
+        end
+      end.compact
+      if assets.any?
+        params[:cat_node][k] = assets.map(&:id)
+        @assets += assets
+      end
+    end
+    
+    params[:cat_node]['title'] = File.basename(@assets.first.title, '.*') if params[:cat_node]['title'].blank? && @assets.any?
+  end
+
   get :index do
     @objects = CatNode.all
     filter = {}
@@ -26,15 +64,18 @@ Admin.controllers :cat_nodes do
   end
 
   get :new do
-    @object = CatNode.new
+    @object = CatNode.new(params[:cat_node])
+    card = CatCard.get(session[:cat_card_id]) if session[:cat_card_id]
+    @object.cat_card ||= card || CatCard.last
     render 'cat_nodes/new'
   end
 
   post :create do
     @object = CatNode.new(params[:cat_node])
+    session[:cat_card_id] = @object.cat_card_id
     if @object.save
       flash[:notice] = pat('cat_node.created')
-      redirect url(:cat_nodes, :edit, :id => @object.id) #!!! FIXME should load actual fields on :new, maybe xhr
+      redirect url_after_save
     else
       render 'cat_nodes/new'
     end
@@ -51,8 +92,12 @@ Admin.controllers :cat_nodes do
     params[:cat_node].each do |k,v|
       if card_field = @object.cat_card.json[k]
         case card_field[0]
-        when 'assets', 'images'
-          value = MultiJson.load(v)  rescue nil
+        when 'images'
+          value = begin
+            v.kind_of?(String) ? MultiJson.decode(v) : v
+          rescue JSON::ParserError
+            v
+          end
           attributes[k] = value  if value
         when "number"
           attributes[k] = v.to_i

@@ -1,3 +1,3 @@
 = partial 'base/edit_operations'
-= form_for :object, url(:cat_nodes, :update, :id => @object.id), :method => :put, :class => 'form form-horizontal edit', :id => "edit-cat_nodes" do |f|
+= form_for :object, url(:cat_nodes, :update, :id => @object.id), :method => :put, :class => 'form form-horizontal edit', :id => "edit-cat_nodes", :multipart => true do |f|
   = partial "cat_nodes/form", :locals => { :f => f }
