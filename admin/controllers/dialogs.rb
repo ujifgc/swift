@@ -30,6 +30,7 @@ Admin.controllers :dialogs do
   get :assets do
     @objects = Asset.all :order => :updated_at.desc
     @title = pat 'dialog.pick_asset'
+    @folder = Folder.get(params[:folder_id])
     render "dialogs/pick_assets", :layout => params.has_key?('pick') ? 'pick_many' : 'ajax'
   end
 
