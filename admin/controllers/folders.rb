@@ -10,7 +10,7 @@ Admin.controllers :folders do
   end
 
   get :index do
-    @objects = Folder.all
+    @objects = Folder.all(:order => :slug)
     render 'folders/index'
   end
 
