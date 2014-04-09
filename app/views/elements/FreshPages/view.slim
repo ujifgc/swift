@@ -1,0 +1,5 @@
+- @fresh_pages.each do |page|
+  article
+    header
+      time pubdate=true datetime=page.updated_at = page.updated_at.as_date
+      h4.title= link_to(page.title, page.path)
