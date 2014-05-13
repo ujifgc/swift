@@ -16,5 +16,7 @@ class Option
 end
 
 def Option( id )
-  Option.get( id ).json['value']  rescue nil
+  Option.get( id ).json['value']
+rescue NoMethodError
+  nil
 end
