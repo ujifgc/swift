@@ -4,6 +4,9 @@ class Swift::Application < Padrino::Application
   register Swift::Engine
   enable :sessions
 
+  set :protection, :except => :ip_spoofing
+  set :protect_from_csrf, true
+
   set :default_builder, 'SwiftFormBuilder'
   set :locales, [ :ru, :en ]
   set :pipeline, {
