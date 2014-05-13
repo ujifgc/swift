@@ -1,0 +1,37 @@
+- session['forms_cards']
+- if @fresh_cards.any?
+  section.quiz-forms
+    - @fresh_cards.each do |card|
+      - session['forms_cards'] ||= Set.new
+      - session['forms_cards'] << card.id.to_s
+      article.quiz-form
+        - session['forms_cards'] ||= Set.new
+        - session['forms_cards'] << card.id
+        header
+          h3= card.title
+          p.text= engine_render( card.text.present? ? card.text : card.json.to_a.first.first )
+        = form_for FormsResult.new(:card => card), '', :class => 'form form-horizontal form-quiz', :multipart => true, :'accept-charset' => nil do |f|
+          - @f = f
+          = hidden_field_tag 'forms_result[card_id]', :value => card.id
+          - card.json.each do |k,v|
+            = element_view 'Forms/inquiry', :locals => { :card => card.id, :key => k, :value => v }
+          = f.submit :send
+
+- if @cards_with_results.any?
+  section.quiz-results
+    h2 Архив голосований
+    - @cards_with_results.each do |card|
+      article.quiz-result
+        header
+          h3= card.title
+          p.text= engine_render( card.text.present? ? card.text : card.json.to_a.first.first )
+        section.result
+          - card.json.each do |k,v|
+            - if card.json.count > 1
+              h5= k
+            - v[1].split(/[\r\n]+/).each do |var|
+              .control-group
+                label.control-label= var
+                .progress
+                  .bar style="width:#{card.stat(k, var, :percent)}%"
+                    = card.stat(k, var, :count) || '0'
