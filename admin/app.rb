@@ -22,7 +22,7 @@ class Admin < Padrino::Application
 
   set :default_builder, 'AdminFormBuilder'
   set :protection, :except => :ip_spoofing
-  set :protect_from_csrf, :except => %r{^/login/auth/yandex/}
+  set :protect_from_csrf, :except => [%r{^/login/auth/yandex/}, %r{^/dialogs/preview/}]
 
   use OmniAuth::Builder do
     options :path_prefix => '/login/auth'
@@ -145,8 +145,9 @@ class Admin < Padrino::Application
     redirect url(@the_model ? @models : :base, :index)
   end
 
-  get '/private/*' do 
-    path = Padrino.root + CGI.unescape( request.env['REQUEST_URI'].gsub('+','%2B') ).gsub(url('/'),'')
+  set_access :admin, :designer, :auditor, :editor, :allow => :private
+  get :private, :with => :path, :path => /.*/ do 
+    path = CGI.unescape( request.env['REQUEST_URI'].gsub('+','%2B') ).gsub(url('/'),'')
     if File.exists?(path)
       content_type `file -bp --mime-type '#{path}'`.to_s.strip
       File.binread path
