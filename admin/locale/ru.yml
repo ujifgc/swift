@@ -59,6 +59,7 @@ ru:
         forms_cards: Формы
         forms_results: Записи
         forms_stats: Результаты
+        forms_faqs: Вопрос-ответ
         accounts: Пользователи
         codes: Спецкоды
         elements: Элементы
@@ -86,6 +87,7 @@ ru:
         back: Назад
         to_accepted: Принять к защите и опубликовать
         to_planned: Назначить защиту
+        send: Отправить
       dialog:
         add_parent: ''
         create_fragment: Создать новый фрагмент
@@ -181,6 +183,7 @@ ru:
         group_id: Группа
         password: Пароль
         password_confirmation: Пароль ещё раз
+        address: Адрес
         role: Группа
         params: Параметры
         type: Тип

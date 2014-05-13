@@ -208,6 +208,8 @@ module Padrino
             @template.submit_tag( I18n.t('padrino.admin.form.to_accepted'), :class => 'btn btn-danger', :name => type )
           when :to_planned
             @template.submit_tag( I18n.t('padrino.admin.form.to_planned'), :class => 'btn btn-danger', :name => type )
+          when :send
+            @template.submit_tag( I18n.t('padrino.admin.form.send'), :class => 'btn', :name => 'send' )
           else
             super type, options
           end

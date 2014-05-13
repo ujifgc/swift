@@ -27,6 +27,7 @@ Admin.helpers do
     :forms_cards   => 'check',
     :forms_stats   => 'signal',
     :forms_results => 'list',
+    :forms_faqs    => 'question-sign',
 
     :cat_cards  => 'inbox',
     :cat_nodes  => 'folder-close',

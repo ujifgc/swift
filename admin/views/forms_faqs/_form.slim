@@ -1,0 +1,17 @@
+= f.input :title, :as => :text, :markdown => true, :label => { :caption => 'Вопрос' }
+= f.input :email
+= f.input :author
+= f.input :address
+= f.input :text, :as => :text, :markdown => true, :label => { :caption => 'Ответ' }
+- if @object.asset
+  .control-group.as_string
+    label.control-label for="forms_faq_asset"
+      | Дополнительная информация
+    .controls.no-input
+      .label= @object.asset.mime
+      br
+      = link_to @object.asset.title, @object.asset.file.url
+- allow :auditor do
+  = f.input :slug
+  = f.input :is_published, :as => :boolean
+= f.submits

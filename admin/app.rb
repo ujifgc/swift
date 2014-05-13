@@ -1,7 +1,7 @@
 MODULE_GROUPS = {
   :content => [:pages, :blocks, :assets, :images, :folders],
   :news    => [:news_articles, :news_rubrics, :news_events],
-  :forms   => [:forms_cards, :forms_stats, :forms_results],
+  :forms   => [:forms_cards, :forms_stats, :forms_results, :forms_faqs],
   :cat     => [:cat_nodes, :cat_cards, :cat_groups],
   :design  => [:layouts, :fragments, :elements, :codes],
   :admin   => [:accounts, :options],

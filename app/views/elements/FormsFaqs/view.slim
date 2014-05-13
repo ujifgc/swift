@@ -1,0 +1,55 @@
+- hidden = nil
+
+- if @my_faqs.count > 0
+  - hidden = 'hidden' unless params[:forms_faq]
+  section.faq-pager.myfaq-list
+    h4 Мои вопросы
+    - @my_faqs.each do |faq|
+      article.faq
+        header
+          time pubdate=true datetime=faq.created_at = faq.created_at.as_date
+          h4.question
+            = link_to faq.title, 'javascript:;', :onclick => '$(this).parents("article").find(".answer").slideToggle()'
+        - if faq.text.present?
+          section.answer
+            h5 Ответ:
+            = engine_render(faq.text)
+  nav.show
+    = link_to 'Задать ещё вопрос', 'javascript:;', :onclick => '$(".faq-form.hidden").slideDown()'
+
+section.faq-form class=hidden
+  = form_for @faq, '', :class => 'form form-horizontal', :multipart => true, :'accept-charset' => nil do |f|
+    - @f = f
+    - FormsFaq::FIELDS.each do |k,v|
+      - if v[0] == 'file'
+        - if @faq.asset
+          .control-group
+            label.control-label
+              = k
+            .controls
+              = @faq.asset.info
+              = hidden_field_tag "forms_faq[#{v[3]}]", :value => @faq.asset_id
+        - else
+          = element_view 'Forms/input', :locals => { :key => v[3], :value => v, :label => k }
+      - else
+        = element_view 'Forms/input', :locals => { :key => v[3], :value => v, :label => k }
+    = f.submit :save
+
+section.faq-pager.faq-list
+  h4 Все вопросы
+  nav.show
+    = link_to 'Показать', 'javascript:;', :onclick => '$(".faq-list .answer").slideDown()'
+    |  / 
+    = link_to 'Скрыть', 'javascript:;', :onclick => '$(".faq-list .answer").slideUp()'
+  - @faqs.each do |faq|
+    article.faq
+      header
+        time pubdate=true datetime=faq.created_at = faq.created_at.as_date
+        h4.question
+          = link_to faq.title, 'javascript:;', :onclick => '$(this).parents("article").find(".answer").slideToggle()'
+      - if faq.text.present?
+        section.answer(style='display:none')
+          h5 Ответ:
+          = engine_render(faq.text)
+  - if @pages_count > 1
+    = element 'Pager' 

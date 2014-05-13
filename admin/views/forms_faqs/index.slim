@@ -1,0 +1,16 @@
+= partial 'base/index_operations'
+form.inner.multiple#multiple-forms_faqs action=url(:forms_faqs, :index)/:multiple method=:post
+  = csrf_token_field
+  table.table
+    thead
+      tr
+        th.first
+        th= mat(:object, :title)
+        th= mat(:object, :slug)
+    tbody
+      - @objects.each do |object|
+        tr
+          td.last= mk_checkbox object
+          td= mk_edit object
+          td= object.slug
+= partial 'base/index_operations_bottom'
