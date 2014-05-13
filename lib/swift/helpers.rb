@@ -9,5 +9,6 @@ module Swift
     include Swift::Helpers::Render
     include Swift::Helpers::Url
     include Swift::Helpers::Error
+    include Swift::Helpers::Utils
   end
 end

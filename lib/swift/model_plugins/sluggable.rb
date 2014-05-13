@@ -11,13 +11,15 @@ module Swift
 
           options = args.extract_options!
           @slug_field = args.first || :title
+          @slug_limit = options.delete(:limit).to_i
+          @slug_limit = 250 unless (1..250).include?(@slug_limit.to_i)
 
           property :slug, String, { :unique_index => true }.merge(options)
           validates_uniqueness_of :slug  if options[:unique_index]
 
           before :valid? do
             self.slug = (send(self.class.slug_field) || id).to_s.as_slug  if slug.blank?
-            self.slug = slug.strip
+            self.slug = slug.strip[0..self.class.slug_limit]
             filter = { :id.not => id }
             filter[:parent] = parent  if respond_to? :parent
             while self.class.first( filter.merge(:slug => slug) )
@@ -27,6 +29,10 @@ module Swift
 
           def self.slug_field
             @slug_field
+          end
+
+          def self.slug_limit
+            @slug_limit
           end
 
           def self.by_slug( slug )

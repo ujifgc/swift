@@ -5,7 +5,7 @@ module Swift
         @placeholders ||= {}
       end
 
-      DEFERRED_ELEMENTS = Set.new(%w[Breadcrumbs PageTitle Meta]).freeze
+      DEFERRED_ELEMENTS = Set.new(%w[Breadcrumbs PageTitle PageHeader Meta]).freeze
 
       def defer_element( name, args, opts )
         return unless DEFERRED_ELEMENTS.include?(name)
