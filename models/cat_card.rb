@@ -19,6 +19,8 @@ class CatCard
 
   property :title,    String, :required => true
   property :text,     Text
+  property :sort_cache, DataMapper::Property::Json, :default => {}, :lazy => false
+  property :show_fields, DataMapper::Property::Json, :default => {}, :lazy => false
 
   belongs_to :folder
 
