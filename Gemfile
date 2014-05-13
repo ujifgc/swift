@@ -9,7 +9,7 @@ group :development, :test do
 end
 
 # basic support
-gem 'activesupport', '4.1.0', :require => false
+gem 'activesupport', '~> 4.1.0', :require => false
 
 # templates and content parsing
 gem 'slim'
@@ -17,7 +17,7 @@ gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework
-padrino_version = '0.12.1'
+padrino_version = '0.12.2'
 #padrino_version = { :path => '/home/ujif/pro/padrino-framework' }
 gem 'padrino-core', padrino_version
 gem 'padrino-helpers', padrino_version
@@ -33,7 +33,7 @@ gem 'dm-core', '~> 1.2.1'
 gem 'dm-mysql-adapter'
 
 # file, picture, js, css assets
-gem 'nozzle', '~> 0.1.5'
+gem 'nozzle', '~> 0.1.6'
 gem 'rack-pipeline', '~> 0.0.9'
 
 # authorization and authentication
