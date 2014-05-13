@@ -22,13 +22,16 @@ Admin.controllers :images do
   end
 
   get :new do
-    @object = Image.new params
+    @object = Image.new(params[:image])
+    folder = Folder.get(session[:images_folder_id]) if session[:images_folder_id]
+    @object.folder_id = folder && folder.id || Folder.last.id
     render 'images/new'
   end
 
   post :create do
     files = params[:image].delete 'file'
     title = params[:image].delete 'title'
+    session[:images_folder_id] = params[:image][:folder_id]
     folder_id = params[:image].delete 'folder_id'
     if files.kind_of? Array
       num = files.count > 1 ? 1 : nil
