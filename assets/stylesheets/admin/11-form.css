@@ -42,7 +42,7 @@ form .as_group .horizontal .easy-select-box ul {
 }
 form .horizontal textarea {
   margin-top: 0;
-  width: 210px;
+  width: 410px;
   display: inline-block;
   vertical-align: top;
 }
@@ -117,4 +117,7 @@ form .as_group .horizontal label textarea {
 }
 .control-block + textarea {
   width: 300px !important;
+}
+.controls.no-input {
+  padding: 4px 0;
 }
