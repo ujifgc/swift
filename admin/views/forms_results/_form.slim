@@ -1,7 +1,7 @@
 dl
   - @object.json.each do |k,v|
     dt= k
-    - if @object.forms_card.json[k][0] == 'file'
+    - if @object.forms_card.json[k] && @object.forms_card.json[k][0] == 'file'
       dd= Asset.all(:id => v).map(&:info).join(', ')
     - else
       dd= v
