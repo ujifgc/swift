@@ -19,10 +19,25 @@ class CatNode
     :format => { :cat_card => { :code => 'o.cat_card && o.cat_card.title' } }
   )
 
+  property :sort1, String
+  property :sort2, String
+  property :sort3, String
+
   # relations
   belongs_to :cat_card, :required => true
 
   # hookers
+  before :valid? do
+    if cat_card && cat_card.sort_cache.kind_of?(Hash)
+      cat_card.sort_cache.each do |cache_field, json_field|
+        if cat_card[json_field][0] == 'number'
+          self.send "#{cache_field}=", json[json_field].to_i.to_s.rjust(16,'0').sub(/#{json[json_field].to_i.to_s}$/, json[json_field].to_s)
+        else
+          self.send("#{cache_field}=", json[json_field] || send(json_field))
+        end
+      end
+    end
+  end
 
   # validations
   validates_with_block :json do

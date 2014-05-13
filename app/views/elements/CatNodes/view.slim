@@ -1,9 +1,46 @@
-- @nodes.each do |node|
-  .article
-    h4= link_to node.title, se_url(node)
-    .text= engine_render( node.text )
-    dl
-      - node.cat_card.json.each do |key, value|
-        - unless node.json[key].blank?
-          dt= key
-          dd= node.json[key]
+- if @pages_count > 1
+  = element 'Pager' 
+
+nav.sorter
+  - if @card.sort_cache.any?
+    | Сортировать по:  
+    - @card.sort_cache.each do |key,field_key|
+      - title = @card.json[field_key] ? field_key : "Наименование документа"
+      - if params[:sort] == key.to_s
+        = link_to title, url_replace(swift.uri, :sort => "#{key}.desc"), :class => 'asc active'
+      - elsif params[:sort] == key.to_s+'.desc'
+        = link_to title, url_replace(swift.uri, :sort => "#{key}"), :class => 'desc active'
+      - else
+        = link_to title, url_replace(swift.uri, :sort => key)
+    
+- if @card.show_fields.any?
+  table.table.cat-nodes
+    thead
+      tr
+        - @card.show_fields.each do |key, value|
+          
+          th= value
+    tbody      
+      - @nodes.each do |node|
+        - @_next_col = false
+        tr.article
+          - @card.show_fields.each do |key, field|
+            - value = @card.json[key]
+            - if value.nil?
+              td= link_to node.send(key), swift.module_root + '/show/' + node.slug
+            - elsif value[0] == 'assets'
+              td
+                - node.json[key].each do |asset_id|
+                  - asset = Asset.get(asset_id)
+                  - next unless asset
+                  = show_asset asset
+            - else
+              - if @_next_col || !swift.module_root
+                td= node.json[key]
+              - else
+                td= link_to node.json[key], swift.module_root + '/show/' + node.slug
+              - @_next_col = true
+    tfoot
+      tr
+        - @card.show_fields.each do |key, value|
+          th= value

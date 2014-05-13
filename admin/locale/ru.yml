@@ -218,6 +218,8 @@ ru:
         defence_time: Время защиты
         defence_location: Место проведения защиты
         dissertation_id: Диссертация
+        sort_cache: Поля сортировки
+        show_fields: Поля таблицы
         meta:
           description: Метаописание
           keywords: Ключевые слова
