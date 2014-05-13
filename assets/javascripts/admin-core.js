@@ -171,7 +171,7 @@ bindIndexList = function() {
     var action = '/admin/'+models+'/reposition/'+id+'/'+$(this).find('[data-reposition]').data('reposition');
     $('[data-reposition]').closest('.btn').addClass('blurry').off('click');
     $(this).closest('tr').find('td').css('background-color', '#eee');
-    $.post( action, function(data, textStatus, jqXHR) {
+    $.post( action, { "authenticity_token": $('[name=authenticity_token]').val() }, function(data, textStatus, jqXHR) {
       $('div > div.content').html(data);
       bindIndexList();
     });
@@ -424,6 +424,7 @@ bindDialogBonds = function() {
       var data = $(this).data();
       alldata['bond['+data.model+']['+data.id+']'] = 'on';
     });
+    alldata['authenticity_token'] = $('[name=authenticity_token]').val();
     $.ajax({
       type: 'POST',
       url: $('.dialog-bonds form').prop('action'),
