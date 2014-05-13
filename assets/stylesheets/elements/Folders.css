@@ -14,3 +14,34 @@
   padding: 5px;
   border: 1px solid #b9b9b9;
 }
+
+.carousel {
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+}
+.carousel nav {
+  position: absolute;
+  cursor: pointer;
+}
+.carousel nav:hover {
+  background: #f7f7f7;
+}
+.carousel nav.prev {
+  left: 2px; top: 0;
+}
+.carousel nav.next {
+  right: 2px; top: 0;
+}
+.carousel .images {
+  display: block;
+  overflow: hidden;
+  padding: 2px 0;
+}
+.carousel .images article {
+  display: inline-block;
+  margin-right: 1px;
+}
+.carousel {
+  white-space: nowrap;
+}
