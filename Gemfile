@@ -13,7 +13,7 @@ gem 'activesupport', '~> 4.1.0', :require => false
 
 # templates and content parsing
 gem 'slim'
-gem 'redcarpet', :github => 'ujifgc/redcarpet', :branch => 'emdash'
+gem 'tight-redcarpet', '~> 3'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework

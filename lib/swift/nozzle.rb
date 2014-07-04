@@ -62,7 +62,7 @@ module Nozzle
     :fill => '-thumbnail {size}^ -gravity center -extent {size}',
   }
   def self.finalize
-    outlets = Option(:outlets) || []
+    outlets = Option(:outlets) || [] rescue []
     outlets.each do |name,process|
       ImageAdapter.instance_eval do
         outlet name.to_sym do
