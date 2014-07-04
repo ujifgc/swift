@@ -90,4 +90,13 @@ class Page
     save!
     children.each{ |ch| ch.change_path! path }
   end
+
+  def last_update
+    case
+    when is_system && slug == 'news'
+      NewsArticle.last(:order => :updated_at).updated_at
+    else
+      updated_at
+    end
+  end
 end
