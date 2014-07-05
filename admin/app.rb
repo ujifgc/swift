@@ -12,8 +12,8 @@ BONDABLE_PARENTS  = %W(Page CatNode NewsArticle Folder FormsCard)
 class Admin < Padrino::Application
   register Padrino::Rendering
   register Padrino::Helpers
-  helpers Swift::Helpers
   enable :sessions
+
   set :credentials_reader, :current_account
   set :credentials_accessor, :current_account
   disable :login_controller

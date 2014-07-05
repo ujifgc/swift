@@ -1,7 +1,10 @@
 #coding:utf-8
 class Swift::Application < Padrino::Application
   register Padrino::Helpers
-  register Swift::Engine
+
+  register Tight::Engine
+  set :deferred_elements, %w[Breadcrumbs PageTitle PageHeader Meta]
+
   enable :sessions
 
   set :protection, :except => :ip_spoofing

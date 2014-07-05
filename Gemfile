@@ -23,6 +23,9 @@ gem 'padrino-core', padrino_version
 gem 'padrino-helpers', padrino_version
 gem 'padrino-auth', '~> 0.0.12'
 
+gem 'tight-engine', '~> 0.0.2'
+#gem 'tight-engine', :path => '/home/ujif/pro/tight-engine'
+
 # database ORM
 gem 'dm-validations'
 gem 'dm-timestamps'
