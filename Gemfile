@@ -13,7 +13,7 @@ gem 'activesupport', '~> 4.1.0', :require => false
 
 # templates and content parsing
 gem 'slim'
-gem 'tight-redcarpet', '~> 3'
+gem 'tight-redcarpet', '~> 3', :require => 'redcarpet'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework
