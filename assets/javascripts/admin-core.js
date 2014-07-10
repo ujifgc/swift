@@ -491,7 +491,7 @@ bindDialogFileUpload = function() {
     dataType: 'html',
     dropZone: thumbs,
     limitConcurrentUploads: 2,
-    formData: { folder_id: thumbs.closest('.tab-pane').attr('id') },
+    formData: { folder_id: thumbs.closest('.tab-pane').attr('id'), "authenticity_token": $('[name=authenticity_token]').val() },
     add: function(e, data) {
       data.submit();
     },
