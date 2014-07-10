@@ -1,7 +1,7 @@
 Admin.controllers :dialogs do
   set_access :admin, :designer, :auditor, :editor
 
-  layout :ajax
+  layout 'ajax'
 
   get :codes do
     @objects = Code.all :order => :title
@@ -45,7 +45,7 @@ Admin.controllers :dialogs do
     return "error creating title: #{params[:parent_title]}"  unless @object
 
     content_type 'application/json'
-    render "dialogs/create_parent.json"
+    render "dialogs/create_parent.json", :layout => false
   end
 
   get :dropdown_codes do
@@ -152,7 +152,6 @@ Admin.controllers :dialogs do
     end
     
     @answer = { notice: 'all fine' }
-    render "dialogs/bonds_ajax"
+    render "dialogs/bonds_ajax.json", :layout => false
   end
-
 end
