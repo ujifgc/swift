@@ -1,2 +1,4 @@
-span.download
-  = link_to @opts[:title].blank? ? @file.title : @opts[:title], @file.file.url
+.download
+  i.mime-icon
+    = icon_for(@file.file.filename)
+  = link_to @opts[:title].blank? ? @file.title : @opts[:title], @file.file.url, :target => @opts[:target]
