@@ -1,4 +1,5 @@
 form action=url(:dialogs, :create_parent, :field => params[:field], :parent_model => params[:parent_model]) method=:post
+  = csrf_token_field
   label
     | Имя папки
     input.text_field#parent_title name=:parent_title value=''
