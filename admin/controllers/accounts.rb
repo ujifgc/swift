@@ -79,7 +79,7 @@ Admin.controllers :accounts do
     @object.crypted_password = 'dummy'  if @password.present? || @password_confirmation.present?
     if @object.save
       flash[:notice] = pat('account.updated')
-      redirect url_after_save
+      redirect params[:apply] ? url_after_save : (current_account.allowed?(:admin) ? url_after_save : url('/'))
     else
       render 'accounts/edit'
     end
