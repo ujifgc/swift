@@ -10,7 +10,7 @@ Admin.controllers :dialogs do
   end
 
   get :pages do
-    @tree = page_tree( nil, 0, '', :published )
+    @tree = page_tree( Page.first(:path => '/').id, 0, '', :published )
     @title = pat 'dialog.pick_page'
     render "dialogs/pick_pages", :layout => params.has_key?('pick') ? 'pick_many' : 'ajax'
   end
