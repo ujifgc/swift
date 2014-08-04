@@ -1,5 +1,25 @@
-nav.pager
+nav.pager class=@opts[:class]
+  | Страницы: 
   - (1..@pages_count).each do |page|
-    a href=url_replace( swift.uri, :page => page.to_s ) class=(page == @current_page ? "active" : nil)
-      = page
-    |  
+    - active = page == @current_page
+    - insert = false
+    - more = false
+    - klass = active ? 'active' : nil
+    - if active
+      - insert = true
+    - elsif page == 1 || page == @pages_count
+      - insert = true
+    - elsif page == @current_page - 1 || page == @current_page + 1
+      - insert = true
+    - elsif page <= 3 + 2 && @current_page - 1 <= 3
+      - insert = true
+    - elsif page >= @pages_count + 1 - 3 - 2 && @current_page + 1 >= @pages_count - 3 + 1
+      - insert = true
+    - elsif page == 1 + 1 || page == @pages_count - 1
+      - more = true
+    - if insert
+      a href=url_replace( swift.request, :page => page.to_s ) class=klass
+        = page
+    - if more
+      span.more = "..."
+    = " "
