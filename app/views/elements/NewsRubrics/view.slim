@@ -1,5 +1,0 @@
-nav.rubrics
-  ul
-    - @rubrics.each do |rubric|
-      li class=(rubric.slug == swift.slug && 'active')
-        = link_to rubric.title, url_replace(swift.uri, "#{swift.module_root}/#{rubric.slug}", :page => nil)
