@@ -1,0 +1,15 @@
+section.news-pager.news-list
+  - @articles.each do |article|
+    article
+      header
+        time pubdate=true datetime=article.date = article.date.as_date
+        h4= link_to article.title, "#{swift.module_root}/show/#{article.slug}"
+      - if article.info.present?
+        - image, info = split_image(article.info)
+        section.short-text
+          - if image.present?
+            .aside-image
+              = inline_render(image).html_safe
+          = engine_render(info || article.info)
+  - if @pages_count > 1
+    = element 'Pager' 
