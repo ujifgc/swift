@@ -9,6 +9,13 @@ else
   Bond.children_for(@page, 'Folder').sample
 end
 throw :output, "[No bound folders for GalleryRandomImage]"  unless @folder
+
 @image = @folder.images.sample
+@image_src = begin
+  @opts[:outlet] ? @image.file.outlets[@opts[:outlet].to_sym].url : @image.file.index_thumb.url
+rescue NoMethodError
+  @image.file.url
+end
+
 throw :output, "[No images in Folder##{@folder.slug}]"  unless @image
-throw :output, image_tag(@image.file.url, :alt => @image.title) if @opts[:raw]
+throw :output, image_tag(@image_src, :alt => @image.title) if @opts[:raw]

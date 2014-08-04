@@ -1,4 +1,4 @@
 .random-image
   a href=('/gallery/'+@folder.slug)
-    = image_tag @image.file.index_thumb.url, :alt => @image.title
+    = image_tag @image_src, :alt => @image.title
     .caption= @image.title
