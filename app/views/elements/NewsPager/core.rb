@@ -1,5 +1,7 @@
 swift.module_path_ids = []
 filter = {}
+filter['news_rubric.slug.not'] = @opts[:exclude].to_s.split /\W+/  if @opts[:exclude]
+
 if @rubric
   filter[:news_rubric_id] = @rubric.id
 elsif @active_rubrics.any?
