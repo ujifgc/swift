@@ -7,7 +7,7 @@ html class=swift.print?
       script src='/javascripts/html5ie8tags.js'
     = element 'PageTitle'
     = element 'Meta'
-    == pipeline :app, :css
-    == pipeline :app, :js
+    link href="//f-api.mittec.su/app.css" rel="stylesheet"
+    script src="//f-api.mittec.su/app.js"
   body
     = yield
