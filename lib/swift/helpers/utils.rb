@@ -16,6 +16,13 @@ module Swift
           image_tag '/images/extname/16/file_extension_bin.png'
         end
       end
+
+      REGEX_SPLIT_IMAGE = /\[image[^\]]*?\]/.freeze
+
+      def split_image(text)
+        parts = text.partition REGEX_SPLIT_IMAGE
+        [parts[1], parts[0] + parts[2]]
+      end
     end
   end
 end
