@@ -1,6 +1,5 @@
 @news_months = []
 @news_years = []
-@monthNames = I18n.t("date.month_names_nominative")
 
 new_article = NewsArticle.by_slug swift.slug.match( /show\/(.*)/ )[1]  rescue nil
 @new_year, @new_month = if new_article
