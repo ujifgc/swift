@@ -10,6 +10,21 @@ module Swift
         defer_element( name, args, opts ) || process_element( name, args, opts )
       end
 
+      def api_element( name, *args )
+        cache [name, args].inspect, :expires => 5 do
+          opts = Hash === args.last ? args.pop : {}
+          uri = URI(File.join(Option(:api_host), 'element', name, *args.map(&:to_s)))
+          uri.query = URI.encode_www_form(opts)
+          response = Net::HTTP.get_response(uri)
+          if response.is_a?(Net::HTTPSuccess)
+            response.body.force_encoding('UTF-8')
+            response.body.html_safe
+          else
+            ''.html_safe
+          end
+        end
+      end
+
       def element_view( name, opts = {} )
         fragment name, :elements, opts
       end
