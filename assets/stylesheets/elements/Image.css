@@ -1,29 +1,29 @@
-img.Image-leftno {
+img.leftno {
   float: left;
   clear: none;
   margin-right: 0.75em;
 }
-img.Image-leftof {
+img.leftof {
   float: left;
   clear: left;
   margin-right: 0.75em;
   margin-bottom: 0.25em;
 }
-img.Image-rightno {
+img.rightno {
   float: right;
   clear: none;
   margin-left: 0.75em;
 }
-img.Image-rightof {
+img.rightof {
   float: right;
   clear: right;
   margin-left: 0.75em;
   margin-bottom: 0.25em;
 }
-img.Image-leftno + img.Image-leftno {
+img.leftno + img.leftno {
   margin-left: -0.5em;
 }
-img.Image-rightno + img.Image-rightno {
+img.rightno + img.rightno {
   margin-right: -0.5em;
 }
 img.Image-thumbnail-link {
