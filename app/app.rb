@@ -15,17 +15,11 @@ class Swift::Application < Padrino::Application
     :combine => Padrino.env == :production,
     :css => {
       :app => [
-        'vendor/stylesheets/libraries/bootstrap-lite.css',
-        'vendor/stylesheets/libraries/colorbox.css',
-        'assets/stylesheets/elements/*.css',
         'assets/stylesheets/app/*.css',
       ]
     },
     :js => {
       :app => [
-        'vendor/javascripts/libraries/01-jquery.js',
-        'vendor/javascripts/libraries/07-jquery.colorbox.js',
-        'assets/javascripts/elements/*.js',
         'assets/javascripts/app/*.js',
       ]
     }

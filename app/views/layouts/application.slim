@@ -8,6 +8,8 @@ html class=swift.print?
     = element 'PageTitle'
     = element 'Meta'
     link href="//f-api.mittec.su/app.css" rel="stylesheet"
+    == pipeline :app, :css
     script src="//f-api.mittec.su/app.js"
+    == pipeline :app, :js
   body
     = yield
