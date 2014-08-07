@@ -59,6 +59,7 @@ class Swift::Application < Padrino::Application
 
   # if no controller got the request, try finding some content in the sitemap
   get_or_post = lambda do
+    return process_legacy if params[:request_uri].start_with?('legacy/')
     init_swift
     init_page  or not_found
     process_page

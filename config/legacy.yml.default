@@ -1,0 +1,5 @@
+---
+url_base: "legacy/"
+url_map:
+  example: "/"
+  about: "/info"

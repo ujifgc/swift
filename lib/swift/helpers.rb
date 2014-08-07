@@ -10,5 +10,6 @@ module Swift
     include Swift::Helpers::Url
     include Swift::Helpers::Error
     include Swift::Helpers::Utils
+    include Swift::Helpers::Legacy
   end
 end
