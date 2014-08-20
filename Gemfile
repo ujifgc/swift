@@ -20,6 +20,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 padrino_version = '0.12.3'
 #padrino_version = { :path => '/home/ujif/pro/padrino-framework' }
 gem 'padrino-core', padrino_version
+gem 'padrino-cache', padrino_version
 gem 'padrino-helpers', padrino_version
 gem 'padrino-auth', '~> 0.0.12'
 

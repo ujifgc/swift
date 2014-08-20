@@ -1,8 +1,10 @@
 #coding:utf-8
 class Swift::Application < Padrino::Application
   register Padrino::Helpers
+  register Padrino::Cache
   register Swift::Engine
   enable :sessions
+  enable :caching
 
   set :protection, :except => :ip_spoofing
   set :protect_from_csrf, true
