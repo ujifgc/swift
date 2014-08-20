@@ -45,3 +45,29 @@
 .carousel {
   white-space: nowrap;
 }
+
+section.folders-list {
+  margin: 2em 0;
+}
+section.folders-list article {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2em;
+}
+section.folders-list article img {
+  float: left;
+  margin-right: 1.5em;
+}
+
+section.folders-images {
+  
+}
+section.folders-images article {
+  position: relative;
+  margin: 0 2em 2em 0;
+  display: inline-block;
+}
+section.folders-images article header {
+  text-align: center;
+  
+}
