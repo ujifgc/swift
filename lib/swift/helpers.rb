@@ -11,5 +11,6 @@ module Swift
     include Swift::Helpers::Error
     include Swift::Helpers::Utils
     include Swift::Helpers::Legacy
+    include Swift::Helpers::Remote
   end
 end
