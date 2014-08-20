@@ -1,8 +1,10 @@
-ul.folders.folders-list
+h2= @page && @page.title
+= element 'PageContent'
+section.folders-list
   - @folders.each do |folder|
-    li
-      - image = folder.images.last
-      a href=(swift.path/folder.slug)
-        = image_tag image.file.gallery_thumb.url, :alt => image.title
-        .caption= folder.title
-      = engine_render( folder.text ) if folder.text.present?
+    article
+      - if image = folder.images.last
+        = link_to File.join(swift.path, folder.slug) do
+          = image_tag image.file.gallery_thumb.url, :alt => image.title
+      header
+        h4= link_to folder.title, File.join(swift.path, folder.slug)

@@ -1,4 +1,5 @@
 if @folder ||= Folder.by_slug( @args[0] || @opts[:folder] || @opts[:gallery] )
+  @page = @folder
   @images = @folder.images
 else
   @images = []

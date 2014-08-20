@@ -1,6 +1,10 @@
-ul.folders.folders-images
+h2= @page && @page.title
+= element 'PageContent'
+section.folders-images
   - @images.each do |image|
-    li
-      a href=image.file.url title=image.title rel='box-image'
+    article
+      = link_to image.file.url, :title => image.title, :rel => 'box-image' do
         = image_tag image.file.gallery_thumb.url, :alt => image.title
-        .caption= image.title
+      /
+        header
+          h4= image.title
