@@ -1,5 +1,5 @@
 nav.breadcrumbs
-  - swift.path_pages[1..-1].each do |p|
+  - swift.path_pages[0..-1].each do |p|
     a href=(p.path.blank? ? swift.uri : p.path)
       = p.parent || p.new? ? p.title : t('home')
     = ' '

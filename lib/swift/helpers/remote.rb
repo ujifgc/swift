@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 module Swift
   module Helpers
     module Remote
@@ -17,7 +19,7 @@ module Swift
 
       def remote_request(host, prefix, *args)
         if respond_to?(:cache)
-          cache [host, prefix, args].inspect, :expires => 5 do
+          cache Digest::MD5.hexdigest([host, prefix, args].inspect), :expires => 5 do
             remote_request_direct(host, prefix, *args)
           end
         else
