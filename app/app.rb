@@ -53,6 +53,12 @@ class Swift::Application < Padrino::Application
     render :slim, :'layouts/news.xml', :format => :xhtml
   end
 
+  get '/udsu.xml' do
+    content_type 'application/xml'
+    @news_articles = NewsArticle.all('news_rubric.slug' => 'udsu', :limit => 20, :order => :date.desc).published
+    render :slim, :'layouts/news.xml', :format => :xhtml
+  end
+
   # if no controller got the request, try finding some content in the sitemap
   get_or_post = lambda do
     return process_legacy if params[:request_uri].start_with?('legacy/')
