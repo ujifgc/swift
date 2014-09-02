@@ -20,6 +20,13 @@ Admin.controllers :options do
   end
 
   post :create do
+    val = params[:option].delete 'value'
+    params[:option]['value'] = begin
+      eval(val)
+    rescue Exception
+      val
+    end
+
     @object = Option.new(params[:option])
     if @object.save
       flash[:notice] = pat('option.created')
