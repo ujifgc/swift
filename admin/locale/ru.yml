@@ -16,6 +16,7 @@ ru:
       pick: Вставить
       cancel: Отменить
       close: Закрыть
+      history: История изменений
       all: Все
       group:
         type: Тип
@@ -220,6 +221,11 @@ ru:
         dissertation_id: Диссертация
         sort_cache: Поля сортировки
         show_fields: Поля таблицы
+        updated_by: Автор
+        updated_by_id: Автор изменений
+        created_by_id: Создатель
+        file_size: Размер файла
+        changes: Замещённые данные
         meta:
           description: Метаописание
           keywords: Ключевые слова
@@ -285,6 +291,7 @@ ru:
       date_same_year: "%e %B"
       datetime: "%e %b %Y, %H:%M:%S"
       for_stats: "%a %d %B %Y %T"
+      time_short: "%e %b %Y, %H:%M:%S"
   date:
     formats:
       long: "%e %b %Y"

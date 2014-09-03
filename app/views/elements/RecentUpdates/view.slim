@@ -1,0 +1,8 @@
+﻿section.recent-updates
+  header
+    h3 Новое на сайте
+  - @updated_objects.each do |object|
+    article class=("recent-#{object.class.name}")
+      header
+        time pubdate=true datetime=object.updated_at = object.updated_at.as_date
+        h4.title= link_to object.title, se_url(object)
