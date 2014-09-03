@@ -82,6 +82,17 @@ class Admin < Padrino::Application
     rescue
       nil
     end
+
+    params.each do |k,v|
+      if k.camelize == @model_name && @the_model
+        params[k].each do |property_name, property_value|
+          next if property_value.blank?
+          if @the_model.properties[property_name].kind_of?(DataMapper::Property::DateTime)
+            params[k][property_name] << DateTime.now.zone
+          end
+        end
+      end
+    end
   end
 
   # common routes
