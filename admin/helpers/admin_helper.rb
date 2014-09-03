@@ -48,6 +48,7 @@ Admin.helpers do
 
     :uploads     => 'upload',
     :utilities   => 'refresh',
+    :history     => 'time',
   }
 
   def mk_edit( target )

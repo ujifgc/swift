@@ -186,3 +186,6 @@ table.smart {
 .dataTables_wrapper .dataTables_group:first-child {
   margin-left: 0;
 }
+.nobr {
+  white-space: nowrap;
+}

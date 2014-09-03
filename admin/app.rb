@@ -155,6 +155,13 @@ class Admin < Padrino::Application
     redirect url(@the_model ? @models : :base, :index)
   end
 
+  get '/:controller/history', :with => :id do
+    redirect url('/') unless @the_model
+    object = @the_model.get(params[:id]) or not_found
+    @objects = Protocol.for(object)
+    render 'protocols/history'
+  end
+
   set_access :admin, :designer, :auditor, :editor, :allow => :private
   get :private, :with => :path, :path => /.*/ do 
     path = CGI.unescape( request.env['REQUEST_URI'].gsub('+','%2B') ).gsub(url('/'),'')
