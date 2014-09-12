@@ -47,7 +47,7 @@
 }
 
 section.folders-list {
-  margin: 2em 0;
+  margin: 1em 0;
 }
 section.folders-list article {
   position: relative;
@@ -60,7 +60,7 @@ section.folders-list article img {
 }
 
 section.folders-images {
-  
+  margin: 1em 0;
 }
 section.folders-images article {
   position: relative;
