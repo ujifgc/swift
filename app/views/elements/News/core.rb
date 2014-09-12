@@ -30,3 +30,5 @@ if md = swift.slug.to_s.match( /.+/ )
   core += element( 'NewsPager', @args, @opts )
   throw :output, core
 end
+
+redirect '/news' unless swift.uri == '/news'
