@@ -36,7 +36,7 @@
         #cboxLoadedContent{border:2px solid #000; background:#fff;}
         #cboxTitle{position:absolute; top:0px; left:0; color:#ccc; background:#fff;}
 
-        #cboxControls{position:absolute; top: 200px; right: 12px; width: 108px; font: 30px/33px Georgia, sans; }
+        #cboxControls{position:absolute; top: 200px; right: 12px; width: 108px; font: 30px/33px Georgia, sans; color: #000; }
 
         #cboxClose{position:absolute; top:0; right:0; display:block; background:#FFF; width:48px; height:48px; border-radius: 6px; text-align: center; font: italic 18px/46px Verdana, serif; text-indent: -6px; }
         #cboxClose:hover{background-position:bottom center;}
