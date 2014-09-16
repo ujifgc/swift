@@ -27,7 +27,7 @@ Admin.controllers :fragments do
     if @object.save
       flash[:notice] = pat('fragment.created')
       File.open "#{Swift::Application.views}/fragments/#{@object.id}.slim", 'w', 0644 do |file|
-        file.write @code.normalize_lf.strip + "\n"
+        file.write @code.normalize_lf
       end
       redirect url_after_save
     else
@@ -39,7 +39,7 @@ Admin.controllers :fragments do
     @object = Fragment.get(params[:id])
     @code = begin
       File.open "#{Swift::Application.views}/fragments/#{@object.id}.slim", 'r:bom|utf-8' do |file|
-        file.read + "\n"
+        file.read
       end
     rescue
       ''
@@ -53,7 +53,7 @@ Admin.controllers :fragments do
     if @object.update(params[:fragment])
       flash[:notice] = pat('fragment.updated')
       File.open "#{Swift::Application.views}/fragments/#{@object.id}.slim", 'w', 0644 do |file|
-        file.write @code.normalize_lf.strip + "\n"
+        file.write @code.normalize_lf
       end
       redirect url_after_save
     else

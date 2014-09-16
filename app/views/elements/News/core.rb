@@ -2,7 +2,7 @@ swift.module_path_ids = []
 @rubrics = NewsRubric.all
 @active_rubrics = []
 
-if md = swift.slug.match( /show\/(.*)/ )
+if md = swift.slug.to_s.match( /show\/(.*)/ )
   swift.slug = md[1]
   swift.path_pages << Page.new
   throw :output, element( 'NewsArticle', @args, @opts )
@@ -15,7 +15,7 @@ if swift.slug == ''
   throw :output, core
 end
 
-if md = swift.slug.match( /.+/ )
+if md = swift.slug.to_s.match( /.+/ )
   steps = swift.slug.split( '/' )
   steps.each do |step|
     rubric = @rubrics.by_slug(step)
@@ -30,3 +30,5 @@ if md = swift.slug.match( /.+/ )
   core += element( 'NewsPager', @args, @opts )
   throw :output, core
 end
+
+redirect '/news' unless swift.uri == '/news'

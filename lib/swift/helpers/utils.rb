@@ -23,6 +23,14 @@ module Swift
         parts = text.partition REGEX_SPLIT_IMAGE
         [parts[1], parts[0] + parts[2]]
       end
+
+      REGEX_IMAGE_ID = /\[image[^\]]*\s+(\d+)\s+.*?\]/.freeze
+
+      def extract_image_object(text)
+        Image.get text.match(REGEX_IMAGE_ID)[1]
+      rescue
+        nil
+      end
     end
   end
 end

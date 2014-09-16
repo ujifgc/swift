@@ -10,6 +10,7 @@ public/uploads/*
 public/img/*
 public/doc/*
 public/cache/*
+public/favicon.ico
 private/*
 app/views/fragments/*
 app/views/layouts/*

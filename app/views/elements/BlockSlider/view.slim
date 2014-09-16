@@ -1,0 +1,38 @@
+section.sliders#imageslide
+  - @sliders.each_with_index do |(image, text), k|
+    - image = extract_image_object(image)
+    - style = image ? "background-image: url('#{image.file.url}')" : nil
+    article id="slide-#{k}" style=style
+      header= inline_render(text).html_safe
+  nav
+    - @sliders.each_with_index do |_,k|
+      a id="slidecontrol-#{k}" onclick="return slider_show(#{k})" href="#slide-#{k}" = '●'
+
+javascript:
+  var slider_interval, current_slide;
+  function slider_show(n) {
+    var slide_count = $('section.sliders article').length;
+    if (n > slide_count - 1) n = 0;
+    $('section.sliders article:not(#slide-'+n+')').fadeOut(1000);
+    $('section.sliders article#slide-'+n+'').fadeIn(1000);
+    $('section.sliders nav a').removeClass('active');
+    $('section.sliders nav a#slidecontrol-'+n+'').addClass('active');
+    current_slide = n;
+    return false;
+  }
+  function setSliderInterval() {
+    slider_interval = setInterval(function() {
+      slider_show(current_slide + 1);
+    }, 5000);
+  }
+  $(function() {
+    current_slide = 0;
+    $('section.sliders article:not(#slide-0)').hide();
+    $('section.sliders nav a#slidecontrol-0').addClass('active');
+    $('section.sliders').hover(function() {
+      clearInterval(slider_interval);
+    }, function() {
+      setSliderInterval();
+    });
+    setSliderInterval()
+  });

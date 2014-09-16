@@ -29,7 +29,8 @@ module Swift
 
       def find_page_or_module( path )
         page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
-        detect_module_slug page, path
+        swift.fragment = (page = detect_module_slug(page, path)) ? page.fragment_id : 'error'
+        page
       end
 
       def normalize_path( path )
