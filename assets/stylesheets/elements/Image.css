@@ -2,6 +2,7 @@ img.leftno {
   float: left;
   clear: none;
   margin-right: 0.75em;
+  margin-bottom: 0.25em;
 }
 img.leftof {
   float: left;
@@ -13,6 +14,7 @@ img.rightno {
   float: right;
   clear: none;
   margin-left: 0.75em;
+  margin-bottom: 0.25em;
 }
 img.rightof {
   float: right;
