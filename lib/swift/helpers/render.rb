@@ -24,7 +24,7 @@ module Swift
       end
 
       def inline_render( text )
-        engine_render( text ).gsub(/^<p>(.*)<\/p>$/, '\1').chomp
+        engine_render( text ).gsub(/^<p>(.*)<\/p>$/, '\1').chomp.html_safe
       end
 
       private
