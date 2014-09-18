@@ -1,7 +1,0 @@
-- @objects.each do |o|
-  .item
-    - data = { :id => o.id, :title => o.title, :type => 'file', :single => true }
-    - data.merge! :bound => o.bound?( params[:parent_model], params[:parent_id] ), :model => o.class.name  if params[:parent_id]
-    = link_to o.file.url, :class => :pick, :data => data, :onclick => 'return false' do
-      / i.icon-file class="icon-file-#{o.file.content_type.split(/[.\/]/).last}"
-      span.title= "#{o.title} (#{File.extname(o.file.path)} #{o.file.size.as_size})"

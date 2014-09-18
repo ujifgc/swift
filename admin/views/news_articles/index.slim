@@ -1,6 +1,0 @@
-= partial 'base/index_operations'
-form.inner.multiple#multiple-news_articles action=url(:news_articles, :index)/:multiple method=:post
-  = csrf_token_field
-  = mk_group_selector NewsArticle, NewsRubric, params
-  = mk_data_table NewsArticle
-= partial 'base/index_operations_bottom'

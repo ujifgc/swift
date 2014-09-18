@@ -16,7 +16,7 @@ if defined? AwesomePrint
 end
 
 # allow requiring swift stack from lib and require it
-$LOAD_PATH.unshift Padrino.root('lib')
+$LOAD_PATH.unshift Padrino.root('../faculty/lib')
 require 'swift'
 
 # plug in external gems: nozzle for image processing, rack-pipeline for js/css combining

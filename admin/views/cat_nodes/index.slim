@@ -1,6 +1,0 @@
-= partial 'base/index_operations'
-form.inner.multiple#multiple-cat_nodes action=url(:cat_nodes, :index)/:multiple method=:post
-  = csrf_token_field
-  = mk_group_selector CatNode, CatCard, params
-  = mk_data_table CatNode
-= partial 'base/index_operations_bottom'

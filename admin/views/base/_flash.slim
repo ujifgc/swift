@@ -1,4 +1,0 @@
-- [:error, :warning, :success, :notice].each do |type|
-  - next  if flash[type].blank?
-  .alert.alert-message class=('alert-' + (type == :notice ? :info : type).to_s) data-alert=true
-    = flash[type]

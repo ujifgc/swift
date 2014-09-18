@@ -1,7 +1,0 @@
-li.span2
-  - data = { :id => image.id, :title => image.title, :type => 'image', :single => true }
-  - data.merge! :bound => image.bound?( params[:parent_model], params[:parent_id] ), :model => image.class.name  if params[:parent_id]
-  = link_to( image.file.url, :class => 'pick thumbnail', :data => data, :onclick => 'return false' ) do
-    = image_tag image.file.fill_thumb.url
-    - unless image.title.blank?
-      .caption= "#{image.title}"

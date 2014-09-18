@@ -1,7 +1,0 @@
-.dialog-blocks
-  - @objects.each do |o|
-    .item
-      - data = { :id => o.id, :title => o.title, :type => 'block', :single => true }
-      = link_to( "#{o.title}", o.slug, :data => data, :class => :pick, :onclick => 'return false' )
-javascript:
-  addCheckboxes('.dialog-blocks');

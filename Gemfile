@@ -17,11 +17,11 @@ gem 'tight-redcarpet', '~> 3', :require => 'redcarpet'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework
-padrino_version = '0.12.2'
-#padrino_version = { :path => '/home/ujif/pro/padrino-framework' }
-gem 'padrino-core', padrino_version
-gem 'padrino-cache', padrino_version
-gem 'padrino-helpers', padrino_version
+padrino_version = '0.12.3'
+#padrino_version = { :path => '/home/ujif/padrino-framework' }
+gem 'padrino-core', padrino_version.dup
+gem 'padrino-cache', padrino_version.dup
+gem 'padrino-helpers', padrino_version.dup
 gem 'padrino-auth', '~> 0.0.12'
 
 # database ORM

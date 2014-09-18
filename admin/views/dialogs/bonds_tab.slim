@@ -1,7 +1,0 @@
-.active-bonds
-  - @bonds.each do |bond|
-    - next unless bond.child
-    .item
-      - title = bond.child.title
-      - data = { :model => bond.child_model, :id => bond.child_id, :title => title, :bound => true }
-      = link_to "#{title} (#{data[:model]})", 'javascript:;', :data => data, :class => :pick, :onclick => 'return false'
