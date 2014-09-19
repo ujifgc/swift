@@ -27,6 +27,7 @@ module Swift
       private
 
       def process_element( name, args, opts )
+        return remote_element(name, *args, opts) if opts.delete(:remote)
         core, view = find_element name, opts[:instance]
         fill_identity name, opts
         catch :output do

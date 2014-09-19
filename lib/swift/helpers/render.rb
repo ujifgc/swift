@@ -48,11 +48,13 @@ module Swift
         'file'  => 'File',
         'asset' => 'File',
         'element' => :self,
+        'remote_element' => :self,
       }.freeze
 
       def dispatch_element( tag_name, args, opts )
         element_name = INTERNAL_TAGS[tag_name]  or return
         element_name = args.shift  if element_name == :self
+        opts[:remote] = true if tag_name == 'remote_element'
         process_element element_name, args, opts
       end
 
