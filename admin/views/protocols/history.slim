@@ -21,9 +21,9 @@ form.inner.multiple#multiple-codes action=url(:codes, :index)/:multiple method=:
             br
             = object.time.as_time
             br
-            = object.subject.group.title
+            = object.subject ? object.subject.group.title : '਼'
             br
-            = object.subject.title
+            = object.subject ? object.subject.title : '਼'
             br
             = link_to 'Загрузить', url(object.object_type.underscore.pluralize.to_sym, :edit, :id => object.object_id, :protocol_id => object.id)
           td
