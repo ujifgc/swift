@@ -4,6 +4,7 @@ class Fragment
   property :id, String, :length => 20, :key => true
   property :title, String
   property :is_fragment, Boolean, :default => false
+  property :is_module, Boolean, :default => false
 
   # plugins
   timestamps!
