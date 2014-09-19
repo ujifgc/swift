@@ -58,7 +58,7 @@ module Swift
 
       REGEX_INTERNAL_TAG = /
         \[                                                     # [
-        (page|link|block|text|image|img|file|asset|element)    # 1, -- tag name
+        (#{INTERNAL_TAGS.keys.join('|')})    # 1, -- tag name
         (                                                      # 2, -- identity
           (?:[\:\.\#][\w\-]*)*                                 #
         )                                                      #
@@ -123,8 +123,9 @@ module Swift
       def capture_tag_content( str, flags )
         return str  unless flags[:needs_capturing]
         str.gsub( /\[([^\s]*)\s*(.*?)\](.*?)\[\/(\1)\]/m ) do |s|
+          code = Code.by_slug($1)
+          next s unless code
           args, _ = parse_vars $2
-          code = Code.by_slug $1
           parse_code code.html, args, $3
         end
       end

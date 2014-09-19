@@ -32,6 +32,8 @@ module Swift
         catch :output do
           @args, @opts = args, opts
           binding.eval File.read(core), core  if File.exists?(core)
+          view_file = File.join(Swift::Application.views, view) + '.slim'
+          fail(Padrino::Rendering::TemplateNotFound, "'view.slim'") unless File.file?(view_file)
           render :slim, view.to_sym, :layout => false, :views => Swift::Application.views
         end
       rescue Padrino::Rendering::TemplateNotFound => e
