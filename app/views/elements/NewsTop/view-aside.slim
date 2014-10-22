@@ -10,9 +10,6 @@ section.news-top.news-list
     article
       - if article.info.present?
         - image, info = split_image(article.info)
-        - if image.present?
-          .aside-image
-            = inline_render(image).html_safe
       header
         time pubdate=true datetime=article.date = article.date.as_date
         h4.title= link_to article.title, "/news/show/#{article.slug}"
