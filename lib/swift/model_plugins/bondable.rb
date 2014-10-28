@@ -47,6 +47,10 @@ module Swift
           filter.merge :child_model => child_model  if child_model
           Bond.count filter
         end
+
+        def bound( child_model )
+          Bond.children_for( self, child_model )
+        end
       end
     end
   end

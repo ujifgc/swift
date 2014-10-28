@@ -3,7 +3,7 @@ h2= @page && @page.title
 section.folders-list
   - @folders.each do |folder|
     article
-      - if image = folder.images.last
+      - if image = folder.bound('Image').last || folder.images.last
         = link_to File.join(swift.path, folder.slug) do
           = image_tag image.file.gallery_thumb.url, :alt => image.title
       header
