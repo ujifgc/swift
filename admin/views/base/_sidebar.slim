@@ -8,7 +8,7 @@
     - next  unless admin_modules.include?(controller)
     - content += content_tag( :ul, content_tag(:li, mk_icon(controller) + ' ' + pat("menu.#{controller}")), :class => :unstyled )
     - collapsed = nil  if request.path_info =~ /^\/#{controller}$|^\/#{controller}\//
-  - data = { :toggle => "#nav-group-#{name}", :'original-title' => pat("tooltip.#{name}"), :content => content }
+  - data = { :toggle => "#nav-group-#{name}", :'original-title' => pat("tooltip.#{name}"), :content => content.to_str }
   h5.nav-header data=data class=(collapsed && 'collapsed') = pat("modules.#{name}")
   ul.nav.nav-tabs id="nav-group-#{name}" style=(collapsed && 'display:none')
     - modules.each do |controller|
