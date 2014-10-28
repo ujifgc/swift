@@ -26,7 +26,14 @@ img.leftno + img.leftno {
 img.rightno + img.rightno {
   margin-right: -0.5em;
 }
+
 img.Image-thumbnail-link {
-  margin-right: 0.75em;
-  margin-bottom: 0.25em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+img.Image-thumbnail-link.leftno {
+  margin-right: 1.5em;
+}
+img.Image-thumbnail-link.rightno {
+  margin-left: 1.5em;
 }
