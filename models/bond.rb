@@ -59,32 +59,37 @@ class Bond
     child_model.constantize.all :id => bonds.map(&:child).map(&:id)
   end
 
-  def self.generate parent, child
-    object = {
+  def self.generate( parent, child )
+    first_or_create(
       :parent_model => parent.class.name,
       :parent_id    => parent.id,
       :child_model  => child.class.name,
       :child_id     => child.id,
       :manual       => true,
       :relation     => 1,
-    }
-    first_or_create object
+    )
   end
 
-  def self.separate object
-    parent = {
+  def self.separate_parent( object )
+    all(
       :parent_model => object.class.name,
       :parent_id    => object.id,
       :manual       => true,
       :relation     => 1,
-    }
-    child = {
+    ).destroy
+  end
+
+  def self.separate_child( object )
+    all(
       :child_model  => object.class.name,
       :child_id     => object.id,
       :manual       => true,
       :relation     => 1,
-    }
-    all(parent).destroy
-    all(child).destroy
+    ).destroy
+  end
+
+  def self.separate( object )
+    separate_child object
+    separate_parent object
   end
 end

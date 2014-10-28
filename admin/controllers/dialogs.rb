@@ -139,7 +139,7 @@ Admin.controllers :dialogs do
     return "no such parent: #{@model} ##{params[:parent_id]}"  unless @parent
     content_type 'application/json'
 
-    Bond.separate @parent
+    Bond.separate_parent @parent
     Array(params['bond']).each do |child_model, child_ids|
       @child_model = child_model.constantize  rescue nil
       return "no such model: #{@child_model}"  unless @child_model
