@@ -14,6 +14,7 @@ def map_tree( from, level, prefix )
 
     leaf[:class] = master ? 'master' : 'slave'
     leaf[:class] += ' active'  if ensued
+    leaf[:class] += ' openable'  if page.children.count > 0
 
     child = []
     if (ensued || @opts[:expand]) && (@opts[:limit] ? level < @opts[:limit] : true)
