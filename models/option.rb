@@ -13,9 +13,19 @@ class Option
   def get_value
     json['value']
   end
+
+  def self.cached_get(id)
+    id = id.to_sym
+    @cache ||= {}
+    return @cache[id] if @cache[id]
+    all(:fields => [:id, json]).each{ |option| @cache[option.id.to_sym] = option.json['value'] }
+    @cache[id]
+  rescue NoMethodError
+    nil
+  end
 end
 
-def Option( id )
+def Option(id)
   value = Option.get( id ).json['value']
   case id
   when :site_title
