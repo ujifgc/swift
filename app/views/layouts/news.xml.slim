@@ -18,6 +18,9 @@ rss version="2.0"
         link= link
         description= description
         pubDate= article.date.rfc822
-        guid= link
+        - if article.respond_to?(:uuid) && article.uuid
+          guid isPermaLink="false" = article.uuid
+        - else
+          guid= link
         - if image
           enclosure url=absolute_url(image.file.url) type=image.file.content_type
