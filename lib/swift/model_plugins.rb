@@ -15,6 +15,7 @@ module Swift
       include Swift::ModelPlugins::Stamps::ClassMethods
       include Swift::ModelPlugins::Datatables::ClassMethods
       include Swift::ModelPlugins::Positionable::ClassMethods
+      include Swift::ModelPlugins::UUID::ClassMethods
     end
   end
 end
