@@ -1,5 +1,6 @@
 = f.inputs :title
 = f.input :text, :as => :text, :markdown => true
+= f.input :parent_id, :as => :select, :collection => Folder.all(:id.not => @object.id, :order => :title), :fields => [:title, :id], :selected => @object.parent_id, :class => 'long', :include_blank => true
 
 - allow :auditor do
   = f.input :slug

@@ -36,15 +36,14 @@ Admin.controllers :folders do
 
   put :update, :with => :id do
     @object = Folder.get(params[:id])
-    old_slug = @object.slug
-    old_img_dir = Image.new( :folder => @object ).file.system_path
-    old_doc_dir = Asset.new( :folder => @object ).file.system_path
+    old_path = @object.path
+    old_dir = Padrino.public(NeatAdapter::FILES_FOLDER, old_path)
+    fail RuntimeError  unless File.exist?(old_dir)
     if @object.update(params[:folder])
-      unless old_slug == @object.slug
-        new_img_dir = Image.new( :folder => @object ).file.system_path
-        new_doc_dir = Asset.new( :folder => @object ).file.system_path
-        File.rename( old_img_dir, new_img_dir )  rescue nil
-        File.rename( old_doc_dir, new_doc_dir )  rescue nil
+      unless old_path == @object.path  
+        new_dir = Padrino.public(NeatAdapter::FILES_FOLDER, @object.path)
+        FileUtils.mkdir_p( File.dirname new_dir )
+        File.rename( old_dir, new_dir )
       end
       flash[:notice] = pat('flash.folder_updated')
       redirect url_after_save

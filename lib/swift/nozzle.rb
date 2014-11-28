@@ -1,6 +1,8 @@
 require 'shellwords'
 
 class NeatAdapter < Nozzle::Adapter::Base
+  FILES_FOLDER = 'files'
+  
   def root
     if @record.folder && @record.folder.is_private
       Padrino.root 'private'
@@ -14,20 +16,14 @@ class NeatAdapter < Nozzle::Adapter::Base
   end
 
   def base_dir
-    raise Exception, 'not implemented'
+    FILES_FOLDER
   end
 
   def relative_folder
-    folder = @record.folder
-    case
-    when !folder
-      base_dir + '/other'
-    when folder.slug == 'images'
-      base_dir
-    when folder.slug.blank?
-      base_dir + '/' + folder.id.to_s
+    if folder = @record.folder
+      File.join( base_dir, folder.path )
     else
-      base_dir + '/' + folder.slug
+      base_dir
     end
   end
 
@@ -44,16 +40,9 @@ class ImageAdapter < NeatAdapter
   def default_url
     '/images/image_missing.png'
   end
-
-  def base_dir
-    'img'
-  end
 end
 
 class AssetAdapter < NeatAdapter
-  def base_dir
-    'doc'
-  end
 end
 
 module Nozzle

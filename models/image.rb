@@ -18,13 +18,9 @@ class Image
   )
 
   #relations
-  property :folder_id, Integer, :default => 1
-  belongs_to :folder, :required => false
+  belongs_to :folder, :required => true
 
   #hookers
-  before :save do |o|
-    o.folder_id = 1  unless o.folder_id
-  end
 
   def info
     "#{title} (#{file.content_type}, #{file.size.as_size})"

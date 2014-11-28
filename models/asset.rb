@@ -17,13 +17,9 @@ class Asset
   )
 
   #relations
-  property :folder_id, Integer, :default => 2
-  belongs_to :folder, :required => false
+  belongs_to :folder, :required => true
 
   #hookers
-  before :save do |o|
-    o.folder_id = 2  unless o.folder_id
-  end
 
   def info
     "#{title} (#{mime})"

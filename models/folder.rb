@@ -12,6 +12,8 @@ class Folder
   loggable!
   sluggable!
   bondable!
+  datatables!( :id, :title, :slug, :path, :is_private)
+  recursive!
 
   # relations
   belongs_to :account, :required => false
