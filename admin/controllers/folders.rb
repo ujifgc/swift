@@ -37,13 +37,12 @@ Admin.controllers :folders do
   put :update, :with => :id do
     @object = Folder.get(params[:id])
     old_path = @object.path
-    old_dir = Padrino.public(NeatAdapter::FILES_FOLDER, old_path)
+    old_dir = @object.absolute_path
     fail RuntimeError  unless File.exist?(old_dir)
     if @object.update(params[:folder])
-      unless old_path == @object.path  
-        new_dir = Padrino.public(NeatAdapter::FILES_FOLDER, @object.path)
-        FileUtils.mkdir_p( File.dirname new_dir )
-        File.rename( old_dir, new_dir )
+      unless old_dir == @object.absolute_path
+        FileUtils.mkdir_p(@object.absolute_path)
+        File.rename(old_dir, @object.absolute_path)
       end
       flash[:notice] = pat('flash.folder_updated')
       redirect url_after_save

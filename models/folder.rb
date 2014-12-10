@@ -35,4 +35,12 @@ class Folder
     create_attributes = { :title => "Загрузки карточки #{card.title}" }
     Folder.first_or_create(first_attributes, first_attributes.merge(create_attributes))
   end
+
+  def absolute_path
+    if is_private
+      Padrino.root('private', NeatAdapter::FILES_FOLDER, path)
+    else
+      Padrino.public(NeatAdapter::FILES_FOLDER, path)
+    end
+  end
 end
