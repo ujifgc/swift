@@ -163,8 +163,8 @@ class Admin < Padrino::Application
   end
 
   set_access :admin, :designer, :auditor, :editor, :allow => :private
-  get :private, :with => :path, :path => /.*/ do 
-    path = CGI.unescape( request.env['REQUEST_URI'].gsub('+','%2B') ).gsub(url('/'),'')
+  get :private, :with => :path, :path => /.*/ do
+    path, _, _ = CGI.unescape( request.env['REQUEST_URI'].gsub('+','%2B') ).gsub(url('/'),'').rpartition('?')
     if File.exists?(path)
       content_type `file -bp --mime-type '#{path}'`.to_s.strip
       File.binread path
