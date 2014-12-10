@@ -1,3 +1,4 @@
+#coding:utf-8
 class Folder
   include DataMapper::Resource
 
