@@ -21,7 +21,7 @@ form.inner.multiple#multiple-codes action=url(:codes, :index)/:multiple method=:
             br
             = object.time.as_time
             br
-            = object.subject ? object.subject.group.title : '਼'
+            = object.subject ? object.subject.group ? object.subject.group.title : '਼' : '਼'
             br
             = object.subject ? object.subject.title : '਼'
             br
