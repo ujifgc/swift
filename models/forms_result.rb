@@ -8,6 +8,15 @@ class FormsResult
 
   amorphous!
 
+  datatables!( :id, :created_at, :json, :forms_card,
+    :format => {
+      :created_at => { :code => 'o.created_at.as_date' },
+      :forms_card => { :code => 'o.forms_card && o.forms_card.title' },
+      :json => { :code => 'show_json(o.json, o.forms_card.json)' },
+    },
+    :search_columns => [ :id, :json ],
+  )
+
   # relations
   belongs_to :forms_card, :required => true
   belongs_to :created_by, 'Account', :required => false

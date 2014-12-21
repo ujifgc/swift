@@ -51,8 +51,8 @@ Admin.helpers do
     :history     => 'time',
   }
 
-  def mk_edit( target )
-    link_to( target.title, url(target.class.storage_name.to_sym, :edit, :id => target.id), :class => :edit )
+  def mk_edit( target, caption=nil )
+    link_to( caption || target.title, url(target.class.storage_name.to_sym, :edit, :id => target.id), :class => :edit )
   end
 
   def mk_checkbox( target, sorter = nil )

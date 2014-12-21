@@ -30,4 +30,20 @@ Admin.helpers do
     end
     partial 'base/group-select'
   end
+
+  def show_json(data, types)
+    types.map do |key, field_settings|
+      if field_settings[0] == 'file'
+        if data[key].present?
+          data[key].map do |id|
+            if asset = Asset.get(id)
+              link_to(asset.title, asset.file.url)
+            end
+          end.join(', ').html_safe
+        end
+      else
+        "#{key}: #{data[key]}" if data[key].present?
+      end
+    end.compact.join('<br>').html_safe
+  end
 end

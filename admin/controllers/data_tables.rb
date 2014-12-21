@@ -2,8 +2,12 @@ Admin.controllers :data_tables do
   set_access :admin, :designer, :auditor, :editor
 
   get :index, :with => [ :model ] do
-    model = params[:model].singularize.camelize.constantize  rescue error(501)
-    columns = model.dynamic_columns  rescue error(501)
+    begin
+      model = params[:model].singularize.camelize.constantize
+      columns = model.dynamic_columns
+    rescue
+      error 501
+    end
 
     paginator = {}
     paginator[:offset] = params[:iDisplayStart].to_i
@@ -12,7 +16,12 @@ Admin.controllers :data_tables do
     paginator.delete(:limit)  if paginator[:limit] < 0
 
     filter = { }
-    filter[:conditions] = [ 'title LIKE ? OR id LIKE ?', "%#{params[:sSearch]}%", "%#{params[:sSearch]}%" ]
+
+    column_conditions = model.search_columns.map do |column|
+      next unless model.properties.named?(column)
+      ["#{column} LIKE ?", "%#{params[:sSearch]}%"]
+    end
+    filter[:conditions] = [ column_conditions.map(&:first).join(' OR '), *column_conditions.map(&:last) ] if column_conditions.any?
 
     params.each do |key,value|
       next unless key.to_s.start_with?('sGroup') && params[key].present? && params[key] != 'all'
@@ -30,7 +39,10 @@ Admin.controllers :data_tables do
       direction = params[:"sSortDir_#{i}"] == 'desc' ? :desc : :asc
       order[:order] << column_name.to_sym.send(direction)
     end
-    order[:order] << :updated_at.desc
+
+    [:updated_at, :created_at].each do |column|
+      order[:order] << column.desc if model.properties.named?(column)
+    end
 
     result = {}
     result[:iTotalRecords] = model.count

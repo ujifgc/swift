@@ -27,9 +27,14 @@ module Swift
             end
           end
           @dynamic_columns = column_formats
+          @search_columns = options[:search_columns] || [ :id, :title ]
 
           def self.dynamic_columns
             @dynamic_columns
+          end
+
+          def self.search_columns
+            @search_columns
           end
         end
       end

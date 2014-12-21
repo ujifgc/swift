@@ -24,6 +24,7 @@ ru:
         news_rubric: Рубрика
         folder: Папка
         cat_card: Карточка
+        forms_card: Форма
       logout: Выйти
       site: На сайт
       ok: Лады
@@ -226,6 +227,8 @@ ru:
         created_by_id: Создатель
         file_size: Размер файла
         changes: Замещённые данные
+        forms_card: Форма
+        json: Данные
         meta:
           description: Метаописание
           keywords: Ключевые слова
