@@ -17,8 +17,7 @@ gem 'tight-redcarpet', '~> 3', :require => 'redcarpet'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # padrino framework
-padrino_version = '0.12.2'
-#padrino_version = { :path => '/home/ujif/pro/padrino-framework' }
+padrino_version = '0.12.4'
 gem 'padrino-core', padrino_version
 gem 'padrino-helpers', padrino_version
 gem 'padrino-auth', '~> 0.0.12'

@@ -38,9 +38,9 @@ Padrino.before_load do
 
   Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
 
-  Slim::Engine.set_default_options( {
+  Slim::Engine.set_options( {
     :enable_engines => [:ruby, :javascript, :css],
-    :format => :html5,
+    :format => :html,
     :use_html_safe => true,
     :pretty => Padrino.env == :development,
   } )
