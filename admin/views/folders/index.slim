@@ -1,5 +1,16 @@
 = partial 'base/index_operations'
 form.inner.multiple#multiple-folders action=url(:folders, :index)/:multiple method=:post
   = csrf_token_field
-  = mk_data_table Folder
+  #= mk_data_table Folder
+  table.table.smart
+    thead
+      tr
+        th.first
+        th data={ :search => 1 } = mat(:object, :title)
+        th data={ :search => 1 } = mat(:object, :slug)
+        th data={ :search => 1 } = mat(:object, :path)
+        th data={ :search => 1 } = mat(:object, :is_private)
+    tbody
+      - @k = 0
+      = partial 'folders/tree', :locals => { :tree => @tree, :level => 0 }
 = partial 'base/index_operations_bottom'
