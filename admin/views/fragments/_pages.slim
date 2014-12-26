@@ -3,7 +3,7 @@
     = t 'models.fragment.pages'
   - pages = Page.all(:fragment_id => @object.id)
   .controls
-    ul.nav.nav-tabs
+    ul.nav.nav-pills
       - pages.each do |page|
         li
           = link_to page.title, url(:pages, :edit, :id => page.id)
