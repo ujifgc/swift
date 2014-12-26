@@ -121,3 +121,6 @@ form .as_group .horizontal label textarea {
 .controls.no-input {
   padding: 4px 0;
 }
+.form-actions{
+  white-space: nowrap; 
+}
