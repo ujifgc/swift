@@ -257,6 +257,9 @@ ru:
       name: фрагменты
     fragment:
       name: визуализатор
+      count: Количество использований
+      pages: Используется на страницах
+      has_not_pages: Нет страниц, использующих визуализатор
     news_article:
       name: новости
       attributes:
