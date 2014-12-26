@@ -28,6 +28,10 @@ Admin.helpers do
       @selected[@group_name] = {} 
       @selected[@group_name][selected] = true if selected
     end
-    partial 'base/group-select'
+    if options[:instance].blank?
+      partial 'base/group-select'
+    elsif options[:instance] == 'for-bonds'
+      partial 'base/group-select-for-bonds'
+    end
   end
 end

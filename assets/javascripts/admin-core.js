@@ -827,3 +827,21 @@ bindBlockType = function() {
     select.change();
   });
 };
+
+bindCustomFilter = function(selector, model) {
+  loadPane = function(){
+    var url = $(selector).find('option:selected').data('url');
+    var pane = $(selector).next().find('.tab-pane.active');
+    pane.load(url, function() {
+    pane.trigger('pane-loaded');
+      addCheckboxes(pane);
+    });
+  };
+  $(selector).on("change", loadPane);
+  cookie = $.cookie("SpryMedia_DataTables_DataTables_Table_0_" + model);
+  if (cookie == null)
+    loadPane();
+  else
+    $('select').val(JSON.parse($.cookie("SpryMedia_DataTables_DataTables_Table_0_" + model))["iGroupFolder"]).change();
+};
+
