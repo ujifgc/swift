@@ -1,0 +1,22 @@
+- tree ||= @tree
+- tree.each do |leaf|
+  - @k += 1
+  - if object = leaf[:folder]
+    tr class=((leaf[:child] ? "openable" : "final") + " level-#{level}") id="folder-#{object.id}"
+      - name = object.slug.blank? ? 'index' : object.slug
+      - name = :"check_#{object.class.name.underscore}[#{object.id}]"
+      td.checkbox
+        label.checkbox for=name data-sorter=@k
+          = check_box_tag name, :checked => false, :id => name
+      td.edit
+        = mk_published object
+        = mk_edit object
+      td.slug= object.slug
+      td
+        = object.path
+      - if current_account.allowed? :designer
+        td.nowrap= link_to( object.fragment.title, url(:fragments, :edit, :id => object.fragment_id) )  rescue nil
+      - else
+        td.nowrap= object.fragment.title  rescue nil
+      - if leaf[:child]
+        = partial 'folders/tree', :locals => { :tree => leaf[:child], :level => level + 1 }
