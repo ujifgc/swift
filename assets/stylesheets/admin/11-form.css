@@ -123,4 +123,7 @@ form .as_group .horizontal label textarea {
 }
 .form-actions{
   white-space: nowrap; 
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
 }
