@@ -126,4 +126,10 @@ form .as_group .horizontal label textarea {
   position: fixed;
   width: 100%;
   bottom: 0px;
+  margin-left: -19px;
+  margin-bottom: 0;
 }
+form.edit{
+  margin-bottom: 90px;
+}
+
