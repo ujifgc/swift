@@ -11,6 +11,7 @@ Admin.controllers :folders do
 
   get :index do
     @objects = Folder.all(:order => :slug)
+    @tree = folder_tree( nil, 0, '' )
     render 'folders/index'
   end
 

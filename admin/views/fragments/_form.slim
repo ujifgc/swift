@@ -3,4 +3,5 @@
 = f.input :id
 = f.input :is_fragment, :as => :boolean
 = f.input :is_module, :as => :boolean
+= partial 'fragments/pages'
 = f.submits :append => mk_timestamps( @object )

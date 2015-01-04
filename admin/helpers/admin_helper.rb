@@ -150,6 +150,22 @@ Admin.helpers do
     end
     return tree
   end
+  #для иерархии списка папок добавили этот метод по аналогии с вышеописанным
+  def folder_tree( from, level, prefix, published = nil )
+    folders = if published
+      Folder.published.all :parent_id => from, :order => :path
+    else
+      Folder.all :parent_id => from, :order => :path
+    end
+    return false  unless folders.length > 0
+
+    tree = []
+    folders.each do |folder|
+      tree << { :folder => folder,
+                :child => folder_tree(folder.id, level + 1, prefix + '/' + folder.slug, published) }
+    end
+    return tree
+  end
 
   def tree_flat( tree )
     ret = []
