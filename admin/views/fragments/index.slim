@@ -10,13 +10,13 @@ form.inner.multiple#multiple-fragments action=url(:fragments, :index)/:multiple 
           th= mat(:object, :id)
           th= mat(:object, :title)
           - if var == :basics
-            th= (t 'models.fragment.count')
+            th= mat(:fragment, :usage)
       tbody
         - @objects.each do |object|
           tr
             td.last= mk_checkbox object
             td= link_to object.id, url(:fragments, :edit, :id => object.id)
             td= mk_edit object
-            - count = Page.all(:fragment_id => object.id).count
-            td= link_to (count == 0 ? "-" : count), url(:fragments, :edit, :id => object.id) 
+            - if var == :basics
+              td= object.usage || '—'
 = partial 'base/index_operations_bottom'

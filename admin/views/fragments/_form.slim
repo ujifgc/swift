@@ -3,5 +3,6 @@
 = f.input :id
 = f.input :is_fragment, :as => :boolean
 = f.input :is_module, :as => :boolean
-= partial 'fragments/pages'
+- if @object.pages.count > 0
+  = partial 'fragments/pages'
 = f.submits :append => mk_timestamps( @object )
