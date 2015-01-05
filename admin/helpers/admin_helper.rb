@@ -150,7 +150,7 @@ Admin.helpers do
     end
     return tree
   end
-  #для иерархии списка папок добавили этот метод по аналогии с вышеописанным
+
   def folder_tree( from, level, prefix, published = nil )
     folders = if published
       Folder.published.all :parent_id => from, :order => :path
