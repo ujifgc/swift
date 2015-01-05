@@ -829,11 +829,11 @@ bindBlockType = function() {
 };
 
 bindCustomFilter = function(selector, model) {
-  loadPane = function(){
+  loadPane = function() {
     var url = $(selector).find('option:selected').data('url');
     var pane = $(selector).next().find('.tab-pane.active');
     pane.load(url, function() {
-    pane.trigger('pane-loaded');
+      pane.trigger('pane-loaded');
       addCheckboxes(pane);
     });
   };
