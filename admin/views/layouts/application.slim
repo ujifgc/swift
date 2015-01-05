@@ -14,7 +14,7 @@ html
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          = link_to Option(:site_title), url(:base, :index), :class => 'navbar-text title'
+          = link_to(Option(:site_title) + (Padrino.env == :development ? ' (режим разработки)' : ''), url(:base, :index), :class => 'navbar-text title')
           .pull-right
             = link_to pat('site'), '/'
             | 
