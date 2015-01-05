@@ -104,6 +104,7 @@ form.multiple + .form-actions {
   margin-left: -19px;
   margin-bottom: 0;
   margin-top: 0;
+  box-shadow: 0 -2px 2px -2px rgba(0, 0, 0, 0.067);
 }
 form .as_group .horizontal label input[type=file], form .as_group .horizontal label textarea {
   vertical-align: baseline;
@@ -121,15 +122,22 @@ form .as_group .horizontal label textarea {
 .controls.no-input {
   padding: 4px 0;
 }
-.form-actions{
+form.edit {
+  margin-bottom: 0;
+}
+.form-actions {
   white-space: nowrap; 
+  margin-bottom: 0;
+}
+.bottom-action .form-actions {
   position: fixed;
   width: 100%;
   bottom: 0px;
   margin-left: -19px;
-  margin-bottom: 0;
+  padding-left: 199px;
+  box-shadow: 0 -2px 2px -2px rgba(0, 0, 0, 0.067);
 }
-form.edit{
+form.bottom-action {
   margin-bottom: 90px;
 }
 

@@ -55,6 +55,9 @@ $(function() {
   $('a[data-toggle=modal]').on('click', showPopup);
   $('a[data-toggle=pick_cat]').on('click', pickCatObject);
   $('textarea.resizable').TextAreaResizer();
+
+  $(document).on('scroll', makeActionsVisible);
+  makeActionsVisible();
 });
 
 bindIndexList = function() {
@@ -845,3 +848,12 @@ bindCustomFilter = function(selector, model) {
     $('select').val(JSON.parse($.cookie("SpryMedia_DataTables_DataTables_Table_0_" + model))["iGroupFolder"]).change();
 };
 
+makeActionsVisible = function(e) {
+  var form = $('form.edit');
+  var actions = $('.form-actions');
+  if (form.offset().top + form.height() > $(window).scrollTop() + $(window).height()) {
+    form.addClass('bottom-action');
+  } else if (form.offset().top + form.height() + actions.outerHeight(true) <= $(window).scrollTop() + $(window).height()) {
+    form.removeClass('bottom-action');
+  }
+};
