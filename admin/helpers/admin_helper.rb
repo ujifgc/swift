@@ -135,36 +135,28 @@ Admin.helpers do
     end
   end
 
-  def page_tree( from, level, prefix, published = nil )
-    pages = if published
-      Page.published.all :parent_id => from, :order => [:position, :path]
-    else
-      Page.all :parent_id => from, :order => [:position, :path]
-    end
-    return false  unless pages.length > 0
+  def recursive_tree(object_model, from, level, prefix, published = nil)
+    filter = { :parent_id => from, :order => [:path] }
+    filter[:order].unshift(:position) if object_model.properties.named?(:position) 
 
-    tree = []
-    pages.each do |page|
-      tree << { :page => page,
-                :child => page_tree(page.id, level + 1, prefix + '/' + page.slug, published) }
+    objects = (published ? object_model.published : object_model).all(filter)
+    return false unless objects.count > 0
+
+    model_key = object_model.name.underscore.to_sym
+    objects.inject([]) do |tree,object|
+      tree << { model_key => object,
+                :child => recursive_tree(object_model, object.id, level + 1, prefix + '/' + object.slug, published) }
     end
-    return tree
+  end
+
+  def page_tree( from, level, prefix, published = nil )
+    warn '#page_tree is deprecated, use #recursive_tree(Page)'
+    recursive_tree(Page, from, level, prefix, published)
   end
 
   def folder_tree( from, level, prefix, published = nil )
-    folders = if published
-      Folder.published.all :parent_id => from, :order => :path
-    else
-      Folder.all :parent_id => from, :order => :path
-    end
-    return false  unless folders.length > 0
-
-    tree = []
-    folders.each do |folder|
-      tree << { :folder => folder,
-                :child => folder_tree(folder.id, level + 1, prefix + '/' + folder.slug, published) }
-    end
-    return tree
+    warn '#folder_tree is deprecated, use #recursive_tree(Folder)'
+    recursive_tree(Folder, from, level, prefix, published)
   end
 
   def tree_flat( tree )
