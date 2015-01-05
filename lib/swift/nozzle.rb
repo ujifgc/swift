@@ -51,6 +51,7 @@ module Nozzle
     :fill => '-thumbnail {size}^ -gravity center -extent {size}',
   }
   def self.finalize
+    check_convert
     outlets = Option(:outlets) || [] rescue []
     outlets.each do |name,process|
       ImageAdapter.instance_eval do
@@ -70,5 +71,11 @@ module Nozzle
         end
       end
     end
+  end
+
+  def self.check_convert
+    `convert`
+  rescue Errno::ENOENT
+    warn 'No `convert` utility found. Please install ImageMagick or fully compatible alternative'
   end
 end
