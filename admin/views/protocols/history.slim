@@ -1,4 +1,4 @@
-﻿ul.nav.nav-tabs.operations
+ul.nav.nav-tabs.operations
   li.first= mk_single_op :list, url(@models, :index)
   li= mk_single_op :edit, url(@models, :edit, :id => params[:id])
   - allow :auditor do
@@ -13,7 +13,6 @@ form.inner.multiple#multiple-codes action=url(:codes, :index)/:multiple method=:
         th= mat(:object, :changes)
     tbody
       - @objects.each do |object|
-        - data = JSON.load object.data
         tr
           td.last= mk_checkbox object
           td.nobr
@@ -27,6 +26,7 @@ form.inner.multiple#multiple-codes action=url(:codes, :index)/:multiple method=:
             br
             = link_to 'Загрузить', url(object.object_type.underscore.pluralize.to_sym, :edit, :id => object.object_id, :protocol_id => object.id)
           td
+            - data = object.object
             table
               tr
                 - data.each do |key, value|

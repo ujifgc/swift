@@ -78,11 +78,11 @@ class Protocol
   def object
     JSON.parse data
   rescue
-    {}
+    { :json => data }
   end
 
   def data
-    Zlib.inflate( attribute_get(:data) ).force_encoding( Encoding.default_external )
+    @inflated_data ||= Zlib.inflate( attribute_get(:data) ).force_encoding( Encoding.default_external )
   rescue
     attribute_get(:data)
   end
