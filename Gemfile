@@ -15,6 +15,7 @@ gem 'activesupport', '~> 4.1.0', :require => false
 gem 'slim'
 gem 'tight-redcarpet', '~> 3', :require => 'redcarpet'
 gem 'sinatra-flash', :require => 'sinatra/flash'
+gem 'rack', '~> 1.5.0'
 
 # padrino framework
 padrino_version = '0.12.4'
