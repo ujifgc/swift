@@ -8,17 +8,17 @@ module Swift
       private
 
       def detect_selected_locale
-        selected_locale = params[:locale].to_s[0..1]
+        selected_locale = params[:locale]
         if swift.locales.include?(selected_locale)
-          selected_locale.to_sym
+          selected_locale
         else
           detect_session_locale
         end
       end
 
       def detect_session_locale
-        if session[:locale].present? && swift.locales.include?(session[:locale].to_s)
-          session[:locale].to_sym
+        if session[:locale].present? && swift.locales.include?(session[:locale])
+          session[:locale]
         else
           detect_preferred_locale
         end
@@ -29,7 +29,7 @@ module Swift
           (parse_http_accept_language(preferred_languages) & swift.locales).first
         end
         detected_locale ||= swift.locales.first
-        detected_locale.to_sym
+        detected_locale
       end
 
       def parse_http_accept_language( languages )
