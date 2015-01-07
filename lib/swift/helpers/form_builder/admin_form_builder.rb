@@ -9,11 +9,27 @@ module Padrino
         include OutputHelpers
 
         def input( field, options={} )
+          control_group = native_input(field, options.dup)
+          if @object.class.respond_to?(:translated_fields) && @object.class.translated_fields.include?(field.to_s)
+            locales = Option(:locales) || I18n.available_locales
+            locales[1..-1].each do |locale|
+              localized_options = options.merge(:locale => locale, :brackets => locale)
+              translation = @object.translation_get(field, locale)
+              localized_options[:value] = translation ? translation.text : ''
+              control_group << "\n".html_safe << native_input(field, localized_options)
+            end
+          end
+          control_group
+        end
+
+        def native_input(field, options)
           object = @object.class.to_s.underscore
           options[:label] ||= {}
           caption = ''.html_safe
           caption << (options[:label].delete(:caption) || make_caption(object, field))
           caption << ' (' + options.delete(:brackets).to_s + ')'  if options[:brackets]
+          locale = options.delete(:locale)
+          field = "#{locale}_#{field}" if locale
           type = 'string'
           morphable = options.delete :morphable
           options.delete :options  if options[:options] && options[:options].empty?

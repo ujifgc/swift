@@ -59,6 +59,10 @@ class Admin < Padrino::Application
     Account.current = current_account
     I18n.locale = :ru
 
+    translation = {}
+    locales = Array(Option(:locales) || ['ru'])[1..-1]
+    pattern = /^(#{Regexp.union(locales)})_(.+)$/
+
     params.each do |k,v|
       next  unless v.kind_of? Hash
       params[k].delete 'created_by_id'
@@ -68,6 +72,14 @@ class Admin < Padrino::Application
         child_model = k.camelize.constantize
         params[k]['updated_by_id'] = current_account.id  if child_model.new.respond_to?(:updated_by_id)
         params[k]['account_id'] ||= current_account.id   if child_model.new.respond_to?(:account_id)
+        params[k].each do |field, value|
+          if field =~ pattern
+            locale = $1
+            translation[locale] ||= {}
+            translation[locale][$2] = value
+            params[k].delete(field)
+          end
+        end
       end
     end
 
@@ -93,6 +105,8 @@ class Admin < Padrino::Application
         end
       end
     end
+
+    params[@model][:translation] = translation if params[@model] && translation.any?
   end
 
   # common routes

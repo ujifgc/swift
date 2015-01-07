@@ -19,6 +19,7 @@ class Page
   bondable!
   metable!
   positionable!
+  multilingual! :title, :text
 
   # relations
   has n, :children, 'Page', :child_key => :parent_id

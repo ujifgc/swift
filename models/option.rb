@@ -16,7 +16,13 @@ class Option
 end
 
 def Option( id )
-  Option.get( id ).json['value']
+  value = Option.get( id ).json['value']
+  case id
+  when :site_title
+    value.kind_of?(Hash) ? value[I18n.locale.to_s] : value
+  else
+    value
+  end
 rescue NoMethodError
   nil
 end

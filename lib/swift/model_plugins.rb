@@ -8,6 +8,7 @@ module Swift
       include Swift::ModelPlugins::Dateable::ClassMethods
       include Swift::ModelPlugins::Loggable::ClassMethods
       include Swift::ModelPlugins::Metable::ClassMethods
+      include Swift::ModelPlugins::Multilingual::ClassMethods
       include Swift::ModelPlugins::Publishable::ClassMethods
       include Swift::ModelPlugins::Recursive::ClassMethods
       include Swift::ModelPlugins::Sluggable::ClassMethods
