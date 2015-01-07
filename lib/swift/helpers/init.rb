@@ -27,10 +27,10 @@ module Swift
 
       private
 
+      # FIXME possible SQLite fix, test against MySQL:
+      # page = Page.first( :conditions => [ "? LIKE CASE WHEN is_module THEN path||'%' ELSE path END", path ], :order => :path.desc )
       def find_page_or_module( path )
         page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
-        # FIXME possible SQLite fix, test against MySQL:
-        #page = Page.first( :conditions => [ "? LIKE CASE WHEN is_module THEN path||'%' ELSE path END", path ], :order => :path.desc )
         swift.fragment = (page = detect_module_slug(page, path)) ? page.fragment_id : 'error'
         page
       end
