@@ -100,11 +100,8 @@ module Swift
       end
 
       def init_locale
-        swift.locales = Option(:locales) || %w(ru en)
-        swift.locale = params[:locale] ? detect_selected_locale : detect_session_locale
-        session[:locale] = swift.locale
-        I18n.available_locales = swift.locales
-        I18n.locale = swift.locale
+        I18n.available_locales = swift.locales = Option(:locales) || %w(ru en)
+        I18n.locale = swift.locale = detect_locale
       end
     end
   end
