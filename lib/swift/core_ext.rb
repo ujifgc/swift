@@ -102,6 +102,10 @@ module Kernel
       args.each { |arg| logger << arg.inspect }
     end
   end
+
+  def warn(*args)
+    logger.warn *args
+  end
 end
 
 module FileUtils

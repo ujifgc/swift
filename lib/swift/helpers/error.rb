@@ -23,10 +23,6 @@ module Swift
           fallback || raise
         end
       end
-
-      def warn(*args)
-        logger.warn *args
-      end
     end
   end
 end
