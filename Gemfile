@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # development
 group :development, :test do
   gem 'rake'
-  gem 'awesome_print'
+  gem 'awesome_print', "~> 1.2.0"
   gem 'ruby-progressbar'
   gem 'rack-test', ">= 0.5.0"
 end
