@@ -78,8 +78,10 @@ module Swift
         swift.http_method = request.env['REQUEST_METHOD']
         swift.host = request.env['SERVER_NAME']
         swift.request = request.env['REQUEST_URI']
-        swift.uri = "/#{params[:request_uri]}"
-        swift.path = swift.uri.partition('?').first
+        swift.uri = request.env['REQUEST_URI']
+        swift.path = request.env['PATH_INFO']
+        swift.query = request.env['QUERY_STRING']
+        process_legacy if swift.path.start_with?('/legacy/')
         swift.path_pages = []
         swift.path_ids = []
       end

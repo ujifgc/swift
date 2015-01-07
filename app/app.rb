@@ -59,15 +59,14 @@ class Swift::Application < Padrino::Application
 
   # if no controller got the request, try finding some content in the sitemap
   get_or_post = lambda do
-    return process_legacy if params[:request_uri].start_with?('legacy/')
     init_swift
     init_page  or not_found
     process_page
   end
 
   # a trick to consume both get and post requests
-  get '/:request_uri', :request_uri => /.*/, &get_or_post
-  post '/:request_uri', :request_uri => /.*/, &get_or_post
+  get '*', &get_or_post
+  post '*', &get_or_post
 
   # handle 404 and 501 errors
   [404, 501].each do |errno|
