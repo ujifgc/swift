@@ -3,6 +3,8 @@ RACK_ENV = ENV['RACK_ENV'] ||= 'development'  unless defined?(RACK_ENV)
 PADRINO_ROOT = File.expand_path('../..', __FILE__)  unless defined?(PADRINO_ROOT)
 ENV['TMP'] = File.join(PADRINO_ROOT, 'tmp')
 
+module Markdown; end
+
 # load bundle
 require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
