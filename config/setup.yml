@@ -37,7 +37,7 @@ Code:
     placeholder:
     is_single: 1
   spoiler:
-    title: Споейлер (блочный)
+    title: Спойлер (блочный)
     text: Разметка текста как короткий заголовок (HTML5 summary) и содержимое (HTML5 details)
     html: '<details><summary>[1]</summary><p>[content]</p></details>'
     placeholder: Заголовок спойлера
