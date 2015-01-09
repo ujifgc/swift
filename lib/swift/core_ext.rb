@@ -30,6 +30,8 @@ class String
   end
 end
 
+SafeBuffer = ActiveSupport::SafeBuffer
+
 class Symbol
   # Allows symbols to connect with `/`
   # :foo / :bar # => 'foo/bar'
