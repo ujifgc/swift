@@ -9,5 +9,5 @@ html class=swift.print?
     = element 'Meta'
     == pipeline :app, :css
     == pipeline :app, :js
-  body class=swift.fragment
+  body class="#{swift.fragment} #{swift.locale}"
     = yield
