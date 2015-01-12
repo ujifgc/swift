@@ -12,6 +12,7 @@ module Swift
       end
 
       def detect_domain_locale
+        return swift.locales.first if swift.locales.count < 2
         hostname = request.env['HTTP_HOST']
         if hostname =~ /^(#{Regexp.union(swift.locales)})\.(.+)$/
           $1
