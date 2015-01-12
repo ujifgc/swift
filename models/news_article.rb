@@ -18,6 +18,7 @@ class NewsArticle
   datatables!( :id, :title, :date, :publish_at, :news_rubric,
     :format => { :news_rubric => { :code => 'o.news_rubric && o.news_rubric.title' } }
   )
+  multilingual! :title, :info, :text
 
   # relations
   property :news_rubric_id, Integer, :default => 1
