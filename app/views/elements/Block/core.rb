@@ -1,4 +1,4 @@
-block = Block.by_slug @args[0]
+@block = block = Block.by_slug @args[0]
 throw :output, "[Block ##{@args[0]} missing]"  unless block
 @text =
   case
