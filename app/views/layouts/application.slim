@@ -8,7 +8,7 @@ html class=swift.print?
       script src='/javascripts/html5ie8tags.js'
     = element 'PageTitle'
     = element 'Meta'
-    link href="//api.conf.udsu.ru/app.css" rel="stylesheet"
+    link href=("//api.conf.udsu.ru/app.css?"+File.mtime('../f-api/assets/stylesheets/app/app.css').to_i.to_s) rel="stylesheet"
     == pipeline :app, :css
     script src="//api.conf.udsu.ru/app.js"
     == pipeline :app, :js

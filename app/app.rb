@@ -12,6 +12,7 @@ class Swift::Application < Padrino::Application
   set :default_builder, 'SwiftFormBuilder'
   set :locales, [ :ru, :en ]
   set :pipeline, {
+    :bust_cache => true,
     :combine => Padrino.env == :production,
     :css => {
       :app => [
