@@ -16,6 +16,7 @@ app/views/fragments/*
 app/views/layouts/*
 config/database.yml
 config/legacy.yml
+config/remap.yml
 assets/stylesheets/app/*
 assets/javascripts/app/*
 Gemfile.lock
