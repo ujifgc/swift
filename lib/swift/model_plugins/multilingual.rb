@@ -5,6 +5,8 @@ module Swift
         def multilingual!(*fields)
           send :include, InstanceMethods
 
+          @optional_fields = Array(fields.extract_options![:optional]).map(&:to_s)
+
           @translated_fields = Array(fields).map(&:to_s)
           @translated_fields.each do |field|
             class_eval <<-RUBY, __FILE__, __LINE__+1
@@ -21,6 +23,18 @@ module Swift
           def self.translated_fields
             @translated_fields
           end
+
+          def self.optional_fields
+            @optional_fields
+          end
+
+          after :save do
+            Array(@pending_translations).each do |locale, fields|
+              fields.each do |field, value|
+                translation_set(field, locale, value) if translatable?(field, locale)
+              end
+            end
+          end
         end
       end
 
@@ -30,7 +44,9 @@ module Swift
             if translation = translation_get(field, locale)
               return translation.text
             else
-              warn("no translation to `#{locale}` found for `#{self.class.name}##{id}`: `#{field}`")
+              unless self.class.optional_fields.include?(field.to_s)
+                warn("no translation to `#{locale}` found for `#{self.class.name}##{id}`: `#{field}`")
+              end
             end
           end
           send(respond_to?(:"original_#{field}") ? :"original_#{field}" : field)
@@ -41,11 +57,8 @@ module Swift
         end
 
         def translation=(translations)
-          translations.each do |locale, fields|
-            fields.each do |field, value|
-              translation_set(field, locale, value) if translatable?(field, locale)
-            end
-          end
+          self.updated_at = DateTime.now if respond_to?(:updated_at)
+          @pending_translations = translations.dup
         end
 
         private
@@ -61,6 +74,9 @@ module Swift
 
         def translation_set(field, locale, value)
           filter = translation_filter(field, locale)
+          if value && value.empty?
+            return Translation.all(filter).destroy
+          end
           new_value = { :text => value }
           if translation = Translation.first(filter)
             translation.update(new_value) ? translation : fail("failed to update translation due to #{translation.errors}")

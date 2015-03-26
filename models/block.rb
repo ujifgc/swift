@@ -20,6 +20,7 @@ class Block
   datatables!( :id, :title, :type, :slug,
     :format => { :type => { :code => 'o.get_type' } }
   )
+  multilingual! :text, :optional => :text
 
   # validations
   validates_presence_of :title

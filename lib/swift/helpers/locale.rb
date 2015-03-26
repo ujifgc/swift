@@ -11,6 +11,14 @@ module Swift
         detect_domain_locale
       end
 
+      def domain_with_locale(domain, locale)
+        if domain =~ /^(#{Regexp.union(swift.locales)})\.(.+)$/
+          "#{request.env['rack.url_scheme']}://#{locale}.#{$2}"
+        else
+          domain
+        end
+      end
+
       def detect_domain_locale
         return swift.locales.first if swift.locales.count < 2
         hostname = request.env['HTTP_HOST']

@@ -1,0 +1,9 @@
+﻿- locale_names = { 'ru' => 'русский', 'udm' => 'удмуртский', 'en' => 'английский' }
+nav.locale
+  ul
+    - swift.locales.each do |locale|
+      li
+        - if locale == swift.locale
+          = locale_names[locale]
+        - else
+          a rel='alternate' hreflang=locale lang='ru' href="#{domain_with_locale(swift.host, locale)}#{swift.uri}" = locale_names[locale]
