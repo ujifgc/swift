@@ -175,4 +175,31 @@ Admin.helpers do
       url(@models, :index)
     end
   end
+
+  def outlet_with_label(outlet)
+    outlet = outlet.to_s
+    details = (Option(:outlets) || [] rescue [])[outlet]
+    return ['Оригинал', ''] unless details.kind_of?(Hash)
+    method, dimension = *details.first
+    label = ''
+    case method.to_s
+    when 'fill'
+      label << 'Обрезать до '
+    when 'fit'
+      label << 'Вписать в '
+    else
+      label << method.to_s
+    end
+    case dimension
+    when /^(\d+)x$/
+      label << $1 << 'px по ширине'
+    when /^x(\d+)$/
+      label << $1 << 'px по высоте'
+    when /^(\d+)x(\d+)$/
+      label << dimension
+    else
+      label << dimension
+    end
+    [label, outlet]
+  end
 end

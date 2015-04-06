@@ -54,6 +54,7 @@ module Nozzle
     check_convert
     outlets = Option(:outlets) || [] rescue []
     outlets.each do |name,process|
+      next unless process.kind_of?(Hash)
       ImageAdapter.instance_eval do
         outlet name.to_sym do
           @resize_method = RESIZE_METHODS[process.keys.first.to_sym].gsub('{size}', process.values.first)

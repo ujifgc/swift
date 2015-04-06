@@ -12,7 +12,7 @@
   = label_tag 'Вид', :for => :view_select, :class => 'pull-left' do
     = select_tag :view, :id => :view_select, :options => views
 
-  - sizes = { 'Вписать в 180x135' => 'thumb', 'Обрезать до 180x135' => 'fill_thumb', '80 по ширине' => 'mini_thumb', '135 по высоте' => 'gallery_thumb', 'Оригинал' => '' }
+  - sizes = [:thumb, :fill_thumb, :mini_thumb, :gallery_thumb, :index_thumb, :''].map(&method(:outlet_with_label))
   = label_tag 'Размер', :for => :size_select, :class => 'pull-left' do
     = select_tag :size, :id => :size_select, :options => sizes
 
