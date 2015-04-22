@@ -23,10 +23,18 @@ class Option
   rescue NoMethodError
     nil
   end
+
+  def self.clear_cache
+    @cache.clear
+  end
+
+  after :save do
+    Option.clear_cache
+  end
 end
 
 def Option(id)
-  value = Option.get( id ).json['value']
+  value = Option.cached_get(id)
   case id
   when :site_title
     value.kind_of?(Hash) ? value[I18n.locale.to_s] : value
