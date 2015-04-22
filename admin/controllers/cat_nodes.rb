@@ -81,13 +81,13 @@ Admin.controllers :cat_nodes do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = CatNode.get(params[:id])
     render 'cat_nodes/edit'
   end
 
   put :update, :with => :id do
-    @object = CatNode.get(params[:id])
     attributes = {}
     params[:cat_node].each do |k,v|
       if card_field = @object.cat_card.json[k]
@@ -117,7 +117,6 @@ Admin.controllers :cat_nodes do
   end
 
   delete :destroy, :with => :id do
-    @object = CatNode.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('cat_node.destroyed')
     else

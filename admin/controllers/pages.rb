@@ -32,13 +32,13 @@ Admin.controllers :pages do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = Page.get(params[:id])
     render 'pages/edit'
   end
 
   put :update, :with => :id do
-    @object = Page.get(params[:id])
     if @object.update(params[:page])
       flash[:notice] = pat('page.updated')
       redirect url_after_save
@@ -55,7 +55,6 @@ Admin.controllers :pages do
   end
 
   delete :destroy, :with => :id do
-    @object = Page.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('page.destroyed')
     else
@@ -63,5 +62,4 @@ Admin.controllers :pages do
     end
     redirect url(:pages, :index)
   end
-
 end

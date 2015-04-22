@@ -29,13 +29,13 @@ Admin.controllers :news_rubrics do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = NewsRubric.get(params[:id])
     render 'news_rubrics/edit'
   end
 
   put :update, :with => :id do
-    @object = NewsRubric.get(params[:id])
     if @object.update(params[:news_rubric])
       flash[:notice] = pat('news_rubric.updated')
       redirect url_after_save
@@ -45,7 +45,6 @@ Admin.controllers :news_rubrics do
   end
 
   delete :destroy, :with => :id do
-    @object = NewsRubric.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('news_rubric.destroyed')
     else

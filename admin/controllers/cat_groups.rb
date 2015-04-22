@@ -34,13 +34,13 @@ Admin.controllers :cat_groups do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = CatGroup.get(params[:id])
     render 'cat_groups/edit'
   end
 
   put :update, :with => :id do
-    @object = CatGroup.get(params[:id])
     fields = {}
     @object.cat_card.json.keys.each do |key|
       fields[key] = params[:cat_group].delete(key)
@@ -62,7 +62,6 @@ Admin.controllers :cat_groups do
   end
 
   delete :destroy, :with => :id do
-    @object = CatGroup.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('cat_group.destroyed')
     else

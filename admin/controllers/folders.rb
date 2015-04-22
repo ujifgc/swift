@@ -30,13 +30,13 @@ Admin.controllers :folders do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = Folder.get(params[:id])
     render 'folders/edit'
   end
 
   put :update, :with => :id do
-    @object = Folder.get(params[:id])
     old_path = @object.path
     old_dir = @object.absolute_path
     fail RuntimeError  unless File.exist?(old_dir)
@@ -53,7 +53,6 @@ Admin.controllers :folders do
   end
 
   delete :destroy, :with => :id do
-    @object = Folder.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('flash.folder_destroyed')
     else

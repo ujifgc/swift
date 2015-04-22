@@ -35,8 +35,9 @@ Admin.controllers :fragments do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = Fragment.get(params[:id])
     @code = begin
       File.open "#{Swift::Application.views}/fragments/#{@object.id}.slim", 'r:bom|utf-8' do |file|
         file.read
@@ -48,7 +49,6 @@ Admin.controllers :fragments do
   end
 
   put :update, :with => :id do
-    @object = Fragment.get(params[:id])
     @code = params[:fragment].delete 'code'
     if @object.update(params[:fragment])
       flash[:notice] = pat('fragment.updated')
@@ -62,7 +62,6 @@ Admin.controllers :fragments do
   end
 
   delete :destroy, :with => :id do
-    @object = Fragment.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('fragment.destroyed')
     else

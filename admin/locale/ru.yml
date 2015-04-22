@@ -137,7 +137,8 @@ ru:
         updated: Изменения сохранены
       news_article:
         updated: Статья сохранена
-
+      protocol:
+        not_found: Версия объекта не найдена
   group:
     admin: Администратор
     designer: Дизайнер

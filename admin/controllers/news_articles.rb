@@ -70,6 +70,8 @@ Admin.controllers :news_articles do
     
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
     render 'news_articles/edit'
   end

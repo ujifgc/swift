@@ -30,13 +30,13 @@ Admin.controllers :cat_cards do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = CatCard.get(params[:id])
     render 'cat_cards/edit'
   end
 
   put :update, :with => :id do
-    @object = CatCard.get(params[:id])
     @object.attributes = params[:cat_card]
     @object.fill_json params, :cat_nodes
     if @object.save
@@ -48,7 +48,6 @@ Admin.controllers :cat_cards do
   end
 
   delete :destroy, :with => :id do
-    @object = CatCard.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('cat_card.destroyed')
     else

@@ -29,13 +29,13 @@ Admin.controllers :elements do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = Element.get(params[:id])
     render 'elements/edit'
   end
 
   put :update, :with => :id do
-    @object = Element.get(params[:id])
     if @object.update(params[:element])
       flash[:notice] = pat('element.updated')
       redirect url_after_save
@@ -45,7 +45,6 @@ Admin.controllers :elements do
   end
 
   delete :destroy, :with => :id do
-    @object = Element.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('element.destroyed')
     else

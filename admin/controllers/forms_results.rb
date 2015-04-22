@@ -22,13 +22,13 @@ Admin.controllers :forms_results do
     render 'forms_results/index'
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = FormsResult.get(params[:id])
     render 'forms_results/edit'
   end
 
   delete :destroy, :with => :id do
-    @object = FormsResult.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('forms_result.destroyed')
     else

@@ -37,13 +37,13 @@ Admin.controllers :news_events do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = NewsEvent.get(params[:id])
     render 'news_events/edit'
   end
 
   put :update, :with => :id do
-    @object = NewsEvent.get(params[:id])
     if @object.update(params[:news_event])
       flash[:notice] = pat('news_event.updated')
       redirect url_after_save
@@ -53,7 +53,6 @@ Admin.controllers :news_events do
   end
 
   delete :destroy, :with => :id do
-    @object = NewsEvent.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('news_event.destroyed')
     else

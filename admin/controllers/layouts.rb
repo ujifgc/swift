@@ -33,8 +33,9 @@ Admin.controllers :layouts do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = Layout.get(params[:id])
     @code = begin
       File.open "#{Swift::Application.views}/layouts/#{@object.id}.slim", "r:bom|utf-8" do |file|
         file.read + "\n"
@@ -46,7 +47,6 @@ Admin.controllers :layouts do
   end
 
   put :update, :with => :id do
-    @object = Layout.get(params[:id])
     @code = params[:layout].delete 'code'
     if @object.update(params[:layout])
       flash[:notice] = pat('layout.updated')
@@ -61,7 +61,6 @@ Admin.controllers :layouts do
   end
 
   delete :destroy, :with => :id do
-    @object = Layout.get(params[:id])
     if @object.destroy
       #File.rm "#{Swift::Application.views}/layouts/#{@object.id}.slim"
       flash[:notice] = pat('layout.destroyed')

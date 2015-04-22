@@ -30,13 +30,13 @@ Admin.controllers :forms_cards do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = FormsCard.get(params[:id])
     render 'forms_cards/edit'
   end
 
   put :update, :with => :id do
-    @object = FormsCard.get(params[:id])
     @object.attributes = params[:forms_card]
     @object.fill_json params, :forms_results
     if @object.save
@@ -48,7 +48,6 @@ Admin.controllers :forms_cards do
   end
 
   delete :destroy, :with => :id do
-    @object = FormsCard.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('forms_card.destroyed')
     else

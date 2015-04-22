@@ -29,13 +29,13 @@ Admin.controllers :forms_faqs do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = FormsFaq.get(params[:id])
     render 'forms_faqs/edit'
   end
 
   put :update, :with => :id do
-    @object = FormsFaq.get(params[:id])
     if @object.update(params[:forms_faq])
       flash[:notice] = pat('forms_faq.updated')
       redirect url_after_save
@@ -45,7 +45,6 @@ Admin.controllers :forms_faqs do
   end
 
   delete :destroy, :with => :id do
-    @object = FormsFaq.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('forms_faq.destroyed')
     else

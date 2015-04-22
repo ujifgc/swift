@@ -57,13 +57,13 @@ Admin.controllers :images do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = Image.get(params[:id])
     render 'images/edit'
   end
 
   put :update, :with => :id do
-    @object = Image.get(params[:id])
     file = params[:image].delete 'file'
     if file.kind_of? Hash
       if @object.update(params[:image])
@@ -89,7 +89,6 @@ Admin.controllers :images do
   end
 
   delete :destroy, :with => :id do
-    @object = Image.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('image.destroyed')
     else

@@ -36,14 +36,13 @@ Admin.controllers :options do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = Option.get(params[:id])
     render 'options/edit'
   end
 
   put :update, :with => :id do
-    @object = Option.get(params[:id])
-
     val = params[:option].delete 'value'
     params[:option]['value'] = begin
       eval(val)
@@ -60,7 +59,6 @@ Admin.controllers :options do
   end
 
   delete :destroy, :with => :id do
-    @object = Option.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('option.destroyed')
     else

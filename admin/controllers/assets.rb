@@ -54,13 +54,13 @@ Admin.controllers :assets do
     end
   end
 
+  before(:edit) { load_protocol_attributes }
+
   get :edit, :with => :id do
-    @object = Asset.get(params[:id])
     render 'assets/edit'
   end
 
   put :update, :with => :id do
-    @object = Asset.get(params[:id])
     file = params[:asset].delete 'file'
     if file.kind_of? Hash
       if @object.update(params[:asset])
@@ -86,7 +86,6 @@ Admin.controllers :assets do
   end
 
   delete :destroy, :with => :id do
-    @object = Asset.get(params[:id])
     if @object.destroy
       flash[:notice] = pat('asset.destroyed')
     else
