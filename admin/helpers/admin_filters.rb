@@ -14,7 +14,7 @@ Admin.helpers do
   end
 
   def get_current_object
-    @object = @the_model.get(params[:id].to_i)
+    @object = @the_model.get(params[:id])
     unless @object
       flash[:error] = pat('object.not_found')
       redirect url(@models, :index)
