@@ -9,7 +9,7 @@ Admin.controllers :pages do
   end
 
   get :index do
-    @tree = page_tree( nil, 0, '' )
+    @tree = recursive_tree(Page, nil, 0, '')
     render 'pages/index'
   end
 
@@ -46,7 +46,7 @@ Admin.controllers :pages do
   post :reposition, :with => [:id, :direction] do
     @object = Page.get(params[:id])
     @object.reposition! params[:direction]  if @object
-    @tree = page_tree( nil, 0, '' )
+    @tree = recursive_tree(Page, nil, 0, '')
     render 'pages/index', :layout => false
   end
 
