@@ -1,6 +1,7 @@
 /* Default class modification */
 $.extend( $.fn.dataTableExt.oStdClasses, {
-    "sWrapper": "dataTables_wrapper" // form-inline"
+    "sWrapper": "dataTables_wrapper",
+    "sFilterInput": "search-query",
 } );
 
 /* API method to get paging information */
