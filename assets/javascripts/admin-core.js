@@ -84,6 +84,7 @@ bindIndexList = function() {
       "bAutoWidth": false,
       "aLengthMenu": lenHash,
       "iDisplayLength": 25,
+      "aaSorting": [],
       "aoColumnDefs": [
         { "sType": "by-data", "aTargets": [ 0 ] },
         { "bSearchable": false, "aTargets": unsearchable },
