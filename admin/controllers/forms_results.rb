@@ -2,11 +2,7 @@ Admin.controllers :forms_results do
   set_access :admin, :designer, :auditor
 
   before :edit, :destroy do
-    @object = FormsResult.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:forms_results, :index)
-    end
+    get_current_object
   end
 
   get :index do

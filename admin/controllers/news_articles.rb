@@ -2,24 +2,7 @@ Admin.controllers :news_articles do
   set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
-    @object = NewsArticle.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:news_articles, :index)
-    end
-  end
-
-  before :create, :update do
-    create_event = params[:news_article].delete('has_event')
-    if create_event
-      durc = params[:news_article].delete( 'duration_count' ).to_i
-      duru = params[:news_article].delete( 'duration_units' )
-      event_attributes = params[:news_article].reject{|k,v|k=='publish_at'}
-      event_attributes[:duration] = "#{durc}.#{duru}"
-      unless NewsEvent.by_slug(params[:news_article]['slug'])
-        @new_event = NewsEvent.create(event_attributes)
-      end
-    end
+    get_current_object
   end
 
   get :index do

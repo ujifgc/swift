@@ -2,11 +2,7 @@ Admin.controllers :cat_nodes do
   set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
-    @object = CatNode.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:cat_nodes, :index)
-    end
+    get_current_object
   end
 
   before :create, :update do

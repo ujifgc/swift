@@ -2,11 +2,7 @@ Admin.controllers :news_rubrics do
   set_access :admin, :designer, :auditor
 
   before :edit, :update, :destroy do
-    @object = NewsRubric.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:news_rubrics, :index)
-    end
+    get_current_object
   end
 
   get :index do

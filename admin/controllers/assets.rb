@@ -2,11 +2,7 @@ Admin.controllers :assets do
   set_access :admin, :designer, :auditor, :editor
     
   before :edit, :update, :destroy do
-    @object = Asset.get(params[:id].to_i)
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:assets, :index)
-    end
+    get_current_object
   end
 
   get :index do

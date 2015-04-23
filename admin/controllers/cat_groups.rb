@@ -2,11 +2,7 @@ Admin.controllers :cat_groups do
   set_access :admin, :designer, :auditor
 
   before :edit, :update, :destroy do
-    @object = CatGroup.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:cat_groups, :index)
-    end
+    get_current_object
   end
 
   before :update, :create do

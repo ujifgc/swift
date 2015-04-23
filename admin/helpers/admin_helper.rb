@@ -22,7 +22,6 @@ Admin.helpers do
 
     :news_articles => 'bookmark',
     :news_rubrics  => 'tasks',
-    :news_events   => 'flag',
 
     :forms_cards   => 'check',
     :forms_stats   => 'signal',
@@ -166,14 +165,6 @@ Admin.helpers do
       ret += tree_flat(leaf[:child])
     end
     ret.compact
-  end
-
-  def url_after_save
-    if params[:apply]
-      url(@models, :edit, @object.id)
-    else
-      url(@models, :index)
-    end
   end
 
   def outlet_with_label(outlet)

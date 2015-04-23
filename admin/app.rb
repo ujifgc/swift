@@ -1,6 +1,6 @@
 MODULE_GROUPS = {
   :content => [:pages, :blocks, :assets, :images, :folders],
-  :news    => [:news_articles, :news_rubrics, :news_events],
+  :news    => [:news_articles, :news_rubrics],
   :forms   => [:forms_cards, :forms_stats, :forms_results, :forms_faqs],
   :cat     => [:cat_nodes, :cat_cards, :cat_groups],
   :design  => [:layouts, :fragments, :elements, :codes],
@@ -83,17 +83,7 @@ class Admin < Padrino::Application
       end
     end
 
-    @the_model = begin
-      @models = request.controller || params[:controller]
-      @model = @models.singularize
-      @models = @models.to_sym
-      @model_name = @model.camelize
-      @model = @model.to_sym
-      Object.const_defined?(@model_name)  or throw :undefined
-      @model_name.constantize
-    rescue
-      nil
-    end
+    detect_current_model
 
     params.each do |k,v|
       if k.camelize == @model_name && @the_model

@@ -54,7 +54,6 @@ ru:
         fragments: Визуализаторы
         news_articles: Новости
         news_rubrics: Ленты
-        news_events: Даты и события
         cat_nodes: Ресурсы
         cat_cards: Карточки
         cat_groups: Группы
@@ -201,7 +200,6 @@ ru:
         kind: Вид запроса
         created_at: Дата создания
         updated_at: Дата изменения
-        has_event: Создать событие
         receivers: Получатели
         is_private: Доступ ограничен
         is_system: Служебная

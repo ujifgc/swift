@@ -2,11 +2,7 @@ Admin.controllers :fragments do
   set_access :admin, :designer
 
   before :edit, :update, :destroy do
-    @object = Fragment.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:fragments, :index)
-    end
+    get_current_object
   end
 
   get :index do

@@ -2,11 +2,7 @@ Admin.controllers :folders do
   set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
-    @object = Folder.get(params[:id])
-    unless @object
-      flash[:error] = pat('flash.folder_not_found')
-      redirect url(:folders, :index)
-    end
+    get_current_object
   end
 
   get :index do

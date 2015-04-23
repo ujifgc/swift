@@ -2,13 +2,9 @@ Admin.controllers :pages do
   set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
-    @object = Page.get(params[:id])
+    get_current_object
     if params[:page] && current_account.allowed?(:auditor) && !current_account.allowed?(:admin)
       params[:page]['is_module'] = @object.fragment.is_module
-    end
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:pages, :index)
     end
   end
 

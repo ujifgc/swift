@@ -2,11 +2,7 @@ Admin.controllers :blocks do
   set_access :admin, :designer, :auditor, :editor
 
   before :edit, :update, :destroy do
-    @object = Block.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:blocks, :index)
-    end
+    get_current_object
   end
 
   get :index do

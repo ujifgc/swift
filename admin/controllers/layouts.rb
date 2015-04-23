@@ -2,11 +2,7 @@ Admin.controllers :layouts do
   set_access :admin, :designer
 
   before :edit, :update, :destroy do
-    @object = Layout.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:layouts, :index)
-    end
+    get_current_object
   end
 
   get :index do

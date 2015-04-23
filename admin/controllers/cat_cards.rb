@@ -2,11 +2,7 @@ Admin.controllers :cat_cards do
   set_access :admin, :designer, :auditor
 
   before :edit, :update, :destroy do
-    @object = CatCard.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:cat_cards, :index)
-    end
+    get_current_object
   end
   
   get :index do

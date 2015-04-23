@@ -2,11 +2,7 @@ Admin.controllers :forms_cards do
   set_access :admin, :designer, :auditor
 
   before :edit, :update, :destroy do
-    @object = FormsCard.get(params[:id])
-    unless @object
-      flash[:error] = pat('object.not_found')
-      redirect url(:forms_cards, :index)
-    end
+    get_current_object
   end
 
   get :index do
