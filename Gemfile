@@ -18,7 +18,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'rack', '~> 1.5.0'
 
 # padrino framework
-padrino_version = '0.12.4'
+padrino_version = '0.12.5'
 gem 'padrino-core', padrino_version
 gem 'padrino-helpers', padrino_version
 gem 'padrino-auth', '~> 0.0.12'
