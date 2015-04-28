@@ -103,8 +103,10 @@ module Kernel
     end
   end
 
-  def warn(*args)
-    logger.warn *args
+  unless Padrino.env == :test
+    def warn(*args)
+      logger.warn *args
+    end
   end
 end
 
