@@ -41,3 +41,13 @@ describe OpenStruct do
     o[:foo].must_equal 'bar'
   end
 end
+
+describe ActiveSupport::JSON do
+  it 'should decode things' do
+    MultiJson.decode('{"a": "b"}').must_equal({'a' => 'b'})
+  end
+
+  it 'should encode things' do
+    MultiJson.encode({'a' => 'b'}).must_equal('{"a":"b"}')
+  end
+end

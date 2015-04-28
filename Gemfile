@@ -8,9 +8,6 @@ group :development, :test do
   gem 'rack-test', ">= 0.5.0"
 end
 
-# basic support
-gem 'activesupport', '~> 4.1.0', :require => false
-
 # templates and content parsing
 gem 'slim'
 gem 'tight-redcarpet', '~> 3.2', :require => 'redcarpet'

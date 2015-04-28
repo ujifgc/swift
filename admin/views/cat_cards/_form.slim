@@ -20,7 +20,7 @@
   = f.input :slug
 
 - allow :designer do
-  = f.input :sort_cache, :class => :long, :value => MultiJson.encode(@object.sort_cache)
-  = f.input :show_fields, :class => :long, :value => MultiJson.encode(@object.show_fields)
+  = f.input :sort_cache, :class => :long, :value => ActiveSupport::JSON.encode(@object.sort_cache)
+  = f.input :show_fields, :class => :long, :value => ActiveSupport::JSON.encode(@object.show_fields)
 
 = f.submits :append => mk_timestamps( @object )

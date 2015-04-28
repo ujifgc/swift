@@ -28,11 +28,11 @@ require 'rack-pipeline/sinatra'
 # openid authentication
 require 'omniauth-openid'
 require 'openid/store/filesystem'
+require 'active_support/json'
 require 'active_support/core_ext/object/conversions'
 require 'active_support/core_ext/object/json'
 
 ActiveSupport::JSON::Encoding.escape_html_entities_in_json = false
-MultiJson = ActiveSupport::JSON
 
 Padrino.before_load do
   I18n.locale = :ru

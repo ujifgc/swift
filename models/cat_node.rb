@@ -45,9 +45,9 @@ class CatNode
     cat_card.json.each do |key, type|
       if type[0].to_sym == :json && json[key].kind_of?(String)
         begin
-          json[key] = MultiJson.load(json[key])
-        rescue Exception => e
-          @json_errors[key] = e.message.force_encoding('utf-8')
+          json[key] = ActiveSupport::JSON.decode(json[key])
+        rescue JSON::ParserError => e
+          @json_errors[key] = e.message
         end
       end
     end

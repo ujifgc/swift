@@ -15,7 +15,7 @@ Admin.controllers :cat_nodes do
       files = files.inject([]) do |all,data|
         if data.kind_of?(String)
           begin
-            data = MultiJson.decode(data)
+            data = ActiveSupport::JSON.decode(data)
           rescue JSON::ParserError
           end
         end
@@ -90,7 +90,7 @@ Admin.controllers :cat_nodes do
         case card_field[0]
         when 'images'
           value = begin
-            v.kind_of?(String) ? MultiJson.decode(v) : v
+            v.kind_of?(String) ? ActiveSupport::JSON.decode(v) : v
           rescue JSON::ParserError
             v
           end

@@ -30,12 +30,12 @@ module DataMapper
         if value.nil? || value.is_a?(::String)
           value
         else
-          MultiJson.encode(value)
+          ActiveSupport::JSON.encode(value)
         end
       end
 
       def typecast_to_primitive(value)
-        MultiJson.decode(value.to_s)
+        ActiveSupport::JSON.decode(value.to_s)
       end
 
       include ::DataMapper::Property::DirtyMinder
