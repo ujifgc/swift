@@ -20,16 +20,19 @@ module Swift
       REGEX_SPLIT_IMAGE = /\[image[^\]]*?\]/.freeze
 
       def split_image(text)
-        parts = text.partition REGEX_SPLIT_IMAGE
-        [parts[1], parts[0] + parts[2]]
+        parts = text.to_s.partition REGEX_SPLIT_IMAGE
+        [parts[1], (parts[0] + parts[2]).strip]
       end
 
-      REGEX_IMAGE_ID = /\[image[^\]]*\s+(\d+)\s+.*?\]/.freeze
+      REGEX_IMAGE_ID = /\[image[^\]]*?\s+(\d+).*?\]/.freeze
 
       def extract_image_object(text)
-        Image.get text.match(REGEX_IMAGE_ID)[1]
-      rescue
-        nil
+        md = text.to_s.match(REGEX_IMAGE_ID)
+        if md
+          Image.get md[1]
+        else
+          nil
+        end
       end
     end
   end
