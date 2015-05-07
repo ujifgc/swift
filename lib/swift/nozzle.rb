@@ -1,5 +1,4 @@
 require 'shellwords'
-require 'uri'
 
 class NeatAdapter < Nozzle::Adapter::Base
   FILES_FOLDER = 'files'
@@ -38,19 +37,12 @@ class NeatAdapter < Nozzle::Adapter::Base
 end
 
 class ImageAdapter < NeatAdapter
-  def url
-    URI.escape(super)
-  end
-
   def default_url
     '/images/image_missing.png'
   end
 end
 
 class AssetAdapter < NeatAdapter
-  def url
-    URI.escape(super)
-  end
 end
 
 module Nozzle
