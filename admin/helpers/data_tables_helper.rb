@@ -9,6 +9,7 @@ Admin.helpers do
 
   def mk_group_selector( model, group, params, options = {} )
     filter = options[:filter] || {}
+    filter[:order] ||= :created_at.desc
     @groups = {}
     case group
     when Hash
@@ -22,8 +23,8 @@ Admin.helpers do
       end
     else
       @group_name = group.name.singularize.underscore
-      @groups[@group_name] = options[:with] ? group.with(options[:with]) : group.all(filter)
-      selected = params[@group_name]
+      @groups[@group_name] = options[:with] ? group.with(options[:with]).all(filter) : group.all(filter)
+      selected = params[@group_name] || (@groups[@group_name].first && @groups[@group_name].first.id)
       @selected ||= {}
       @selected[@group_name] = {} 
       @selected[@group_name][selected] = true if selected

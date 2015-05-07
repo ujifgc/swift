@@ -3,6 +3,6 @@
     label
       = pat("group.#{name}") + ': '
       select name="DataTables_Table_0_group_#{name}" size="1" aria-controls="DataTables_Table_0" data={ :name => name.classify }
-        option value="all" selected=(@selected[name].blank? && "selected") = pat('all')
         - variants.each do |variant|
           option value=variant.id selected=(@selected[name][variant.id] && "selected") = variant.title
+        option value="all" selected=(@selected[name].blank? && "selected") = pat('all')
