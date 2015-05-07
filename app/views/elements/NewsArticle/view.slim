@@ -1,5 +1,5 @@
-article.news-article
+article.news-article itemscope=true
   header
-    time pubdate=true datetime=@article.date = @article.date.as_date
+    time itemprop="datePublished" datetime=@article.date = @article.date.as_date
     h2.title= @article.title
-  section.full-text= engine_render(@article.text )
+  section.full-text= engine_render(@article.text)
