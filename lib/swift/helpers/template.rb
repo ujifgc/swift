@@ -29,16 +29,18 @@ module Swift
       def process_element( name, args, opts )
         began = Time.now
         return remote_element(name, *args, opts) if opts.delete(:remote)
-        core, view = find_element name, opts[:instance]
+        instance = opts[:instance] || Option(:instance)
+        core, view = find_element(name, instance)
         fill_identity name, opts
         result = catch :output do
           @args, @opts = args, opts
-          binding.eval File.read(core), core  if File.exists?(core)
+          core_file = File.join(Swift::Application.views, core + '.rb')
+          binding.eval(File.read(core_file), core_file) if File.exists?(core_file)
           view_file = File.join(Swift::Application.views, view) + '.slim'
           fail(Padrino::Rendering::TemplateNotFound, "'view.slim'") unless File.file?(view_file)
           render :slim, view.to_sym, :layout => false, :views => Swift::Application.views
         end
-        logger.devel :element, began, name
+        logger.devel :element, began, [name, instance].compact.join('/')
         result
       rescue Padrino::Rendering::TemplateNotFound => e
         report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[Element '#{name}' error: #{e.strip}]"
@@ -48,11 +50,14 @@ module Swift
 
       def find_element( name, instance = nil )
         view = "elements/#{name}/view"
+        core = "elements/#{name}/core"
         if instance
           instance_view = "#{view}-#{instance}"
-          view = instance_view  if File.file?( "#{Swift::Application.views}/#{instance_view}.slim" ) 
+          view = instance_view if File.file?("#{Swift::Application.views}/#{instance_view}.slim") 
+          core_view = "#{core}-#{instance}"
+          core = core_view if File.file?("#{Swift::Application.views}/#{core_view}.rb")
         end
-        [ "#{Swift::Application.views}/elements/#{name}/core.rb", view ]
+        [core, view]
       end
 
       def fill_identity( element_name, opts = {} )
