@@ -1,4 +1,5 @@
 require 'shellwords'
+require 'uri'
 
 class NeatAdapter < Nozzle::Adapter::Base
   FILES_FOLDER = 'files'
@@ -37,12 +38,19 @@ class NeatAdapter < Nozzle::Adapter::Base
 end
 
 class ImageAdapter < NeatAdapter
+  def url
+    URI.escape(super)
+  end
+
   def default_url
     '/images/image_missing.png'
   end
 end
 
 class AssetAdapter < NeatAdapter
+  def url
+    URI.escape(super)
+  end
 end
 
 module Nozzle
@@ -58,14 +66,25 @@ module Nozzle
       ImageAdapter.instance_eval do
         outlet name.to_sym do
           @resize_method = RESIZE_METHODS[process.keys.first.to_sym].gsub('{size}', process.values.first)
-          def self.resize_method; @resize_method; end
-          def prepare( original, result )
-            FileUtils.mkdir_p File.dirname(result)
-            `convert #{Shellwords.escape original} #{self.class.resize_method} #{Shellwords.escape result}`
+
+          def self.resize_method
+            @resize_method
           end
+
+          def prepare( original, result )
+            return original if original.blank?
+            begun = Time.now
+            FileUtils.mkdir_p File.dirname(result)
+            command = "convert #{Shellwords.escape original} #{self.class.resize_method} #{Shellwords.escape result}"
+            result = `#{command}`
+            logger.devel :exec, begun, command
+            result
+          end
+
           def relative_folder
             "cache/#{@model}"
           end
+
           def filename
             "#{@record.id}@#{version_name}-#{super}"
           end
