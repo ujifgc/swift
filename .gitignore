@@ -20,3 +20,4 @@ assets/javascripts/app/*
 Gemfile.lock
 .bundle/*
 vendor/ruby/*
+public/robots.txt
