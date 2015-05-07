@@ -3,7 +3,7 @@ class CatNode
 
   property :id,       Serial
 
-  property :title,    String, :required => true
+  property :title,    String, :required => true, :length => 4095
   property :text,     Text
 
   sluggable! :unique_index => false
@@ -31,9 +31,9 @@ class CatNode
     if cat_card && cat_card.sort_cache.kind_of?(Hash)
       cat_card.sort_cache.each do |cache_field, json_field|
         if cat_card[json_field][0] == 'number'
-          self.send "#{cache_field}=", json[json_field].to_i.to_s.rjust(16,'0').sub(/#{json[json_field].to_i.to_s}$/, json[json_field].to_s)
+          self.send "#{cache_field}=", json[json_field].to_i.to_s.rjust(16,'0').sub(/#{json[json_field].to_i.to_s}$/, json[json_field].to_s)[0..254]
         else
-          self.send("#{cache_field}=", json[json_field] || send(json_field))
+          self.send("#{cache_field}=", (json[json_field] || send(json_field))[0..254])
         end
       end
     end

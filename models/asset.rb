@@ -3,7 +3,7 @@ class Asset
 
   property :id, Serial
 
-  property :title, String
+  property :title, String, :length => 4095
 
   nozzle! :file, AssetAdapter
   timestamps!
