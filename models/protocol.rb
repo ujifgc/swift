@@ -157,10 +157,10 @@ class Protocol
     original = restore
     modified = now
     original_file = Tempfile.new('original_diff')
-    original_file.write(original[field]+"\r\n")
+    original_file.write(original[field].to_s+"\r\n")
     original_file.close
     modified_file = Tempfile.new('modified_diff')
-    modified_file.write(modified[field]+"\r\n")
+    modified_file.write(modified[field].to_s+"\r\n")
     modified_file.close
     result = `diff -u '#{original_file.path}' '#{modified_file.path}'`
     [original_file, modified_file].each(&:unlink)
