@@ -31,15 +31,17 @@ class NewsArticle
   # hookers
 
   # instance helpers
-  def extract_thumbnail!
-    if info.strip.start_with?('[image')
-      rex = /(\[image:thumbnail-link[^]\d]*(\d+)[^]]*\])|(\[image:link[^]\d]*(\d+)[^]]*\])/
-      md = info.match(rex)
-      id = md[2] || md[4]
-      info.sub!(rex, '')
-      if image = Image.get(id)
-        "<img src='#{image.file.thumb.url}'>".html_safe
-      end
-    end
+  def has_image?
+    !!image_matchdata
+  end
+
+  def image
+    @image ||= image_matchdata && Image.get(image_matchdata[1])
+  end
+
+  private
+
+  def image_matchdata
+    @image_matchdata ||= (info + text).match(Swift::Helpers::Utils::REGEX_IMAGE_ID)
   end
 end
