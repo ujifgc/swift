@@ -25,3 +25,6 @@ Option:
   locales:
     title: Доступные языки интерфейса
     value: [ru]
+  instance:
+    title: Вариант визуализаторов
+    value: default

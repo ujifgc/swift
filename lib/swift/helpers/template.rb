@@ -11,6 +11,9 @@ module Swift
       end
 
       def element_view( name, opts = {} )
+        instance = opts[:instance] || Option(:instance)
+        filename = File.join(Swift::Application.views, 'elements', "#{name}-#{instance}")
+        name += '-' + instance if File.file?(filename + '.slim')
         fragment name, :elements, opts
       end
 
@@ -22,6 +25,10 @@ module Swift
       rescue Padrino::Rendering::TemplateNotFound, Errno::ENOENT => e
         name = template.partition('/').first
         report_error e, "EngineHelpers##{__method__}@#{__LINE__}", "[#{type.to_s.singularize.camelize} '#{name}' error: #{e.to_s.strip}]"
+      end
+
+      def output(data)
+        throw :output, data
       end
 
       private
