@@ -1,0 +1,5 @@
+article.news-article itemscope=true itemtype='http://schema.org/NewsArticle'
+  header
+    time itemprop='datePublished' datetime=article.date.iso8601 = article.date.as_date
+    h2 itemprop='headline' = article.title
+  .body itemprop='articleBody' = engine_render(@article.text)
