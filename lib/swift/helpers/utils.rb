@@ -28,11 +28,7 @@ module Swift
 
       def extract_image_object(text)
         md = text.to_s.match(REGEX_IMAGE_ID)
-        if md
-          Image.get md[1]
-        else
-          nil
-        end
+        md && Image.get(md[1])
       end
     end
   end
