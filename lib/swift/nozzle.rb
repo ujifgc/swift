@@ -47,8 +47,8 @@ end
 
 module Nozzle
   RESIZE_METHODS = {
-    :fit  => '-thumbnail {size} -quality 50',
-    :fill => '-thumbnail {size}^ -gravity center -extent {size} -quality 50',
+    :fit  => '-thumbnail {size} -quality 60',
+    :fill => '-thumbnail {size}^ -gravity center -extent {size} -quality 60',
   }
   def self.finalize
     check_convert
