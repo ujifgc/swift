@@ -2,20 +2,20 @@ swift.module_path_ids = []
 @rubrics = NewsRubric.all
 @active_rubrics = []
 
-if md = swift.slug.to_s.match( /show\/(.*)/ )
-  swift.slug = md[1]
-  swift.path_pages << Page.new
-  throw :output, element( 'NewsArticle', @args, @opts )
-end
-
 if swift.slug == ''
   @active_rubrics = Bond.children_for(@page, 'NewsRubric')
   core = element( 'NewsRubrics', @args, @opts )
   core += element( 'NewsPager', @args, @opts )
-  throw :output, core
+  output core
 end
 
-if md = swift.slug.to_s.match( /.+/ )
+if matchdata = swift.slug.to_s.match(/show\/(.*)/)
+  swift.slug = matchdata[1]
+  swift.path_pages << Page.new
+  output element( 'NewsArticle', @args, @opts )
+end
+
+if matchdata = swift.slug.to_s.match(/.+/)
   steps = swift.slug.split( '/' )
   steps.each do |step|
     rubric = @rubrics.by_slug(step)
@@ -28,7 +28,7 @@ if md = swift.slug.to_s.match( /.+/ )
 
   core = element( 'NewsRubrics', @args, @opts )
   core += element( 'NewsPager', @args, @opts )
-  throw :output, core
+  output core
 end
 
 redirect '/news' unless swift.uri == '/news'
