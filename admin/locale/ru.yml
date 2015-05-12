@@ -225,7 +225,7 @@ ru:
         updated_by_id: Автор изменений
         created_by_id: Создатель
         file_size: Размер файла
-        changes: Замещённые данные
+        changes: Замещённые данные и изменённые поля
         forms_card: Форма
         json: Данные
         meta:

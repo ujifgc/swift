@@ -27,13 +27,24 @@ form.inner.multiple#multiple-codes action=url(:codes, :index)/:multiple method=:
             = link_to 'Загрузить', url(object.object_type.underscore.pluralize.to_sym, :edit, :id => object.object_id, :protocol_id => object.id)
           td
             - data = object.object
-            table
-              tr
-                - data.each do |key, value|
-                  th= mat(:object, key)
-              tr
-                - data.each do |key, value|
-                  td
-                    pre= value
+            - text_data, other_data = data.partition{ |key,_| ['text', 'info', 'title'].include?(key.to_s) }
+            - if other_data.any?
+              table
+                tr
+                  - other_data.each do |key, value|
+                    th= mat(:object, key)
+                tr
+                  - other_data.each do |key, value|
+                    td
+                      pre= value
+            - if text_data.any?
+              table
+                tr
+                  - text_data.each do |key, value|
+                    th= mat(:object, key)
+                tr
+                  - text_data.each do |key, value|
+                    td
+                      pre= object.diff(key.to_sym)
 
 = partial 'base/index_operations_bottom'

@@ -1,4 +1,5 @@
 require 'zlib'
+require 'tempfile'
 
 class Protocol
   include DataMapper::Resource
@@ -74,11 +75,72 @@ class Protocol
     all filter
   end
 
+  def self.restore(type, id, at)
+    model = type.constantize
+    instance = model.get(id) || model.new
+    trace(type, id, at).each do |step|
+      instance.attributes = step.object
+    end
+    instance
+  end
+
+  def self.full_trace(type, id)
+    all(:object_type => type, :object_id => id, :order => :time.desc).inject({}) do |hash, object|
+      hash[object.time] = object
+      hash      
+    end
+  end
+
+  @full_trace = {}
+
+  def self.trace_at(type, id, at)
+    traced = @full_trace[[type, id]] ||= full_trace(type, id)
+    traced.select{ |key,_| key >= at }.values
+  end
+
+  def self.trace(type, id, at)
+    all(:object_type => type, :object_id => id, :time.gte => at, :order => :time.desc)
+  end
+
+  def self.track_attributes(*attributes)
+    all(:order => :time.desc).select do |step|
+      good = false
+      json = step.object
+      Array(attributes).each do |key|
+        if json[key]
+          good = true
+          break
+        end
+      end
+      good
+    end
+  end
+
   # instance helpers
   def object
     JSON.parse data
   rescue
     { :json => data }
+  end
+
+  def restore(at = nil)
+    instance = latest || object_type.constantize.new
+    trace(at).each do |step|
+      instance.attributes = step.object
+    end
+    instance
+  end
+
+  def now
+    restore(time + 1.second)
+  end
+
+  def latest
+    object_type.constantize.get(object_id)
+  end
+
+  def trace(at = nil)
+    self.class.trace_at(object_type, object_id, at || time)
   end
 
   def data
@@ -89,5 +151,19 @@ class Protocol
 
   def data=(value)
     attribute_set( :data, Zlib.deflate( value.force_encoding('binary') ) )
+  end
+
+  def diff(field=:text)
+    original = restore
+    modified = now
+    original_file = Tempfile.new('original_diff')
+    original_file.write(original[field]+"\r\n")
+    original_file.close
+    modified_file = Tempfile.new('modified_diff')
+    modified_file.write(modified[field]+"\r\n")
+    modified_file.close
+    result = `diff -u '#{original_file.path}' '#{modified_file.path}'`
+    [original_file, modified_file].each(&:unlink)
+    Array(result.lines[2..-1]).join
   end
 end
