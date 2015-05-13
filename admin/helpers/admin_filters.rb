@@ -1,13 +1,12 @@
 Admin.helpers do
-  def detect_current_model
+  def detect_current_model(controller=nil)
     @the_model = begin
-      @models = request.controller || params[:controller]
+      @models = controller || request.controller || params[:controller]
       @model = @models.singularize
       @models = @models.to_sym
       @model_name = @model.camelize
       @model = @model.to_sym
-      Object.const_defined?(@model_name)  or throw :undefined
-      @model_name.constantize
+      Object.const_defined?(@model_name) ? @model_name.constantize : nil
     rescue
       nil
     end
@@ -23,7 +22,7 @@ Admin.helpers do
 
   def url_after_save
     if params[:apply]
-      url(@models, :edit, @object.id)
+      request.env['REQUEST_URI']
     else
       url(@models, :index)
     end
