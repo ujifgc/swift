@@ -10,6 +10,8 @@ BONDABLE_CHILDREN = %W(Page Folder Image FormsCard CatCard NewsRubric)
 BONDABLE_PARENTS  = %W(Page CatNode NewsArticle Folder FormsCard)
 
 class Admin < Padrino::Application
+  MULTIPLE_EDIT_FIELDS = %W[news_rubric_id]
+
   register Padrino::Rendering
   register Padrino::Helpers
   helpers Swift::Helpers
@@ -150,6 +152,8 @@ class Admin < Padrino::Application
         break  unless @the_model.respond_to? :published
         @the_model.all( :id => ids ).to_a.each{ |o| o.unpublish! }
         flash[:notice] = I18n.t('padrino.admin.multiple.unpublished', :objects => I18n.t("models.#{@models}.name"))
+      when 'multiedit'
+        redirect url(:multiple, :edit, :models => @models, :ids => ids.join(' '))
       end
     end
     redirect url(@models, :index)

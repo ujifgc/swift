@@ -70,7 +70,7 @@ module Padrino
             end
             tag = select field, { :class => :select }.merge( options )
             parent_field = field.to_s.gsub(/_id$/,'').to_sym
-            add = if @object.class.relationships[parent_field] && options[:with_create]
+            add = if @object.respond_to?(:relationships) && @object.class.relationships[parent_field] && options[:with_create]
               parent_model = @object.class.relationships[parent_field].parent_model 
               # !!!FIX the url
               link_to content_tag( :i, '', :class => 'icon-plus' ) + ' ' + content_tag(:u, I18n.t('padrino.admin.dialog.add_parent')), "/admin/dialogs/create_parent/?parent_model=#{parent_model}&field=#{field}", :class => 'single dialog', :'data-toggle' => :modal
@@ -173,9 +173,11 @@ module Padrino
             end
             text_field field, opts
           end
-          error = Array(@object.errors.delete(field))
-          error += Array(@object.json_errors.delete(field))  if @object.respond_to? :json_errors
-          controls += content_tag( :span, error.join(', '), :class => 'help-inline' )  if error.any?          
+          if @object.respond_to?(:errors)
+            error = Array(@object.errors.delete(field))
+            error += Array(@object.json_errors.delete(field))  if @object.respond_to? :json_errors
+            controls += content_tag( :span, error.join(', '), :class => 'help-inline' )  if error.any?          
+          end
           # ramove , :id => nil after 0.12.2
           html = label( field, options[:label].merge( :class => 'control-label', :caption => caption, :id => nil ) ) + ' '
           html += @template.content_tag( :div, controls, :class => :controls ) + ' '

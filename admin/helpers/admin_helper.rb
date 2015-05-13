@@ -10,6 +10,7 @@ Admin.helpers do
     :edit      => 'edit',
     :bind      => 'magnet',
     :show      => 'eye-open',
+    :multiedit => 'edit',
 
   # modules
     :pages     => 'globe',

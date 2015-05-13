@@ -11,6 +11,7 @@ ru:
       new: Добавить
       list: Список
       edit: Изменить
+      multiedit: Изменить несколько
       show: Просмотреть
       save: Сохранить
       pick: Вставить
@@ -80,6 +81,8 @@ ru:
         not_destroyed: "Объект '%{objects}' занят"
         published: "%{objects} опубликованы"
         unpublished: "%{objects} сняты с публикации"
+        no_fields_available: "Нет полей для множественного изменения"
+        no_values_selected: "Не выбрано ни одного общего значения"
       confirm:
         multiple_delete: "Вы действительно хотите удалить выбранные объекты?"
       form:

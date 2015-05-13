@@ -1,0 +1,4 @@
+ul.nav.nav-tabs.operations
+  li.first=  mk_single_op :list, url(@models, :index)
+  li= mk_single_op :new,  url(@models, :new)
+  li.active= mk_single_op :multiedit, url(:multiple, :edit, :models => @models, :ids => params[:ids])
