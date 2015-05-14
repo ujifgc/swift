@@ -3,7 +3,8 @@
     = check_box_tag :check_all, :checked => false, :id => 'check-all', :class => 'inline'
     = pat('select_all')
   - allow :auditor do
-    = mk_multiple_op :multiedit
+    - if @the_model && Admin::MULTIPLE_EDIT_FIELDS.any?{ |property| @the_model.properties.named?(property) }
+      = mk_multiple_op :multiedit
     - if @the_model.respond_to? :published
       = mk_multiple_op :publish
       = mk_multiple_op :unpublish
