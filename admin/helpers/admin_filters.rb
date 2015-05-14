@@ -22,7 +22,12 @@ Admin.helpers do
 
   def url_after_save
     if params[:apply]
-      request.env['REQUEST_URI']
+      uri = request.env['REQUEST_URI']
+      if uri.match(/\/update|\/create/)
+        url(@models, :edit, @object.id)
+      else
+        uri
+      end
     else
       url(@models, :index)
     end
