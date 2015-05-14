@@ -44,7 +44,7 @@ Admin.controllers :assets do
       flash[:notice] = pat('asset.created')
       redirect (files.count > 1) ? url(:assets, :index) : url_after_save
     else
-      @object = Asset.new params[:asset]
+      @object = Asset.new params[:asset].merge(:title => title, :folder_id => folder_id)
       @object.errors[:file] = [pat('error.select_file')]
       render 'assets/new'
     end
@@ -57,27 +57,11 @@ Admin.controllers :assets do
   end
 
   put :update, :with => :id do
-    file = params[:asset].delete 'file'
-    if file.kind_of? Hash
-      if @object.update(params[:asset])
-        @object.file = file
-        @object.save
-        @object.file.cleanup!
-        flash[:notice] = pat('asset.updated')
-        redirect url_after_save
-      else
-        render 'assets/edit'
-      end
+    if @object.update(params[:asset])
+      flash[:notice] = pat('asset.updated')
+      redirect url_after_save
     else
-      oldname = Padrino.public + @object.file.url
-      if @object.update(params[:asset])
-        @obj = Asset.get(params[:id])
-        FileUtils.mv_try oldname, Padrino.public + @obj.file.url
-        flash[:notice] = pat('asset.updated')
-        redirect url_after_save
-      else
-        render 'assets/edit'
-      end
+      render 'assets/edit'
     end
   end
 

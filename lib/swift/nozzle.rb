@@ -3,8 +3,8 @@ require 'shellwords'
 class NeatAdapter < Nozzle::Adapter::Base
   FILES_FOLDER = 'files'
   
-  def root
-    if @record.folder && @record.folder.is_private
+  def root(folder=@record.folder)
+    if folder && folder.is_private
       Padrino.root 'private'
     else
       Padrino.root 'public'
@@ -19,9 +19,9 @@ class NeatAdapter < Nozzle::Adapter::Base
     FILES_FOLDER
   end
 
-  def relative_folder
-    if folder = @record.folder
-      File.join( base_dir, folder.path )
+  def relative_folder(folder=@record.folder)
+    if folder
+      File.join(base_dir, folder.path)
     else
       base_dir
     end

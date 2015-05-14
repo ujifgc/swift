@@ -47,7 +47,7 @@ Admin.controllers :images do
       flash[:notice] = pat('image.created')
       redirect (files.count > 1) ? url(:images, :index) : url_after_save
     else
-      @object = Image.new params[:image]
+      @object = Image.new params[:image].merge(:title => title, :folder_id => folder_id)
       @object.errors[:file] = [pat('error.select_file')]
       render 'images/new'
     end
@@ -60,27 +60,11 @@ Admin.controllers :images do
   end
 
   put :update, :with => :id do
-    file = params[:image].delete 'file'
-    if file.kind_of? Hash
-      if @object.update(params[:image])
-        @object.file = file
-        @object.save
-        @object.file.cleanup!
-        flash[:notice] = pat('image.updated')
-        redirect url_after_save
-      else
-        render 'images/edit'
-      end
+    if @object.update(params[:image])
+      flash[:notice] = pat('image.updated')
+      redirect url_after_save
     else
-      oldname = Padrino.public + @object.file.url
-      if @object.update(params[:image])
-        @obj = Image.get(params[:id])
-        FileUtils.mv_try oldname, Padrino.public + @obj.file.url
-        flash[:notice] = pat('image.updated')
-        redirect url_after_save
-      else
-        render 'images/edit'
-      end
+      render 'images/edit'
     end
   end
 

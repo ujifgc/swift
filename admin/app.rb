@@ -10,7 +10,7 @@ BONDABLE_CHILDREN = %W(Page Folder Image FormsCard CatCard NewsRubric)
 BONDABLE_PARENTS  = %W(Page CatNode NewsArticle Folder FormsCard)
 
 class Admin < Padrino::Application
-  MULTIPLE_EDIT_FIELDS = %W[news_rubric_id]
+  MULTIPLE_EDIT_FIELDS = %W[news_rubric_id folder_id]
 
   register Padrino::Rendering
   register Padrino::Helpers
