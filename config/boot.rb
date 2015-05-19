@@ -3,6 +3,8 @@ RACK_ENV = ENV['RACK_ENV'] ||= 'development'  unless defined?(RACK_ENV)
 PADRINO_ROOT = File.expand_path('../..', __FILE__)  unless defined?(PADRINO_ROOT)
 ENV['TMP'] = File.join(PADRINO_ROOT, 'tmp')
 
+module Markdown; end
+
 # load bundle
 require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
@@ -26,11 +28,11 @@ require 'rack-pipeline/sinatra'
 # openid authentication
 require 'omniauth-openid'
 require 'openid/store/filesystem'
+require 'active_support/json'
 require 'active_support/core_ext/object/conversions'
 require 'active_support/core_ext/object/json'
 
 ActiveSupport::JSON::Encoding.escape_html_entities_in_json = false
-MultiJson = ActiveSupport::JSON
 
 Padrino.before_load do
   I18n.locale = :ru
@@ -38,11 +40,11 @@ Padrino.before_load do
 
   Time::DATE_FORMATS[:default] = '%Y-%m-%d %H:%M'
 
-  Slim::Engine.set_default_options( {
+  Slim::Engine.set_options( {
     :enable_engines => [:ruby, :javascript, :css],
-    :format => :html5,
+    :format => :html,
     :use_html_safe => true,
-    :pretty => Padrino.env == :development,
+    :pretty => true,
   } )
 end
 

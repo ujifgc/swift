@@ -1,0 +1,7 @@
+.control-group
+  label.control-label= mat(:fragment, :pages)
+  .controls
+    ul.nav.nav-pills
+      - @object.pages.each do |page|
+        li
+          = link_to page.title, url(:pages, :edit, :id => page.id)

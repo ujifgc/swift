@@ -3,26 +3,23 @@ source 'https://rubygems.org'
 # development
 group :development, :test do
   gem 'rake'
-  gem 'awesome_print'
+  gem 'awesome_print', "~> 1.2.0"
   gem 'ruby-progressbar'
   gem 'rack-test', ">= 0.5.0"
 end
 
-# basic support
-gem 'activesupport', '~> 4.1.0', :require => false
-
 # templates and content parsing
 gem 'slim'
-gem 'tight-redcarpet', '~> 3', :require => 'redcarpet'
+gem 'tight-redcarpet', '~> 3.2', :require => 'redcarpet'
 gem 'sinatra-flash', :require => 'sinatra/flash'
+gem 'rack', '~> 1.5.0'
 
 # padrino framework
-padrino_version = '0.12.3'
-#padrino_version = { :path => '/home/ujif/padrino-framework' }
-gem 'padrino-core', padrino_version.dup
-gem 'padrino-cache', padrino_version.dup
-gem 'padrino-helpers', padrino_version.dup
+padrino_version = '0.12.5'
+gem 'padrino-core', padrino_version
+gem 'padrino-helpers', padrino_version
 gem 'padrino-auth', '~> 0.0.12'
+gem 'padrino-cache', padrino_version
 
 # database ORM
 gem 'dm-validations'
@@ -34,7 +31,7 @@ gem 'dm-core', '~> 1.2.1'
 gem 'dm-mysql-adapter'
 
 # file, picture, js, css assets
-gem 'nozzle', '~> 0.1.6'
+gem 'nozzle', '~> 0.1.7'
 gem 'rack-pipeline', '~> 0.0.9'
 
 # authorization and authentication

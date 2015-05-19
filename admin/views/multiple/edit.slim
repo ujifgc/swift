@@ -1,0 +1,8 @@
+= partial 'base/edit_operations_multiple'
+= form_for :object, url(:multiple, :edit, :models => @models, :ids => params[:ids]), :method => :patch, :class => 'form form-horizontal edit', :id => "edit-multiple" do |f|
+  - @the_model.properties.each do |property|
+    - if :news_rubric_id == property.name
+      = f.input :news_rubric_id, :as => :select, :selected => @selected_values[property.name], :collection => NewsRubric.all, :fields => [ :title, :id ], :include_blank => [@distinct_values[property.name], '']
+    - if :folder_id == property.name
+      = f.input :folder_id, :as => :select, :selected => @selected_values[property.name], :collection => Folder.all, :fields => [ :title, :id ], :include_blank => [@distinct_values[property.name], '']
+  = f.submits

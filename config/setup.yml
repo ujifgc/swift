@@ -32,7 +32,13 @@ Code:
     is_single: 0
   clear:
     title: Очистка обтекания
-    text: Текст после данного тега не будет обтекать картинки с атрибутами левого или правого обтекания
+    text: После данного тега текст не будет обтекать картинки с атрибутами левого или правого обтекания
     html: '<div class=clearfix></div>'
     placeholder:
     is_single: 1
+  spoiler:
+    title: Спойлер (блочный)
+    text: Разметка текста как короткий заголовок (HTML5 summary) и содержимое (HTML5 details)
+    html: '<details><summary>[1]</summary><p>[content]</p></details>'
+    placeholder: Заголовок спойлера
+    is_single: 0

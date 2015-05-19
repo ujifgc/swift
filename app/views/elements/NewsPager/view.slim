@@ -1,10 +1,5 @@
 section.news-pager.news-list
   - @articles.each do |article|
-    article
-      header
-        time pubdate=true datetime=article.date = article.date.as_date
-        h4= link_to article.title, "#{swift.module_root}/show/#{article.slug}"
-      - if article.info.present?
-        section.short-text= engine_render(article.info)
+    = element_view 'News/article_description', :locals => { :article => article }
   - if @pages_count > 1
     = element 'Pager' 

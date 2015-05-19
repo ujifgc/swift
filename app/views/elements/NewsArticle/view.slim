@@ -1,5 +1,1 @@
-article.news-article
-  header
-    time pubdate=true datetime=@article.date = @article.date.as_date
-    h2.title= @article.title
-  section.full-text= engine_render(@article.text )
+= element_view 'News/article_body', :locals => { :article => @article }

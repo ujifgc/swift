@@ -1,0 +1,10 @@
+article itemscope=true itemtype='http://schema.org/NewsArticle'
+  header
+    time itemprop='datePublished' datetime=article.date.iso8601 = article.date.as_date
+    - if article.has_image?
+      = image_tag article.image.file.mini_thumb.url, :alt => article.image.title, :itemprop => 'image'
+    h4 itemprop='headline'
+      = link_to article.title, "/news/show/#{article.slug}"
+  - if article.info.present?
+    .description itemprop='description'
+      = engine_render(article.info)

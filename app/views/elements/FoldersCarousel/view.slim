@@ -1,6 +1,6 @@
 .carousel
   nav.prev
-    img src='/images/arrow_left.png'
+    img src='/images/arrow_left.png' alt="Сюда"
   section.images
     - @folders.each do |folder|
       - image = folder.images.last or next
@@ -8,4 +8,4 @@
         a href=('/gallery/'+folder.slug)
           = image_tag image.file.gallery_thumb.url, :alt => image.title
   nav.next
-    img src='/images/arrow_right.png'
+    img src='/images/arrow_right.png' alt="Туда"

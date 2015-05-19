@@ -7,11 +7,11 @@ nav.sorter
     - @card.sort_cache.each do |key,field_key|
       - title = @card.json[field_key] ? field_key : "Наименование документа"
       - if params[:sort] == key.to_s
-        = link_to title, url_replace(swift.uri, :sort => "#{key}.desc"), :class => 'asc active'
+        = link_to title, url_replace(swift.uri, :sort => "#{key}.desc"), :class => 'asc active', :rel => 'nofollow'
       - elsif params[:sort] == key.to_s+'.desc'
-        = link_to title, url_replace(swift.uri, :sort => "#{key}"), :class => 'desc active'
+        = link_to title, url_replace(swift.uri, :sort => "#{key}"), :class => 'desc active', :rel => 'nofollow'
       - else
-        = link_to title, url_replace(swift.uri, :sort => key)
+        = link_to title, url_replace(swift.uri, :sort => key), :rel => 'nofollow'
     
 - if @card.show_fields.any?
   table.table.cat-nodes

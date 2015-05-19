@@ -1,0 +1,8 @@
+- @groups.each do |name,variants|
+  .dataTables_group id="DataTables_Table_0_group_#{name}" 
+    label
+      = pat("group.#{name}") + ': '
+      select name="DataTables_Table_0_group_#{name}" size="1" aria-controls="DataTables_Table_0" data={ :name => name.classify }
+        - variants.each do |variant|
+          option value=variant.id selected=(@selected[name][variant.id] && "selected") data-url=url(:dialogs, :folder, params.merge({:folder_id => variant.id, :object_type => :images})) = variant.title
+        option value="all" selected=(@selected[name].blank? && "selected") data-url=url(:dialogs, :folder, params.merge({:folder_id => "all", :object_type => :images})) = pat('all')

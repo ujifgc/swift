@@ -3,7 +3,7 @@ html class=swift.print?
   head
     meta charset="utf-8"
     link rel="shortcut icon" href="/favicon.ico"
-    link rel="alternate" type="application/rss+xml" title="Новости сайта «#{Option(:site_title)}»" href="/news.xml"
+    link rel="alternate" type="application/rss+xml" title=Option(:site_title) href="/news.xml"
     /[if lt IE 9]
       script src='/javascripts/html5ie8tags.js'
     = element 'PageTitle'
@@ -12,5 +12,5 @@ html class=swift.print?
     == pipeline :app, :css
     script src="//api.conf.udsu.ru/app.js"
     == pipeline :app, :js
-  body class=swift.fragment
+  body class="#{swift.fragment} #{swift.locale}"
     = yield
