@@ -15,10 +15,12 @@ form.inner.multiple#multiple-accounts action=url(:accounts, :index)/:multiple me
         th.first
         th.title= mat(:object, :name)
         th= mat(:object, :role)
+        th= mat(:object, :logged_at)
     tbody
       - @objects.each do |object|
         tr
           td.last= mk_checkbox object
           td= mk_edit object
           td= object.group && object.group.title
+          td= object.logged_at.as_time
 = partial 'base/index_operations_bottom'

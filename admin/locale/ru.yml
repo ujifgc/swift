@@ -231,6 +231,7 @@ ru:
         changes: Замещённые данные и изменённые поля
         forms_card: Форма
         json: Данные
+        logged_at: Последний вход
         meta:
           description: Метаописание
           keywords: Ключевые слова
