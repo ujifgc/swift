@@ -2,4 +2,4 @@ section.news-pager.news-list
   - @articles.each do |article|
     = element_view 'News/article_description', :locals => { :article => article }
   - if @pages_count > 1
-    = element 'Pager' 
+    = element 'Pager', :allow => []

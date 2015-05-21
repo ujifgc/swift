@@ -24,6 +24,11 @@ describe 'url_replace' do
     url_replace( '/news?a=b&c=d', '/bar', c: nil, a: nil ).must_equal '/bar'
     url_replace( '/мама?мыла=раму', '/папа', :'мыл' => 'раму', :'мыла' => nil ).must_equal '/папа?мыл=раму'
   end
+
+  it 'should drop disallowed parameters and pass allowed ones' do
+    url_replace( '/news?poop=boob&foo=bar', :page => 2, :allowed_query_parameters => [] ).must_equal('/news?page=2')
+    url_replace( '/news?poop=boob&foo=bar', :page => 2, :allowed_query_parameters => [:foo] ).must_equal('/news?foo=bar&page=2')
+  end
 end
 
 describe 'se_url' do

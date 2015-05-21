@@ -18,7 +18,7 @@ nav.pager class=@opts[:class]
     - elsif page == 1 + 1 || page == @pages_count - 1
       - more = true
     - if insert
-      a href=url_replace( swift.request, :page => page.to_s ) class=klass
+      a href=url_replace( swift.request, :page => page.to_s, :allowed_query_parameters => @opts[:allow] ) class=klass
         = page
     - if more
       span.more = "..."

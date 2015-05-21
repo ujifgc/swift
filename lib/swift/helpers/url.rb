@@ -31,7 +31,18 @@ module Swift
         uri.path = CGI.escape(args.first)  if args.first.kind_of?(String)
         if args.last.kind_of?(Hash)
           query = uri.query ? CGI.parse(uri.query) : {}
-          args.last.each{ |k,v| v ? query[k.to_s] = v.to_s : query.delete(k.to_s) }
+          allowed_query_parameters = args.last.delete(:allowed_query_parameters)
+          allowed_query_parameters.map!(&:to_s) if allowed_query_parameters.kind_of?(Array)
+          query.dup.each do |key, value|
+            query.delete(key) if allowed_query_parameters && !allowed_query_parameters.include?(key)
+          end
+          args.last.each do |key, value|
+            if value
+              query[key.to_s] = value.to_s
+            else
+              query.delete(key.to_s)
+            end
+          end
           uri.query = query.any? && URI.encode_www_form(query)
         end
         CGI.unescape(uri.to_s)
