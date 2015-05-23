@@ -1,26 +1,22 @@
-- title = "#{Option('site_title')} — #{I18n.t(:news)}"
+- title = Option(:site_title)
 - description = Page.first( :path => '/news' )
-- description = description.meta['description']  if description.present?
+- description = description.meta['description'] if description
 doctype xml
 rss version="2.0"
   channel
     title= title
-    description= description || title
+    description= description.present? ? description : I18n.t(:news)
     link= absolute_url('/')
     - @news_articles.each do |article|
       - link = absolute_url(se_url article)
-      - image = Image.get(article.info.to_s.gsub(/.*?\[image[^\s]*\s+(\d+)\s+.*\].*/m, '\1'))
-      - description = strip_tags(engine_render article.text)
-      - if params.has_key?('koi')
-        - description.gsub!(/[«»]/, '"')
       item
         title= article.title
         link= link
-        description= description
+        description= strip_tags_for_rss(engine_render(article.text))
         pubDate= article.date.rfc822
-        - if article.respond_to?(:uuid) && article.uuid
-          guid isPermaLink="false" = article.uuid
-        - else
+        - if article.uuid.blank?
           guid= link
-        - if image
-          enclosure url=absolute_url(image.file.url) type=image.file.content_type
+        - else
+          guid isPermaLink="false" = article.uuid
+        - if article.has_image?
+          enclosure url=absolute_url(article.image.file.url) type=article.image.file.content_type

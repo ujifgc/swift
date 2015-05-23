@@ -17,6 +17,11 @@ module Swift
         end
       end
 
+      def strip_tags_for_rss(text)
+        text.gsub(%r[<img.*?>], '')
+            .gsub(%r[<a.*?>(.*?)</a>], '\1')
+      end
+
       REGEX_SPLIT_IMAGE = /\[image[^\]]*?\]/.freeze
 
       def split_image(text)
