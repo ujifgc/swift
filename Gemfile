@@ -29,8 +29,15 @@ gem 'dm-aggregates'
 gem 'dm-core', '~> 1.2.1'
 gem 'dm-mysql-adapter'
 
+gem 'mysqlplus'
+#gem 'sqlite3'
+#gem 'swift'
+#gem 'swift-db-mysql'
+gem 'sequel'
+
 # file, picture, js, css assets
-gem 'nozzle', '~> 0.1.7'
+#gem 'nozzle', '~> 0.1.7'
+gem 'nozzle', :path => '/home/ujif/pro/nozzle'
 gem 'rack-pipeline', '~> 0.0.9'
 
 # authorization and authentication

@@ -1,24 +1,13 @@
-class Option
-  include DataMapper::Resource
-  
-  property :id, String, :length => 20, :key => true
-  property :title, String
-  property :json, Json, :lazy => false, :default => {}
+class Options < Sequel::Model
+  plugin :serialization, :json, :json
+
   attr_accessor :value
-
-  before :valid? do
-    self.json = { 'value' => value }  if value
-  end
-
-  def get_value
-    json['value']
-  end
 
   def self.cached_get(id)
     id = id.to_sym
     @cache ||= {}
     return @cache[id] if @cache[id]
-    all(:fields => [:id, json]).each{ |option| @cache[option.id.to_sym] = option.json['value'] }
+    all.each{ |option| @cache[option.id.to_sym] = option.json['value'] }
     @cache[id]
   rescue NoMethodError
     nil
@@ -28,13 +17,14 @@ class Option
     @cache.clear
   end
 
-  after :save do
-    Option.clear_cache
+  def after_save
+    super
+    Options.clear_cache
   end
 end
 
 def Option(id)
-  value = Option.cached_get(id)
+  value = Options.cached_get(id)
   case id
   when :site_title
     value.kind_of?(Hash) ? value[I18n.locale.to_s] : value

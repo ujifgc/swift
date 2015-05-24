@@ -35,7 +35,7 @@ class Swift::Application < Padrino::Application
   get '/cache/:model/:id@:outlet-:file' do
     model = params[:model].constantize  rescue nil
     error 400  unless model
-    object = model.get params[:id]  rescue nil
+    object = model.with_pk(params[:id])  rescue nil
     error 404  unless object
     outlet = object.file.outlets[params[:outlet].to_sym]  rescue nil
     error 400  unless outlet
@@ -47,13 +47,15 @@ class Swift::Application < Padrino::Application
 
   get '/sitemap.xml' do
     content_type 'application/xml'
-    @pages = Page.all.published
+    #@pages = Page.published
+    @pages = Pages.published.order(:id)
     render :slim, :'layouts/sitemap.xml', :format => :xhtml
   end
 
   get '/news.xml' do
     content_type 'application/xml'
-    @news_articles = NewsArticle.all(:limit => 20, :order => :date.desc).published
+    #@news_articles = NewsArticle.all(:limit => 20, :order => :date.desc).published
+    @news_articles = NewsArticles.published.order(Sequel.desc(:date)).first(20)
     render :slim, :'layouts/news.xml', :format => :xhtml
   end
 

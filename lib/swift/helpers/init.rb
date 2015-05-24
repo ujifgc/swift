@@ -12,8 +12,8 @@ module Swift
 
       def init_error( errno )
         init_path_pages
-        @page = Page.first :path => "/error/#{errno}"
-        @page ||= Page.new :title => "Error #{errno}", :text => "page /error/#{errno} not found"
+        @page = Pages.first_where :path => "/error/#{errno}"
+        @page ||= Pages.new :title => "Error #{errno}", :text => "page /error/#{errno} not found"
       end
 
       def init_swift
@@ -29,8 +29,9 @@ module Swift
 
       # FIXME possible SQLite fix, test against MySQL:
       # page = Page.first( :conditions => [ "? LIKE CASE WHEN is_module THEN path||'%' ELSE path END", path ], :order => :path.desc )
+      # OLD: "? LIKE IF(is_module,CONCAT(path,'%'),path)"
       def find_page_or_module( path )
-        page = Page.first( :conditions => [ "? LIKE IF(is_module,CONCAT(path,'%'),path)", path ], :order => :path.desc )
+        page = Pages.order(Sequel.desc(:path)).first("? LIKE CASE WHEN is_module THEN path||'%' ELSE path END", path)
         swift.fragment = (page = detect_module_slug(page, path)) ? page.fragment_id : 'error'
         page
       end
@@ -42,7 +43,7 @@ module Swift
 
       def redirect_if_blank( page )
         if page && page.parent_id && page.fragment_id == 'page' && page.text.blank? && !page.is_module
-          first_child = page.children.first( :order => :position )
+          first_child = page.children.order(:position).first
           redirect first_child.path  if first_child
         end
       end
@@ -66,7 +67,7 @@ module Swift
         page
       end
 
-      def init_path_pages( page = Page.root )
+      def init_path_pages(page=Pages.root)
         while page
           swift.path_pages.unshift page
           swift.path_ids.unshift page.id

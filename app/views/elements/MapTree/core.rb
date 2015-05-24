@@ -1,5 +1,5 @@
 def map_tree( from, level, prefix )
-  pages = Page.published.all( :parent => from, :order => [:position, :path])
+  pages = Pages.published.where(:parent => from).order(:position, :path).all
   len = pages.length
   k = 1
   tree = []
@@ -46,5 +46,5 @@ else
   @opts[:root]
 end
 
-root = root_page || Page.published.first(:parent_id => nil)
+root = root_page || Pages.root
 @tree = map_tree( root, 0, '' )

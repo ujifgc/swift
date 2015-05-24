@@ -1,9 +1,13 @@
-inc = @opts[:include] || @opts[:rubrics]
+include = @opts[:include] || @opts[:rubrics]
+
 filter = {}
-filter['news_rubric.slug'] = inc.to_s.split /\W+/                  if inc
+filter['news_rubric.slug'] = inc.to_s.split /\W+/                  if include
 filter['news_rubric.slug.not'] = @opts[:exclude].to_s.split /\W+/  if @opts[:exclude]
-filter[:offset] = @opts[:offset].to_i                              if @opts[:offset]
-filter[:limit] = @opts[:limit].to_i                                if @opts[:limit]
-filter[:limit] ||= 5
-filter[:order] = [ :date.desc, :id.desc ]
-@articles = NewsArticle.published.all( filter )
+
+order = [ Sequel.desc(:date), Sequel.desc(:id) ]
+
+limit = @opts[:limit].to_i if @opts[:limit]
+limit ||= 5
+offset = @opts[:offset].to_i if @opts[:offset]
+
+@articles = NewsArticles.published.where(filter).order(*order).offset(offset).limit(limit)

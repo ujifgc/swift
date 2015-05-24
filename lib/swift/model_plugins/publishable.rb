@@ -52,3 +52,11 @@ module Swift
     end
   end
 end
+
+module Sequel::Plugins::Publishable
+  module ClassMethods
+    def published
+      where(:is_published => true).where(Sequel.lit("IFNULL(#{self.to_s.underscore.pluralize}.publish_at,0)") < DateTime.now)
+    end
+  end
+end

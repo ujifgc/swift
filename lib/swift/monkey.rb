@@ -1,4 +1,5 @@
 require 'swift/monkey/datamapper'
+require 'swift/monkey/sequel'
 require 'swift/monkey/http_router'
 require 'swift/monkey/i18n'
 require 'swift/monkey/markdown'

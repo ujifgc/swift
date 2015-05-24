@@ -10,11 +10,11 @@ module Swift
           method = :show
         end
         url = case obj
-        when NewsArticle
+        when NewsArticle, NewsArticles
           '/news' / method / obj.slug
         when FormsCard
           '/forms' / method / obj.slug
-        when Page
+        when Page, Pages
           obj.path
         else
           swift.module_root ? swift.module_root / method / obj.slug : '/'

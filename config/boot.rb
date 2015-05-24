@@ -34,6 +34,9 @@ require 'active_support/core_ext/object/json'
 
 ActiveSupport::JSON::Encoding.escape_html_entities_in_json = false
 
+require Padrino.root + '/config/database.rb'
+Dir.glob( Padrino.root + '/models/*.rb' ).each { |file| require file; puts file }
+
 Padrino.before_load do
   I18n.locale = :ru
   I18n.available_locales = [:ru]

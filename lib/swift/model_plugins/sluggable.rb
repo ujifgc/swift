@@ -50,3 +50,11 @@ module Swift
     end
   end
 end
+
+module Sequel::Plugins::Sluggable
+  module ClassMethods
+    def by_slug(slug)
+      with_pk(slug) || first_where(:slug => slug)
+    end
+  end
+end

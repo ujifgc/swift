@@ -1,4 +1,4 @@
-@image = Image.get @args[0]
+@image = Images.with_pk(@args[0])
 throw :output, "[Image ##{@args[0]} missing]"  unless @image
 
 @identity[:class] += ' sized'  if @opts[:width] || @opts[:height]
