@@ -5,7 +5,8 @@ html class=swift.print?
     link rel="shortcut icon" href="/favicon.ico"
     link rel="alternate" type="application/rss+xml" title=Option(:site_title) href="/news.xml"
     /[if lt IE 9]
-      script src='/javascripts/html5ie8tags.js'
+      script src='//api.conf.udsu.ru/javascripts/iefix.js'
+      link href=("//api.conf.udsu.ru/stylesheets/iefix.css?"+File.mtime('../f-api/public/stylesheets/iefix.css').to_i.to_s) rel="stylesheet"
     = element 'PageTitle'
     = element 'Meta'
     link href=("//api.conf.udsu.ru/app.css?"+File.mtime('../f-api/assets/stylesheets/app/app.css').to_i.to_s) rel="stylesheet"
