@@ -24,12 +24,7 @@ class Admin < Padrino::Application
 
   set :default_builder, 'AdminFormBuilder'
   set :protection, :except => :ip_spoofing
-  set :protect_from_csrf, :except => [%r{^/login/auth/yandex/}, %r{^/dialogs/preview/}]
-
-  use OmniAuth::Builder do
-    options :path_prefix => '/login/auth'
-    provider :open_id, :store => OpenID::Store::Filesystem.new(Padrino.root+'/tmp'), :name => 'yandex', :identifier => 'http://ya.ru/'
-  end
+  set :protect_from_csrf, :except => [%r{^/dialogs/preview/}]
 
   set :pipeline, {
     :combine => Padrino.env == :production,

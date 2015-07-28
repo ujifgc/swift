@@ -19,10 +19,6 @@ class Account
   property :email,            String
   property :crypted_password, String, :length => 70
 
-  # for omniauth
-  property :provider,         String
-  property :uid,              String
-
   # Validations
   validates_presence_of      :email, :message => I18n.t('datamapper.errors.email.presense')
   validates_uniqueness_of    :email, :message => I18n.t('datamapper.errors.email.uniqueness'), :case_sensitive => false
@@ -155,31 +151,6 @@ class Account
 
   def self.find_by_id(id)
     get(id) rescue nil
-  end
-
-  def self.create_with_omniauth(auth)
-    attributes = { :provider => auth['provider'] }
-    by_uid = attributes.merge :uid => auth['uid']
-    by_email = attributes.merge :email => auth['info']['email']
-
-    if account = (Account.first(by_uid) || Account.first(by_email))
-      account.update! :logged_at => DateTime.now, :uid => auth['uid']
-      account
-    else
-      password = Digest::SHA2.hexdigest("#{DateTime.now}5ovCu#{rand}Cy")[4..11]
-      attributes.merge!(by_uid).merge!(by_email).merge!(
-        :name     => auth['info']['name'],
-        :password => password,
-        :password_confirmation => password,
-      )
-      attributes[:email] = "#{auth['uid']}.#{auth['provider']}@localhost" if attributes[:email].blank?
-      account = Account.create(attributes)
-      if Padrino.env == :development && Account.count(:group_id.not => nil, :id.not => account.id) == 0
-        account.group = Account.get(1)
-        account.save!
-      end
-      account
-    end
   end
 
   private

@@ -129,8 +129,6 @@ ru:
         dont_hack: Ломать — плохо
       login:
         title: Панель управления сайтом
-        social: Войти через сети
-        obsolete: или логин и пароль
         wrong_password: Неверный логин или пароль
         forgot: вспомнить пароль
         signin: Войти

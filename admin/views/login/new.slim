@@ -7,11 +7,7 @@ h4
 = form_tag( url(:login, :create), :class => 'form-horizontal well' ) do
   = partial 'base/flash'
 
-  legend= pat('login.social')
-  .control-group
-    = link_to image_tag('/images/social/yandex.png'), url(:login, :auth, :provider => :yandex)
-
-  legend= pat('login.obsolete')
+  legend
   .control-group
     .input-prepend
       span.add-on

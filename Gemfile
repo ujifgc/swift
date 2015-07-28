@@ -33,10 +33,5 @@ gem 'dm-mysql-adapter'
 gem 'nozzle', '~> 0.1.7'
 gem 'rack-pipeline', '~> 0.0.9'
 
-# authorization and authentication
-gem 'omniauth'
-gem 'rack-openid', :require => "rack/openid"
-gem 'omniauth-openid'
-
 # mailing
 gem 'system_mail', '~> 0.0.3'

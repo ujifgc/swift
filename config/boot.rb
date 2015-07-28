@@ -26,8 +26,6 @@ require 'nozzle/datamapper'
 require 'rack-pipeline/sinatra'
 
 # openid authentication
-require 'omniauth-openid'
-require 'openid/store/filesystem'
 require 'active_support/json'
 require 'active_support/core_ext/object/conversions'
 require 'active_support/core_ext/object/json'

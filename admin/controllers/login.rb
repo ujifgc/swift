@@ -1,20 +1,3 @@
-Admin.helpers do
-  def do_auth(request)
-    account = Account.create_with_omniauth(request.env["omniauth.auth"])
-    save_credentials(account)
-    if account.saved?
-      restore_location
-    else
-      error = ''.html_safe
-      error << content_tag(:code, "#{account.email}") << ': ' \
-            << account.errors.to_a.flatten.join(', ') << ': ' << tag(:br) \
-            << content_tag(:code, "#{account.provider}: #{account.uid}")
-      flash[:error] = error
-      redirect url(:login, :new)
-    end
-  end
-end
-
 Admin.controllers :login do
   layout 'login'
   set_access :*
@@ -82,12 +65,6 @@ Admin.controllers :login do
       render 'reset', :layout => 'login'
     end
   end
-
-  route_verbs [:get, :post], :auth, :with => [:provider, :callback] do
-    do_auth request
-  end
-
-  get :auth, :with => :provider do; end
 
   get :failure do
     flash[:error] = I18n.t('login.error.' + params[:message].html_safe)
