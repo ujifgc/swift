@@ -35,7 +35,7 @@ Admin.controllers :images do
         filename = file[:filename]
         filename = File.basename filename, File.extname(filename)
         object = {
-          :title => File.basename(title.blank? ? filename : "#{title} #{num}".strip, '.*').gsub('_', ' '),
+          :title => title.blank? ? File.basename(filename).tr('_', ' ') : "#{title} #{num}".strip,
           :file => file
         }
         folder = Folder.get folder_id
