@@ -126,7 +126,10 @@ class Protocol
   def restore(at = nil)
     instance = latest || object_type.constantize.new
     trace(at).each do |step|
-      instance.attributes = step.object
+      begin
+        instance.attributes = step.object
+      rescue ArgumentError
+      end
     end
     instance
   end
