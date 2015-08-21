@@ -35,7 +35,7 @@ Admin.controllers :folders do
   put :update, :with => :id do
     old_path = @object.path
     old_dir = @object.absolute_path
-    fail RuntimeError  unless File.exist?(old_dir)
+    FileUtils.mkdir_p(old_dir) unless File.directory?(old_dir)
     if @object.update(params[:folder])
       unless old_dir == @object.absolute_path
         FileUtils.mkdir_p(@object.absolute_path)
