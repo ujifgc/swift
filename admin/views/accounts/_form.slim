@@ -3,7 +3,5 @@
 = f.input :email
 = f.input :password, :as => :password
 = f.input :password_confirmation, :as => :password
-= f.input :provider
-= f.input :uid
 = f.input :group_id, :as => :select, :selected => @object.group_id, :collection => Account.all( :group_id => nil ), :fields => [ :title, :id ], :include_blank => false
 = f.submits :append => mk_timestamps( @object )
