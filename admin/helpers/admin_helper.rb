@@ -194,4 +194,15 @@ Admin.helpers do
     end
     [label, outlet]
   end
+
+  def install_first_admin
+    if Padrino.env == :development && Account.count(:group_id.not => nil) == 0
+      account = Account.create(
+        :email => params[:email],
+        :password => params[:password], :password_confirmation => params[:password],
+        :group => Account.get(1)
+      )
+      save_credentials(account)
+    end
+  end
 end

@@ -7,7 +7,7 @@ Admin.controllers :login do
   end
 
   post :create, :map => '/login' do
-    if authenticate
+    if authenticate || install_first_admin
       restore_location
     else
       params.delete 'password'
