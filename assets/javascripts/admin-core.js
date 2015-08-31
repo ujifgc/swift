@@ -846,7 +846,7 @@ bindCustomFilter = function(selector, model) {
   if (cookie == null)
     loadPane();
   else
-    $('select').val(JSON.parse($.cookie("SpryMedia_DataTables_DataTables_Table_0_" + model))["iGroupFolder"]).change();
+    $(selector).find('select').val(JSON.parse(cookie)["iGroupFolder"]).change();
 };
 
 makeActionsVisible = function(e) {
