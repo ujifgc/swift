@@ -852,6 +852,7 @@ bindCustomFilter = function(selector, model) {
 makeActionsVisible = function(e) {
   var form = $('form.edit');
   var actions = $('.form-actions');
+  if (form.length == 0 || actions.length == 0) return;
   if (form.offset().top + form.height() > $(window).scrollTop() + $(window).height()) {
     form.addClass('bottom-action');
   } else if (form.offset().top + form.height() + actions.outerHeight(true) <= $(window).scrollTop() + $(window).height()) {
