@@ -1307,10 +1307,6 @@
             chunk.selection = chunk.startTag + chunk.selection + chunk.endTag;
             chunk.startTag = chunk.endTag = "";
 
-            if (/\n\n/.test(chunk.selection)) {
-                this.addLinkDef(chunk, null);
-                return;
-            }
             var that = this;
 
             var pickMultipleIdCallback = function(datas) {
