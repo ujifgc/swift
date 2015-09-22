@@ -230,6 +230,7 @@ ru:
         forms_card: Форма
         json: Данные
         logged_at: Последний вход
+        restricted: Доступ ограничен
         meta:
           description: Метаописание
           keywords: Ключевые слова

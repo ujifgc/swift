@@ -18,6 +18,7 @@ class Account
   property :surname,          String
   property :email,            String
   property :crypted_password, String, :length => 70
+  property :restricted,       Boolean, :default => false
 
   # Validations
   validates_presence_of      :email, :message => I18n.t('datamapper.errors.email.presense')
@@ -64,11 +65,12 @@ class Account
   def allowed( check )
     return group.allowed(check)  if group
     raise Forbidden  if id > ACCOUNT_GROUPS.length
-    check_index = ACCOUNT_GROUPS.index(check.to_s)
+    check = check.name if check.respond_to?(:group) && !check.group
+    check_index = ACCOUNT_GROUPS.index(check.to_s) || -1
     self_index  = ACCOUNT_GROUPS.index(name.to_s)
     return true  if self_index <= check_index
   end
-  alias allowed? allowed
+  alias_method :allowed?, :allowed
 
   def has_access_to( object, operation = nil ) # FIXME
     operation_allowed = case operation
@@ -80,8 +82,8 @@ class Account
       true
     end
     return false  unless operation_allowed
-    
-    case
+
+    role_allowed = case
     when allowed( :admin )
       true
     when allowed( :auditor )
@@ -91,7 +93,11 @@ class Account
     else
       false
     end
+    return false if !role_allowed
+    return role_allowed unless Account.current.restricted
+    Access.allowed?(object, Account.current)
   end
+  alias_method :has_access_to?, :has_access_to
 
   def all_accessible( object_model ) # FIXME
     filter = case

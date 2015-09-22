@@ -135,17 +135,18 @@ Admin.helpers do
     end
   end
 
-  def recursive_tree(object_model, from, level, prefix, published = nil)
+  def recursive_tree(object_model, from, level, prefix, published = nil, options = {})
     filter = { :parent_id => from, :order => [:path] }
     filter[:order].unshift(:position) if object_model.properties.named?(:position) 
 
     objects = (published ? object_model.published : object_model).all(filter)
+    objects.select!{ |page| current_account.has_access_to?(page) }
     return false unless objects.count > 0
 
     model_key = object_model.name.underscore.to_sym
     objects.inject([]) do |tree,object|
       tree << { model_key => object,
-                :child => recursive_tree(object_model, object.id, level + 1, prefix + '/' + object.slug, published) }
+                :child => recursive_tree(object_model, object.id, level + 1, prefix + '/' + object.slug, published, options) }
     end
   end
 

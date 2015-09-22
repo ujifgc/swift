@@ -6,10 +6,12 @@ Admin.controllers :pages do
     if params[:page] && current_account.allowed?(:auditor) && !current_account.allowed?(:admin)
       params[:page]['is_module'] = @object.fragment.is_module
     end
+    tree = recursive_tree(Page, nil, 0, '', :restricted => true)
+    @parents = tree_flat(tree).reject{ |p| p.has_parent?(@object) }
   end
 
   get :index do
-    @tree = recursive_tree(Page, nil, 0, '')
+    @tree = recursive_tree(Page, nil, 0, '', :restricted => true)
     render 'pages/index'
   end
 
