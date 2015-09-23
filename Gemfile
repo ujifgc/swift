@@ -30,7 +30,7 @@ gem 'dm-core', '~> 1.2.1'
 gem 'dm-mysql-adapter'
 
 # file, picture, js, css assets
-gem 'nozzle', '~> 0.1.7'
+gem 'nozzle', '~> 0.1.8'
 gem 'rack-pipeline', '~> 0.0.9'
 
 # mailing
