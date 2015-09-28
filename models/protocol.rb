@@ -128,7 +128,7 @@ class Protocol
     trace(at).each do |step|
       begin
         instance.attributes = step.object
-      rescue ArgumentError
+      rescue ArgumentError, Errno::ENOENT
       end
     end
     instance
