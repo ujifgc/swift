@@ -86,6 +86,20 @@ class Page
     parent ? parent.parent ? parent.path + '/' + slug : '/' + slug : '/'
   end
 
+  def restore_path(at)
+    instance = Protocol.restore(self.class.name, id, at)
+    if instance.parent
+      parent_instance = Protocol.restore(self.class.name, instance.parent_id, at)
+      if parent_instance.parent
+        parent_instance.restore_path(at) + '/' + instance.slug
+      else
+        '/' + instance.slug
+      end
+    else
+      '/'
+    end
+  end
+
   def change_path!( parent_path )
     self.path = parent_path + '/' + slug
     save!
