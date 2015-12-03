@@ -9,6 +9,7 @@ Admin.controllers :accounts do
     unless @group && current_account.allowed(@group.role)
       @group = nil
     end
+    params[:account].delete 'suggested_password'
     @password = params[:account].delete 'password'  
     @password_confirmation = params[:account].delete 'password_confirmation'
   end
@@ -23,12 +24,13 @@ Admin.controllers :accounts do
   end
 
   get :new do
-    @object = Account.new
+    @object = Account.new :email => ' '
     render 'accounts/new'
   end
 
   post :create do
     @object = Account.new(params[:account])
+    @object.email.strip! if @object.email.present?
     @object.password = @password
     @object.password_confirmation = @password_confirmation
     @object.group = @group  if @group
@@ -53,6 +55,7 @@ Admin.controllers :accounts do
 
   get :edit, :with => :id do
     @object = Account.get(params[:id])
+    @object.email += ' '
     if !@object || ( @object.id != current_account.id && !current_account.allowed?(:admin) )
       flash[:notice] = pat('account.dont_hack')
       redirect url(:accounts, :edit, current_account.id)
@@ -71,6 +74,7 @@ Admin.controllers :accounts do
       redirect url(:accounts, :edit, current_account.id)
     end
     @object.attributes = params[:account]
+    @object.email.strip! if @object.email.present?
     @group = nil  if @object.id == current_account.id
     @object.group = @group  if @group
     @object.attribute_set :updated_at, DateTime.now

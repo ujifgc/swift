@@ -18,6 +18,7 @@ class Account
   property :surname,          String
   property :email,            String
   property :crypted_password, String, :length => 70
+  property :text,             Text
 
   # Validations
   validates_presence_of      :email, :message => I18n.t('datamapper.errors.email.presense')
@@ -126,7 +127,7 @@ class Account
   end
 
   def new_password
-    random_password = `apg -qd -c#{rand(0..9)} -m8 -x8 -n1`  rescue Digest::SHA2.hexdigest(DateTime.now.to_s+rand.to_s).gsub(/[^\d]/,'')[0..5]
+    random_password = Account.create_password
     self.password = self.password_confirmation = random_password
     self.crypted_password = encrypt_password
     random_password
@@ -151,6 +152,13 @@ class Account
 
   def self.find_by_id(id)
     get(id) rescue nil
+  end
+
+  def self.create_password
+    #pwd = `apg -qd -c#{rand(0..9)} -m6 -x10 -n1 -a0` rescue ''
+    pwd = `pwgen 7 -B -0 -N1`.to_s.strip + rand(0..9).to_s rescue ''
+    pwd = Digest::SHA2.hexdigest(DateTime.now.to_s+rand(0..9).to_s+'f77hcF[21').gsub(/[^\d]/,'')[0..5] if pwd.empty?
+    pwd
   end
 
   private

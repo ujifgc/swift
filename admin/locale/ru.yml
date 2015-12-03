@@ -230,6 +230,7 @@ ru:
         forms_card: Форма
         json: Данные
         logged_at: Последний вход
+        suggested_password: Автопароль
         meta:
           description: Метаописание
           keywords: Ключевые слова
