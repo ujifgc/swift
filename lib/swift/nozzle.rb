@@ -57,7 +57,9 @@ module Nozzle
       next unless process.kind_of?(Hash)
       ImageAdapter.instance_eval do
         outlet name.to_sym do
-          @resize_method = RESIZE_METHODS[process.keys.first.to_sym].gsub('{size}', process.values.first)
+          method_name = process.keys.first.to_sym
+          @resize_method = RESIZE_METHODS[method_name].gsub('{size}', process.values.first)
+          @resize_method.gsub!('>', method_name == :fit ? '\>' : '')
 
           def self.resize_method
             @resize_method

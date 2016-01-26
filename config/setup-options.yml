@@ -21,6 +21,8 @@ Option:
         fit: x135
       index_thumb:
         fit: 360x240
+      box:
+        fit: '1280x960>'
       '': Original
   locales:
     title: Доступные языки интерфейса

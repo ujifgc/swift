@@ -1,2 +1,3 @@
-a rel='box-image' href=@image.file.url title=@identity[:alt]
+- databox = @image.file.outlets[:box] ? { :'data-box' => @image.file.outlets[:box].url } : {}
+a rel='box-image' href=@image.file.url title=@identity[:alt] *databox
   img *@identity src=@outlet.url
